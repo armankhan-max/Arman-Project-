@@ -27,5 +27,20 @@ if a.still is not None:
     os.makedirs(a.out, exist_ok=True)
     t = time.time(); bpy.ops.render.render(write_still=True); print(f"rendered in {time.time()-t:.1f}s")
 else:
-    f0, f1 = a.range if a.range else (0, n)
-    L.render_frames(os.path.join(a.out, name), f0, f1)
+    # Animation is keyed at 30 fps; output at FPS_OUT by sampling sub-frames so timing stays in sync.
+    fps_out = int(os.environ.get("FPS_OUT", 30))
+    idx = [s[0] for s in shots.SHOTS].index(name)
+    start30 = sum(s[1] for s in shots.SHOTS[:idx])
+    r = fps_out / 30.0
+    s_out, e_out = round(start30 * r), round((start30 + n) * r)
+    out_dir = os.path.join(a.out, name)
+    os.makedirs(out_dir, exist_ok=True)
+    sc.render.fps = fps_out
+    for k in range(s_out, e_out):
+        path = os.path.join(out_dir, f"f{k - s_out:04d}.png")
+        if os.path.exists(path):
+            continue
+        t30 = min(max(k / r - start30, 0.0), n - 1)
+        sc.frame_set(int(t30), subframe=t30 - int(t30))
+        sc.render.filepath = path
+        bpy.ops.render.render(write_still=True)

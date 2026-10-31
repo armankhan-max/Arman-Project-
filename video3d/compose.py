@@ -11,7 +11,7 @@ import subprocess
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-W, H, FPS = 1080, 1920, 30
+W, H, FPS = 1080, 1920, int(os.environ.get("FPS_OUT", 24))
 OFFSET = 0.25
 FONT = "/usr/share/fonts/opentype/inter/Inter-ExtraBold.otf"
 SHOT_ORDER = ["s01", "s02", "s03", "s04", "s05", "s06", "s07", "s08", "s09", "s10"]
