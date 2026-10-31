@@ -120,6 +120,72 @@ def thumb_c(c):
         text(c, "?", 0, 62, 180, "#ffd400")
 
 
+# ---------------------------------------------------------------- variant D: split screen DAY 1 vs DAY 3
+def thumb_d(c):
+    t = 1.0
+    mid = TW / 2
+    # jagged divider shape
+    zig = [(mid + 40, -10)]
+    for i in range(1, 9):
+        zig.append((mid + (40 if i % 2 == 0 else -40), i * TH / 8))
+    zig.append((mid + 40, TH + 10))
+    left = poly([(-10, -10)] + zig + [(-10, TH + 10)])
+    right = poly([(TW + 10, -10)] + zig + [(TW + 10, TH + 10)])
+
+    # LEFT: day 1, happy and hydrated (cool blue)
+    c.save()
+    c.clipPath(left, skia.ClipOp.kIntersect, True)
+    fill_shader(c, skia.Rect(0, 0, TW, TH), linear(0, 0, 0, TH, ["#36b3ff", "#0a5fc4"]))
+    for i in range(14):
+        drop(c, 80 + (i * 137) % 860, 120 + (i * 241) % 900, 22, "#ffffff", a=0.18)
+    glow(c, 470, 600, 520, "#9be3ff", 0.5)
+    with xf(c, 470, 640, 5.2, rot=-3):
+        draw_head(c, 0, 0, "you", "laugh", t, look=(0.3, -0.2))
+    with xf(c, 830, 820, 2.0, rot=-12):
+        draw_bottle(c, 0, 0, 1.0, fill=0.95)
+    for k, (sx, sy) in enumerate(((800, 560), (870, 640), (760, 700))):
+        sparkle(c, sx, sy, 26 - k * 5, "#ffffff", 0.9, rot=20 * k)
+    c.restore()
+
+    # RIGHT: day 3, dehydrated (hot red/orange)
+    c.save()
+    c.clipPath(right, skia.ClipOp.kIntersect, True)
+    fill_shader(c, skia.Rect(0, 0, TW, TH), linear(0, 0, 0, TH, ["#ff9a1f", "#b3170d"]))
+    glow(c, 1760, 150, 420, "#fff3c4", 0.8)
+    c.drawCircle(1760, 150, 110, P("#fff6cf"))
+    c.drawCircle(1760, 150, 90, P("#ffe47a"))
+    heat_shimmer(c, t, 2.0, 500, 900)
+    glow(c, 1450, 600, 520, "#ff2a00", 0.45)
+    with xf(c, 1450, 640, 5.2, rot=4):
+        draw_head(c, 0, 0, "you", "dry", t + 0.4, look=(-0.2, 0.4), sweat=1.0)
+    # cracks on lips emphasis
+    red_circle(c, 1462, 775, 115, 80, 14)
+    with xf(c, 1800, 820, 1.6, rot=75):
+        draw_bottle(c, 0, 0, 1.0, fill=0.0)
+    c.restore()
+
+    # divider
+    zp = poly(zig, close=False)
+    c.drawPath(zp, P("#111111", 34))
+    c.drawPath(zp, P("#ffffff", 16))
+
+    # labels
+    pill(c, 470, 110, "DAY 1", 92, "#ffffff", "#0a5fc4", s=1.0)
+    pill(c, 1450, 110, "DAY 3", 92, "#111111", "#ffd400", s=1.0)
+    # body water meters
+    for x, lvl, col, lab in ((470, 0.95, "#4cc3ff", "WATER 100%"), (1450, 0.18, "#ff3b3b", "WATER ???")):
+        rrect(c, x - 260, 960, 520, 64, 32, "#111111")
+        rrect(c, x - 252, 968, 504 * lvl, 48, 24, col)
+        text(c, lab, x, 1008, 40, "#ffffff", outline="#111111", ow=8)
+    # VS badge
+    with xf(c, mid, 520, rot=-8):
+        c.drawCircle(0, 0, 118, P("#111111"))
+        c.drawCircle(0, 0, 104, P("#ffd400"))
+        text(c, "VS", 0, 34, 96, "#111111")
+    # bottom-center hook
+    big_text(c, "NO WATER", mid, 320, 120, "#ffffff", align="center", rot=-4)
+
+
 def save(fn, outdir, name):
     s = skia.Surface(TW, TH)
     c = s.getCanvas()
@@ -136,5 +202,6 @@ def save(fn, outdir, name):
 if __name__ == "__main__":
     out = sys.argv[1] if len(sys.argv) > 1 else "thumbnails"
     os.makedirs(out, exist_ok=True)
-    for fn, name in ((thumb_a, "thumb_A_how_long"), (thumb_b, "thumb_B_this_saved_us"), (thumb_c, "thumb_C_day3")):
+    for fn, name in ((thumb_a, "thumb_A_how_long"), (thumb_b, "thumb_B_this_saved_us"), (thumb_c, "thumb_C_day3"),
+                     (thumb_d, "thumb_D_split_day1_vs_day3")):
         print(save(fn, out, name))
