@@ -1,0 +1,14 @@
+{
+  "name": "mercury-explainer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Why Mercury is the coldest planet - 2D explainer rendered in JavaScript",
+  "scripts": {
+    "audio": "node src/audio.js",
+    "render": "node src/render.js",
+    "preview": "node src/render.js --still"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "^1.1.0"
+  }
+}

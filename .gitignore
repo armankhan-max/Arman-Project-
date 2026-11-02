@@ -4,3 +4,4 @@ __pycache__/
 node_modules/
 crows/out/
 3am/out/
+mercury/out/
