@@ -40,6 +40,7 @@ const PLANETS = {
   venus: { base: ['#ffe7a8', '#e0a85a', '#8a5a2a'] },
 };
 function planet(ctx, x, y, r, kind, o = {}) {
+  if (!(r > 2)) return;
   const P = PLANETS[kind];
   const key = `pl_${kind}`; const S = 400;
   const img = cached(key, c => {
