@@ -1,0 +1,657 @@
+[
+ {
+  "word": "Your",
+  "start": 0.0,
+  "end": 0.19
+ },
+ {
+  "word": "phone",
+  "start": 0.2,
+  "end": 0.51
+ },
+ {
+  "word": "is",
+  "start": 0.52,
+  "end": 0.63
+ },
+ {
+  "word": "probably",
+  "start": 0.64,
+  "end": 1.12
+ },
+ {
+  "word": "dirtier",
+  "start": 1.12,
+  "end": 1.59
+ },
+ {
+  "word": "than",
+  "start": 1.6,
+  "end": 1.71
+ },
+ {
+  "word": "a",
+  "start": 1.72,
+  "end": 1.83
+ },
+ {
+  "word": "toilet",
+  "start": 1.84,
+  "end": 2.15
+ },
+ {
+  "word": "seat.",
+  "start": 2.28,
+  "end": 2.55
+ },
+ {
+  "word": "You'd",
+  "start": 2.72,
+  "end": 3.03
+ },
+ {
+  "word": "think",
+  "start": 3.04,
+  "end": 3.24
+ },
+ {
+  "word": "the",
+  "start": 3.24,
+  "end": 3.39
+ },
+ {
+  "word": "toilet",
+  "start": 3.4,
+  "end": 3.82
+ },
+ {
+  "word": "is",
+  "start": 3.84,
+  "end": 3.95
+ },
+ {
+  "word": "the",
+  "start": 3.96,
+  "end": 4.07
+ },
+ {
+  "word": "dirtiest",
+  "start": 4.08,
+  "end": 4.51
+ },
+ {
+  "word": "thing",
+  "start": 4.56,
+  "end": 4.75
+ },
+ {
+  "word": "you",
+  "start": 4.76,
+  "end": 4.88
+ },
+ {
+  "word": "touch",
+  "start": 4.88,
+  "end": 5.27
+ },
+ {
+  "word": "all",
+  "start": 5.28,
+  "end": 5.48
+ },
+ {
+  "word": "day.",
+  "start": 5.48,
+  "end": 5.63
+ },
+ {
+  "word": "It's",
+  "start": 5.76,
+  "end": 6.03
+ },
+ {
+  "word": "literally",
+  "start": 6.08,
+  "end": 6.67
+ },
+ {
+  "word": "where",
+  "start": 6.68,
+  "end": 6.92
+ },
+ {
+  "word": "waste",
+  "start": 6.96,
+  "end": 7.34
+ },
+ {
+  "word": "goes,",
+  "start": 7.36,
+  "end": 7.72
+ },
+ {
+  "word": "but",
+  "start": 7.76,
+  "end": 7.84
+ },
+ {
+  "word": "toilet",
+  "start": 8.0,
+  "end": 8.49
+ },
+ {
+  "word": "seats",
+  "start": 8.52,
+  "end": 8.88
+ },
+ {
+  "word": "get",
+  "start": 8.88,
+  "end": 9.1
+ },
+ {
+  "word": "scrubbed",
+  "start": 9.12,
+  "end": 9.55
+ },
+ {
+  "word": "with",
+  "start": 9.56,
+  "end": 9.65
+ },
+ {
+  "word": "disinfectant",
+  "start": 9.72,
+  "end": 10.59
+ },
+ {
+  "word": "almost",
+  "start": 10.6,
+  "end": 10.84
+ },
+ {
+  "word": "every",
+  "start": 11.0,
+  "end": 11.25
+ },
+ {
+  "word": "day.",
+  "start": 11.36,
+  "end": 11.6
+ },
+ {
+  "word": "Your",
+  "start": 11.76,
+  "end": 12.0
+ },
+ {
+  "word": "phone",
+  "start": 12.0,
+  "end": 12.35
+ },
+ {
+  "word": "almost",
+  "start": 12.36,
+  "end": 12.6
+ },
+ {
+  "word": "never",
+  "start": 12.76,
+  "end": 13.0
+ },
+ {
+  "word": "does.",
+  "start": 13.04,
+  "end": 13.33
+ },
+ {
+  "word": "So",
+  "start": 13.68,
+  "end": 13.92
+ },
+ {
+  "word": "every",
+  "start": 14.04,
+  "end": 14.28
+ },
+ {
+  "word": "door",
+  "start": 14.4,
+  "end": 14.79
+ },
+ {
+  "word": "handle,",
+  "start": 14.8,
+  "end": 15.18
+ },
+ {
+  "word": "every",
+  "start": 15.52,
+  "end": 15.6
+ },
+ {
+  "word": "dollar",
+  "start": 15.92,
+  "end": 16.37
+ },
+ {
+  "word": "bill,",
+  "start": 16.4,
+  "end": 16.69
+ },
+ {
+  "word": "and",
+  "start": 16.92,
+  "end": 17.0
+ },
+ {
+  "word": "every",
+  "start": 17.2,
+  "end": 17.44
+ },
+ {
+  "word": "snack",
+  "start": 17.52,
+  "end": 17.95
+ },
+ {
+  "word": "you",
+  "start": 18.04,
+  "end": 18.22
+ },
+ {
+  "word": "touch",
+  "start": 18.24,
+  "end": 18.6
+ },
+ {
+  "word": "ends",
+  "start": 18.68,
+  "end": 19.03
+ },
+ {
+  "word": "up",
+  "start": 19.04,
+  "end": 19.23
+ },
+ {
+  "word": "right",
+  "start": 19.24,
+  "end": 19.48
+ },
+ {
+  "word": "on",
+  "start": 19.52,
+  "end": 19.63
+ },
+ {
+  "word": "your",
+  "start": 19.64,
+  "end": 19.84
+ },
+ {
+  "word": "screen.",
+  "start": 19.84,
+  "end": 20.21
+ },
+ {
+  "word": "And",
+  "start": 20.32,
+  "end": 20.4
+ },
+ {
+  "word": "your",
+  "start": 20.48,
+  "end": 20.68
+ },
+ {
+  "word": "phone",
+  "start": 20.68,
+  "end": 21.03
+ },
+ {
+  "word": "stays",
+  "start": 21.04,
+  "end": 21.35
+ },
+ {
+  "word": "warm",
+  "start": 21.36,
+  "end": 21.68
+ },
+ {
+  "word": "in",
+  "start": 21.68,
+  "end": 21.84
+ },
+ {
+  "word": "your",
+  "start": 21.84,
+  "end": 22.03
+ },
+ {
+  "word": "pocket,",
+  "start": 22.04,
+  "end": 22.33
+ },
+ {
+  "word": "which",
+  "start": 22.68,
+  "end": 22.76
+ },
+ {
+  "word": "can",
+  "start": 22.88,
+  "end": 23.11
+ },
+ {
+  "word": "help",
+  "start": 23.12,
+  "end": 23.35
+ },
+ {
+  "word": "some",
+  "start": 23.36,
+  "end": 23.6
+ },
+ {
+  "word": "germs",
+  "start": 23.6,
+  "end": 23.98
+ },
+ {
+  "word": "survive",
+  "start": 24.0,
+  "end": 24.52
+ },
+ {
+  "word": "longer.",
+  "start": 24.56,
+  "end": 24.88
+ },
+ {
+  "word": "Then",
+  "start": 25.04,
+  "end": 25.28
+ },
+ {
+  "word": "you",
+  "start": 25.36,
+  "end": 25.59
+ },
+ {
+  "word": "carry",
+  "start": 25.6,
+  "end": 25.92
+ },
+ {
+  "word": "it",
+  "start": 25.92,
+  "end": 26.07
+ },
+ {
+  "word": "into",
+  "start": 26.08,
+  "end": 26.31
+ },
+ {
+  "word": "the",
+  "start": 26.32,
+  "end": 26.41
+ },
+ {
+  "word": "bathroom,",
+  "start": 26.44,
+  "end": 26.95
+ },
+ {
+  "word": "where",
+  "start": 27.24,
+  "end": 27.32
+ },
+ {
+  "word": "tiny",
+  "start": 27.44,
+  "end": 27.92
+ },
+ {
+  "word": "droplets",
+  "start": 27.92,
+  "end": 28.43
+ },
+ {
+  "word": "from",
+  "start": 28.44,
+  "end": 28.59
+ },
+ {
+  "word": "flushing",
+  "start": 28.64,
+  "end": 29.07
+ },
+ {
+  "word": "can",
+  "start": 29.08,
+  "end": 29.23
+ },
+ {
+  "word": "float",
+  "start": 29.24,
+  "end": 29.52
+ },
+ {
+  "word": "through",
+  "start": 29.56,
+  "end": 29.71
+ },
+ {
+  "word": "the",
+  "start": 29.72,
+  "end": 29.84
+ },
+ {
+  "word": "air",
+  "start": 29.84,
+  "end": 30.07
+ },
+ {
+  "word": "and",
+  "start": 30.08,
+  "end": 30.23
+ },
+ {
+  "word": "land",
+  "start": 30.24,
+  "end": 30.51
+ },
+ {
+  "word": "on",
+  "start": 30.52,
+  "end": 30.67
+ },
+ {
+  "word": "it.",
+  "start": 30.68,
+  "end": 30.76
+ },
+ {
+  "word": "And",
+  "start": 30.88,
+  "end": 30.96
+ },
+ {
+  "word": "then",
+  "start": 31.04,
+  "end": 31.19
+ },
+ {
+  "word": "you",
+  "start": 31.2,
+  "end": 31.35
+ },
+ {
+  "word": "press",
+  "start": 31.36,
+  "end": 31.62
+ },
+ {
+  "word": "that",
+  "start": 31.68,
+  "end": 31.83
+ },
+ {
+  "word": "same",
+  "start": 31.88,
+  "end": 32.12
+ },
+ {
+  "word": "screen",
+  "start": 32.24,
+  "end": 32.68
+ },
+ {
+  "word": "right",
+  "start": 32.68,
+  "end": 32.93
+ },
+ {
+  "word": "against",
+  "start": 32.96,
+  "end": 33.27
+ },
+ {
+  "word": "your",
+  "start": 33.28,
+  "end": 33.52
+ },
+ {
+  "word": "face.",
+  "start": 33.52,
+  "end": 33.67
+ },
+ {
+  "word": "So",
+  "start": 33.92,
+  "end": 34.15
+ },
+ {
+  "word": "the",
+  "start": 34.16,
+  "end": 34.31
+ },
+ {
+  "word": "dirtiest",
+  "start": 34.32,
+  "end": 34.83
+ },
+ {
+  "word": "thing",
+  "start": 34.88,
+  "end": 35.04
+ },
+ {
+  "word": "in",
+  "start": 35.04,
+  "end": 35.15
+ },
+ {
+  "word": "your",
+  "start": 35.16,
+  "end": 35.31
+ },
+ {
+  "word": "bathroom",
+  "start": 35.32,
+  "end": 35.79
+ },
+ {
+  "word": "might",
+  "start": 35.8,
+  "end": 35.95
+ },
+ {
+  "word": "be",
+  "start": 35.96,
+  "end": 36.07
+ },
+ {
+  "word": "the",
+  "start": 36.08,
+  "end": 36.23
+ },
+ {
+  "word": "one",
+  "start": 36.24,
+  "end": 36.43
+ },
+ {
+  "word": "in",
+  "start": 36.44,
+  "end": 36.59
+ },
+ {
+  "word": "your",
+  "start": 36.6,
+  "end": 36.79
+ },
+ {
+  "word": "hand.",
+  "start": 36.8,
+  "end": 37.03
+ },
+ {
+  "word": "And",
+  "start": 37.12,
+  "end": 37.2
+ },
+ {
+  "word": "a",
+  "start": 37.32,
+  "end": 37.47
+ },
+ {
+  "word": "quick",
+  "start": 37.48,
+  "end": 37.71
+ },
+ {
+  "word": "wipe",
+  "start": 37.76,
+  "end": 38.0
+ },
+ {
+  "word": "once",
+  "start": 38.04,
+  "end": 38.22
+ },
+ {
+  "word": "a",
+  "start": 38.28,
+  "end": 38.36
+ },
+ {
+  "word": "day",
+  "start": 38.36,
+  "end": 38.55
+ },
+ {
+  "word": "removes",
+  "start": 38.56,
+  "end": 39.07
+ },
+ {
+  "word": "most",
+  "start": 39.08,
+  "end": 39.27
+ },
+ {
+  "word": "of",
+  "start": 39.28,
+  "end": 39.43
+ },
+ {
+  "word": "them.",
+  "start": 39.44,
+  "end": 39.56
+ }
+]
