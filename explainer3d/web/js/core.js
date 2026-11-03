@@ -2,7 +2,7 @@
 // toon materials with rim light + outlines, camera rigs and easing helpers.
 import * as THREE from 'three';
 
-export const W = 1600, H = 900;
+export const W = 1280, H = 720;
 
 // ------------------------------------------------------------------ math / easing
 export const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));

@@ -1,6 +1,6 @@
 # 5,000 Steps — 3D explainer (2D-face toon characters in a 3D world)
 
-- Output: `five_thousand_steps.mp4` — 1600×900, 30 fps, 4:11, voice + original music + SFX (−14 LUFS)
+- Output: `five_thousand_steps.mp4` — 1280×720, 25 fps, 4:11, voice + original music + SFX (−14 LUFS)
 - `captions_en.srt` — optional subtitles (not burned in; on-screen text kept minimal on purpose)
 
 ## How it works

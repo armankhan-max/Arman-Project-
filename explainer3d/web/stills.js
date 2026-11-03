@@ -2,7 +2,7 @@
 const {chromium}=require('playwright'); const fs=require('fs');
 (async()=>{const [out,...ts]=process.argv.slice(2); fs.mkdirSync(out,{recursive:true});
 const b=await chromium.launch({args:['--use-angle=swiftshader','--enable-unsafe-swiftshader','--ignore-gpu-blocklist']});
-const p=await b.newPage({viewport:{width:1600,height:900}});
+const p=await b.newPage({viewport:{width:1280,height:720}});
 p.on('console',m=>{if(m.type()==='error')console.log('c:',m.text().slice(0,400))}); p.on('pageerror',e=>console.log('ERR',e.message, e.stack?.slice(0,600)));
 await p.goto('http://127.0.0.1:8765/web/index.html'); await p.waitForFunction('window.ready',null,{timeout:180000});
 for(const t of ts){const t0=Date.now(); try{ await p.evaluate(`window.frame(${t})`); const d=await p.evaluate('window.grab(.9)');

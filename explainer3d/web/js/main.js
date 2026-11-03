@@ -31,7 +31,7 @@ window.frame = (t) => {
   // keep caches small: current + next set
   if (SETS.size > 3) dropSetsExcept([s.set, shots[i + 1]?.set, shots[i - 1]?.set].filter(Boolean));
   // previous camera (half a frame earlier) for motion blur
-  runShot(s, t - 1 / 60);
+  runShot(s, t - 1 / 50);
   vpPrev.multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse);
   const fwd = new THREE.Vector3(0, 0, -1).applyQuaternion(camera.quaternion);
   const focusPt = camera.position.clone().addScaledVector(fwd, Math.max(1, C.post.focus.value));
