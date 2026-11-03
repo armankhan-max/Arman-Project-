@@ -55,25 +55,30 @@ function ff(argv, input) { return new Promise((res, rej) => { const p = spawn('f
   // ---- full video
   const workers = +opt('workers', 4), from = +opt('from', 0), to = +opt('to', NFR);
   const partsDir = path.join(ROOT, 'parts'); fs.mkdirSync(partsDir, { recursive: true });
-  const n = to - from, per = Math.ceil(n / workers); const t0 = Date.now(); let done = 0;
+  const n = to - from, CH = +opt('chunk', 60); const t0 = Date.now(); let done = 0, rendered = 0;
+  const queue = []; for (let a = from; a < to; a += CH) queue.push([a, Math.min(to, a + CH)]);
+  const allParts = queue.map(([a]) => path.join(partsDir, `part_${String(a).padStart(5, '0')}.mp4`));
+  const todo = queue.filter(([a]) => !fs.existsSync(path.join(partsDir, `part_${String(a).padStart(5, '0')}.mp4.done`)));
+  done = n - todo.reduce((s, [a, z]) => s + z - a, 0);
   const jobs = [];
-  for (let w = 0; w < workers; w++) {
-    const a = from + w * per, z = Math.min(to, a + per); if (a >= z) continue;
-    jobs.push((async () => {
-      const out = path.join(partsDir, `part_${String(a).padStart(5, '0')}.mp4`);
-      if (fs.existsSync(out + '.done')) { done += z - a; return out; }
-      const b = await launch(); const page = await openPage(b, port);
+  for (let w = 0; w < workers; w++) jobs.push((async () => {
+    const b = await launch(); const page = await openPage(b, port);
+    while (todo.length) {
+      const [a, z] = todo.shift(); const out = path.join(partsDir, `part_${String(a).padStart(5, '0')}.mp4`);
       const p = spawn('ffmpeg', ['-v', 'error', '-y', '-f', 'rawvideo', '-pix_fmt', 'rgba', '-s', `${W}x${H}`, '-r', String(TL.fps), '-i', '-', '-vf', 'vflip,format=yuv420p', '-c:v', 'libx264', '-preset', 'medium', '-crf', '12', '-g', '60', out], { stdio: ['pipe', 'ignore', 'inherit'] });
       const closed = new Promise(r => p.on('close', r));
       for (let f = a; f < z; f++) {
         const res = await page.evaluate(f => window.renderFrame(f), f);
         const buf = Buffer.from(res.data, 'base64'); if (!p.stdin.write(buf)) await new Promise(r => p.stdin.once('drain', r));
-        done++; if (done % 30 === 0) { const el = (Date.now() - t0) / 1000; console.log(`frames ${done}/${n}  ${(el / done).toFixed(2)}s/f  eta ${((n - done) * el / done / 60).toFixed(1)} min`); }
+        done++; rendered++; if (done % 30 === 0) { const el = (Date.now() - t0) / 1000; console.log(`frames ${done}/${n}  ${(el / rendered).toFixed(2)}s/f  eta ${((n - done) * el / rendered / 60).toFixed(1)} min`); }
       }
-      p.stdin.end(); await closed; await b.close(); fs.writeFileSync(out + '.done', ''); return out;
-    })());
-  }
-  const parts = (await Promise.all(jobs)).sort();
+      p.stdin.end(); await closed; fs.writeFileSync(out + '.done', '');
+    }
+    await b.close();
+  })());
+  await Promise.all(jobs);
+  const parts = allParts;
+
   srv.close();
   const list = path.join(partsDir, 'list.txt'); fs.writeFileSync(list, parts.map(p => `file '${p}'`).join('\n'));
   const silent = path.join(ROOT, 'parts', 'video_silent.mp4');
