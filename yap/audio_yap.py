@@ -126,27 +126,49 @@ def sparkle(gain=0.3):
     return out * gain
 
 
+def soft_pad(freqs, dur, bright=0.35):
+    t = tt(dur)
+    x = np.zeros_like(t)
+    for f in freqs:
+        for det in (-0.003, 0.0, 0.003):
+            ph = rng.uniform(0, 6.28)
+            x += np.sin(2 * np.pi * f * (1 + det) * t + ph) + bright * 0.4 * np.sin(2 * np.pi * 2 * f * (1 + det) * t + ph)
+    x = lp(x / (len(freqs) * 3), 1800)
+    return x * (0.75 + 0.25 * np.sin(2 * np.pi * 0.09 * t + rng.uniform(0, 6)))
+
+
 def music_bed(dur):
-    """Flat tropical bed: marimba ostinato in C major pentatonic + soft pad + bass, constant level."""
+    """Soft cinematic ambient bed: slow evolving pads, low drone, sparse felt-piano notes; mood follows the narration."""
     tr = Track(dur)
-    prog = [[48, 60, 64, 67], [45, 57, 60, 64], [41, 57, 60, 65], [43, 55, 59, 62]]
-    bar = 2.4
-    for i in range(int(np.ceil(dur / bar)) + 1):
-        notes = prog[i % 4]
-        at = i * bar
-        tr.add(pad([midi(m) for m in notes[1:]], bar + 0.8, 0.5, 0.7, 0.3), at, 0.35)
-        tr.add(bass(midi(notes[0] - 12), bar * 0.5, 0.02, 0.3), at, 0.3)
-        tr.add(bass(midi(notes[0] - 5), bar * 0.45, 0.02, 0.3), at + bar * 0.5, 0.22)
-        pent = [notes[1], notes[2], notes[3], notes[1] + 12, notes[3] - 5 + 12]
-        for k in range(12):
-            if k % 4 == 3 and i % 2:
-                continue
-            m = pent[(k * 2 + i) % len(pent)] + 12
-            tr.add(marimba(midi(m), 0.5), at + k * bar / 12, 0.22, pan=0.25 if k % 2 else -0.25)
-        for k in (2, 6, 10):
-            tr.add(pluck(midi(notes[2] + 12), 0.5, 0.6, 6.0), at + k * bar / 12, 0.08, pan=0.4)
+    # (start, end, chords, piano notes per bar, brightness)
+    sections = [
+        (0.0, 9.5, [[57, 64, 69, 72], [53, 60, 65, 69], [55, 62, 67, 71]], 2, 0.4),      # wonder: island + sea floor
+        (9.5, 16.9, [[57, 64, 69, 76], [60, 67, 72, 76], [55, 62, 67, 74]], 3, 0.55),    # journey: voyage + quarry
+        (16.9, 28.5, [[53, 60, 65, 72], [55, 62, 67, 74], [57, 64, 69, 76]], 3, 0.5),    # light / playful
+        (28.5, 34.5, [[50, 57, 62, 65], [53, 60, 65, 69]], 2, 0.35),                     # calm agreement
+        (34.5, 38.6, [[45, 52, 57, 60], [44, 51, 56, 60]], 0, 0.2),                      # storm: dark, low
+        (38.6, 46.1, [[50, 57, 62, 65], [46, 53, 58, 62], [48, 55, 60, 64], [45, 52, 57, 64]], 1, 0.3),  # reflective ending
+    ]
+    bar = 3.2
+    for s0, s1, chords, notes, br in sections:
+        t = s0; k = 0
+        while t < s1:
+            d = min(bar, s1 - t)
+            ch = chords[k % len(chords)]
+            p = soft_pad([midi(m) for m in ch], d + 1.6, br)
+            tr.add(p * edge_env(len(p), 0.9), t, 0.5)
+            dr = np.sin(2 * np.pi * midi(ch[0] - 12) * tt(d + 1.6)) * 0.5 + 0.2 * lp(noise(d + 1.6), 90)
+            tr.add(dr * edge_env(len(dr), 1.0), t, 0.32)
+            for j in range(notes):
+                m = ch[(j * 2 + k) % len(ch)] + 12
+                pn = bell_tone(midi(m), 2.6) * 0.8 + pluck(midi(m), 2.6, 0.3, 1.8) * 0.5
+                tr.add(lp(pn, 3500), t + j * bar / max(1, notes) + 0.2, 0.18, pan=0.3 if j % 2 else -0.3)
+            t += bar; k += 1
+    # gentle swell into the ending, low rumble under the storm
+    sw = lp(noise(4.0), 140) * np.sin(np.pi * np.arange(int(4.0 * SR)) / (4.0 * SR))
+    tr.add(sw, 34.5, 0.25)
     x = tr.stereo(int(dur * SR))
-    return x * edge_env(len(x), 0.05)[:, None]
+    return x * edge_env(len(x), 0.6)[:, None]
 
 
 def build(voice_path=None):
@@ -187,8 +209,6 @@ def build(voice_path=None):
     # booms + risers
     for b in [2.9, 4.95, 15.65, 21.09, 27.41, 33.1, 35.62, 45.6]:
         sfx.add(boom(0.85), b, 1.0)
-    for a, b, f in TL["slowmo"]:
-        sfx.add(riser(0.9, 0.28), a - 0.9, 1.0)
     # foley
     for h in HITS:
         sfx.add(stone_hit(0.6), h, 1.0, pan=0.3)
@@ -232,7 +252,7 @@ def build(voice_path=None):
         voice[:, 0] = vp; voice[:, 1] = vp
         duck = 1 - 0.45 * np.clip(envelope(vp) / 0.05, 0, 1)
     mr = np.sqrt(np.mean(music ** 2)) + 1e-9
-    music = music / mr * 10 ** (-33 / 20) * duck[:, None]
+    music = music / mr * 10 ** (-35 / 20) * duck[:, None]
     mix = voice + music + sfx.stereo(n) * 0.8
     f = int(0.02 * SR)
     mix[:f] *= np.linspace(0, 1, f)[:, None]
