@@ -760,7 +760,7 @@ function drawCaption(t) {
 function motionPx(t0, t1) { const a = camAt(t0), b = camAt(t1); const ang = Math.acos(clamp(a.dir.dot(b.dir), -1, 1)) + Math.abs(a.roll - b.roll) * 0.4; const tr = a.p.distanceTo(b.p) / Math.max(0.8, Math.min(a.focus, 6)); return (ang + tr) * H / (a.fov * Math.PI / 180); }
 const SHUTTER = 0.5 / FPS;
 function renderAt(t, frozen) {
-  let n = 1; if (!frozen) { const mp = motionPx(clamp(t - SHUTTER / 2, 0, DUR), clamp(t + SHUTTER / 2, 0, DUR)); n = clamp(Math.ceil(mp / (4 * RS)), 1, 14); }
+  let n = 1; if (!frozen) { const mp = motionPx(clamp(t - SHUTTER / 2, 0, DUR), clamp(t + SHUTTER / 2, 0, DUR)); n = clamp(Math.ceil(mp / (6 * RS)), 1, 6); }
   renderer.setRenderTarget(accRT); renderer.setClearColor(0x000000, 1); renderer.clear();
   for (let i = 0; i < n; i++) {
     const ts = n === 1 ? t : clamp(t + (i / (n - 1) - 0.5) * SHUTTER, 0, DUR);

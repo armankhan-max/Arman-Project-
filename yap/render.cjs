@@ -12,7 +12,7 @@ const http = require('http'), fs = require('fs'), path = require('path'), { spaw
 const ROOT = __dirname; const WEB = path.join(__dirname, '..');
 const args = process.argv.slice(2); const mode = args[0] || 'video';
 const opt = (k, d) => { const i = args.indexOf('--' + k); return i >= 0 ? args[i + 1] : d; };
-const W = +opt('w', 810), H = +opt('h', 1440);
+const W = +opt('w', 720), H = +opt('h', 1280);
 const TL = JSON.parse(fs.readFileSync(path.join(ROOT, 'timeline.json')));
 const NFR = Math.round(TL.duration * TL.fps) + 1; // inclusive: last frame == first frame (loop)
 
