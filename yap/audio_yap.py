@@ -23,6 +23,8 @@ from audio import SR, Track, tt, lp, hp, bp, noise, midi, pluck, marimba, pad, b
 from audio_banks import boom, clink, step, creak, babble, poof  # noqa: E402
 
 rng = np.random.default_rng(1871)
+MINIMAL = '--minimal' in sys.argv
+if MINIMAL: sys.argv.remove('--minimal')
 _add = Track.add
 def _safe_add(self, x, at, gain=1.0, pan=0.0):
     if at * SR >= len(self.L) - 1:
@@ -186,7 +188,7 @@ def build(voice_path=None):
     sfx = Track(DUR)
     # beds
     bed = surf(DUR, 0.16, 1)[:n] * m_day + underwater(DUR, 0.22)[:n] * m_under + (rain(DUR, 0.22)[:n] + surf(DUR, 0.25, 2)[:n]) * m_storm
-    sfx.add(bed, 0, 1.0)
+    if not MINIMAL: sfx.add(bed, 0, 1.0)
     # whips + air from the camera path
     p, yaw, pit = ct[:, 1:4], np.unwrap(ct[:, 4]), ct[:, 5]
     dt = 1 / TL["fps"]
@@ -196,18 +198,18 @@ def build(voice_path=None):
     ang[ang > 40] = 0
     sp = np.convolve(lin / 12 + ang / 4.0, np.ones(5) / 5, "same")
     env = np.interp(env_t, fr, np.clip(sp, 0, 2.5))
-    sfx.add((bp(noise(DUR), 250, 3500)[:n] * 0.6) * env * 0.16, 0, 1.0)
+    if not MINIMAL: sfx.add((bp(noise(DUR), 250, 3500)[:n] * 0.6) * env * 0.16, 0, 1.0)
     for i in range(3, len(sp) - 3):
-        if sp[i] > 0.6 and sp[i] == sp[max(0, i - 20):i + 20].max():
+        if not MINIMAL and sp[i] > 0.6 and sp[i] == sp[max(0, i - 20):i + 20].max():
             sfx.add(whoosh(0.55, True, 0.4 * min(1.5, sp[i])), fr[i] - 0.3, 0.8)
-    for s in SEAMS:
+    for s in ([] if MINIMAL else SEAMS):
         sfx.add(whoosh(0.7, True, 0.9), s - 0.42, 1.0, pan=0.2)
     # entering / leaving the water
     for i in range(1, len(under)):
-        if under[i] != under[i - 1]:
+        if not MINIMAL and under[i] != under[i - 1]:
             sfx.add(splash(0.6 if under[i] else 0.35), fr[i] - 0.05, 1.0)
     # booms + risers
-    for b in [2.9, 4.95, 15.65, 21.09, 27.41, 33.1, 35.62, 45.6]:
+    for b in ([] if MINIMAL else [2.9, 4.95, 15.65, 21.09, 27.41, 33.1, 35.62, 45.6]):
         sfx.add(boom(0.85), b, 1.0)
     # foley
     for h in HITS:
@@ -233,13 +235,13 @@ def build(voice_path=None):
     sfx.add(honk(0.25), 27.75, 1.0)
     sfx.add(babble(2.8, 0.25), 28.5, 1.0)
     sfx.add(step(0.25), 29.33, 1.0)             # handshake pat
-    sfx.add(sparkle(0.35), 33.1, 1.0)
-    for th in [34.62, 36.25, 37.6]:
+    if not MINIMAL: sfx.add(sparkle(0.35), 33.1, 1.0)
+    for th in ([] if MINIMAL else [34.62, 36.25, 37.6]):
         sfx.add(thunder(0.7 if th < 36 else 0.45), th, 1.0)
     sfx.add(creak(1.0, 0.2), 35.0, 1.0, pan=0.4)
     sfx.add(splash(0.9, 1.6), 35.62, 1.0)
     sfx.add(babble(2.0, 0.18), 38.6, 1.0, pan=-0.2)
-    for k in range(6):
+    for k in range(0 if MINIMAL else 6):
         sfx.add(clink(rng.uniform(1800, 2600), 0.05), 42.72 + k * 0.12, 1.0)   # chalk-ish tally ticks
 
     music = music_bed(DUR)
@@ -252,7 +254,7 @@ def build(voice_path=None):
         voice[:, 0] = vp; voice[:, 1] = vp
         duck = 1 - 0.45 * np.clip(envelope(vp) / 0.05, 0, 1)
     mr = np.sqrt(np.mean(music ** 2)) + 1e-9
-    music = music / mr * 10 ** (-35 / 20) * duck[:, None]
+    music = music / mr * 10 ** ((-39 if MINIMAL else -35) / 20) * duck[:, None]
     mix = voice + music + sfx.stereo(n) * 0.8
     f = int(0.02 * SR)
     mix[:f] *= np.linspace(0, 1, f)[:, None]
