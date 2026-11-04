@@ -175,7 +175,7 @@ function palm(x, z, h, lean, dirA, seed) {
   for (let i = 0; i < 4; i++) add(new THREE.SphereGeometry(0.26, 10, 8), nutM, Math.cos(i * 1.7) * 0.35, -0.3, Math.sin(i * 1.7) * 0.35, { parent: grp });
 }
 { const r = rng(12); for (let i = 0; i < 30; i++) { const a = r() * TAU, d = 18 + r() * 20; const x = Math.cos(a) * d, z = Math.sin(a) * d; if (Math.abs(x) < 7 && z > 15 && z < 30) continue; palm(x, z, 7 + r() * 5, 1 + r() * 2.5, a, 100 + i); }
-  for (const [x, z] of [[6, 20], [-6, 18], [9, 30], [-11, 31], [17, 4], [-17, 6], [2, -14], [-9, -16], [-13, 17], [12, 13]]) palm(x, z, 8 + r() * 3, 1.4 + r(), r() * TAU, 300 + x * 7 + z);
+  for (const [x, z] of [[6, 20], [-6, 18], [9, 30], [-11, 31], [17, 4], [-17, 6], [2, -14], [-9, -16], [-21, 13.5], [12, 13]]) palm(x, z, 8 + r() * 3, 1.4 + r(), r() * TAU, 300 + x * 7 + z);
   for (let i = 0; i < 10; i++) { const a = r() * TAU, d = 10 + r() * 18; palm(PAL.x + Math.cos(a) * d, PAL.z + 6 + Math.abs(Math.sin(a)) * d, 7 + r() * 4, 1.5 + r() * 2, a, 500 + i); } }
 // ---- huts
 const thatchM = lam({ map: T.thatch }); const bambooM = lam({ map: T.bamboo });
@@ -540,7 +540,7 @@ K(25.0, [-12.8, 2.45, 13.9], [-14.3, 2.15, 12.5], { fov: 40, ap: 12 });
 K(25.6, [-10.6, 1.7, 18.8], [-12.4, 1.8, 13.2], { fov: 48, ap: 5, roll: 2 });
 K(26.5, [-10.2, 1.4, 19.4], [-11.6, 2.0, 14.1], { fov: 48, ap: 5, roll: 0 });
 K(27.4, [-10.9, 2.5, 21.2], [-11.4, 3.0, 14.1], { fov: 50, ap: 5 });
-K(28.5, [-13.6, 1.8, 19.4], [-11.4, 2.4, 14.1], { fov: 48, ap: 6, roll: -2 });
+K(28.5, [-12.0, 2.1, 20.4], [-11.4, 2.5, 14.1], { fov: 48, ap: 6, roll: -2 });
 // I: meeting — orbit, stone never moved, only the name changed (board ECU)
 SHOT(28.5, 34.55, { type: 'flash' });
 K(28.5, [-4.0, 7.6, 0.5], [-4, 1.5, -9], { fov: 54, ap: 2 });
@@ -653,7 +653,7 @@ function updateWorld(t, cs) {
   floatObj(canoeS, STORM.x, STORM.z, t, 1.5, 0.3, 2.2); canoeS.rotation.x += Math.sin(a * 2.3) * 0.12;
   { const k = sstep(35.55, 35.95, t); const sinkA = Math.max(0, a - A(35.95)); stormStone.position.set(0, 2.2 - k * 2.6 - sinkA * 3.4, -k * 3.0); stormStone.rotation.set(k * 0.6 + sinkA * 0.25, 0, k * 0.4); stormStone.visible = t < 38.4; }
   // bus gag
-  bus.visible = t >= BUS_T0 && t < 28.6; if (bus.visible) { const hx = -11.4, hz = 14.1, gy = groundAt(hx, hz); const top = gy + 2.32 * heroSquash(t); const k = clamp((t - BUS_T0) / (BUS_T1 - BUS_T0), 0, 1); bus.position.set(hx + 0.2, lerp(top + 14, top + 0.32, k * k), hz); bus.rotation.set(0, 0.12, (1 - k) * 0.25 + (t > BUS_T1 ? Math.sin((t - BUS_T1) * 18) * 0.04 * Math.exp(-(t - BUS_T1) * 4) : 0)); }
+  bus.visible = t >= BUS_T0 && t < 28.6; if (bus.visible) { const hx = -11.4, hz = 14.1, gy = groundAt(hx, hz); const top = gy + 2.32 * heroSquash(t); const k = clamp((t - BUS_T0) / (BUS_T1 - BUS_T0), 0, 1); bus.position.set(hx + 0.15, lerp(top + 14, top + 0.05, k * k), hz - 0.1); bus.rotation.set(0, 0.12, (1 - k) * 0.25 + (t > BUS_T1 ? Math.sin((t - BUS_T1) * 18) * 0.04 * Math.exp(-(t - BUS_T1) * 4) : 0)); }
   // name board flips at 33.1
   nameBoardM.map = t < 33.1 ? boardA : boardB; { const s = pop(a, [33.1], 0.25); nameBoard.scale.set(s, s, 1); }
   // characters
