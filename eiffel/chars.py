@@ -109,14 +109,14 @@ def _arm(c, sh, ang, cloth, alen=24, side=1):
         h = arm_end(e, ang[1], alen * 0.52)
         _tube(c, sh, e, 8.5, _shade(cloth, 1, 1.12), _shade(cloth, 1, 0.78))
         mid = ((e[0] + h[0]) / 2, (e[1] + h[1]) / 2)
-        _tube(c, e, h, 5.2)
+        _tube(c, e, h, 7.0)
         _tube(c, e, mid, 8.0, _shade(cloth, 1, 1.05), _shade(cloth, 1, 0.75), outline=False)
     else:
         e = arm_end(sh, ang, alen * 0.6)
         h = arm_end(sh, ang, alen)
-        _tube(c, e, h, 5.2)
+        _tube(c, e, h, 7.0)
         _tube(c, sh, e, 8.5, _shade(cloth, 1, 1.12), _shade(cloth, 1, 0.78))
-    _sphere(c, h[0], h[1], 4.3)
+    _sphere(c, h[0], h[1], 5.6)
     return h
 
 
@@ -138,23 +138,23 @@ def draw_char(c, look, pose=None):
     hip_y = -33 if not sit else -30
     # ---------- legs: white tubes with ball feet
     if sit:
-        legs = [((-5, hip_y), (-9, -4)), ((5, hip_y), (9, -4))]
+        legs = [((-6, hip_y), (-10, -4)), ((6, hip_y), (10, -4))]
     else:
         if walk is not None:
             s_ = math.sin(walk * math.pi * 2)
             fl, fr = (-5 + s_ * 6, -4 - max(0, s_) * 3), (5 - s_ * 6, -4 - max(0, -s_) * 3)
         else:
             sp = pose.get('spread', 0)
-            fl, fr = (-5.5 - sp, -4), (5.5 + sp, -4)
-        legs = [((-5, hip_y), fl), ((5, hip_y), fr)]
+            fl, fr = (-6.2 - sp, -4), (6.2 + sp, -4)
+        legs = [((-6, hip_y), fl), ((6, hip_y), fr)]
     for (a, b) in legs:
         if pants:
-            _tube(c, a, b, 7.6, _shade(pants, 1, 1.1), _shade(pants, 1, 0.75))
+            _tube(c, a, b, 11.0, _shade(pants, 1, 1.1), _shade(pants, 1, 0.75))
         else:
-            _tube(c, a, b, 7.0)
+            _tube(c, a, b, 10.5)
     for (a, b) in legs:
         x, y = b
-        r = skia.Rect(x - 5.6, y - 3.2, x + 5.6, y + 4.2)
+        r = skia.Rect(x - 7.0, y - 4.2, x + 7.0, y + 4.6)
         sh = skia.GradientShader.MakeRadial((x - 1.5, y - 1.5), 8, [col(look.get('shoe_hi', SKIN_HI)), col(look.get('shoe_lo', SKIN_LO))])
         c.drawOval(r, skia.Paint(AntiAlias=True, Shader=sh))
         c.drawOval(r, _paint(OUT, stroke=OLW))
@@ -252,7 +252,7 @@ def draw_char(c, look, pose=None):
         c.restore()
 
     # ---------- neck + head
-    _tube(c, (0, top + 1), (0, top - 6), 4.2)
+    _tube(c, (0, top + 1), (0, top - 6), 5.5)
     tilt = pose.get('tilt', 0)
     hx, hy, R = 0, -79, 20
     c.save()
