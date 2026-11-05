@@ -30,7 +30,7 @@ def blink(t, seed=0, eyes='dot'):
     return 'shut' if (t + seed * 1.37) % 3.1 < 0.09 else eyes
 
 
-def bob(t, seed=0, amt=0.012):
+def bob(t, seed=0, amt=0.005):
     return 1 + amt * math.sin(t * 4.2 + seed)
 
 
@@ -108,8 +108,19 @@ def shake(t, at, amp=16, dur=0.35, freq=36):
     return (k * math.sin((t - at) * freq * 6.28), k * math.cos((t - at) * freq * 5.1))
 
 
+ACCENTS = (3.64, 23.92, 40.34)  # the only moments that earn a snap-zoom / impact shake
+
+
+def _ok(p):
+    at = p[0] if isinstance(p, tuple) else p
+    return any(abs(at - a) < 0.08 for a in ACCENTS)
+
+
 def mkcam(keys, t, punches=(), shakes=(), handheld=0.0):
+    punches = [p for p in punches if _ok(p)]
+    shakes = [p for p in shakes if _ok(p)]
     pos, tgt, fov, roll = path(keys, t)
+    roll = 0.0
     f = 1.0
     for p in punches:
         f += punch(t, *p) if isinstance(p, tuple) else punch(t, p)
@@ -124,12 +135,15 @@ def mkcam(keys, t, punches=(), shakes=(), handheld=0.0):
 
 SKY_GOLD = (rgb('#7fa6d8'), rgb('#ffcf96'))
 SKY_DUSK = (rgb('#4a3f7a'), rgb('#ff9a5a'))
-SKY_HEAVEN = (rgb('#8f7ad8'), rgb('#ffe3b8'))
+SKY_HEAVEN = (rgb('#7f6cc4'), rgb('#f2d6b0'))
 FOG_GOLD = (rgb('#ffd9b0'), 18, 90)
 
 
 # ------------------------------------------------------------------ sets
 def cam_at(pos, tgt, fov, t, roll=0.0, punches=(), shakes=()):
+    punches = [p for p in punches if _ok(p)]
+    shakes = [p for p in shakes if _ok(p)]
+    roll = 0.0
     f = 1.0 + sum(punch(t, *p) if isinstance(p, tuple) else punch(t, p) for p in punches)
     sx = sy = 0
     for sh in shakes:
@@ -203,7 +217,7 @@ def afterlife(sc, t):
         z = rnd.uniform(4, 40)
         r = rnd.uniform(1.0, 2.6)
         sc.billboard(v3(x + math.sin(t * 0.3 + i) * 0.3, -0.3, z), r * 1.6,
-                     lambda c: [c.drawCircle(dx, -45 + dy, rr, skia.Paint(AntiAlias=True, Color=skia.Color(255, 250, 255, 235)))
+                     lambda c: [c.drawCircle(dx, -45 + dy, rr, skia.Paint(AntiAlias=True, Color=skia.Color(236, 230, 246, 220)))
                                 for dx, dy, rr in ((-30, 10, 30), (0, -5, 40), (32, 12, 28))])
     for i in range(7):  # floating lanterns
         x = rnd.uniform(-6, 6)
@@ -326,45 +340,60 @@ def sh_notforthem(t):
     return sc
 
 
+EMBER = np.array([0.12, 1.55, 0.25])
+
+
 def sh_rise(t, part=None):
-    # 5.95 - 9.6: follow the smoke up into the sky -> afterlife; grandpa with needs
     if (part == 'a') if part else (t < 6.95):
-        keys = [(5.9, (0.0, 1.2, -1.8), (0.0, 2.0, 0.4), 48), (6.95, (0.0, 6.5, -1.4), (0.0, 12.0, 1.0), 56, 0, 'fast')]
-        cam = mkcam(keys, t)
+        # ORBIT around dad at the fire, then MACRO PUSH-IN into a single glowing ember
+        o = ease(clamp((t - 5.85) / 0.75))
+        ang = math.radians(lerp(-35, 20, o))
+        center = np.array([0.15, 1.15, 0.4])
+        orbit_pos = center + np.array([2.7 * math.sin(ang), 0.35, -2.7 * math.cos(ang)])
+        k = ease_in(clamp((t - 6.45) / 0.55), 3)
+        ember = EMBER + np.array([0, 0.25 * ease(clamp((t - 5.9) / 1.0)), 0])
+        pos = orbit_pos * (1 - k) + (ember + np.array([0, 0, -0.04])) * k
+        tgt = center * (1 - ease(clamp((t - 6.3) / 0.3))) + ember * ease(clamp((t - 6.3) / 0.3))
+        cam = cam_at(pos, tgt, 46.0 - 8 * k, t)
         sc = Scene(cam, bg=SKY_DUSK, fog=(rgb('#ffb08a'), 20, 90), ambient=0.6)
+        sc.dof = (2.4, 4)
         cemetery(sc, t)
         bin_(sc, 0, 0.4, t, seed=3)
-        fx.smoke(sc, (0, 1.4, 0.4), t, n=12, height=10, speed=0.35, seed=5, size=1.0, alpha=120)
-        for i, (lx, ly) in enumerate([(-1.1, 2.6), (1.0, 3.4), (-0.8, 4.6), (1.2, 5.6)]):
-            k = ease_back(clamp((t - 6.12 - i * 0.08) / 0.25))
-            if k <= 0:
-                continue
-            sc.billboard(v3(lx, ly, 0.9), 0.7 * k, lambda c: (
-                c.drawRRect(skia.RRect.MakeRectXY(skia.Rect(-28, -100, 28, -20), 18, 18), skia.Paint(AntiAlias=True, Color=skia.Color(220, 50, 40))),
-                c.drawRect(skia.Rect(-14, -108, 14, -98), skia.Paint(Color=skia.Color(230, 190, 70))),
-                c.drawRect(skia.Rect(-14, -22, 14, -12), skia.Paint(Color=skia.Color(230, 190, 70)))), depth_bias=-0.5)
-            fx.glow(sc, (lx, ly + 0.35, 0.9), 0.9, (255, 120, 60), 60)
+        char(sc, DAD, (0.75, 0, 0.6), dict(eyes='half', mouth='flat', arms=(20, -20)))
+        sc.billboard(v3(*ember), 0.08, lambda c: c.drawCircle(0, -50, 50, skia.Paint(
+            AntiAlias=True, Color=skia.Color(255, 170, 70), MaskFilter=skia.MaskFilter.MakeBlur(skia.kNormal_BlurStyle, 8))),
+            depth_bias=-1)
+        fx.glow(sc, tuple(ember), 0.18 + 0.3 * k, (255, 150, 60), int(110 + 60 * k))
         return sc
-    keys = [(6.95, (0.0, 4.5, -3.6), (0.0, 1.2, 2.0), 56), (7.6, (0.2, 1.7, -2.6), (0.0, 1.2, 2.0), 50, 0, 'fast'),
-            (9.65, (0.1, 1.5, -1.6), (0.0, 1.2, 2.0), 44)]
-    cam = mkcam(keys, t, punches=[(8.23, 0.12)])
+    # inside the ember: a red lantern glow... DOLLY OUT to reveal the next world, grandpa appears on "the dead"
+    k = ease(clamp((t - 6.95) / 0.9))
+    lantern = np.array([0.6, 2.3, 1.4])
+    pos = (lantern + np.array([0, -0.02, -0.25])) * (1 - k) + np.array([0.15, 1.55, -1.9]) * k
+    tgt = lantern * (1 - k) + np.array([0.0, 1.2, 2.0]) * k
+    slow = ease(clamp((t - 7.85) / 1.8))
+    pos = pos + np.array([0, 0, 0.35 * slow])  # then a slow dolly back in toward him
+    cam = cam_at(pos, tgt, lerp(40, 50, k), t)
     sc = Scene(cam, bg=SKY_HEAVEN, fog=(rgb('#f0e2ff'), 15, 70), ambient=0.75)
+    sc.dof = (2.8, 4)
     afterlife(sc, t)
+    sc.billboard(v3(*lantern), 0.6, lambda c: (
+        c.drawRRect(skia.RRect.MakeRectXY(skia.Rect(-28, -100, 28, -20), 18, 18), skia.Paint(AntiAlias=True, Color=skia.Color(220, 50, 40))),
+        c.drawRect(skia.Rect(-14, -108, 14, -98), skia.Paint(Color=skia.Color(230, 190, 70))),
+        c.drawRect(skia.Rect(-14, -22, 14, -12), skia.Paint(Color=skia.Color(230, 190, 70)))), depth_bias=-0.2)
+    fx.glow(sc, tuple(lantern + np.array([0, 0.35, 0])), 0.8, (255, 120, 60), 50)
     gp = (0, 0, 2.0)
-    fg_bokeh(sc, t, 5, 3)
-    appear = ease_back(clamp((t - 7.45) / 0.28), 2.0)  # pops in on "the dead"
+    appear = ease_back(clamp((t - 7.45) / 0.3), 1.6)
     if appear > 0.02:
-        aura(sc, gp, a=int(60 * min(1, appear)))
+        aura(sc, gp, a=int(40 * min(1, appear)))
         pose = dict(eyes=blink(t, 1), brows='worried' if t > 8.0 else 'flat', mouth='frown' if t > 8.0 else 'smile',
-                    arms=(20, -150 + 15 * math.sin(t * 10)) if 7.6 < t < 8.1 else (20, -20), sq=max(0.05, appear) * bob(t))
+                    arms=(20, -20), sq=max(0.05, appear) * bob(t))
         char(sc, GRANDPA, gp, pose)
-    # "needs": icons pop up around him
     icons = [('r', (-0.75, 1.75, 1.9), 8.23), ('h', (0.0, 2.15, 1.9), 8.45), ('p', (0.75, 1.75, 1.9), 8.68)]
     for i, (_, p, t0) in enumerate(icons):
         if t < t0:
             continue
-        k = ease_back(clamp((t - t0) / 0.2), 2)
-        sc.billboard(v3(*p), 0.55 * k, lambda c, i=i: _need_icon(c, i), depth_bias=-1)
+        kk = ease_back(clamp((t - t0) / 0.25), 1.6)
+        sc.billboard(v3(*p), 0.55 * kk, lambda c, i=i: _need_icon(c, i), depth_bias=-1)
     return sc
 
 
@@ -396,9 +425,15 @@ def _need_icon(c, i):
 
 
 def sh_qingming(t):
-    keys = [(9.6, (0.0, 9.0, -3.0), (0.0, 1.0, 2.0), 56), (10.4, (-1.6, 1.8, -2.6), (0.0, 0.9, 1.0), 50, 0, 'fast'),
-            (13.1, (0.3, 1.6, -2.4), (0.6, 1.0, 1.0), 46)]
-    cam = mkcam(keys, t, punches=[(10.32, 0.1), (10.91, 0.12), (12.36, 0.12)])
+    crane = ease(clamp((t - 9.45) / 0.9))
+    o = ease(clamp((t - 10.2) / 2.9))
+    ang = math.radians(lerp(-30, 12, o))
+    center = np.array([0.4, 0.95, 1.1])
+    orbit = center + np.array([2.6 * math.sin(ang), 0.6, -2.6 * math.cos(ang)])
+    high = np.array([0.0, 9.0, -3.0])
+    pos = high * (1 - crane) + orbit * crane
+    tgt = np.array([0.0, 1.0, 2.0]) * (1 - crane) + center * crane
+    cam = cam_at(pos, tgt, 48.0, t)
     sc = Scene(cam, bg=SKY_GOLD, fog=FOG_GOLD, ambient=0.66)
     sc.dof = (3.6, 4)
     cemetery(sc, t)
@@ -549,8 +584,8 @@ def sh_comfy(t, part=None):
             sc.billboard(v3(-3 + i * 0.7, 3.5 - ph * 3.5, 2.5), 0.15, lambda c: c.drawCircle(0, -50, 40, skia.Paint(
                 AntiAlias=True, Color=skia.Color(255, 220, 90, 200))))
         return sc
-    keys = [(28.6, (-0.6, 1.5, -2.4), (-0.2, 1.0, 1.2), 48), (29.6, (0.3, 1.4, -2.0), (0.0, 1.0, 1.2), 46),
-            (30.3, (0.3, 0.9, -2.0), (0.0, 0.4, 1.2), 46)]
+    keys = [(28.6, (0.0, 1.3, -1.0), (0.0, 1.05, 1.2), 44), (29.9, (0.0, 1.5, -2.4), (0.0, 1.0, 1.2), 48, 0, 'ease'),
+            (30.3, (0.0, 1.0, -2.4), (0.0, 0.5, 1.2), 48)]
     cam = mkcam(keys, t)
     sc = Scene(cam, bg=(30, 26, 22), ambient=0.55)
     S.room(sc, w=5, d=5, h=3, z0=-3, wall=T2.shack_wall(), floor=T.planks((100, 80, 60)))
@@ -632,11 +667,11 @@ def sh_inflation(t):
     # the note he holds grows every year
     g = 1.0
     if t > 39.1:
-        g = 1 + min(3, int((t - 39.1) / 0.4)) * 0.7
+        g = 1 + 2.1 * ease(clamp((t - 39.1) / 1.2))  # grows smoothly, year after year
     if t > 40.34:
         g = 3.6 + 1.5 * ease_back(clamp((t - 40.34) / 0.25))
     w_, h_ = 0.45 * g, 0.216 * g
-    jit = 0.02 * math.sin(t * 60) if 40.0 < t < 40.34 else 0.0  # trembles before it blows up
+    jit = 0.0  # (no jitter) the note swells smoothly instead
     note_quad(sc, (-0.2 - w_ / 2 + 0.15 + jit, 1.35 + h_, 0.85), (w_, 0, 0), (0, -h_, 0), value='1,000,000,000', tint=2,
               depth_bias=-0.4)
     if t > 39.1:
@@ -743,8 +778,9 @@ def sh_goods(t):
 
 def sh_upgrade(t):
     a = fx.ramp(t, [(48.15, 48.6, 0.3)], r=0.2)
-    fall = ease(clamp((a - 47.55) / 0.65))
-    php = np.array([0.21, lerp(3.2, 1.66, fall), 0.92])
+    fp = clamp((a - 47.55) / 0.6)
+    bounce = 0.06 * math.sin(clamp((a - 48.15) / 0.25) * math.pi) * (a > 48.15)
+    php = np.array([0.21, lerp(3.2, 1.66, ease_in(fp, 2)) + bounce, 0.92])
     if t < 48.7:
         tgt = php * 0.7 + np.array([0.0, 1.35, 1.0]) * 0.3
         pos = tgt + np.array([0.25, 0.05, -1.5])
@@ -846,8 +882,8 @@ from functools import partial as _p
 TIMELINE = [
     (0.0, 4.4, sh_hook, 0, 'cut'),
     (4.4, 5.95, sh_notforthem, 0.3, 'pushin'),
-    (5.95, 6.95, _p(sh_rise, part='a'), 0.3, 'up'),
-    (6.95, 9.6, _p(sh_rise, part='b'), 0.4, 'up'),
+    (5.95, 6.95, _p(sh_rise, part='a'), 0.3, 'pushin'),
+    (6.95, 9.6, _p(sh_rise, part='b'), 0.3, 'dissolve'),
     (9.6, 13.05, sh_qingming, 0.35, 'down'),
     (13.05, 17.55, sh_mail, 0.35, 'right'),
     (17.55, 20.9, sh_values, 0.3, 'pushin'),
@@ -982,8 +1018,7 @@ def letterbox_slowmo(c, t):
 
 
 def overlays(c, t):
-    flash(c, t, 3.64, 0.14)
-    flash(c, t, 43.79, 0.15)
+
     impact_lines(c, t, 3.64, 0.3, color=(255, 210, 120))
     impact_lines(c, t, 19.95, 0.3)
     impact_lines(c, t, 23.92, 0.3)
@@ -999,7 +1034,7 @@ def overlays(c, t):
         T.text_c(c, 'LUCKILY', W / 2, H * 0.14, T.font('black', 96), (120, 230, 140), stroke=12)
     if 35.33 <= t < 36.2:
         T.text_c(c, 'UNLUCKILY', W / 2, H * 0.14, T.font('black', 96), (255, 110, 100), stroke=12)
-    if 41.0 <= t < 42.35:
+    if False:
         vignette(c, 160, (20, 20, 60))
     letterbox_slowmo(c, t)
     vignette(c, 120)

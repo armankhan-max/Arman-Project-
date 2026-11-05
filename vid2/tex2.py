@@ -148,11 +148,11 @@ def stone_tiles(c):
 
 @cached(256, 256)
 def cloud_floor(c):
-    c.drawRect(skia.Rect(0, 0, 256, 256), P((236, 228, 250)))
+    c.drawRect(skia.Rect(0, 0, 256, 256), P((222, 214, 238)))
     rnd = random.Random(3)
     for _ in range(14):
         x, y = rnd.uniform(0, 256), rnd.uniform(0, 256)
-        c.drawCircle(x, y, rnd.uniform(18, 40), P((250, 246, 255)))
+        c.drawCircle(x, y, rnd.uniform(18, 40), P((234, 228, 246)))
 
 
 @cached(256, 256)

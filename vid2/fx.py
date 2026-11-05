@@ -19,7 +19,7 @@ def draw_fire(c, t, k=1.0, seed=0):
     """local units: base at y=0, width ~[-50,50], height up to ~100*k."""
     rnd = random.Random(seed)
     # glow
-    g = skia.GradientShader.MakeRadial((0, -30 * k), 95 * k, [skia.Color(255, 150, 40, 70), skia.Color(255, 120, 30, 0)])
+    g = skia.GradientShader.MakeRadial((0, -30 * k), 95 * k, [skia.Color(255, 150, 40, 50), skia.Color(255, 120, 30, 0)])
     c.drawCircle(0, -30 * k, 95 * k, skia.Paint(AntiAlias=True, Shader=g, BlendMode=skia.BlendMode.kPlus))
     layers = [((255, 70, 20), (255, 150, 30), 1.0, 7), ((255, 140, 30), (255, 210, 80), 0.75, 6),
               ((255, 220, 110), (255, 250, 210), 0.45, 4)]
@@ -39,7 +39,7 @@ def fire(sc, pos, size, t, k=1.0, seed=0, depth_bias=-0.05):
     if k <= 0.01:
         return
     sc.billboard(v3(*pos), size, lambda c, t=t, k=k, seed=seed: draw_fire(c, t, k, seed), depth_bias=depth_bias)
-    glow(sc, (pos[0], pos[1] + size * 0.3 * k, pos[2]), size * 1.6 * k, (255, 140, 50), 45)
+    glow(sc, (pos[0], pos[1] + size * 0.3 * k, pos[2]), size * 1.6 * k, (255, 140, 50), 32)
 
 
 def glow(sc, pos, radius, color=(255, 150, 60), alpha=80):
