@@ -126,3 +126,9 @@ Genre and instruments are not confirmed. Ask Arman, or analyse the mp3 by ear-eq
 5. **Every video was said to loop.** Only some loop; others end on a cold last line.
 6. **It was said that rendering is impossible.** This repo already renders 2D videos from code.
 7. **Matching which transcript belongs to which video was not checked against the files.** Always map transcript ↔ media and say which ones are missing.
+
+## 8. Lip sync (rule from Arman)
+When a character actually says a line in the narration (a quoted or first-person line, or a question they ask), that character's mouth must speak it. The narrator's own lines stay unsynced.
+- Phonemes come from forced alignment of the real voiceover (`lipsync.py`, pocketsphinx).
+- Phonemes map to 8 mouth shapes: AA, EE, OO, MBP, FV, L, S and rest.
+- Each shape forms 40 ms before its sound, mouth opening follows the voice loudness, and the head nods slightly with it.

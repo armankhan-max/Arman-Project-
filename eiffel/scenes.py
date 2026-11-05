@@ -14,6 +14,17 @@ import props2d as PR
 import sets as S
 import tex as T
 
+
+import os as _os
+import subprocess as _sp
+from lipsync import Lines as _Lines
+_HERE = _os.path.dirname(_os.path.abspath(__file__))
+_WAV = _os.path.join(_HERE, 'voice16.wav')
+if not _os.path.exists(_WAV):
+    _sp.run(['ffmpeg', '-v', 'error', '-y', '-i', _os.path.join(_HERE, 'voiceover.mp3'), '-ac', '1', '-ar', '16000', _WAV], check=True)
+LIPS = _Lines(_WAV, {'pitch': ('seven thousand tons of iron highest bid wins', 28.5, 31.6),
+                     'shh': ('and please tell no one', 31.7, 34.05)}, _os.path.join(_HERE, 'lipsync_phones.json'))
+
 WORDS = json.load(open(__file__.replace('scenes.py', 'words.json')))
 DUR = 81.12
 
@@ -466,6 +477,7 @@ def sh_tons(t):
     g = -60 if t < 30.95 else (-60 + 120 * ease_out(clamp((t - 30.95) / 0.12)))
     lp = dict(eyes='half', brows='sly', mouth='smirk' if t < 31.1 else 'grin',
               arms=(20, (-150 + (g + 60) * 0.6, -150 + (g + 60))), hold=lambda c: PR.gavel(c, 90), sq=bob(t))
+    lp.update(LIPS.speak(t, 'pitch'))
     money = t > 29.8
     suite_set(sc, t, meeting_dealers(t, eyes=lambda i: 'money' if money else blink(t, i + 3),
                                      mouth='grin' if money else 'flat'),
@@ -479,6 +491,7 @@ def sh_shh(t):
     sc = Scene(cam, bg=(30, 20, 20), ambient=0.45)
     lp = dict(eyes='half' if t < 33.1 else 'squint', brows='sly', mouth='flat',
               arms=(20, (-160, -175)) if t > 32.0 else (20, -40), sq=bob(t), tilt=4)
+    lp.update(LIPS.speak(t, 'shh'))
     suite_set(sc, t, meeting_dealers(t), curtains=1, dim=1, easel=3, lustig_pose=lp, show_dealers=False)
     return sc
 

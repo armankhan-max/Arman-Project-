@@ -253,7 +253,7 @@ def draw_char(c, look, pose=None):
 
     # ---------- neck + head
     _tube(c, (0, top + 1), (0, top - 6), 5.5)
-    tilt = pose.get('tilt', 0)
+    tilt = pose.get('tilt', 0) + pose.get('nod', 0)
     hx, hy, R = 0, -79, 20
     c.save()
     c.translate(hx, hy)
@@ -420,9 +420,14 @@ def _face(c, look, pose, R):
         for s in (-1, 1):
             c.drawCircle(s * ex, ey, 6, _paint(INK, stroke=1.6))
         _line(c, [(-ex + 6, ey), (ex - 6, ey)], w=1.4)
-    m = pose.get('mouth', 'smile')
     stache = look.get('stache')
     my = 10 if stache else 8
+    vis = pose.get('viseme')
+    if vis:
+        _viseme(c, vis, pose.get('open', 0.0), look.get('stache'))
+        m = None
+    else:
+        m = pose.get('mouth', 'smile')
     if m == 'smile':
         _line(c, [(-5, my - 1), (0, my + 3), (5, my - 1)], w=1.9)
     elif m == 'flat':
@@ -465,3 +470,43 @@ def _face(c, look, pose, R):
         p = skia.Path()
         p.addRRect(skia.RRect.MakeRectXY(skia.Rect(-8, my - 6, 8, my - 1), 3, 3))
         c.drawPath(p, _paint(look.get('stache_col', (90, 60, 40))))
+
+
+def _viseme(c, v, op, stache):
+    """mouth shape for lip sync (face-local units)."""
+    my = 10 if stache else 8
+    ink = skia.Color(30, 24, 30)
+    inside = skia.Color(70, 20, 30)
+    if v in ('rest', 'MBP'):
+        w = 4.5 if v == 'rest' else 5.0
+        _line(c, [(-w, my + 1), (w, my + 1)], w=2.3 if v == 'MBP' else 1.9)
+        return
+    if v == 'FV':
+        c.drawRect(skia.Rect(-4.5, my - 0.5, 4.5, my + 2.2), _paint((250, 250, 248)))
+        _line(c, [(-5, my + 2.4), (0, my + 3.4), (5, my + 2.4)], w=1.8)
+        return
+    if v == 'AA':
+        w, h = 6.5, 2.5 + 7.5 * op
+    elif v == 'EE':
+        w, h = 7.5, 1.5 + 3.5 * op
+    elif v == 'OO':
+        w, h = 3.6 + 0.8 * op, 3.0 + 4.0 * op
+    elif v == 'L':
+        w, h = 5.5, 2.0 + 4.5 * op
+    else:  # S: teeth together
+        w, h = 6.0, 2.2 + 1.5 * op
+    r = skia.Rect(-w, my - h * 0.35, w, my + h * 0.65)
+    c.drawOval(r, _paint(inside))
+    c.save()
+    pth = skia.Path()
+    pth.addOval(r)
+    c.clipPath(pth, doAntiAlias=True)
+    if v in ('AA', 'EE', 'S', 'L'):
+        c.drawRect(skia.Rect(-w, r.top(), w, r.top() + min(2.2, h * 0.35)), _paint((250, 250, 248)))
+    if v == 'S':
+        c.drawRect(skia.Rect(-w, r.bottom() - min(2.0, h * 0.35), w, r.bottom()), _paint((250, 250, 248)))
+    if v in ('AA', 'L'):
+        c.drawOval(skia.Rect(-w * 0.6, r.bottom() - h * 0.45 - (h * 0.25 if v == 'L' else 0), w * 0.6,
+                             r.bottom() + h * 0.2), _paint((225, 95, 110)))
+    c.restore()
+    c.drawOval(r, _paint(ink, stroke=1.5))

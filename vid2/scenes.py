@@ -11,6 +11,16 @@ import tex as T
 import tex2 as T2
 import fx
 
+
+import os as _os
+import subprocess as _sp
+from lipsync import Lines as _Lines
+_HERE = _os.path.dirname(_os.path.abspath(__file__))
+_WAV = _os.path.join(_HERE, 'voice16.wav')
+if not _os.path.exists(_WAV):
+    _sp.run(['ffmpeg', '-v', 'error', '-y', '-i', _os.path.join(_HERE, 'voiceover.mp3'), '-ac', '1', '-ar', '16000', _WAV], check=True)
+LIPS = _Lines(_WAV, {'why': ('why billions', 24.4, 25.5)}, _os.path.join(_HERE, 'lipsync_phones.json'))
+
 WORDS = json.load(open(__file__.replace('scenes.py', 'words.json')))
 DUR = 57.05
 
@@ -556,7 +566,8 @@ def sh_why(t):
     cemetery(sc, t)
     fg_petals(sc, t, 5, 5)
     bin_(sc, 0.6, 0.9, t, seed=7)
-    char(sc, KID, (-0.2, 0, 0.6), dict(eyes='dot', brows='one', mouth='flat', tilt=10, arms=(20, (-150, -175))), h=1.25)
+    char(sc, KID, (-0.2, 0, 0.6), dict(dict(eyes='dot', brows='one', mouth='flat', tilt=10, arms=(20, (-150, -175))),
+                                       **LIPS.speak(t, 'why')), h=1.25)
     return sc
 
 
