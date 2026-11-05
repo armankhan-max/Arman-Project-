@@ -1,11 +1,12 @@
 """Procedural SFX + BGM for the sword video (numpy only). Timing comes from timing.json (same clock as the 3D scene)."""
 import json, wave, numpy as np
-TM = json.load(open('timing.json')); T = TM['T']; DUR = TM['dur']
+TM = json.load(open('timing.json')); T = TM['T']; DUR = 39.6
 SR = 44100; N = int(DUR * SR); R = np.random.default_rng(7)
 L = np.zeros(N); Rr = np.zeros(N)
 def tt(d): return np.arange(int(d * SR)) / SR
-def put(x, t, g=1.0, pan=0.0):
-    i = int(t * SR); 
+from warp import W
+def put(x, t, g=1.0, pan=0.0, raw=False):
+    i = int((t if raw else W(t)) * SR); 
     if i >= N: return
     x = x[:N - i] if i >= 0 else x[-i:]; i = max(i, 0)
     L[i:i + len(x)] += x * g * (1 - max(0, pan)); Rr[i:i + len(x)] += x * g * (1 + min(0, pan))
@@ -106,10 +107,11 @@ k = 0
 while t < T['boom'] - .25:
     put(thud(.3, 90, 40, .55), t); put(thud(.25, 80, 38, .35), t + .13); t += .62 - .5 * ((t - 26.3) / 5.1) ** 1.2; k += 1
 for kk in range(26): put(ping(500 + kk * 45, .3, .22 + kk * .01), 26.4 + kk * 0.19 * (1 - kk / 70))
+for tc in [3.8, 7.0, 9.1, 12.5, 15.2, 18.1, 21.9, 24.0, 26.3, 34.1]: put(whoosh(.45, 400, 1600, .12), tc - .2)
 # duck the whole mix right before the boom (classic silence-before-the-hit)
-d0, d1 = int((T['boom'] - .3) * SR), int(T['boom'] * SR); L[d0:d1] *= np.linspace(1, .08, d1 - d0); Rr[d0:d1] *= np.linspace(1, .08, d1 - d0)
+d0, d1 = int((W(T['boom']) - .3) * SR), int(W(T['boom']) * SR); L[d0:d1] *= np.linspace(1, .08, d1 - d0); Rr[d0:d1] *= np.linspace(1, .08, d1 - d0)
 # final fade out
-f0 = int(T['fadeOut'] * SR); fade = np.linspace(1, 0, N - f0); L[f0:] *= fade; Rr[f0:] *= fade
+f0 = int(W(T['fadeOut']) * SR); fade = np.linspace(1, 0, N - f0); L[f0:] *= fade; Rr[f0:] *= fade
 # ---------------- master: peak -1.5 dB (final loudness set with ffmpeg loudnorm) ----------------
 out = np.stack([L, Rr]); out = np.tanh(out * .9) / np.tanh(.9)
 out *= 10 ** (-1.5 / 20) / np.abs(out).max()
