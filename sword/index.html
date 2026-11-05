@@ -1,0 +1,14 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+html,body{margin:0;background:#000;overflow:hidden}
+#wrap{position:relative;width:720px;height:1280px}
+canvas{display:block}
+#cap{position:absolute;left:0;right:0;bottom:250px;text-align:center;font:900 62px/1.05 "DejaVu Sans","Arial Black",Arial,sans-serif;color:#fff;
+ -webkit-text-stroke:9px #000;paint-order:stroke fill;text-shadow:0 5px 0 rgba(0,0,0,.45);letter-spacing:1px;padding:0 30px;text-transform:none}
+#fade{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none}
+</style></head><body>
+<div id="wrap"><div id="cap"></div><div id="fade"></div></div>
+<script type="importmap">{"imports":{"three":"/three/build/three.module.js","three/addons/":"/three/examples/jsm/"}}</script>
+<script type="module" src="scene.js"></script>
+</body></html>

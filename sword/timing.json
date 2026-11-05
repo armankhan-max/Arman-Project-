@@ -1,0 +1,27 @@
+{
+ "fps": 30,
+ "dur": 39.5,
+ "lines": [
+  ["If you stuck a long sword out of a car, aiming for a tree,", 0.0, 3.5],
+  ["the sword would obviously snap and rip from your hands.", 3.8, 6.5],
+  ["But what if the sword is unbreakable,", 7.0, 8.9],
+  ["you have an indestructible grip and your body is physically immovable?", 9.1, 12.1],
+  ["Well, the force would then transfer to the car.", 12.5, 15.0],
+  ["It would screech to a halt as the sword hits.", 15.2, 17.7],
+  ["But what if the car can't stop and is forced to keep moving?", 18.1, 21.6],
+  ["The tree should split in half.", 21.9, 23.6],
+  ["But if the tree is indestructible too?", 24.0, 25.9],
+  ["With no way to break, bend, or stop, the energy has nowhere to escape.", 26.3, 30.1],
+  ["Would this unleash a massive shockwave as powerful as a nuclear explosion?", 30.5, 33.8],
+  ["Or worse,", 34.1, 35.0],
+  ["something reality itself isn't equipped to contain?", 35.2, 37.6]
+ ],
+ "T": {
+  "contact1": 4.9, "snap": 5.0, "rip": 5.5, "flyPast": 6.4,
+  "unb": 8.25, "grip": 10.0, "body": 11.3,
+  "ripple0": 13.4, "impact2": 15.4, "halt": 16.7,
+  "push": 18.3, "lunge": 21.4, "cut": 22.3, "crash": 23.0,
+  "greenBand": 25.0, "build0": 26.3, "boom": 31.4, "cloud": 33.2,
+  "vortex": 34.1, "orb": 35.7, "dive0": 36.5, "fadeOut": 38.3
+ }
+}
