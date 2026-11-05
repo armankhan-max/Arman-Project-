@@ -51,18 +51,44 @@ def render_frame(canvas, t):
         A = shot_image(a_fn, t)
         B = shot_image(b_fn, t)
         canvas.clear(skia.ColorBLACK)
-        if kk == 'whip':
-            sig = 70 * math.sin(x * math.pi) + 0.01
-            blur = skia.ImageFilters.Blur(sig, 0.5)
-            off = W * 0.35
-            pa = skia.Paint(ImageFilter=blur, Alphaf=1 - ease(x))
-            pb = skia.Paint(ImageFilter=blur, Alphaf=ease(x))
-            canvas.drawImage(A, -off * ease(x), 0, skia.SamplingOptions(), pa)
-            canvas.drawImage(B, off * (1 - ease(x)), 0, skia.SamplingOptions(), pb)
-        else:
-            canvas.drawImage(A, 0, 0)
-            canvas.drawImage(B, 0, 0, skia.SamplingOptions(), skia.Paint(Alphaf=ease(x)))
+        transition(canvas, A, B, x, kk)
     SC.overlays(canvas, t)
+
+
+def _draw(canvas, img, alpha, dx=0.0, dy=0.0, scale=1.0, bx=0.0, by=0.0):
+    canvas.save()
+    canvas.translate(W / 2 + dx, H / 2 + dy)
+    canvas.scale(scale, scale)
+    canvas.translate(-W / 2, -H / 2)
+    p = skia.Paint(Alphaf=max(0.0, min(1.0, alpha)))
+    if bx > 0.5 or by > 0.5:
+        p.setImageFilter(skia.ImageFilters.Blur(bx, by, skia.TileMode.kClamp))
+    canvas.drawImage(img, 0, 0, skia.SamplingOptions(skia.FilterMode.kLinear), p)
+    canvas.restore()
+
+
+def transition(canvas, A, B, x, kind):
+    """Motion-matched transitions: the camera direction of the outgoing shot carries into the incoming one."""
+    e = ease(x)
+    mb = 60 * math.sin(x * math.pi)  # motion blur peaks mid-transition
+    if kind == 'dissolve':
+        _draw(canvas, A, 1)
+        _draw(canvas, B, e)
+        return
+    if kind in ('pushin', 'pullback'):
+        s = 1 if kind == 'pushin' else -1
+        _draw(canvas, A, 1, scale=1 + s * 0.45 * e, bx=mb * 0.35, by=mb * 0.35)
+        _draw(canvas, B, e, scale=1 - s * 0.3 * (1 - e), bx=mb * 0.35, by=mb * 0.35)
+        return
+    # camera moves up/down/left/right: content slides opposite, blurred along the motion. Both frames are
+    # over-scaled while sliding so no edge or black band is ever revealed.
+    d = {'up': (0, 1), 'down': (0, -1), 'left': (1, 0), 'right': (-1, 0)}[kind]
+    k = 0.2
+    span = (W if d[0] else H) * k
+    bx, by = mb * abs(d[0]), mb * abs(d[1])
+    _draw(canvas, A, 1, dx=d[0] * span * e, dy=d[1] * span * e, scale=1 + 2.2 * k * e, bx=bx, by=by)
+    _draw(canvas, B, ease(min(1, x * 1.4)), dx=-d[0] * span * (1 - e), dy=-d[1] * span * (1 - e), scale=1 + 2.2 * k * (1 - e),
+          bx=bx, by=by)
 
 
 def still(t, out):

@@ -128,6 +128,7 @@ class Scene:
         self.fog = fog  # (color, start, end)
         self.light = light if light is not None else LIGHT
         self.ambient = ambient
+        self.dof = None  # (focus camera-depth, blur sigma): things farther than focus get soft
 
     # ---------- shading
     def shade(self, color, normal, center):
@@ -406,15 +407,30 @@ class Scene:
                                              MaskFilter=skia.MaskFilter.MakeBlur(skia.kNormal_BlurStyle, 14)))
         self.items.append((layer, 1e3, draw))
 
-    def render(self, canvas):
-        # background gradient
+    def _bg(self, canvas):
         bg = self.bg
         if isinstance(bg, tuple) and len(bg) == 2 and isinstance(bg[0], tuple):
             sh = skia.GradientShader.MakeLinear([(0, 0), (0, H)], [col(bg[0]), col(bg[1])])
             canvas.drawPaint(skia.Paint(Shader=sh))
         else:
-            canvas.clear(col(bg))
-        for layer, depth, fn in sorted(self.items, key=lambda it: (it[0], -it[1])):
+            canvas.drawColor(col(bg))
+
+    def render(self, canvas):
+        items = sorted(self.items, key=lambda it: (it[0], -it[1]))
+        if not self.dof:
+            self._bg(canvas)
+            for layer, depth, fn in items:
+                fn(canvas)
+            return
+        focus, sig = self.dof
+        far = [it for it in items if it[0] == 0 or (it[0] < 5 and it[1] > focus)]
+        near = [it for it in items if not (it[0] == 0 or (it[0] < 5 and it[1] > focus))]
+        canvas.saveLayer(None, skia.Paint(ImageFilter=skia.ImageFilters.Blur(sig, sig, skia.TileMode.kClamp)))
+        self._bg(canvas)
+        for layer, depth, fn in far:
+            fn(canvas)
+        canvas.restore()
+        for layer, depth, fn in near:
             fn(canvas)
 
 

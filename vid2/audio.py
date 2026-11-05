@@ -588,20 +588,27 @@ def build_sfx():
     sys.path.insert(0, HERE)
     import scenes as SCN
     for start, _e, _f, _d, kind in SCN.TIMELINE[1:]:
-        if kind == 'whip':
-            P(whoosh(0.4, True, 1.2), start - 0.22, 0.5)
+        if kind in ('up', 'pushin', 'right', 'left'):
+            P(whoosh(0.55, True, 1.15), start - 0.3, 0.45)
+        elif kind in ('down', 'pullback'):
+            P(whoosh(0.55, False, 1.0), start - 0.3, 0.45)
         else:
-            P(whoosh(0.7, False, 0.7), start - 0.35, 0.22)
+            P(whoosh(0.7, False, 0.7), start - 0.35, 0.2)
     P(whoosh(0.5, True, 1.1), 1.2, 0.55)
     P(whoosh(0.6, False, 1.0), 2.55, 0.5)
     P(riser(0.6), 3.05, 0.35)
+    P(whoosh(0.4, False, 0.6)[::-1].copy(), 3.24, 0.4)  # fire inhales (anticipation)
+    P(thud(70, 0.3), 3.08, 0.5)                          # stack lands on "dollars"
     P(fire_burst(1.3), 3.6, 0.9)
     P(boom(), 3.64, 0.5)
     P(boing(), 4.65, 0.3)
     P(whoosh(0.3, True, 1.3), 5.15, 0.4)
     P(paper(0.3), 5.35, 0.35)
     P(riser(0.9), 6.0, 0.3)
-    P(heaven(), 6.95, 0.45)
+    for i in range(4):
+        P(pop(650 + i * 90), 6.12 + i * 0.08, 0.25)       # lanterns pop on "Chinese tradition"
+    P(heaven(), 6.95, 0.4)
+    P(sparkle(), 7.45, 0.35)                             # grandpa appears on "the dead" 
     for k, f in ((8.23, 700), (8.45, 800), (8.68, 900)):
         P(pop(f), k, 0.4)
     P(whoosh(0.6, False, 1.0), 9.65, 0.5)
@@ -610,7 +617,8 @@ def build_sfx():
     P(gong(196, 1.8), 12.36, 0.35)
     P(pop(800), 12.32, 0.3)
     P(paper(0.4), 15.0, 0.3)
-    P(whoosh(0.4, True, 1.3), 15.85, 0.5)
+    P(paper(0.8) * 0.5, 14.95, 0.25)                    # card rattles at the slot
+    P(whoosh(0.3, True, 1.4), 15.83, 0.55)               # sucked in on "except" 
     P(slowmo_in(1.3), 16.3, 0.55)
     P(fire_burst(0.9), 16.4, 0.6)
     for k in (17.5, 18.71, 19.75):
@@ -638,14 +646,17 @@ def build_sfx():
     for i in range(4):
         P(paper(0.15), 39.1 + i * 0.4, 0.45)
         P(pop(500 + i * 120), 39.12 + i * 0.4, 0.25)
+    P(crackle(0.34, 60) * 0.6, 40.0, 0.35)               # note trembles
     P(boom(), 40.34, 0.65)
     P(flutter(1.0), 41.2, 0.35)
+    P(riser(0.4), 43.3, 0.2)                              # house lifted
     P(fire_burst(0.9), 43.75, 0.55)
     P(honk(), 45.05, 0.4)
     P(fire_burst(0.7), 45.2, 0.4)
     P(blip_tune(), 46.6, 0.35)
     P(fire_burst(0.7), 46.8, 0.4)
     P(riser(0.7), 47.3, 0.3)
+    P(sparkle(), 56.4, 0.35)                             # "richer" 
     P(whoosh(0.5, False, 1.3), 47.6, 0.4)
     P(pop(600), 48.5, 0.3)
     P(pop(750), 48.6, 0.3)
