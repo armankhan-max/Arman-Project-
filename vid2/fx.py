@@ -126,3 +126,20 @@ def warp(t, segs):
         if t > t0:
             a -= (min(t, t1) - t0) * (1 - s)
     return a
+
+
+def ramp(t, segs, r=0.25):
+    """smooth speed ramp (no snapping): speed eases from 1 down to s, holds, eases back to 1.
+    segs = [(t0, t1, s)] -> animation time."""
+    if not segs or t <= min(a for a, _, _ in segs) - r:
+        return t
+    lo = min(a for a, _, _ in segs) - r
+    taus = np.linspace(lo, t, max(2, int((t - lo) * 240)))
+    loss = np.zeros_like(taus)
+    for t0, t1, sp in segs:
+        w = np.clip((taus - (t0 - r)) / r, 0, 1)
+        w = w * w * (3 - 2 * w)
+        w2 = np.clip((taus - t1) / r, 0, 1)
+        w2 = w2 * w2 * (3 - 2 * w2)
+        loss += (1 - sp) * w * (1 - w2)
+    return t - float(np.trapezoid(loss, taus))

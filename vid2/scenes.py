@@ -104,11 +104,11 @@ def punch(t, at, amt=0.2, attack=0.06, hold=0.3, release=0.55):
 def shake(t, at, amp=16, dur=0.35, freq=36):
     if t < at or t > at + dur:
         return (0, 0)
-    k = (1 - (t - at) / dur) ** 2 * amp
+    k = (1 - (t - at) / dur) ** 2 * amp * 0.55
     return (k * math.sin((t - at) * freq * 6.28), k * math.cos((t - at) * freq * 5.1))
 
 
-def mkcam(keys, t, punches=(), shakes=(), handheld=0.03):
+def mkcam(keys, t, punches=(), shakes=(), handheld=0.0):
     pos, tgt, fov, roll = path(keys, t)
     f = 1.0
     for p in punches:
@@ -129,6 +129,22 @@ FOG_GOLD = (rgb('#ffd9b0'), 18, 90)
 
 
 # ------------------------------------------------------------------ sets
+def cam_at(pos, tgt, fov, t, roll=0.0, punches=(), shakes=()):
+    f = 1.0 + sum(punch(t, *p) if isinstance(p, tuple) else punch(t, p) for p in punches)
+    sx = sy = 0
+    for sh in shakes:
+        dx, dy = shake(t, *sh) if isinstance(sh, tuple) else shake(t, sh)
+        sx += dx
+        sy += dy
+    return Camera(np.array(pos, float), np.array(tgt, float), fov=fov / f, roll=roll, shake=(sx, sy))
+
+
+def mixp(a, b, w):
+    """blend two camera poses (pos, tgt, fov, roll) smoothly."""
+    w = ease(clamp(w))
+    return tuple(np.array(x, float) * (1 - w) + np.array(y, float) * w for x, y in zip(a, b))
+
+
 def cherry(sc, x, z, s=1.0):
     sc.cyl((x, 0, z), 0.16 * s, 1.6 * s, rgb('#5a3a2a'), seg=7)
     for k, (dx, dy, dz, r) in enumerate([(0, 2.0, 0, 1.0), (0.6, 1.7, 0.2, 0.7), (-0.6, 1.8, -0.1, 0.75), (0.1, 2.5, 0.1, 0.65)]):
@@ -206,13 +222,13 @@ def fg_petals(sc, t, n=7, seed=0):
     R = sc.cam.R
     for i in range(n):
         ph = rnd.random()
-        fall = (t * 0.22 + ph) % 1.0
-        lx = rnd.uniform(-0.45, 0.45) + math.sin(t * 1.3 + i) * 0.08
+        fall = (t * 0.12 + ph) % 1.0
+        lx = rnd.uniform(-0.45, 0.45) + fall * 0.25
         ly = 0.7 - fall * 1.4
         lz = rnd.uniform(0.55, 1.1)
         wp = sc.cam.pos + R.T @ np.array([lx * lz, ly * lz, lz])
         sz = rnd.uniform(0.035, 0.06)
-        rot = t * 90 + i * 40
+        rot = 35 + fall * 60
 
         def d(c, rot=rot):
             c.rotate(rot)
@@ -245,50 +261,49 @@ def note_quad(sc, O, U, V, value='1,000,000,000', look=0, tint=0, burn=0.0, seed
 
 # ================================================================== SHOTS
 def sh_hook(t):
-    # 0 - 4.4: slow-mo macro of notes in the fire, rocket up to the hillside, dive back, FWOOSH
-    a = fx.warp(t, [(0.0, 1.25, 0.3)])
-    keys = [(0.0, (0.3, 1.45, -1.45), (0.0, 0.85, 0.0), 44), (1.2, (0.25, 1.4, -1.3), (0.0, 0.85, 0.0), 42),
-            (1.95, (2.5, 9.0, -12.0), (0.0, 1.0, 10.0), 58, 6, 'fast'), (2.55, (2.0, 7.6, -10.5), (0.0, 1.0, 10.0), 58),
-            (3.5, (0.5, 1.4, -2.2), (0.0, 0.95, 0.0), 48, 0, 'fast'), (4.45, (0.4, 1.35, -2.0), (0.0, 1.0, 0.0), 46)]
-    cam = mkcam(keys, t, punches=[(3.64, 0.18)], shakes=[(3.66, 22)])
+    # object moves (note falls), camera follows, slow-mo as it ignites, then the big reveal of the hillside
+    a = fx.ramp(t, [(0.45, 1.05, 0.22)], r=0.3)
+
+    def note_at(a):
+        p = ease(clamp(a / 0.62))
+        return np.array([lerp(-0.12, 0.0, p), lerp(1.75, 0.92, p), lerp(-0.35, -0.05, p)])
+    npos = note_at(a)
+    follow = (npos + np.array([0.28, 0.32, -1.0 + 0.18 * ease(clamp(a / 0.7))]), npos, 44.0, 0.0)
+    keys = [(1.25, tuple(follow[0]), tuple(follow[1]), 44), (1.95, (2.5, 9.0, -12.0), (0.0, 1.0, 10.0), 58, 6, 'fast'),
+            (2.55, (2.0, 7.6, -10.5), (0.0, 1.0, 10.0), 58), (2.95, (0.5, 1.55, -2.3), (-0.2, 1.45, -0.2), 48, 0, 'fast'),
+            (3.15, (0.45, 1.4, -2.2), (0.0, 0.85, 0.0), 47), (3.62, (0.38, 1.33, -1.95), (0.0, 0.9, 0.0), 45),
+            (4.45, (0.45, 1.5, -2.5), (0.0, 1.05, 0.0), 48)]
+    fixed = tuple(follow) if t < 1.25 else None
+    if t < 1.25:
+        cam = cam_at(follow[0], follow[1], 44.0 - 4 * ease(clamp((a - 0.4) / 0.4)), t)
+    else:
+        cam = mkcam(keys, t, punches=[(3.64, 0.16)], shakes=[(3.66, 18)])
     sc = Scene(cam, bg=SKY_DUSK, fog=(rgb('#ffb08a'), 20, 90), ambient=0.6)
+    if t < 1.25:
+        sc.dof = (1.6, 6)
     cemetery(sc, a, many=True)
     tomb(sc, 0.0, 1.6)
-    fg_petals(sc, a, 6, 1)
-    burst = (0.55 if t < 1.3 else 0.85) + 0.6 * math.exp(-max(0, t - 3.64) * 3) * (t > 3.64)
+    fg_petals(sc, a, 5, 1)
+    burst = (0.6 if t < 1.3 else 0.85) + 0.6 * math.exp(-max(0, t - 3.64) * 3) * (t > 3.64)
     if 3.25 < t < 3.64:  # anticipation: the fire sucks in before it erupts
         burst *= 1 - 0.55 * ease((t - 3.25) / 0.39)
     bin_(sc, 0, 0, a, k=burst, seed=1)
-    # hero note held over the fire, burning in slow motion
-    if t < 1.35:
-        note_quad(sc, (-0.26, 1.18, -0.55), (0.52, 0.0, 0.05), (0, -0.25, 0.04), tint=0, burn=clamp(a * 1.9), seed=1,
-                  depth_bias=-0.6)
-    # notes falling into the fire in slow motion
-    for i in range(4):
-        st = 0.15 + i * 0.28
-        p = clamp((a - st) / 0.6)
-        if p <= 0 or p >= 1:
-            continue
-        y = lerp(1.6, 0.68, p)
-        rot = i * 0.7 + p * 1.2
-        U = (0.42 * math.cos(rot), 0.05, 0.42 * math.sin(rot))
-        V = (-0.2 * math.sin(rot), -0.02, 0.2 * math.cos(rot))
-        note_quad(sc, (-0.2 + i * 0.08, y, -0.3 + 0.03 * i), U, V, tint=i % 3, burn=max(0, p - 0.4) * 1.6, seed=i,
-                  depth_bias=-0.3)
-    # dad drops a huge stack on "billions"
-    if t > 2.2:
+    if t < 1.4:  # the hero note: a calm, guided fall, igniting as it meets the flames
+        tilt = 0.25 * ease(clamp(a / 0.62))
+        note_quad(sc, tuple(npos + np.array([-0.24, 0.12, 0])), (0.48, 0.0, 0.04), (0, -0.23 * math.cos(tilt), 0.23 * math.sin(tilt)),
+                  tint=0, burn=clamp((a - 0.5) / 0.55), seed=1, depth_bias=-0.6)
+    if t > 2.2:  # dad lifts the stack (anticipation), drops it on "billions", it lands on "dollars"
         char(sc, DAD, (-0.75, 0, -0.35), dict(eyes='closed' if t > 3.7 else 'dot', brows='up', mouth='o' if t > 3.7 else 'smile',
-                                               arms=(20, -110), red=0.0), h=1.75)
-        if t < 2.52:  # lift (anticipation)
+                                               arms=(20, -110)), h=1.75)
+        if t < 2.52:
             bx, by, bz = -0.35, lerp(1.2, 1.5, ease(clamp((t - 2.2) / 0.32))), -0.25
-        else:  # drop on "billions", lands on "dollars"
+        else:
             p = clamp((t - 2.52) / 0.56)
-            bx, by, bz = lerp(-0.35, 0, p), lerp(1.5, 0.72, ease_in(p)), lerp(-0.25, 0, p)
+            bx, by, bz = lerp(-0.35, 0, ease(p)), lerp(1.5, 0.72, ease_in(p)), lerp(-0.25, 0, ease(p))
         if t < 3.3:
             sq_ = 1.0 if t < 3.08 else 1 - 0.3 * math.sin(clamp((t - 3.08) / 0.2) * math.pi)
             sc.box((bx, by, bz), (0.42, 0.18 * sq_, 0.2), rgb('#e8d6a0'), top=rgb('#d08a3a'))
     return sc
-
 
 def sh_notforthem(t):
     keys = [(4.35, (0.3, 1.25, -2.8), (0.05, 1.0, 0.3), 46), (5.6, (0.2, 1.2, -2.35), (0.05, 1.0, 0.3), 44),
@@ -409,19 +424,36 @@ def sh_qingming(t):
     return sc
 
 
+def card_at(t):
+    p = ease(clamp((t - 13.88) / 1.0))
+    zip_ = ease_in(clamp((t - 15.85) / 0.12))
+    return np.array([lerp(0.45, -0.17, p) + 0.17, lerp(1.55, 1.49, p) - 0.105, lerp(-0.3, -0.12, p) + zip_ * 0.12])
+
+
 def sh_mail(t):
-    # 13.05 - 17.55: mailing grandpa a gift card... into fire (slow-mo at the end)
-    a = fx.warp(t, [(16.35, 17.6, 0.35)])
-    keys = [(13.0, (-0.9, 1.6, -3.4), (-0.2, 1.2, 0.0), 50), (15.0, (0.35, 1.45, -1.4), (0.0, 1.35, 0.0), 44),
-            (15.95, (0.05, 1.32, -0.75), (0.0, 1.28, 0.0), 42, 0, 'fast'), (16.35, (0.0, 1.28, -0.15), (0.0, 1.0, 0.4), 50, 0, 'fast'),
-            (17.6, (0.0, 1.22, -0.05), (0.0, 0.95, 0.35), 46)]
-    cam = mkcam(keys, t, punches=[(16.93, 0.1)])
+    a = fx.ramp(t, [(16.5, 17.3, 0.3)], r=0.3)
     inside = t > 16.3
+    if t < 13.88:
+        keys = [(13.0, (-0.9, 1.6, -3.4), (-0.2, 1.2, 0.0), 50), (13.88, (0.1, 1.6, -2.4), (0.25, 1.4, -0.2), 48)]
+        cam = mkcam(keys, t)
+    elif not inside:
+        cp = card_at(t)
+        close = ease(clamp((t - 13.88) / 1.1))
+        pos = cp + np.array([lerp(-0.15, 0.32, close), lerp(0.2, 0.08, close), lerp(-2.2, -0.75, close)])
+        if t > 15.85:  # dive after it into the slot
+            k = ease_in(clamp((t - 15.85) / 0.45))
+            pos = pos * (1 - k) + np.array([0.0, 1.42, -0.05]) * k
+        start = (np.array([0.1, 1.6, -2.4]), np.array([0.25, 1.4, -0.2]), 48.0, 0.0)
+        p2 = mixp(start, (pos, cp, 44.0, 0.0), (t - 13.88) / 0.35)
+        cam = cam_at(*p2[:3], t, roll=p2[3])
+    else:  # inside: look down at the card dropping into the furnace, then pull back to reveal the flames
+        rv = ease(clamp((t - 17.15) / 0.4))
+        cam = cam_at((0.0, lerp(1.28, 1.45, rv), lerp(-0.12, -0.45, rv)), (0.0, lerp(1.0, 0.85, rv), 0.35), lerp(48, 56, rv), t,
+                     punches=[(16.93, 0.08)])
     sc = Scene(cam, bg=SKY_GOLD if not inside else (30, 14, 8), fog=None if inside else FOG_GOLD, ambient=0.66)
     if not inside:
         S.ground(sc, T2.stone_tiles(), size=60, rep=20, center=(0, 10))
         sc.quad_tex(v3(-6, 4, 1.2), v3(12, 0, 0), v3(0, -4, 0), T2.red_wall(), 256, 256, lw=2)
-        # mailbox
         sc.box((0, 0.55, 0.3), (0.2, 1.1, 0.2), rgb('#1f5a3a'))
         sc.box((0, 1.25, 0.3), (0.8, 0.6, 0.6), rgb('#2f8a5a'), top=rgb('#3a9a6a'))
         sc.poly([v3(-0.25, 1.38, -0.005), v3(0.25, 1.38, -0.005), v3(0.25, 1.44, -0.005), v3(-0.25, 1.44, -0.005)],
@@ -429,26 +461,22 @@ def sh_mail(t):
         fx.glow(sc, (0, 1.41, 0.0), 0.25, (255, 140, 40), 90)
         sc.quad_tex(v3(-0.3, 1.32, -0.005), v3(0.6, 0, 0), v3(0, -0.22, 0), T2.mailbox_label(), 700, 260, lw=1.5, shade=False,
                     depth_bias=-0.06)
-        sc.dof = (3.6, 5)
+        sc.dof = (2.0 if t > 14.3 else 3.6, 5)
         char(sc, DAD, (0.75, 0, -0.35), dict(eyes=blink(t, 1), mouth='smile', arms=(20, -105 if t < 15.9 else -40), sq=bob(t)))
         if t < 15.97:
-            p = ease(clamp((t - 13.88) / 1.0))           # travels on "mailing"
-            hover = 0.015 * math.sin(t * 22) if 14.9 < t < 15.85 else 0.0  # hesitates at the slot
-            zip_ = ease_in(clamp((t - 15.85) / 0.12))     # sucked in on "except"
-            sc.quad_tex(v3(lerp(0.45, -0.17, p), lerp(1.55, 1.49, p) + hover, lerp(-0.3, -0.12, p) + zip_ * 0.12),
-                        v3(0.34, 0, 0), v3(0, -0.21, 0), T2.gift_card(), 860, 540, lw=2, shade=False, depth_bias=-0.3)
+            cp = card_at(t)
+            sc.quad_tex(v3(*(cp + np.array([-0.17, 0.105, 0]))), v3(0.34, 0, 0), v3(0, -0.21, 0), T2.gift_card(), 860, 540,
+                        lw=2, shade=False, depth_bias=-0.3)
     else:
-        # inside the mailbox: it's a furnace
         sc.box((0, 0.5, 0.5), (1.4, 1.4, 1.4), rgb('#3a2a20'), sides=('back', 'left', 'right', 'bottom'))
-        fx.fire(sc, (0, 0.2, 0.5), 0.9, a * 1.0, 1.2, 5)
+        fx.fire(sc, (0, 0.2, 0.5), 0.9, a, 1.2, 5)
         fx.embers(sc, (0, 0.5, 0.45), a, n=26, spread=0.3, height=0.9, speed=0.6, seed=6, size=0.018)
-        p = clamp((a - 16.3) / 0.6)
-        burn = clamp((a - 16.42) / 0.45)
+        p = ease(clamp((a - 16.3) / 0.55))
+        burn = clamp((a - 16.55) / 0.6)
         tex_ = fx.burnt(T2.gift_card(), 860, 540, burn, 2)
-        sc.quad_tex(v3(-0.17, lerp(1.3, 0.95, ease_out(p)), 0.3), v3(0.34, 0, 0), v3(0, -0.06, 0.2), tex_, 860, 540, lw=2,
+        sc.quad_tex(v3(-0.17, lerp(1.3, 0.95, p), 0.3), v3(0.34, 0, 0), v3(0, -0.06, 0.2), tex_, 860, 540, lw=2,
                     shade=False, depth_bias=-0.3)
     return sc
-
 
 def sh_values(t):
     keys = [(17.5, (-0.5, 1.4, -0.9), (0.0, 0.78, 0.2), 44), (19.9, (0.2, 1.25, -0.55), (0.1, 0.78, 0.25), 42),
@@ -534,7 +562,7 @@ def sh_comfy(t, part=None):
 
 
 def sh_shop(t):
-    a = fx.warp(t, [(33.55, 34.5, 0.4)])
+    a = fx.ramp(t, [(33.6, 34.4, 0.35)], r=0.25)
     keys = [(29.8, (1.8, 3.2, -3.2), (0.0, 1.6, 1.2), 52), (30.6, (1.5, 1.8, -2.9), (0.0, 1.1, 1.2), 50),
             (31.9, (0.7, 1.3, -2.0), (-0.2, 1.0, 1.0), 46),
             (33.6, (-0.1, 0.95, -1.4), (-0.35, 0.9, 0.6), 46, 0, 'fast'), (35.35, (-0.2, 0.95, -1.15), (-0.35, 0.9, 0.6), 42)]
@@ -564,17 +592,15 @@ def sh_shop(t):
         p = ease_out(clamp((t - 32.6) / 0.5))
         sc.box((lerp(0.6, 0.0, p), 1.12, 1.3), (0.5, 0.22 + (0.3 if rich else 0), 0.26), rgb('#e8d6a0'), top=rgb('#d08a3a'))
     if rich:  # money rain (slow-mo)
-        rnd = random.Random(3)
-        for i in range(26):
-            ph = rnd.random()
-            fall = ((a - 33.55) * 0.7 + ph) % 1.0
-            x = rnd.uniform(-1.4, 0.8)
-            z = rnd.uniform(0.0, 1.6)
+        for i in range(18):
+            col_, row = i % 6, i // 6
+            fall = ((a - 33.55) * 0.55 + row / 3) % 1.0
+            x = -1.4 + col_ * 0.44
+            z = 0.2 + row * 0.5
             y = 3.0 - fall * 3.2
-            rot = a * 3 + i
-            U = (0.22 * math.cos(rot), 0.05 * math.sin(rot * 1.3), 0.22 * math.sin(rot))
-            V = (0, -0.1, 0.02)
-            note_quad(sc, (x, y, z), U, V, tint=i % 3, depth_bias=-0.1)
+            rot = 0.6 + fall * 2.0 + col_ * 0.3
+            U = (0.22 * math.cos(rot), 0.0, 0.22 * math.sin(rot))
+            note_quad(sc, (x, y, z), U, (0, -0.1, 0.0), tint=i % 3, depth_bias=-0.1)
     return sc
 
 
@@ -647,78 +673,109 @@ def _paper_house(sc, x, z, s, burn_k, t, yoff=0.0):
             rgb('#a02828'))
 
 
-def _paper_car(sc, x, z, s):
-    sc.box((x, 0.85, z), (0.9 * s, 0.25 * s, 0.45 * s), rgb('#d83a3a'), top=rgb('#e85a4a'))
-    sc.box((x - 0.05, 1.05, z), (0.5 * s, 0.2 * s, 0.42 * s), rgb('#f0e8d8'))
+def _paper_car(sc, x, z, s, yoff=0.0):
+    sc.box((x, 0.85 + yoff, z), (0.9 * s, 0.25 * s, 0.45 * s), rgb('#d83a3a'), top=rgb('#e85a4a'))
+    sc.box((x - 0.05, 1.05 + yoff, z), (0.5 * s, 0.2 * s, 0.42 * s), rgb('#f0e8d8'))
     for wx in (-0.3, 0.3):
-        sc.billboard(v3(x + wx * s, 0.68, z - 0.24 * s), 0.18 * s, lambda c: (
+        sc.billboard(v3(x + wx * s, 0.68 + yoff, z - 0.24 * s), 0.18 * s, lambda c: (
             c.drawCircle(0, -50, 46, skia.Paint(AntiAlias=True, Color=INK)),
             c.drawCircle(0, -50, 18, skia.Paint(AntiAlias=True, Color=skia.Color(220, 220, 220)))), depth_bias=-0.2)
 
 
+def house_at(t):
+    p = ease(clamp((t - 42.6) / 0.7))
+    lift = 0.45 * ease(clamp((t - 43.3) / 0.4))
+    drop = 0.75 * ease_in(clamp((t - 43.72) / 0.16))
+    return np.array([lerp(-1.4, 0.0, p), lift - drop, 0.3])
+
+
 def sh_goods(t):
-    # 42.35 - 47.5 paper house, car, phone into the fire (macro, fast whips between)
-    keys = [(42.1, (-2.0, 3.6, -3.2), (0.0, 1.6, 0.3), 50), (42.8, (-1.8, 2.0, -3.0), (0.0, 0.9, 0.3), 50), (43.6, (-0.8, 1.6, -2.3), (0.0, 0.95, 0.3), 46, 0, 'fast'),
-            (44.65, (0.6, 1.5, -2.0), (0.0, 0.95, 0.3), 46), (45.0, (-0.5, 1.45, -1.8), (0.0, 0.95, 0.3), 44, -5, 'fast'),
-            (45.9, (0.5, 1.4, -1.7), (0.0, 0.95, 0.3), 44), (46.3, (0.0, 1.45, -1.4), (0.0, 1.1, 0.3), 42, 4, 'fast'),
-            (47.55, (0.0, 1.7, -1.3), (0.0, 1.7, 0.3), 46)]
-    cam = mkcam(keys, t, punches=[(43.79, 0.12), (45.02, 0.12), (46.58, 0.14)], shakes=[(43.82, 12), (45.05, 12), (46.6, 12)])
-    sc = Scene(cam, bg=SKY_DUSK, fog=(rgb('#ffb08a'), 20, 90), ambient=0.6)
-    sc.dof = (3.2, 4)
-    cemetery(sc, t)
-    fg_petals(sc, t, 6, 7)
-    sc.box((0, 0.3, 0.3), (1.2, 0.6, 1.0), rgb('#4a4a52'), top=rgb('#1a1a1e'))  # big burner
+    a = fx.ramp(t, [(43.85, 44.25, 0.3), (46.62, 46.95, 0.3)], r=0.25)
+    sc_kw = dict(bg=SKY_DUSK, fog=(rgb('#ffb08a'), 20, 90), ambient=0.6)
+    hp = house_at(t)
+    car_p = ease(clamp((t - 44.72) / 0.32))
+    car_x = lerp(1.3, 0.0, car_p)
+    car_y = -0.35 * ease_in(clamp((t - 45.02) / 0.25))
+    ph_p = ease_in(clamp((t - 46.15) / 0.43))
+    ph_pos = np.array([0.0, lerp(1.6, 1.15, ph_p), lerp(-0.1, 0.25, ph_p)])
+    if t < 42.6:
+        cam = mkcam([(42.1, (-2.0, 3.6, -3.2), (0.0, 1.6, 0.3), 50), (42.6, (-1.9, 2.3, -2.9), (-1.2, 1.1, 0.3), 48)], t)
+    elif t < 44.3:  # follow the house: slides in, lifted, dropped
+        tgt = np.array([hp[0], 0.95 + hp[1], 0.3])
+        pos = tgt + np.array([-0.6, 0.5, -1.7])
+        p2 = mixp((np.array([-1.9, 2.3, -2.9]), np.array([-1.2, 1.1, 0.3]), 48.0, 0.0), (pos, tgt, 46.0, 0.0), (t - 42.6) / 0.3)
+        cam = cam_at(*p2[:3], t, punches=[(43.79, 0.1)])
+    elif t < 44.7:  # reveal: pull back as the flames take it
+        k = ease(clamp((t - 44.3) / 0.4))
+        cam = cam_at((lerp(-0.6, -0.2, k), lerp(1.45, 1.8, k), lerp(-1.4, -2.6, k)), (0.0, lerp(0.95, 1.0, k), 0.3), 46.0, t)
+    elif t < 45.9:  # follow the car rolling in and tipping into the fire
+        tgt = np.array([car_x * 0.6, 0.9, 0.25])
+        cam = cam_at(tgt + np.array([0.5, 0.45, -1.6]), tgt, 46.0, t, roll=-3 * ease(clamp((t - 44.7) / 0.4)),
+                     punches=[(45.02, 0.1)])
+    else:  # follow the phone down, slow at the landing, reveal upward
+        k = ease(clamp((t - 46.95) / 0.5))
+        tgt = ph_pos * (1 - k) + np.array([0.0, 1.7, 0.3]) * k
+        cam = cam_at(tgt + np.array([0.0, 0.25, -1.25 - 0.3 * k]), tgt, 42.0, t, punches=[(46.58, 0.12)])
+    sc = Scene(cam, **sc_kw)
+    sc.dof = (2.2, 5)
+    cemetery(sc, a)
+    fg_petals(sc, a, 5, 7)
+    sc.box((0, 0.3, 0.3), (1.2, 0.6, 1.0), rgb('#4a4a52'), top=rgb('#1a1a1e'))
     big = 0.9 + 0.35 * (t > 43.79)
-    fx.fire(sc, (0, 0.6, 0.45), 0.8, t, big, 8, depth_bias=0.3)
-    fx.embers(sc, (0, 0.9, 0.3), t, n=26, spread=0.4, height=2.6, speed=0.5, seed=8)
-    fx.smoke(sc, (0, 1.8, 0.3), t, n=8, height=4, speed=0.2, seed=8, size=0.8, alpha=80)
+    fx.fire(sc, (0, 0.6, 0.45), 0.8, a, big, 8, depth_bias=0.3)
+    fx.embers(sc, (0, 0.9, 0.3), a, n=22, spread=0.4, height=2.6, speed=0.5, seed=8)
+    fx.smoke(sc, (0, 1.8, 0.3), a, n=8, height=4, speed=0.2, seed=8, size=0.8, alpha=80)
     if t < 44.7:
-        p = ease_out(clamp((t - 42.6) / 0.7))
-        lift = 0.45 * ease(clamp((t - 43.3) / 0.4))                 # raised up high (anticipation)
-        drop = 0.75 * ease_in(clamp((t - 43.72) / 0.16))            # dropped in on "houses"
-        sink = 0.25 * clamp((t - 43.9) / 0.8)                        # then sinks into the flames
-        _paper_house(sc, lerp(-1.4, 0.0, p), 0.3, 0.5, 0, t, yoff=lift - drop - sink)
-        char(sc, DAD, (lerp(-2.2, -0.9, p), 0, -0.2), dict(eyes=blink(t), mouth='smile', arms=(20, -110), walk=t * 2.4 if p < 1 else None))
+        sink = 0.25 * clamp((a - 43.9) / 0.8)
+        _paper_house(sc, hp[0], 0.3, 0.5, 0, t, yoff=hp[1] - sink)
+        wp = ease(clamp((t - 42.6) / 0.7))
+        char(sc, DAD, (lerp(-2.2, -0.9, wp), 0, -0.2), dict(eyes=blink(t), mouth='smile', arms=(20, -110 if t < 43.75 else -40),
+                                                             walk=t * 2.4 if wp < 1 else None))
     elif t < 45.9:
-        p = ease_out(clamp((t - 44.7) / 0.4))
-        _paper_car(sc, lerp(1.3, 0.0, p), 0.2, 0.6)
+        _paper_car(sc, car_x, 0.2, 0.6, yoff=car_y)
         char(sc, KID, (1.0, 0, -0.1), dict(eyes='closed', mouth='grin', arms=(20, -150)), h=1.25)
     else:
-        p = ease_in(clamp((t - 46.15) / 0.43))  # lands on "phones" 
-        sc.quad_tex(v3(-0.15, lerp(1.6, 1.15, p), lerp(-0.1, 0.25, p)), v3(0.3, 0, 0), v3(0, -0.54, 0.05),
-                    fx.burnt(T2.phone_screen(0), 500, 900, clamp((t - 46.6) / 0.9), 4), 500, 900, lw=2, shade=False,
+        sc.quad_tex(v3(*(ph_pos + np.array([-0.15, 0, 0]))), v3(0.3, 0, 0), v3(0, -0.54, 0.05),
+                    fx.burnt(T2.phone_screen(0), 500, 900, clamp((a - 46.6) / 0.9), 4), 500, 900, lw=2, shade=False,
                     depth_bias=-0.4)
-        char(sc, MOM, (-0.9, 0, -0.1), dict(eyes=blink(t, 2), mouth='smile', arms=(20, -100)))
+        char(sc, MOM, (-0.9, 0, -0.1), dict(eyes=blink(t, 2), mouth='smile', arms=(20, -100 if t < 46.2 else -30)))
     return sc
 
-
 def sh_upgrade(t):
-    keys = [(47.3, (0.0, 0.6, -2.8), (0.0, 1.9, 1.0), 54), (48.2, (0.4, 1.6, -2.1), (0.0, 1.35, 1.0), 46, 0, 'ease'),
-            (49.5, (0.25, 1.5, -1.7), (0.0, 1.35, 1.0), 42)]
-    cam = mkcam(keys, t, punches=[(48.78, 0.16)], shakes=[(48.8, 10)])
+    a = fx.ramp(t, [(48.15, 48.6, 0.3)], r=0.2)
+    fall = ease(clamp((a - 47.55) / 0.65))
+    php = np.array([0.21, lerp(3.2, 1.66, fall), 0.92])
+    if t < 48.7:
+        tgt = php * 0.7 + np.array([0.0, 1.35, 1.0]) * 0.3
+        pos = tgt + np.array([0.25, 0.05, -1.5])
+        cam = cam_at(pos, tgt, 44.0, t)
+    else:  # reveal on "upgrade": pull back to show the new paper mansion and car
+        k = ease(clamp((t - 48.7) / 0.6))
+        base_t = php * 0.7 + np.array([0.0, 1.35, 1.0]) * 0.3
+        pos = (base_t + np.array([0.25, 0.05, -1.5])) * (1 - k) + np.array([0.3, 1.7, -3.2]) * k
+        tgt = base_t * (1 - k) + np.array([0.0, 1.5, 1.8]) * k
+        cam = cam_at(pos, tgt, lerp(44, 52, k), t, punches=[(48.78, 0.1)])
     sc = Scene(cam, bg=SKY_HEAVEN, fog=(rgb('#f0e2ff'), 15, 70), ambient=0.78)
-    sc.dof = (2.8, 5)
-    afterlife(sc, t)
-    fg_bokeh(sc, t, 5, 8)
-    if t > 48.5:  # paper mansion + car appear behind him
-        k = ease_back(clamp((t - 48.5) / 0.3))
+    sc.dof = (2.6, 5)
+    afterlife(sc, a)
+    fg_bokeh(sc, a, 5, 8)
+    if t > 48.78:
+        k = ease_back(clamp((t - 48.78) / 0.35))
         _paper_house(sc, -1.5, 3.2, 1.8 * k + 0.01, 0, t)
         _paper_car(sc, 1.4, 2.4, 1.3 * k + 0.01)
     gp = (0, 0, 1.0)
     aura(sc, gp, a=55)
     done = t > 48.78
-    look_up = t < 48.2
+    look_up = a < 48.15
     char(sc, GRANDPA, gp, dict(eyes='closed' if done else 'wide', mouth='grin' if done else 'o', shades=done, brows='up',
                                py=-2 if look_up else 0, arms=(160, -160) if look_up else (20, (-120, -170))))
-    py = lerp(3.0, 1.62, ease_out(clamp((t - 47.6) / 0.5)))
-    sc.quad_tex(v3(0.12, py + 0.2, 0.92), v3(0.18, 0, 0), v3(0, -0.32, 0), T2.phone_screen(1 if done else 0), 500, 900, lw=2,
-                shade=False, depth_bias=-0.5)
+    sc.quad_tex(v3(*(php + np.array([-0.09, 0.2, 0]))), v3(0.18, 0, 0), v3(0, -0.32, 0), T2.phone_screen(1 if done else 0),
+                500, 900, lw=2, shade=False, depth_bias=-0.5)
     return sc
-
 
 def sh_still(t, part=None):
     # 49.45 - 53.2: quiet slow-mo: one note drifting into the fire, then everyone still paying
-    a = fx.warp(t, [(49.45, 52.0, 0.35)])
+    a = fx.ramp(t, [(49.7, 51.8, 0.35)], r=0.3)
     if (part == 'a') if part else (t < 51.95):
         keys = [(49.2, (0.9, 2.6, -2.1), (0.2, 1.5, 0.3), 46), (49.9, (0.9, 1.6, -2.1), (0.2, 1.0, 0.3), 46, 0, 'ease'),
                 (52.1, (0.7, 1.5, -1.75), (0.2, 1.0, 0.3), 42)]
@@ -744,20 +801,27 @@ def sh_still(t, part=None):
 
 def sh_end(t, part=None):
     # 53.2 - 54.85 slow-mo rise of smoke & burning notes; 54.85 - end family walks away at sunset
-    a = fx.warp(t, [(53.2, 54.85, 0.4)])
+    a = fx.ramp(t, [(53.2, 54.6, 0.4)], r=0.3)
     if (part == 'a') if part else (t < 54.85):
-        keys = [(53.2, (0.0, 1.2, -1.6), (0.0, 1.8, 0.4), 46), (54.9, (0.0, 2.6, -1.4), (0.0, 4.5, 0.6), 50)]
-        cam = mkcam(keys, t, handheld=0.01)
+        lead = np.array([-0.44, 1.32 + (a - 53.2) * 1.5, 0.35])
+        k = ease(clamp((t - 54.3) / 0.55))  # reveal: tilt up and away to the open sky
+        pos = (lead + np.array([0.0, -0.15, -1.5])) * (1 - k) + np.array([0.0, 3.0, -2.6]) * k
+        tgt = lead * (1 - k) + np.array([0.0, 6.5, 2.0]) * k
+        cam = cam_at(pos, tgt, lerp(44, 54, k), t)
         sc = Scene(cam, bg=SKY_DUSK, fog=(rgb('#ffb08a'), 20, 90), ambient=0.6)
         cemetery(sc, a)
         bin_(sc, 0, 0.4, a, seed=11, smk=False)
         fx.smoke(sc, (0, 1.6, 0.6), a, n=8, height=6, speed=0.3, seed=12, size=0.5, alpha=60)
         fx.embers(sc, (0, 1.0, 0.4), a, n=40, spread=0.6, height=5, speed=0.3, seed=13, size=0.05)
-        for i in range(5):
-            ph = (a * 0.25 + i / 5) % 1.0
-            note_quad(sc, (-0.3 + math.sin(i + a) * 0.4, 1.2 + ph * 3.5, 0.3 + i * 0.05),
-                      (0.3 * math.cos(a + i), 0.05, 0.3 * math.sin(a + i)), (0, -0.14, 0.02), tint=i % 3, burn=ph * 0.9,
-                      seed=i, depth_bias=-0.2)
+        for i in range(5):  # notes rise in a calm, even column, each one turning slowly
+            rise = (a - 53.2) * 1.5 - i * 0.55
+            if rise < 0:
+                continue
+            y = 1.2 + rise
+            ang = 0.4 * i + rise * 0.6
+            off = (i - 2) * 0.12
+            note_quad(sc, (-0.2 + off, y + 0.12, 0.35 + i * 0.04), (0.3 * math.cos(ang), 0.0, 0.3 * math.sin(ang)),
+                      (0, -0.14, 0.0), tint=i % 3, burn=clamp(rise / 2.2) * 0.9, seed=i, depth_bias=-0.2)
         return sc
     keys = [(54.6, (0.0, 3.4, -3.6), (0.0, 2.6, 4.0), 50), (55.4, (0.0, 1.7, -3.7), (0.0, 1.25, 4.0), 50, 0, 'ease'),
             (57.1, (0.0, 2.6, -5.0), (0.0, 2.4, 6.0), 54)]
