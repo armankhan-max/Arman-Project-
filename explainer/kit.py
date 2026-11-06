@@ -14,12 +14,17 @@ import skia
 W, H = 1920, 1080
 FONT_DIR = "/usr/share/fonts/opentype/inter/"
 
-BG = "#0F1217"
-INK = "#F3F0EA"
-MUTED = "#8A93A3"
-DIM = "#2A3039"
-ACC = "#FF4B33"   # danger / key words
-AMB = "#FFB43A"   # heat / money / secondary
+BG = "#1E0707"
+INK = "#FFFFFF"
+MUTED = "#D9B8B0"
+DIM = "#5A2A26"
+ACC = "#FFC72C"   # key words (yellow, like the reference captions)
+AMB = "#FF3B2F"   # danger / heat (red)
+YEL = ACC
+RED = AMB
+CREAM = "#F6EBD9"
+FONTS2 = __import__("os").path.join(__import__("os").path.dirname(__import__("os").path.abspath(__file__)), "fonts") + "/"
+CONDENSED = ("Black", "Bold")
 COOL = "#58B7FF"  # safe / calm (used sparingly)
 
 _tf, _fc = {}, {}
@@ -29,7 +34,12 @@ def font(size, weight="Black"):
     key = (weight, round(size, 1))
     if key not in _fc:
         if weight not in _tf:
-            _tf[weight] = skia.Typeface.MakeFromFile(FONT_DIR + f"Inter-{weight}.otf")
+            if weight in CONDENSED:
+                _tf[weight] = skia.Typeface.MakeFromFile(FONTS2 + "Anton-Regular.ttf")
+            elif weight == "Marker":
+                _tf[weight] = skia.Typeface.MakeFromFile(FONTS2 + "PermanentMarker-Regular.ttf")
+            else:
+                _tf[weight] = skia.Typeface.MakeFromFile(FONT_DIR + f"Inter-{weight}.otf")
         f = skia.Font(_tf[weight], size)
         f.setEdging(skia.Font.Edging.kAntiAlias)
         f.setSubpixel(True)
@@ -142,24 +152,37 @@ def background(c):
         k = s.getCanvas()
         k.clear(C(BG))
         sh = skia.GradientShader.MakeRadial((W / 2, H * 0.45), W * 0.75,
-                                           [C("#1A1F27"), C(BG), C("#090B0E")], [0, 0.6, 1])
+                                           [C("#3F0F0D"), C(BG), C("#0A0202")], [0, 0.6, 1])
         k.drawRect(skia.Rect.MakeWH(W, H), skia.Paint(Shader=sh))
         _bg_cache["img"] = s.makeImageSnapshot()
     c.drawImage(_bg_cache["img"], 0, 0)
 
 
 # -------------------------------------------------------------------- text
+def up(s, weight):
+    return s.upper() if weight in CONDENSED else s
+
+
+def shadow_paint(a):
+    p = P("#000000", a=0.55 * a)
+    p.setMaskFilter(skia.MaskFilter.MakeBlur(skia.kNormal_BlurStyle, 5))
+    return p
+
+
 def text_w(s, size, weight="Black"):
-    return font(size, weight).measureText(s)
+    return font(size, weight).measureText(up(s, weight))
 
 
 def draw_text(c, s, x, y, size, color=INK, weight="Black", a=1.0, align="left"):
+    s = up(s, weight)
     f = font(size, weight)
     w = f.measureText(s)
     if align == "center":
         x -= w / 2
     elif align == "right":
         x -= w
+    if weight in CONDENSED and size > 34:
+        c.drawString(s, x + size * 0.03, y + size * 0.05, f, shadow_paint(a))
     c.drawString(s, x, y, f, P(color, a=a))
     return w
 
@@ -197,7 +220,7 @@ def parse_rich(s):
 def rich_line(c, s, cx, y, size, t, t0, color=INK, weight="Black", align="center", stagger=0.045,
               max_w=1640, highlight=None):
     """Word-by-word slide-up reveal of one line. Returns used width."""
-    words = parse_rich(s)
+    words = parse_rich(up(s, weight))
     f = font(size, weight)
     space = f.measureText(" ")
     widths = [f.measureText(w) for w, _ in words]
@@ -210,6 +233,8 @@ def rich_line(c, s, cx, y, size, t, t0, color=INK, weight="Black", align="center
         p = ease_out(prog(t, t0 + i * stagger, 0.42))
         if p > 0:
             dy = (1 - p) * size * 0.45
+            if weight in CONDENSED:
+                c.drawString(w, x + size * 0.03, y + dy + size * 0.05, f, shadow_paint(p))
             c.drawString(w, x, y + dy, f, P(col or color, a=p))
         x += ww + space
     return total
@@ -219,9 +244,9 @@ def rich_line(c, s, cx, y, size, t, t0, color=INK, weight="Black", align="center
 # Each icon is drawn centred at (0,0) for a nominal size of ~300 px.
 
 def ic_phone(c, t=0, a=1.0, col=INK):
-    rr(c, -85, -150, 170, 300, 30, "#1C2129", a)
+    rr(c, -85, -150, 170, 300, 30, "#2A0B0A", a)
     rr(c, -85, -150, 170, 300, 30, col, a, stroke=9)
-    rr(c, -66, -122, 132, 236, 12, "#2B3340", a)
+    rr(c, -66, -122, 132, 236, 12, "#4A1A17", a)
     # curved edge glint + stylus
     line(c, 70, -110, 70, 105, MUTED, 4, a * 0.6)
     rr(c, 30, 118, 40, 8, 4, MUTED, a)
@@ -258,7 +283,7 @@ def ic_battery(c, t=0, a=1.0, level=0.7, col=INK, fill=None):
 
 def ic_hoverboard(c, t=0, a=1.0, col=INK):
     for sx in (-1, 1):
-        circ(c, sx * 155, 40, 62, "#1C2129", a)
+        circ(c, sx * 155, 40, 62, "#2A0B0A", a)
         circ(c, sx * 155, 40, 62, col, a, stroke=10)
         circ(c, sx * 155, 40, 18, col, a)
     p = skia.Path()
@@ -269,16 +294,16 @@ def ic_hoverboard(c, t=0, a=1.0, col=INK):
     p.cubicTo(80, -10, 40, 20, 0, 30)
     p.cubicTo(-40, 20, -80, -10, -150, 10)
     p.close()
-    c.drawPath(p, P("#2B3340", a=a))
+    c.drawPath(p, P("#4A1A17", a=a))
     c.drawPath(p, P(col, 9, a))
     rr(c, -120, -42, 70, 14, 7, MUTED, a)
     rr(c, 50, -42, 70, 14, 7, MUTED, a)
 
 
 def ic_laptop(c, t=0, a=1.0, col=INK):
-    rr(c, -150, -120, 300, 190, 16, "#1C2129", a)
+    rr(c, -150, -120, 300, 190, 16, "#2A0B0A", a)
     rr(c, -150, -120, 300, 190, 16, col, a, stroke=9)
-    rr(c, -128, -98, 256, 146, 6, "#2B3340", a)
+    rr(c, -128, -98, 256, 146, 6, "#4A1A17", a)
     p = path([(-185, 80), (185, 80), (205, 110), (-205, 110)])
     c.drawPath(p, P(col, a=a))
     rr(c, -40, 82, 80, 10, 5, BG, a)
@@ -287,16 +312,16 @@ def ic_laptop(c, t=0, a=1.0, col=INK):
 def ic_watch(c, t=0, a=1.0, col=INK, screen=None):
     rr(c, -55, -175, 110, 90, 20, MUTED, a)
     rr(c, -55, 85, 110, 90, 20, MUTED, a)
-    rr(c, -95, -105, 190, 210, 42, "#1C2129", a)
+    rr(c, -95, -105, 190, 210, 42, "#2A0B0A", a)
     rr(c, -95, -105, 190, 210, 42, col, a, stroke=10)
-    rr(c, -72, -82, 144, 164, 26, screen or "#2B3340", a)
+    rr(c, -72, -82, 144, 164, 26, screen or "#4A1A17", a)
     # heart-rate trace
     pts = [(-55, 5), (-25, 5), (-12, -30), (2, 35), (16, -12), (26, 5), (55, 5)]
     c.drawPath(path(pts, False), P(ACC if screen is None else BG, 7, a))
 
 
 def ic_washer(c, t=0, a=1.0, col=INK, lid=0.0, spin=0.0):
-    rr(c, -130, -130, 260, 290, 22, "#1C2129", a)
+    rr(c, -130, -130, 260, 290, 22, "#2A0B0A", a)
     rr(c, -130, -130, 260, 290, 22, col, a, stroke=10)
     circ(c, 0, 30, 82, col, a, stroke=10)
     with xf(c, 0, 30, rot=spin):
@@ -313,10 +338,10 @@ def ic_washer(c, t=0, a=1.0, col=INK, lid=0.0, spin=0.0):
 def ic_treadmill(c, t=0, a=1.0, col=INK, gap=False):
     # belt deck (raised) + upright + screen
     p = path([(-220, 60), (170, 30), (190, 55), (-200, 95)])
-    c.drawPath(p, P("#2B3340", a=a))
+    c.drawPath(p, P("#4A1A17", a=a))
     c.drawPath(p, P(col, 9, a))
     line(c, 130, 35, 170, -170, col, 12, a)
-    rr(c, 120, -250, 130, 85, 12, "#2B3340", a)
+    rr(c, 120, -250, 130, 85, 12, "#4A1A17", a)
     rr(c, 120, -250, 130, 85, 12, col, a, stroke=8)
     line(c, 70, -110, 175, -125, col, 10, a)
     # legs / gap under back
@@ -341,17 +366,17 @@ def ic_magnets(c, t=0, a=1.0, n=19):
 
 
 def ic_segway(c, t=0, a=1.0, col=INK):
-    circ(c, 0, 110, 70, "#1C2129", a)
+    circ(c, 0, 110, 70, "#2A0B0A", a)
     circ(c, 0, 110, 70, col, a, stroke=10)
     circ(c, 0, 110, 20, col, a)
-    rr(c, -70, 60, 140, 26, 10, "#2B3340", a)
+    rr(c, -70, 60, 140, 26, 10, "#4A1A17", a)
     rr(c, -70, 60, 140, 26, 10, col, a, stroke=7)
     line(c, 10, 62, 50, -160, col, 13, a)
     line(c, -20, -168, 110, -150, col, 13, a)
 
 
 def ic_powerbank(c, t=0, a=1.0, col=INK):
-    rr(c, -95, -160, 190, 320, 30, "#1C2129", a)
+    rr(c, -95, -160, 190, 320, 30, "#2A0B0A", a)
     rr(c, -95, -160, 190, 320, 30, col, a, stroke=10)
     for k in range(4):
         circ(c, -36 + k * 24, -110, 7, COOL if k < 3 else DIM, a)

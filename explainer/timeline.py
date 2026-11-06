@@ -274,7 +274,7 @@ B(0.0, I("phone", 0.05, 300, smoke=1.0), T("A phone so dangerous", 0.2),
   T("airlines *banned it by name*", tw("air", 1.5)))
 B(3.40, I("watch", 3.45, 300), T("A fitness watch", 3.5),
   T("that *burned people* while they wore it", tw("burned", 3.5)))
-B(6.50, K("Today", 6.55), T("The *deadliest gadgets*", 6.75, 130), T("ever sold", tw("ever", 7), 130))
+B(6.50, T("The", 6.55, 90), T("*Deadliest*", 6.75, 200), T("gadgets ever sold", tw("ever", 7), 120), tape=True)
 B(9.06, T("But first:", 9.1), T("the *phone*", tw("phone", 9.5), 130),
   S("not just a bad product", tw("wasn", 10.5)))
 B(13.35, S("a bad product one of the biggest tech companies on Earth", 13.4),
@@ -571,10 +571,10 @@ B(755.59, LIST([("Don't *ignore* it", 755.6), ("*Unplug* it", tw("unplug", 757))
                 ("Move it away from anything that can *burn*", tw("move", 757.5))], 76))
 B(tw("only", 760.5), S("it only takes", tw("only", 760.5)), T("one *tiny mistake*", tw("tiny", 761.5), 120),
   T("to turn a gadget into a *disaster*", tw("disaster", 763), 90))
-B(764.10, S("if you want to see what else we've trusted at home", 764.2),
+B(764.10, K("Next up", 764.15), S("if you want to see what else we've trusted at home", 764.2),
   end_card(tw("check", 767), tw("click", 771)),
   T("The deadliest *kitchen appliances* ever sold", tw("kitchen", 768), 72),
-  S("one was in nearly every American home", tw("nearly", 770)))
+  S("one was in nearly every American home", tw("nearly", 770)), tape=True)
 
 finalize(TOTAL)
 render_frame = render_frame  # noqa: F405
