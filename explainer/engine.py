@@ -55,8 +55,10 @@ class T(El):
 
 
 def S(text, t=None, size=50, color=MUTED):
-    """Supporting line (smaller, muted)."""
-    return T(text, t, size, color, "Medium")
+    """Supporting line: dropped on purpose to keep the screen minimal."""
+    e = SP(0)
+    e.t = t if t is not None else 0
+    return e
 
 
 def K(text, t=None, size=40, color=ACC):
@@ -139,7 +141,7 @@ class LIST(El):
             e.draw(c, x0 + self.size * 0.9, yy, t, "left", max_w=max_w)
 
 
-class SP(El):
+class SP(El):  # spacer
     def __init__(self, h=30):
         self.h = h
         self.t = 0
