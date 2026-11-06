@@ -232,7 +232,8 @@ def pair_icons(a, b, ta, tb, kwa=None, kwb=None, burn_a=None, size=240):
         icon(c, a, x - 220, y + size / 2 + 10, size, t, ta, **(kwa or {}))
         if burn_a:
             burn(c, x - 220, y + size / 2 + 30, size * 0.8, t, burn_a)
-        icon(c, b, x + 220, y + size / 2 + 10, size, t, tb, **(kwb or {}))
+        kb = {k: (v(t) if callable(v) else v) for k, v in (kwb or {}).items()}
+        icon(c, b, x + 220, y + size / 2 + 10, size, t, tb, **kb)
     return G(fn, size + 40, min(ta, tb))
 
 
