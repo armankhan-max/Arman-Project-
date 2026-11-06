@@ -1,0 +1,1235 @@
+1
+00:00:00,100 --> 00:00:03,280
+From a phone so dangerous that
+airlines banned it by name.
+
+2
+00:00:03,400 --> 00:00:06,190
+To a fitness watch that burned
+people while they wore it.
+
+3
+00:00:06,500 --> 00:00:08,940
+These are the deadliest gadgets ever sold.
+
+4
+00:00:09,060 --> 00:00:13,290
+But first, we have to start with the phone
+because this wasn't just a bad product.
+
+5
+00:00:13,350 --> 00:00:16,290
+It was a bad product that one of the
+biggest tech companies on earth had
+
+6
+00:00:16,310 --> 00:00:17,550
+to kill twice.
+
+7
+00:00:18,850 --> 00:00:22,830
+In August 2016, Samsung
+released the Galaxy Note 7.
+
+8
+00:00:23,300 --> 00:00:24,300
+And on paper.
+
+9
+00:00:24,360 --> 00:00:25,520
+It was perfect.
+
+10
+00:00:26,290 --> 00:00:28,710
+Reviewers called it one of
+the best phones ever made.
+
+11
+00:00:28,730 --> 00:00:31,870
+It had a curved screen, a
+stylus, an iris scanner,
+
+12
+00:00:31,890 --> 00:00:35,350
+and it was water resistant millions
+of people lined up to buy it.
+
+13
+00:00:35,370 --> 00:00:36,810
+But within days.
+
+14
+00:00:36,840 --> 00:00:39,340
+Strange reports started showing up online.
+
+15
+00:00:39,370 --> 00:00:41,810
+Phones were getting dangerously
+hot while charging.
+
+16
+00:00:41,960 --> 00:00:44,500
+Some started smoking, some
+just burst into flames,
+
+17
+00:00:44,520 --> 00:00:48,380
+while sitting on a table. One owner
+in Florida said his Note 7 set his
+
+18
+00:00:48,400 --> 00:00:49,580
+Jeep on fire.
+
+19
+00:00:50,540 --> 00:00:54,060
+Less than three weeks after launch,
+Samsung stopped selling it.
+
+20
+00:00:54,500 --> 00:00:55,690
+And in September.
+
+21
+00:00:55,720 --> 00:00:58,620
+It recalled about two point
+five million phones worldwide,
+
+22
+00:00:58,640 --> 00:01:01,460
+but Samsung promised that the
+replacement phones were safe,
+
+23
+00:01:01,480 --> 00:01:03,690
+and that promise lasted about a month.
+
+24
+00:01:03,720 --> 00:01:05,330
+Because in early October.
+
+25
+00:01:05,410 --> 00:01:09,260
+The Southwest Airlines plane in
+Louisville was evacuated before take off.
+
+26
+00:01:09,480 --> 00:01:11,500
+After a passenger's phone
+started pouring out,
+
+27
+00:01:11,520 --> 00:01:14,220
+smoke and the passenger
+said it was a replacement.
+
+28
+00:01:14,310 --> 00:01:16,810
+A phone Samsung had already
+told him was fixed.
+
+29
+00:01:17,000 --> 00:01:18,000
+That was the end.
+
+30
+00:01:18,570 --> 00:01:19,950
+On October eleventh.
+
+31
+00:01:20,110 --> 00:01:22,190
+Samsung killed the Note 7 for good.
+
+32
+00:01:22,210 --> 00:01:25,870
+The U.S. Government banned it from every
+flight airlines were literally telling
+
+33
+00:01:25,890 --> 00:01:28,460
+passengers that if you
+own this specific phone.
+
+34
+00:01:28,520 --> 00:01:31,250
+You can't turn it on,
+and you can't charge it.
+
+35
+00:01:31,270 --> 00:01:33,580
+It was the last time you
+heard that about a phone.
+
+36
+00:01:33,670 --> 00:01:37,170
+So what actually went wrong? Well, it
+turns out the replacement had a completely
+
+37
+00:01:37,190 --> 00:01:40,770
+different problem than the original
+inside a lithium-ion battery.
+
+38
+00:01:40,790 --> 00:01:44,730
+There are two thin layers, and the only
+thing keeping them apart is a razor
+
+39
+00:01:44,750 --> 00:01:49,290
+thin sheet of plastic. If those layers
+ever touch the battery short circuits
+
+40
+00:01:49,310 --> 00:01:53,450
+and that creates heat and heat makes
+the battery even more unstable.
+
+41
+00:01:53,640 --> 00:01:56,740
+Which creates more heat engineers,
+call it thermal runaway.
+
+42
+00:01:56,760 --> 00:01:58,250
+And once it starts.
+
+43
+00:01:58,280 --> 00:02:00,010
+There's basically no stopping it.
+
+44
+00:02:00,740 --> 00:02:01,930
+In the first batch.
+
+45
+00:02:02,210 --> 00:02:06,000
+The battery was slightly too big for
+the space Samsung had designed for it.
+
+46
+00:02:06,410 --> 00:02:09,290
+So the corner was being squeezed
+until the layers touched.
+
+47
+00:02:09,350 --> 00:02:13,050
+And in the replacement batch, a different
+supplier made batteries with welding
+
+48
+00:02:13,070 --> 00:02:16,170
+flaws, and some even left
+out the protective tape.
+
+49
+00:02:16,200 --> 00:02:17,610
+Two different companies.
+
+50
+00:02:17,640 --> 00:02:19,050
+Two different mistakes?
+
+51
+00:02:19,210 --> 00:02:21,290
+And the same result in the end.
+
+52
+00:02:21,510 --> 00:02:25,530
+The whole disaster cost Samsung about
+five billion dollars all because they
+
+53
+00:02:25,550 --> 00:02:27,690
+rushed to beat the iPhone to market.
+
+54
+00:02:29,130 --> 00:02:31,760
+But a phone is at least
+something you pick for yourself.
+
+55
+00:02:32,450 --> 00:02:35,470
+This next gadget was sitting under
+millions of christmas trees,
+
+56
+00:02:35,490 --> 00:02:37,770
+and it didn't even do what the name said.
+
+57
+00:02:38,730 --> 00:02:40,080
+This is the hoverboard.
+
+58
+00:02:40,580 --> 00:02:43,840
+It doesn't hover, by the way it's
+just two wheels and a pair of motors,
+
+59
+00:02:43,860 --> 00:02:47,340
+but in twenty fifteen, it became
+the must have gift of the year.
+
+60
+00:02:47,430 --> 00:02:49,040
+Celebrities were riding them.
+
+61
+00:02:49,220 --> 00:02:52,560
+Kids were begging for them and factories
+in China were pumping them out
+
+62
+00:02:52,580 --> 00:02:55,150
+as fast as they could the problem is
+
+63
+00:02:55,330 --> 00:02:58,990
+most of those factories were cutting
+corners on the one part that mattered most.
+
+64
+00:02:59,170 --> 00:03:00,080
+The battery.
+
+65
+00:03:01,030 --> 00:03:04,850
+Of December, twenty, fifteen hoverboards
+were catching fire in people's homes.
+
+66
+00:03:04,970 --> 00:03:06,670
+Often while they were charging.
+
+67
+00:03:06,890 --> 00:03:10,470
+And often while the family was asleep,
+Amazon pulled them off its website
+
+68
+00:03:10,490 --> 00:03:14,310
+and started refunding customers, U.K.
+Officials seized thousands of them
+
+69
+00:03:14,330 --> 00:03:16,940
+at ports and underwriters laboratories.
+
+70
+00:03:17,320 --> 00:03:19,820
+The company that tests
+electronics for safety.
+
+71
+00:03:20,070 --> 00:03:22,060
+Said that none of the
+boards it had looked at.
+
+72
+00:03:22,340 --> 00:03:26,040
+The safety standard airlines, banned
+them in the cabin and in the cargo hold
+
+73
+00:03:26,060 --> 00:03:29,040
+and in twenty sixteen, a
+house fire in Harrisburg.
+
+74
+00:03:29,220 --> 00:03:31,370
+Pennsylvania killed two young girls.
+
+75
+00:03:31,530 --> 00:03:34,130
+With investigators linking
+it to a hoverboard.
+
+76
+00:03:35,010 --> 00:03:36,110
+That July.
+
+77
+00:03:36,260 --> 00:03:39,200
+The consumer product safety commission
+announced a recall of about half
+
+78
+00:03:39,220 --> 00:03:41,760
+a million hoverboards from
+eight different companies.
+
+79
+00:03:41,780 --> 00:03:43,120
+And at that point.
+
+80
+00:03:43,330 --> 00:03:47,110
+The agency had already counted ninety
+nine fires across twenty four states.
+
+81
+00:03:47,130 --> 00:03:48,720
+So why were they burning?
+
+82
+00:03:48,770 --> 00:03:51,570
+The battery cells packed tightly together.
+
+83
+00:03:51,620 --> 00:03:53,680
+With almost no protection circuits.
+
+84
+00:03:53,830 --> 00:03:57,420
+And then charged overnight with
+whatever cheap charger came in the box.
+
+85
+00:03:57,450 --> 00:03:58,350
+Basically.
+
+86
+00:03:58,470 --> 00:04:00,590
+A bomb on wheels with a ribbon on top.
+
+87
+00:04:01,410 --> 00:04:04,830
+The only good thing that came out of it
+was a new safety standard that hoverboards
+
+88
+00:04:04,850 --> 00:04:06,190
+have to follow to day.
+
+89
+00:04:06,830 --> 00:04:09,490
+Your hoverboard says UL 2272 on it.
+
+90
+00:04:09,510 --> 00:04:13,010
+That's why, but that was a rule that
+came after the damage because this
+
+91
+00:04:13,030 --> 00:04:16,330
+next story shows how long the
+industry knew about the problem.
+
+92
+00:04:16,610 --> 00:04:18,640
+And how it started with something much.
+
+93
+00:04:18,660 --> 00:04:19,760
+Much smaller.
+
+94
+00:04:20,260 --> 00:04:21,810
+It's two thousand six.
+
+95
+00:04:22,120 --> 00:04:26,030
+A Dell laptop at a conference in
+Japan suddenly burst into flames.
+
+96
+00:04:26,180 --> 00:04:28,240
+And a photo of it goes around the world.
+
+97
+00:04:28,610 --> 00:04:33,070
+Within weeks, Dell announced the biggest
+electronics recall in history at that time.
+
+98
+00:04:33,190 --> 00:04:35,570
+Four point one million laptop batteries,
+
+99
+00:04:35,590 --> 00:04:38,700
+then Apple recalled one point
+eight million of its own.
+
+100
+00:04:38,820 --> 00:04:42,670
+And Lenovo and others followed all of
+them had the same thing in common.
+
+101
+00:04:42,790 --> 00:04:44,750
+Every battery was made by Sony.
+
+102
+00:04:45,290 --> 00:04:47,340
+And the cause was almost unbelievable.
+
+103
+00:04:48,040 --> 00:04:50,980
+During manufacturing, tiny
+metal particles specks,
+
+104
+00:04:51,000 --> 00:04:55,410
+you can barely see got inside some of
+the battery cells and most of the time.
+
+105
+00:04:55,720 --> 00:04:59,850
+They sat there and did nothing, but if one
+of those specks ended up in the wrong spot.
+
+106
+00:05:00,130 --> 00:05:02,770
+Over time, it could poke
+through that plastic layer.
+
+107
+00:05:03,080 --> 00:05:05,930
+And short out the battery.
+So the laptop you bought.
+
+108
+00:05:06,210 --> 00:05:08,140
+One that worked perfectly for months.
+
+109
+00:05:08,170 --> 00:05:10,860
+Was carrying a time bomb the
+size of a grain of dust.
+
+110
+00:05:10,890 --> 00:05:11,850
+In the end.
+
+111
+00:05:11,880 --> 00:05:14,450
+Sony paid hundreds of millions
+of dollars to fix it.
+
+112
+00:05:15,430 --> 00:05:17,550
+You'd think every company
+would learn from that.
+
+113
+00:05:17,730 --> 00:05:18,860
+But nobody did.
+
+114
+00:05:19,690 --> 00:05:21,200
+Because eleven years later.
+
+115
+00:05:21,250 --> 00:05:24,310
+One of the most trusted names in
+fitness decided to put the same kind of
+
+116
+00:05:24,330 --> 00:05:25,740
+battery on your wrist.
+
+117
+00:05:26,730 --> 00:05:28,300
+This is the Fitbit ionic.
+
+118
+00:05:28,810 --> 00:05:30,410
+Released in twenty seventeen.
+
+119
+00:05:30,660 --> 00:05:33,520
+It was Fitbit's attempt to
+finally take on the Apple watch.
+
+120
+00:05:33,810 --> 00:05:37,010
+Had g p s, a heart rate
+sensor and a bright screen.
+
+121
+00:05:37,640 --> 00:05:41,340
+And it was on sale for years, but report
+started coming in that the battery
+
+122
+00:05:41,360 --> 00:05:43,630
+was overheating. While
+people were wearing it.
+
+123
+00:05:43,720 --> 00:05:45,390
+And in March, twenty twenty two.
+
+124
+00:05:45,450 --> 00:05:49,230
+Fitbit announced a recall of about one
+point seven million watches at that
+
+125
+00:05:49,250 --> 00:05:53,330
+point. They had one hundred fifteen
+reports of overheating in the U.S. Alone.
+
+126
+00:05:53,480 --> 00:05:55,500
+Seventy eight people had been burned.
+
+127
+00:05:55,560 --> 00:05:57,930
+And two of those were third degree burns.
+
+128
+00:05:58,970 --> 00:06:02,830
+Fitbit told people to stop using it and
+sent them a refund of two hundred ninety
+
+129
+00:06:02,850 --> 00:06:03,950
+nine dollars.
+
+130
+00:06:04,290 --> 00:06:06,730
+But here's the part that
+really bothered regulators.
+
+131
+00:06:06,790 --> 00:06:09,770
+The complaints had been piling
+up long before the recall.
+
+132
+00:06:09,830 --> 00:06:11,980
+And the company didn't report it in time.
+
+133
+00:06:12,450 --> 00:06:15,210
+Years later, the CPSC fined Google.
+
+134
+00:06:15,330 --> 00:06:16,750
+Which now owned Fitbit.
+
+135
+00:06:16,840 --> 00:06:19,410
+More than twelve million
+dollars for waiting too long.
+
+136
+00:06:20,330 --> 00:06:21,170
+So far.
+
+137
+00:06:21,250 --> 00:06:23,440
+Everything in this video
+has been a battery.
+
+138
+00:06:24,260 --> 00:06:26,160
+But the next gadget didn't need one.
+
+139
+00:06:26,410 --> 00:06:29,900
+In fact, it didn't even need to be turned
+on to put some one in the hospital.
+
+140
+00:06:29,930 --> 00:06:32,790
+And it came from the same company
+that was still burning from its phone
+
+141
+00:06:32,810 --> 00:06:36,650
+disaster. Because while Samsung was
+busy losing billions on a phone.
+
+142
+00:06:36,710 --> 00:06:38,990
+He was also selling something much bigger.
+
+143
+00:06:39,050 --> 00:06:42,090
+And the part that was supposed to
+stay shut was the one that came off.
+
+144
+00:06:43,240 --> 00:06:45,810
+This is the Samsung top
+loading washing machine.
+
+145
+00:06:46,310 --> 00:06:48,330
+And in October, 2016.
+
+146
+00:06:48,450 --> 00:06:50,730
+Just weeks after the Note 7 recall.
+
+147
+00:06:50,890 --> 00:06:53,610
+The government announced
+a second Samsung recall.
+
+148
+00:06:53,640 --> 00:06:56,100
+This time it was two point
+eight million washers.
+
+149
+00:06:56,120 --> 00:06:58,940
+The reason sounds like a
+joke during the spin cycle.
+
+150
+00:06:58,960 --> 00:07:02,000
+The top of the machine could
+come loose and fly off.
+
+151
+00:07:02,120 --> 00:07:06,320
+We're talking about a heavy machine spinning
+so fast that it shakes itself apart.
+
+152
+00:07:07,460 --> 00:07:10,450
+And Samsung had hundreds of
+reports of the top coming off.
+
+153
+00:07:10,630 --> 00:07:12,240
+And about nine people were hurt.
+
+154
+00:07:12,550 --> 00:07:14,480
+Including one with a broken jaw.
+
+155
+00:07:15,140 --> 00:07:17,520
+And this is the part that
+made people so angry.
+
+156
+00:07:17,640 --> 00:07:20,240
+Samsung's first advice
+wasn't to stop using it.
+
+157
+00:07:20,810 --> 00:07:24,150
+It told people to wash big loads
+like bedding on the delicate cycle,
+
+158
+00:07:24,170 --> 00:07:27,180
+which means it knew the machine
+couldn't handle a heavy load.
+
+159
+00:07:27,370 --> 00:07:30,470
+And it still sold it as a washing
+machine after the recall,
+
+160
+00:07:30,490 --> 00:07:33,390
+Samsung offered repairs,
+rebates and refunds.
+
+161
+00:07:33,410 --> 00:07:36,240
+So no, the washer didn't
+set your house on fire.
+
+162
+00:07:36,360 --> 00:07:37,490
+But in one year.
+
+163
+00:07:37,610 --> 00:07:41,450
+Samsung managed to recall a phone that
+burned and a washer that attacked.
+
+164
+00:07:42,050 --> 00:07:43,850
+But at least with a washing machine.
+
+165
+00:07:43,970 --> 00:07:45,740
+You know, it's a dangerous machine.
+
+166
+00:07:46,090 --> 00:07:48,300
+Nobody expected danger from the next one.
+
+167
+00:07:48,420 --> 00:07:50,800
+Because this one was supposed
+to make you healthier.
+
+168
+00:07:52,490 --> 00:07:54,570
+This is the Peloton tread plus.
+
+169
+00:07:54,820 --> 00:07:57,490
+A treadmill that cost over
+four thousand dollars.
+
+170
+00:07:57,570 --> 00:08:00,140
+With a giant touch screen
+and a huge following.
+
+171
+00:08:00,900 --> 00:08:04,280
+It had a design problem that nobody
+thought about it sat higher off the
+
+172
+00:08:04,300 --> 00:08:08,400
+ground than a normal treadmill with an
+open space under the back of the belt.
+
+173
+00:08:08,490 --> 00:08:12,080
+And that space was just the
+right size for a child, a pet.
+
+174
+00:08:12,170 --> 00:08:14,160
+Or anything else that could get pulled in.
+
+175
+00:08:15,490 --> 00:08:18,700
+In early twenty, twenty, one
+report started adding up.
+
+176
+00:08:19,110 --> 00:08:22,290
+One child died and dozens of other
+incidents had been reported,
+
+177
+00:08:22,310 --> 00:08:25,680
+including injuries to
+children and pets in April.
+
+178
+00:08:25,770 --> 00:08:28,300
+The government warned
+people to stop using it.
+
+179
+00:08:28,550 --> 00:08:31,310
+Especially if they had kids
+or animals in the house.
+
+180
+00:08:31,400 --> 00:08:33,360
+And Peloton's response was shocking.
+
+181
+00:08:33,680 --> 00:08:36,270
+It called the warning
+inaccurate and misleading.
+
+182
+00:08:36,360 --> 00:08:39,790
+It had pushed back against its
+own regulators and kept selling.
+
+183
+00:08:41,190 --> 00:08:42,450
+But a few weeks later.
+
+184
+00:08:42,660 --> 00:08:46,510
+The company reversed and recalled about a
+hundred twenty five thousand treadmills.
+
+185
+00:08:47,140 --> 00:08:50,320
+And its CEO admitted that fighting
+the warning was a mistake.
+
+186
+00:08:50,530 --> 00:08:51,250
+Later.
+
+187
+00:08:51,400 --> 00:08:54,800
+Peloton agreed to pay a fine of
+about nineteen million dollars.
+
+188
+00:08:54,820 --> 00:08:57,100
+How long it waited to report the problems?
+
+189
+00:08:58,470 --> 00:09:01,390
+If you ever wonder why safety
+warnings feel so slow.
+
+190
+00:09:01,570 --> 00:09:04,910
+This is what it looks like from the
+inside a company with a product that
+
+191
+00:09:04,930 --> 00:09:06,000
+hurts people.
+
+192
+00:09:06,050 --> 00:09:07,600
+And a lot of money to protect.
+
+193
+00:09:08,420 --> 00:09:11,600
+But even a four thousand dollar
+treadmill takes a back seat to a gadget
+
+194
+00:09:11,620 --> 00:09:15,020
+that came in a tiny metal box
+and cost around thirty dollars.
+
+195
+00:09:15,650 --> 00:09:17,040
+Little desk toy.
+
+196
+00:09:17,130 --> 00:09:19,730
+And millions of people
+bought it to relieve stress.
+
+197
+00:09:20,230 --> 00:09:21,520
+This is Buckyballs.
+
+198
+00:09:22,090 --> 00:09:23,920
+Tiny powerful magnets.
+
+199
+00:09:24,010 --> 00:09:27,030
+Sold as a set of hundreds of little
+silver spheres that you could shape
+
+200
+00:09:27,050 --> 00:09:31,510
+into anything they were marketed for
+office desks and for adults perfect
+
+201
+00:09:31,530 --> 00:09:35,430
+for fidgeting during a meeting. But the
+problem is that kids saw tiny silver
+
+202
+00:09:35,450 --> 00:09:38,910
+balls and thought they were candy and
+teenagers used them to fake tongue
+
+203
+00:09:38,930 --> 00:09:40,240
+and lip piercings.
+
+204
+00:09:40,290 --> 00:09:41,930
+And some of them got swallowed.
+
+205
+00:09:42,410 --> 00:09:45,100
+One magnet alone usually
+passes through the body.
+
+206
+00:09:45,320 --> 00:09:47,060
+But when some one swallows two or more,
+
+207
+00:09:47,080 --> 00:09:50,090
+they can attract each other from
+different parts of the intestine.
+
+208
+00:09:50,150 --> 00:09:53,410
+And they clamped together right through
+the walls of the stomach and intestines,
+
+209
+00:09:53,430 --> 00:09:57,740
+and that creates holes and holes in
+the intestine are a medical emergency.
+
+210
+00:09:57,830 --> 00:10:01,680
+Doctors across the country started seeing
+kids who needed emergency surgery.
+
+211
+00:10:01,960 --> 00:10:04,780
+And the number of visits kept
+growing year after year.
+
+212
+00:10:06,370 --> 00:10:07,660
+In twenty twelve.
+
+213
+00:10:07,850 --> 00:10:09,770
+The government went after the company.
+
+214
+00:10:09,930 --> 00:10:12,150
+And then went after its CEO, personally,
+
+215
+00:10:12,170 --> 00:10:15,890
+he fought back with a public campaign
+and told people to save the product.
+
+216
+00:10:16,010 --> 00:10:18,540
+But sales stopped and
+the company shut down.
+
+217
+00:10:18,820 --> 00:10:21,900
+And a few years later, a court
+actually overturned the ban.
+
+218
+00:10:22,020 --> 00:10:23,920
+Had safety rules caught up in the end.
+
+219
+00:10:24,200 --> 00:10:26,500
+In twenty twenty two, new federal rules.
+
+220
+00:10:26,520 --> 00:10:29,650
+Finally, limited how strong
+these small magnets could be.
+
+221
+00:10:30,760 --> 00:10:32,650
+And that's the thing about gadgets.
+
+222
+00:10:32,900 --> 00:10:35,150
+Sometimes, the danger isn't in the design.
+
+223
+00:10:35,300 --> 00:10:37,170
+It's in who ends up holding it.
+
+224
+00:10:37,450 --> 00:10:41,930
+This next story is about a gadget that
+killed the one person who knew it best.
+
+225
+00:10:43,080 --> 00:10:46,860
+In two thousand nine, a British
+business man named Jimi Heselden.
+
+226
+00:10:47,080 --> 00:10:48,970
+Bought the company that made the Segway.
+
+227
+00:10:49,640 --> 00:10:53,010
+You know, the two wheeled scooter that
+was supposed to change how cities work.
+
+228
+00:10:53,130 --> 00:10:56,990
+It was one of the most hyped inventions
+of the century a year later in two
+
+229
+00:10:57,010 --> 00:10:58,060
+thousand ten.
+
+230
+00:10:58,210 --> 00:11:01,330
+Heselden was riding a Segway on
+his own estate in Yorkshire.
+
+231
+00:11:01,410 --> 00:11:03,950
+When he went off a cliff
+and into a river below,
+
+232
+00:11:03,970 --> 00:11:05,610
+he died at sixty two.
+
+233
+00:11:05,730 --> 00:11:09,330
+And that is how the owner of the Segway
+company was killed by his own Segway.
+
+234
+00:11:09,380 --> 00:11:12,080
+The investigation said that
+it was a tragic accident.
+
+235
+00:11:12,260 --> 00:11:13,970
+And no one blamed the machine.
+
+236
+00:11:14,090 --> 00:11:17,390
+But if you want to understand how
+fast we've trusted new gadgets,
+
+237
+00:11:17,410 --> 00:11:18,670
+that's the story.
+
+238
+00:11:19,240 --> 00:11:23,250
+Because the final gadget on this list
+proves we're still making the same mistake.
+
+239
+00:11:23,850 --> 00:11:26,060
+And you probably have one
+in your bag right now.
+
+240
+00:11:26,600 --> 00:11:28,050
+This is the power bank.
+
+241
+00:11:28,330 --> 00:11:31,990
+Those little battery packs we all carry
+to charge our phones they're cheap
+
+242
+00:11:32,010 --> 00:11:33,260
+they're everywhere
+
+243
+00:11:33,320 --> 00:11:37,060
+and nobody thinks twice about them,
+but in twenty twenty five Anker,
+
+244
+00:11:37,080 --> 00:11:40,050
+one of the biggest and most
+trusted names in charging.
+
+245
+00:11:40,130 --> 00:11:43,670
+Recalled over a million of its power
+banks because of fire and explosion
+
+246
+00:11:43,690 --> 00:11:46,960
+risk. And it's not the first
+time across the world.
+
+247
+00:11:47,050 --> 00:11:51,550
+Power banks have been starting fires
+in bags in cars and even on airplanes
+
+248
+00:11:51,570 --> 00:11:54,800
+and airlines have started restricting
+how you use them in the air.
+
+249
+00:11:55,270 --> 00:11:57,580
+Do you remember what's
+inside that power bank?
+
+250
+00:11:57,610 --> 00:12:00,690
+The same lithium-ion cell
+that was in the Note 7.
+
+251
+00:12:00,870 --> 00:12:02,060
+In the hoverboard.
+
+252
+00:12:02,280 --> 00:12:03,340
+In the laptop.
+
+253
+00:12:03,650 --> 00:12:08,270
+And in the watch a battery that packs a
+huge amount of energy into a tiny space.
+
+254
+00:12:08,420 --> 00:12:11,760
+With just a thin layer of plastic
+between safe and disaster.
+
+255
+00:12:13,700 --> 00:12:15,730
+What do all of these
+gadgets have in common?
+
+256
+00:12:15,850 --> 00:12:17,130
+They were rushed to market.
+
+257
+00:12:17,480 --> 00:12:20,940
+They were made cheaper, smaller
+and faster than the one before.
+
+258
+00:12:21,320 --> 00:12:23,470
+And when the first warning signs appeared.
+
+259
+00:12:23,650 --> 00:12:28,170
+Most of these companies waited because
+in tech being first makes money.
+
+260
+00:12:28,200 --> 00:12:29,870
+And being careful costs it.
+
+261
+00:12:30,630 --> 00:12:34,290
+So the next time your phone gets hot
+while charging or your power bank feels
+
+262
+00:12:34,310 --> 00:12:35,570
+warm in your bag.
+
+263
+00:12:35,590 --> 00:12:39,250
+Don't ignore it, unplug it and move
+it away from anything that can burn,
+
+264
+00:12:39,270 --> 00:12:43,310
+because it only takes one tiny mistake
+to turn a gadget into a disaster.
+
+265
+00:12:44,100 --> 00:12:46,800
+If you want to see what else
+we've been trusting in our homes,
+
+266
+00:12:46,820 --> 00:12:49,600
+check out the deadliest
+kitchen appliances ever sold,
+
+267
+00:12:49,620 --> 00:12:52,240
+one of them was in nearly
+every house in America.
+
+268
+00:12:52,260 --> 00:12:55,520
+So click this video right here,
+and I'll see you in the next one.
