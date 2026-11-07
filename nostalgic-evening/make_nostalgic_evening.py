@@ -121,19 +121,22 @@ def bell(r):
 
 
 # ------------------------------------------------------------ music
-def musicbox(f, dur=4.0):
+def musicbox(f, dur=5.0):
+    """soft, slightly detuned felt piano (out-of-tune = old/imperfect)"""
+    f = f * 2 ** (np.random.uniform(-22, 22) / 1200)
     n = int(dur * SR)
     t = np.arange(n) / SR
-    s = (np.sin(2 * np.pi * f * t) * np.exp(-t / 1.8)
-         + 0.3 * np.sin(2 * np.pi * f * 3 * t + 0.5) * np.exp(-t / 0.45)
-         + 0.12 * np.sin(2 * np.pi * f * 5.07 * t) * np.exp(-t / 0.15))
-    return s * (1 - np.exp(-t / 0.002))
+    s = (np.sin(2 * np.pi * f * t) * np.exp(-t / 2.6)
+         + 0.35 * np.sin(2 * np.pi * f * 2.003 * t) * np.exp(-t / 1.2)
+         + 0.12 * np.sin(2 * np.pi * f * 3.01 * t) * np.exp(-t / 0.6))
+    s *= (1 - np.exp(-t / 0.012))
+    return np.tanh(s * 1.6) / 1.6  # soft distortion
 
 
-def pad_chord(freqs, dur=6.0):
+def pad_chord(freqs, dur=9.0):
     n = int(dur * SR)
     t = np.arange(n) / SR
-    env = smooth(t / 2.0) * smooth((dur - t) / 2.2)
+    env = smooth(t / 3.0) * smooth((dur - t) / 3.0)
     out = np.zeros((2, n))
     for f in freqs:
         for det, pan in ((-0.002, 0.25), (0.002, 0.75)):
@@ -152,24 +155,25 @@ CH = {
 }
 PROG_A = ["Fmaj7", "Am7", "Bbmaj7", "C69"]
 PROG_B = ["Fmaj7", "Dm7", "Bbmaj7", "Bbm6"]  # minor iv = bittersweet
-PH_A = [(0, "A4"), (1.5, "C5"), (2.5, "F5"), (4, "E5"), (5.5, "C5"), (6.5, "A4"),
-        (8, "D5"), (9.5, "F5"), (10.5, "A5"), (12, "G5"), (13.5, "E5"), (14.5, "C5")]
-PH_B = PH_A[:3] + [(4, "F5"), (5.5, "D5"), (6.5, "A4")] + PH_A[6:9] + [(12, "F5"), (13.5, "Db5"), (14.5, "Bb4")]
-PH_S5 = [(0, "A5"), (8, "F5"), (12, "C6")]
+# simple, repeating, hanging melody: never resolves to the tonic (something is missing)
+PH_A = [(0, "A4"), (2, "C5"), (4, "F5"), (8, "E5"), (10, "C5"), (12, "D5"), (14, "G5")]
+PH_B = [(0, "A4"), (2, "C5"), (4, "F5"), (8, "F5"), (10, "D5"), (12, "Db5"), (14, "Bb4")]
+PH_S5 = [(0, "A5"), (8, "F5"), (14, "C6")]
+BEAT = 1.5  # slow: 40 bpm
 
 
 def build_music():
     r = np.random.default_rng(1982)
     mus = np.zeros((2, N), np.float32)
     snd = np.zeros((2, N), np.float32)
-    LOOP = 16
+    LOOP = int(16 * BEAT)
     for i in range(int(DUR / LOOP) + 1):
         t0 = i * LOOP
         sec = 1 if t0 < 96 else 2 if t0 < 208 else 3 if t0 < 336 else 4 if t0 < 480 else 5
         prog = PROG_A if sec <= 2 else PROG_B
         phrase = PH_A if sec <= 2 else PH_B if sec <= 4 else PH_S5
         for b, cname in enumerate(prog):
-            tb = t0 + b * 4
+            tb = t0 + b * 4 * BEAT
             if tb >= DUR - 8:
                 break
             freqs = [n2f(x) for x in CH[cname]]
@@ -184,7 +188,7 @@ def build_music():
             gr = np.interp(tb, [0, 50, 110, 336, 480, 540, 600], [0, 0, .7, .8, .35, .15, 0])
             if gr > 0.03:
                 order = [0, 2, 1]
-                for k, bt in enumerate([0.0, 1.5, 2.5]):
+                for k, bt in enumerate([0.0, 2.25, 3.75]):
                     f = freqs[order[k] % len(freqs)] * 2
                     sig = rhodes_note(f, 4.5, 0.35) * 0.045 * gr
                     ta = tb + bt + r.uniform(-0.03, 0.03)
@@ -194,20 +198,20 @@ def build_music():
         for beat, nm in phrase:
             if sec == 5 and r.random() < 0.4:
                 continue
-            tm = t0 + beat + r.uniform(-0.04, 0.04)
+            tm = t0 + beat * BEAT + r.uniform(-0.06, 0.06)
             if tm >= DUR - 8:
                 continue
             f = n2f(nm)
             vel = r.uniform(0.7, 1.0)
             g = np.interp(tm, [0, 20, 480, 585, 600], [0.3, 1, 1, .25, 0])
-            sig = musicbox(f) * 0.05 * vel * g
+            sig = musicbox(f) * 0.06 * vel * g
             p = 0.35 + 0.3 * (n2f(nm) / 1100)
             add(mus, sig, tm, p, 1.0)
-            add(snd, sig, tm, p, 1.1)
+            add(snd, sig, tm, p, 1.8)
             if sec == 4:  # memory echoes + octave sparkles
-                add(mus, sig * 0.35, tm + 1.5, 0.75, 1.0)
-                add(snd, sig * 0.35, tm + 1.5, 0.75, 1.3)
-                add(snd, musicbox(f * 2, 3.0) * 0.05 * vel * g * 0.25, tm + 3.0, 0.3, 1.2)
+                add(mus, sig * 0.35, tm + 2.25, 0.75, 1.0)
+                add(snd, sig * 0.35, tm + 2.25, 0.75, 1.3)
+                add(snd, musicbox(f * 2, 3.0) * 0.05 * vel * g * 0.25, tm + 4.5, 0.3, 1.2)
     return mus, snd
 
 
@@ -296,10 +300,10 @@ def main(out_mp3):
 
     print("music...", flush=True)
     mus, msnd = build_music()
-    music = mus + reverb(msnd, make_ir(3.8, 9)) * 0.9
+    music = mus + reverb(msnd, make_ir(6.0, 9)) * 1.7
     del mus, msnd
     for c in range(2):
-        music[c] = lp(music[c].astype(np.float64), 3800, 2).astype(np.float32)  # reason #2: band-limited
+        music[c] = lp(music[c].astype(np.float64), 3200, 2).astype(np.float32)  # reason #2: band-limited
     music = warp(music)                                                           # tape wow/flutter
 
     # old-recording texture: crackle + hiss (sections 2-4)
@@ -348,4 +352,4 @@ def main(out_mp3):
 
 
 if __name__ == "__main__":
-    main(sys.argv[1] if len(sys.argv) > 1 else "Nostalgic_Evening_Sleep.mp3")
+    main(sys.argv[1] if len(sys.argv) > 1 else "Nostalgic_Evening_Sleep_v2.mp3")
