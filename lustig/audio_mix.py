@@ -254,8 +254,7 @@ def build_sfx(events):
         elif ty == "ship":
             place(sfx, ship(e["dur"]), t)
         elif ty == "final":
-            place(sfx, hit(.9), t)
-            place(sfx, bell_tone(146.8, 3.0) * .6, t)
+            pass
     return sfx[:N]
 
 
@@ -356,6 +355,27 @@ def reverb(x, secs=1.4, wet=.2, seed=3):
     return x + wet * signal.fftconvolve(x, ir)[: len(x)]
 
 
+def hall_verb(x, rt60=2.1, wet=.3):
+    """Stereo hall: 28 ms pre-delay, early reflections, dark diffuse tail."""
+    out = []
+    for seed in (11, 12):
+        r = np.random.default_rng(seed)
+        n = int(rt60 * SR)
+        t = np.arange(n) / SR
+        ir = r.standard_normal(n) * np.exp(-6.9 * t / rt60) * (1 - np.exp(-t / .02))
+        ir = lp(ir, 5200)
+        for d, g in ((.011, .5), (.019, .4), (.027, .35), (.041, .3), (.056, .22), (.071, .18)):
+            k = int((d + r.uniform(0, .004)) * SR)
+            ir[k] += g * 6
+        ir /= np.sqrt((ir ** 2).sum())
+        pre = int(.028 * SR)
+        w = signal.fftconvolve(hp(x, 180), ir)[: len(x)]
+        w = np.concatenate([np.zeros(pre), w[:-pre]])
+        out.append(w)
+    w = np.stack(out, 1)
+    return w * wet * (np.sqrt(np.mean(x ** 2)) / (np.sqrt(np.mean(w ** 2)) + 1e-12))
+
+
 def main():
     os.makedirs("build", exist_ok=True)
     events = json.load(open("events.json"))
@@ -370,7 +390,8 @@ def main():
     voice[: min(N, len(v))] = v[:N]
 
     sfx = reverb(build_sfx(events), 1.0, .12, 4)
-    mus = build_music()
+    import score
+    mus = score.build(DUR)
     mus = np.stack([reverb(mus[:, 0], 1.8, .25, 5), reverb(mus[:, 1], 1.8, .25, 6)], 1)
 
     # sidechain duck: music dips under speech
@@ -391,10 +412,12 @@ def main():
     def rms(x):
         return np.sqrt(np.mean(x ** 2) + 1e-12)
     vr = rms(voice[voice != 0])
-    mus *= (vr * .27 / rms(mus)) * duck[:, None]
+    mus *= (vr * .34 / rms(mus)) * duck[:, None]
     sfx *= (vr * .34 / rms(sfx))
     sfx = .42 * np.tanh(sfx / .42)  # keep transients under the voice
-    mix = np.stack([voice, voice], 1) * 1.0 + mus + np.stack([sfx, sfx], 1)
+    hall = hall_verb(voice)
+    vst = np.stack([voice, voice], 1) * .92 + hall
+    mix = vst + mus + np.stack([sfx, sfx], 1)
     # soft clip safety
     peak = np.abs(mix).max()
     mix = np.tanh(mix / peak * 1.2) / np.tanh(1.2) * .9

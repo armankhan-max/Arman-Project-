@@ -96,9 +96,15 @@ const MOVES = [
   [78.0, 2.5, 2150, 1450, 0.29],
 ];
 // Camera: one continuous spline through waypoints. Velocity is never zero, so no stop-and-go.
+const DRIFTS = [[7, 3], [-6, 4], [5, -4], [-5, -3]];
 const KF = (() => {
   const k = [{ t: 0, x: CAM0.x, y: CAM0.y, z: Math.log(CAM0.z) }];
-  MOVES.forEach(([ts, d, x, y, z]) => k.push({ t: ts + Math.min(d, .5) * .3, x, y, z: Math.log(z) }));
+  MOVES.forEach(([ts, d, x, y, z], i) => {
+    const ta = ts + Math.min(d, .5) * .3, nx = i + 1 < MOVES.length ? MOVES[i + 1][0] : DUR;
+    k.push({ t: ta, x, y, z: Math.log(z) });
+    const hold = nx - ta;   // stay on the hero during the hold: slow push, then leave
+    if (hold > 1.2) { const dv = DRIFTS[i % 4]; k.push({ t: nx - Math.min(.35, hold * .2), x: x + dv[0] * hold / z, y: y + dv[1] * hold / z, z: Math.log(z * (1 + .022 * hold)) }); }
+  });
   const l = k[k.length - 1]; k.push({ t: DUR + 1, x: l.x + 30, y: l.y + 12, z: l.z * 1 });
   const TEN = .42;
   k.forEach((q, i) => {
@@ -114,15 +120,23 @@ function camBase(t) {
   const f = (p, q, mp, mq) => h00 * p + h10 * dt * mp + h01 * q + h11 * dt * mq;
   return { x: f(a.x, b.x, a.mx, b.mx), y: f(a.y, b.y, a.my, b.my), z: Math.exp(f(a.z, b.z, a.mz, b.mz)) };
 }
+// fast = the scheme / escape / round two; slow = backstory, suspicion, silence
+const FAST = [[14.7, 31.8], [52.4, 59.4], [69.6, 81.2]];
+function pace(t) { let f = 0; for (const [a, b] of FAST) f = Math.max(f, sstep(a - .4, a + .3, t) * (1 - sstep(b - .3, b + .4, t))); return f; }
+const PUNCH = [[.52, .06], [3.0, .08], [4.6, .03], [8.58, .04], [13.8, .05], [15.1, .05], [17.74, .04], [21.22, .03], [23.1, .04], [24.78, .03],
+  [26.86, .03], [28.88, .05], [30.76, .04], [34.8, .12], [36.6, .04], [38.48, .04], [39.8, .05], [42.42, .04], [45.3, .06], [51.6, .05],
+  [53.44, .07], [56.56, .03], [58.84, .04], [62.3, .07], [68.66, .04], [71.7, .04], [74.4, .04], [77.46, .08], [80.3, .06]];
+function punch(t) { let z = 0; for (const [ts, a] of PUNCH) { const d = t - ts + .04; if (d > 0 && d < 1.6) z += a * (1 - Math.exp(-d * 30)) * Math.exp(-d * 3.2); } return z; }
 function shakeAt(t) {
   let x = 0, y = 0;
   for (const [ts, a] of SHAKES) { const d = t - ts; if (d < 0 || d > .6) continue; const e = a * Math.exp(-d * 9); x += e * Math.sin(d * 71 + ts); y += e * Math.cos(d * 59 + ts * 3); }
   return [x, y];
 }
 function camera(t) {
-  const c = camBase(t), [sx, sy] = shakeAt(t);
-  c.hx = 2.4 * Math.sin(t * .9) + 1.3 * Math.sin(t * 2.3 + 1) + .5 * Math.sin(t * 5.3 + 2) + sx;
-  c.hy = 1.9 * Math.sin(t * .7 + 3) + 1.1 * Math.sin(t * 2.9) + .5 * Math.sin(t * 4.7 + 1) + sy;
+  const c = camBase(t), [sx, sy] = shakeAt(t), hh = .6 + .9 * pace(t);
+  c.z *= 1 + punch(t);
+  c.hx = (2.4 * Math.sin(t * .9) + 1.3 * Math.sin(t * 2.3 + 1) + .5 * Math.sin(t * 5.3 + 2)) * hh + sx;
+  c.hy = (1.9 * Math.sin(t * .7 + 3) + 1.1 * Math.sin(t * 2.9) + .5 * Math.sin(t * 4.7 + 1)) * hh + sy;
   c.r = .0018 * Math.sin(t * .6) + .0008 * Math.sin(t * 1.7 + 2);
   return c;
 }
@@ -530,7 +544,7 @@ const DROPS = [];
 // generic physical paper object
 function drawPaper(g, o, t) {
   const t0 = o.t0; if (t < t0) return;
-  const p = c01((t - t0) / .7), e = eoq(p), lift0 = 1 - e;
+  const dd = .78 - .3 * pace(t0), p = c01((t - t0) / dd), e = eoq(p), lift0 = 1 - e;
   const st = o.pose ? o.pose(t) : { x: o.x, y: o.y, rot: o.rot, s: 1, lift: 0 };
   const lift = Math.max(lift0, st.lift || 0);
   const s = (st.s || 1) * (1 + .2 * lift0) * (1 + .05 * (st.lift || 0));
@@ -736,6 +750,7 @@ function buildScene() {
     for (let t = 0; t < DUR; t += 1 / 12) { const v = sp(t);
       if (v > 330) { if (!run) run = { t0: t, pk: 0 }; run.pk = Math.max(run.pk, v); }
       else if (run) { if (t - run.t0 > .6 && run.pk > 520) ev(run.t0, 'whoosh', { dur: t - run.t0, amt: Math.min(1, run.pk / 1400) }); run = null; } } }
+  PUNCH.forEach(([t, a]) => ev(t, 'punch', { amt: a }));
   EV.sort((a, b) => a.t - b.t);
   window.EVENTS = EV;
 }
@@ -762,7 +777,7 @@ function drawWorldStickers(g, t) {
 const verifiedSpec = { key: 'VERIFIED', t0: 51.42 };
 
 // ------------------------------------------------------------ frame
-let SCN, SG, ACC, AG;
+let SCN, SG, ACC, AG, BLR, BG, MSK, MG;
 function renderScene(g, t) {
   const c = camera(t); Z = c.z;
   g.setTransform(1, 0, 0, 1, 0, 0); g.fillStyle = '#071012'; g.fillRect(0, 0, W, H);
@@ -815,6 +830,19 @@ function post(t, frameNo) {
   if (flash > 0) { g.fillStyle = `rgba(255,70,60,${flash})`; g.globalCompositeOperation = 'screen'; g.fillRect(0, 0, W, H); g.globalCompositeOperation = 'source-over'; }
   const rw = Math.max(0, 1 - Math.abs(t - 3.9) / .6);
   if (rw > 0) { g.globalCompositeOperation = 'saturation'; g.fillStyle = `rgba(128,128,128,${eio(rw) * .8})`; g.fillRect(0, 0, W, H); g.globalCompositeOperation = 'source-over'; }
+  // depth of field: soft edges, stronger in slow passages
+  const dof = .55 + .45 * (1 - pace(t));
+  BG.filter = 'blur(5px)'; BG.drawImage(cv, 0, 0, W / 2, H / 2); BG.filter = 'none';
+  MG.globalCompositeOperation = 'copy'; MG.drawImage(BLR, 0, 0, W, H); MG.globalCompositeOperation = 'destination-in';
+  const dm = MG.createRadialGradient(W / 2, H / 2, H * .28, W / 2, H / 2, W * .62); dm.addColorStop(0, 'rgba(0,0,0,0)'); dm.addColorStop(1, `rgba(0,0,0,${dof})`);
+  MG.fillStyle = dm; MG.fillRect(0, 0, W, H); MG.globalCompositeOperation = 'source-over'; g.drawImage(MSK, 0, 0);
+  // dust motes drifting with parallax
+  { const cm = camBase(t); const dr = rng(4242);
+    for (let i = 0; i < 34; i++) { const depth = .3 + dr() * .9, sz = 1 + dr() * 3.5 * depth;
+      let x = (dr() * W * 1.4 - cm.x * cm.z * .06 * depth + t * (6 + dr() * 10)) % (W * 1.4); if (x < 0) x += W * 1.4; x -= W * .2;
+      let y = (dr() * H * 1.4 - cm.y * cm.z * .06 * depth - t * (3 + dr() * 6)) % (H * 1.4); if (y < 0) y += H * 1.4; y -= H * .2;
+      const a = (.05 + .1 * dr()) * (.6 + .4 * Math.sin(t * (1 + dr()) + i));
+      const gg = g.createRadialGradient(x, y, 0, x, y, sz * 3); gg.addColorStop(0, `rgba(235,230,215,${a})`); gg.addColorStop(1, 'rgba(235,230,215,0)'); g.fillStyle = gg; g.fillRect(x - sz * 3, y - sz * 3, sz * 6, sz * 6); } }
   // vignette, grain, flicker, dust
   g.drawImage(VIG, 0, 0);
   const r = rng(frameNo * 7 + 3);
@@ -863,6 +891,7 @@ async function init() {
   await Promise.all(['16px Elite', '700 20px Play', '400 20px Play', '700 20px Osw', '400 20px Osw', '600 20px Corm'].map(f => document.fonts.load(f, 'AÉÎé→')));
   MAP = buildMap();
   buildScene();
+  BLR = mk(W / 2, H / 2); BG = BLR.getContext('2d'); MSK = mk(W, H); MG = MSK.getContext('2d');
   SCN = mk(W, H); SG = SCN.getContext('2d'); ACC = mk(W, H); AG = ACC.getContext('2d');
   for (let k = 0; k < 6; k++) { const c = mk(256, 256), g = c.getContext('2d'), d = g.createImageData(256, 256), r = rng(900 + k); for (let i = 0; i < 65536; i++) { const v = 128 + (r() + r() + r() - 1.5) * 120; d.data[i * 4] = d.data[i * 4 + 1] = d.data[i * 4 + 2] = v; d.data[i * 4 + 3] = 255; } g.putImageData(d, 0, 0); GRAIN.push(c); }
   VIG = mk(W, H); const vg = VIG.getContext('2d'), gr = vg.createRadialGradient(W / 2, H / 2, H * .3, W / 2, H / 2, W * .72);
