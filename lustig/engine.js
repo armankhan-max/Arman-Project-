@@ -85,7 +85,7 @@ const MOVES = [
   [47.55, 1.0, 2440, 1770, 0.98],
   [52.15, 1.2, 1265, 1650, 1.05],
   [55.3, 1.4, 3050, 900, 0.62],
-  [57.05, 2.0, 3650, 720, 0.78],
+  [57.05, 2.0, 3350, 840, 0.74],
   [59.2, 1.0, 3800, 1250, 1.1],
   [62.95, 1.35, 2470, 1760, 1.0],
   [67.25, 1.4, 1960, 1790, 0.56],
@@ -95,24 +95,24 @@ const MOVES = [
   [75.25, 1.2, 3620, 1890, 0.9],
   [78.0, 2.5, 2150, 1450, 0.29],
 ];
-const DRIFT = [[9, 4], [-8, 5], [7, -5], [-6, -4]];
-
+// Camera: one continuous spline through waypoints. Velocity is never zero, so no stop-and-go.
+const KF = (() => {
+  const k = [{ t: 0, x: CAM0.x, y: CAM0.y, z: Math.log(CAM0.z) }];
+  MOVES.forEach(([ts, d, x, y, z]) => k.push({ t: ts + Math.min(d, .5) * .3, x, y, z: Math.log(z) }));
+  const l = k[k.length - 1]; k.push({ t: DUR + 1, x: l.x + 30, y: l.y + 12, z: l.z * 1 });
+  const TEN = .42;
+  k.forEach((q, i) => {
+    const p = k[Math.max(0, i - 1)], n = k[Math.min(k.length - 1, i + 1)], dt = Math.max(1e-3, n.t - p.t);
+    q.mx = TEN * (n.x - p.x) / dt; q.my = TEN * (n.y - p.y) / dt; q.mz = TEN * (n.z - p.z) / dt;
+  });
+  return k;
+})();
 function camBase(t) {
-  let cur = { x: CAM0.x, y: CAM0.y, z: CAM0.z }, arrive = 0;
-  const drift = (c, dt, k) => { const s = 1 / c.z; return { x: c.x + DRIFT[k % 4][0] * dt * s, y: c.y + DRIFT[k % 4][1] * dt * s, z: c.z * (1 + 0.007 * dt) }; };
-  for (let k = 0; k < MOVES.length; k++) {
-    const [ts, d, x, y, z] = MOVES[k];
-    if (t < ts) return drift(cur, t - arrive, k);
-    const from = drift(cur, ts - arrive, k);
-    if (t < ts + d) {
-      const p = eio((t - ts) / d);
-      const zmin = Math.min(from.z, z), dist = Math.hypot(x - from.x, y - from.y) * zmin;
-      const dip = clamp(dist / 2600, 0, 0.42) * Math.sin(Math.PI * p);
-      return { x: lerp(from.x, x, p), y: lerp(from.y, y, p), z: Math.exp(lerp(Math.log(from.z), Math.log(z), p)) * (1 - dip) };
-    }
-    cur = { x, y, z }; arrive = ts + d;
-  }
-  return drift(cur, t - arrive, MOVES.length);
+  let i = 0; while (i < KF.length - 2 && t >= KF[i + 1].t) i++;
+  const a = KF[i], b = KF[i + 1], dt = b.t - a.t, u = c01((t - a.t) / dt), u2 = u * u, u3 = u2 * u;
+  const h00 = 2 * u3 - 3 * u2 + 1, h10 = u3 - 2 * u2 + u, h01 = -2 * u3 + 3 * u2, h11 = u3 - u2;
+  const f = (p, q, mp, mq) => h00 * p + h10 * dt * mp + h01 * q + h11 * dt * mq;
+  return { x: f(a.x, b.x, a.mx, b.mx), y: f(a.y, b.y, a.my, b.my), z: Math.exp(f(a.z, b.z, a.mz, b.mz)) };
 }
 function shakeAt(t) {
   let x = 0, y = 0;
@@ -170,9 +170,9 @@ function dimOf(id, t) {
 // red grade moments (0..1)
 function redAmt(t) {
   return Math.max(
-    .32 * sstep(33.2, 33.6, t) * (1 - sstep(34.6, 34.75, t)),
-    sstep(34.66, 34.8, t) * (1 - sstep(35.3, 35.95, t)),
-    sstep(45.9, 46.06, t) * (1 - sstep(47.25, 47.85, t))
+    .32 * sstep(32.9, 34.2, t) * (1 - sstep(34.6, 34.75, t)),
+    sstep(34.66, 34.82, t) * (1 - sstep(35.2, 36.4, t)),
+    sstep(45.8, 46.1, t) * (1 - sstep(47.0, 48.2, t))
   );
 }
 
@@ -530,7 +530,7 @@ const DROPS = [];
 // generic physical paper object
 function drawPaper(g, o, t) {
   const t0 = o.t0; if (t < t0) return;
-  const p = c01((t - t0) / .55), e = eoc(p), lift0 = 1 - e;
+  const p = c01((t - t0) / .7), e = eoq(p), lift0 = 1 - e;
   const st = o.pose ? o.pose(t) : { x: o.x, y: o.y, rot: o.rot, s: 1, lift: 0 };
   const lift = Math.max(lift0, st.lift || 0);
   const s = (st.s || 1) * (1 + .2 * lift0) * (1 + .05 * (st.lift || 0));
@@ -703,7 +703,7 @@ function buildScene() {
   OBJS.push({ id: 'police', z: 9, cv: P.police, x: 3900, y: 1985, rot: -.035, t0: 76.45, dx: 50, clip: [330, -18, .1], after: (g, t, w, h) => drawStamp(g, fraud, w / 2, h * .62, -.2, t, 1.05) });
 
   OBJS.sort((a, b) => a.z - b.z);
-  OBJS.forEach(o => { ev(o.t0 + .38, 'drop', { size: o.cv.w * o.cv.h > 150000 ? 1 : .6 }); });
+  OBJS.forEach(o => { ev(o.t0 + .5, 'drop', { size: o.cv.w * o.cv.h > 150000 ? 1 : .6 }); });
 
   // pins
   PINE = pinSpec('pinE', 1580, 1965, 4.45, 'CHAMP-DE-MARS', 1612, 1974);
@@ -725,14 +725,17 @@ function buildScene() {
   // stickers
   ev(38.42, 'hook'); ev(41.9, 'watch', { dur: 1.3 }); ev(45.28, 'envelope');
   SHAKES.push([45.4, 3]); ev(51.55, 'stamp');
-  ev(56.45, 'train', { dur: 2.6 }); ev(58.05, 'case'); ev(69.8, 'train', { dur: 1.4, back: 1 }); ev(79.2, 'ship', { dur: 2 });
+  ev(56.45, 'train', { dur: 3.8 }); ev(58.05, 'case'); ev(69.8, 'train', { dur: 1.4, back: 1 }); ev(79.2, 'ship', { dur: 2 });
   ev(3.62, 'rewind'); ev(8.3, 'rust', { dur: 1.0 }); ev(33.5, 'riser', { dur: 1.3 }); ev(34.8, 'impact'); ev(34.8, 'crowd', { dur: 1.2 });
   ev(45.95, 'freeze'); ev(62.3, 'nothing'); ev(66.1, 'sink', { dur: 2.0 }); ev(80.25, 'final');
   SHAKES.push([34.8, 10], [45.98, 6], [62.3, 3]);
   STAMPS.forEach(s => ev(s.t0 + .12, 'stamp'));
   SCRIB.forEach(s => ev(s.t0, 'scribble', { dur: s.dur }));
   LABELS.forEach(s => { for (let i = 0; i < s.text.length; i++) if (s.text[i] !== ' ') ev(s.t0 + i / s.cps, 'key'); });
-  MOVES.forEach(([ts, d, x, y, z], k) => { const a = camBase(ts), dist = Math.hypot(x - a.x, y - a.y) * Math.min(a.z, z) + Math.abs(Math.log(z / a.z)) * 900; if (dist > 250) ev(ts + d * .15, 'whoosh', { dur: d * .9, amt: Math.min(1, dist / 1500) }); });
+  { let run = null; const sp = t => { const p = camBase(t), q = camBase(t + 1 / 24); return Math.hypot(q.x - p.x, q.y - p.y) * p.z * 24; };
+    for (let t = 0; t < DUR; t += 1 / 12) { const v = sp(t);
+      if (v > 330) { if (!run) run = { t0: t, pk: 0 }; run.pk = Math.max(run.pk, v); }
+      else if (run) { if (t - run.t0 > .6 && run.pk > 520) ev(run.t0, 'whoosh', { dur: t - run.t0, amt: Math.min(1, run.pk / 1400) }); run = null; } } }
   EV.sort((a, b) => a.t - b.t);
   window.EVENTS = EV;
 }
@@ -748,7 +751,7 @@ function drawWorldStickers(g, t) {
   drawSticker(g, ST.env, 2470, 1800, -.08, 45.2, t, 'env', 1, (gg, w, h) => drawStamp(gg, v, 0, 18, -.22, t, .55));
   // train along the east route
   if (t > 56.5) {
-    let f = t < 69.6 ? eio(c01((t - 56.5) / 2.6)) : 1 - eio(c01((t - 69.75) / 1.3));
+    let f = t < 69.6 ? eio(c01((t - 56.5) / 3.8)) : 1 - eio(c01((t - 69.75) / 1.3));
     const q = polyAt(ROUTE_E, ROUTE_EL, .03 + f * .97), flip = t >= 69.6;
     drawSticker(g, ST.train, q.x, q.y - 40, 0, 56.5, t, 'train', .9, null);
     if (t > 58.0 && t < 69.6) drawSticker(g, ST.case, q.x - 10, q.y - 115, -.1, 58.0, t, 'case', .8);
@@ -808,15 +811,10 @@ function post(t, frameNo) {
     g.globalCompositeOperation = 'source-over';
   }
   crowd(g, t);
-  const flash = Math.max(0, 1 - Math.abs(t - 34.83) / .12) * .5 + Math.max(0, 1 - Math.abs(t - 46.0) / .1) * .35;
+  const flash = Math.max(0, 1 - Math.abs(t - 34.83) / .2) * .28 + Math.max(0, 1 - Math.abs(t - 46.0) / .18) * .2;
   if (flash > 0) { g.fillStyle = `rgba(255,70,60,${flash})`; g.globalCompositeOperation = 'screen'; g.fillRect(0, 0, W, H); g.globalCompositeOperation = 'source-over'; }
-  // rewind look
-  const rw = Math.max(0, 1 - Math.abs(t - 3.82) / .22);
-  if (rw > 0) {
-    g.globalAlpha = .35 * rw; for (const o of [-26, 18, -10]) g.drawImage(cv, o * rw, 0); g.globalAlpha = 1;
-    const r = rng(frameNo * 13 + 1); for (let i = 0; i < 7; i++) { g.fillStyle = `rgba(255,255,255,${.12 * rw * r()})`; g.fillRect(0, r() * H, W, 2 + r() * 10); }
-    g.globalCompositeOperation = 'saturation'; g.fillStyle = `rgba(128,128,128,${rw})`; g.fillRect(0, 0, W, H); g.globalCompositeOperation = 'source-over';
-  }
+  const rw = Math.max(0, 1 - Math.abs(t - 3.9) / .6);
+  if (rw > 0) { g.globalCompositeOperation = 'saturation'; g.fillStyle = `rgba(128,128,128,${eio(rw) * .8})`; g.fillRect(0, 0, W, H); g.globalCompositeOperation = 'source-over'; }
   // vignette, grain, flicker, dust
   g.drawImage(VIG, 0, 0);
   const r = rng(frameNo * 7 + 3);
@@ -847,7 +845,7 @@ function renderFrame(t) {
   // motion blur: average sub-frames when the camera moves fast
   const a = camBase(t), b = camBase(t - 1 / 48);
   const disp = Math.hypot(a.x - b.x, a.y - b.y) * a.z + Math.abs(a.z - b.z) / a.z * 700;
-  const N = disp > 4 ? Math.min(6, Math.ceil(disp / 5)) : 1;
+  const N = disp > 4 ? Math.min(4, Math.ceil(disp / 7)) : 1;
   if (N === 1) { renderScene(out, t); }
   else {
     for (let i = 0; i < N; i++) {

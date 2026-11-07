@@ -37,63 +37,75 @@ def place(buf, x, t, gain=1.0):
 
 
 # ---------------------------------------------------------------- SFX
+def smooth_env(n, a, r):
+    e = np.ones(n)
+    A, R = int(a * SR), int(r * SR)
+    e[:A] = np.sin(np.linspace(0, np.pi / 2, A)) ** 2
+    e[-R:] *= np.cos(np.linspace(0, np.pi / 2, R)) ** 2
+    return e
+
+
 def paper_drop(size=1.0):
-    d = .5
+    """Soft paper sliding down, then a muted landing on a table."""
+    d = .75
+    n = int(d * SR)
     t = tt(d)
-    flutter = bp(noise(.22), 900, 5000) * np.sin(np.linspace(0, np.pi, int(.22 * SR))) ** 2 * .25
-    slap = bp(noise(d), 500, 6000) * np.exp(-t * 32)
-    thump = np.sin(2 * np.pi * (85 + 40 * np.exp(-t * 30)) * t) * np.exp(-t * 18) * .8 * size
-    out = np.zeros(int(.72 * SR))
-    out[: len(flutter)] += flutter
-    j = int(.22 * SR)
-    out[j:j + len(slap)] += slap + thump
-    return out * (.55 + .35 * size)
+    slide = bp(noise(d), 700, 3800)
+    slide *= smooth_env(n, .12, .35) * (.6 + .4 * np.abs(np.sin(2 * np.pi * 11 * t + 1))) * (t < .42)
+    slide *= .22
+    j = int(.43 * SR)
+    lt = tt(.3)
+    land = lp(noise(.3), 1400) * np.exp(-lt * 38) * .6
+    thud = np.sin(2 * np.pi * (78 + 30 * np.exp(-lt * 40)) * lt) * np.exp(-lt * 22) * .55 * size
+    tap = bp(noise(.3), 2500, 6000) * np.exp(-lt * 120) * .12
+    out = slide.copy()
+    out[j:j + len(lt)] += land + thud + tap
+    return out * (.55 + .3 * size)
 
 
 def stamp():
-    d = .5
+    d = .6
     t = tt(d)
-    k = kick(d, 140, 48, 1.0)
-    clk = bp(noise(d), 250, 3000) * np.exp(-t * 45)
-    rattle = bp(noise(d), 2000, 7000) * np.exp(-t * 30) * .25
-    return (k * .9 + clk * .8 + rattle) * .8
+    thud = np.sin(2 * np.pi * (62 + 90 * np.exp(-t * 55)) * t) * np.exp(-t * 14)
+    body = lp(noise(d), 900) * np.exp(-t * 32) * .7
+    snap = bp(noise(d), 1800, 5500) * np.exp(-t * 90) * .22
+    return (thud * .9 + body + snap) * .85
 
 
 def key():
-    d = .09
+    d = .07
     t = tt(d)
-    c = bp(noise(d), 1500, 7000) * np.exp(-t * 160)
-    m = np.sin(2 * np.pi * rng.uniform(2600, 3400) * t) * np.exp(-t * 260) * .25
-    th = np.sin(2 * np.pi * rng.uniform(150, 210) * t) * np.exp(-t * 70) * .5
-    return (c + m + th) * rng.uniform(.18, .28)
+    th = np.sin(2 * np.pi * rng.uniform(170, 230) * t) * np.exp(-t * 90) * .5
+    c = lp(bp(noise(d), 1200, 4200), 4200) * np.exp(-t * 150)
+    return (th + c * .5) * rng.uniform(.10, .16)
 
 
 def scribble(dur):
     t = tt(dur + .05)
-    n = bp(noise(dur + .05), 1800, 6000)
-    am = (.5 + .5 * np.abs(np.sin(2 * np.pi * rng.uniform(6, 9) * t))) * np.minimum(1, np.minimum(t / .03, (dur + .05 - t) / .06))
-    return n * am * .22
+    n = bp(noise(dur + .05), 2200, 5500)
+    am = (.55 + .45 * np.abs(np.sin(2 * np.pi * rng.uniform(5, 7) * t))) * smooth_env(len(t), .04, .08)
+    return n * am * .12
 
 
 def line_zip(dur):
-    t = tt(dur)
-    n = hp(noise(dur), 2500) * .5
-    e = np.sin(np.pi * np.clip(t / dur, 0, 1)) ** 1.5
-    ticks = np.zeros_like(t)
-    for k in np.arange(0, dur, .05):
-        c = click(.3)
-        i = int(k * SR)
-        ticks[i:i + len(c)] += c[: len(ticks) - i]
-    return (n * e * .05 + ticks * e * .12)
+    return np.zeros(int(.01 * SR))
 
 
 def pin():
-    d = .5
+    d = .35
     t = tt(d)
-    f = 1150 * (1 - .25 * (1 - np.exp(-t * 20)))
-    b = np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-t * 9) * .25
-    sub = np.sin(2 * np.pi * 70 * t) * np.exp(-t * 14) * .35
-    return b + sub
+    tick = bp(noise(d), 1800, 5000) * np.exp(-t * 110) * .35
+    thud = np.sin(2 * np.pi * (95 + 40 * np.exp(-t * 40)) * t) * np.exp(-t * 24) * .6
+    return tick + thud
+
+
+def swell(dur, amt):
+    """Soft low air-swell for big camera moves (replaces the noisy whoosh)."""
+    n = int(dur * SR)
+    t = tt(dur)
+    x = bp(noise(dur), 180, 1400)
+    x = lp(x, 1500)
+    return x * np.sin(np.pi * np.clip(t / dur, 0, 1)) ** 2 * (.14 + .22 * amt)
 
 
 def rust_creak(dur):
@@ -191,7 +203,7 @@ def build_sfx(events):
     for e in events:
         t, ty = e["t"], e["type"]
         if ty == "drop":
-            place(sfx, paper_drop(e.get("size", 1)), t - .22)
+            place(sfx, paper_drop(e.get("size", 1)), t - .43)
         elif ty == "stamp":
             place(sfx, stamp(), t - .01)
         elif ty == "key":
@@ -203,9 +215,9 @@ def build_sfx(events):
         elif ty == "pin":
             place(sfx, pin(), t)
         elif ty == "whoosh":
-            place(sfx, whoosh(max(.35, e["dur"]), True, .12 + .3 * e["amt"]), t - .05)
+            place(sfx, swell(max(.8, e["dur"]), e["amt"]), t - .1)
         elif ty == "rewind":
-            place(sfx, tape_rewind(.5, .55), t)
+            place(sfx, swell(1.2, .5), t - .2)
         elif ty == "rust":
             place(sfx, rust_creak(e["dur"] + .4), t)
         elif ty == "counter":
@@ -219,13 +231,12 @@ def build_sfx(events):
         elif ty == "crowd":
             place(sfx, crowd(e["dur"]), t)
         elif ty == "hook":
-            place(sfx, whoosh(.25, True, .15), t - .1)
-            place(sfx, bell_tone(2400, .9) * .45, t + .15)
+                        place(sfx, bell_tone(2400, .9) * .45, t + .15)
         elif ty == "watch":
             place(sfx, watch(e["dur"]), t)
         elif ty == "envelope":
             place(sfx, crunch(.35), t)
-            place(sfx, paper_drop(.6), t - .22)
+            place(sfx, paper_drop(.6), t - .43)
         elif ty == "freeze":
             place(sfx, tape_stop(.45), t - .05)
             place(sfx, hit(.8), t)
