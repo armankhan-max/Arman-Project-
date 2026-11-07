@@ -21,6 +21,7 @@ from audio import SR, Track, lp, hp, midi, nm, pad, pluck, whoosh  # noqa: E402
 from scipy.io import wavfile  # noqa: E402
 
 from scenes_a import CARD_START  # noqa: E402
+from scenes_wi import to_new  # noqa: E402
 
 PROG_A = [["A2", "E3", "A3", "C4", "E4"], ["F2", "C3", "F3", "A3", "C4"],
           ["C3", "G3", "C4", "E4"], ["G2", "D3", "G3", "B3", "D4"]]      # Am F C G: curious, steady
@@ -67,13 +68,14 @@ def fade_region(x, a, b, floor=0.0, ramp=0.4):
 
 def build_music(dur):
     m = Track(dur)
-    bed(m, 0.0, 30.0, PROG_A, gain=0.8)
-    bed(m, 30.0, 163.1, PROG_A, gain=1.0)
-    bed(m, 163.1, 279.8, PROG_B, gain=1.0)
-    bed(m, 279.8, 369.8, PROG_A, gain=1.0)
-    bed(m, 369.8, dur + 2, PROG_END, bpm=76, gain=0.9)
+    T = to_new
+    bed(m, 0.0, T(30.0), PROG_A, gain=0.8)
+    bed(m, T(30.0), T(163.1), PROG_A, gain=1.0)
+    bed(m, T(163.1), T(279.8), PROG_B, gain=1.0)
+    bed(m, T(279.8), T(369.8), PROG_A, gain=1.0)
+    bed(m, T(369.8), dur + 2, PROG_END, bpm=76, gain=0.9)
     x = m.stereo(int(dur * SR))
-    x = fade_region(x, 395.8, 401.9, floor=0.35, ramp=0.8)   # quieter under the disclaimer
+    x = fade_region(x, T(395.8), T(401.9), floor=0.35, ramp=0.8)   # quieter under the disclaimer
     tt = np.arange(len(x)) / SR
     x *= np.clip((dur - tt) / 2.5, 0, 1)[:, None]          # fade out at the very end
     return x
@@ -82,7 +84,7 @@ def build_music(dur):
 def build_fx(dur):
     s = Track(dur)
     for st in CARD_START.values():
-        s.add(lp(whoosh(0.7, True, 1.0), 2500), st - 0.25, 0.18)
+        s.add(lp(whoosh(0.7, True, 1.0), 2500), to_new(st) - 0.25, 0.18)
     return s.stereo(int(dur * SR))
 
 
