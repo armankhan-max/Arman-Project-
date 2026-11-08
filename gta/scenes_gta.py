@@ -14,6 +14,9 @@ from ggfx import *  # noqa: F401,F403
 from ggfx import (W, H, C, P, xf, rrect, poly, line, linear, radial, fill_shader, clamp, lerp, smooth, ease_out,
                   back_out, at, window, mixhex, blit, grain, tint, figure, head_only, arrow)
 import sgfx
+from chars import figure, head_only  # noqa: F811  (human cast replaces the stickmen)
+import worldmap as M
+import vice as V
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 VOICE_END = 301.25          # narration ends here (the rest of the recording is production notes)
@@ -163,23 +166,48 @@ def char_wheel(c, t, start, whos, sel_t=None, sel=1, x=W / 2, y=H / 2 + 20, r=30
 
 # ================================================================== SCENES
 # --- A. Hook: "In 12 days, millions of people will make the same mistake."
+STORE = (11, 6)
+HOME = (3, 12)
+YOU = (7, 9)
+_HOOK_BLIPS = []
+_r = random.Random(4)
+for _i in range(220):
+    _HOOK_BLIPS.append((_r.randint(0, 15), _r.randint(0, 16), _r.uniform(0, 0.6), _r.choice((PINK, CYAN, GOLD, "#ffffff",
+                                                                                             TEAL))))
+
+
+def blip_pos(i0, j0, k):
+    """Manhattan path from intersection (i0, j0) to the store: x first, then y."""
+    x0, y0 = M.gx(i0), M.gx(j0)
+    x1, y1 = M.gx(STORE[0]), M.gx(STORE[1])
+    dx, dy = abs(x1 - x0), abs(y1 - y0)
+    d = (dx + dy) * clamp(k)
+    if d <= dx:
+        return x0 + math.copysign(d, x1 - x0), y0
+    return x1, y0 + math.copysign(d - dx, y1 - y0)
+
+
+def duo_riders(t):
+    def r(cc):
+        figure(cc, -40, -70, "hero", "game", "smile", t, s=0.42, rim=None, shadow=False)
+        figure(cc, 100, -70, "nova", "cheer", "laugh", t, s=0.42, rim=None, shadow=False)
+    return r
+
+
 def s_hook(c, t):
     a, b = 0.0, T("they'll", 3.8)
-    c.save()
-    push(c, t, a, b, 1.12, 1.0)
-    scene_coast(c, t, "night", cam=t * 30, sun=False, car_x=-300 + t * 700)
-    c.restore()
-    # crowd specks flooding the street (millions)
+    v = M.lerp_view((M.gx(STORE[0]), M.gx(STORE[1]), 1.6, -8), (1300, 1000, 0.58, 0), at(t, 0, b))
+    M.draw_map(c, v)
     m = T("millions", 1.2)
     if t > m:
-        rnd = random.Random(4)
-        k = ease_out(at(t, m, 1.5))
-        for i in range(160):
-            x = rnd.uniform(0, W)
-            y = rnd.uniform(930, 1070)
-            if rnd.random() < k:
-                c.drawCircle(x + math.sin(t * 9 + i) * 3, y, rnd.uniform(5, 9), P(rnd.choice((PINK, CYAN, GOLD, "#ffffff")),
-                                                                                   a=0.8))
+        for i, (i0, j0, dl, col) in enumerate(_HOOK_BLIPS):
+            k = clamp((t - m - dl) / 2.6)
+            if t > m + dl:
+                x, y = v.to_screen(*blip_pos(i0, j0, k))
+                M.blip(c, x, y, col, 7)
+    sx_, sy_ = v.to_screen(M.gx(STORE[0]), M.gx(STORE[1]))
+    M.pin(c, sx_, sy_, HOT, "bag", 1.1, t=t)
+    M.map_hud_frame(c, t)
     letterbox(c, 1.0)
     slam_title(c, t, T("12", 0.3), "12 DAYS", W / 2, 420, 210, end=b + 0.1)
     mk = T("mistake", 2.7)
@@ -193,7 +221,8 @@ sx(0.0, "riser_rev", 0.4)
 sx(T("12", 0.3) - 0.02, "slam", 1.0)
 sx(T("millions", 1.2), "crowd", 0.5, dur=2.4)
 sx(T("mistake", 2.7), "hit_low", 0.8)
-sx(0.4, "car_pass", 0.35, pan=0.6)
+sx(0.2, "map_open", 0.6)
+sx(T("millions", 1.2), "download_blips", 0.35, dur=2.4)
 
 
 # --- B. Rush to the store, hand over hundreds of dollars
@@ -201,8 +230,12 @@ def s_rush(c, t):
     a, b = T("they'll", 3.8), T("and", 8.3)
     c.save()
     push(c, t, a, b, 1.0, 1.08, dx=-60)
-    scene_street(c, t, "night", cam=(t - a) * 40)
+    V.ocean_drive(c, t, 1.0, cam=(t - a) * 40)
+    V.helicopter(c, 1500 - (t - a) * 60, 170, 0.6, t, beam=1.0, beam_to=(1250, 900))
     storefront(c, 1250, 905, 0.85, t)
+    hd0 = T("hundreds", 5.9)
+    if t > hd0:
+        V.cop_car(c, lerp(2300, -400, (t - hd0) / 2.4), 1050, 0.7, t, face=-1)
     lt = t - a
     x0 = -200 + lt * 230
     crowd_walk(c, t, x0, 1000, 6, 140, 0.5, face=1, speed=8)
@@ -236,6 +269,8 @@ def s_rush(c, t):
 sx(T("rush", 4.0), "whoosh", 0.6)
 sx(T("rush", 4.0), "footsteps", 0.45, dur=3.8)
 sx(T("hand", 5.4), "cash_flutter", 0.6)
+sx(T("rush", 4.0), "heli", 0.35, dur=4.4)
+sx(T("hundreds", 5.9), "siren", 0.45, pan=0.6, dur=2.4)
 sx(T("hundreds", 5.9), "register", 0.7)
 for i in range(5):
     sx(T("hundreds", 5.9) + 0.15 + i * 0.28, "coin_out", 0.25)
@@ -352,7 +387,8 @@ def s_launch(c, t):
     push(c, t, a, b, 1.0, 1.1, cy=H * 0.6)
     la = T("launches", 27.8)
     cx = -400 + (t - a) * 380 if t < la else -400 + (la - a) * 380 + (t - la) ** 1.6 * 1800
-    scene_coast(c, t, "dusk", cam=(t - a) * 20, car_x=cx)
+    scene_coast(c, t, "dusk", cam=(t - a) * 20, car_x=None)
+    V.convertible(c, cx, 975, 0.85, HOT, t, glow_c=CYAN, riders=duo_riders(t), spin=t * 20)
     c.restore()
     letterbox(c, 1.0)
     slam_title(c, t, T("19th", 23.9), "NOV 19", W / 2, 300, 200, end=b + 0.1, sub=None)
@@ -525,7 +561,8 @@ def s_platforms(c, t):
             k = back_out(at(t, st - 0.25, 0.45))
             pedestal(c, x, 830, 300, gc)
             fn(c, x, 830 + (1 - k) * 300, 0.95 * k, glow_c=gc)
-            chip(c, x, 930, lab, "#ffffff", size=36, a=clamp(k))
+            V.callout(c, t, st + 0.15, x + (60 if i == 0 else 70), 560, x + (160 if i == 0 else 200),
+                      300 if i == 0 else 250, lab, "#ffffff", 38, end=p4 - 0.45)
             if t > T("it", 59.3):
                 check(c, x + 130, 380, 0.8 * back_out(at(t, T("it", 59.3) + i * 0.12, 0.3)))
     # no PC
@@ -534,6 +571,8 @@ def s_platforms(c, t):
         with xf(c, 1480, 780, 0.75 * k):
             pc_tower(c, 0, 0, 1.0, a=0.85)
         xmark(c, 1500, 500, 1.2 * back_out(at(t, pc + 0.2, 0.3)), a=clamp(k))
+        V.callout(c, t, pc + 0.3, 1560, 640, 1500, 900, "NO PC (AT LAUNCH)", RED, 34, fg="#ffffff",
+                  end=p4 - 0.45)
     c.restore()
     # last gen falls in front and cracks
     if t > p4 - 0.5:
@@ -585,34 +624,34 @@ sx(T("not", 69.2), "error", 0.7)
 # --- J. First question: do you own one?  YES → relax.  NO → iceberg
 def s_question(c, t):
     a, b = T("so", 70.4), T("if", 76.3)
-    grid_board(c, t, col=GOLD)
-    c.save()
-    push(c, t, a, b, 1.0, 1.06)
-    # fork road on a map
-    fill_shader(c, skia.Rect(0, 0, W, H), linear(0, 0, 0, H, [("#000000", 0), ("#000000", 0.4)]))
-    pth = skia.Path()
-    pth.moveTo(W / 2, H + 40)
-    pth.lineTo(W / 2, 640)
-    pth.quadTo(W / 2, 480, 520, 360)
-    p2 = skia.Path()
-    p2.moveTo(W / 2, 640)
-    p2.quadTo(W / 2, 480, 1400, 360)
-    k = smooth(at(t, a + 0.2, 1.2))
-    for pp, col in ((pth, GREEN), (p2, HOT)):
-        c.drawPath(pp, P("#000000", 120, 0.6))
-        c.drawPath(pp, P(col, 90 * k, 0.9))
-        c.drawPath(pp, P("#ffffff", 6, 0.6 * k))
+    v = M.lerp_view((M.gx(YOU[0]), M.gx(YOU[1]), 1.3, 0), (M.gx(7), M.gx(8), 0.85, 0), at(t, a, 2.0))
+    M.draw_map(c, v, dim=0.15)
+    k = smooth(at(t, a + 0.4, 1.4))
+    M.route(c, v, [YOU, (7, 12), HOME], k, GREEN, 12, t)
+    M.route(c, v, [YOU, (11, 9), STORE], k, HOT, 12, t)
+    hx, hy = v.to_screen(M.gx(HOME[0]), M.gx(HOME[1]))
+    sx_, sy_ = v.to_screen(M.gx(STORE[0]), M.gx(STORE[1]))
+    yx, yy = v.to_screen(M.gx(YOU[0]), M.gx(YOU[1]))
+    M.pin(c, hx, hy, GREEN, "home", 1.0, t=t)
+    M.pin(c, sx_, sy_, HOT, "bag", 1.0, t=t)
+    with xf(c, yx, yy):
+        c.drawCircle(0, 0, 60, P("#000000", a=0.5))
+        c.drawCircle(0, 0, 60, P(GOLD, 6))
+    head_only(c, yx, yy - 10, "hero", "neutral", t, r=40, rim=GOLD)
     if t > T("own", 73.1):
         kk = back_out(at(t, T("own", 73.1), 0.35))
-        console_tall(c, 760, 420, 0.65 * kk, glow_c=CYAN)
-        console_box(c, 1160, 420, 0.7 * kk, glow_c=GREEN)
-        qmark(c, 960, 200, 170 * kk, GOLD, t=t)
-    c.restore()
-    figure(c, W / 2, 1040, "hero", "think", "neutral", t, s=0.75, rim=GOLD)
-    minimap(c, t, heading=0, blip=(-60, -60, GOLD))
+        V.callout(c, t, T("own", 73.1), hx, hy - 120, hx - 200, hy - 330, "OWN ONE?", GREEN, 40)
+        V.callout(c, t, T("own", 73.1) + 0.3, sx_, sy_ - 120, sx_ - 250, sy_ + 40, "NEED ONE?", HOT, 40,
+                  fg="#ffffff")
+        with xf(c, W / 2, 200, kk):
+            console_tall(c, -120, 120, 0.4, glow_c=CYAN)
+            console_box(c, 120, 120, 0.42, glow_c=GREEN)
+            qmark(c, 0, -40, 120, GOLD, t=t)
+    M.map_hud_frame(c, t)
 
 
 sx(T("first", 70.7), "map_open", 0.6)
+sx(T("so", 70.4) + 0.4, "marker", 0.5)
 sx(T("own", 73.1), "pop_big", 0.5)
 
 
@@ -673,15 +712,13 @@ def s_iceberg(c, t):
     push(c, t, a, b, 1.15, 1.0, cy=520)
     iceberg(c, W / 2, 520, 1.3, t, reveal=smooth(at(t, T("not", 88.4), 0.8)))
     price_tag(c, W / 2 + 40, 300, 0.8 * back_out(at(t, T("console", 87.7), 0.3)), "CONSOLE", GOLD, rot=-6)
-    if t > rv:
-        rnd = random.Random(3)
-        icons = ["$", "$$", "$$$", "+", "$", "$$"]
-        for i, s in enumerate(icons):
-            k = back_out(at(t, rv + i * 0.12, 0.3))
-            x = W / 2 + rnd.uniform(-330, 330)
-            y = 720 + rnd.uniform(0, 380)
-            ftext(c, s, x, y, 90 * k, GOLD, stroke="#000000", sw=8)
     c.restore()
+    if t > rv:
+        oy = cam_y
+        labs = [("GAME", 900, 640, 1350, 560), ("CONTROLLER", 1040, 760, 1450, 700), ("STORAGE", 830, 880, 420, 820),
+                ("ONLINE / MONTH", 1000, 1000, 1400, 960), ("EXTRAS", 900, 1060, 440, 1020)]
+        for i, (lab, px, py, lx, ly) in enumerate(labs):
+            V.callout(c, t, rv + i * 0.2, px, py + oy, lx, ly + oy, lab, GOLD, 40)
     if t > T("interesting", 86.1) - 0.3 and t < T("because", 87.3):
         tint(c, "#000000", 0.25)
 
@@ -723,7 +760,7 @@ sx(T("$10", 97.2), "pop_big", 0.6)
 
 def s_angry(c, t):
     a, b = T("and", 100.0), T("now", 102.3)
-    scene_street(c, t, "night")
+    V.ocean_drive(c, t, 1.0, cam=200)
     c.save()
     push(c, t, a, b, 1.05, 1.0)
     rnd = random.Random(5)
@@ -877,17 +914,14 @@ def s_monthly(c, t):
     c.restore()
     big = T("$80", 138.1)
     if t > big - 0.1:
-        tint(c, "#000000", 0.7 * clamp((t - big + 0.1) / 0.3))
-        k = smooth(at(t, T("become", 140.3), 1.6))
-        if k <= 0:
+        tint(c, "#000000", 0.88 * clamp((t - big + 0.1) / 0.3))
+        bc = T("become", 140.3)
+        if t < bc - 0.3:
             slam_title(c, t, big - 0.1, "$80", W / 2, H / 2, 260, color=GOLD)
         else:
-            s = "$80" if k < 0.05 else "$" + "$" * int(1 + k * 3)
-            sc = 1 + 0.25 * k
-            with xf(c, W / 2, H / 2, sc):
-                ftext(c, s if k < 1 else "$$$$", 0, 90, 260, mixhex(GOLD, HOT, k), stroke="#000000", sw=24)
-            receipt(c, 260, 120 + (1 - k) * 500, [("Game", "$80"), ("Console", "$$$"), ("Controller", "$"),
-                                                   ("Storage", "$$"), ("Online", "$/mo")], k=k, a=k)
+            V.flow_diagram(c, t, bc - 0.3, [(330, 220, "GAME $80"), (330, 380, "CONSOLE"), (330, 540, "CONTROLLER"),
+                                            (330, 700, "STORAGE"), (330, 860, "ONLINE")], (1450, 540), GOLD,
+                           "TOTAL", "$$$$")
 
 
 sx(T("online", 131.0), "connect", 0.4)
@@ -1122,6 +1156,19 @@ def s_preload(c, t):
             k = smooth(at(t, dl, 2.2))
             progress_bar(c, 1300, 420, 760, k, GREEN, h=70, label=f"PRELOAD {int(k * 100)}%")
             console_box(c, 1300, 880, 0.7, glow_c=GREEN)
+        # timeline: NOV 12 (preload) ---- NOV 19 (unlock)
+        tk = smooth(at(t, T("november", 188.2), 1.0))
+        if tk > 0:
+            y0 = 960
+            line(c, 300, y0, 1700, y0, "#ffffff", 6, 0.3 * tk)
+            prog = smooth(at(t, T("download", 191.4), 2.4))
+            if prog > 0:
+                V.draw_line_anim(c, [(300, y0), (1700, y0)], prog, GREEN, 8)
+            for i, (x, lab) in enumerate(((300, "NOV 12"), (1700, "NOV 19"))):
+                c.drawCircle(x, y0, 18, P(GREEN if (i == 0 or prog >= 1) else "#ffffff", a=tk))
+                ftext(c, lab, x, y0 + 70, 40, "#ffffff", stroke="#000000", sw=6, a=tk)
+            for d in range(1, 7):
+                c.drawCircle(300 + d * 200, y0, 7, P("#ffffff", a=0.6 * tk))
         un = T("unlocks", 193.5)
         if t > un - 0.2:
             pk = clamp((t - un + 0.2) / 0.4)
@@ -1170,9 +1217,23 @@ sx(T("playing", 201.2) - 0.8, "game_start", 0.5, pan=0.5)
 # --- Q. Who should buy? parent / veteran / curious
 def s_who(c, t):
     a, b = T("so", 202.1), T("if", 204.8)
-    grid_board(c, t, col=GOLD)
-    char_wheel(c, t, a, [("parent", "neutral"), ("gamer", "neutral"), ("buyer2", "neutral")], sel_t=None)
-    qmark(c, W / 2, 300, 180, GOLD, t=t)
+    v = M.lerp_view((1200, 900, 0.5, 0), (1200, 900, 0.62, 0), at(t, a, b - a))
+    M.draw_map(c, v, dim=0.2)
+    spots = [((4, 4), "parent", PURPLE), ((7, 13), "gamer", CYAN), ((14, 11), "buyer2", ORANGE)]
+    sx_, sy_ = v.to_screen(M.gx(STORE[0]), M.gx(STORE[1]))
+    for i, ((ci, cj), who, col) in enumerate(spots):
+        st = a + 0.2 + i * 0.3
+        if t > st:
+            x, y = v.to_screen(M.gx(ci), M.gx(cj))
+            V.draw_line_anim(c, [(x, y), (sx_, sy_)], smooth(at(t, st, 0.8)), col, 6, dash=True, t=t)
+            kk = back_out(at(t, st, 0.35))
+            with xf(c, x, y, kk):
+                c.drawCircle(0, 0, 80, P("#000000", a=0.6))
+                c.drawCircle(0, 0, 80, P(col, 7))
+            head_only(c, x, y - 10, who, "neutral", t, r=48 * kk, rim=col)
+    M.pin(c, sx_, sy_, HOT, "bag", 1.1, t=t)
+    qmark(c, W / 2, 200, 150, GOLD, t=t)
+    M.map_hud_frame(c, t)
 
 
 sx(T("so", 202.1), "wheel", 0.6)
@@ -1377,7 +1438,9 @@ def s_choice(c, t):
     if t < sp:
         c.save()
         push(c, t, a, sp, 1.0, 1.1, cy=H * 0.65)
-        scene_coast(c, t, "dusk", cam=(t - a) * 30, car_x=lerp(300, 1500, smooth(at(t, a, 3.2))), car_c=TEAL)
+        scene_coast(c, t, "dusk", cam=(t - a) * 30, car_x=None)
+        V.convertible(c, lerp(300, 1500, smooth(at(t, a, 3.2))), 975, 0.85, TEAL, t, glow_c=PINK,
+                      riders=duo_riders(t), spin=t * 20)
         c.restore()
         letterbox(c, 1.0)
         ch = T("choice", 269.9)
@@ -1455,7 +1518,7 @@ def s_last(c, t):
         # overnight change: day ↔ night flip over the city
         ov = T("overnight", 290.4)
         k = smooth(at(t, ov - 0.4, 1.0))
-        scene_street(c, t, "day" if k < 0.5 else "night", cam=(t - a) * 10)
+        V.ocean_drive(c, t, 0.0 if k < 0.5 else 1.0, cam=(t - a) * 10)
         tint(c, "#000000", 0.0)
         with xf(c, W / 2, 0, alpha=1.0):
             pass
@@ -1487,10 +1550,26 @@ sx(T("long", 292.5) + 0.6, "sand", 0.35, dur=2.0)
 
 def s_end(c, t):
     a = T("either", 294.7)
-    if t < VOICE_END:
+    sd = T("standing", 298.0)
+    if t < sd - 0.1:
+        v = M.lerp_view((1300, 900, 0.62, 0), (M.gx(STORE[0]), M.gx(STORE[1]), 0.95, 0), at(t, a, sd - a))
+        M.draw_map(c, v)
+        for i, (i0, j0, dl, col) in enumerate(_HOOK_BLIPS[:160]):
+            x, y = v.to_screen(*blip_pos(i0, j0, clamp((t - a - dl * 0.5) / 1.8)))
+            M.blip(c, x, y, col, 7)
+        sx_, sy_ = v.to_screen(M.gx(STORE[0]), M.gx(STORE[1]))
+        M.pin(c, sx_, sy_, HOT, "bag", 1.1, t=t)
+        k = smooth(at(t, a + 0.3, 2.0))
+        head = M.route(c, v, [STORE, (11, 9), (7, 9), (7, 12), HOME], k, GREEN, 12, t)
+        hx, hy = v.to_screen(M.gx(HOME[0]), M.gx(HOME[1]))
+        M.pin(c, hx, hy, GREEN, "home", 1.0, t=t)
+        V.callout(c, t, a + 0.6, head[0], head[1], head[0] + 260, head[1] - 220, "YOU", GREEN, 44)
+        M.map_hud_frame(c, t)
+    elif t < VOICE_END:
         c.save()
-        push(c, t, a, VOICE_END, 1.0, 1.04)
-        scene_street(c, t, "night", cam=(t - a) * 30)
+        push(c, t, sd, VOICE_END, 1.0, 1.04)
+        V.ocean_drive(c, t, 1.0, cam=(t - a) * 30)
+        V.helicopter(c, 600, 160, 0.6, t, beam=1.0, beam_to=(1350, 900))
         storefront(c, 1350, 905, 0.85, t, sign="GAMES")
         # long queue to the store on launch night
         for i in range(10):
@@ -1499,7 +1578,7 @@ def s_end(c, t):
                    ("neutral", "worried", "neutral", "sad")[i % 4], t + i, s=0.45, face=1, rim=PINK)
         # you: calm, walking the other way
         hx = 1000 - (t - a) * 90
-        figure(c, 1560 - (t - a) * 70, 1010, "hero", walk_pose(t, 3), "smile", t, s=0.55, face=-1, rim=TEAL)
+        figure(c, 1560 - (t - sd) * 70, 1010, "hero", walk_pose(t, 3), "smile", t, s=0.55, face=-1, rim=TEAL)
         c.restore()
         calendar(c, 200, 230, 0.6 * back_out(at(t, T("november", 300.0) - 0.3, 0.35)), "NOV", 19, color=HOT) if t > T(
             "november", 300.0) - 0.3 else None
@@ -1509,7 +1588,9 @@ def s_end(c, t):
         lt = t - VOICE_END
         c.save()
         push(c, t, VOICE_END, END, 1.0, 1.08, cy=H * 0.6)
-        scene_coast(c, t, "dusk", cam=lt * 30, car_x=700 + lt ** 1.5 * 600, car_c=TEAL)
+        scene_coast(c, t, "dusk", cam=lt * 30, car_x=None)
+        V.convertible(c, 700 + lt ** 1.5 * 600, 975, 0.85, HOT, t, glow_c=CYAN, riders=duo_riders(t), spin=t * 20)
+        V.helicopter(c, 300 + lt * 120, 200, 0.5, t)
         c.restore()
         letterbox(c, 1.0)
         tint(c, "#000000", clamp((lt - 2.2) / 1.2))
@@ -1517,7 +1598,9 @@ def s_end(c, t):
 
 
 sx(T("either", 294.7), "whoosh", 0.4)
+sx(T("either", 294.7) + 0.3, "marker", 0.5)
 sx(T("standing", 298.0), "crowd", 0.35, dur=3.0)
+sx(T("standing", 298.0), "heli", 0.3, dur=3.2)
 sx(T("november", 300.0) - 0.3, "pop_big", 0.5)
 sx(VOICE_END, "boom", 0.8)
 sx(VOICE_END + 0.1, "car_pass", 0.7, pan=0.5)

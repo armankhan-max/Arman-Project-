@@ -615,6 +615,22 @@ def sfx_sand(dur=2.0):
     return fade(hp(noise(dur), 2500) * 0.12, 0.2, 0.5)
 
 
+def sfx_siren(dur=2.4):
+    t = tt(dur)
+    f = 750 + 350 * np.sin(2 * np.pi * 1.6 * t)
+    x = signal.sawtooth(2 * np.pi * np.cumsum(f) / SR) * 0.5 + np.sin(2 * np.pi * np.cumsum(f) / SR)
+    x = lp(x, 3000)
+    dop = np.interp(t, [0, dur * 0.45, dur], [0.2, 1.0, 0.15])
+    return fade(x * dop * 0.4, 0.05, 0.3)
+
+
+def sfx_heli(dur=4.0):
+    t = tt(dur)
+    chop = (0.5 + 0.5 * np.sin(2 * np.pi * 14 * t)) ** 4
+    x = lp(noise(dur), 300) * chop * 1.6 + lp(noise(dur), 1200) * 0.15
+    return fade(x, 0.6, 0.8) * 0.8
+
+
 LIB = {k[4:]: v for k, v in globals().items() if k.startswith("sfx_")}
 
 

@@ -6,7 +6,17 @@
 - **Visuals:** an original "sun-soaked crime-city" game look, drawn in code with skia:
   - sunset and neon coast city, palms, wet reflective streets and sports cars
   - a money HUD, a minimap, a character-switch wheel, slanted slam titles and stamps
-- **2D explainers:** rim-lit stickman characters with the console, price, storage, internet and preload props.
+- **Characters:** an original human cast in a crime-game style, all drawn in code (`chars.py`):
+  - the lead: bleached crop, floral shirt, aviators and a gold chain
+  - his teal-bob partner, plus buyers, a gamer, a parent, a teen, a CEO and a cop
+  - every character has facial expressions, talking mouths and poses
+- **Vice-style city (`vice.py`):** a pastel Art Deco hotel strip with vertical neon signs, palms, street lamps, a convertible carrying the two leads, a cop car with flashing lights, a helicopter with a searchlight, and a boat.
+- **Maps (`worldmap.py`):** an original top-down coastal city with a bay, a barrier island, causeways, highways and parks. On top of it run animated GPS routes, pins, crowd blips, a compass and a scale bar. Maps are used for:
+  - the hook: crowds converge on the store
+  - the YES/NO route: home vs. store
+  - who should buy
+  - the ending: you drive home while the crowd queues
+- **Explainer lines:** animated callout leader lines (console names, NO PC, hidden iceberg costs), a cost flow diagram (every item flows into TOTAL) and a Nov 12 → Nov 19 preload timeline.
 - **No real game assets:** no logos, key art, characters or fonts from any real game. Everything is original.
 - **Timing:** the voice was transcribed with Whisper (word timestamps, saved as `transcript.json`). Every cut, title and SFX is keyed to a word with `T("word", approx_time)`.
 - **Ending:** the recording continues after 5:01 with the script's production notes ("Hook open loop… Fact ledger…"). The video ends at the last narrated line, followed by a 3.6 s music outro.
@@ -18,6 +28,9 @@
 
 ## Files
 - `ggfx.py`: style kit (environment, props, HUD, titles)
+- `chars.py`: human characters
+- `vice.py`: Art Deco strip, vehicles, callouts and flow diagrams
+- `worldmap.py`: city map, routes and pins
 - `scenes_gta.py`: timeline (33 scenes) and SFX cue list
 - `audio_gta.py`: music and SFX synthesis, plus the mix
 - `render.py`: parallel frame renderer
