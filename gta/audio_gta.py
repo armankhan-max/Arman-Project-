@@ -823,7 +823,7 @@ def main():
     duck = lp(duck, 4, 1)
     music = music / (np.max(np.abs(music)) + 1e-9)
     music *= (0.30 * duck)[:, None]
-    fxs = fxs / (np.percentile(np.abs(fxs), 99.95) + 1e-9) * 0.55
+    fxs = fxs / (np.percentile(np.abs(fxs), 99.95) + 1e-9) * 0.3
     fxs *= (0.65 + 0.35 * duck)[:, None]
     vpk = np.max(np.abs(voice)) or 1.0
     vo = voice / vpk * 0.9
@@ -832,7 +832,7 @@ def main():
         r = np.sqrt(np.mean((x if x.ndim == 1 else x.mean(1))[sel] ** 2))
         print(f"  {name:6s} rms while speaking: {20 * np.log10(r + 1e-12):6.1f} dB")
     mix = music + fxs + vo[:, None]
-    mix = np.tanh(mix * 1.1) / np.tanh(1.1)
+    mix = mix / max(1.0, np.max(np.abs(mix)) / 0.95)
     wavfile.write(a.out, SR, (mix * 32767 * 0.95).astype(np.int16))
     print("wrote", a.out)
 
