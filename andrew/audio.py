@@ -50,7 +50,7 @@ MAXLEN = {"water": 2.4, "water_short": 1.0, "breath": 2.6, "type": 0.55, "car_fa
           "clock": 2.6, "pressure": 2.0, "counter": 1.8, "scan": 1.0, "applause": 2.6, "steps": 2.4,
           "ac_off": 2.6, "rain": 2.0, "receipt": 1.4}
 ALIAS = {"water_short": "water", "fire": "whoosh_s", "heart": "soft", "fly": None, "sigh": None}
-BASE = 0.55   # global SFX level under the voice
+BASE = 0.22   # global SFX level, kept well under the voice
 
 
 def sfx_track(n, cues):
@@ -219,7 +219,7 @@ def main():
     mus = music_track(n, Piano(a.piano))
     mus = mus / (np.abs(mus).max() + 1e-9) * 0.13
     d = duck_env(voice)[:, None]
-    mix = voice * 1.0 + mus * d + amb * d + sfx * (0.55 + 0.45 * d)
+    mix = voice * 1.0 + mus * d + amb * d * 0.7 + sfx * (0.6 + 0.4 * d)
     mix = np.tanh(mix * 0.95) / 0.95
     if a.stems:
         os.makedirs(a.stems, exist_ok=True)
