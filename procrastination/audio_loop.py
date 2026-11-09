@@ -269,6 +269,21 @@ def build_sfx(dur):
     def add(at, x, g=1.0, pan=0.0):
         s.add(x, at, g, pan)
 
+    # frame-0 phone buzz + notification: hijacks the conditioned "check it" reflex
+    for k in range(3):
+        bz = np.sign(np.sin(2 * np.pi * 160 * tt(0.12))) * 0.5
+        add(0.0 + k * 0.16, lp(bz, 900) * np.minimum(1, (0.12 - tt(0.12)) / 0.02), 0.5)
+    add(0.12, notif(0.35))
+    add(wt(0, "you") - 0.1, sub_boom(0.35, 1.5))
+    # punch-ins get a tiny transient so the cut is felt, not just seen
+    for pt, pz in S.PUNCH:
+        if pz != 1.0:
+            add(pt - 0.02, kick(0.15, 160, 80, 0.25))
+    add(S.E(17) + 0.9, reverse_swell(0.8, 0.18))
+    add(S.wt(14, "picking") + 0.35, notif(0.2))
+    # ending hands back to the opening (replay loop)
+    for k in range(3):
+        add(S.END - 1.6 + k * 0.5, tick(0.55))
     # hook: countdown ticks + whooshes on words
     for k in range(int(T(1) - wt(0, "three")) + 1):
         add(wt(0, "three") + k, tick(0.5), 1.0, 0.2)

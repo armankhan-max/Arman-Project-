@@ -123,9 +123,23 @@ def sc_hook(c, t):
     cam(c, t, t0, t1, 1.12, 1.0, 1300, 560)
     # her, hunched over phone in the dark, lit only by the screen
     fill_shader(c, skia.Rect(0, 0, W, H), radial(1340, 560, 700, [("#0d1a2c", 0.9), ("#000000", 0)]))
-    hp = woman(c, 1300, 700, 2.0, "phone", "tired", t, look=(0.4, 0.8), rim=BLUE, light=(1500, 500, BLUE),
-               shade=0.75)
-    phone(c, hp[0] + 8, hp[1] - 38, 1.9, -18, 1.0, t)
+    ty = wt(0, "you")
+    eye = smooth(clamp((t - ty + 0.15) / 0.25))  # she looks up from the phone, straight at the viewer
+    look = (lerp(0.4, -0.35, eye), lerp(0.8, -0.05, eye))
+    pose = mix_pose("phone", dict(POSES["phone"], tilt=2, lean=4), eye)
+    buzz = 1 - clamp(t / 0.5)
+    hp = woman(c, 1300, 700, 2.0, pose, "wide" if 0 < t - ty < 1.4 else "tired", t, look=look, rim=BLUE,
+               light=(1500, 500, BLUE), shade=0.75)
+    bx = math.sin(t * 90) * 7 * buzz
+    phone(c, hp[0] + 8 + bx, hp[1] - 38, 1.9, -18 + bx, clamp(t / 0.12), t)
+    if t < 0.9:  # lock-screen notification: the brain's most trained trigger
+        k = ease_out(clamp(t / 0.25)) * (1 - clamp((t - 0.7) / 0.2))
+        with xf(c, 1300, 120 - 60 * (1 - k), alpha=k):
+            rrect(c, -330, -55, 660, 110, 26, "#1c2230", a=0.92)
+            rrect(c, -306, -32, 64, 64, 14, "#e8343a")
+            txt(c, "!", -274, 18, 50, "sans", "#ffffff")
+            txt(c, "Reminder", -222, -6, 30, "sans", "#ffffff", align="left")
+            txt(c, "Start the project. You promised.", -222, 30, 26, "sansm", "#aab3c5", align="left")
     c.restore()
     # kinetic type stack (left)
     x = 150
@@ -463,8 +477,8 @@ def sc_discomfort(c, t):
     if t >= wfe:
         tint(c, "#000000", 0.35 * clamp((t - wfe) / 0.6))
         vignette(c, 0.6 * clamp((t - wfe) / 0.6))
-    t_slam(c, t, wb, "BOREDOM", 360, 300, 110, "#d7d0c4", out=wf - 0.1)
-    t_slam(c, t, wf, "FRUSTRATION", 1560, 300, 110, "#ff7a4a", out=wfe - 0.1)
+    t_slam(c, t, wb, "BOREDOM", 440, 300, 110, "#d7d0c4", out=wf - 0.1)
+    t_slam(c, t, wf, "FRUSTRATION", 1440, 300, 110, "#ff7a4a", out=wfe - 0.1)
     if t >= wfe:
         t_rise(c, t, wfe, "the fear of not knowing", W / 2, 900, 58, "serifi", out=t1 - 0.2)
         t_rise(c, t, wt(13, "where"), "where to begin.", W / 2, 970, 58, "serifi", out=t1 - 0.2, color="#ff9a7a")
@@ -501,7 +515,18 @@ def sc_avoid(c, t):
             if 0 < ph < 1:
                 with xf(c, 990 + ph * 120, 395 - ph * 40, 1 + ph):
                     c.drawCircle(0, 0, 20, P("#ffffff", a=0.18 * (1 - ph)))
-    card_small = lambda s, n, x, y, t0_: card(c, x, y, s, n, t, t0_, 0)
+    st = wt(14, "picking") + 0.35
+    if st <= t < T(15) + 0.6:
+        k = ease_out(clamp((t - st) / 0.3)) * (1 - clamp((t - T(15) - 0.3) / 0.3))
+        with xf(c, W / 2, 110 - 70 * (1 - k), alpha=k):
+            rrect(c, -360, -58, 720, 116, 26, "#1c2230", a=0.94)
+            rrect(c, -336, -34, 68, 68, 16, "#6a4bd8")
+            txt(c, "⌛" if False else "6h", -302, 14, 34, "sans", "#ffffff")
+            txt(c, "Screen Time", -248, -6, 30, "sans", "#ffffff", align="left")
+            hrs = 6 + int(clamp((t - st) / 1.2) * 1)
+            mins = int(42 + clamp((t - st) / 1.2) * 17) % 60
+            txt(c, f"{hrs}h {mins:02d}m today  ·  up 38% from last week", -248, 30, 25, "sansm", "#aab3c5",
+                align="left")
     with xf(c, 0, 0, 1):
         if t >= wt(14, "avoid"):
             with xf(c, 1530, 200, 0.62):
@@ -547,7 +572,8 @@ def sc_cycle_full(c, t):
     if t >= wt(17, "day") - 0.2:
         n = int(1 + max(0, t - (wt(17, "day") - 0.2)) ** 2.4 * 40)
         txt(c, f"DAY {n}", W / 2, 140, 96, "bebas", "#ffffff", track=0.08, shadow=0.7)
-    t_track(c, t, wt(17, "cycle"), "DAY  AFTER  DAY", W / 2, 980, 70, "bebas", "#ffcf3a", out=t1 - 0.2, t1=0.4,
+    t_rise(c, t, E(17) + 0.9, "…unless you can see it.", W / 2, 990, 64, "serifi", out=t1 - 0.25, color="#f3ece0")
+    t_track(c, t, wt(17, "cycle"), "DAY  AFTER  DAY", W / 2, 980, 70, "bebas", "#ffcf3a", out=E(17) + 0.5, t1=0.4,
             t2=0.14, dur=2.0)
 
 
@@ -1007,7 +1033,11 @@ def sc_step(c, t):
         line(c, W / 2 - 220 * ease_out(clamp((k - 0.8) / 1)), 630, W / 2 + 220 * ease_out(clamp((k - 0.8) / 1)), 630,
              RED, 4, clamp((k - 0.8) / 0.5))
         txt(c, "start with one small step.", W / 2, 700, 46, "serifi", "#bfb6a8", a=clamp((k - 1.3) / 0.7))
-        tint(c, "#000000", clamp((t - (END - 1.2)) / 1.2))
+        tint(c, "#000000", clamp((t - (END - 2.2)) / 0.6))
+        kk = clamp((t - (END - 1.6)) / 0.3)
+        if kk > 0:
+            txt(c, "3:32", 320, 420, 190, "bebas", "#ffffff", a=kk * 0.9, shadow=0.6)
+            txt(c, "MINUTES  ·  SECONDS", 320, 462, 22, "sans", "#9aa4b5", a=kk * 0.8, track=0.18)
 
 
 SCENES = [
@@ -1034,11 +1064,34 @@ SCENES = [
 DIPS = {T(3) - 0.25, T(9), T(18), T(23), T(33), T(35)}
 
 
+CHAPTERS = [(T(3) + 0.3, "PART 1", "THE TRAP"), (T(22), "PART 2", "THE WAY OUT")]
+# jump-cut punch-ins on the words that matter (pattern interrupts every few seconds)
+PUNCH = [(wt(0, "never"), 1.10), (wt(2, "loop"), 1.08), (T(6), 1.12), (T(7), 1.0), (wt(13, "fear"), 1.14),
+         (wt(15, "relief"), 1.1), (T(21), 1.12), (wt(26, "examine"), 1.1), (wt(29, "automatic"), 1.1),
+         (T(30), 1.0), (wt(34, "same"), 1.08), (wt(36, "breaking"), 1.08)]
+
+
+def chapter(c, t):
+    for t0, a_, b_ in CHAPTERS:
+        if t0 <= t < t0 + 3.2:
+            k = ease_out(clamp((t - t0) / 0.5)) * (1 - clamp((t - t0 - 2.7) / 0.5))
+            x = 90 - 30 * (1 - k)
+            line(c, x, 960, x, 1030, RED, 4, k)
+            txt(c, a_, x + 22, 985, 26, "sans", "#cfc6b8", align="left", a=k, track=0.3)
+            txt(c, b_, x + 22, 1030, 46, "bebas", "#ffffff", align="left", a=k, track=0.1)
+
+
 def render_frame(c, t):
     c.clear(C("#000000"))
     for i, (a, b, fn) in enumerate(SCENES):
         if a <= t < b:
             c.save()
+            z = 1.0
+            for pt, pz in PUNCH:
+                if a <= pt <= t:
+                    z = pz
+            if z != 1.0:
+                c.translate(W / 2, H / 2); c.scale(z, z); c.translate(-W / 2, -H / 2)
             fn(c, t)
             c.restore()
             if a in DIPS:
@@ -1046,9 +1099,10 @@ def render_frame(c, t):
             if b in DIPS:
                 tint(c, "#000000", clamp((t - (b - 0.3)) / 0.3))
             break
+    chapter(c, t)
     # global grade: lift blacks slightly toward warm, vignette, grain
     tint(c, "#1a0f08", 0.06, skia.BlendMode.kScreen)
     vignette(c, 0.55)
     grain(c, t, 0.06)
-    if t < 0.4:
-        tint(c, "#000000", 1 - t / 0.4)
+    if t < 0.08:
+        tint(c, "#000000", 1 - t / 0.08)
