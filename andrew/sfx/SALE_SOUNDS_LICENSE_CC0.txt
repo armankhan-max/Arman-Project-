@@ -1,0 +1,5 @@
+CC0 1.0 Universal
+
+The sound files in this repository are dedicated to the public domain under
+Creative Commons CC0 1.0 Universal. Full text:
+https://creativecommons.org/publicdomain/zero/1.0/legalcode
