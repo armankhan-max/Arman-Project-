@@ -577,41 +577,99 @@ def sc_cycle_full(c, t):
             t2=0.14, dur=2.0)
 
 
+DAY_SHOTS = ["bed", "hall", "egg", "eat", "coffee", "desk"]
+
+
+def day_cuts():
+    """Time-loop montage: the same day replays, every pass faster (like the reference at 1:34)."""
+    cuts, t, d = [], T(18), 1.15
+    while t < T(22) - 0.05:
+        cuts.append((t, min(d, T(22) - t)))
+        t += d
+        d = max(0.2, d * 0.86)
+    return cuts
+
+
+DAY_CUTS = day_cuts()
+
+
+def day_shot(c, kind, t, lt):
+    """lt: 0..1 progress inside the shot."""
+    if kind == "bed":
+        draw_set(c, "bedroom", 7)
+        add_glow(c, 1310, 520, 560, "#ff9a2e", 0.35)
+        lamp(c, 1310, 650, 0.9, 1.0)
+        up = smooth(clamp(lt * 1.4 - 0.2))
+        woman(c, lerp(650, 760, up), lerp(560, 560, up), 1.25, mix_pose("lie", "sit", up), "tired", t,
+              rot=lerp(-90, 0, up), look=(0.3, lerp(-1, 0.3, up)), light=(1310, 500, "#ffb36b"), shadow=False)
+        bp = skia.Path()
+        bp.moveTo(560, 520); bp.cubicTo(700, 490, 1000, 500, 1160, 540); bp.lineTo(1160, 660); bp.lineTo(540, 660)
+        bp.close()
+        c.drawPath(bp, P("#6d5f5f"))
+        alarm_clock(c, 1380, 540, 0.45, t, ring=1.0 if lt < 0.6 else 0.0, hhmm=(7, 0))
+    elif kind == "hall":
+        draw_set(c, "hall", 4)
+        x = lerp(560, 860, lt)
+        sc = lerp(1.2, 0.75, lt)
+        woman(c, x, lerp(760, 640, lt), sc, walk_pose(t, 1.6), "tired", t, face=1, rim="#ffd27a",
+              light=(900, 300, "#ffd27a"))
+    elif kind == "egg":
+        c.clear(C("#120d0a"))
+        fill_shader(c, skia.Rect(0, 0, W, H), radial(960, 540, 900, ["#3d2a1d", "#0f0a07"]))
+        pan_egg(c, 900, 560, 1.6, t, cooked=lt)
+    elif kind == "eat":
+        fill_shader(c, skia.Rect(0, 0, W, H), linear(0, 0, W, 0, ["#f1ece2", "#d8d0c2"]))
+        big_head(c, 820, 470, 190, "neutral", t, look=(0.6, 0.2), talk=1.0 if lt > 0.3 else 0.0,
+                 rim=None, light=(1600, 300, "#ffffff"))
+        fx = lerp(1500, 1080, ease_out(clamp(lt * 2)))
+        line(c, fx, 560, fx + 420, 640, "#8a8a8a", 10)
+        c.drawOval(skia.Rect(fx - 40, 530, fx + 30, 580), P("#f0c85a"))
+    elif kind == "coffee":
+        draw_set(c, "room", 10)
+        tint(c, "#000000", 0.35)
+        desk_front(c, 820, 0, W)
+        mug(c, 960, 820, 2.4, t)
+        pth = skia.Path(); pth.moveTo(1040, 0); pth.cubicTo(1010, 300, 975, 450, 965, 690)
+        c.drawPath(pth, P("#3a2416", 14, 0.95))
+    else:
+        draw_set(c, "room", 7)
+        lamp(c, 1300, 770, 0.8)
+        chair(c, 860, 640, 1.3)
+        hp = woman(c, 880, 630, 1.25, "sitphone", "bored", t, look=(0.4, 0.8), light=(1300, 600, "#ffb36b"))
+        phone(c, hp[0], hp[1] - 25, 1.2, -20, 1.0, t)
+        desk_front(c, 780, 980, 1700)
+
+
 def sc_breakfree(c, t):
-    """T18 -> T22: alone on the glowing ring; ANOTHER DAY / MONTH / YEAR."""
+    """T18 -> T22: trapped in a time loop. The same day replays faster and faster; DAY / MONTH / YEAR."""
     t0, t1 = T(18), T(22)
-    c.clear(C("#040405"))
+    idx = 0
+    for i, (ct, d) in enumerate(DAY_CUTS):
+        if t >= ct:
+            idx = i
+    ct, d = DAY_CUTS[idx]
+    lt = clamp((t - ct) / d)
+    kind = DAY_SHOTS[idx % len(DAY_SHOTS)]
+    c.clear(C("#000000"))
     c.save()
-    cam(c, t, t0, t1, 1.0, 1.22, 960, 600)
-    draw_set(c, "studio", 0)
-    light_cone(c, 960, -200, 0, 13, 1300, "#ffe6c4", 0.22)
-    floor_glow(c, 960, 800, 520, 150, "#ff8a3c", 0.25)
-    floor_ring(c, 960, 800, 520, 150, t)
-    # she walks the ring
-    th = (t - t0) * 0.55 + 1.2
-    x, y = 960 + 520 * math.cos(th), 800 + 150 * math.sin(th)
-    depth = 0.86 + 0.12 * math.sin(th)
-    face = -1 if math.sin(th) > 0 else 1
-    woman(c, x, y - 190 * depth, depth, walk_pose(t, 1.3), "tired", t, face=face, rim="#ffb36b",
-          light=(960, 800, "#ff9a3c"), shade=0.5)
+    cam(c, lt, 0, 1, 1.0, 1.07, 960, 540)
+    day_shot(c, kind, t, lt)
     c.restore()
-    if t > T(19):
-        rnd = random.Random(4)
-        for k in range(26):
-            st = T(19) + rnd.uniform(0, t1 - T(19) - 0.5)
-            ph = (t - st) / 1.6
-            if 0 < ph < 1:
-                x = rnd.uniform(0, W) + ph * rnd.uniform(-300, 300)
-                y = -200 + ph * (H + 400)
-                calendar_page(c, x, y, 0.35, rnd.uniform(-60, 60) + ph * rnd.uniform(-180, 180), "DAY",
-                              str(rnd.randint(1, 31)), RED, a=0.85)
-    t_rise(c, t, wt(18, "break"), "How do you break free?", W / 2, 150, 72, "serifi", out=T(19) - 0.1)
-    # calendar pages flying + slams
+    # black blink on every cut (the reference's hard black frames)
+    if t - ct < 0.07 and idx > 0:
+        tint(c, "#000000", 1.0)
+    fill_shader(c, skia.Rect(0, 0, W, 240), linear(0, 0, 0, 240, [("#000000", 0.55), ("#000000", 0)]))
+    fill_shader(c, skia.Rect(0, H - 260, W, H), linear(0, H - 260, 0, H, [("#000000", 0), ("#000000", 0.6)]))
+    days = int(lerp(1, 365, clamp((t - t0) / (t1 - t0)) ** 2.2))
+    txt(c, f"DAY {days}", 110, 140, 64, "bebas", "#ffffff", align="left", a=0.9, track=0.08, shadow=0.6)
+    line(c, 110, 160, 240, 160, RED, 4, 0.9)
+    txt(c, "07:00", W - 110, 140, 64, "bebas", "#ffffff", align="right", a=0.7, track=0.08, shadow=0.6)
+    t_rise(c, t, wt(18, "break"), "How do you break free?", W / 2, 990, 64, "serifi", out=T(19) - 0.1)
     hits = [(T(19), "ANOTHER DAY", 1.0), (T(20), "ANOTHER MONTH", 1.15), (T(21), "ANOTHER YEAR", 1.35)]
     for i, (th_, s, sc) in enumerate(hits):
         nxt = hits[i + 1][0] if i < 2 else t1 - 0.3
         if th_ <= t < nxt + 0.05:
-            t_slam(c, t, th_, s, W / 2, 230, 130 * sc, "#ffffff" if i < 2 else RED, out=nxt - 0.05, track=0.05)
+            t_slam(c, t, th_, s, W / 2, 560, 150 * sc, "#ffffff" if i < 2 else RED, out=nxt - 0.05, track=0.05)
             flash(c, t, th_, 0.15, "#ffffff", 0.25 + 0.15 * i)
 
 

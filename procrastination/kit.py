@@ -797,7 +797,37 @@ def set_mat(c):
     c.drawCircle(960, 540, 300, P("#2f7a5f", 2, 0.45))
 
 
-SETS = {"room": set_room, "bedroom": set_bedroom, "studio": set_studio, "mat": set_mat}
+def set_hall(c):
+    """Narrow warm hallway, one-point perspective, door at the end, stairs on the right."""
+    vx, vy = 900, 470
+    c.drawRect(skia.Rect(0, 0, W, H), P("#2a1c0e"))
+    # far wall + door
+    fill_shader(c, skia.Rect(700, 260, 1100, 760), linear(0, 260, 0, 760, ["#c99a3a", "#8a6420"]))
+    rrect(c, 800, 330, 190, 430, 4, "#5a3b16")
+    rrect(c, 812, 342, 166, 418, 3, "#b98a32")
+    c.drawCircle(950, 560, 9, P("#3a2408"))
+    # left wall
+    c.drawPath(poly([(0, -60), (700, 260), (700, 760), (0, H + 60)]), P("#a87a2a"))
+    fill_shader(c, skia.Rect(0, 0, 700, H), linear(0, 0, 700, 0, [("#000000", 0.55), ("#000000", 0)]))
+    for i, (x0, w0) in enumerate(((120, 120), (380, 80), (560, 50))):
+        y0 = 180 + i * 60
+        c.drawPath(poly([(x0, y0 + 40 * (1 - i * 0.3)), (x0 + w0, y0 + 50), (x0 + w0, y0 + 50 + w0 * 1.1),
+                         (x0, y0 + 40 + w0 * 1.4)]), P("#2a1a0a", a=0.85))
+    # right wall + stairs
+    c.drawPath(poly([(W, -60), (1100, 260), (1100, 760), (W, H + 60)]), P("#7a5418"))
+    for s_ in range(9):
+        y = 760 + s_ * 40
+        x = 1100 + s_ * 95
+        c.drawRect(skia.Rect(x, 200 + s_ * 20, x + 95, y), P("#5a3810", a=0.6))
+        line(c, x, y - 40, x + 95, y - 40, "#e0a040", 5, 0.8)
+    # floor + ceiling light
+    c.drawPath(poly([(0, H + 60), (700, 760), (1100, 760), (W, H + 60)]), P("#3a2410"))
+    fill_shader(c, skia.Rect(0, 760, W, H), linear(0, 760, 0, H, [("#ffcc66", 0.15), ("#000000", 0.4)]))
+    c.drawPath(poly([(0, -60), (700, 260), (1100, 260), (W, -60)]), P("#1a1006"))
+    fill_shader(c, skia.Rect(0, 0, W, H), radial(vx, 300, 700, [("#ffd27a", 0.35), ("#ffd27a", 0)]))
+
+
+SETS = {"hall": set_hall, "room": set_room, "bedroom": set_bedroom, "studio": set_studio, "mat": set_mat}
 
 
 def draw_set(c, name, blur=6.0, a=1.0, s=1.0, cx=W / 2, cy=H / 2, dx=0.0, dy=0.0):

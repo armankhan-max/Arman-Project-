@@ -343,6 +343,20 @@ def build_sfx(dur):
         add(tk, tick(0.45))
         tk += step
         step = max(0.06, step * 0.9)
+    # time-loop montage: every cut = blink whoosh + tick; every wake-up = alarm burst
+    for i, (ct, d) in enumerate(S.DAY_CUTS):
+        if i:
+            add(ct - 0.03, whoosh(0.18, True, 0.22))
+        add(ct, tick(0.5))
+        kind = S.DAY_SHOTS[i % len(S.DAY_SHOTS)]
+        if kind == "bed":
+            add(ct, alarm(min(0.7, d * 0.6), 0.25))
+        elif kind == "egg":
+            add(ct, sizzle(d, 0.12))
+        elif kind == "coffee":
+            add(ct, pour(min(0.9, d), 0.2))
+        elif kind == "desk":
+            add(ct + 0.05, click(0.25))
     # break free
     add(wt(18, "break"), whoosh(0.5, True, 0.25))
     for i, k in enumerate((19, 20, 21)):
