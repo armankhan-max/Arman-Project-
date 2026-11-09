@@ -1,4 +1,5 @@
 # Notes for Claude
 
-- User preference: keep chat replies to the bare minimum (no long text in the
-  chat box). Do the work, then give only a one-line status / file link.
+- User preference: no long text in the chat box. Show results as frames/images/files
+  (e.g. preview frames, thumbnails, the video), with at most 1–2 short lines of text
+  only when needed.
