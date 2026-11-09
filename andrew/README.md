@@ -5,7 +5,7 @@
 ## Style
 The style is based on the flat explainer reference. It switches between two kinds of shots:
 - **Infographic boards** with line-art, caps titles and one accent colour.
-- **Illustrated sets** with black-head characters.
+- **Illustrated sets** with flat cartoon characters (skin-tone faces, hair styles, expressions).
 
 The colours and outfits are new:
 - Boards are deep teal, with amber, mint and rose accents.

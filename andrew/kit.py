@@ -432,9 +432,173 @@ def face(c, cx, cy, r, expr="smile", t=0.0, look=(0, 0), talk=0.0, blink_seed=0.
         line(c, cx - r * 0.15, my + 2, cx + r * 0.15, my + 2, CREAM, r * 0.08)
 
 
+LOOKS = {
+    # skin, hair colour, hair style, extras
+    "buyer": dict(skin="#c98b62", hair="#2b1d16", style="quiff"),
+    "partner": dict(skin="#f1c8a6", hair="#6a3b22", style="pony", lashes=True),
+    "agent": dict(skin="#f3cfae", hair="#3a2418", style="bun", lashes=True, lips="#c25a5f"),
+    "banker": dict(skin="#efc9a8", hair="#c9c6c0", style="side", glasses=True, mustache=True),
+    "earner": dict(skin="#8d5a3c", hair="#141010", style="crop"),
+    "saver": dict(skin="#e3ac85", hair="#5a3a24", style="side", beard=True),
+    "lean": dict(skin="#f0c39c", hair="#b5652e", style="none", freckles=True),
+    "avg": dict(skin="#b5774f", hair="#2a1d14", style="none", beard=True),
+    "crowd1": dict(skin="#f0c8a4", hair="#e0b35a", style="quiff"),
+    "crowd2": dict(skin="#7a4a30", hair="#111111", style="afro"),
+    "crowd3": dict(skin="#d9a27a", hair="#3a2a20", style="crop"),
+    "crowd4": dict(skin="#f4d2b8", hair="#2a1a14", style="long", lashes=True),
+    "crowd5": dict(skin="#c48a64", hair="#4a2c1a", style="bun", lashes=True),
+}
+
+
+def skin_face(c, cx, cy, r, lk, expr="smile", t=0.0, look=(0, 0), talk=0.0, blink_seed=0.0):
+    """Flat cartoon face on a skin-tone head: white eyes + dark pupils, brows, nose, mouth, blush."""
+    FEAT = "#2a1a14"
+    lx, ly = look
+    bt = (t + blink_seed) % 3.7
+    blink = 0.1 if bt < 0.12 else 1.0
+    ey = cy - r * 0.06 + ly * 4
+    for sx in (-1, 1):
+        ex = cx + sx * r * 0.34 + lx * 7
+        # brows
+        tilt = {"worried": 0.14, "sad": 0.14, "panic": 0.2, "angry": -0.14}.get(expr, 0.0)
+        by = ey - r * 0.36 - (r * 0.06 if expr in ("shock", "panic", "grin") else 0)
+        bc = lk["hair"] if lk["style"] != "none" else FEAT
+        line(c, ex - sx * r * 0.15, by - tilt * r, ex + sx * r * 0.15, by + tilt * r * 0.4, bc, r * 0.09)
+        if expr in ("happy", "grin") and blink > 0.5:
+            pth = skia.Path()
+            pth.moveTo(ex - r * 0.15, ey + 4)
+            pth.quadTo(ex, ey - r * 0.2, ex + r * 0.15, ey + 4)
+            c.drawPath(pth, P(FEAT, r * 0.08))
+            continue
+        ew, eh = r * 0.16, r * 0.2 * blink
+        c.drawOval(skia.Rect(ex - ew, ey - eh, ex + ew, ey + eh), P("#ffffff"))
+        if blink > 0.5:
+            pr = r * (0.06 if expr in ("shock", "panic") else 0.095)
+            c.drawCircle(ex + lx * 4, ey + 2 + ly * 4, pr, P(FEAT))
+            c.drawCircle(ex + lx * 4 + pr * 0.35, ey - pr * 0.3 + ly * 4, pr * 0.35, P("#ffffff"))
+        c.drawOval(skia.Rect(ex - ew, ey - eh, ex + ew, ey + eh), P(FEAT, 2.2))
+        if lk.get("lashes") and blink > 0.5:
+            line(c, ex + sx * ew * 0.7, ey - eh * 0.7, ex + sx * ew * 1.25, ey - eh * 1.05, FEAT, 2.5)
+    # blush + freckles
+    for sx in (-1, 1):
+        c.drawOval(skia.Rect(cx + sx * r * 0.5 - r * 0.14, cy + r * 0.2, cx + sx * r * 0.5 + r * 0.14, cy + r * 0.34),
+                   P("#ff7a7a", a=0.28))
+        if lk.get("freckles"):
+            for k in range(3):
+                c.drawCircle(cx + sx * (r * 0.42 + k * 5), cy + r * 0.2 + (k % 2) * 5, 1.8, P("#9a5a3a"))
+    # nose
+    pth = skia.Path()
+    pth.moveTo(cx + lx * 5, cy + r * 0.02)
+    pth.quadTo(cx + r * 0.12 + lx * 5, cy + r * 0.2, cx - r * 0.02 + lx * 5, cy + r * 0.22)
+    c.drawPath(pth, P(mixhex(lk["skin"], "#000000", 0.3), r * 0.06))
+    if lk.get("mustache"):
+        c.drawPath(poly([(cx - r * 0.24, cy + r * 0.36), (cx, cy + r * 0.28), (cx + r * 0.24, cy + r * 0.36),
+                         (cx, cy + r * 0.33)]), P(lk["hair"]))
+    my = cy + r * 0.45
+    lipc = lk.get("lips", "#8a3a34")
+    if talk > 0:
+        o = 0.25 + 0.75 * abs(math.sin(t * 13.0 + blink_seed))
+        c.drawOval(skia.Rect(cx - r * 0.15, my - r * 0.09 * o, cx + r * 0.15, my + r * 0.12 * o), P("#5a1f1c"))
+        return
+    pth = skia.Path()
+    if expr in ("smile", "happy"):
+        pth.moveTo(cx - r * 0.22, my - 4)
+        pth.quadTo(cx, my + r * 0.2, cx + r * 0.22, my - 4)
+        c.drawPath(pth, P(lipc, r * 0.07))
+    elif expr == "grin":
+        pth.moveTo(cx - r * 0.27, my - 6)
+        pth.quadTo(cx, my + r * 0.4, cx + r * 0.27, my - 6)
+        pth.close()
+        c.drawPath(pth, P("#5a1f1c"))
+        c.save()
+        c.clipPath(pth, doAntiAlias=True)
+        c.drawRect(skia.Rect(cx - r * 0.3, my - 8, cx + r * 0.3, my + r * 0.06), P("#ffffff"))
+        c.drawCircle(cx, my + r * 0.3, r * 0.14, P("#e0605a"))
+        c.restore()
+    elif expr == "sad":
+        pth.moveTo(cx - r * 0.18, my + 8)
+        pth.quadTo(cx, my - r * 0.12, cx + r * 0.18, my + 8)
+        c.drawPath(pth, P(lipc, r * 0.07))
+    elif expr == "worried":
+        pth.moveTo(cx - r * 0.2, my + 2)
+        for i in range(1, 5):
+            pth.lineTo(cx - r * 0.2 + i * r * 0.1, my + (5 if i % 2 else -3))
+        c.drawPath(pth, P(lipc, r * 0.06))
+    elif expr in ("shock", "panic"):
+        c.drawOval(skia.Rect(cx - r * 0.12, my - r * 0.1, cx + r * 0.12, my + r * 0.22), P("#5a1f1c"))
+    else:
+        line(c, cx - r * 0.14, my + 2, cx + r * 0.14, my + 2, lipc, r * 0.07)
+
+
+def skin_head(c, hx, hy, hr, lk, o, expr, t, look, talk, seed, back=False):
+    skin, hair, st = lk["skin"], lk["hair"], lk["style"]
+    if back:
+        if st == "pony":
+            c.drawOval(skia.Rect(hx - 84, hy - 10, hx - 34, hy + 74), P(hair))
+        if st == "long":
+            rrect(c, hx - hr - 10, hy - 20, hr * 2 + 20, hr * 1.9, 26, hair)
+        if st == "bun":
+            c.drawCircle(hx, hy - hr - 8, hr * 0.42, P(hair))
+        if st == "afro":
+            c.drawCircle(hx, hy - 10, hr * 1.28, P(hair))
+        return
+    # ears
+    for sx in (-1, 1):
+        c.drawCircle(hx + sx * hr * 0.98, hy + 6, hr * 0.2, P(mixhex(skin, "#000000", 0.08)))
+    c.drawCircle(hx, hy, hr, P(skin))
+    # soft shade on the right
+    c.save()
+    c.clipPath(_circle_path(hx, hy, hr), doAntiAlias=True)
+    c.drawCircle(hx - hr * 0.35, hy - hr * 0.2, hr * 1.1, P(mixhex(skin, "#000000", 0.0)))
+    c.drawCircle(hx + hr * 1.25, hy + hr * 0.2, hr * 0.75, P(mixhex(skin, "#000000", 0.1)))
+    if lk.get("beard"):
+        c.drawPath(poly([(hx - hr, hy + 2), (hx + hr, hy + 2), (hx + hr, hy + hr), (hx - hr, hy + hr)]), P(hair))
+        c.drawOval(skia.Rect(hx - hr * 0.42, hy + hr * 0.12, hx + hr * 0.42, hy + hr * 0.62), P(skin))
+    c.restore()
+    # hair on top
+    pth = skia.Path()
+    if st in ("quiff", "crop", "side", "pony", "bun", "long"):
+        pth.addArc(skia.Rect(hx - hr - 3, hy - hr - (12 if st == "quiff" else 5), hx + hr + 3, hy + hr * 0.9),
+                   180, 180)
+        pth.close()
+        c.save()
+        c.clipRect(skia.Rect(hx - hr - 10, hy - hr - 30, hx + hr + 10, hy - hr * (0.5 if st != "crop" else 0.6)))
+        c.drawPath(pth, P(hair))
+        c.restore()
+        if st == "quiff":
+            c.drawPath(poly([(hx - hr * 0.6, hy - hr * 0.75), (hx + hr * 0.2, hy - hr * 1.3),
+                             (hx + hr * 0.9, hy - hr * 0.6)]), P(hair))
+        if st == "side":
+            c.drawPath(poly([(hx - hr * 0.95, hy - hr * 0.3), (hx - hr * 0.2, hy - hr * 0.62),
+                             (hx + hr * 0.95, hy - hr * 0.3), (hx + hr, hy - hr * 0.7), (hx - hr, hy - hr * 0.7)]),
+                       P(hair))
+        if st in ("pony", "long", "bun"):
+            # side locks framing the face
+            rrect(c, hx - hr - 4, hy - hr * 0.6, 16, hr * (1.25 if st == "long" else 0.7), 8, hair)
+            rrect(c, hx + hr - 12, hy - hr * 0.6, 16, hr * (1.25 if st == "long" else 0.7), 8, hair)
+        if st == "pony":
+            line(c, hx - hr * 0.9, hy - hr * 0.1, hx - hr * 0.75, hy - hr * 0.55, o.get("band", AMBER), 9)
+    elif st == "afro":
+        c.save()
+        c.clipRect(skia.Rect(hx - hr * 1.4, hy - hr * 1.5, hx + hr * 1.4, hy - hr * 0.52))
+        c.drawCircle(hx, hy - 10, hr * 1.28, P(hair))
+        c.restore()
+    skin_face(c, hx, hy + 6, hr, lk, expr, t, look, talk, seed * 1.3)
+    if lk.get("glasses"):
+        for sx in (-1, 1):
+            c.drawCircle(hx + sx * 17 + look[0] * 7, hy + 4, 15, P("#2a2a2a", 3.5))
+        line(c, hx - 3, hy + 2, hx + 3, hy + 2, "#2a2a2a", 3)
+
+
+def _circle_path(x, y, r):
+    p = skia.Path()
+    p.addCircle(x, y, r)
+    return p
+
+
 def person(c, x, y, who="buyer", pose="stand", expr="smile", t=0.0, s=1.0, look=(0, 0), talk=0.0,
            walk=0.0, flip=False, sweat=0.0, breathe=True, prop=None, seed=0.0):
-    """Black-head character. (x, y) = point between the feet."""
+    """Flat cartoon character with a skin-tone face. (x, y) = point between the feet."""
     o = OUTFITS[who]
     la, ra, ll, rl = POSES[pose]
     if walk:
@@ -493,43 +657,32 @@ def person(c, x, y, who="buyer", pose="stand", expr="smile", t=0.0, s=1.0, look=
                 c.drawRect(skia.Rect(-60, hip - 34, 60, hip - 20), P(top2))
         c.restore()
         # neck + head
-        c.drawRect(skia.Rect(-10, sh - 30, 10, sh), P(HEAD))
+        lk = LOOKS[who]
+        c.drawRect(skia.Rect(-11, sh - 34, 11, sh + 2), P(mixhex(lk["skin"], "#000000", 0.12)))
         hx, hy, hr = 0, sh - 72, 50
-        if o.get("pony"):
-            c.drawOval(skia.Rect(hx - 74, hy - 20, hx - 30, hy + 60), P(o["pony"]))
-        c.drawCircle(hx, hy, hr, P(HEAD))
-        c.drawCircle(hx - 14, hy - 18, hr * 0.62, P("#ffffff", a=0.04))
-        if o.get("pony"):
-            pth = skia.Path()
-            pth.addArc(skia.Rect(hx - hr, hy - hr, hx + hr, hy + hr), 190, 160)
-            c.drawPath(pth, P(o["pony"], 18))
-            line(c, hx - 46, hy - 6, hx - 40, hy - 26, o.get("band", AMBER), 10)
+        skin_head(c, hx, hy, hr, lk, o, expr, t, look, talk, seed, back=True)
+        skin_head(c, hx, hy, hr, lk, o, expr, t, look, talk, seed)
         if o.get("cap"):
-            c.drawPath(_cap_path(hx, hy, hr), P(o["cap"]))
-            rrect(c, hx + 10, hy - hr * 0.55, 70, 14, 7, mixhex(o["cap"], "#000000", 0.25))
+            c.drawPath(_cap_path(hx, hy - 22, hr), P(o["cap"]))
+            rrect(c, hx + 10, hy - hr * 0.9, 70, 14, 7, mixhex(o["cap"], "#000000", 0.25))
         if o.get("beanie"):
             pth = skia.Path()
-            pth.addArc(skia.Rect(hx - hr - 2, hy - hr - 6, hx + hr + 2, hy + hr), 180, 180)
+            pth.addArc(skia.Rect(hx - hr - 2, hy - hr - 22, hx + hr + 2, hy + hr - 22), 180, 180)
             pth.close()
             c.drawPath(pth, P(o["beanie"]))
-            rrect(c, hx - hr - 4, hy - 22, hr * 2 + 8, 20, 8, mixhex(o["beanie"], "#000000", 0.2))
-            c.drawCircle(hx, hy - hr - 6, 12, P(o["beanie"]))
-        face(c, hx, hy + 6, hr, expr, t, look, talk, seed * 1.3)
-        if o.get("glasses"):
-            for sx in (-1, 1):
-                c.drawCircle(hx + sx * 18 + look[0] * 6, hy + 2, 16, P(CREAM, 3.5))
-            line(c, hx - 3, hy, hx + 3, hy, CREAM, 3)
+            rrect(c, hx - hr - 4, hy - 42, hr * 2 + 8, 20, 8, mixhex(o["beanie"], "#000000", 0.2))
+            c.drawCircle(hx, hy - hr - 22, 12, P(o["beanie"]))
         if sweat > 0:
             d = (t * 1.4) % 1.0
             c.drawCircle(hx + 52, hy - 20 + d * 40, 7, P("#9fe3ff", a=sweat * (1 - d)))
         # arms (on top of torso)
         for side, (a1, a2) in ((-1, la), (1, ra)):
-            hx3, hy3 = _limb(c, side * 50, sh + 8, a1, a2, 74, 70, 24, top)
+            hx3, hy3 = _limb(c, side * 50, sh + 8, a1, a2, 74, 70, 24, top, endc=lk["skin"])
             if prop and side == 1:
                 prop(c, hx3, hy3)
         if pose == "thumbs":
             hx3, hy3 = _seg(*_seg(50, sh + 8, ra[0], 74), ra[0] + ra[1], 70)
-            rrect(c, hx3 - 6, hy3 - 34, 12, 28, 6, HEAD)
+            rrect(c, hx3 - 6, hy3 - 34, 12, 28, 6, lk["skin"])
 
 
 def _cap_path(hx, hy, hr):
@@ -1005,8 +1158,8 @@ def bed_scene(c, x, y, s=1.0, t=0.0, eyes_open=True):
         rrect(c, -400, -260, 40, 300, 12, "#6a4e3a")
         rrect(c, -360, -140, 720, 70, 20, "#eef0f6")
         rrect(c, -340, -200, 170, 70, 30, "#ffffff")
-        c.drawCircle(-250, -205, 52, P(HEAD))
-        face(c, -250, -200, 52, "worried" if eyes_open else "neutral", t, look=(0.6, -0.6))
+        skin_head(c, -250, -205, 52, LOOKS["buyer"], OUTFITS["buyer"], "worried" if eyes_open else "happy", t,
+                  (0.6, -0.6), 0, 0)
         pth = skia.Path()
         pth.moveTo(-200, -150)
         pth.cubicTo(-50, -200, 200, -190, 370, -150)
