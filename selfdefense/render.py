@@ -10,7 +10,7 @@ import numpy as np, cv2, skia
 
 import kit
 from kit import W, H, GOLD, RED, xf, rrect, text, brush_bar, kicker, clamp, ease_out, at, window, glow, fill_shader, linear, rect, P, C
-import scenes
+import scenes2 as scenes
 import avatar as av
 
 FPS = av.FPS

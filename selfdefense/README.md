@@ -1,4 +1,4 @@
-# Self-defense video – avatar lip-sync + code-made B-roll
+# "Why Attackers Never Touch a Woman Who Does This (Yakuza Secret)"
 
 Sab kuch code se bana hai: voice (offline Kokoro TTS), avatar lip-sync (photo warp, no AI model),
 B-roll motion graphics (skia), music + SFX (numpy synth).
@@ -9,10 +9,9 @@ B-roll motion graphics (skia), music + SFX (numpy synth).
 | `tts.py` | script -> `build/voice.wav` + `timeline.json` (sentence/word timings) |
 | `avatar.py` | Lip-sync: voice energy/spectrum -> jaw open, lip width, blinks, head nods; `assets/avatar.jpg` warp |
 | `kit.py` | Drawing kit: silhouettes, anatomy, X-ray hand (27 bones), skull, titles, stamps, kickers |
-| `scenes.py` | ~45 B-roll scenes + `SHOTS` list (A = avatar, S = split, P = scene + PiP avatar, B = full B-roll) |
+| `scenes.py` / `scenes2.py` | ~45 B-roll scenes + `SHOTS` list (A = avatar, S = split, P = scene + PiP avatar, B = full B-roll) |
 | `render.py` | Frames render (4 parallel workers) |
 | `audio.py` | Music (drone + koto + taiko) + SFX on scene cues, ducked under voice |
-| `captions_en.srt` | YouTube subtitles |
 
 ## Re-build
 ```

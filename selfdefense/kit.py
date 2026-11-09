@@ -524,3 +524,115 @@ def sakura(c, w, h, t, n=26, a=0.8):
         x = (x0 + t * sp * 0.6 + math.sin(t + i) * 30) % w; y = (y0 + t * sp) % h
         with xf(c, x, y, rot=t * 60 + i * 30):
             c.drawOval(skia.Rect(-9, -5, 9, 5), P("#f7b6c8", a=a))
+
+
+def woman(c, x, y, s=1.0, pose="stand", t=0.0, color="#121212", rim=None, a=1.0, bag=True, cane=False, walk=0.0, head_down=0.0, glow_head=None):
+    """Front-facing senior woman silhouette: bun, long coat, handbag, optional cane.
+    pose: stand | walk | hands_up | cane_up | phone | point_light"""
+    with xf(c, x, y, s=s, alpha=a):
+        br = math.sin(t * 2.0) * 3
+        hy = -800 + br + head_down * 40
+        def body(col, off=0.0):
+            o = off / 2
+            ph = math.sin(walk * 7) * 30 if walk else 0
+            # legs
+            capsule(c, -38, -260, -42 + ph * 0.3, -10 + max(0, ph) * 0.3, 52 + off, col)
+            capsule(c, 38, -260, 42 - ph * 0.3, -10 + max(0, -ph) * 0.3, 52 + off, col)
+            c.drawOval(skia.Rect(-80 - o, -30 - o, -10 + o, 5 + o), P(col)); c.drawOval(skia.Rect(10 - o, -30 - o, 80 + o, 5 + o), P(col))
+            # coat
+            cp = skia.Path(); cp.moveTo(-60 - o, -690 + br - o); cp.lineTo(60 + o, -690 + br - o)
+            cp.quadTo(118 + o, -680 + br, 122 + o, -610 + br)
+            cp.lineTo(150 + o, -240); cp.quadTo(0, -215 - o, -150 - o, -240)
+            cp.lineTo(-122 - o, -610 + br); cp.quadTo(-118 - o, -680 + br, -60 - o, -690 + br); cp.close()
+            c.drawPath(cp, P(col))
+            # neck + head + bun
+            capsule(c, 0, -690 + br, 0, hy + 40, 46 + off, col)
+            c.drawOval(skia.Rect(-52 - o, hy - 64 - o, 52 + o, hy + 64 + o), P(col))
+            c.drawCircle(0, hy - 72, 30 + o, P(col))
+            aw = 40 + off
+            if pose == "hands_up":
+                for sg in (-1, 1):
+                    capsule(c, sg * 105, -640 + br, sg * 150, -520, aw, col)
+                    capsule(c, sg * 150, -520, sg * 115, -760, aw * 0.9, col)
+                    rrect(c, sg * 115 - 30 - o, -850 - o, 60 + off, 95 + off, 24, col)
+            elif pose == "cane_up":
+                capsule(c, -105, -640 + br, -140, -470, aw, col); capsule(c, -140, -470, -60, -420, aw * 0.9, col)
+                capsule(c, 105, -640 + br, 140, -470, aw, col); capsule(c, 140, -470, 60, -420, aw * 0.9, col)
+                line(c, -260, -330, 260, -520, col, 18 + off)
+            elif pose == "phone":
+                for sg in (-1, 1):
+                    capsule(c, sg * 105, -640 + br, sg * 120, -450, aw, col)
+                    capsule(c, sg * 120, -450, sg * 25, -520, aw * 0.9, col)
+                rrect(c, -30, -580, 60, 90, 10, col)
+            elif pose == "point_light":
+                capsule(c, -105, -640 + br, -125, -400, aw, col); capsule(c, -125, -400, -120, -260, aw * 0.9, col)
+                capsule(c, 105, -640 + br, 230, -620, aw, col); capsule(c, 230, -620, 370, -640, aw * 0.9, col)
+            else:
+                sw_ = math.sin(walk * 7) * 0.25 if walk else 0
+                for sg in (-1, 1):
+                    capsule(c, sg * 105, -640 + br, sg * (130 + 40 * sw_ * sg), -420, aw, col)
+                    capsule(c, sg * (130 + 40 * sw_ * sg), -420, sg * 125, -290, aw * 0.9, col)
+                if cane:
+                    line(c, 135, -300, 175, 0, col, 16 + off)
+            if bag and pose not in ("hands_up",):
+                rrect(c, -205 - o, -440 - o, 110 + off, 95 + off, 16, col)
+                c.drawArc(skia.Rect(-190, -500, -110, -400), 180, 180, False, P(col, 10 + off))
+        if rim:
+            body(rim, 10)
+        body(color)
+        if glow_head:
+            glow(c, 0, hy, 160, glow_head, 0.5)
+
+
+def icon(c, kind, x, y, s, color="#ffffff", t=0.0, a=1.0):
+    """Simple line icons: keys eye light alarm space voice mind time noise phone bag headphones"""
+    with xf(c, x, y, s=s, alpha=a):
+        st = lambda w=8: P(color, w)
+        if kind == "keys":
+            c.drawCircle(-30, -20, 28, st()); line(c, -10, 0, 50, 60, color, 10); line(c, 35, 45, 50, 30, color, 8); line(c, 45, 55, 60, 40, color, 8)
+        elif kind == "eye":
+            p = skia.Path(); p.moveTo(-60, 0); p.quadTo(0, -55, 60, 0); p.quadTo(0, 55, -60, 0); c.drawPath(p, st()); c.drawCircle(0, 0, 18, P(color))
+        elif kind == "light":
+            rrect(c, -18, -10, 36, 70, 8, color); c.drawPath(poly([(-28, -10), (28, -10), (40, -40), (-40, -40)]), P(color))
+            for k in (-1, 0, 1): line(c, k * 30, -55, k * 55, -90, color, 6)
+        elif kind == "alarm":
+            rrect(c, -30, -40, 60, 80, 20, color); c.drawCircle(0, -55, 14, st(6))
+            for r in (55, 80): c.drawArc(skia.Rect(-r, -r, r, r), -40, 80, False, st(6)); c.drawArc(skia.Rect(-r, -r, r, r), 140, 80, False, st(6))
+        elif kind == "space":
+            line(c, -60, 0, 60, 0, color, 8); c.drawPath(poly([(-70, 0), (-45, -18), (-45, 18)]), P(color)); c.drawPath(poly([(70, 0), (45, -18), (45, 18)]), P(color))
+            line(c, -75, -40, -75, 40, color, 8); line(c, 75, -40, 75, 40, color, 8)
+        elif kind == "voice":
+            c.drawPath(poly([(-55, -20), (-25, -20), (15, -50), (15, 50), (-25, 20), (-55, 20)]), P(color))
+            for r in (35, 60): c.drawArc(skia.Rect(15 - r, -r, 15 + r, r), -45, 90, False, st(7))
+        elif kind == "mind":
+            c.drawCircle(0, 0, 55, st()); c.drawCircle(0, 0, 30, st(6)); c.drawCircle(0, 0, 8, P(color))
+        elif kind == "time":
+            c.drawPath(poly([(-40, -55), (40, -55), (0, 0)]), st(7)); c.drawPath(poly([(-40, 55), (40, 55), (0, 0)]), st(7))
+            c.drawPath(poly([(-22, 52), (22, 52), (0, 25 + 20 * ((t * 0.5) % 1))]), P(color))
+        elif kind == "noise":
+            icon(c, "voice", 0, 0, 1, color, t)
+        elif kind == "phone":
+            rrect(c, -30, -55, 60, 110, 12, color, stroke=8); c.drawCircle(0, 40, 6, P(color))
+        elif kind == "bag":
+            rrect(c, -50, -20, 100, 75, 14, color, stroke=8); c.drawArc(skia.Rect(-30, -55, 30, 10), 180, 180, False, st(7))
+        elif kind == "headphones":
+            c.drawArc(skia.Rect(-50, -60, 50, 40), 180, 180, False, st(9)); rrect(c, -62, -10, 26, 50, 10, color); rrect(c, 36, -10, 26, 50, 10, color)
+
+
+def sound_rings(c, x, y, t, color="#ffffff", n=4, rmax=320, a=0.8, speed=1.2):
+    for i in range(n):
+        ph = ((t * speed) + i / n) % 1
+        c.drawCircle(x, y, 30 + ph * rmax, P(color, 8 * (1 - ph) + 1, a * (1 - ph)))
+
+
+def car_side(c, x, y, s=1.0, color="#2a2f36", lights=0.0, t=0.0):
+    with xf(c, x, y, s=s):
+        rrect(c, -230, -90, 460, 90, 30, color)
+        c.drawPath(poly([(-140, -90), (-90, -160), (110, -160), (170, -90)]), P(color))
+        c.drawPath(poly([(-125, -95), (-85, -148), (5, -148), (5, -95)]), P("#6f8fa8", a=0.5))
+        c.drawPath(poly([(15, -95), (15, -148), (100, -148), (150, -95)]), P("#6f8fa8", a=0.5))
+        for wx in (-140, 140):
+            c.drawCircle(wx, 0, 45, P("#0c0c0c")); c.drawCircle(wx, 0, 20, P("#777777"))
+        if lights > 0:
+            glow(c, 225, -55, 160, "#ffd27a", 0.7 * lights); glow(c, -225, -55, 120, RED, 0.7 * lights)
+            rect(c, 215, -70, 18, 26, "#fff2c0", lights); rect(c, -233, -70, 18, 26, RED, lights)

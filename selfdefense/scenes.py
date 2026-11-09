@@ -817,7 +817,7 @@ def homework(c, t, d, w, h, S):
     c.restore()
 
 
-def endcard(c, t, d, w, h, S):
+def endcard(c, t, d, w, h, S, nxt=("THE NOODLE COOK", "VS MY BIGGEST ENFORCER")):
     fill_shader(c, skia.Rect(0, 0, w, h), radial(w / 2, h / 2, max(w, h) * 0.7, ["#1d1612", "#040302"]))
     koi_wave(c, w, h, t, 0.12, RED)
     c.save(); stage(c, w, h)
@@ -835,8 +835,8 @@ def endcard(c, t, d, w, h, S):
             rrect(c, -340, -170, 680, 340, 20, "#0e0c0b"); rrect(c, -340, -170, 680, 340, 20, GOLD, stroke=5)
             c.drawPath(poly([(-30, -40), (40, 0), (-30, 40)]), P("#ffffff", a=0.9))
             text(c, "WATCH NEXT", 0, -100, 34, GOLD)
-            text(c, "THE NOODLE COOK", 0, 100, 44, "#ffffff")
-            text(c, "VS MY BIGGEST ENFORCER", 0, 145, 32, DIM)
+            text(c, nxt[0], 0, 100, 44, "#ffffff")
+            text(c, nxt[1], 0, 145, 32, DIM)
     if S(222) > -50:
         kicker(c, t, S(222), d + 1, "LOCK YOUR DOOR.", 540, 880, 64, bar=None)
     if S(223) > -50:
