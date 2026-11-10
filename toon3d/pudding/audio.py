@@ -139,7 +139,7 @@ cab = filt(noise(DUR), 80, 420) * np.clip((np.arange(N) / SR - A(20)) / 0.8, 0, 
 env = np.abs(voice); k = int(0.08 * SR); env = np.convolve(env, np.ones(k) / k, 'same'); env = np.clip(env / 0.12, 0, 1)
 duck = 1 - 0.3 * env
 fade = np.clip((DUR - np.arange(N) / SR) / 0.5, 0, 1)
-mus = np.stack([filt(M.L, 35, 9000), filt(M.R, 35, 9000)], 1) * 0.24 * duck[:, None]
+mus = np.stack([filt(M.L, 35, 9000), filt(M.R, 35, 9000)], 1) * 0.048 * duck[:, None]
 sfx = np.stack([filt(X.L, 35, 9500), filt(X.R, 35, 9500)], 1) * 0.85
 v = np.stack([voice, voice], 1) * 0.95
 mix = np.tanh((v + mus + sfx) * 1.55) * 0.95 * fade[:, None]
