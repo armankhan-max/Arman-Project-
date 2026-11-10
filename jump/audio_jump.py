@@ -144,9 +144,9 @@ def main():
     env = envelope(voice)
     env = env / (np.percentile(env, 95) + 1e-9)
     duck = lp(1.0 - 0.55 * np.clip(env, 0, 1), 6, 1)
-    music *= (0.30 * duck)[:, None]
-    fx = norm(fx, 0.5)
-    amb = norm(amb, 0.2)
+    music *= (0.24 * duck)[:, None]
+    fx = norm(fx, 0.28)
+    amb = norm(amb, 0.14)
     v = voice / (np.max(np.abs(voice)) or 1.0) * 0.92
     mix = np.stack([v, v], axis=1) + music + fx + amb
     mix = np.tanh(mix * 1.1) / np.tanh(1.1)
