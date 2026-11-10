@@ -7,7 +7,7 @@ const arg = (k, d) => { const i = process.argv.indexOf('--' + k); return i > 0 ?
 const root = path.dirname(new URL(import.meta.url).pathname);
 const outDir = arg('out', 'frames'), scale = parseFloat(arg('scale', '1')), jobs = parseInt(arg('jobs', '4'));
 fs.mkdirSync(outDir, { recursive: true });
-const mime = { '.html': 'text/html', '.js': 'text/javascript', '.mjs': 'text/javascript' };
+const mime = { '.html': 'text/html', '.js': 'text/javascript', '.mjs': 'text/javascript', '.json': 'application/json' };
 const srv = http.createServer((q, r) => {
   const f = path.join(root, decodeURIComponent(q.url.split('?')[0]).replace(/^\/$/, '/index.html'));
   fs.readFile(f, (e, d) => { if (e) { r.writeHead(404); r.end(); } else { r.writeHead(200, { 'content-type': mime[path.extname(f)] || 'application/octet-stream' }); r.end(d); } });
@@ -19,8 +19,8 @@ async function worker(list) {
   const page = await browser.newPage({ viewport: { width: W, height: H } });
   page.setDefaultTimeout(0);
   page.on('pageerror', e => console.error('PAGE ERROR', e.message)); page.on('console', m => { if (m.type() === 'error') console.error('console:', m.text()); });
-  await page.goto(`http://localhost:${port}/?scale=${scale}`);
-  await page.waitForFunction('window.READY'); await page.evaluate('window.READY');
+  await page.goto(`http://localhost:${port}/?scale=${scale}&v=${arg('v', 'pudding')}`);
+  await page.waitForFunction('window.READY', null, { timeout: 60000 }); await page.evaluate('window.READY');
   for (const [name, t] of list) {
     if (fs.existsSync(path.join(outDir, name))) continue;
     await page.evaluate(t => window.renderFrame(t), t);
@@ -31,7 +31,7 @@ async function worker(list) {
 let list = [];
 if (arg('times')) list = arg('times').split(',').map(s => [`t_${(+s).toFixed(2).padStart(5, '0')}.jpg`, +s]);
 else {
-  const fps = 30, a = parseFloat(arg('from', '0')), b = parseFloat(arg('to', '20.5'));
+  const fps = 30, a = parseFloat(arg('from', '0')), b = parseFloat(arg('to', '55.02'));
   for (let f = Math.round(a * fps); f < Math.round(b * fps); f++) list.push([`f_${String(f).padStart(5, '0')}.jpg`, f / fps]);
 }
 const t0 = Date.now();
