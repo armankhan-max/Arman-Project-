@@ -27,7 +27,7 @@ export const Root: React.FC = () => {
         width={WIDTH}
         height={HEIGHT}
       />
-      <Composition id="CoinStory" component={CoinStory} durationInFrames={1279} fps={24} width={1080} height={1920} />
+      <Composition id="CoinStory" component={CoinStory} durationInFrames={1279} fps={24} width={720} height={1280} />
     </>
   );
 };

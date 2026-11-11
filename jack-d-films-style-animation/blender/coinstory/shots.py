@@ -1100,6 +1100,19 @@ def main():
             s.frame_set(f)
             s.render.filepath = os.path.join(ROOT, "work", "prev", f"{shot}_{f:04d}.jpg")
             bpy.ops.render.render(write_still=True)
+    elif "--handles" in a:
+        # extra real frames before frame 1 and after frame n, so transitions have footage to blend
+        h = get("--handles", 6)
+        out = os.path.join(ROOT, "work", "handles", shot)
+        os.makedirs(out, exist_ok=True)
+        jobs = [(1 - h + i, f"pre_{i + 1:02d}.jpg") for i in range(h)] + [(n + 1 + i, f"post_{i + 1:02d}.jpg") for i in range(h)]
+        for f, name in jobs:
+            path = os.path.join(out, name)
+            if os.path.exists(path):
+                continue
+            s.frame_set(f)
+            s.render.filepath = path
+            bpy.ops.render.render(write_still=True)
     else:
         out = os.path.join(ROOT, "work", "frames", shot)
         os.makedirs(out, exist_ok=True)
