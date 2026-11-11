@@ -6,7 +6,8 @@
     "studio": "remotion studio",
     "render": "remotion render",
     "still": "remotion still",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "blender": "blender -b --python"
   },
   "keywords": [],
   "author": "",
