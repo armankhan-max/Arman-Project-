@@ -218,33 +218,63 @@ def robe_mat(color, rough=0.75):
     return P.add_noise(P.M("robe", color, rough=rough), scale=90, bump=0.25)
 
 
+def recolor(rig, key, sat=1.0, val=1.0, mul=None):
+    """Re-tint textured clothing whose object name contains `key` (keeps fabric detail)."""
+    for o in rig.children_recursive:
+        if o.type != "MESH" or key not in o.name:
+            continue
+        for sl in o.material_slots:
+            m = sl.material.copy()
+            sl.material = m
+            nt = m.node_tree
+            for nd in nt.nodes:
+                if nd.type != "BSDF_PRINCIPLED" or not nd.inputs["Base Color"].links:
+                    continue
+                src = nd.inputs["Base Color"].links[0].from_socket
+                hs = nt.nodes.new("ShaderNodeHueSaturation")
+                hs.inputs["Saturation"].default_value = sat
+                hs.inputs["Value"].default_value = val
+                nt.links.new(src, hs.inputs["Color"])
+                out = hs.outputs["Color"]
+                if mul:
+                    mx = nt.nodes.new("ShaderNodeMix")
+                    mx.data_type = "RGBA"; mx.blend_type = "MULTIPLY"; mx.inputs[0].default_value = 1.0
+                    nt.links.new(out, mx.inputs[6]); mx.inputs[7].default_value = (*mul, 1)
+                    out = mx.outputs[2]
+                nt.links.new(out, nd.inputs["Base Color"])
+
+
 def make_dead(name="dead"):
-    rig, body, parts = C.make_human(name, skin="young_caucasian_male", hair="short02")
-    C.garment_from_helpers(body, rig, name + ".tunic", robe_mat((0.92, 0.9, 0.82)))
+    rig, body, parts = C.make_human(name, skin="young_caucasian_male", hair="short02", clothes=["donitz_monk_robe"])
+    recolor(rig, "monk_robe", sat=0.0, val=5.0, mul=(1.0, 0.97, 0.9))
     return rig
 
 
 def make_kin(name="kin", color=(0.85, 0.08, 0.06), skin="middleage_caucasian_male"):
-    rig, body, parts = C.make_human(name, skin=skin, hair="short04")
-    C.garment_from_helpers(body, rig, name + ".robe", robe_mat(color), sleeves="long")
+    rig, body, parts = C.make_human(name, skin=skin, hair="short04",
+                                    clothes=["donitz_monk_robe", "donitz_monk_robe_hood_down", "toigo_mj_cloth_shoes"])
+    recolor(rig, "monk_robe", sat=0.0, val=4.5, mul=color)
     return rig
 
 
 PEOPLE = [
-    ("young_asian_male", "short01", (0.95, 0.55, 0.05)), ("middleage_asian_female", "bob01", (0.1, 0.45, 0.9)),
-    ("young_asian_female", "long01", (0.9, 0.1, 0.45)), ("middleage_asian_male", "short03", (0.1, 0.65, 0.3)),
-    ("old_asian_male", "short04", (0.55, 0.15, 0.8)), ("young_asian_female", "ponytail01", (0.95, 0.85, 0.1)),
+    ("young_asian_female", "toigo_blunt_bob_with_bangs", (0.1, 0.45, 0.95)), ("middleage_asian_male", "short03", (0.95, 0.6, 0.05)),
+    ("old_asian_male", "short04", (0.55, 0.15, 0.8)),
 ]
 GREEKS = [
     ("young_caucasian_female", "long01", (0.15, 0.4, 0.9)), ("middleage_caucasian_male", "short04", (0.85, 0.2, 0.15)),
-    ("young_caucasian_female2", "braid01", (0.95, 0.7, 0.1)), ("old_caucasian_male", "short03", (0.5, 0.2, 0.75)),
 ]
 
 
 def mourner(i, spec, loc, face_deg, mode="clasp"):
     skin, hair, color = spec
-    rig, body, parts = C.make_human(f"p{i}", skin=skin, hair=hair)
-    C.garment_from_helpers(body, rig, f"p{i}.robe", robe_mat(color, rough=0.55), sleeves="long")
+    if "female" in skin:
+        rig, body, parts = C.make_human(f"p{i}", skin=skin, hair=hair,
+                                        clothes=["toigo_long_full_skirt", "toigo_turtleneck_halter_top", "toigo_ballet_flats"])
+    else:
+        rig, body, parts = C.make_human(f"p{i}", skin=skin, hair=hair,
+                                        clothes=["donitz_monk_robe", "donitz_monk_robe_hood_down", "toigo_mj_cloth_shoes"])
+        recolor(rig, "monk_robe", sat=0.0, val=4.5, mul=color)
     C.legs_together(rig)
     if mode == "clasp":
         C.reach(rig, "L", (0.04, -0.2, 1.0), pole=(1, 0.3, -0.4)); C.reach(rig, "R", (-0.04, -0.21, 1.0), pole=(-1, 0.3, -0.4))
@@ -261,24 +291,9 @@ def mourner(i, spec, loc, face_deg, mode="clasp"):
 
 
 def make_charon():
-    rig, body, parts = C.make_human("charon", skin="old_caucasian_male", hair=None)
-    C.garment_from_helpers(body, rig, "charon.robe", robe_mat((0.03, 0.03, 0.05)), sleeves="long", offset=0.03)
-    hc = C.head_center(rig)
-    import bmesh
-    bm = bmesh.new()
-    bmesh.ops.create_uvsphere(bm, u_segments=28, v_segments=18, radius=0.165)
-    for v in bm.verts:
-        v.co.z *= 1.25
-        if v.co.z < 0:
-            v.co.x *= 1.0 + (-v.co.z) * 2.2
-            v.co.y *= 1.0 + (-v.co.z) * 1.2
-            v.co.z *= 1.5
-    bmesh.ops.bisect_plane(bm, geom=bm.verts[:] + bm.edges[:] + bm.faces[:], plane_co=(0, -0.085, 0),
-                           plane_no=(0, -1, 0.15), clear_outer=True)
-    hood = P.from_bm("hood", bm, robe_mat((0.03, 0.03, 0.05)), smooth=True, loc=hc + Vector((0, 0.03, 0.03)))
-    s = hood.modifiers.new("sol", "SOLIDIFY")
-    s.thickness = 0.012
-    C.attach(hood, rig, "head")
+    rig, body, parts = C.make_human("charon", skin="old_caucasian_male", hair=None,
+                                    clothes=["donitz_monk_robe", "donitz_monk_robe_hood"])
+    recolor(rig, "monk_robe", sat=0.4, val=0.3, mul=(0.7, 0.75, 1.0))
     eye_m = P.M("ceye", (0.6, 1, 0.7), emit=(0.5, 1.0, 0.6), es=5)
     for sd in "LR":
         e = P.sphere("ceye", 0.012, C.bone_world(rig, f"eye.{sd}") + Vector((0, -0.028, 0)), eye_m, subdiv=2)
@@ -313,23 +328,10 @@ def stripe_mat():
 
 
 def make_thief(name="thief"):
-    import bmesh
-    rig, body, parts = C.make_human(name, skin="young_caucasian_male2", hair=None)
-    C.garment_from_helpers(body, rig, name + ".suit", stripe_mat(), sleeves="long", skirt=False, legs=True, offset=0.01)
-    hc = C.head_center(rig)
-    bm = bmesh.new()
-    bmesh.ops.create_uvsphere(bm, u_segments=28, v_segments=16, radius=0.118)
-    bmesh.ops.bisect_plane(bm, geom=bm.verts[:] + bm.edges[:] + bm.faces[:], plane_co=(0, 0, 0.0), plane_no=(0, 0.35, -1),
-                           clear_outer=True)
-    beanie = P.from_bm(name + "_beanie", bm, robe_mat((0.02, 0.02, 0.03)), smooth=True, loc=hc + Vector((0, 0.015, 0.04)))
-    beanie.scale = (1, 1.12, 1.05)
-    s = beanie.modifiers.new("sol", "SOLIDIFY"); s.thickness = 0.012
-    C.attach(beanie, rig, "head")
-    bm = bmesh.new()
-    bmesh.ops.create_cone(bm, cap_ends=False, segments=28, radius1=0.098, radius2=0.108, depth=0.11)
-    band = P.from_bm(name + "_mask", bm, robe_mat((0.02, 0.02, 0.03)), smooth=True, loc=hc + Vector((0, -0.012, -0.075)))
-    band.scale = (0.9, 1.12, 1)
-    C.attach(band, rig, "head")
+    rig, body, parts = C.make_human(name, skin="young_caucasian_male2", hair=None,
+                                    clothes=["male_casualsuit04", "culturalibre_hero_mask_1", "jujube_newsboy_cap", "shoes02"])
+    recolor(rig, "casualsuit", sat=0.5, val=0.45)
+    recolor(rig, "newsboy", sat=0.0, val=0.12)
     return rig
 
 
@@ -397,8 +399,8 @@ def graveyard(night=False, pits=((0, 0),), closed=(), greek=True, seed=2):
         P.column("ruin2", (6.2, 9, 0))
     if night:
         world((0.25, 0.12, 0.55), (0.01, 0.03, 0.3), ground=(0.02, 0.08, 0.2), strength=1.0)
-        sun((55, 0, -150), 2.2, (0.45, 0.7, 1.0), angle=6)
-        sun((62, 0, 40), 1.0, (0.8, 0.4, 1.0), angle=20)
+        sun((55, 0, -150), 3.4, (0.5, 0.75, 1.0), angle=6)
+        sun((62, 0, 40), 1.8, (0.85, 0.5, 1.0), angle=20)
         moon = P.sphere("moon", 3.2, (-14, 80, 34), P.M("moon", (1, 1, 0.9), emit=(0.9, 0.95, 1.0), es=1.6), subdiv=3)
         moon.visible_shadow = False
     else:
@@ -1019,7 +1021,7 @@ SHOTS = {k: globals()["shot_" + k] for k in TIMES}
 
 def setup_render(preview, threads):
     s = bpy.context.scene
-    if os.environ.get("NOSSS", "1") == "1":
+    if os.environ.get("NOSSS", "0") == "1":
         for m in bpy.data.materials:
             if m.node_tree:
                 for nd in m.node_tree.nodes:
@@ -1027,7 +1029,7 @@ def setup_render(preview, threads):
                         nd.inputs["Subsurface Weight"].default_value = 0.0
                         for l in list(nd.inputs["Subsurface Weight"].links):
                             m.node_tree.links.remove(l)
-    eevee = os.environ.get("ENGINE", "EEVEE") == "EEVEE"
+    eevee = os.environ.get("ENGINE", "CYCLES") == "EEVEE"
     s.render.engine = "BLENDER_EEVEE" if eevee else "CYCLES"
     s.render.fps = FPS
     if eevee:
@@ -1045,7 +1047,7 @@ def setup_render(preview, threads):
                 except Exception as e:
                     print("MAT_FAIL", e)
     c = s.cycles
-    c.samples = 10 if preview or eevee else int(os.environ.get("SPP", 10))
+    c.samples = 10 if preview or eevee else int(os.environ.get("SPP", 12))
     c.use_adaptive_sampling = True
     c.adaptive_threshold = float(os.environ.get("AT", 0.08))
     c.use_denoising = os.environ.get("DN", "1") == "1"
@@ -1064,7 +1066,7 @@ def setup_render(preview, threads):
     c.caustics_refractive = False
     c.sample_clamp_indirect = 6
     s.render.use_persistent_data = True
-    s.render.resolution_x, s.render.resolution_y = (360, 640) if preview else tuple(int(v) for v in os.environ.get("RES", "540x960").split("x"))
+    s.render.resolution_x, s.render.resolution_y = (360, 640) if preview else tuple(int(v) for v in os.environ.get("RES", "720x1280").split("x"))
     s.render.resolution_percentage = 100
     s.render.image_settings.file_format = "JPEG"
     s.render.image_settings.quality = 93
