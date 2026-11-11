@@ -3,3 +3,6 @@ out/
 dist/
 .remotion/
 *.log
+work/
+public/shots/
+public/audio/sfx.wav

@@ -1,6 +1,7 @@
 import React from "react";
 import { Composition } from "remotion";
 import { BlenderTest } from "./BlenderTest";
+import { CoinStory } from "./CoinStory";
 import { SetupTest } from "./SetupTest";
 
 export const FPS = 30;
@@ -26,6 +27,7 @@ export const Root: React.FC = () => {
         width={WIDTH}
         height={HEIGHT}
       />
+      <Composition id="CoinStory" component={CoinStory} durationInFrames={1279} fps={24} width={1080} height={1920} />
     </>
   );
 };
