@@ -599,7 +599,7 @@ def shot_A(n):
                   rest_rot=(rnd.uniform(-0.15, 0.15), rnd.uniform(-0.15, 0.15), rnd.uniform(0, 3)))
     sh = P.shovel()
     sh.location = (1.3, 0.6, 1.25); sh.rotation_euler = (R(8), R(-12), 0)
-    for i, (loc, face) in enumerate((((-1.15, 0.3, 0), 90), ((-1.2, 1.3, 0), 90), ((2.0, 0.2, 0), -90), ((0.9, 3.0, 0), 0))):
+    for i, (loc, face) in enumerate((((-1.15, 0.3, 0), 90), ((-1.2, 1.3, 0), 90))):
         mourner(i, GREEKS[i], loc, face)
     camera([(1, (1.3, -2.9, 3.3), (0, 0.7, -0.3)), (55, (0.45, -0.9, 2.3), (0, 0.85, -0.5)),
             (n, (0.1, 0.62, 0.6), (0, 1.12, -0.55))], lens=19)
@@ -685,8 +685,6 @@ def shot_E1(n):
     C.open_jaw(dead, 11)
     lay_down(dead, (0, -0.15), 0.7)
     mp = mouth_pos(dead)
-    mourner(0, GREEKS[1], (0.95, 1.9, 0), -90)
-    mourner(1, GREEKS[2], (1.0, 0.9, 0), -90)
     kin = make_kin(color=(0.2, 0.3, 0.75))
     kin.rotation_euler = (0, 0, R(90)); kin.location = (-0.78, 1.2, 0)
     stand_relaxed(kin)
@@ -816,14 +814,15 @@ def shot_G1(n):
 
 
 def shot_G2(n):
-    pits = [(0, 0), (3.2, 0), (6.4, 0), (9.6, 0)]
+    pits = [(0, 0), (4.8, 0), (9.6, 0)]
     graveyard(night=True, pits=pits, closed=[(-3.2, 0), (12.8, 0)], greek=False, seed=4)
     rnd = random.Random(9)
     base = P.coin(r=0.035); base.location = (0, 0, -50)
     for i, (px, py) in enumerate(pits):
-        t = make_thief(f"thief{i}")
-        t.rotation_euler = (0, 0, R(90)); t.location = (px - 0.98, 0.7, 0)
-        dig_setup(t, phase=i * 5, n=n, period=12)
+        if i != 1:
+            t = make_thief(f"thief{i}")
+            t.rotation_euler = (0, 0, R(90)); t.location = (px - 0.98, 0.7, 0)
+            dig_setup(t, phase=i * 5, n=n, period=12)
         P.sack((px - 1.2, 1.9, 0), 0.8)
         P.lantern((px - 0.9, -0.6, 0), watts=150, pole=0.45)
         for k in range(7):
@@ -845,7 +844,7 @@ def shot_G2(n):
 
 def shot_H(n):
     china()
-    for i, (loc, face) in enumerate((((0.35, 3.55, 0), 0), ((-0.95, 3.35, 0), -25), ((1.3, 3.3, 0), 25), ((-1.9, 2.6, 0), -70))):
+    for i, (loc, face) in enumerate((((0.9, 3.45, 0), 15), ((-0.9, 3.4, 0), -20))):
         mourner(i, PEOPLE[i], loc, face)
     P.brazier((0, 2.4, 0))
     P.fire((0, 2.4, 0.72), scale=0.7, watts=110)
@@ -883,7 +882,7 @@ def shot_I(n):
 
 def shot_J(n):
     china()
-    for i, (loc, face) in enumerate((((0.35, 3.55, 0), 0), ((-0.95, 3.35, 0), -25), ((1.3, 3.3, 0), 25), ((-1.9, 2.6, 0), -70))):
+    for i, (loc, face) in enumerate((((0.9, 3.45, 0), 15), ((-0.9, 3.4, 0), -20))):
         mourner(i, PEOPLE[i], loc, face)
     P.brazier((0, 2.4, 0))
     P.fire((0, 2.4, 0.72), scale=1.0, watts=90)
@@ -952,7 +951,7 @@ def shot_L(n):
     P.fire((c[0] - 0.6, c[1] - 0.2, 0.15), scale=1.4, n=4, watts=300, seed=6)
     P.embers((c[0], c[1], 0.6), n=70, radius=0.8, height=8.0, size=0.02)
     flying_notes(c, 150, n, radius=1.0, top=11.0, rise=0.085, big=2.0)
-    for i, ang in enumerate((25, 75, 125, 175, 225)):
+    for i, ang in enumerate((60, 120, 185)):
         a = R(ang)
         mourner(i, PEOPLE[i], (c[0] + math.cos(a) * 2.9, c[1] + math.sin(a) * 2.9, 0), ang + 90, mode="up" if i % 2 else "clasp")
     camera([(1, (2.6, -9.5, 0.8), (0, -4.0, 1.0)), (45, (1.9, -8.0, 1.6), (0, -4.0, 3.0)),
@@ -1028,10 +1027,25 @@ def setup_render(preview, threads):
                         nd.inputs["Subsurface Weight"].default_value = 0.0
                         for l in list(nd.inputs["Subsurface Weight"].links):
                             m.node_tree.links.remove(l)
-    s.render.engine = "CYCLES"
+    eevee = os.environ.get("ENGINE", "EEVEE") == "EEVEE"
+    s.render.engine = "BLENDER_EEVEE" if eevee else "CYCLES"
     s.render.fps = FPS
+    if eevee:
+        ee = s.eevee
+        for k, v in (("taa_render_samples", int(os.environ.get("SPP", 16))), ("use_raytracing", os.environ.get("RT", "0") == "1"),
+                     ("use_shadows", True), ("shadow_ray_count", 1), ("shadow_step_count", 4), ("use_gtao", True)):
+            try:
+                setattr(ee, k, v)
+            except Exception as e:
+                print("EEVEE_SET_FAIL", k, e)
+        for m in bpy.data.materials:
+            if m.node_tree and any(nd.type in ("BSDF_TRANSPARENT",) or (nd.type == "BSDF_PRINCIPLED" and (nd.inputs["Alpha"].links or nd.inputs["Alpha"].default_value < 1)) for nd in m.node_tree.nodes):
+                try:
+                    m.surface_render_method = "BLENDED" if any(nd.type == "BSDF_TRANSPARENT" for nd in m.node_tree.nodes) else "DITHERED"
+                except Exception as e:
+                    print("MAT_FAIL", e)
     c = s.cycles
-    c.samples = 10 if preview else int(os.environ.get("SPP", 10))
+    c.samples = 10 if preview or eevee else int(os.environ.get("SPP", 10))
     c.use_adaptive_sampling = True
     c.adaptive_threshold = float(os.environ.get("AT", 0.08))
     c.use_denoising = os.environ.get("DN", "1") == "1"

@@ -68,7 +68,7 @@ def make_human(name, skin="young_caucasian_male", hair="short02", clothes=(), br
     return rig, body, [o for o in new if o is not rig and o is not body]
 
 
-def garment_from_helpers(body, rig, name, mat, sleeves="short", offset=0.012, skirt=True, legs=False):
+def garment_from_helpers(body, rig, name, mat, sleeves="short", offset=0.022, skirt=True, legs=False):
     """Build a robe/tunic from the base mesh's hidden helper geometry (skirt tube + upper tights)."""
     g = body.copy()
     g.data = body.data.copy()
