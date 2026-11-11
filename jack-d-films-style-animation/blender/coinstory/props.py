@@ -189,7 +189,7 @@ def mat(key):
     elif key == "sack":
         m = add_noise(M("sack", (0.62, 0.48, 0.3), rough=0.9), scale=80, bump=0.4)
     elif key == "leaf":
-        m = add_noise(M("leaf", (0.05, 0.22, 0.08), rough=0.8), scale=10, bump=0.6, color2=(0.03, 0.12, 0.05))
+        m = add_noise(M("leaf", (0.04, 0.42, 0.1), rough=0.8), scale=10, bump=0.6, color2=(0.02, 0.22, 0.06))
     elif key == "blossom":
         m = add_noise(M("blossom", (1.0, 0.55, 0.7), rough=0.7), scale=12, bump=0.5, color2=(1.0, 0.8, 0.88))
     elif key == "flame":
@@ -218,7 +218,7 @@ def flame_mat():
     mid = e.new(0.4); mid.color = (1.0, 0.25, 0.0, 1)
     nt.links.new(sep.outputs["Z"], col.inputs["Fac"])
     em = nt.nodes.new("ShaderNodeEmission")
-    em.inputs["Strength"].default_value = 3.2
+    em.inputs["Strength"].default_value = 2.2
     nt.links.new(col.outputs["Color"], em.inputs["Color"])
     tr = nt.nodes.new("ShaderNodeBsdfTransparent")
     fade = nt.nodes.new("ShaderNodeValToRGB")
@@ -284,7 +284,7 @@ def ground_mat(top, top2, scale=3.0):
 
 
 def water_mat():
-    m = M("water", (0.0, 0.05, 0.07), rough=0.04, coat=1.0)
+    m = M("water", (0.0, 0.16, 0.2), rough=0.04, coat=1.0)
     add_noise(m, scale=1.6, bump=0.35, detail=3, anim=0.02)
     return m
 

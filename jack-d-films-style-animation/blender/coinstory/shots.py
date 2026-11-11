@@ -189,7 +189,7 @@ def ghostify(rig):
                     ramp.color_ramp.elements[1].color = (0.25, 0.85, 1.0, 1)
                     m.node_tree.links.new(lw.outputs["Facing"], ramp.inputs["Fac"])
                     m.node_tree.links.new(ramp.outputs["Color"], nd.inputs["Emission Color"])
-                    nd.inputs["Emission Strength"].default_value = 0.75
+                    nd.inputs["Emission Strength"].default_value = 0.3
 
 
 # ---------------- characters ----------------
@@ -204,9 +204,39 @@ def make_dead(name="dead"):
     return rig
 
 
-def make_kin(name="kin", color=(0.75, 0.1, 0.08)):
-    rig, body, parts = C.make_human(name, skin="middleage_caucasian_male", hair="short04")
+def make_kin(name="kin", color=(0.85, 0.08, 0.06), skin="middleage_caucasian_male"):
+    rig, body, parts = C.make_human(name, skin=skin, hair="short04")
     C.garment_from_helpers(body, rig, name + ".robe", robe_mat(color), sleeves="long")
+    return rig
+
+
+PEOPLE = [
+    ("young_asian_male", "short01", (0.95, 0.55, 0.05)), ("middleage_asian_female", "bob01", (0.1, 0.45, 0.9)),
+    ("young_asian_female", "long01", (0.9, 0.1, 0.45)), ("middleage_asian_male", "short03", (0.1, 0.65, 0.3)),
+    ("old_asian_male", "short04", (0.55, 0.15, 0.8)), ("young_asian_female", "ponytail01", (0.95, 0.85, 0.1)),
+]
+GREEKS = [
+    ("young_caucasian_female", "long01", (0.15, 0.4, 0.9)), ("middleage_caucasian_male", "short04", (0.85, 0.2, 0.15)),
+    ("young_caucasian_female2", "braid01", (0.95, 0.7, 0.1)), ("old_caucasian_male", "short03", (0.5, 0.2, 0.75)),
+]
+
+
+def mourner(i, spec, loc, face_deg, mode="clasp"):
+    skin, hair, color = spec
+    rig, body, parts = C.make_human(f"p{i}", skin=skin, hair=hair)
+    C.garment_from_helpers(body, rig, f"p{i}.robe", robe_mat(color, rough=0.55), sleeves="long")
+    C.legs_together(rig)
+    if mode == "clasp":
+        C.reach(rig, "L", (0.04, -0.2, 1.0), pole=(1, 0.3, -0.4)); C.reach(rig, "R", (-0.04, -0.21, 1.0), pole=(-1, 0.3, -0.4))
+        C.aim(rig, "head", (0, -0.5, 1))
+    elif mode == "up":
+        C.pose(rig, {"upperarm01.L": (0.7, -0.2, 0.9), "lowerarm01.L": (0.2, -0.3, 1),
+                     "upperarm01.R": (-0.7, -0.2, 0.9), "lowerarm01.R": (-0.2, -0.3, 1)})
+        C.aim(rig, "head", (0, 0.2, 1))
+    else:
+        stand_relaxed(rig)
+    rig.location = loc
+    rig.rotation_euler = (0, 0, R(face_deg))
     return rig
 
 
@@ -307,7 +337,7 @@ def lay_down(rig, feet, floor_z):
 
 def graveyard(night=False, pits=((0, 0),), closed=(), greek=True, seed=2):
     rnd = random.Random(seed)
-    gm = P.ground_mat((0.1, 0.3, 0.07), (0.22, 0.4, 0.1)) if not night else P.ground_mat((0.05, 0.16, 0.08), (0.09, 0.2, 0.1))
+    gm = P.ground_mat((0.06, 0.42, 0.04), (0.2, 0.6, 0.06)) if not night else P.ground_mat((0.03, 0.3, 0.12), (0.08, 0.42, 0.16))
     ground = P.box("ground", (160, 160, 4), (0, 0, -2), gm)
     for i, (px, py) in enumerate(pits):
         cut = P.box(f"cut{i}", (1.1, 2.3, 1.5), (px, py + 0.8, 0), None)
@@ -329,7 +359,7 @@ def graveyard(night=False, pits=((0, 0),), closed=(), greek=True, seed=2):
         if abs(x) > 2.5:
             P.tombstone(f"bg{i}", (x, y, 0), h=rnd.uniform(0.7, 1.4), rot_z=rnd.uniform(-0.15, 0.15))
     for x, y, s in ((-30, 60, 22), (10, 75, 30), (45, 58, 20)):
-        h = P.sphere("hill", s, (x, y, -s * 0.55), mat("leaf") if not night else P.M("hilln", (0.02, 0.06, 0.08), rough=1), subdiv=4)
+        h = P.sphere("hill", s, (x, y, -s * 0.55), mat("leaf") if not night else P.M("hilln", (0.03, 0.12, 0.3), rough=1), subdiv=4)
     fl = [P.M(f"fl{i}", c, emit=c, es=0.4 if not night else 0.15) for i, c in enumerate(((1, 1, 1), (1, 0.85, 0.1), (1, 0.4, 0.6)))]
     fbase = [P.sphere("flower", 0.035, (0, 0, -50), m, scale=(1, 1, 0.5), subdiv=1) for m in fl]
     peb = P.sphere("pebble", 0.07, (0, 0, -50), mat("stone"), scale=(1, 0.8, 0.5), subdiv=2)
@@ -346,14 +376,14 @@ def graveyard(night=False, pits=((0, 0),), closed=(), greek=True, seed=2):
         P.column("ruin1", (4.6, 7.5, 0), broken=True)
         P.column("ruin2", (6.2, 9, 0))
     if night:
-        world((0.02, 0.06, 0.16), (0.0, 0.01, 0.05), strength=1.0)
-        sun((55, 0, -150), 1.6, (0.55, 0.7, 1.0), angle=6)
-        sun((60, 0, 40), 0.5, (0.4, 0.55, 1.0), angle=20)
+        world((0.25, 0.12, 0.55), (0.01, 0.03, 0.3), ground=(0.02, 0.08, 0.2), strength=1.0)
+        sun((55, 0, -150), 2.2, (0.45, 0.7, 1.0), angle=6)
+        sun((62, 0, 40), 1.0, (0.8, 0.4, 1.0), angle=20)
         moon = P.sphere("moon", 3.2, (-14, 80, 34), P.M("moon", (1, 1, 0.9), emit=(0.9, 0.95, 1.0), es=6), subdiv=3)
         moon.visible_shadow = False
     else:
-        world((0.5, 0.75, 1.0), (0.08, 0.34, 0.9), strength=1.1)
-        sun((16, 0, 25), 4.5, (1.0, 0.95, 0.85))
+        world((0.45, 0.78, 1.0), (0.02, 0.3, 0.95), strength=1.0)
+        sun((22, 0, 25), 3.4, (1.0, 0.93, 0.8))
     return ground
 
 
@@ -361,8 +391,8 @@ def styx(taxi=False, taxi_rot=0.0):
     """Underworld river. Returns (boat_root, boat, charon)."""
     P.box("water", (400, 400, 0.1), (0, 0, -0.05), P.water_mat())
     P.box("riverbed", (400, 400, 0.1), (0, 0, -3), mat("black"))
-    rockm = P.add_noise(P.M("rock", (0.3, 0.22, 0.42), rough=0.85), scale=1.2, bump=1.0, color2=(0.1, 0.08, 0.2))
-    dock = P.box("dock", (5.2, 6.0, 0.6), (0, -3.3, -0.15), mat("stone"), bevel=0.03)
+    rockm = P.add_noise(P.M("rock", (0.5, 0.15, 0.75), rough=0.5, emit=(0.4, 0.05, 0.8), es=0.25), scale=1.2, bump=1.0, color2=(0.1, 0.25, 0.7))
+    dock = P.box("dock", (5.2, 6.0, 0.6), (0, -3.3, -0.15), P.add_noise(P.M("dockm", (0.2, 0.22, 0.3), rough=0.7), scale=6, bump=0.5, color2=(0.12, 0.12, 0.2)), bevel=0.03)
     for x in (-2.2, 2.2):
         P.column("dc", (x, -1.0, 0.15), h=3.0, r=0.22, broken=(x > 0))
         P.column("dc2", (x, -4.2, 0.15), h=3.0, r=0.22)
@@ -378,12 +408,13 @@ def styx(taxi=False, taxi_rot=0.0):
     for x in (-3.2, 3.2):
         P.cyl("fg", 0.6, 11, (x, 62, 5.5), gm, segs=12)
     P.box("fgt", (8.6, 1.2, 1.2), (0, 62, 11.4), gm)
-    area((0, 55, 8), (0, 0, 2), 14, 60000, (0.3, 1.0, 0.6))
+    area((0, 55, 8), (0, 0, 2), 14, 22000, (0.3, 1.0, 0.6))
     area((9, 6, 6), (0, 2, 1), 6, 900, (0.6, 0.4, 1.0))
-    world((0.07, 0.2, 0.2), (0.03, 0.0, 0.08), ground=(0.0, 0.02, 0.03), strength=0.9)
-    sun((50, 0, 160), 1.3, (0.45, 0.85, 0.8), angle=10)
-    area((0, -2, 9), (0, 0, 0), 9, 1400, (0.45, 0.6, 1.0))
-    area((-6, -7, 3), (0, 0, 1.2), 4, 500, (0.9, 0.5, 1.0))
+    world((0.05, 0.55, 0.5), (0.12, 0.0, 0.3), ground=(0.0, 0.1, 0.12), strength=1.0)
+    sun((50, 0, 160), 1.8, (0.3, 1.0, 0.8), angle=10)
+    sun((60, 0, -40), 1.2, (1.0, 0.3, 0.9), angle=15)
+    area((0, -2, 9), (0, 0, 0), 9, 450, (0.45, 0.6, 1.0))
+    area((-6, -7, 3), (0, 0, 1.2), 4, 250, (0.9, 0.5, 1.0))
     # boat group, bow toward -Y
     root = P.empty("boat_root", (0, 2.6, 0))
     hull = P.boat()
@@ -415,7 +446,7 @@ def bob(root, amp=0.025):
 
 
 def china(pit=False):
-    fm = P.add_noise(P.M("floor", (0.3, 0.28, 0.27), rough=0.55), scale=2.5, bump=0.2, color2=(0.38, 0.36, 0.35))
+    fm = P.add_noise(P.M("floor", (0.55, 0.42, 0.3), rough=0.5), scale=2.5, bump=0.2, color2=(0.38, 0.36, 0.35))
     nt = fm.node_tree
     br = nt.nodes.new("ShaderNodeTexBrick")
     br.inputs["Scale"].default_value = 1.4
@@ -451,17 +482,17 @@ def china(pit=False):
     P.box("stele_red", (0.5, 0.02, 0.85), (0, 4.63, 0.72), mat("red"))
     for i, (x, y, s) in enumerate(((-5.2, 5.5, 1.2), (5.4, 7.5, 1.35), (-5.6, -6, 1.1), (5.6, -4.5, 1.2))):
         P.blossom_tree((x, y, 0), seed=i + 1, s=s)
-    mm = P.M("mnt", (0.35, 0.4, 0.62), rough=1)
-    mm2 = P.M("mnt2", (0.55, 0.52, 0.7), rough=1)
+    mm = P.M("mnt", (0.2, 0.3, 0.75), rough=1)
+    mm2 = P.M("mnt2", (0.45, 0.3, 0.7), rough=1)
     rnd = random.Random(5)
     for i in range(9):
         x = -80 + i * 20 + rnd.uniform(-5, 5)
         h = rnd.uniform(18, 38)
         m = P.cyl("mnt", rnd.uniform(16, 26), h, (x, 85 + rnd.uniform(-8, 20), h / 2 - 1), mm if i % 2 else mm2, segs=10, r2=1.0)
         P.displace(m, 4.0, 8.0)
-    world((1.0, 0.5, 0.22), (0.08, 0.16, 0.6), ground=(0.5, 0.3, 0.25), strength=0.55)
-    sun((62, 0, 125), 2.6, (1.0, 0.6, 0.32), angle=4)
-    sun((50, 0, -60), 0.3, (0.5, 0.6, 1.0), angle=20)
+    world((1.0, 0.45, 0.2), (0.1, 0.25, 0.85), ground=(0.5, 0.3, 0.25), strength=0.9)
+    sun((58, 0, 125), 2.1, (1.0, 0.7, 0.4), angle=4)
+    sun((50, 0, -60), 0.6, (0.5, 0.65, 1.0), angle=20)
     return floor
 
 
@@ -557,6 +588,8 @@ def shot_A(n):
                   rest_rot=(rnd.uniform(-0.15, 0.15), rnd.uniform(-0.15, 0.15), rnd.uniform(0, 3)))
     sh = P.shovel()
     sh.location = (1.3, 0.6, 1.25); sh.rotation_euler = (R(8), R(-12), 0)
+    for i, (loc, face) in enumerate((((-1.15, 0.3, 0), 90), ((-1.2, 1.3, 0), 90), ((2.0, 0.2, 0), -90), ((0.9, 3.0, 0), 0))):
+        mourner(i, GREEKS[i], loc, face)
     camera([(1, (1.3, -2.9, 3.3), (0, 0.7, -0.3)), (55, (0.45, -0.9, 2.3), (0, 0.85, -0.5)),
             (n, (0.1, 0.62, 0.6), (0, 1.12, -0.55))], lens=19)
 
@@ -641,6 +674,8 @@ def shot_E1(n):
     C.open_jaw(dead, 11)
     lay_down(dead, (0, -0.15), 0.7)
     mp = mouth_pos(dead)
+    mourner(0, GREEKS[1], (0.95, 1.9, 0), -90)
+    mourner(1, GREEKS[2], (1.0, 0.9, 0), -90)
     kin = make_kin(color=(0.2, 0.3, 0.75))
     kin.rotation_euler = (0, 0, R(90)); kin.location = (-0.78, 1.2, 0)
     stand_relaxed(kin)
@@ -799,9 +834,11 @@ def shot_G2(n):
 
 def shot_H(n):
     china()
+    for i, (loc, face) in enumerate((((0.35, 3.55, 0), 0), ((-0.95, 3.35, 0), -25), ((1.3, 3.3, 0), 25), ((-1.9, 2.6, 0), -70))):
+        mourner(i, PEOPLE[i], loc, face)
     P.brazier((0, 2.4, 0))
     P.fire((0, 2.4, 0.72), scale=0.7, watts=260)
-    kin = make_kin()
+    kin = make_kin(skin="middleage_asian_male")
     kin.rotation_euler = (0, 0, R(180)); kin.location = (0.0, 1.35, 0)
     stand_relaxed(kin)
     C.aim(kin, "spine03", (0, -0.2, 1)); C.aim(kin, "head", (0, -0.4, 1))
@@ -835,10 +872,12 @@ def shot_I(n):
 
 def shot_J(n):
     china()
+    for i, (loc, face) in enumerate((((0.35, 3.55, 0), 0), ((-0.95, 3.35, 0), -25), ((1.3, 3.3, 0), 25), ((-1.9, 2.6, 0), -70))):
+        mourner(i, PEOPLE[i], loc, face)
     P.brazier((0, 2.4, 0))
-    P.fire((0, 2.4, 0.72), scale=1.0, watts=420)
+    P.fire((0, 2.4, 0.72), scale=1.0, watts=180)
     P.embers((0, 2.4, 0.9), n=24, radius=0.25, height=2.4)
-    kin = make_kin()
+    kin = make_kin(skin="middleage_asian_male")
     kin.rotation_euler = (0, 0, R(90)); kin.location = (-0.82, 2.4, 0)
     C.pose(kin, {"spine03": (0, -0.2, 1)})
     C.aim(kin, "head", (0, -0.6, 1))
@@ -897,11 +936,14 @@ def shot_L(n):
     china()
     c = (0, -4.0, 0)
     note_pile(c, n=170, radius=1.1, height=0.6)
-    P.fire((c[0], c[1], 0.25), scale=2.0, n=8, watts=1500)
+    P.fire((c[0], c[1], 0.25), scale=2.0, n=8, watts=450)
     P.fire((c[0] + 0.6, c[1] + 0.3, 0.15), scale=1.3, n=4, watts=300, seed=4)
     P.fire((c[0] - 0.6, c[1] - 0.2, 0.15), scale=1.4, n=4, watts=300, seed=6)
     P.embers((c[0], c[1], 0.6), n=70, radius=0.8, height=8.0, size=0.02)
     flying_notes(c, 150, n, radius=1.0, top=11.0, rise=0.085, big=2.0)
+    for i, ang in enumerate((25, 75, 125, 175, 225)):
+        a = R(ang)
+        mourner(i, PEOPLE[i], (c[0] + math.cos(a) * 2.9, c[1] + math.sin(a) * 2.9, 0), ang + 90, mode="up" if i % 2 else "clasp")
     camera([(1, (2.6, -9.5, 0.8), (0, -4.0, 1.0)), (45, (1.9, -8.0, 1.6), (0, -4.0, 3.0)),
             (n, (0.9, -6.3, 3.4), (0, -4.0, 10.0))], lens=18)
 
@@ -1002,10 +1044,11 @@ def setup_render(preview, threads):
     s.render.image_settings.file_format = "JPEG"
     s.render.image_settings.quality = 93
     try:
-        s.view_settings.look = "AgX - Punchy"
+        s.view_settings.view_transform = "Standard"
+        s.view_settings.look = "Medium High Contrast"
     except Exception as e:
         print("LOOK_FAIL", e)
-    s.view_settings.exposure = 0.3
+    s.view_settings.exposure = float(os.environ.get("EXPO", -0.3))
     if threads:
         s.render.threads_mode = "FIXED"
         s.render.threads = threads
