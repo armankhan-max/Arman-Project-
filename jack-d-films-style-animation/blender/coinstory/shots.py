@@ -279,7 +279,7 @@ def make_charon():
     s = hood.modifiers.new("sol", "SOLIDIFY")
     s.thickness = 0.012
     C.attach(hood, rig, "head")
-    eye_m = P.M("ceye", (0.6, 1, 0.7), emit=(0.5, 1.0, 0.6), es=40)
+    eye_m = P.M("ceye", (0.6, 1, 0.7), emit=(0.5, 1.0, 0.6), es=5)
     for sd in "LR":
         e = P.sphere("ceye", 0.012, C.bone_world(rig, f"eye.{sd}") + Vector((0, -0.028, 0)), eye_m, subdiv=2)
         C.attach(e, rig, "head")
@@ -399,7 +399,7 @@ def graveyard(night=False, pits=((0, 0),), closed=(), greek=True, seed=2):
         world((0.25, 0.12, 0.55), (0.01, 0.03, 0.3), ground=(0.02, 0.08, 0.2), strength=1.0)
         sun((55, 0, -150), 2.2, (0.45, 0.7, 1.0), angle=6)
         sun((62, 0, 40), 1.0, (0.8, 0.4, 1.0), angle=20)
-        moon = P.sphere("moon", 3.2, (-14, 80, 34), P.M("moon", (1, 1, 0.9), emit=(0.9, 0.95, 1.0), es=6), subdiv=3)
+        moon = P.sphere("moon", 3.2, (-14, 80, 34), P.M("moon", (1, 1, 0.9), emit=(0.9, 0.95, 1.0), es=1.6), subdiv=3)
         moon.visible_shadow = False
     else:
         world_hdri("day", strength=1.0, sat=1.25)
@@ -426,7 +426,7 @@ def styx(taxi=False, taxi_rot=0.0):
         r = P.cyl("spire", rnd.uniform(1.4, 3.4), h, (x, y, h / 2 - 0.5), rockm, segs=7, r2=rnd.uniform(0.3, 0.9), smooth=False)
         r.rotation_euler = (rnd.uniform(-0.12, 0.12), rnd.uniform(-0.12, 0.12), rnd.uniform(0, 3))
     # far gate of the dead
-    gm = P.M("gateglow", (0.3, 1, 0.6), emit=(0.2, 1.0, 0.5), es=2.5)
+    gm = P.M("gateglow", (0.3, 1, 0.6), emit=(0.2, 1.0, 0.5), es=1.0)
     for x in (-3.2, 3.2):
         P.cyl("fg", 0.6, 11, (x, 62, 5.5), gm, segs=12)
     P.box("fgt", (8.6, 1.2, 1.2), (0, 62, 11.4), gm)
@@ -450,7 +450,7 @@ def styx(taxi=False, taxi_rot=0.0):
     charon = make_charon()
     charon.location = (0.12, 1.25, -0.12)
     if taxi:
-        ym = P.M("taxi", (1.0, 0.75, 0.0), emit=(1.0, 0.7, 0.0), es=5, rough=0.3)
+        ym = P.M("taxi", (1.0, 0.75, 0.0), emit=(1.0, 0.7, 0.0), es=1.2, rough=0.3)
         post = P.cyl("tx_post", 0.03, 2.3, (0, 3.3, 1.2), mat("wood"), segs=8)
         sign = P.box("tx_sign", (0.95, 0.12, 0.36), (0, 3.3, 2.5), ym, bevel=0.03)
         t1 = P.text("tx_t", "TAXI", 0.27, (0, 3.23, 2.5), (R(90), 0, 0), mat("black"), extrude=0.01)
@@ -800,7 +800,7 @@ def dig_setup(thief, phase=0, n=80, period=16):
 def shot_G1(n):
     closed = [(-3, 0), (3, 0), (-3, 4.5), (0, 4.5), (3, 4.5), (-6, 0), (6, 0), (-6, 4.5), (6, 4.5)]
     graveyard(night=True, pits=((0, 0),), closed=closed, greek=False)
-    gm = P.M("mark", (1, 0.8, 0.2), emit=(1.0, 0.7, 0.1), es=12, metal=1, rough=0.2)
+    gm = P.M("mark", (1, 0.8, 0.2), emit=(1.0, 0.7, 0.1), es=2.5, metal=1, rough=0.2)
     for i, (x, y) in enumerate(closed + [(0, 0)]):
         c = P.cyl("marker", 0.22, 0.04, (x, y + 0.8, 1.9), gm, segs=32, rot=(R(90), 0, 0))
         P.drive(c, "rotation_euler", 2, f"frame*0.12+{i}")
@@ -837,7 +837,7 @@ def shot_G2(n):
     for k in range(4):
         P.column("bcol", (bx - 2.4 + k * 1.6, 10.6, 0), h=3.4, r=0.26)
     P.box("bank_top", (7.4, 1.4, 0.7), (bx, 10.8, 4.2), mat("marble"), bevel=0.03)
-    P.text("bank_t", "BANK", 0.5, (bx, 10.05, 4.2), (R(90), 0, 0), P.M("bankt", (1, 0.8, 0.2), emit=(1.0, 0.75, 0.2), es=6), extrude=0.03)
+    P.text("bank_t", "BANK", 0.5, (bx, 10.05, 4.2), (R(90), 0, 0), P.M("bankt", (1, 0.8, 0.2), emit=(1.0, 0.75, 0.2), es=2), extrude=0.03)
     point((bx, 9.3, 2.2), 900, (1.0, 0.8, 0.5), radius=0.6)
     camera([(1, (-2.2, -3.6, 1.5), (0, 0.8, 0.8)), (48, (8.0, -3.4, 1.3), (8.6, 0.8, 0.9)),
             (n, (9.6, -2.2, 1.15), (9.0, 0.7, 1.05))], lens=20)
@@ -848,7 +848,7 @@ def shot_H(n):
     for i, (loc, face) in enumerate((((0.35, 3.55, 0), 0), ((-0.95, 3.35, 0), -25), ((1.3, 3.3, 0), 25), ((-1.9, 2.6, 0), -70))):
         mourner(i, PEOPLE[i], loc, face)
     P.brazier((0, 2.4, 0))
-    P.fire((0, 2.4, 0.72), scale=0.7, watts=260)
+    P.fire((0, 2.4, 0.72), scale=0.7, watts=110)
     kin = make_kin(skin="middleage_asian_male")
     kin.rotation_euler = (0, 0, R(180)); kin.location = (0.0, 1.35, 0)
     stand_relaxed(kin)
@@ -886,7 +886,7 @@ def shot_J(n):
     for i, (loc, face) in enumerate((((0.35, 3.55, 0), 0), ((-0.95, 3.35, 0), -25), ((1.3, 3.3, 0), 25), ((-1.9, 2.6, 0), -70))):
         mourner(i, PEOPLE[i], loc, face)
     P.brazier((0, 2.4, 0))
-    P.fire((0, 2.4, 0.72), scale=1.0, watts=180)
+    P.fire((0, 2.4, 0.72), scale=1.0, watts=90)
     P.embers((0, 2.4, 0.9), n=24, radius=0.25, height=2.4)
     kin = make_kin(skin="middleage_asian_male")
     kin.rotation_euler = (0, 0, R(90)); kin.location = (-0.82, 2.4, 0)
@@ -947,7 +947,7 @@ def shot_L(n):
     china()
     c = (0, -4.0, 0)
     note_pile(c, n=170, radius=1.1, height=0.6)
-    P.fire((c[0], c[1], 0.25), scale=2.0, n=8, watts=450)
+    P.fire((c[0], c[1], 0.25), scale=2.0, n=8, watts=220)
     P.fire((c[0] + 0.6, c[1] + 0.3, 0.15), scale=1.3, n=4, watts=300, seed=4)
     P.fire((c[0] - 0.6, c[1] - 0.2, 0.15), scale=1.4, n=4, watts=300, seed=6)
     P.embers((c[0], c[1], 0.6), n=70, radius=0.8, height=8.0, size=0.02)
@@ -1055,11 +1055,11 @@ def setup_render(preview, threads):
     s.render.image_settings.file_format = "JPEG"
     s.render.image_settings.quality = 93
     try:
-        s.view_settings.view_transform = "Standard"
-        s.view_settings.look = "Medium High Contrast"
+        s.view_settings.view_transform = "Khronos PBR Neutral"
+        s.view_settings.look = "None"
     except Exception as e:
         print("LOOK_FAIL", e)
-    s.view_settings.exposure = float(os.environ.get("EXPO", -0.3))
+    s.view_settings.exposure = float(os.environ.get("EXPO", 0.0))
     if threads:
         s.render.threads_mode = "FIXED"
         s.render.threads = threads

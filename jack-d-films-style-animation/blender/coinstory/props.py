@@ -246,7 +246,7 @@ def mat(key):
     elif key == "flame":
         m = flame_mat()
     elif key == "ember":
-        m = M("ember", (1, 0.4, 0.05), emit=(1.0, 0.45, 0.05), es=25)
+        m = M("ember", (1, 0.4, 0.05), emit=(1.0, 0.45, 0.05), es=3)
     else:
         raise KeyError(key)
     _cache[key] = m
@@ -269,7 +269,7 @@ def flame_mat():
     mid = e.new(0.4); mid.color = (1.0, 0.25, 0.0, 1)
     nt.links.new(sep.outputs["Z"], col.inputs["Fac"])
     em = nt.nodes.new("ShaderNodeEmission")
-    em.inputs["Strength"].default_value = 2.2
+    em.inputs["Strength"].default_value = 1.0
     nt.links.new(col.outputs["Color"], em.inputs["Color"])
     tr = nt.nodes.new("ShaderNodeBsdfTransparent")
     fade = nt.nodes.new("ShaderNodeValToRGB")
@@ -297,7 +297,7 @@ def ghost_mat():
     col.color_ramp.elements[1].color = (0.75, 1.0, 1.0, 1)
     nt.links.new(lw.outputs["Facing"], col.inputs["Fac"])
     em = nt.nodes.new("ShaderNodeEmission")
-    em.inputs["Strength"].default_value = 2.2
+    em.inputs["Strength"].default_value = 1.0
     nt.links.new(col.outputs["Color"], em.inputs["Color"])
     tr = nt.nodes.new("ShaderNodeBsdfTransparent")
     mix = nt.nodes.new("ShaderNodeMixShader")
@@ -457,7 +457,7 @@ def boat():
 def lantern(loc, color=(1.0, 0.6, 0.2), watts=120, pole=1.5):
     root = empty("lantern", loc)
     cyl("lpole", 0.02, pole, (0, 0, pole / 2), mat("wood"), segs=8).parent = root
-    glow = sphere("lglow", 0.1, (0, 0, pole + 0.08), M("lglow", color, emit=color, es=30), scale=(1, 1, 1.25))
+    glow = sphere("lglow", 0.1, (0, 0, pole + 0.08), M("lglow", color, emit=color, es=2.5), scale=(1, 1, 1.25))
     glow.parent = root
     cyl("lcap", 0.08, 0.03, (0, 0, pole + 0.22), mat("bronze"), segs=12).parent = root
     li = bpy.data.lights.new("lanternL", "POINT")
@@ -535,7 +535,7 @@ def brazier(loc, r=0.38):
     s = bowl.modifiers.new("sol", "SOLIDIFY")
     s.thickness = 0.03
     bowl.parent = root
-    cyl("coals", r * 0.9, 0.04, (0, 0, 0.66), M("coals", (0.9, 0.25, 0.03), emit=(1.0, 0.3, 0.03), es=6), segs=24).parent = root
+    cyl("coals", r * 0.9, 0.04, (0, 0, 0.66), M("coals", (0.9, 0.25, 0.03), emit=(1.0, 0.3, 0.03), es=1.2), segs=24).parent = root
     for i in range(3):
         a = i * 2.094
         leg = cyl("leg", 0.025, 0.72, (math.cos(a) * r * 0.75, math.sin(a) * r * 0.75, 0.33), mat("bronze"), segs=8)
@@ -597,7 +597,7 @@ def paifang(loc=(0, 0, 0)):
 def red_lantern(loc, hang=0.5, ph=0.0, light=0):
     root = empty("rl", loc)
     cyl("rl_str", 0.006, hang, (0, 0, -hang / 2), mat("black"), segs=6).parent = root
-    body = sphere("rl_body", 0.2, (0, 0, -hang - 0.17), M("rl", (0.9, 0.05, 0.03), emit=(1.0, 0.12, 0.04), es=4.0),
+    body = sphere("rl_body", 0.2, (0, 0, -hang - 0.17), M("rl", (0.9, 0.05, 0.03), emit=(1.0, 0.12, 0.04), es=1.3),
                   scale=(1, 1, 0.85))
     body.parent = root
     for z in (-hang - 0.01, -hang - 0.34):
