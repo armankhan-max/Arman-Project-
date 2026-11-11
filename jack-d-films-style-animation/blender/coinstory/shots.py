@@ -105,6 +105,7 @@ def area(loc, target, size, watts, color=(1, 1, 1)):
     o.location = loc
     o.rotation_euler = (Vector(target) - Vector(loc)).to_track_quat("-Z", "Y").to_euler()
     o.visible_camera = False
+    o.visible_glossy = False
     return o
 
 
