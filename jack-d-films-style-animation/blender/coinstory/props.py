@@ -1,5 +1,6 @@
 """Procedural materials and props."""
 import math
+import os
 import random
 
 import bmesh
@@ -156,6 +157,57 @@ def drive(o, path, idx, expr):
 
 # ---------- materials ----------
 _cache = {}
+ASSETS = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "assets")
+
+
+def tex_nodes(m, slot, scale=1.0, tint=None, normal=1.0):
+    """Wire Poly Haven diffuse/rough/normal maps (box projected) into material m. Returns the colour socket."""
+    nt = m.node_tree
+    b = bsdf(m)
+    tc = nt.nodes.new("ShaderNodeTexCoord")
+    mp = nt.nodes.new("ShaderNodeMapping")
+    mp.inputs["Scale"].default_value = (scale, scale, scale)
+    nt.links.new(tc.outputs["Object"], mp.inputs["Vector"])
+
+    def img(suffix, cs):
+        path = os.path.join(ASSETS, "tex", f"{slot}_{suffix}.jpg")
+        if not os.path.exists(path):
+            return None
+        n = nt.nodes.new("ShaderNodeTexImage")
+        n.image = bpy.data.images.load(path, check_existing=True)
+        n.image.colorspace_settings.name = cs
+        n.projection = "BOX"
+        n.projection_blend = 0.25
+        nt.links.new(mp.outputs["Vector"], n.inputs["Vector"])
+        return n
+
+    d = img("diff", "sRGB")
+    col = d.outputs["Color"]
+    if tint:
+        mx = nt.nodes.new("ShaderNodeMix")
+        mx.data_type = "RGBA"
+        mx.blend_type = "MULTIPLY"
+        mx.inputs[0].default_value = 1.0
+        nt.links.new(col, mx.inputs[6])
+        mx.inputs[7].default_value = (*tint, 1)
+        col = mx.outputs[2]
+    nt.links.new(col, b.inputs["Base Color"])
+    r = img("rough", "Non-Color")
+    if r:
+        nt.links.new(r.outputs["Color"], b.inputs["Roughness"])
+    nr = img("nor", "Non-Color")
+    if nr:
+        nm = nt.nodes.new("ShaderNodeNormalMap")
+        nm.inputs["Strength"].default_value = normal
+        nt.links.new(nr.outputs["Color"], nm.inputs["Color"])
+        nt.links.new(nm.outputs["Normal"], b.inputs["Normal"])
+    return col
+
+
+def tex_mat(slot, scale=1.0, tint=None, normal=1.0, name=None):
+    m = M(name or ("tx_" + slot), (0.5, 0.5, 0.5))
+    tex_nodes(m, slot, scale, tint, normal)
+    return m
 
 
 def mat(key):
@@ -164,14 +216,13 @@ def mat(key):
     if key == "gold":
         m = M("gold", (1.0, 0.6, 0.1), rough=0.3, metal=1.0, emit=(1.0, 0.55, 0.05), es=0.25)
     elif key == "stone":
-        m = add_noise(M("stone", (0.55, 0.55, 0.52), rough=0.85), scale=14, bump=0.5, color2=(0.36, 0.37, 0.36))
+        m = tex_mat("stone", 1.2, tint=(1.15, 1.15, 1.2))
     elif key == "marble":
-        m = add_noise(M("marble", (0.93, 0.9, 0.84), rough=0.4), scale=5, bump=0.08, color2=(0.75, 0.72, 0.68))
+        m = tex_mat("marble", 0.6, tint=(1.0, 0.98, 0.94), normal=0.5)
     elif key == "soil":
-        m = add_noise(M("soil", (0.3, 0.19, 0.1), rough=0.95), scale=22, bump=0.8, color2=(0.18, 0.11, 0.06))
+        m = tex_mat("soil", 1.0, tint=(1.3, 1.1, 0.9))
     elif key == "wood":
-        m = add_noise(M("wood", (0.38, 0.22, 0.1), rough=0.6), scale=6, bump=0.3, color2=(0.2, 0.11, 0.05),
-                      stretch=(1, 14, 14))
+        m = tex_mat("wood", 1.2, tint=(1.2, 0.95, 0.75))
     elif key == "black":
         m = M("black", (0.02, 0.02, 0.025), rough=0.7)
     elif key == "white":
@@ -263,9 +314,19 @@ def ghost_mat():
 
 
 def ground_mat(top, top2, scale=3.0):
-    m = add_noise(M("ground", top, rough=0.95), scale=scale, bump=0.5, color2=top2)
+    """Grass on top, soil below ground level (pit walls). `top` tints the grass."""
+    m = M("ground", top, rough=0.95)
     nt = m.node_tree
     b = bsdf(m)
+    grass = tex_nodes(m, "grass", 0.55, tint=tuple(min(2.0, c * 3.2) for c in top2), normal=1.0)
+    stc = nt.nodes.new("ShaderNodeTexCoord")
+    smp = nt.nodes.new("ShaderNodeMapping")
+    nt.links.new(stc.outputs["Object"], smp.inputs["Vector"])
+    simg = nt.nodes.new("ShaderNodeTexImage")
+    simg.image = bpy.data.images.load(os.path.join(ASSETS, "tex", "soil_diff.jpg"), check_existing=True)
+    simg.projection = "BOX"
+    simg.projection_blend = 0.25
+    nt.links.new(smp.outputs["Vector"], simg.inputs["Vector"])
     geo = nt.nodes.new("ShaderNodeNewGeometry")
     sep = nt.nodes.new("ShaderNodeSeparateXYZ")
     nt.links.new(geo.outputs["Position"], sep.inputs[0])
@@ -275,10 +336,9 @@ def ground_mat(top, top2, scale=3.0):
     nt.links.new(sep.outputs["Z"], lt.inputs[0])
     mix = nt.nodes.new("ShaderNodeMix")
     mix.data_type = "RGBA"
-    old = b.inputs["Base Color"].links[0].from_socket
     nt.links.new(lt.outputs[0], mix.inputs[0])
-    nt.links.new(old, mix.inputs[6])
-    mix.inputs[7].default_value = (0.2, 0.12, 0.06, 1)
+    nt.links.new(grass, mix.inputs[6])
+    nt.links.new(simg.outputs["Color"], mix.inputs[7])
     nt.links.new(mix.outputs[2], b.inputs["Base Color"])
     return m
 

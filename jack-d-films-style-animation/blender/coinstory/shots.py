@@ -66,6 +66,26 @@ def world(horizon, zenith, ground=None, strength=1.0):
     nt.links.new(ramp.outputs["Color"], bg.inputs["Color"])
 
 
+def world_hdri(slot, strength=1.0, rot=0.0, sat=1.0):
+    w = bpy.data.worlds.new("W")
+    bpy.context.scene.world = w
+    w.use_nodes = True
+    nt = w.node_tree
+    bg = nt.nodes["Background"]
+    bg.inputs["Strength"].default_value = strength
+    tc = nt.nodes.new("ShaderNodeTexCoord")
+    mp = nt.nodes.new("ShaderNodeMapping")
+    mp.inputs["Rotation"].default_value = (0, 0, rot)
+    env = nt.nodes.new("ShaderNodeTexEnvironment")
+    env.image = bpy.data.images.load(os.path.join(P.ASSETS, "hdri", slot + ".hdr"), check_existing=True)
+    hs = nt.nodes.new("ShaderNodeHueSaturation")
+    hs.inputs["Saturation"].default_value = sat
+    nt.links.new(tc.outputs["Generated"], mp.inputs["Vector"])
+    nt.links.new(mp.outputs["Vector"], env.inputs["Vector"])
+    nt.links.new(env.outputs["Color"], hs.inputs["Color"])
+    nt.links.new(hs.outputs["Color"], bg.inputs["Color"])
+
+
 def sun(rot, energy, color=(1, 1, 1), angle=3.0):
     li = bpy.data.lights.new("sun", "SUN")
     li.energy = energy
@@ -337,7 +357,7 @@ def lay_down(rig, feet, floor_z):
 
 def graveyard(night=False, pits=((0, 0),), closed=(), greek=True, seed=2):
     rnd = random.Random(seed)
-    gm = P.ground_mat((0.06, 0.42, 0.04), (0.2, 0.6, 0.06)) if not night else P.ground_mat((0.03, 0.3, 0.12), (0.08, 0.42, 0.16))
+    gm = P.ground_mat((0.06, 0.42, 0.04), (0.3, 0.55, 0.2)) if not night else P.ground_mat((0.03, 0.3, 0.12), (0.2, 0.45, 0.32))
     ground = P.box("ground", (160, 160, 4), (0, 0, -2), gm)
     for i, (px, py) in enumerate(pits):
         cut = P.box(f"cut{i}", (1.1, 2.3, 1.5), (px, py + 0.8, 0), None)
@@ -382,8 +402,8 @@ def graveyard(night=False, pits=((0, 0),), closed=(), greek=True, seed=2):
         moon = P.sphere("moon", 3.2, (-14, 80, 34), P.M("moon", (1, 1, 0.9), emit=(0.9, 0.95, 1.0), es=6), subdiv=3)
         moon.visible_shadow = False
     else:
-        world((0.45, 0.78, 1.0), (0.02, 0.3, 0.95), strength=1.0)
-        sun((22, 0, 25), 3.4, (1.0, 0.93, 0.8))
+        world_hdri("day", strength=1.0, sat=1.25)
+        sun((22, 0, 25), 2.6, (1.0, 0.93, 0.8))
     return ground
 
 
@@ -391,8 +411,10 @@ def styx(taxi=False, taxi_rot=0.0):
     """Underworld river. Returns (boat_root, boat, charon)."""
     P.box("water", (400, 400, 0.1), (0, 0, -0.05), P.water_mat())
     P.box("riverbed", (400, 400, 0.1), (0, 0, -3), mat("black"))
-    rockm = P.add_noise(P.M("rock", (0.5, 0.15, 0.75), rough=0.5, emit=(0.4, 0.05, 0.8), es=0.25), scale=1.2, bump=1.0, color2=(0.1, 0.25, 0.7))
-    dock = P.box("dock", (5.2, 6.0, 0.6), (0, -3.3, -0.15), P.add_noise(P.M("dockm", (0.2, 0.22, 0.3), rough=0.7), scale=6, bump=0.5, color2=(0.12, 0.12, 0.2)), bevel=0.03)
+    rockm = P.tex_mat("rock", 0.25, tint=(1.4, 0.7, 2.2), normal=1.5)
+    P.bsdf(rockm).inputs["Emission Color"].default_value = (0.35, 0.05, 0.8, 1)
+    P.bsdf(rockm).inputs["Emission Strength"].default_value = 0.12
+    dock = P.box("dock", (5.2, 6.0, 0.6), (0, -3.3, -0.15), P.tex_mat("paving", 0.5, tint=(0.7, 0.75, 1.0), name="dockm"), bevel=0.03)
     for x in (-2.2, 2.2):
         P.column("dc", (x, -1.0, 0.15), h=3.0, r=0.22, broken=(x > 0))
         P.column("dc2", (x, -4.2, 0.15), h=3.0, r=0.22)
@@ -446,18 +468,7 @@ def bob(root, amp=0.025):
 
 
 def china(pit=False):
-    fm = P.add_noise(P.M("floor", (0.55, 0.42, 0.3), rough=0.5), scale=2.5, bump=0.2, color2=(0.38, 0.36, 0.35))
-    nt = fm.node_tree
-    br = nt.nodes.new("ShaderNodeTexBrick")
-    br.inputs["Scale"].default_value = 1.4
-    br.inputs["Mortar Size"].default_value = 0.012
-    tc = nt.nodes.new("ShaderNodeTexCoord")
-    nt.links.new(tc.outputs["Object"], br.inputs["Vector"])
-    bp = nt.nodes.new("ShaderNodeBump")
-    bp.inputs["Strength"].default_value = 0.6
-    nt.links.new(br.outputs["Fac"], bp.inputs["Height"])
-    bp.invert = True
-    nt.links.new(bp.outputs["Normal"], P.bsdf(fm).inputs["Normal"])
+    fm = P.tex_mat("paving", 0.45, tint=(1.25, 1.1, 0.95))
     floor = P.box("floor", (120, 120, 4), (0, 0, -2), fm)
     if pit:
         cut = P.box("cut", (1.3, 1.5, 1.3), (0, 2.6, 0), None)
@@ -469,7 +480,7 @@ def china(pit=False):
     P.paifang((0, 0, 0))
     for i, x in enumerate((-1.5, -0.5, 0.5, 1.5)):
         P.red_lantern((x, -0.1, 3.05), hang=0.35 + 0.15 * (i % 2), ph=i * 1.3, light=160 if i in (0, 3) else 0)
-    wallm = P.M("wall", (0.6, 0.08, 0.06), rough=0.7)
+    wallm = P.tex_mat("marble", 0.5, tint=(1.0, 0.1, 0.07), name="wall")
     capm = P.M("wallcap", (0.04, 0.16, 0.15), rough=0.4)
     for x in (-7.5, 7.5):
         P.box("wall", (0.5, 60, 2.6), (x, 10, 1.3), wallm)
@@ -490,7 +501,7 @@ def china(pit=False):
         h = rnd.uniform(18, 38)
         m = P.cyl("mnt", rnd.uniform(16, 26), h, (x, 85 + rnd.uniform(-8, 20), h / 2 - 1), mm if i % 2 else mm2, segs=10, r2=1.0)
         P.displace(m, 4.0, 8.0)
-    world((1.0, 0.45, 0.2), (0.1, 0.25, 0.85), ground=(0.5, 0.3, 0.25), strength=0.9)
+    world_hdri("sunset", strength=1.1, rot=R(40), sat=1.3)
     sun((58, 0, 125), 2.1, (1.0, 0.7, 0.4), angle=4)
     sun((50, 0, -60), 0.6, (0.5, 0.65, 1.0), angle=20)
     return floor
