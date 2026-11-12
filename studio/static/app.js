@@ -45,7 +45,7 @@ async function boot() {
   $('#gate').classList.add('hidden'); $('#app').classList.remove('hidden');
   settings = await api('/api/settings');
   style = settings.styles[settings.default_style] ? settings.default_style : Object.keys(settings.styles)[0];
-  renderStyles(); renderMusic();
+  renderStyles(); renderMusic(); applyStyleDefaults();
   $('#aiWarn').classList.toggle('hidden', settings.llm_active !== 'none');
   $('#aiWarn').textContent = 'AI script writing is off, so paste your own script under “More options”. Turn it on in the Owner panel.';
   voices = await api('/api/voices');
@@ -65,9 +65,28 @@ $('#cVoiceLang').onchange = () => fillVoices();
 function renderStyles() {
   $('#cStyles').innerHTML = Object.entries(settings.styles).map(([k, s]) =>
     `<div class="style ${k === style ? 'on' : ''}" data-k="${esc(k)}"><b>${esc(s.label || k)}</b><span>${esc(s.desc || '')}</span></div>`).join('');
-  $$('#cStyles .style').forEach(el => el.onclick = () => { style = el.dataset.k; renderStyles(); });
-  $('#cAvatarBox').classList.toggle('hidden', style !== 'avatar');
+  $$('#cStyles .style').forEach(el => el.onclick = () => { style = el.dataset.k; renderStyles(); applyStyleDefaults(); });
+  $('#cAvatarBox').classList.toggle('hidden', !style.startsWith('avatar'));
 }
+function applyStyleDefaults() {
+  const s = settings.styles[style] || {};
+  $('#cCaptions').value = s.captions === false ? '0' : '1';
+  $('#cShowTitle').checked = s.show_title !== false;
+  $('#cSfx').checked = s.sfx !== false;
+}
+const STYLE_WORDS = [
+  ['avatar_captions', /caption|subtitle/i, /avatar|host|grandma|grandpa|grandmother|talking|presenter|face|amish|farmer/i],
+  ['avatar', /avatar|host|grandma|grandpa|grandmother|grandfather|talking head|talks to (the )?camera|presenter|amish|farmer|kitchen/i],
+  ['animated', /anim|cartoon|2d|illustrat|kids|explainer|motion graphic/i],
+  ['facts', /fact|list|top \d+|countdown|short|reel|kinetic|text/i],
+  ['documentary', /documentar|history|historical|mystery|cinematic|war|ancient|science|space|nature/i],
+];
+$('#cStyleText').oninput = () => {
+  const t = $('#cStyleText').value;
+  for (const [k, re, re2] of STYLE_WORDS) {
+    if (settings.styles[k] && re.test(t) && (!re2 || re2.test(t))) { if (style !== k) { style = k; renderStyles(); applyStyleDefaults(); } break; }
+  }
+};
 function musicOptions(sel) {
   const opts = [['', 'Best for this style'], ['cinematic', 'Cinematic'], ['suspense', 'Suspense'], ['emotional', 'Emotional'], ['calm', 'Calm'], ['upbeat', 'Upbeat'],
   ...(settings.music_library || []).map(m => [m, '♪ ' + m]), ['none', 'No music']];
@@ -98,11 +117,11 @@ $('#cGo').onclick = e => busy(e.target, async () => {
     title: $('#cTitle').value, style, minutes: +$('#cMinutes').value, aspect: $('#cAspect').value, language: $('#cLang').value,
     voice: $('#cVoice').value, rate: +$('#cRate').value, source: $('#cSource').value, music: $('#cMusic').value,
     captions: $('#cCaptions').value === '1', script: $('#cScript').value, notes: $('#cNotes').value, persona: $('#cPersona').value,
-    show_title: $('#cShowTitle').checked, sfx: $('#cSfx').checked, preview: $('#cFast').checked
+    show_title: $('#cShowTitle').checked, sfx: $('#cSfx').checked, style_prompt: $('#cStyleText').value, preview: $('#cFast').checked
   }));
   if (voiceMode === 'upload') { if (!$('#cVoFile').files[0]) throw new Error('Choose your voiceover file.'); fd.append('voiceover', $('#cVoFile').files[0]); }
-  if (style === 'avatar' && $('#cAvatar').files[0]) fd.append('avatar', $('#cAvatar').files[0]);
-  if (style === 'avatar' && $('#cAvatarVideo').files[0]) {
+  if (style.startsWith('avatar') && $('#cAvatar').files[0]) fd.append('avatar', $('#cAvatar').files[0]);
+  if (style.startsWith('avatar') && $('#cAvatarVideo').files[0]) {
     if (!$('#cScript').value.trim()) throw new Error('Paste the script your avatar video speaks under “More options”, so scenes can be matched.');
     fd.append('avatar_video', $('#cAvatarVideo').files[0]);
   }
@@ -205,7 +224,7 @@ function sceneRow(p, s, i) {
     </div>
     <div class="row" style="margin-top:6px">
       <input data-f="graphic" value="${esc(s.graphic || '')}" placeholder="Animated graphic (optional): map: Egypt · bars: Honey=3000, Milk=7 (days) · timeline: 1922=Tomb opened; 2026=Still edible">
-      ${p.style === 'avatar' ? `<select data-f="kind" style="max-width:110px"><option value="broll">B-roll</option><option value="aroll" ${s.kind === 'aroll' ? 'selected' : ''}>A-roll (host)</option></select>` : ''}
+      ${(p.style || '').startsWith('avatar') ? `<select data-f="kind" style="max-width:110px"><option value="broll">B-roll</option><option value="aroll" ${s.kind === 'aroll' ? 'selected' : ''}>A-roll (host)</option></select>` : ''}
     </div>
     <div class="row" style="margin-top:6px"><label class="check small" style="margin:0"><input type="checkbox" data-f="refresh"> New visuals</label>
       <label class="btn small" style="margin:0">Upload my own<input type="file" data-i="${i}" accept="image/*,video/*" hidden></label>

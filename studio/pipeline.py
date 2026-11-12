@@ -55,6 +55,7 @@ def _run(pid, preview):
     d = store.pdir(pid)
     style = cfg["styles"].get(p.get("style"), cfg["styles"]["documentary"])
     w, h = render.SIZES.get(p.get("aspect", "16:9"), render.SIZES["16:9"])
+    OUTRO = 4.0 if style.get("outro", True) else 0.0  # end card only for styles that want one
     p["log"] = []
 
     def step(msg, prog):
@@ -125,6 +126,10 @@ def _run(pid, preview):
     has_avatar = bool(p.get("avatar")) and os.path.exists(os.path.join(d, p["avatar"]))
     has_avatar_video = bool(p.get("avatar_video")) and os.path.exists(os.path.join(d, p["avatar_video"]))
     used, done = set(), [0]
+    aroll_ids = [i for i, s in enumerate(scenes) if s.get("kind") == "aroll"]
+    split_ids = {i for k, i in enumerate(aroll_ids) if k % 3 == 2 and scenes[i]["dur"] >= 4} if style.get("split_screen") else set()
+    if p.get("style_prompt"):
+        style = {**style, "image_suffix": p["style_prompt"] + ", " + style.get("image_suffix", "")}
 
     def visuals(i):
         s = scenes[i]
@@ -144,6 +149,9 @@ def _run(pid, preview):
                 log(f"  Graphic '{s['graphic']}' failed, using B-roll instead ({e})")
         if s.get("kind") == "aroll" and has_avatar_video and not s.get("custom"):
             s["assets"] = [{"path": p["avatar_video"], "type": "video", "source": "avatar video", "credit": "", "ss": s["start"]}]
+            if i in split_ids:  # host on one half, the thing they talk about on the other
+                b = media.fetch(s, 1, cfg, style, vdir, w // 2, h, used, p.get("source") or style.get("source", "mix"), log, i + 500)[0]
+                s["assets"][0].update(type="split", b=b["path"], btype=b["type"], credit=b.get("credit", ""))
         elif s.get("kind") == "aroll" and has_avatar and not s.get("custom"):
             clip = avatar.lipsync(cfg, os.path.join(d, p["avatar"]), os.path.join(d, "audio", f"{s.get('tts_key')}.mp3"),
                                   os.path.join(vdir, f"aroll_{s.get('tts_key')}.mp4"), log)
@@ -210,7 +218,7 @@ def _run(pid, preview):
             else:
                 move = moves[mi % len(moves)]
                 mi += 1
-            shots.append({"asset": {**a, "path": os.path.join(d, a["path"])}, "dur": dur, "move": move, "trans": trans,
+            shots.append({"asset": {**a, "path": os.path.join(d, a["path"]), "root": d}, "dur": dur, "move": move, "trans": trans,
                           "slowmo": bool(style.get("slowmo")) and a["type"] == "video" and not host and a.get("source") != "motion graphic",
                           "grade": style.get("host_grade", "eq=saturation=1.05:gamma_r=1.03") if host else
                           ("" if a.get("source") == "motion graphic" else style.get("grade", ""))})
@@ -234,7 +242,8 @@ def _run(pid, preview):
     pw, ph = (render.PREVIEW if preview else render.SIZES).get(p.get("aspect", "16:9"))
     credits = sorted({a["credit"] for s in scenes for a in s["assets"] if a.get("credit")})
     render.build_ass(os.path.join(d, "subs.ass"), scenes, pw, ph, style, p.get("captions", style.get("captions", True)),
-                     p["title"] if p.get("show_title", True) else None, hindi, total + 0.2, total_v, credits)
+                     p["title"] if p.get("show_title", style.get("show_title", True)) else None, hindi,
+                     total + 0.2 if OUTRO else None, total_v, credits)
     step("Rendering shots and the final mix", 62)
     name = "video.mp4"
     render.render(p, shots, os.path.join(d, "narration.wav"), music, sfx_path, os.path.join(d, name),

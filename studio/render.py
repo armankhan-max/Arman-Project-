@@ -39,6 +39,17 @@ def render_shot(asset, out, dur, w, h, grade, move, slowmo=False):
     enc = ["-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "17", "-pix_fmt", "yuv420p", "-r", str(FPS),
            "-frames:v", str(n), out]
     g = ("," + grade) if grade else ""
+    if asset["type"] == "split":
+        hw = w // 2 // 2 * 2
+        bpath = asset["b"] if os.path.isabs(asset["b"]) else os.path.join(asset["root"], asset["b"])
+        bin_ = ["-stream_loop", "-1", "-i", bpath] if asset.get("btype") == "video" else ["-loop", "1", "-i", bpath]
+        fc = (f"[0]scale={hw}:{h}:force_original_aspect_ratio=increase,crop={hw}:{h},fps={FPS},tpad=stop_mode=clone:stop_duration=10,setsar=1[a];"
+              f"[1]scale={int(hw * 1.12)}:{int(h * 1.12)}:force_original_aspect_ratio=increase,crop={int(hw * 1.12)}:{int(h * 1.12)},fps={FPS},"
+              f"crop={hw}:{h}:x='(iw-ow)*t/{n / FPS:.3f}':y='(ih-oh)/2',setsar=1[b];"
+              f"[a][b]hstack=inputs=2,pad={w}:{h}:(ow-iw)/2:0{g}")
+        run(["ffmpeg", "-y", "-v", "error", "-ss", f"{float(asset.get('ss', 0)):.3f}", "-i", asset["path"]] + bin_
+            + ["-filter_complex", fc] + enc)
+        return
     if asset["type"] == "video":
         speed = "setpts=1.25*PTS," if slowmo else ""
         vf = f"{speed}scale={w}:{h}:force_original_aspect_ratio=increase,crop={w}:{h},fps={FPS},setsar=1{g}"

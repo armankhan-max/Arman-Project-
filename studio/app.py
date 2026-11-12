@@ -183,7 +183,7 @@ async def create_project(data: str = Form(...), voiceover: UploadFile = File(Non
         raise HTTPException(400, "AI script writing is off. Paste a script or turn on an AI provider in Settings.")
     if (voiceover is not None or avatar_video is not None) and not (b.get("script") or "").strip():
         raise HTTPException(400, "When you upload your own voiceover, also paste the script it reads, so scenes can be matched.")
-    fields = ("style", "language", "voice", "rate", "aspect", "source", "captions", "music", "script", "notes", "persona", "show_title", "sfx")
+    fields = ("style", "language", "voice", "rate", "aspect", "source", "captions", "music", "script", "notes", "persona", "show_title", "sfx", "style_prompt")
     p = store.new_project({"title": title, "minutes": max(0.3, min(33, float(b.get("minutes") or 1))),
                            **{k: b[k] for k in fields if k in b}})
     if voiceover is not None:

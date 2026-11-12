@@ -150,7 +150,7 @@ def basic_annotation(narrations, title, style):
         q = " ".join(kw[:2]) or tk or title
         scenes.append({"narration": n, "queries": [q, (kw[2] + " " + tk).strip() if len(kw) > 2 else tk or q],
                        "image_prompt": f"{title}. {n[:160]}", "text": "",
-                       "kind": "aroll" if style == "avatar" and (i % 3 == 0 or i == len(narrations) - 1) else "broll"})
+                       "kind": "aroll" if style.startswith("avatar") and (i % 3 == 0 or i == len(narrations) - 1) else "broll"})
     return scenes
 
 
@@ -165,7 +165,7 @@ def annotate(cfg, narrations, title, style, log=lambda m: None):
               '"text": "0-4 word on-screen phrase in the narration language for key numbers, names or punchlines, empty string for most scenes", '
               '"kind": "aroll" or "broll"}. '
               + ('Mark as "aroll" the scenes where the host should be on camera: the hook, personal stories, asks and the ending '
-                 "(about 40 percent of scenes); the rest are broll. " if style == "avatar" else 'Always use "broll". ')
+                 "(about 40 percent of scenes); the rest are broll. " if style.startswith("avatar") else 'Always use "broll". ')
               + '"graphic": optional animated graphic, ONLY when the narration names a real place, compares numbers, or lists dates, '
               'written in exactly one of these forms: "map: Egypt" (a country) or "map: Giza, 29.98, 31.13" (place, latitude, longitude), '
               '"bars: Honey=3000, Milk=7 (days)" (2 to 5 true numbers from the narration, unit in brackets), '
@@ -188,7 +188,7 @@ def annotate(cfg, narrations, title, style, log=lambda m: None):
                                       "image_prompt": str(o.get("image_prompt") or scenes[i]["image_prompt"]),
                                       "text": str(o.get("text") or "")[:40],
                                       "graphic": str(o.get("graphic") or "")[:200],
-                                      "kind": "aroll" if o.get("kind") == "aroll" and style == "avatar" else "broll"})
+                                      "kind": "aroll" if o.get("kind") == "aroll" and style.startswith("avatar") else "broll"})
         except Exception as e:  # keep the keyword fallback for this batch
             log(f"AI scene planning failed for scenes {a}-{a + len(chunk)}, using keywords instead ({e})")
     return scenes
