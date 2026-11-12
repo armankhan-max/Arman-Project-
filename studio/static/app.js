@@ -56,6 +56,8 @@ async function boot() {
   $('#aiWarn').textContent = 'AI script writing is off, so paste your own script in step 1. Turn it on in the Owner panel.';
   const r = await api('/api/voices');
   voices = r.voices; ages = r.ages;
+  $('#cEmotion').innerHTML = Object.entries(r.emotions || {}).map(([k, l]) => `<option value="${k}">🎭 ${esc(l)}</option>`).join('') + '<option value="off">Plain (no humanizing)</option>';
+  $('#cEmotion').value = 'natural';
   $('#vfAge').innerHTML = '<option value="">Natural age</option>' + Object.entries(ages).map(([k, a]) => `<option value="${k}">${esc(a.label)}</option>`).join('');
   const langs = [...new Set(voices.map(v => v.lang))].sort();
   const pref = ['multi', 'en-US', 'en-GB', 'en-IN', 'hi-IN'];
@@ -101,6 +103,7 @@ function applyStyleDefaults() {
   $('#cCaptions').value = s.captions === false ? '0' : '1';
   $('#cShowTitle').checked = s.show_title !== false;
   $('#cSfx').checked = s.sfx !== false;
+  if ($('#cEmotion') && s.emotion && [...$('#cEmotion').options].some(o => o.value === s.emotion)) $('#cEmotion').value = s.emotion;
   gfxSel = new Set(s.graphics || GFX.map(g => g[0]));
   renderGfx();
 }
@@ -155,8 +158,8 @@ function renderVoices() {
   $$('#voiceList [data-play]').forEach(b => b.onclick = () => busy(b, async () => {
     const v = voices.find(x => x.id === b.dataset.play);
     const p = $('#player');
-    if (v.preview && !$('#vfAge').value) { p.src = v.preview; p.play(); return; }
-    const r = await api('/api/voice-preview', { json: { voice: v.id, rate: +$('#cRate').value, age: $('#vfAge').value }, raw: true });
+    if (v.preview && !$('#vfAge').value && v.provider === 'elevenlabs') { p.src = v.preview; p.play(); return; }
+    const r = await api('/api/voice-preview', { json: { voice: v.id, rate: +$('#cRate').value, age: $('#vfAge').value, emotion: $('#cEmotion').value }, raw: true });
     p.src = URL.createObjectURL(await r.blob()); p.play();
   }).catch(err => alert(err.message)));
 }
@@ -192,11 +195,11 @@ function renderReview() {
   const rows = [
     ['Title', $('#cTitle').value, 1], ['Language', $('#cLang').value, 1],
     ['Duration', `${$('#cMinutes').value} min · ${$('#cAspect').value} · ${$('#cQuality').value === 'draft' ? 'fast draft 720p' : 'Full HD'}`, 1],
-    ['Script', $('#cScript').value.trim() ? 'Your own script' : 'AI writes it from the title', 1],
+    ['Script', $('#cScript').value.trim() ? 'Your own script' : $('#cNotes').value.trim() ? 'AI writes it from your prompt' : 'AI writes it from the title', 1],
     ['Format', s.label || style, 2], ['Visuals', $('#cSource').selectedOptions[0].text, 2],
     ['Motion graphics', [...gfxSel].join(', ') || 'none', 2],
     ['Captions / music / SFX', `${$('#cCaptions').value === '1' ? 'captions' : 'no captions'} · ${$('#cMusic').selectedOptions[0].text} · ${$('#cSfx').checked ? 'SFX on' : 'SFX off'}`, 2],
-    ['Voice', voiceMode === 'upload' ? 'Your uploaded voiceover' : `${v.name || voiceSel}${$('#vfAge').value ? ' · ' + ages[$('#vfAge').value].label : ''} · ${$('#cRate').selectedOptions[0].text}`, 3],
+    ['Voice', voiceMode === 'upload' ? 'Your uploaded voiceover' : `${v.name || voiceSel}${$('#vfAge').value ? ' · ' + ages[$('#vfAge').value].label : ''} · ${$('#cEmotion').selectedOptions[0] ? $('#cEmotion').selectedOptions[0].text : ''} · ${$('#cRate').selectedOptions[0].text}`, 3],
     ['Brand profile', (profiles.find(p => p.id === profileId) || {}).name || 'none', 0],
     ['Estimated render time', `about ${Math.round(2 + (+$('#cMinutes').value) * ($('#cQuality').value === 'draft' ? 0.9 : 1.6))} min (you can close the page)`, 1],
     ['Thumbnail', thumbRef ? 'Inspired by your reference' + ($('#cThumbText').value ? ` · “${$('#cThumbText').value}”` : '') : '3 designs from your title', 4],
@@ -208,7 +211,7 @@ $('#cGo').onclick = e => busy(e.target, async () => {
   const fd = new FormData();
   fd.append('data', JSON.stringify({
     title: $('#cTitle').value, style, minutes: +$('#cMinutes').value, aspect: $('#cAspect').value, language: $('#cLang').value,
-    voice: voiceSel, rate: +$('#cRate').value, age: $('#vfAge').value, source: $('#cSource').value, music: $('#cMusic').value,
+    voice: voiceSel, rate: +$('#cRate').value, age: $('#vfAge').value, emotion: $('#cEmotion').value, source: $('#cSource').value, music: $('#cMusic').value,
     captions: $('#cCaptions').value === '1', script: $('#cScript').value, notes: $('#cNotes').value, persona: $('#cPersona').value,
     show_title: $('#cShowTitle').checked, sfx: $('#cSfx').checked, style_prompt: $('#cStyleText').value, preview: $('#cQuality').value === 'draft',
     graphics: [...gfxSel], thumb_ref: thumbRef, thumb_text: $('#cThumbText').value, profile_id: profileId

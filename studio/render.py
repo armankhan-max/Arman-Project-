@@ -292,6 +292,10 @@ def render(p, shots, narration_wav, music_wav, sfx_wav, out, progress=lambda f: 
     for f in os.listdir(d):
         if f.startswith("part") and f.endswith(".mp4"):
             os.remove(os.path.join(d, f))
+    import atmos
+    kind = look.get("atmosphere") or "none"
+    overlay = atmos.make(kind, os.path.join(d, f"atmos_{kind}_{w}x{h}.mp4"), w, h) if kind != "none" else None
+    living = look.get("living", True)
     # a shot followed by a transition is rendered T longer (the overlap)
     rdur = [s["dur"] + (T if i + 1 < len(shots) and shots[i + 1].get("trans") else 0) for i, s in enumerate(shots)]
     done = [0]
@@ -305,6 +309,9 @@ def render(p, shots, narration_wav, music_wav, sfx_wav, out, progress=lambda f: 
             import media  # a broken download must never kill the whole video
             fb = media.procedural(os.path.join(sdir, f"fb{i}.jpg"), w, h, i)
             render_shot({"path": fb, "type": "image"}, out_i, rdur[i], w, h, s["grade"], "push_in")
+        a = s["asset"]
+        if a.get("type") == "image" and not a.get("source", "").startswith(("avatar", "motion")) and (overlay or living):
+            atmos.apply(out_i, overlay, float(look.get("atmosphere_opacity") or 0.55), living)  # still photo -> living footage
         done[0] += 1
         progress(done[0] / len(shots) * 0.7)
 

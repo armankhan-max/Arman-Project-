@@ -91,6 +91,12 @@ def generate(title, style_key, style, seed=None):
         "transitions": trans,
         "moves": moves,
         "title_style": rnd.choice(TITLE_STYLES[:3]),
+        "atmosphere": "none" if style_key in ("avatar", "avatar_captions", "stickman", "news") else rnd.choice(
+            {"serious": ["dust", "dust", "fog", "light_leak", "none"], "calm": ["dust", "light_leak", "bokeh", "none"],
+             "fun": ["none", "bokeh", "dust"], "bold": ["dust", "light_leak", "none", "embers"]}[mood]
+            if style_key not in ("mystery", "sleep", "space_ocean") else {"mystery": ["fog", "dust", "rain"], "sleep": ["dust", "bokeh", "snow"],
+                                                                          "space_ocean": ["dust", "bokeh", "fog"]}[style_key]),
+        "living": True,
         "flavor": "" if style_key.startswith("avatar") or style_key == "stickman" else rnd.choice(FLAVORS),
         "music_seed": rnd.randint(0, 10 ** 6),
         "music_volume": None,

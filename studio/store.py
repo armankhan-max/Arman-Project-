@@ -32,6 +32,7 @@ SCRIPT_RULES = """Write ONLY the words the narrator speaks. No title, headings, 
 
 DEFAULT_STYLES = {
     "documentary": {
+        "emotion": "documentary",
         "transitions": ["fade", "dissolve", "fade", "smoothleft", "fade", "zoomin"],
         "moves": ["push_in", "pan_right", "parallax", "pull_out", "diag", "pan_left", "orbit", "tilt_up"],
         "ambience": "wind", "sfx": True, "slowmo": True, "grain": 5,
@@ -48,6 +49,7 @@ DEFAULT_STYLES = {
         "script_hint": "Tone: a calm, confident documentary narrator. Build curiosity, explain causes and consequences, use concrete facts and dates.",
     },
     "animated": {
+        "emotion": "excited",
         "transitions": ["slideleft", "circleopen", "smoothup", "wipeleft", "zoomin"],
         "moves": ["push_in", "pan_right", "pull_out", "pan_left"],
         "ambience": "none", "sfx": True, "slowmo": False, "grain": 0,
@@ -64,6 +66,7 @@ DEFAULT_STYLES = {
         "script_hint": "Tone: a friendly, energetic explainer. Simple words, playful comparisons, one idea per sentence.",
     },
     "avatar": {
+        "emotion": "storyteller",
         "label": "AI avatar (talking head)",
         "desc": "Host talks to camera like a phone video, hard cuts to real-looking B-roll, split screens. No captions or music.",
         "transitions": [""],
@@ -84,6 +87,7 @@ DEFAULT_STYLES = {
         "script_hint": "Tone: a real, warm, slightly funny older person talking to one friend across a kitchen table. First person. The old way works better and nobody ever taught you.",
     },
     "avatar_captions": {
+        "emotion": "storyteller",
         "label": "AI avatar + captions & music",
         "desc": "Same talking-head format, plus word-by-word captions, soft music and gentle fades.",
         "transitions": ["fade", "", "", ""],
@@ -112,6 +116,7 @@ DEFAULT_STYLES = {
         "script_hint": "Tone: fast, punchy list of surprising facts. Each fact is two or three sentences.",
     },
     "stickman": {
+        "emotion": "excited",
         "label": "2D stickman animation",
         "desc": "Code-animated stick figure that talks, points and reacts, with illustrated prop cards, checklists and kicker text.",
         "renderer": "stick2d",
@@ -123,6 +128,7 @@ DEFAULT_STYLES = {
         "script_hint": "Tone: a curious, playful explainer narrator. Second person what-if style, vivid and simple.",
     },
     "history": {
+        "emotion": "documentary",
         "label": "History documentary",
         "desc": "Archive photos, maps and timelines with a warm sepia grade, slow parallax moves and a serious narrator.",
         "transitions": ["fade", "dissolve", "fade", "fadeblack"],
@@ -135,6 +141,7 @@ DEFAULT_STYLES = {
         "script_hint": "Tone: a calm, authoritative history narrator. Dates, names and places, cause and consequence, one human story at the centre.",
     },
     "mystery": {
+        "emotion": "suspense",
         "label": "Mystery / true crime",
         "desc": "Dark, tense and moody. Slow push-ins, low drones, risers and cold blue-green grading.",
         "transitions": ["fadeblack", "fade", "dissolve"],
@@ -146,6 +153,7 @@ DEFAULT_STYLES = {
         "script_hint": "Tone: a hushed, gripping narrator who builds suspense. Open with the strangest detail, reveal facts one at a time.",
     },
     "space_ocean": {
+        "emotion": "documentary",
         "label": "Space & deep ocean (8K look)",
         "desc": "Epic deep-blue visuals of space or the deep sea, slow orbits, huge scale, cinematic hits.",
         "transitions": ["fade", "zoomin", "fade", "dissolve"],
@@ -158,6 +166,7 @@ DEFAULT_STYLES = {
         "script_hint": "Tone: an awe-struck documentary narrator. Huge numbers made human, comparisons to everyday things.",
     },
     "sleep": {
+        "emotion": "calm",
         "label": "Sleep documentary (long, calm)",
         "desc": "Slow, soothing narration over gentle visuals. Long fades, no captions, no sound effects, soft music.",
         "transitions": ["fade"],
@@ -169,6 +178,7 @@ DEFAULT_STYLES = {
         "script_hint": "Tone: soft, slow and soothing, like a bedtime documentary. Long gentle sentences, no shocks, no cliffhangers.",
     },
     "top10": {
+        "emotion": "excited",
         "label": "Top 10 / countdown",
         "desc": "Numbered countdown with big number cards between items, fast cuts, punchy text and whooshes.",
         "transitions": ["zoomin", "smoothleft", "slideleft", "smoothright"],
@@ -192,6 +202,7 @@ DEFAULT_STYLES = {
         "script_hint": "Tone: a clear, neutral explainer. What happened, why it matters, what happens next. Attribute claims, no opinions.",
     },
     "motivation": {
+        "emotion": "storyteller",
         "label": "Motivational / storytelling",
         "desc": "Emotional music, warm cinematic grade, big centred quote text and slow dramatic moves.",
         "transitions": ["fade", "dissolve"],

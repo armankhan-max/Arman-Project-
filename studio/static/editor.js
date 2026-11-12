@@ -230,12 +230,15 @@ function edInspector() {
       <div><label>Title style</label><select id="edTs">${opt(O.title_styles, L.title_style)}</select></div>
       <div><label>Accent colour</label><input type="color" id="edAcc" value="${esc(L.accent || '#FFD400')}"></div>
       <div><label>Colour grade (whole video)</label><select id="edGr">${opt(O.filters, L.grade || 'none')}</select></div>
+      <div><label>Atmosphere (makes photos feel alive)</label><select id="edAtm">${opt(Object.keys(O.atmospheres), L.atmosphere || 'none', O.atmospheres)}</select></div>
+      <div><label>Living light on photos</label><select id="edLiv"><option value="1">On</option><option value="0" ${L.living === false ? 'selected' : ''}>Off</option></select></div>
     </div>
     <div class="swatch">${O.palettes.map(c => `<i style="background:${c}" data-c="${c}"></i>`).join('')}</div>
     <p class="muted small">${L._regen ? '🎲 A new random look will be generated on render (fonts, colours, transitions, moves, music).' : 'Every video gets its own look. Change anything here, or press 🎲 New look.'}</p>`;
   const set = (id, f, tr = x => x) => $(id).onchange = () => { edSnapshot(); L[f] = tr($(id).value); delete L._regen; edDraw(); };
   set('#edCs', 'caption_style'); set('#edCp', 'caption_pos'); set('#edFont', 'font'); set('#edTs', 'title_style'); set('#edAcc', 'accent');
   set('#edGr', 'grade', v => v === 'none' ? '' : v);
+  set('#edAtm', 'atmosphere'); set('#edLiv', 'living', v => v === '1');
   $('#edCap').onchange = () => { edSnapshot(); ED.captions = $('#edCap').checked; edDraw(); };
   $$('.swatch i').forEach(i => i.onclick = () => { edSnapshot(); L.accent = i.dataset.c; delete L._regen; edDraw(); });
 }

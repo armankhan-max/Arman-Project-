@@ -133,13 +133,20 @@ def _run(pid, preview):
         if not voice.startswith("el:"):
             rate += age.get("rate", 0)
 
+        emotion = p.get("emotion") or style.get("emotion") or "natural"
+        human = emotion != "off" and not voice.startswith("el:")  # ElevenLabs voices are already expressive
+
         def speak(i):
             s = scenes[i]
-            key = hashlib.md5(f"{s['narration']}|{voice}|{rate}|{pitch}".encode()).hexdigest()
-            path = os.path.join(d, "audio", f"{key}.mp3")
+            key = hashlib.md5(f"{s['narration']}|{voice}|{rate}|{pitch}|{emotion if human else ''}".encode()).hexdigest()
+            path = os.path.join(d, "audio", f"{key}.{'wav' if human else 'mp3'}")
             if s.get("tts_key") != key or not os.path.exists(path) or not s.get("words"):
-                s["words"] = tts.synth(s["narration"], voice, path, rate, pitch)
+                if human:
+                    s["words"] = tts.humanize_synth(s["narration"], voice, path, rate, pitch, emotion)
+                else:
+                    s["words"] = tts.synth(s["narration"], voice, path, rate, pitch)
                 s["tts_key"] = key
+            s["audio"] = os.path.relpath(path, d)
             return tts.decode(path)
 
         with ThreadPoolExecutor(4) as ex:
@@ -217,7 +224,7 @@ def _run(pid, preview):
                 b = media.fetch(s, 1, cfg, style, vdir, w // 2, h, used, p.get("source") or style.get("source", "mix"), log, i + 500)[0]
                 s["assets"][0].update(type="split", b=b["path"], btype=b["type"], credit=b.get("credit", ""))
         elif s.get("kind") == "aroll" and has_avatar and not s.get("custom"):
-            clip = avatar.lipsync(cfg, os.path.join(d, p["avatar"]), os.path.join(d, "audio", f"{s.get('tts_key')}.mp3"),
+            clip = avatar.lipsync(cfg, os.path.join(d, p["avatar"]), os.path.join(d, s.get("audio") or f"audio/{s.get('tts_key')}.mp3"),
                                   os.path.join(vdir, f"aroll_{s.get('tts_key')}.mp4"), log)
             s["assets"] = [{"path": os.path.relpath(clip, d), "type": "video", "source": "avatar lip-sync", "credit": ""}] if clip else \
                           [{"path": p["avatar"], "type": "image", "source": "avatar", "credit": "", "still": True}]

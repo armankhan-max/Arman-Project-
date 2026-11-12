@@ -143,7 +143,8 @@ async def upload_music(file: UploadFile = File(...)):
 
 @app.get("/api/voices")
 def voices():
-    return {"voices": tts.voices(store.get_settings()), "ages": tts.AGES}
+    return {"voices": tts.voices(store.get_settings()), "ages": tts.AGES,
+            "emotions": {k: v["label"] for k, v in tts.EMOTIONS.items() if v}}
 
 
 @app.post("/api/voice-preview")
@@ -153,11 +154,15 @@ async def voice_preview(request: Request):
     try:
         age = tts.AGES.get(b.get("age") or "", {})
         rate = int(b.get("rate", 0)) + (age.get("rate", 0) if not b["voice"].startswith("el:") else 0)
-        await run_in_threadpool(tts.synth, (b.get("text") or "Hello! This is how your video will sound with this voice.")[:300],
-                                b["voice"], out, rate, age.get("pitch", 0))
+        text = (b.get("text") or "Have you ever wondered why some stories stay with you? Here is the truth. Nobody saw it coming.")[:300]
+        if b.get("emotion") and b["emotion"] != "off" and not b["voice"].startswith("el:"):
+            out = out.replace(".mp3", ".wav")
+            await run_in_threadpool(tts.humanize_synth, text, b["voice"], out, rate, age.get("pitch", 0), b["emotion"])
+        else:
+            await run_in_threadpool(tts.synth, text, b["voice"], out, rate, age.get("pitch", 0))
     except Exception as e:
         raise HTTPException(502, str(e))
-    return FileResponse(out, media_type="audio/mpeg", headers={"Cache-Control": "no-store"})
+    return FileResponse(out, media_type="audio/wav" if out.endswith(".wav") else "audio/mpeg", headers={"Cache-Control": "no-store"})
 
 
 # ---------------- projects ----------------
@@ -187,7 +192,7 @@ async def create_project(data: str = Form(...), voiceover: UploadFile = File(Non
     if (voiceover is not None or avatar_video is not None) and not (b.get("script") or "").strip():
         raise HTTPException(400, "When you upload your own voiceover, also paste the script it reads, so scenes can be matched.")
     fields = ("style", "language", "voice", "rate", "aspect", "source", "captions", "music", "script", "notes", "persona", "show_title", "sfx", "style_prompt", "age", "graphics",
-              "thumb_ref", "thumb_text", "profile_id")
+              "thumb_ref", "thumb_text", "profile_id", "emotion")
     p = store.new_project({"title": title, "minutes": max(0.3, min(60, float(b.get("minutes") or 1))),
                            **{k: b[k] for k in fields if k in b}})
     if voiceover is not None:
@@ -286,7 +291,7 @@ def editor_options():
     import look as looks
     return {"moves": looks.MOVES, "transitions": looks.TRANSITIONS, "filters": list(looks.FILTERS), "fonts": list(looks.FONTS),
             "caption_styles": looks.CAPTION_STYLES, "title_styles": looks.TITLE_STYLES, "palettes": looks.PALETTES,
-            "graphics": __import__("graphics").TYPES}
+            "graphics": __import__("graphics").TYPES, "atmospheres": __import__("atmos").KINDS}
 
 
 @app.post("/api/projects/{pid}/candidates")

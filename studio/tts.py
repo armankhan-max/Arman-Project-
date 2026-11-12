@@ -1,5 +1,6 @@
 """Voiceover: free neural voices (edge-tts) or the owner's own uploaded recording."""
 import asyncio
+import re
 import os
 import subprocess
 import wave
@@ -142,14 +143,18 @@ def synth(text, voice, out_mp3, rate=0, pitch=0):
                     words.append([round(s, 3), round(s + ch["duration"] / 1e7, 3), ch["text"]])
         return words
 
+    import time as _t
     last = None
-    for _ in range(3):
+    for attempt in range(6):  # the free service drops a request now and then; back off and retry
         try:
             w = asyncio.run(run())
             if os.path.getsize(out_mp3) > 0:
                 return w
         except Exception as e:
             last = e
+        _t.sleep(0.8 * (attempt + 1))
+        if attempt == 3:
+            pitch = 0  # last resort: plain prosody
     raise RuntimeError(f"Voice generation failed: {last}")
 
 
@@ -246,3 +251,92 @@ def make_music(mood, seconds, seed=None):
         out[:fade] *= np.linspace(0, 1, fade)
         out[-fade:] *= np.linspace(1, 0, fade)
     return out / (np.abs(out).max() + 1e-6) * 0.8
+
+
+# ---------------- human-like delivery for the free voices ----------------
+# Neural voices read every sentence the same way. A narrator does not: questions lift, reveals slow down,
+# lists speed up, and there are real pauses and soft breaths. Each sentence is voiced on its own with its
+# own speed/pitch, then joined with natural pauses.
+EMOTIONS = {
+    "off": None,
+    "natural": {"label": "Natural (human-like)", "rate": 0, "pitch": 0, "var": 1.0, "pause": 1.0, "breath": 0.35},
+    "storyteller": {"label": "Storyteller (warm, unhurried)", "rate": -6, "pitch": -2, "var": 1.3, "pause": 1.35, "breath": 0.45},
+    "documentary": {"label": "Serious documentary", "rate": -4, "pitch": -4, "var": 0.8, "pause": 1.2, "breath": 0.3},
+    "suspense": {"label": "Suspense / mystery", "rate": -8, "pitch": -5, "var": 1.2, "pause": 1.6, "breath": 0.4},
+    "excited": {"label": "Excited / energetic", "rate": 8, "pitch": 4, "var": 1.4, "pause": 0.75, "breath": 0.2},
+    "calm": {"label": "Calm / sleep", "rate": -12, "pitch": -3, "var": 0.6, "pause": 1.9, "breath": 0.5},
+    "sad": {"label": "Emotional / sad", "rate": -10, "pitch": -6, "var": 0.9, "pause": 1.5, "breath": 0.5},
+}
+_REVEAL = re.compile(r"\b(but|then|suddenly|until|however|and then|nobody|never|finally|the truth|the secret)\b", re.I)
+_LIST = re.compile(r",.*,.*,")
+
+
+def _breath(sec=0.32):
+    n = int(sec * SR)
+    rng = np.random.default_rng(n)
+    x = rng.standard_normal(n).astype(np.float32)
+    # soft, airy inhale: band-limited noise with a rise-fall envelope
+    spec = np.fft.rfft(x)
+    f = np.fft.rfftfreq(n, 1 / SR)
+    spec *= np.exp(-0.5 * (np.log(np.maximum(f, 1) / 1400) / 0.6) ** 2)
+    x = np.fft.irfft(spec, n).astype(np.float32)
+    env = np.sin(np.linspace(0, np.pi, n)) ** 1.5
+    return x / (np.abs(x).max() + 1e-9) * env * 0.035
+
+
+def sentences(text):
+    parts = [s.strip() for s in re.split(r"(?<=[.!?…।])\s+", text) if s.strip()]
+    return parts or [text]
+
+
+def humanize_synth(text, voice, out_wav, rate=0, pitch=0, emotion="natural", tmpdir=None):
+    """Voice each sentence with its own prosody, then join with human pauses and soft breaths."""
+    e = EMOTIONS.get(emotion) or EMOTIONS["natural"]
+    tmpdir = tmpdir or os.path.dirname(out_wav)
+    pieces, words, t = [], [], 0.0
+    sents = sentences(text)
+    seed = abs(hash(text)) % 1000
+    for k, s in enumerate(sents):
+        r, p = rate + e["rate"], pitch + e["pitch"]
+        v = e["var"]
+        if s.endswith("?"):
+            p += int(6 * v); r += int(2 * v)
+        elif s.endswith("!"):
+            p += int(4 * v); r += int(5 * v)
+        if _REVEAL.search(s[:30]):
+            r -= int(7 * v)  # slow down into a reveal
+        if _LIST.search(s):
+            r += int(4 * v)  # lists flow a little faster
+        if len(s.split()) <= 5:
+            r -= int(5 * v)  # short punchy lines land slower
+        r += ((seed + k * 7) % 5 - 2) * v  # tiny natural drift so no two lines match
+        tmp = os.path.join(tmpdir, f"_s{abs(hash((s, voice, r, p))) % 10**10}.mp3")
+        w = synth(s, voice, tmp, int(r), int(p))
+        a = decode(tmp)
+        os.remove(tmp)
+        # trim the voice's built-in silence so our pauses are in control
+        nz = np.where(np.abs(a) > 0.01)[0]
+        lead = max(0, nz[0] - int(0.03 * SR)) if len(nz) else 0
+        tail = min(len(a), nz[-1] + int(0.08 * SR)) if len(nz) else len(a)
+        a = a[lead:tail]
+        if k > 0:
+            prev = sents[k - 1]
+            pause = 0.38 if prev.endswith((".", "…", "।")) else 0.28
+            if prev.endswith("?"):
+                pause = 0.5
+            if _REVEAL.search(s[:25]):
+                pause += 0.25  # dramatic beat before a reveal
+            pause *= e["pause"]
+            gap = np.zeros(int(pause * SR), np.float32)
+            if ((seed + k) % 10) / 10 < e["breath"] and pause > 0.3:
+                b = _breath(min(0.34, pause * 0.8))
+                gap[len(gap) - len(b):] += b
+            pieces.append(gap)
+            t += len(gap) / SR
+        off = t - lead / SR
+        words += [[round(max(0, w0 + off), 3), round(max(0, w1 + off), 3), wd] for w0, w1, wd in w]
+        pieces.append(a)
+        t += len(a) / SR
+    full = np.concatenate(pieces) if pieces else np.zeros(1, np.float32)
+    write_wav(out_wav, full)
+    return words
