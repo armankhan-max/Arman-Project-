@@ -72,7 +72,7 @@ def generate(title, style_key, style, seed=None):
     rnd = random.Random(seed)
     mood = mood_of(style_key, style)
     base_tr = [t for t in (style.get("transitions") or []) if t] or ["fade"]
-    pool = base_tr + (CALM_TRANS if mood in ("serious", "calm") else ENERGY_TRANS)
+    pool = list(dict.fromkeys(base_tr + (CALM_TRANS if mood in ("serious", "calm") else ENERGY_TRANS)))
     trans = rnd.sample(pool, k=min(len(pool), rnd.randint(3, 5)))
     if not any(style.get("transitions") or ["x"]):  # format wants hard cuts (avatar)
         trans = ["cut"]
