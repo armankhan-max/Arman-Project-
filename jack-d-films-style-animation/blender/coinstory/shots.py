@@ -888,13 +888,17 @@ def shot_G2(n):
     camera([(1, *G1_END), (32, (4.9, -3.6, 1.6), (4.8, 0.8, 0.6)), (n, (9.9, -2.1, 1.5), (9.6, 0.6, 0.45))], lens=20)
 
 
-def fire_pit(loc, scale=1.0, watts=260, notes=0, seed=1, frames=0, top=7.0):
-    """Stone fire pit with a volumetric flame; optionally a column of burning paper notes rising from it."""
+def fire_pit(loc, scale=1.0, watts=260, notes=0, seed=1, frames=0, top=7.0, hero=True, big=2.4):
+    """Stone fire pit with flames (volumetric for the hero fire, light mesh flames for distant ones);
+    optionally a column of burning paper notes rising from it."""
     P.place("stone_fire_pit", (loc[0], loc[1], 0.12), 0.8 * scale, seed)
-    P.fire_volume((loc[0], loc[1], 0.1), scale=scale, watts=watts)
-    P.embers((loc[0], loc[1], 0.5), n=14, radius=0.25 * scale, height=3.0, seed=seed)
+    if hero:
+        P.fire_volume((loc[0], loc[1], 0.1), scale=scale, watts=watts)
+        P.embers((loc[0], loc[1], 0.5), n=14, radius=0.25 * scale, height=3.0, seed=seed)
+    else:
+        P.fire((loc[0], loc[1], 0.15), scale=1.5 * scale, n=4, watts=watts, seed=seed)
     if notes:
-        flying_notes((loc[0], loc[1], 0), notes, frames, seed=seed, radius=0.5 * scale, top=top, rise=0.075, big=1.6, start_z=0.6)
+        flying_notes((loc[0], loc[1], 0), notes, frames, seed=seed, radius=0.5 * scale, top=top, rise=0.075, big=big, start_z=0.6)
 
 
 def shot_S(n):
@@ -923,7 +927,7 @@ def shot_S(n):
     key_loc(thief, 1, (-6.3, 5.3, -0.35)); key_loc(thief, 168, (-6.3, 5.3, -0.35))
     key_loc(thief, 190, (-5.75, 5.05, -0.12)); key_loc(thief, 215, (-5.7, 5.0, -0.1)); key_loc(thief, 240, (-6.3, 5.3, -0.35))
     # --- the new way: the family burns paper money
-    fire_pit(FIRE, 1.0, watts=200, notes=46, seed=2, frames=n, top=6.0)
+    fire_pit(FIRE, 1.0, watts=200, notes=26, seed=2, frames=n, top=6.0, big=1.2)
     kin = make_kin(skin="middleage_asian_male")
     kin.rotation_euler = (0, 0, R(90)); kin.location = (FIRE[0] - 1.0, FIRE[1], 0)
     C.pose(kin, {"spine03": (0, -0.2, 1)})
@@ -978,7 +982,8 @@ def shot_S(n):
     # --- today: fires everywhere, notes filling the sky
     for i, (x, y, sc) in enumerate(((-4.6, -3.2, 1.2), (4.6, -3.6, 1.3), (-5.2, 8.6, 1.1), (5.0, 9.0, 1.2),
                                     (-13, 4, 2.2), (13, 6, 2.4), (0, 17, 2.6), (-12, -9, 2.2), (12, -10, 2.2))):
-        fire_pit((x, y, 0), sc, watts=160 * sc, notes=26, seed=10 + i, frames=n, top=12.0)
+        fire_pit((x, y, 0), sc, watts=160 * sc, notes=34, seed=10 + i, frames=n, top=13.0, hero=False)
+    flying_notes((0, -1.0, 0), 130, n, seed=77, radius=6.0, top=17.0, rise=0.07, big=3.2, start_z=3.0, spread=0.004)
     camera([
         (1, (0.6, -15, 0.9), (0, 0, 3.4)),
         (70, (0.3, -6.5, 1.5), (0, 0.5, 2.6)),
@@ -1011,7 +1016,7 @@ def shot_T(n):
         on_body = abs(tx) < 0.17 and 0.75 < ty < 1.3
         d.location = (tx, ty, -0.75 + (0.275 if on_body else 0.012))
         d.rotation_euler = (rnd.uniform(-0.15, 0.15), rnd.uniform(-0.15, 0.15), 0)
-    G = (0.0, 5.4)
+    G = (0.0, 4.4)
     pile = P.sphere("goldpile", 1.0, (G[0], G[1], -0.1), mat("gold"), scale=(1.5, 1.5, 0.55), subdiv=4)
     P.displace(pile, 0.12, 0.12)
     big = P.coin(r=0.05); big.location = (0, 0, -50)
@@ -1038,7 +1043,7 @@ def shot_T(n):
         ballistic(d, f0, (G[0] + sx * 0.45, G[1], 2.25), (sx * rnd.uniform(0.2, 1.3), rnd.uniform(-1.0, 0.6), rnd.uniform(2.5, 4.6)),
                   floor=0.1, frames=50)
     camera([(1, (0.1, 1.02, -0.02), mp), (40, (0.3, 0.5, 1.2), mp + Vector((0, 0.1, 0))),
-            (74, (0.45, -1.3, 1.9), (G[0], G[1] - 0.6, 1.2)), (n, (0.55, -2.7, 2.3), (G[0], G[1], 1.6))], lens=20)
+            (74, (0.6, -0.2, 1.9), (G[0], G[1] - 0.5, 1.2)), (n, (0.9, -0.9, 2.15), (G[0], G[1], 1.55))], lens=20)
 
 
 SHOTS = {k: globals()["shot_" + k] for k in TIMES}

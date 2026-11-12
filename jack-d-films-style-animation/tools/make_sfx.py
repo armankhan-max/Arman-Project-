@@ -81,43 +81,42 @@ bed *= 0.085 * (0.8 + 0.2 * np.sin(2 * np.pi * 0.5 * t))
 L += bed
 Rr += bed
 
-# coins: shower into the grave (A), placed in mouth (E1), dropped in palm (E2), loot (G2, M2)
+# coins: shower into the grave (A), placed in mouth (E1), dropped in palm (E2), loot (G2, T)
 for i in range(22):
     add(ting(rng.uniform(2500, 3600), 0.4), start["A"] + (25 + 4 * i) / FPS, 0.045, pan=rng.uniform(-0.5, 0.5))
 add(ting(3100, 0.6), start["E1"] + 41 / FPS, 0.1)
 add(ting(2800, 0.6), start["E2"] + 25 / FPS, 0.1)
 for i in range(9):
     add(ting(rng.uniform(2500, 3600), 0.4), start["G2"] + 0.5 + i * 0.27, 0.05, pan=rng.uniform(-0.6, 0.6))
-for i in range(16):
-    add(ting(rng.uniform(2400, 3800), 0.4), start["M2"] + 0.25 + i * 0.13, 0.05, pan=rng.uniform(-0.6, 0.6))
+for i in range(18):
+    add(ting(rng.uniform(2400, 3800), 0.4), start["T"] + 2.7 + i * 0.11, 0.05, pan=rng.uniform(-0.6, 0.6))
 
-# digging thuds (G1, G2, K2)
+# digging thuds (G1, G2)
 for sid in ("G1", "G2"):
     tt = start[sid] + 0.1
     while tt < end[sid]:
         add(thump(), tt, 0.22)
         tt += 16 / FPS
-add(thump(55), start["K2"] + 0.2, 0.25)
 
 # water ambience on the Styx shots
 for sid in ("C", "D", "E2", "F"):
     add(fade(noise_bed(end[sid] - start[sid], 500)), start[sid], 0.07)
 
-# fire crackle + roar (H, J, L)
-for sid, g in (("H", 0.5), ("J", 1.0), ("L", 1.3)):
-    d = end[sid] - start[sid]
-    add(fade(noise_bed(d, 220)), start[sid], 0.05 * g)
+# fire crackle + roar while the fires are on screen (inside the long continuous shot)
+for t0, t1, g in ((start["S"] + 3.0, start["S"] + 5.8, 0.4), (start["S"] + 8.0, start["S"] + 11.4, 1.0), (start["S"] + 14.9, end["S"], 1.3)):
+    d = t1 - t0
+    add(fade(noise_bed(d, 220)), t0, 0.05 * g)
     for _ in range(int(d * 14)):
         n = int(rng.uniform(0.004, 0.02) * SR)
-        add(rng.standard_normal(n) * np.exp(-np.arange(n) / (n / 3)), start[sid] + rng.uniform(0, d), 0.05 * g, pan=rng.uniform(-0.5, 0.5))
+        add(rng.standard_normal(n) * np.exp(-np.arange(n) / (n / 3)), t0 + rng.uniform(0, d), 0.05 * g, pan=rng.uniform(-0.5, 0.5))
 
-# ghost shimmer (B, K1) and final hit
-for sid in ("B", "K1"):
-    n = int((end[sid] - start[sid]) * SR)
+# ghost shimmer (shot B and "the dead still got paid") and the final hit
+for t0, t1 in ((start["B"], end["B"]), (start["S"] + 11.2, start["S"] + 12.9)):
+    n = int((t1 - t0) * SR)
     tt = np.arange(n) / SR
     sh = (np.sin(2 * np.pi * 880 * tt) + np.sin(2 * np.pi * 1318.5 * tt) + np.sin(2 * np.pi * 1760 * tt)) * (0.5 + 0.5 * np.sin(2 * np.pi * 3 * tt))
-    add(fade(sh, 0.6), start[sid], 0.012)
-add(thump(45, 0.8), start["M2"], 0.3)
+    add(fade(sh, 0.6), t0, 0.012)
+add(thump(45, 0.8), start["T"] + 2.05, 0.3)
 
 out = np.stack([L, Rr], axis=1)
 edge = int(0.6 * SR)

@@ -678,7 +678,7 @@ def scatter(name, n, xr, yr, z=0.0, scale=(0.8, 1.3), seed=1, avoid=(), avoid_r=
     return out
 
 
-def fire_volume(loc, scale=1.0, watts=300, strength=14.0):
+def fire_volume(loc, scale=1.0, watts=300, strength=6.5):
     """Procedural volumetric flame (animated noise, no simulation) plus a flickering light."""
     root = empty("vfire", loc)
     dom = box("vfire_dom", (1.0, 1.0, 2.2), (0, 0, 1.1), None)
@@ -722,7 +722,7 @@ def fire_volume(loc, scale=1.0, watts=300, strength=14.0):
     wd = noise.inputs["W"].driver_add("default_value")
     wd.driver.expression = "frame*0.05"
     wob = math("MULTIPLY", math("SUBTRACT", noise.outputs["Fac"], 0.5), math("ADD", math("MULTIPLY", h, 0.75), 0.18))
-    width = math("MULTIPLY", math("POWER", math("SUBTRACT", 1.0, h), 0.75), 0.36)
+    width = math("MULTIPLY", math("POWER", math("SUBTRACT", 1.0, h), 1.1), 0.46)
     shape = math("ADD", math("SUBTRACT", width, r), wob)
     dens = math("SMOOTHSTEP", shape, 0.0, 0.14) if False else None
     ramp_d = N("ShaderNodeMapRange")
@@ -737,14 +737,14 @@ def fire_volume(loc, scale=1.0, watts=300, strength=14.0):
     d = math("MULTIPLY", ramp_d.outputs[0], base_fade.outputs[0])
     col = N("ShaderNodeValToRGB")
     e = col.color_ramp.elements
-    e[0].position = 0.0; e[0].color = (0.9, 0.06, 0.0, 1)
-    e[1].position = 1.0; e[1].color = (1.0, 0.85, 0.35, 1)
-    mid = e.new(0.45); mid.color = (1.0, 0.33, 0.02, 1)
+    e[0].position = 0.0; e[0].color = (0.75, 0.03, 0.0, 1)
+    e[1].position = 1.0; e[1].color = (1.0, 0.62, 0.08, 1)
+    mid = e.new(0.45); mid.color = (1.0, 0.2, 0.0, 1)
     heat = math("MULTIPLY", ramp_d.outputs[0], math("SUBTRACT", 1.15, h))
     Lk(heat, col.inputs["Fac"])
     vol = N("ShaderNodeVolumePrincipled")
     vol.inputs["Color"].default_value = (0.02, 0.01, 0.01, 1)
-    Lk(math("MULTIPLY", d, 1.5), vol.inputs["Density"])
+    Lk(math("MULTIPLY", d, 3.0), vol.inputs["Density"])
     Lk(col.outputs["Color"], vol.inputs["Emission Color"])
     Lk(math("MULTIPLY", d, strength), vol.inputs["Emission Strength"])
     for l in list(out.inputs["Surface"].links):

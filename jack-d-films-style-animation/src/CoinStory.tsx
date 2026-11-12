@@ -17,11 +17,8 @@ import timeline from "./data/shots.json";
 // "dissolve" = slow match dissolve (same place, time has passed).
 // "none"     = the two shots were rendered as one continuous camera move, so there is nothing to hide.
 type Trans = "push" | "dissolve" | "none";
-// Transition at the cut between shot i and shot i + 1.
-const TRANS: Trans[] = [
-  "dissolve", "push", "none", "push", "push", "push", "push", "none",
-  "push", "push", "push", "push", "push", "push", "push", "push",
-];
+// Transition at the cut between shot i and shot i + 1 (written by tools/make_shots_json.py).
+const TRANS = timeline.trans as Trans[];
 const { H, shots } = timeline;
 const fontFace = `@font-face { font-family: "Cap"; src: url(${staticFile("fonts/Inter-ExtraBold.otf")}) format("opentype"); font-weight: 800; }`;
 const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
@@ -152,8 +149,8 @@ export const CoinStory: React.FC = () => {
         style={{ background: "radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0) 58%, rgba(0,0,0,0.38) 100%)" }}
       />
       <Caption />
-      <Audio src={staticFile("audio/vo.mp3")} />
-      <Audio src={staticFile("audio/sfx.wav")} volume={0.7} />
+      <Audio src={staticFile("audio/vo_loud.m4a")} />
+      <Audio src={staticFile("audio/sfx.wav")} volume={0.45} />
     </AbsoluteFill>
   );
 };
