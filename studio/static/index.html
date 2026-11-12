@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Video Studio</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div id="gate" class="gate hidden">
+  <form class="card gate-card" id="gateForm">
+    <div class="logo">▶ AI Video Studio</div>
+    <p id="gateMsg" class="muted"></p>
+    <input type="password" id="gatePw" placeholder="Owner password" autocomplete="current-password" required minlength="6">
+    <button class="btn primary" id="gateBtn">Log in</button>
+    <p class="err" id="gateErr"></p>
+  </form>
+</div>
+
+<div id="app" class="hidden">
+  <header>
+    <div class="logo">▶ AI Video Studio</div>
+    <nav id="nav">
+      <a data-tab="create" class="on">Create</a>
+      <a data-tab="videos">My videos</a>
+      <a data-tab="titles">Titles</a>
+      <a data-tab="thumbs">Thumbnails</a>
+      <a data-tab="tips">Tips</a>
+      <a data-tab="settings">Owner panel</a>
+    </nav>
+    <button class="btn ghost small" id="logout">Log out</button>
+  </header>
+
+  <main>
+    <!-- CREATE -->
+    <section id="tab-create">
+      <h1>Make a video from a title</h1>
+      <p class="muted">Type a title, pick a style and a voice. The studio writes the script, records the voice, finds B-roll, adds captions and text animation, and edits the final video.</p>
+      <div id="aiWarn" class="note hidden"></div>
+      <div class="card">
+        <label>Video title</label>
+        <div class="row">
+          <input id="cTitle" placeholder="e.g. Why Honey Never Spoils" maxlength="120">
+          <button class="btn" id="cSuggest" title="Get better title ideas">✨ Ideas</button>
+        </div>
+        <div id="cIdeas" class="chips"></div>
+
+        <label>Style</label>
+        <div id="cStyles" class="styles"></div>
+
+        <div class="grid3">
+          <div><label>Length</label>
+            <select id="cMinutes">
+              <option value="0.5">30 seconds (test)</option><option value="1" selected>1 minute</option><option value="2">2 minutes</option>
+              <option value="5">5 minutes</option><option value="8">8 minutes</option><option value="12">12 minutes</option>
+              <option value="15">15 minutes</option><option value="20">20 minutes</option><option value="30">30 minutes</option>
+            </select></div>
+          <div><label>Shape</label>
+            <select id="cAspect"><option value="16:9">16:9 YouTube</option><option value="9:16">9:16 Shorts / Reels</option><option value="1:1">1:1 Square</option></select></div>
+          <div><label>Script language</label>
+            <select id="cLang"><option>English</option><option>Hindi</option><option value="Hinglish (Hindi in Roman letters)">Hinglish</option><option>Spanish</option><option>Urdu</option><option>Bengali</option><option>Arabic</option><option>Portuguese</option></select></div>
+        </div>
+
+        <label>Voiceover</label>
+        <div class="seg" id="cVoiceMode"><a data-v="tts" class="on">AI voice</a><a data-v="upload">Upload my own voiceover</a></div>
+        <div id="cTts" class="row">
+          <select id="cVoiceLang" style="max-width:150px"></select>
+          <select id="cVoice"></select>
+          <select id="cRate" style="max-width:130px"><option value="-10">Slower</option><option value="0" selected>Normal speed</option><option value="8">Faster</option><option value="15">Fast</option></select>
+          <button class="btn" id="cPreview">▶ Listen</button>
+        </div>
+        <div id="cUpload" class="hidden">
+          <input type="file" id="cVoFile" accept="audio/*,video/mp4">
+          <p class="muted small">Also paste the same script below (in “More options”), so each scene can be matched to your voice.</p>
+        </div>
+
+        <div class="grid3">
+          <div><label>Visuals (B-roll)</label>
+            <select id="cSource"><option value="">Best for this style</option><option value="mix">Mix: stock video + AI images + photos</option><option value="stock_video">Stock videos</option><option value="stock_photo">Stock photos</option><option value="ai_image">AI images</option><option value="archive">Historical photos, maps, satellite (Wikimedia)</option></select></div>
+          <div><label>Music</label><select id="cMusic"></select></div>
+          <div><label>Captions</label>
+            <select id="cCaptions"><option value="1">On (word by word)</option><option value="0">Off</option></select></div>
+        </div>
+
+        <div id="cAvatarBox" class="hidden">
+          <label>Avatar / host picture (A-roll)</label>
+          <input type="file" id="cAvatar" accept="image/*">
+          <p class="muted small">The host appears on camera in A-roll scenes. For real lip-sync add a D-ID key in the Owner panel; without it the host picture is shown with a slow camera move.</p>
+        </div>
+
+        <details>
+          <summary>More options: your own script, notes, persona</summary>
+          <label>Your own script (optional). Leave empty and AI writes it from the title.</label>
+          <textarea id="cScript" rows="7" placeholder="Paste the full voiceover script here. Only the spoken words."></textarea>
+          <label>Notes for the AI writer (optional)</label>
+          <textarea id="cNotes" rows="2" placeholder="e.g. countdown of 7 tips, funny tone, mention winter"></textarea>
+          <label>Persona Bible (optional, for avatar channels)</label>
+          <textarea id="cPersona" rows="3" placeholder="Name, age, backstory, voice, signature phrases, sign-off..."></textarea>
+          <label class="check"><input type="checkbox" id="cShowTitle" checked> Show the title tag at the start</label>
+          <label class="check"><input type="checkbox" id="cSfx" checked> Sound effects (whooshes, hits, risers, ambience)</label>
+          <label class="check"><input type="checkbox" id="cFast"> Fast draft (720p, quicker to render)</label>
+        </details>
+
+        <button class="btn primary big" id="cGo">🎬 Generate video</button>
+        <p class="err" id="cErr"></p>
+      </div>
+    </section>
+
+    <!-- VIDEOS -->
+    <section id="tab-videos" class="hidden">
+      <h1>My videos</h1>
+      <div id="vList" class="vgrid"></div>
+    </section>
+
+    <!-- PROJECT -->
+    <section id="tab-project" class="hidden"></section>
+
+    <!-- TITLES -->
+    <section id="tab-titles" class="hidden">
+      <h1>Title generator</h1>
+      <div class="card">
+        <label>Topic or rough idea</label>
+        <div class="row"><input id="tTopic" placeholder="e.g. cleaning an oven with baking soda"><button class="btn primary" id="tGo">Generate</button></div>
+        <p class="muted small" id="tNote"></p>
+        <div id="tOut"></div>
+      </div>
+    </section>
+
+    <!-- THUMBS -->
+    <section id="tab-thumbs" class="hidden">
+      <h1>Thumbnail maker</h1>
+      <div class="two">
+        <div class="card">
+          <label>Text (2 to 4 words that add to the title)</label>
+          <input id="thText" placeholder="e.g. 3000 YEARS OLD" maxlength="40">
+          <div class="grid3">
+            <div><label>Layout</label><select id="thLayout"><option value="left">Text left, picture right</option><option value="right">Text right, picture left</option><option value="center">Text in the centre</option></select></div>
+            <div><label>Accent colour</label><input type="color" id="thAccent" value="#FFD400"></div>
+            <div><label>Arrow</label><select id="thArrow"><option value="1">Red arrow</option><option value="0">No arrow</option></select></div>
+          </div>
+          <label>Host / object picture (optional, PNG cut-outs look best)</label>
+          <input type="file" id="thSubject" accept="image/*">
+          <label>Background: upload a picture…</label>
+          <input type="file" id="thBg" accept="image/*">
+          <label>…or describe it and AI draws it</label>
+          <input id="thPrompt" placeholder="e.g. old Egyptian tomb with golden light">
+          <button class="btn primary" id="thGo">Make thumbnail</button>
+          <p class="err" id="thErr"></p>
+        </div>
+        <div class="card"><div id="thOut" class="muted">Your 1280 × 720 thumbnail will show here.</div></div>
+      </div>
+    </section>
+
+    <!-- TIPS -->
+    <section id="tab-tips" class="hidden">
+      <h1>Tips for better videos</h1>
+      <div class="card tips">
+        <h3>1. Title</h3><p>Ek clear problem + curiosity. 70 characters se chhota rakho. “Ideas” button se 10 options milte hain.</p>
+        <h3>2. Style</h3><p><b>Documentary</b>: facts, history, “why/how” topics. <b>Animated explainer</b>: simple concepts, kids, science. <b>AI avatar</b>: host wale channel (grandma, farmer) – host ki picture upload karo. <b>Kinetic text</b>: lists, shorts, fast facts.</p>
+        <h3>3. Voice</h3><p>“Listen” daba ke voice check karo. Hindi script ke liye hi-IN voice lo. Apni recording hai to “Upload my own voiceover” + wahi script paste karo.</p>
+        <h3>4. Better B-roll</h3><p>Owner panel me free <b>Pexels</b> aur <b>Pixabay</b> key daalo – tab real stock videos aate hain. Key ke bina AI images / free photos use hote hain.</p>
+        <h3>5. Fix one scene, not the whole video</h3><p>Video khol ke “Scenes” me kisi bhi scene ka text, search words ya picture badlo (apni image/video upload bhi kar sakte ho), phir “Save & render again”.</p>
+        <h3>6. Test first</h3><p>Pehle 30 second ya 1 minute + “Fast draft” se test karo. Pasand aaye to wahi title lamba banao.</p>
+        <h3>7. Before upload</h3><p>AI avatar / realistic AI visuals ho to YouTube ke “Altered or synthetic content” sawaal ka jawab YES do. Stock credits project page pe milte hain.</p>
+      </div>
+    </section>
+
+    <!-- SETTINGS -->
+    <section id="tab-settings" class="hidden">
+      <h1>Owner panel</h1>
+      <p class="muted">Only you can see this. Everything the studio uses can be changed here.</p>
+      <div class="two">
+        <div class="card">
+          <h3>AI script writer</h3>
+          <label>Provider <span class="muted" id="sActive"></span></label>
+          <select id="s_llm_provider"><option value="auto">Automatic (best available)</option><option value="anthropic">Claude (Anthropic key)</option><option value="openai">OpenAI-compatible (OpenAI, Gemini, Groq, OpenRouter…)</option><option value="pollinations">Pollinations (free, no key)</option><option value="none">Off (I paste my own scripts)</option></select>
+          <label>Anthropic API key</label><input id="s_anthropic_key" placeholder="sk-ant-...">
+          <label>Claude model</label><input id="s_anthropic_model">
+          <label>OpenAI-compatible base URL</label><input id="s_openai_base">
+          <label>OpenAI-compatible key</label><input id="s_openai_key">
+          <label>OpenAI-compatible model</label><input id="s_openai_model">
+          <label>Speaking speed used to size scripts (words per minute)</label><input id="s_words_per_minute" type="number">
+        </div>
+        <div class="card">
+          <h3>Visuals</h3>
+          <label>Pexels API key (free at pexels.com/api)</label><input id="s_pexels_key">
+          <label>Pixabay API key (free at pixabay.com/api/docs)</label><input id="s_pixabay_key">
+          <label class="check"><input type="checkbox" id="s_use_pollinations"> Free AI images (Pollinations)</label>
+          <label class="check"><input type="checkbox" id="s_use_openverse"> Free photos (Openverse)</label>
+          <h3>Avatar lip-sync</h3>
+          <select id="s_lipsync_provider"><option value="none">Off (still host picture)</option><option value="d-id">D-ID (paid, needs key)</option></select>
+          <label>D-ID API key</label><input id="s_did_key">
+          <h3>Music</h3>
+          <label>Music volume (0 to 0.5)</label><input id="s_music_volume" type="number" step="0.01" min="0" max="0.5">
+          <label>Add your own music track</label><input type="file" id="sMusic" accept="audio/*">
+          <div id="sMusicList" class="muted small"></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Script rules (sent to the AI writer for every video)</h3>
+        <textarea id="s_script_rules" rows="10"></textarea>
+        <h3>Styles (look, captions, colours, music, tone). Edit, add or remove styles.</h3>
+        <textarea id="s_styles" rows="14" class="mono"></textarea>
+        <div class="row">
+          <button class="btn primary" id="sSave">Save settings</button>
+          <button class="btn" id="sReset">Reset rules and styles to default</button>
+          <span id="sMsg" class="muted"></span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Change owner password</h3>
+        <div class="row"><input type="password" id="sPw" placeholder="New password (6+ characters)"><button class="btn" id="sPwGo">Change</button></div>
+      </div>
+    </section>
+  </main>
+</div>
+<audio id="player"></audio>
+<script src="/static/app.js"></script>
+</body>
+</html>

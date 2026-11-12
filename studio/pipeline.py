@@ -1,0 +1,260 @@
+"""Title -> script -> scenes -> voice -> visuals -> edit -> finished video. Runs in a background thread."""
+import hashlib
+import os
+import subprocess
+import threading
+import time
+import traceback
+from concurrent.futures import ThreadPoolExecutor
+
+import numpy as np
+
+import avatar
+import llm
+import media
+import render
+import sfx
+import store
+import thumb
+import tts
+
+GAP = 0.3  # seconds of breath between scenes
+OUTRO = 4.0  # end card length
+_running = set()
+_sem = threading.Semaphore(1)  # one render at a time keeps small servers alive
+
+
+def start(pid, preview=False):
+    if pid in _running:
+        return False
+    _running.add(pid)
+    store.update_project(pid, status="queued", progress=0, step="Waiting in queue", error="")
+    threading.Thread(target=_guard, args=(pid, preview), daemon=True).start()
+    return True
+
+
+def _guard(pid, preview):
+    try:
+        with _sem:
+            _run(pid, preview)
+    except Exception as e:
+        traceback.print_exc()
+        p = store.get_project(pid)
+        if p:
+            p["log"].append("ERROR: " + str(e))
+            p.update(status="error", error=str(e), step="Failed")
+            store.save_project(p)
+    finally:
+        _running.discard(pid)
+
+
+def _run(pid, preview):
+    p = store.get_project(pid)
+    cfg = store.get_settings()
+    d = store.pdir(pid)
+    style = cfg["styles"].get(p.get("style"), cfg["styles"]["documentary"])
+    w, h = render.SIZES.get(p.get("aspect", "16:9"), render.SIZES["16:9"])
+    p["log"] = []
+
+    def step(msg, prog):
+        p.update(status="working", step=msg, progress=int(prog))
+        p["log"].append(time.strftime("%H:%M:%S ") + msg)
+        store.save_project(p)
+
+    def log(msg):
+        p["log"].append(msg)
+
+    # 1. script
+    if not (p.get("script") or "").strip():
+        step("Writing the script with AI", 3)
+        p["script"] = llm.write_script(cfg, p["title"], p["style"], float(p.get("minutes", 1)), p.get("language", "English"),
+                                       p.get("notes", ""), p.get("persona", ""))
+        p["scenes"] = []
+    # 2. scenes
+    if not p.get("scenes"):
+        step("Planning scenes, B-roll and on-screen text", 10)
+        narr = llm.split_scenes(llm.clean_script(p["script"]))
+        if not narr:
+            raise RuntimeError("The script is empty.")
+        p["scenes"] = llm.annotate(cfg, narr, p["title"], p["style"], log)
+    scenes = p["scenes"]
+
+    # 3. voice
+    step("Recording the voiceover", 18)
+    os.makedirs(os.path.join(d, "audio"), exist_ok=True)
+    if p.get("voice_mode") == "upload" and p.get("voiceover"):
+        full = tts.decode(os.path.join(d, p["voiceover"]))
+        total = len(full) / tts.SR
+        chars = [len(s["narration"]) + 1 for s in scenes]
+        t = 0.0
+        for s, c in zip(scenes, chars):
+            s["start"], s["dur"] = round(t, 3), round(total * c / sum(chars), 3)
+            s["words"] = tts.spread_words(s["narration"], 0, s["dur"])
+            t += s["dur"]
+        tts.write_wav(os.path.join(d, "narration.wav"), full)
+    else:
+        voice, rate = p.get("voice") or cfg["default_voice"], int(p.get("rate", 0))
+
+        def speak(i):
+            s = scenes[i]
+            key = hashlib.md5(f"{s['narration']}|{voice}|{rate}".encode()).hexdigest()
+            path = os.path.join(d, "audio", f"{key}.mp3")
+            if s.get("tts_key") != key or not os.path.exists(path) or not s.get("words"):
+                s["words"] = tts.synth(s["narration"], voice, path, rate)
+                s["tts_key"] = key
+            return tts.decode(path)
+
+        with ThreadPoolExecutor(4) as ex:
+            clips = list(ex.map(speak, range(len(scenes))))
+        t, parts = 0.0, []
+        gap = np.zeros(int(GAP * tts.SR), dtype=np.float32)
+        for s, c in zip(scenes, clips):
+            s["start"], s["dur"] = round(t, 3), round(len(c) / tts.SR + GAP, 3)
+            parts += [c, gap]
+            t += s["dur"]
+        tts.write_wav(os.path.join(d, "narration.wav"), np.concatenate(parts))
+    total = sum(s["dur"] for s in scenes)
+
+    # 4. visuals
+    step("Finding B-roll and generating images", 30)
+    vdir = os.path.join(d, "visuals")
+    os.makedirs(vdir, exist_ok=True)
+    has_avatar = bool(p.get("avatar")) and os.path.exists(os.path.join(d, p["avatar"]))
+    used, done = set(), [0]
+
+    def visuals(i):
+        s = scenes[i]
+        n = max(1, round(s["dur"] / float(style.get("shot_seconds", 5))))
+        if s.get("kind") == "aroll" and has_avatar and not s.get("custom"):
+            clip = avatar.lipsync(cfg, os.path.join(d, p["avatar"]), os.path.join(d, "audio", f"{s.get('tts_key')}.mp3"),
+                                  os.path.join(vdir, f"aroll_{s.get('tts_key')}.mp4"), log)
+            s["assets"] = [{"path": os.path.relpath(clip, d), "type": "video", "source": "avatar lip-sync", "credit": ""}] if clip else \
+                          [{"path": p["avatar"], "type": "image", "source": "avatar", "credit": "", "still": True}]
+        elif s.get("custom") and s.get("assets") and os.path.exists(os.path.join(d, s["assets"][0]["path"])):
+            s["assets"] = s["assets"][:1]
+        else:
+            ok = s.get("assets") and len(s["assets"]) == n and all(
+                os.path.exists(os.path.join(d, a["path"])) and a.get("source") not in ("avatar", "avatar lip-sync") for a in s["assets"])
+            if not ok:
+                s["custom"] = False
+                s["assets"] = media.fetch(s, n, cfg, style, vdir, w, h, used, p.get("source") or style.get("source", "mix"), log, i)
+        done[0] += 1
+        p.update(progress=30 + int(25 * done[0] / len(scenes)))
+        if done[0] % 5 == 0:
+            store.save_project(p)
+
+    with ThreadPoolExecutor(4) as ex:
+        list(ex.map(visuals, range(len(scenes))))
+    store.save_project(p)
+
+    # 5. music
+    music = None
+    mood = p.get("music") or style.get("music", "cinematic")
+    if mood and mood != "none":
+        step("Adding background music", 56)
+        music = os.path.join(d, "music.wav")
+        lib = os.path.join(store.MUSIC, os.path.basename(mood))
+        if os.path.exists(lib):
+            track = tts.decode(lib)
+            reps = int((total + OUTRO) * tts.SR / max(1, len(track))) + 1
+            track = np.tile(track, reps)[: int((total + OUTRO) * tts.SR)]
+            fade = int(2 * tts.SR)
+            if len(track) > 2 * fade:
+                track[-fade:] *= np.linspace(1, 0, fade)
+            tts.write_wav(music, track)
+        else:
+            tts.write_wav(music, tts.make_music(mood, total + OUTRO))
+
+    # 6. edit plan: camera moves, transitions, outro
+    step("Editing: camera moves, transitions, motion graphics", 58)
+    moves = style.get("moves") or render.MOVES
+    transitions = [t for t in (style.get("transitions") or ["fade"])]
+    shots, boundaries, mi = [], [], 0
+    for si, s in enumerate(scenes):
+        n = len(s["assets"])
+        dur_s = s["dur"] + (OUTRO if si == len(scenes) - 1 else 0)
+        for k, a in enumerate(s["assets"]):
+            dur = round((dur_s / n) * render.FPS) / render.FPS
+            host = a.get("source", "").startswith("avatar")
+            trans = None
+            if k == 0 and si > 0:
+                trans = transitions[(si - 1) % len(transitions)] or None
+                prev_host = scenes[si - 1]["assets"][-1].get("source", "").startswith("avatar")
+                if host and prev_host:
+                    trans = None  # talking head to talking head: clean jump cut
+                if trans:
+                    boundaries.append(s["start"])
+            if si == 0 and k == 0:
+                move = "push_in"  # opening shot always pushes in
+            elif host:
+                move = "handheld"
+            else:
+                move = moves[mi % len(moves)]
+                mi += 1
+            shots.append({"asset": {**a, "path": os.path.join(d, a["path"])}, "dur": dur, "move": move, "trans": trans,
+                          "slowmo": bool(style.get("slowmo")) and a["type"] == "video" and not host,
+                          "grade": style.get("host_grade", "eq=saturation=1.05:gamma_r=1.03") if host else style.get("grade", "")})
+    total_v = total + OUTRO
+    drift = total_v - sum(x["dur"] for x in shots)
+    shots[-1]["dur"] = max(0.4, shots[-1]["dur"] + drift)
+
+    sfx_path = None
+    if p.get("sfx", style.get("sfx", True)) or style.get("ambience", "none") != "none":
+        step("Sound design: whooshes, hits, risers, ambience", 60)
+        sfx_path = os.path.join(d, "sfx.wav")
+        track = sfx.design(scenes, total_v, boundaries, total + 0.2, style.get("ambience", "none"),
+                           1.0 if p.get("sfx", style.get("sfx", True)) else 0.0)
+        if not p.get("sfx", style.get("sfx", True)):
+            track = sfx.ambience(total_v, style.get("ambience")) * 0.05
+        tts.write_wav(sfx_path, track)
+    if music:
+        tts.write_wav(music, _extend_music(music, total_v, mood))
+
+    hindi = any("\u0900" <= ch <= "\u097f" for ch in p["script"])
+    pw, ph = (render.PREVIEW if preview else render.SIZES).get(p.get("aspect", "16:9"))
+    credits = sorted({a["credit"] for s in scenes for a in s["assets"] if a.get("credit")})
+    render.build_ass(os.path.join(d, "subs.ass"), scenes, pw, ph, style, p.get("captions", style.get("captions", True)),
+                     p["title"] if p.get("show_title", True) else None, hindi, total + 0.2, total_v, credits)
+    step("Rendering shots and the final mix", 62)
+    name = "video.mp4"
+    render.render(p, shots, os.path.join(d, "narration.wav"), music, sfx_path, os.path.join(d, name),
+                  lambda f: p.update(progress=62 + int(30 * f)) or store.save_project(p), preview, int(style.get("grain", 0)))
+    total = total_v
+
+    # 7. upload pack + thumbnail
+    step("Writing titles, description and tags", 93)
+    if not p.get("meta"):
+        p["meta"] = llm.metadata(cfg, p["title"], p["script"], p.get("language", "English"))
+    step("Making the thumbnail", 97)
+    make_thumb(p)
+    p["credits"] = sorted({a["credit"] for s in scenes for a in s["assets"] if a.get("credit")})
+    p.update(status="done", progress=100, step="Finished", duration=round(total, 1), video=name, version=int(time.time()),
+             preview=bool(preview))
+    p["log"].append(time.strftime("%H:%M:%S ") + "Finished")
+    store.save_project(p)
+
+
+def _extend_music(path, seconds, mood):
+    m = tts.decode(path)
+    need = int(seconds * tts.SR)
+    if len(m) < need:
+        m = np.concatenate([m, tts.make_music(mood if mood in tts.MOODS else "cinematic", (need - len(m)) / tts.SR + 1)])
+    return m[:need]
+
+
+def make_thumb(p, text=None, layout="left"):
+    d = store.pdir(p["id"])
+    cfg = store.get_settings()
+    style = cfg["styles"].get(p.get("style"), cfg["styles"]["documentary"])
+    bg = os.path.join(d, "thumb_bg.jpg")
+    shots = sorted(f for f in os.listdir(os.path.join(d, "shots")) if f.endswith(".mp4")) if os.path.isdir(os.path.join(d, "shots")) else []
+    pick = next((os.path.join(d, a["path"]) for s in p["scenes"] for a in s.get("assets", []) if a["type"] == "image"
+                 and not a.get("source", "").startswith(("avatar", "generated"))), None)
+    if pick:
+        bg = pick
+    elif shots:
+        subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", os.path.join(d, "shots", shots[len(shots) // 3]), "-frames:v", "1", bg])
+    subject = os.path.join(d, p["avatar"]) if p.get("avatar") else None
+    text = text or (p.get("meta") or {}).get("thumb_text") or " ".join(p["title"].split()[:3])
+    thumb.make(os.path.join(d, "thumb.jpg"), text, bg if os.path.exists(bg) else None, subject, layout, style.get("accent", "#FFD400"))
+    p["thumb"] = "thumb.jpg"
