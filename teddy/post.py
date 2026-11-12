@@ -164,7 +164,7 @@ for e in ev:
         place(plush_cut(length), t0, 0.55, 0.0)
     elif k == "slow":
         place(wood_tap(1.0, 0.95), t0, 0.7)
-        place(tiring(1.0), t0 - 1.0, 0.10, 0.3)
+        place(tiring(1.0), t0 - 1.0, 0.03, 0.3)
     elif k == "split":
         place(plush_cut((e["end"] - e["frame"]) / fps, 0.5), t0, 0.22)
     elif k == "slice":
@@ -174,15 +174,16 @@ for e in ev:
         place(plush_cut(0.2), t0 - 0.18, 0.45, rng.uniform(-0.25, 0.25))
         place(wood_tap(0.7, 1.05), t0, 0.55)
     if k in ("slow", "slice", "chop"):
-        place(ting(SCALE[min(e.get("n", 1) - 1, 9)], 1.8), t0 + 0.02, 0.16, rng.uniform(-0.3, 0.3))
+        place(ting(SCALE[min(e.get("n", 1) - 1, 9)], 1.8), t0 + 0.02, 0.05, rng.uniform(-0.3, 0.3))
+        place(crisp_chop(), t0, 0.55)
     if e.get("n") in MILESTONES:
-        place(ting(2637, 2.4) + ting(3951, 2.4) * 0.6, t0 + 0.05, 0.14)
+        place(ting(2637, 2.4) + ting(3951, 2.4) * 0.6, t0 + 0.05, 0.05)
     if k == "rapid" and e.get("n", 0) % 9 == 0:
-        place(ting(rng.choice(SCALE[4:]), 0.5, 0.5), t0, 0.05, rng.uniform(-0.6, 0.6))
+        pass
     if k == "rapid":
-        place(crisp_chop(), t0, 0.32, rng.uniform(-0.3, 0.3))
+        place(crisp_chop(), t0, 0.45, rng.uniform(-0.3, 0.3))
     elif k == "dice":
-        place(crisp_chop(), t0, 0.10, rng.uniform(-0.5, 0.5))
+        place(crisp_chop(), t0, 0.16, rng.uniform(-0.5, 0.5))
     elif k == "cube_fall":
         place(cube_tap(), t0, 0.07, rng.uniform(-0.6, 0.6))
         if rng.random() < 0.12:
