@@ -187,7 +187,7 @@ async def create_project(data: str = Form(...), voiceover: UploadFile = File(Non
     if (voiceover is not None or avatar_video is not None) and not (b.get("script") or "").strip():
         raise HTTPException(400, "When you upload your own voiceover, also paste the script it reads, so scenes can be matched.")
     fields = ("style", "language", "voice", "rate", "aspect", "source", "captions", "music", "script", "notes", "persona", "show_title", "sfx", "style_prompt", "age", "graphics",
-              "thumb_ref", "thumb_text")
+              "thumb_ref", "thumb_text", "profile_id")
     p = store.new_project({"title": title, "minutes": max(0.3, min(60, float(b.get("minutes") or 1))),
                            **{k: b[k] for k in fields if k in b}})
     if voiceover is not None:
@@ -220,9 +220,11 @@ async def edit_project(pid: str, request: Request):
     if p["status"] in ("queued", "working"):
         raise HTTPException(409, "This video is rendering right now.")
     b = await request.json()
-    for k in ("title", "style", "voice", "rate", "aspect", "source", "captions", "music", "show_title", "meta", "sfx", "thumb"):
+    for k in ("title", "style", "voice", "rate", "aspect", "source", "captions", "music", "show_title", "meta", "sfx", "thumb", "age"):
         if k in b:
             p[k] = b[k]
+    if isinstance(b.get("look"), dict):
+        p["look"] = {**(p.get("look") or {}), **b["look"]}
     if "scenes" in b:
         old = p["scenes"]
         new = []
@@ -234,8 +236,28 @@ async def edit_project(pid: str, request: Request):
                  "image_prompt": s.get("image_prompt") or o.get("image_prompt", "")}
             if not n["narration"]:
                 continue
-            if not o.get("custom") and (n["queries"] != o.get("queries") or s.get("refresh")):
-                n["assets"] = []
+            if isinstance(s.get("assets"), list):  # shot list edited in the timeline editor
+                root = os.path.realpath(store.pdir(pid))
+                keep = []
+                for x in s["assets"]:
+                    full = os.path.realpath(os.path.join(root, str(x.get("path", ""))))
+                    if not full.startswith(root + os.sep) or not os.path.isfile(full):
+                        continue
+                    prev = next((y for y in o.get("assets", []) if y.get("path") == x["path"]), {})
+                    item = {**prev, "path": x["path"], "type": x.get("type") or prev.get("type", "image"),
+                            "source": x.get("source") or prev.get("source", "your pick"), "credit": x.get("credit", prev.get("credit", ""))}
+                    for f in ("move", "filter"):
+                        item[f] = str(x.get(f) or "")[:30]
+                    item["speed"] = max(0.25, min(2.0, float(x.get("speed") or 1)))
+                    item["weight"] = max(0.1, min(10.0, float(x.get("weight") or 1)))
+                    keep.append(item)
+                if keep:
+                    n["assets"], n["locked"] = keep, True
+                n["trans"] = str(s.get("trans") or "")[:20]
+            elif not o.get("custom") and (n["queries"] != o.get("queries") or s.get("refresh")):
+                n["assets"], n["locked"] = [], False
+            if n.get("graphic", "") != o.get("graphic", ""):  # new or removed motion graphic: rebuild this scene's visuals
+                n["assets"], n["locked"], n["custom"] = [], False, False
             new.append(n)
         p["scenes"] = new
         p["script"] = "\n\n".join(s["narration"] for s in new)
@@ -257,6 +279,56 @@ async def scene_asset(pid: str, i: int, file: UploadFile = File(...)):
     p["scenes"][i]["custom"] = True
     store.save_project(p)
     return p["scenes"][i]
+
+
+@app.get("/api/editor-options")
+def editor_options():
+    import look as looks
+    return {"moves": looks.MOVES, "transitions": looks.TRANSITIONS, "filters": list(looks.FILTERS), "fonts": list(looks.FONTS),
+            "caption_styles": looks.CAPTION_STYLES, "title_styles": looks.TITLE_STYLES, "palettes": looks.PALETTES,
+            "graphics": __import__("graphics").TYPES}
+
+
+@app.post("/api/projects/{pid}/candidates")
+async def visual_candidates(pid: str, request: Request):
+    p = _project(pid)
+    b = await request.json()
+    q = (b.get("query") or "").strip()
+    if not q:
+        raise HTTPException(400, "Type what you want to see.")
+    items, errors = await run_in_threadpool(media.candidates, q, store.get_settings(), b.get("kind", "all"), p.get("aspect") == "9:16")
+    return {"items": items[:40], "errors": errors}
+
+
+@app.post("/api/projects/{pid}/pick")
+async def visual_pick(pid: str, request: Request):
+    _project(pid)
+    b = await request.json()
+    vdir = os.path.join(store.pdir(pid), "visuals")
+    os.makedirs(vdir, exist_ok=True)
+    try:
+        if b.get("prompt"):
+            import random as _r
+            w, h = (1344, 768) if b.get("aspect", "16:9") != "9:16" else (768, 1344)
+            path = os.path.join(vdir, f"ai_{secrets.token_hex(5)}.jpg")
+            await run_in_threadpool(media.ai_image, b["prompt"] + ", no text, no watermark", path, w, h, _r.randint(1, 99999))
+            typ, src, credit = "image", "AI image", "AI generated (Pollinations)"
+        else:
+            typ = "video" if b.get("type") == "video" else "image"
+            path = await run_in_threadpool(media.download_pick, b["url"], typ, vdir)
+            src, credit = b.get("kind") or "stock", b.get("credit", "")
+    except Exception as e:
+        raise HTTPException(502, f"Could not get that visual: {e}")
+    return {"path": os.path.relpath(path, store.pdir(pid)), "type": typ, "source": src, "credit": credit}
+
+
+@app.post("/api/projects/{pid}/upload")
+async def visual_upload(pid: str, file: UploadFile = File(...)):
+    _project(pid)
+    os.makedirs(os.path.join(store.pdir(pid), "visuals"), exist_ok=True)
+    name = _save_upload(file, pid, f"visuals/up_{secrets.token_hex(4)}")
+    is_video = name.lower().endswith((".mp4", ".mov", ".webm", ".mkv", ".m4v"))
+    return {"path": name, "type": "video" if is_video else "image", "source": "your upload", "credit": ""}
 
 
 @app.post("/api/projects/{pid}/thumb")
@@ -335,6 +407,104 @@ async def thumb_ref_preview(request: Request):
     except Exception as e:
         raise HTTPException(400, str(e))
     return {"url": f"/media/_thumbs/{name}"}
+
+
+# ---------------- brand profiles ----------------
+@app.get("/api/profiles")
+def list_profiles():
+    return [dict(store.PROFILE_DEFAULTS, **x) for x in store.get_profiles()]
+
+
+@app.post("/api/profiles")
+async def save_profile(request: Request):
+    b = await request.json()
+    b = {k: v for k, v in b.items() if k in store.PROFILE_DEFAULTS or k == "id"}
+    if not (b.get("name") or "").strip() and not b.get("id"):
+        raise HTTPException(400, "Give the profile a name.")
+    return store.upsert_profile(b)
+
+
+@app.delete("/api/profiles/{pid}")
+def delete_profile(pid: str):
+    store.save_profiles([x for x in store.get_profiles() if x.get("id") != pid])
+    return {"ok": True}
+
+
+@app.post("/api/profiles/{pid}/reference")
+async def profile_reference(pid: str, file: UploadFile = File(None), url: str = Form(""), transcript: str = Form("")):
+    """Study a reference video (file) and/or its transcript and save the editing + script style to the profile."""
+    import refstyle
+    prof = store.get_profile(pid)
+    if not prof:
+        raise HTTPException(404, "Profile not found.")
+    cfg = store.get_settings()
+    video = None
+    meta = {}
+    if file is not None and file.filename:
+        path = os.path.join(store.DATA, f"ref_{pid}{os.path.splitext(file.filename)[1][:6] or '.mp4'}")
+        with open(path, "wb") as f:
+            shutil.copyfileobj(file.file, f)
+        video = await run_in_threadpool(refstyle.analyse_video, path)
+    if url:
+        import thumbref
+        vid = thumbref.video_id(url)
+        meta["url"] = url
+        if vid and cfg.get("youtube_key"):
+            try:
+                import requests as _rq
+                j = _rq.get("https://www.googleapis.com/youtube/v3/videos", timeout=30,
+                            params={"part": "snippet,contentDetails", "id": vid, "key": cfg["youtube_key"]}).json()
+                sn = j["items"][0]["snippet"]
+                meta.update(title=sn.get("title"), channel=sn.get("channelTitle"), description=(sn.get("description") or "")[:600])
+            except Exception:
+                pass
+        if vid:
+            meta["thumb"] = f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg"
+    stats, style = (None, None)
+    if transcript.strip():
+        stats, style = await run_in_threadpool(refstyle.analyse_script, transcript, cfg, (video or {}).get("duration"))
+    if not (video or stats or meta):
+        raise HTTPException(400, "Upload the reference video, paste its transcript, or both.")
+    ref = {"video": video, "script_stats": stats, "script_style": style, "meta": meta,
+           "settings": refstyle.to_settings(video, stats, style), "analysed": time.time()}
+    return store.upsert_profile({"id": pid, "reference": ref})
+
+
+# ---------------- prompt -> plan ("quote statement") ----------------
+@app.post("/api/plan")
+async def plan(request: Request):
+    """Read a free-text prompt (up to 10,000 characters) and work out the video settings."""
+    b = await request.json()
+    prompt = (b.get("prompt") or "").strip()[:10000]
+    if not prompt:
+        raise HTTPException(400, "Describe the video you want.")
+    cfg = store.get_settings()
+    prof = store.get_profile(b.get("profile_id") or "") or dict(store.PROFILE_DEFAULTS)
+    m = re.search(r"(\d+(?:\.\d+)?)\s*(?:-|to)?\s*(?:\d+\s*)?(min|minute|hour|hr)", prompt, re.I)
+    minutes = float(m.group(1)) * (60 if m and m.group(2).lower().startswith("h") else 1) if m else 8
+    first = re.sub(r"^(title|video prompt)\s*[:\-]\s*", "", prompt.splitlines()[0], flags=re.I).strip()
+    out = {"title": first[:100], "minutes": max(0.5, min(60, minutes)), "format": store.THEMES.get(prof["theme"], "documentary"),
+           "language": prof["language"], "notes": prompt if len(prompt) > len(first) + 20 else "", "tone": ""}
+    if llm.provider(cfg) != "none":
+        try:
+            o = await run_in_threadpool(lambda: llm._json(llm.chat(cfg, "You turn video requests into production settings. Return ONLY one JSON object.",
+                f"Formats available: {', '.join(cfg['styles'])}.\nDefault format from the brand profile: {out['format']}.\n"
+                f"Request:\n{prompt[:8000]}\n\nReturn {{\"title\": \"best YouTube title under 70 characters (keep the user's title if they gave one)\", "
+                '"minutes": number, "format": one of the formats, "language": "...", "tone": "short description", '
+                '"notes": "the user\'s scene breakdown, facts and instructions, kept in full"}', 6000)))
+            for k in ("title", "format", "language", "tone", "notes"):
+                if o.get(k):
+                    out[k] = str(o[k])
+            if o.get("minutes"):
+                out["minutes"] = max(0.5, min(60, float(o["minutes"])))
+            if out["format"] not in cfg["styles"]:
+                out["format"] = store.THEMES.get(prof["theme"], "documentary")
+        except Exception:
+            pass
+    wpm = cfg.get("words_per_minute", 150)
+    out["estimate"] = {"words": int(out["minutes"] * wpm), "scenes": int(out["minutes"] * wpm / 32),
+                       "render_minutes": round(2 + out["minutes"] * (1.6 if prof.get("quality") != "draft" else 0.9))}
+    return out
 
 
 @app.get("/")

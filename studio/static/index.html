@@ -21,8 +21,10 @@
   <header>
     <div class="logo">▶ AI Video Studio</div>
     <nav id="nav">
-      <a data-tab="create" class="on">Create</a>
+      <a data-tab="home" class="on">Home</a>
+      <a data-tab="create">Create (step by step)</a>
       <a data-tab="videos">My videos</a>
+      <a data-tab="profiles">Brand profiles</a>
       <a data-tab="titles">Titles</a>
       <a data-tab="thumbs">Thumbnails</a>
       <a data-tab="tips">Tips</a>
@@ -32,8 +34,33 @@
   </header>
 
   <main>
+    <!-- HOME -->
+    <section id="tab-home">
+      <div class="hero">
+        <div class="row" style="justify-content:center;gap:10px">
+          <button class="btn small" id="hAvatar">🧑 Use AI avatar</button><button class="btn small" id="hTalking">🎥 Upload talking head</button>
+        </div>
+        <div class="promptbox">
+          <textarea id="hPrompt" rows="5" maxlength="10000" placeholder="Create a 12 minute documentary about… (or paste your full prompt / scene-by-scene breakdown)"></textarea>
+          <div class="row"><select id="hProfile" style="max-width:240px"></select><span class="muted small" id="hCount">0 / 10,000</span>
+            <span style="flex:1"></span><button class="btn primary" id="hGo">Send ➜</button></div>
+        </div>
+        <p class="err" id="hErr"></p>
+      </div>
+      <div class="row"><h3 style="flex:1">Recent generations</h3><a class="small" data-tab-link="videos" style="color:var(--pri);cursor:pointer">View all ›</a></div>
+      <div id="hRecent"></div>
+    </section>
+
+    <!-- PROFILES -->
+    <section id="tab-profiles" class="hidden">
+      <div class="row"><h1 style="flex:1">Brand profiles</h1><button class="btn primary" id="bpNew">+ New brand profile</button></div>
+      <p class="muted">One profile per channel: voice, theme, music, captions, what to never show, which sources are allowed, and an editing style learned from a reference video.</p>
+      <div id="bpList"></div>
+      <div id="bpEdit"></div>
+    </section>
+
     <!-- CREATE -->
-    <section id="tab-create">
+    <section id="tab-create" class="hidden">
       <div class="wiz-head">
         <h1>Create a video</h1>
         <div class="steps" id="wSteps">
@@ -278,5 +305,7 @@
 </div>
 <audio id="player"></audio>
 <script src="/static/app.js"></script>
+<script src="/static/editor.js"></script>
+<script src="/static/home.js"></script>
 </body>
 </html>

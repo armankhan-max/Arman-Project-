@@ -318,3 +318,39 @@ def list_projects():
             out.append({k: p.get(k) for k in ("id", "title", "style", "status", "progress", "step", "created",
                                                "duration", "video", "thumb", "aspect")})
     return sorted(out, key=lambda x: -(x.get("created") or 0))
+
+
+# ---------------- brand profiles (one per YouTube channel) ----------------
+THEMES = {"standard": "documentary", "history": "history", "crime": "mystery", "modern": "news", "minimalist": "facts",
+          "space_ocean": "space_ocean", "sleep": "sleep", "avatar": "avatar", "stickman": "stickman", "animated": "animated",
+          "top10": "top10", "motivation": "motivation"}
+PROFILE_DEFAULTS = {"name": "My channel", "language": "English", "voice": "", "age": "", "rate": 0, "theme": "standard",
+                    "music": "", "captions": True, "sfx": True, "aspect": "16:9", "quality": "full",
+                    "sources": {"stock_video": True, "stock_photo": True, "ai_image": True, "commons": True},
+                    "block_words": "", "block_domains": "", "background": "", "style_text": "",
+                    "reference": None, "persona": "", "graphics": None}
+
+
+def get_profiles():
+    return _read(os.path.join(DATA, "profiles.json"), []) or []
+
+
+def save_profiles(lst):
+    with _lock:
+        _write(os.path.join(DATA, "profiles.json"), lst)
+
+
+def get_profile(pid):
+    return next((dict(PROFILE_DEFAULTS, **x) for x in get_profiles() if x.get("id") == pid), None)
+
+
+def upsert_profile(data):
+    lst = get_profiles()
+    if not data.get("id"):
+        data["id"] = uuid.uuid4().hex[:8]
+        data["created"] = time.time()
+        lst.append(data)
+    else:
+        lst = [dict(x, **data) if x.get("id") == data["id"] else x for x in lst]
+    save_profiles(lst)
+    return get_profile(data["id"])

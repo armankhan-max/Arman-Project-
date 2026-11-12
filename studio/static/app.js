@@ -37,6 +37,8 @@ function tab(name) {
   $$('#nav a').forEach(a => a.classList.toggle('on', a.dataset.tab === name || (name === 'project' && a.dataset.tab === 'videos')));
   if (name === 'videos') loadVideos();
   if (name === 'settings') loadSettings();
+  if (name === 'home') loadHome();
+  if (name === 'profiles') loadProfilesTab();
   window.scrollTo(0, 0);
 }
 $$('#nav a').forEach(a => a.onclick = () => tab(a.dataset.tab));
@@ -63,6 +65,7 @@ async function boot() {
   voiceSel = voices.find(v => v.id === settings.default_voice) ? settings.default_voice : (voices[0] || {}).id;
   $('#vNote').textContent = voices.some(v => v.provider === 'elevenlabs') ? '' : 'Add an ElevenLabs key in the Owner panel to unlock premium voices.';
   renderVoices();
+  tab('home');
 }
 function goStep(n) {
   if (n > 1 && !$('#cTitle').value.trim()) { $('#cErr').textContent = ''; $('#cTitle').focus(); $('#cTitle').placeholder = 'Type a title first'; n = 1; }
@@ -194,9 +197,11 @@ function renderReview() {
     ['Motion graphics', [...gfxSel].join(', ') || 'none', 2],
     ['Captions / music / SFX', `${$('#cCaptions').value === '1' ? 'captions' : 'no captions'} · ${$('#cMusic').selectedOptions[0].text} · ${$('#cSfx').checked ? 'SFX on' : 'SFX off'}`, 2],
     ['Voice', voiceMode === 'upload' ? 'Your uploaded voiceover' : `${v.name || voiceSel}${$('#vfAge').value ? ' · ' + ages[$('#vfAge').value].label : ''} · ${$('#cRate').selectedOptions[0].text}`, 3],
+    ['Brand profile', (profiles.find(p => p.id === profileId) || {}).name || 'none', 0],
+    ['Estimated render time', `about ${Math.round(2 + (+$('#cMinutes').value) * ($('#cQuality').value === 'draft' ? 0.9 : 1.6))} min (you can close the page)`, 1],
     ['Thumbnail', thumbRef ? 'Inspired by your reference' + ($('#cThumbText').value ? ` · “${$('#cThumbText').value}”` : '') : '3 designs from your title', 4],
   ];
-  $('#cReview').innerHTML = rows.map(([k, val, st]) => `<div class="rv"><span class="muted">${k}</span><b>${esc(val)}</b><a class="small" data-go="${st}">Edit</a></div>`).join('');
+  $('#cReview').innerHTML = rows.map(([k, val, st]) => `<div class="rv"><span class="muted">${k}</span><b>${esc(val)}</b>${st ? `<a class="small" data-go="${st}">Edit</a>` : `<a class="small" data-tab-link="profiles">Edit</a>`}</div>`).join('');
 }
 $('#cGo').onclick = e => busy(e.target, async () => {
   $('#cErr').textContent = '';
@@ -206,7 +211,7 @@ $('#cGo').onclick = e => busy(e.target, async () => {
     voice: voiceSel, rate: +$('#cRate').value, age: $('#vfAge').value, source: $('#cSource').value, music: $('#cMusic').value,
     captions: $('#cCaptions').value === '1', script: $('#cScript').value, notes: $('#cNotes').value, persona: $('#cPersona').value,
     show_title: $('#cShowTitle').checked, sfx: $('#cSfx').checked, style_prompt: $('#cStyleText').value, preview: $('#cQuality').value === 'draft',
-    graphics: [...gfxSel], thumb_ref: thumbRef, thumb_text: $('#cThumbText').value
+    graphics: [...gfxSel], thumb_ref: thumbRef, thumb_text: $('#cThumbText').value, profile_id: profileId
   }));
   if (voiceMode === 'upload') { if (!$('#cVoFile').files[0]) throw new Error('Choose your voiceover file in step 3.'); fd.append('voiceover', $('#cVoFile').files[0]); }
   if (style.startsWith('avatar') && $('#cAvatar').files[0]) fd.append('avatar', $('#cAvatar').files[0]);
@@ -268,6 +273,7 @@ function renderProject(p) {
   if (p.video) html += `<div class="card"><video controls src="${base}${p.video}${v}" poster="${p.thumb ? base + p.thumb + v : ''}"></video>
     <div class="row" style="margin-top:10px"><a class="btn primary" href="${base}${p.video}?download=1">⬇ Download video</a>
     ${p.thumb ? `<a class="btn" href="${base}${p.thumb}?download=1">⬇ Thumbnail</a>` : ''}
+    <button class="btn" id="pEdit">✂️ Open editor (timeline)</button>
     <span class="muted small">${fmt(p.duration)} · ${esc(p.aspect || '16:9')}${p.preview ? ' · fast draft (720p)' : ''}</span></div></div>`;
   if (p.video) html += `<div class="two"><div class="card"><h3>Thumbnail</h3>${p.thumb ? `<img class="thumb" src="${base}${p.thumb}${v}">` : ''}
       ${(p.thumbs || []).length ? `<p class="muted small">Pick one of the designs:</p><div class="thumbs3">${p.thumbs.map(t => `<img src="${base}${t}${v}" data-t="${t}" class="${t === p.thumb ? 'on' : ''}">`).join('')}</div>` : ''}
@@ -292,6 +298,7 @@ function renderProject(p) {
   $('#pDel').onclick = async () => { if (confirm('Delete this video and all its files?')) { await api('/api/projects/' + p.id, { method: 'DELETE' }); tab('videos'); } };
   if ($('#pRetry')) $('#pRetry').onclick = () => saveScenes(p, false);
   if ($('#pThGo')) $('#pThGo').onclick = e => busy(e.target, async () => { renderProject(current = await api(`/api/projects/${p.id}/thumb`, { json: { text: $('#pThText').value, layout: $('#pThLayout').value } })); });
+  if ($('#pEdit')) $('#pEdit').onclick = () => openEditor(p);
   $$('.thumbs3 img').forEach(im => im.onclick = async () => { renderProject(current = await api('/api/projects/' + p.id, { method: 'PUT', json: { thumb: im.dataset.t } })); });
   if ($('#pRender')) { $('#pRender').onclick = () => saveScenes(p, false); $('#pDraft').onclick = () => saveScenes(p, true); }
   $$('.scene input[type=file]').forEach(inp => inp.onchange = async () => {
@@ -382,3 +389,5 @@ $('#sMusic').onchange = async () => { const fd = new FormData(); fd.append('file
 $('#sPwGo').onclick = async () => { try { await api('/api/password', { json: { password: $('#sPw').value } }); $('#sPw').value = ''; alert('Password changed.'); } catch (err) { alert(err.message); } };
 
 showGate();
+
+document.addEventListener('click', e => { const l = e.target.closest('[data-tab-link]'); if (l) tab(l.dataset.tabLink); });

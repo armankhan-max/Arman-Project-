@@ -191,8 +191,20 @@ MOODS = {
 }
 
 
-def make_music(mood, seconds):
-    m = MOODS.get(mood, MOODS["cinematic"])
+def make_music(mood, seconds, seed=None):
+    m = dict(MOODS.get(mood, MOODS["cinematic"]))
+    if seed is not None:  # every video gets its own key, tempo and chord order
+        import random
+        rnd = random.Random(seed)
+        m["root"] = m["root"] * 2 ** (rnd.randint(-4, 4) / 12)
+        m["bar"] = m["bar"] * rnd.uniform(0.85, 1.2)
+        ch = list(m["chords"])
+        first = ch[0]
+        rest = ch[1:]
+        rnd.shuffle(rest)
+        m["chords"] = [first] + rest
+        m["pluck"] = m.get("pluck") or rnd.random() < 0.3
+        m["pulse"] = m.get("pulse") or (mood in ("suspense", "cinematic") and rnd.random() < 0.5)
     n = int(seconds * SR)
     t = np.arange(n) / SR
     out = np.zeros(n, dtype=np.float32)

@@ -33,7 +33,7 @@ def frames(d):
 
 
 # ---------------- one shot ----------------
-def render_shot(asset, out, dur, w, h, grade, move, slowmo=False):
+def render_shot(asset, out, dur, w, h, grade, move, slowmo=False, speed=1.0):
     """An image with a cinematic camera move, or a stock clip cropped to frame (optionally slow motion)."""
     n = frames(dur)
     enc = ["-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "17", "-pix_fmt", "yuv420p", "-r", str(FPS),
@@ -51,7 +51,8 @@ def render_shot(asset, out, dur, w, h, grade, move, slowmo=False):
             + ["-filter_complex", fc] + enc)
         return
     if asset["type"] == "video":
-        speed = "setpts=1.25*PTS," if slowmo else ""
+        sp = 1.0 / speed if speed and speed != 1.0 else (1.25 if slowmo else 1.0)
+        speed = f"setpts={sp:.3f}*PTS," if sp != 1.0 else ""
         vf = f"{speed}scale={w}:{h}:force_original_aspect_ratio=increase,crop={w}:{h},fps={FPS},setsar=1{g}"
         if asset.get("ss") is not None:  # a slice of the avatar's own recording, so lips stay in sync with the voice
             vf = vf.replace(f"fps={FPS}", f"fps={FPS},tpad=stop_mode=clone:stop_duration=10")
@@ -76,12 +77,17 @@ def render_shot(asset, out, dur, w, h, grade, move, slowmo=False):
               f"[bg][fg]overlay=x='(W-w)/2+{w * 0.035:.0f}-{w * 0.07:.0f}*t/{D:.3f}':y='(H-h)/2',setsar=1{g}")
         run(["ffmpeg", "-y", "-v", "error", "-loop", "1", "-i", asset["path"], "-filter_complex", fc] + enc)
         return
+    if move == "static":
+        vf = f"scale={w}:{h}:force_original_aspect_ratio=increase,crop={w}:{h},fps={FPS},setsar=1{g}"
+        run(["ffmpeg", "-y", "-v", "error", "-loop", "1", "-i", asset["path"], "-vf", vf] + enc)
+        return
     # zoompan family on a 2x canvas for smooth sub-pixel motion
     bw, bh = w * 2, h * 2
     e = f"(on/{n})"
     ease = f"({e}*{e}*(3-2*{e}))"
     cx, cy = "iw/2-(iw/zoom/2)", "ih/2-(ih/zoom/2)"
-    z = {"push_in": f"1+0.16*{ease}", "pull_out": f"1.16-0.16*{ease}", "pan_left": "1.15", "pan_right": "1.15",
+    punch = f"(1+0.22*min(1,on/9)-0.06*min(1,on/9)*{e})"
+    z = {"zoom_punch": punch, "push_in": f"1+0.16*{ease}", "pull_out": f"1.16-0.16*{ease}", "pan_left": "1.15", "pan_right": "1.15",
          "tilt_up": "1.15", "diag": f"1.06+0.12*{ease}", "orbit": f"1.08+0.08*{ease}"}.get(move, f"1+0.14*{ease}")
     x = {"pan_left": f"(iw-iw/zoom)*(1-{ease})", "pan_right": f"(iw-iw/zoom)*{ease}",
          "diag": f"(iw-iw/zoom)*(0.25+0.5*{ease})"}.get(move, cx)
@@ -155,9 +161,12 @@ def _esc(s):
 NUM = re.compile(r"(\d[\d,]*(?:\.\d+)?)")
 
 
-def build_ass(path, scenes, w, h, style, captions, title=None, hindi=False, outro_at=None, total=None, credits=()):
-    accent = _ass_color(style.get("accent", "#FFD400"))
-    font = "FreeSans" if hindi else "Inter ExtraBold"
+def build_ass(path, scenes, w, h, style, captions, title=None, hindi=False, outro_at=None, total=None, credits=(), look=None):
+    look = look or {}
+    accent = _ass_color(look.get("accent") or style.get("accent", "#FFD400"))
+    font = "FreeSans" if hindi else (look.get("font") or "Inter ExtraBold")
+    cstyle = look.get("caption_style", "karaoke")
+    cpos = {"bottom": 0.09, "lower": 0.2, "middle": 0.42}.get(look.get("caption_pos", "bottom"), 0.09)
     upper = style.get("caption_upper") and not hindi
     land = w > h
     cs, ts = int(min(w, h) * (0.062 if land else 0.07)), int(min(w, h) * 0.105)
@@ -170,7 +179,7 @@ ScaledBorderAndShadow: yes
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Cap,{font},{cs},&H00FFFFFF,&H00FFFFFF,&H00000000,&H96000000,-1,0,0,0,100,100,0,0,1,{cs * 0.09:.1f},{cs * 0.04:.1f},2,{int(w * 0.08)},{int(w * 0.08)},{int(h * (0.09 if land else 0.2))},1
+Style: Cap,{font},{int(cs * (1.45 if cstyle == "single" else 0.85 if cstyle in ("bar", "classic") else 1))},&H00FFFFFF,&H00FFFFFF,{"&H00000000" if cstyle != "bar" else "&H78000000"},&H96000000,-1,0,0,0,100,100,0,0,{3 if cstyle == "bar" else 1},{(cs * 0.3) if cstyle == "bar" else (cs * 0.09):.1f},{0 if cstyle == "bar" else cs * 0.04:.1f},2,{int(w * 0.08)},{int(w * 0.08)},{int(h * (cpos if land else max(cpos, 0.2)))},1
 Style: Big,{font},{ts},&H00FFFFFF,&H00FFFFFF,&H00000000,&H96000000,-1,0,0,0,100,100,0,0,1,{ts * 0.08:.1f},{ts * 0.05:.1f},5,{int(w * 0.06)},{int(w * 0.06)},0,1
 Style: Tag,{font},{int(cs * 0.8)},&H00101010,&H00FFFFFF,{accent},{accent},-1,0,0,0,100,100,1,0,3,{cs * 0.22:.1f},0,7,{int(w * 0.05)},0,{int(h * 0.07)},1
 Style: Small,{font},{int(cs * 0.55)},&H00DDDDDD,&H00FFFFFF,&H00000000,&H96000000,0,0,0,0,100,100,0,0,1,2,0,2,{int(w * 0.08)},{int(w * 0.08)},{int(h * 0.12)},1
@@ -180,7 +189,14 @@ Style: Box,{font},10,{accent},{accent},{accent},{accent},0,0,0,0,100,100,0,0,1,0
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 """
     ev = []
-    if title:
+    tstyle = look.get("title_style", "tag")
+    if title and tstyle == "center_big":
+        ev.append(f"Dialogue: 2,{_ts(0.3)},{_ts(3.6)},Big,,0,0,0,,{{\\an5\\pos({w // 2},{int(h * 0.45)})\\fad(200,400)\\fscx70\\fscy70\\t(0,300,\\fscx100\\fscy100)}}"
+                  + _esc(title.upper() if not hindi else title))
+    elif title and tstyle == "lower_third":
+        ev.append(f"Dialogue: 2,{_ts(0.5)},{_ts(4.5)},Tag,,0,0,0,,{{\\an1\\fs{int(cs * 1.1)}\\move({-int(w * 0.5)},{int(h * 0.8)},{int(w * 0.05)},{int(h * 0.8)},0,400)\\fad(0,300)}}"
+                  + _esc(title.upper() if not hindi else title))
+    elif title and tstyle != "none":
         ev.append(f"Dialogue: 2,{_ts(0.4)},{_ts(4.2)},Tag,,0,0,0,,{{\\fad(250,300)\\move({-int(w * 0.3)},{int(h * 0.07)},{int(w * 0.05)},{int(h * 0.07)},0,350)}}"
                   + _esc(title.upper() if not hindi else title))
     y_big = int(h * (0.3 if captions else 0.45))
@@ -226,14 +242,28 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
             last = i == len(words) - 1
             pause = not last and words[i + 1][0] - wd[1] > 0.35
             if last or pause or len(chunk) >= 4 or len(joined) > 20 or wd[2][-1:] in ".?!,":
+                if cstyle == "classic":  # plain subtitles: the whole phrase at once
+                    a = s0 + chunk[0][0]
+                    b = s0 + min(chunk[-1][1] + 0.3, words[i + 1][0] if not last else chunk[-1][1] + 0.3)
+                    ev.append(f"Dialogue: 0,{_ts(a)},{_ts(b)},Cap,,0,0,0,," + _esc(" ".join(x[2] for x in chunk)))
+                    chunk = []
+                    continue
                 for j, cw in enumerate(chunk):
                     a = s0 + cw[0]
                     b = s0 + (chunk[j + 1][0] if j + 1 < len(chunk) else min(cw[1] + 0.25, words[i + 1][0] if not last else cw[1] + 0.25))
+                    if cstyle == "single":  # one big word at a time, popping in
+                        t = _esc(cw[2].upper() if not hindi else cw[2])
+                        col = f"{{\\c{accent}&}}" if len(cw[2]) > 6 or any(ch.isdigit() for ch in cw[2]) else ""
+                        ev.append(f"Dialogue: 0,{_ts(a)},{_ts(b)},Cap,,0,0,0,,{{\\fscx70\\fscy70\\t(0,80,\\fscx105\\fscy105)\\t(80,140,\\fscx100\\fscy100)}}{col}{t}")
+                        continue
                     parts = []
                     for m2, x in enumerate(chunk):
                         t = _esc(x[2].upper() if upper else x[2])
-                        parts.append(f"{{\\c{accent}&}}{t}{{\\c&HFFFFFF&}}" if m2 == j else t)
-                    popfx = "{\\fscx88\\fscy88\\t(0,90,\\fscx100\\fscy100)}" if j == 0 else ""
+                        if m2 == j and cstyle == "boxed":
+                            parts.append(f"{{\\3c{accent}&\\bord{cs * 0.18:.0f}\\c&H101010&}}{t}{{\\3c&H000000&\\bord{cs * 0.09:.0f}\\c&HFFFFFF&}}")
+                        else:
+                            parts.append(f"{{\\c{accent}&}}{t}{{\\c&HFFFFFF&}}" if m2 == j else t)
+                    popfx = "{\\fscx88\\fscy88\\t(0,90,\\fscx100\\fscy100)}" if j == 0 and cstyle != "bar" else ""
                     ev.append(f"Dialogue: 0,{_ts(a)},{_ts(b)},Cap,,0,0,0,,{popfx}" + " ".join(parts))
                 chunk = []
     if outro_at is not None and total:
@@ -250,7 +280,8 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
 
 # ---------------- the whole edit ----------------
-def render(p, shots, narration_wav, music_wav, sfx_wav, out, progress=lambda f: None, preview=False, grain=4):
+def render(p, shots, narration_wav, music_wav, sfx_wav, out, progress=lambda f: None, preview=False, grain=4, look=None):
+    look = look or {}
     """shots: [{asset, dur, grade, move, trans, slowmo}] in order. trans = transition INTO the shot."""
     d = store.pdir(p["id"])
     w, h = (PREVIEW if preview else SIZES).get(p.get("aspect", "16:9"), SIZES["16:9"])
@@ -269,7 +300,7 @@ def render(p, shots, narration_wav, music_wav, sfx_wav, out, progress=lambda f: 
         s = shots[i]
         out_i = os.path.join(sdir, f"{i:04d}.mp4")
         try:
-            render_shot(s["asset"], out_i, rdur[i], w, h, s["grade"], s.get("move", "push_in"), s.get("slowmo", False))
+            render_shot(s["asset"], out_i, rdur[i], w, h, s["grade"], s.get("move", "push_in"), s.get("slowmo", False), s.get("speed", 1.0))
         except Exception:
             import media  # a broken download must never kill the whole video
             fb = media.procedural(os.path.join(sdir, f"fb{i}.jpg"), w, h, i)
@@ -289,6 +320,7 @@ def render(p, shots, narration_wav, music_wav, sfx_wav, out, progress=lambda f: 
     # voice chain: clean low rumble, tame "s" sounds, even out levels, add presence
     vo = ("[1:a]highpass=f=75,deesser=i=0.4,acompressor=threshold=-21dB:ratio=3:attack=6:release=120:makeup=2.5,"
           "equalizer=f=3200:t=q:w=1.2:g=2,equalizer=f=250:t=q:w=1:g=-1.5,"
+          f"volume={float(look.get('voice_volume') or 1.0):.2f},"
           f"apad=whole_dur={total:.3f},atrim=0:{total:.3f}[vo]")
     fc = [vf, vo]
     mix = ["[vo1]"]
@@ -300,7 +332,7 @@ def render(p, shots, narration_wav, music_wav, sfx_wav, out, progress=lambda f: 
     else:
         fc[-1] = vo.replace("[vo]", "[vo1]")
     if music_wav:
-        vol = float(store.get_settings().get("music_volume", 0.2))
+        vol = float(look.get("music_volume") if look.get("music_volume") is not None else store.get_settings().get("music_volume", 0.2))
         inputs += ["-i", os.path.basename(music_wav)]
         # music ducks under the narration and swells back in the pauses
         fc.append(f"[{n_in}:a]volume={vol * 2.2:.3f}[m0];[m0][vkey]sidechaincompress=threshold=0.03:ratio=7:attack=40:release=650[m]")
@@ -310,7 +342,7 @@ def render(p, shots, narration_wav, music_wav, sfx_wav, out, progress=lambda f: 
         fc[-1] = "[vo0]anull[vo1]"
     if sfx_wav:
         inputs += ["-i", os.path.basename(sfx_wav)]
-        fc.append(f"[{n_in}:a]apad=whole_dur={total:.3f},atrim=0:{total:.3f}[s]")
+        fc.append(f"[{n_in}:a]volume={float(look.get('sfx_volume') if look.get('sfx_volume') is not None else 1.0):.2f},apad=whole_dur={total:.3f},atrim=0:{total:.3f}[s]")
         mix.append("[s]")
     fc.append(f"{''.join(mix)}amix=inputs={len(mix)}:duration=longest:normalize=0,"
               "loudnorm=I=-14:TP=-1.5:LRA=11,alimiter=limit=0.89,aresample=48000[a]")

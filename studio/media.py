@@ -75,22 +75,22 @@ def _search_inner(kind, query, cfg, portrait, key):
             files = [f for f in v.get("video_files", []) if f.get("file_type") == "video/mp4" and f.get("width")]
             if files and 4 <= v.get("duration", 0) <= 60:
                 best = min(files, key=lambda f: abs(max(f["width"], f["height"]) - 1920))
-                out.append({"url": best["link"], "credit": "Pexels / " + (v.get("user") or {}).get("name", "")})
+                out.append({"url": best["link"], "credit": "Pexels / " + (v.get("user") or {}).get("name", ""), "preview": v.get("image", "")})
     elif kind == "pexels_photo" and cfg.get("pexels_key"):
         j = _get("https://api.pexels.com/v1/search", headers={"Authorization": cfg["pexels_key"]},
                  params={"query": query, "per_page": 15, "orientation": orient}).json()
-        out = [{"url": p["src"]["large2x"], "credit": "Pexels / " + p.get("photographer", "")} for p in j.get("photos", [])]
+        out = [{"url": p["src"]["large2x"], "credit": "Pexels / " + p.get("photographer", ""), "preview": p["src"].get("medium", "")} for p in j.get("photos", [])]
     elif kind == "pixabay_video" and cfg.get("pixabay_key"):
         j = _get("https://pixabay.com/api/videos/", params={"key": cfg["pixabay_key"], "q": query, "per_page": 15}).json()
         for h in j.get("hits", []):
             v = h.get("videos", {})
             f = v.get("large") if (v.get("large") or {}).get("url") and v["large"].get("width", 9999) <= 1920 else v.get("medium")
             if f and f.get("url") and 4 <= h.get("duration", 0) <= 60:
-                out.append({"url": f["url"], "credit": "Pixabay / " + h.get("user", "")})
+                out.append({"url": f["url"], "credit": "Pixabay / " + h.get("user", ""), "preview": (v.get("tiny") or {}).get("thumbnail") or f.get("thumbnail", "")})
     elif kind == "pixabay_photo" and cfg.get("pixabay_key"):
         j = _get("https://pixabay.com/api/", params={"key": cfg["pixabay_key"], "q": query, "per_page": 15,
                                                       "image_type": "photo", "orientation": "vertical" if portrait else "horizontal"}).json()
-        out = [{"url": h["largeImageURL"], "credit": "Pixabay / " + h.get("user", "")} for h in j.get("hits", [])]
+        out = [{"url": h["largeImageURL"], "credit": "Pixabay / " + h.get("user", ""), "preview": h.get("webformatURL", "")} for h in j.get("hits", [])]
     elif kind == "commons" and cfg.get("use_openverse", True):
         _throttle("commons", 1.2)
         # Wikimedia Commons: historical photographs, maps, satellite images (free licences)
@@ -104,12 +104,12 @@ def _search_inner(kind, query, cfg, portrait, key):
                 meta = ii.get("extmetadata") or {}
                 lic = (meta.get("LicenseShortName") or {}).get("value", "")
                 art = re.sub(r"<[^>]+>", "", (meta.get("Artist") or {}).get("value", ""))[:60]
-                out.append({"url": ii["thumburl"], "credit": f"{art or 'Wikimedia Commons'} ({lic}) via Wikimedia Commons"})
+                out.append({"url": ii["thumburl"], "credit": f"{art or 'Wikimedia Commons'} ({lic}) via Wikimedia Commons", "preview": ii["thumburl"]})
     elif kind == "openverse" and cfg.get("use_openverse", True):
         j = _get("https://api.openverse.org/v1/images/", params={
             "q": query, "license_type": "commercial", "page_size": 15, "aspect_ratio": "tall" if portrait else "wide",
             "size": "large,medium"}).json()
-        out = [{"url": h["url"], "credit": f"{h.get('creator') or 'unknown'} ({(h.get('license') or '').upper()}) via Openverse"}
+        out = [{"url": h["url"], "credit": f"{h.get('creator') or 'unknown'} ({(h.get('license') or '').upper()}) via Openverse", "preview": h.get("thumbnail") or h["url"]}
                for h in j.get("results", []) if h.get("url")]
     _cache[key] = out
     return out
@@ -187,7 +187,11 @@ def fetch(scene, n, cfg, style, outdir, w, h, used, source, log=lambda m: None, 
         seed = int(hashlib.md5(f"{scene.get('narration', '')}{k}{seed0}".encode()).hexdigest()[:7], 16)
         base = os.path.join(outdir, f"v{seed0:03d}_{k}")
         got = None
-        for kind in order:
+        blocked = set(cfg.get("_blocked_sources") or [])
+        groups = {"stock_video": ("pexels_video", "pixabay_video"), "stock_photo": ("pexels_photo", "pixabay_photo"),
+                  "ai_image": ("ai",), "commons": ("commons", "openverse")}
+        skip = {k for g in blocked for k in groups.get(g, ())}
+        for kind in [k for k in order if k not in skip]:
             try:
                 if kind == "ai":
                     if not cfg.get("use_pollinations", True):
@@ -195,7 +199,10 @@ def fetch(scene, n, cfg, style, outdir, w, h, used, source, log=lambda m: None, 
                     p = ai_image(scene.get("image_prompt", q) + ", " + style.get("image_suffix", ""), base + ".jpg", w, h, seed)
                     got = {"path": p, "type": "image", "source": "AI image", "credit": "AI generated (Pollinations)"}
                 else:
-                    hits = [x for x in _search(kind, q, cfg, portrait) if x["url"] not in used]
+                    bad_d, bad_w = cfg.get("_block_domains") or [], cfg.get("_block_words") or []
+                    hits = [x for x in _search(kind, q, cfg, portrait) if x["url"] not in used
+                            and not any(dm in x["url"].lower() for dm in bad_d)
+                            and not any(bw in (x.get("credit", "") + x["url"]).lower() for bw in bad_w)]
                     if not hits:
                         continue
                     hit = hits[seed % min(len(hits), 5)]
@@ -214,3 +221,29 @@ def fetch(scene, n, cfg, style, outdir, w, h, used, source, log=lambda m: None, 
         got["path"] = os.path.relpath(got["path"], os.path.dirname(outdir))
         assets.append(got)
     return assets
+
+
+SEARCH_KINDS = {"video": ["pexels_video", "pixabay_video"], "photo": ["pexels_photo", "pixabay_photo", "commons", "openverse"]}
+
+
+def candidates(query, cfg, kind="all", portrait=False):
+    """Search results for the editor's visual picker (nothing is downloaded yet)."""
+    kinds = SEARCH_KINDS["video"] + SEARCH_KINDS["photo"] if kind == "all" else SEARCH_KINDS.get(kind, [])
+    out, errors = [], []
+    for k in kinds:
+        try:
+            for x in _search(k, query, cfg, portrait)[:8]:
+                out.append({**x, "type": "video" if k.endswith("video") else "image", "kind": k})
+        except Exception as e:
+            errors.append(f"{k}: {str(e)[:80]}")
+    return out, errors
+
+
+def download_pick(url, typ, outdir):
+    name = f"pick_{hashlib.md5(url.encode()).hexdigest()[:12]}" + (".mp4" if typ == "video" else ".jpg")
+    path = os.path.join(outdir, name)
+    if not os.path.exists(path):
+        _download(url, path)
+        if typ != "video":
+            Image.open(path).convert("RGB").save(path, quality=92)
+    return path

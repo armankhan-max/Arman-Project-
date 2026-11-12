@@ -13,6 +13,7 @@ import avatar
 import graphics
 import stick2d
 import llm
+import look as looks
 import media
 import render
 import sfx
@@ -56,7 +57,32 @@ def _run(pid, preview):
     d = store.pdir(pid)
     style = cfg["styles"].get(p.get("style"), cfg["styles"]["documentary"])
     w, h = render.SIZES.get(p.get("aspect", "16:9"), render.SIZES["16:9"])
+    prof = store.get_profile(p.get("profile_id") or "") if p.get("profile_id") else None
+    if prof:  # brand profile: reference editing style, blocked words/sources, background music
+        ref = ((prof.get("reference") or {}).get("settings") or {})
+        style = dict(style)
+        for k in ("shot_seconds", "grade"):
+            if ref.get(k):
+                style[k] = ref[k]
+        if ref.get("transitions"):
+            style["transitions"] = ref["transitions"]
+        hint = " ".join(x for x in (style.get("script_hint", ""), ref.get("script_hint", ""),
+                                     ("Avoid these topics and words: " + prof["block_words"]) if prof.get("block_words") else "") if x)
+        style["script_hint"] = hint
+        cfg = dict(cfg, styles={**cfg["styles"], p.get("style"): style})
+        if ref.get("words_per_minute"):
+            cfg["words_per_minute"] = ref["words_per_minute"]
+        src = prof.get("sources") or {}
+        cfg["_blocked_sources"] = [k for k, v in src.items() if v is False]
+        cfg["_block_words"] = [w.strip().lower() for w in (prof.get("block_words") or "").split(",") if w.strip()]
+        cfg["_block_domains"] = [w.strip().lower() for w in (prof.get("block_domains") or "").split(",") if w.strip()]
     OUTRO = 4.0 if style.get("outro", True) else 0.0  # end card only for styles that want one
+    if not p.get("look") or p["look"].get("regen_seed"):  # this video's own fonts, colours, captions, moves, music
+        keep = {k: v for k, v in (p.get("look") or {}).items() if k in ("music_volume", "voice_volume", "sfx_volume")}
+        p["look"] = {**looks.generate(p["title"], p.get("style", ""), style, (p.get("look") or {}).get("regen_seed")), **keep}
+    L = p["look"]
+    style = {**style, "accent": L.get("accent") or style.get("accent", "#FFD400"),
+             "image_suffix": ", ".join(x for x in (style.get("image_suffix", ""), L.get("flavor", "")) if x)}
     p["log"] = []
 
     def step(msg, prog):
@@ -143,6 +169,12 @@ def _run(pid, preview):
         s = scenes[i]
         n = max(1, round(s["dur"] / float(style.get("shot_seconds", 5))))
         g = graphics.parse(s.get("graphic", "")) if s.get("graphic") else None
+        if s.get("locked") and s.get("assets") and all(os.path.exists(os.path.join(d, a["path"])) for a in s["assets"]):
+            for a in s["assets"]:
+                if a.get("source", "").startswith("avatar video"):
+                    a["ss"] = s["start"]  # keep the host's lips in sync after scenes were moved
+            done[0] += 1
+            return  # the owner arranged this scene's shots by hand in the editor
         if g and not s.get("custom"):
             extra = OUTRO + 1 if i == len(scenes) - 1 else 1.0
             key = hashlib.md5(f"{s['graphic']}|{s['dur']}|{w}x{h}|{style.get('accent')}".encode()).hexdigest()[:12]
@@ -192,7 +224,7 @@ def _run(pid, preview):
         elif s.get("custom") and s.get("assets") and os.path.exists(os.path.join(d, s["assets"][0]["path"])):
             s["assets"] = s["assets"][:1]
         else:
-            ok = s.get("assets") and len(s["assets"]) == n and all(
+            ok = s.get("assets") and (len(s["assets"]) == n or s.get("locked")) and all(
                 os.path.exists(os.path.join(d, a["path"])) and a.get("source") not in ("avatar", "avatar lip-sync", "avatar video", "motion graphic") for a in s["assets"])
             if not ok:
                 s["custom"] = False
@@ -222,41 +254,57 @@ def _run(pid, preview):
                 track[-fade:] *= np.linspace(1, 0, fade)
             tts.write_wav(music, track)
         else:
-            tts.write_wav(music, tts.make_music(mood, total + OUTRO))
+            tts.write_wav(music, tts.make_music(mood, total + OUTRO, L.get("music_seed")))
 
     # 6. edit plan: camera moves, transitions, outro
     step("Editing: camera moves, transitions, motion graphics", 58)
-    moves = style.get("moves") or render.MOVES
-    transitions = [t for t in (style.get("transitions") or ["fade"])]
-    shots, boundaries, mi = [], [], 0
+    moves = L.get("moves") or style.get("moves") or render.MOVES
+    transitions = [None if t in ("", "cut") else t for t in (L.get("transitions") or style.get("transitions") or ["fade"])]
+    look_grade = looks.FILTERS.get(L.get("grade") or "", "")
+    shots, boundaries, mi, timeline, tpos = [], [], 0, [], 0.0
     for si, s in enumerate(scenes):
         n = len(s["assets"])
         dur_s = s["dur"] + (OUTRO if si == len(scenes) - 1 else 0)
+        wsum = sum(float(a.get("weight") or 1) for a in s["assets"]) or 1
         for k, a in enumerate(s["assets"]):
-            dur = round((dur_s / n) * render.FPS) / render.FPS
+            dur = round((dur_s * float(a.get("weight") or 1) / wsum) * render.FPS) / render.FPS
             host = a.get("source", "").startswith("avatar")
+            gfx = a.get("source") == "motion graphic"
             trans = None
             if k == 0 and si > 0:
-                trans = transitions[(si - 1) % len(transitions)] or None
-                prev_host = scenes[si - 1]["assets"][-1].get("source", "").startswith("avatar")
-                if host and prev_host:
-                    trans = None  # talking head to talking head: clean jump cut
+                if s.get("trans"):  # set by hand in the editor
+                    trans = None if s["trans"] == "cut" else s["trans"]
+                else:
+                    trans = transitions[(si - 1) % len(transitions)]
+                    prev_host = scenes[si - 1]["assets"][-1].get("source", "").startswith("avatar")
+                    if host and prev_host:
+                        trans = None  # talking head to talking head: clean jump cut
                 if trans:
                     boundaries.append(s["start"])
-            if si == 0 and k == 0:
+            if a.get("move"):
+                move = a["move"]
+            elif si == 0 and k == 0:
                 move = "push_in"  # opening shot always pushes in
             elif host:
                 move = "handheld"
             else:
                 move = moves[mi % len(moves)]
                 mi += 1
+            grade = style.get("host_grade", "eq=saturation=1.05:gamma_r=1.03") if host else ("" if gfx else style.get("grade", ""))
+            extra_f = [x for x in (look_grade if not (host or gfx) else "", looks.FILTERS.get(a.get("filter") or "", "")) if x]
+            grade = ",".join([x for x in [grade] + extra_f if x])
             shots.append({"asset": {**a, "path": os.path.join(d, a["path"]), "root": d}, "dur": dur, "move": move, "trans": trans,
-                          "slowmo": bool(style.get("slowmo")) and a["type"] == "video" and not host and a.get("source") != "motion graphic",
-                          "grade": style.get("host_grade", "eq=saturation=1.05:gamma_r=1.03") if host else
-                          ("" if a.get("source") == "motion graphic" else style.get("grade", ""))})
+                          "slowmo": bool(style.get("slowmo")) and a["type"] == "video" and not host and not gfx,
+                          "speed": float(a.get("speed") or 1.0), "grade": grade})
+            timeline.append({"scene": si, "k": k, "start": round(tpos, 2), "dur": dur, "move": move, "trans": trans or "cut",
+                             "filter": a.get("filter") or "", "type": a["type"], "source": a.get("source", ""), "path": a["path"],
+                             "b": a.get("b")})
+            tpos += dur
     total_v = total + OUTRO
     drift = total_v - sum(x["dur"] for x in shots)
     shots[-1]["dur"] = max(0.4, shots[-1]["dur"] + drift)
+    timeline[-1]["dur"] = shots[-1]["dur"]
+    p["timeline"] = timeline
 
     sfx_path = None
     if p.get("sfx", style.get("sfx", True)) or style.get("ambience", "none") != "none":
@@ -275,11 +323,11 @@ def _run(pid, preview):
     credits = sorted({a["credit"] for s in scenes for a in s["assets"] if a.get("credit")})
     render.build_ass(os.path.join(d, "subs.ass"), scenes, pw, ph, style, p.get("captions", style.get("captions", True)),
                      p["title"] if p.get("show_title", style.get("show_title", True)) else None, hindi,
-                     total + 0.2 if OUTRO else None, total_v, credits)
+                     total + 0.2 if OUTRO else None, total_v, credits, L)
     step("Rendering shots and the final mix", 62)
     name = "video.mp4"
     render.render(p, shots, os.path.join(d, "narration.wav"), music, sfx_path, os.path.join(d, name),
-                  lambda f: p.update(progress=62 + int(30 * f)) or store.save_project(p), preview, int(style.get("grain", 0)))
+                  lambda f: p.update(progress=62 + int(30 * f)) or store.save_project(p), preview, int(style.get("grain", 0)), L)
     total = total_v
 
     # 7. upload pack + thumbnail
