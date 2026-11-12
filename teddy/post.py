@@ -218,7 +218,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter  # noqa: E402
 FONT = "/usr/share/fonts/opentype/inter/Inter-ExtraBold.otf"
 if not os.path.exists(FONT):
     FONT = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
-W, H = meta["width"], meta["height"]
+W, H = Image.open(os.path.join(out_dir, "frames", "f_0001.png")).size   # actual render size
 k = W / 1080.0
 f_num = ImageFont.truetype(FONT, int(150 * k))
 f_lab = ImageFont.truetype(FONT, int(64 * k))
@@ -300,7 +300,7 @@ mp4 = os.path.join(out_dir, name)
 cmd = ["ffmpeg", "-y", "-loglevel", "error", "-framerate", str(fps), "-start_number", "1",
        "-i", os.path.join(final_dir, "f_%04d.png"), "-i", wav,
        "-c:v", "libx264", "-preset", "slow", "-crf", "17", "-pix_fmt", "yuv420p",
-       "-vf", "scale=%d:%d:flags=lanczos" % (meta["width"], meta["height"]),
+       "-vf", "scale=%d:%d:flags=lanczos" % (W, H),
        "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", mp4]
 subprocess.run(cmd, check=True)
 print("wrote", mp4)

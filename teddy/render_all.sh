@@ -2,7 +2,7 @@
 # Full pipeline: build -> render all frames (resume-safe) -> sound + overlay + MP4.
 # usage: render_all.sh OUTDIR [WxH] [samples]
 set -e
-OUT=$1; RES=${2:-810x1440}; SPP=${3:-20}
+OUT=$1; RES=${2:-720x1280}; SPP=${3:-20}
 PY=${BPY_PYTHON:-/opt/bpyenv/bin/python}
 cd "$(dirname "$0")"
 [ -f "$OUT/scene.blend" ] || BPY_PYTHON=$PY ./run_build.sh "$OUT" > "$OUT.build.log" 2>&1
