@@ -209,6 +209,17 @@ fade = int(0.4 * SR)
 mix[-fade:] *= np.linspace(1, 0, fade)[:, None]
 peak = np.max(np.abs(mix))
 mix = mix / peak * 0.89 if peak > 0 else mix          # about -1 dBFS, no clipping
+
+# ---- hook: a 2 s teaser of the rapid 100-cut slicing plays first, then the video starts from cut 0
+_rapid = [e["frame"] for e in ev if e["type"] == "rapid"]
+HOOK_LEN = int(2.0 * fps)
+HOOK_START = int(_rapid[0] + 0.45 * (_rapid[-1] - _rapid[0])) if _rapid else 1
+HOOK_FRAMES = list(range(HOOK_START, HOOK_START + HOOK_LEN))
+a0, a1 = int((HOOK_START - 1) / fps * SR), int((HOOK_START - 1 + HOOK_LEN) / fps * SR)
+hook_audio = mix[a0:a1].copy()
+hf = int(0.12 * SR)
+hook_audio[-hf:] *= np.linspace(1, 0, hf)[:, None]
+mix = np.concatenate([hook_audio, mix])
 wav = os.path.join(out_dir, "soundtrack.wav")
 wavfile.write(wav, SR, (mix * 32767).astype(np.int16))
 print("wrote", wav)
@@ -292,9 +303,19 @@ def overlay(img, fr):
 
 final_dir = os.path.join(out_dir, "frames_text")
 os.makedirs(final_dir, exist_ok=True)
+_tag_for = tag_for
+out_i = 1
+for fr in HOOK_FRAMES:                        # teaser frames, tagged "1 CUT vs 100 CUTS"
+    tag_for = lambda f: "1 CUT  vs  100 CUTS"          # noqa: E731
+    src = os.path.join(out_dir, "frames", "f_%04d.png" % fr)
+    overlay(Image.open(src), fr).save(os.path.join(final_dir, "f_%04d.png" % out_i), compress_level=1)
+    out_i += 1
+tag_for = _tag_for
+last_change = 0
 for fr in range(1, n_frames + 1):
     src = os.path.join(out_dir, "frames", "f_%04d.png" % fr)
-    overlay(Image.open(src), fr).save(os.path.join(final_dir, "f_%04d.png" % fr), compress_level=1)
+    overlay(Image.open(src), fr).save(os.path.join(final_dir, "f_%04d.png" % out_i), compress_level=1)
+    out_i += 1
 print("overlay done")
 
 mp4 = os.path.join(out_dir, name)

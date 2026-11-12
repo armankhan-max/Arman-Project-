@@ -44,11 +44,11 @@ ENGINE = "BLENDER_EEVEE" if "--eevee" in argv else "CYCLES"
 os.makedirs(OUT, exist_ok=True)
 
 FPS = 24
-DURATION_S = 20
+DURATION_S = 55
 FRAMES = FPS * DURATION_S          # 480
 RES = (540, 960) if PREVIEW else (1080, 1920)
 SAMPLES = 24 if PREVIEW else 96
-FUR_DENSITY = 160000 if PREVIEW else 300000   # strands per m^2
+FUR_DENSITY = 160000 if PREVIEW else 230000   # strands per m^2
 CUBE = 0.0175                                 # dice size (m)
 N_SLICE_CUTS = 100                            # cuts 1..100 are parallel slices
 TOTAL_CUTS = 1000
@@ -56,14 +56,16 @@ SEED = 7
 rng = random.Random(SEED)
 
 # Timeline (frames, 24 fps)
-F_KNIFE_IN = 34        # knife starts entering from top-right
-F_CUT1_TOP = 76        # blade touches the top of the head
-F_CUT1_END = 128       # blade reaches the table -> counter = 1
-F_SPLIT = (134, 166)   # halves glide apart
-F_STAGE2 = 196         # cuts 2..4
-F_STAGE3 = 262         # cuts 5..10
-F_STAGE4 = (322, 380)  # cuts 11..100
-F_DICE = (388, 446)    # cuts 101..1000, cubes released
+F_KNIFE_IN = 40        # knife starts entering from top-right
+F_CUT1_TOP = 96        # blade touches the top of the head
+F_CUT1_END = 210       # blade reaches the table -> counter = 1 (slow, ~5 s)
+F_SPLIT = (222, 292)   # halves glide apart, then a close-up hold
+F_STAGE2 = 360         # cuts 2..4   (2 s each)
+S2, S2_HIT = 48, 27
+F_STAGE3 = 512         # cuts 5..10  (1.25 s each)
+S3, S3_HIT = 30, 16
+F_STAGE4 = (705, 950)  # cuts 11..100
+F_DICE = (965, 1195)   # cuts 101..1000, cubes released
 F_END = FRAMES
 
 # ----------------------------------------------------------------------------- helpers
@@ -513,12 +515,12 @@ cuts = []   # axis, b(plane index), frame(contact = counter +1), gap, open(frame
 cuts.append(mk("x", 0, frame=F_CUT1_END, gap=0.055, open=(F_SPLIT[0], F_SPLIT[1]), kind="slow"))
 f = F_STAGE2
 for ax, k in order_stage2:
-    cuts.append(mk(ax, k, frame=f + 13, gap=0.010 if ax == "x" else 0.014, open=(f + 16, f + 24), kind="slice", start=f))
-    f += 21
+    cuts.append(mk(ax, k, frame=f + S2_HIT, gap=0.010 if ax == "x" else 0.014, open=(f + S2_HIT + 3, f + S2_HIT + 14), kind="slice", start=f))
+    f += S2
 f = F_STAGE3
 for ax, k in order_stage3:
-    cuts.append(mk(ax, k, frame=f + 7, gap=0.007 if ax == "x" else 0.009, open=(f + 8, f + 12), kind="chop", start=f))
-    f += 10
+    cuts.append(mk(ax, k, frame=f + S3_HIT, gap=0.007 if ax == "x" else 0.009, open=(f + S3_HIT + 2, f + S3_HIT + 9), kind="chop", start=f))
+    f += S3
 n4 = len(order_stage4)
 for i, k in enumerate(order_stage4):
     fr = F_STAGE4[0] + (F_STAGE4[1] - F_STAGE4[0]) * (i + 0.5) / n4
