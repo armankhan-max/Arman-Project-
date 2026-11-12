@@ -665,8 +665,9 @@ def charon_hand_out(charon, amount=1.0):
 
 
 def shot_D(n):
+    """Continues shot C without a cut: same scene state and camera pose as C's last frame."""
+    off = nframes("C")
     root, hull, charon = styx()
-    root.location = (0, 2.6, 0)
     stand_relaxed(charon)
     C.reach(charon, "L", (0.46, 0.12, 1.12), pole=(1, 0.5, -0.5))
     C.key_pose(charon, 1); C.key_pose(charon, 8)
@@ -674,9 +675,14 @@ def shot_D(n):
     C.aim(charon, "head", (0, -0.25, 1))
     C.key_pose(charon, 30); C.key_pose(charon, n)
     P.parent(charon, root)
-    bob(root, 0.015)
-    camera([(1, (0.9, -2.3, 0.6), (0.1, 1.2, 1.2)), (38, (0.45, -0.9, 1.0), (0.08, 1.2, 1.4)),
-            (n, (0.22, -0.1, 1.45), (0.1, 1.25, 1.8))], lens=18)
+    root.location = (0, 3.4, 0)
+    P.drive(hull, "rotation_euler", 1, f"0.025*sin((frame+{off})/10.0)")
+    ghost = make_dead("ghost"); ghostify(ghost)
+    stand_relaxed(ghost)
+    ghost.rotation_euler = (0, 0, R(180)); ghost.location = (0.8, -1.2, 0.15)
+    P.drive(ghost, "location", 2, f"0.2+0.03*sin((frame+{off})/7.0)")
+    camera([(1, (-0.7, -3.3, 1.05), (0.3, 1.6, 1.3)), (36, (0.3, -0.9, 1.0), (0.1, 2.0, 1.45)),
+            (n, (0.25, 0.75, 1.5), (0.12, 2.05, 1.82))], lens=20)
 
 
 def shot_E1(n):
@@ -798,42 +804,26 @@ def dig_setup(thief, phase=0, n=80, period=16):
     return sh
 
 
-def shot_G1(n):
-    closed = [(-3, 0), (3, 0), (-3, 4.5), (0, 4.5), (3, 4.5), (-6, 0), (6, 0), (-6, 4.5), (6, 4.5)]
-    graveyard(night=True, pits=((0, 0),), closed=closed, greek=False)
+G_PITS = [(0, 0), (4.8, 0), (9.6, 0)]
+G_CLOSED = [(-3.2, 0), (-6.4, 0), (-3.2, 4.5), (0, 4.5), (3.2, 4.5), (-6.4, 4.5), (6.4, 4.5), (9.6, 4.5), (12.8, 0)]
+
+
+def thieves_yard(n, frame_off=0):
+    """Night graveyard with coin markers, two digging thieves and a bank; shared by G1 and G2."""
+    graveyard(night=True, pits=G_PITS, closed=G_CLOSED, greek=False, seed=4)
     gm = P.M("mark", (1, 0.8, 0.2), emit=(1.0, 0.7, 0.1), es=2.5, metal=1, rough=0.2)
-    for i, (x, y) in enumerate(closed + [(0, 0)]):
+    for i, (x, y) in enumerate(G_CLOSED + G_PITS):
         c = P.cyl("marker", 0.22, 0.04, (x, y + 0.8, 1.9), gm, segs=32, rot=(R(90), 0, 0))
-        P.drive(c, "rotation_euler", 2, f"frame*0.12+{i}")
-        P.drive(c, "location", 2, f"1.9+0.08*sin(frame/6.0+{i})")
+        P.drive(c, "rotation_euler", 2, f"(frame+{frame_off})*0.12+{i}")
+        P.drive(c, "location", 2, f"1.9+0.08*sin((frame+{frame_off})/6.0+{i})")
         point((x, y + 0.8, 1.5), 25, (1.0, 0.75, 0.3), radius=0.2)
-    thief = make_thief()
-    thief.rotation_euler = (0, 0, R(90)); thief.location = (-0.98, 0.7, 0)
-    dig_setup(thief, n=n)
-    P.lantern((-0.9, -0.5, 0), watts=140, pole=0.45)
-    P.sack((-1.5, 1.7, 0), 0.8)
-    camera([(1, (0, -8.5, 8.5), (0, 3, 0)), (34, (0.6, -5.0, 4.2), (0, 1.5, 0.6)),
-            (n, (1.9, -1.6, 0.85), (-0.5, 0.7, 1.05))], lens=20)
-
-
-def shot_G2(n):
-    pits = [(0, 0), (4.8, 0), (9.6, 0)]
-    graveyard(night=True, pits=pits, closed=[(-3.2, 0), (12.8, 0)], greek=False, seed=4)
-    rnd = random.Random(9)
-    base = P.coin(r=0.035); base.location = (0, 0, -50)
-    for i, (px, py) in enumerate(pits):
+    for i, (px, py) in enumerate(G_PITS):
         if i != 1:
             t = make_thief(f"thief{i}")
             t.rotation_euler = (0, 0, R(90)); t.location = (px - 0.98, 0.7, 0)
-            dig_setup(t, phase=i * 5, n=n, period=12)
-        P.sack((px - 1.2, 1.9, 0), 0.8)
-        P.lantern((px - 0.9, -0.6, 0), watts=150, pole=0.45)
-        for k in range(7):
-            c = P.dup(base)
-            f0 = 4 + i * 14 + k * 5 + rnd.randint(0, 3)
-            ballistic(c, f0, (px + rnd.uniform(-0.2, 0.2), 0.8, -0.5),
-                      (rnd.uniform(-1.1, -0.5), rnd.uniform(-0.5, 0.6), rnd.uniform(4.6, 5.6)), floor=0.02, frames=44)
-    # a bank in the distance
+            dig_setup(t, phase=(i * 5 + frame_off) % 16, n=n, period=16)
+        P.sack((px - 1.5, 1.7, 0), 0.8)
+        P.lantern((px - 0.9, -0.55, 0), watts=150, pole=0.45)
     bx = 11.5
     P.box("bank", (7, 4, 4.2), (bx, 13, 2.1), mat("marble"))
     for k in range(4):
@@ -841,8 +831,28 @@ def shot_G2(n):
     P.box("bank_top", (7.4, 1.4, 0.7), (bx, 10.8, 4.2), mat("marble"), bevel=0.03)
     P.text("bank_t", "BANK", 0.5, (bx, 10.05, 4.2), (R(90), 0, 0), P.M("bankt", (1, 0.8, 0.2), emit=(1.0, 0.75, 0.2), es=2), extrude=0.03)
     point((bx, 9.3, 2.2), 900, (1.0, 0.8, 0.5), radius=0.6)
-    camera([(1, (-2.2, -3.6, 1.5), (0, 0.8, 0.8)), (48, (8.0, -3.4, 1.3), (8.6, 0.8, 0.9)),
-            (n, (9.6, -2.2, 1.15), (9.0, 0.7, 1.05))], lens=20)
+
+
+G1_END = ((1.9, -1.6, 0.85), (-0.5, 0.7, 1.05))
+
+
+def shot_G1(n):
+    thieves_yard(n)
+    camera([(1, (0, -8.5, 8.5), (0, 3, 0)), (34, (0.6, -5.0, 4.2), (0, 1.5, 0.6)), (n, *G1_END)], lens=20)
+
+
+def shot_G2(n):
+    """Continues G1 without a cut: the camera tracks along the row of graves to the next thief."""
+    thieves_yard(n, frame_off=nframes("G1"))
+    rnd = random.Random(9)
+    base = P.coin(r=0.035); base.location = (0, 0, -50)
+    for i, (px, py) in enumerate(G_PITS):
+        for k in range(7):
+            c = P.dup(base)
+            f0 = 4 + i * 14 + k * 5 + rnd.randint(0, 3)
+            ballistic(c, f0, (px + rnd.uniform(-0.2, 0.2), 0.8, -0.5),
+                      (rnd.uniform(-1.1, -0.5), rnd.uniform(-0.5, 0.6), rnd.uniform(4.6, 5.6)), floor=0.02, frames=44)
+    camera([(1, *G1_END), (30, (4.6, -3.7, 1.45), (4.6, 0.8, 0.9)), (n, (9.7, -2.3, 1.15), (9.0, 0.7, 1.05))], lens=20)
 
 
 def shot_H(n):

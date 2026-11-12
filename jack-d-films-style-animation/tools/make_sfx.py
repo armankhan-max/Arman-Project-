@@ -81,10 +81,6 @@ bed *= 0.085 * (0.8 + 0.2 * np.sin(2 * np.pi * 0.5 * t))
 L += bed
 Rr += bed
 
-# transition whooshes on every cut
-for i, s in enumerate(tl["shots"][1:]):
-    add(whoosh(), s["start"] / FPS - 0.27, 0.16, pan=0.4 if i % 2 else -0.4)
-
 # coins: shower into the grave (A), placed in mouth (E1), dropped in palm (E2), loot (G2, M2)
 for i in range(22):
     add(ting(rng.uniform(2500, 3600), 0.4), start["A"] + (25 + 4 * i) / FPS, 0.045, pan=rng.uniform(-0.5, 0.5))

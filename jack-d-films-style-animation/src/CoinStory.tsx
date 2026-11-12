@@ -13,11 +13,14 @@ import {
 import captions from "./data/captions.json";
 import timeline from "./data/shots.json";
 
-type Trans = "zoom" | "flash" | "slide" | "slideUp" | "flip";
-// Transition used at the cut between shot i and shot i + 1.
+// "push"     = push-through: the camera accelerates forward into the cut, the next shot comes out of the same push.
+// "dissolve" = slow match dissolve (same place, time has passed).
+// "none"     = the two shots were rendered as one continuous camera move, so there is nothing to hide.
+type Trans = "push" | "dissolve" | "none";
+// Transition at the cut between shot i and shot i + 1.
 const TRANS: Trans[] = [
-  "flash", "zoom", "zoom", "flip", "slide", "zoom", "slideUp", "slide",
-  "flip", "zoom", "flash", "zoom", "slide", "flash", "zoom", "flip",
+  "dissolve", "push", "none", "push", "push", "push", "push", "none",
+  "push", "push", "push", "push", "push", "push", "push", "push",
 ];
 const { H, shots } = timeline;
 const fontFace = `@font-face { font-family: "Cap"; src: url(${staticFile("fonts/Inter-ExtraBold.otf")}) format("opentype"); font-weight: 800; }`;
@@ -25,73 +28,75 @@ const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
 const ease = (p: number) => p * p * (3 - 2 * p);
 // 0..1 across the 2H-frame window centred on a cut; real frames exist on both sides (handles).
 const progress = (frame: number, cut: number) => clamp01((frame - (cut - H)) / (2 * H));
+const CREEP = 0.05;
+
+// Shots joined by "none" share one slow creep so the camera never holds still and never jumps.
+const groupSpan = (index: number) => {
+  let a = index;
+  let b = index;
+  while (a > 0 && TRANS[a - 1] === "none") a--;
+  while (b < shots.length - 1 && TRANS[b] === "none") b++;
+  return [shots[a].start, shots[b].start + shots[b].n];
+};
 
 const Shot: React.FC<{ index: number }> = ({ index }) => {
   const frame = useCurrentFrame() + shots[index].start - H; // back to global time
   const last = index === shots.length - 1;
-  const pIn = index === 0 ? 1 : progress(frame, shots[index].start);
-  const pOut = last ? 0 : progress(frame, shots[index + 1].start);
+  const tIn = index === 0 ? "none" : TRANS[index - 1];
+  const tOut = last ? "none" : TRANS[index];
+  const cutIn = shots[index].start;
+  const cutOut = last ? Infinity : shots[index + 1].start;
+  const pIn = index === 0 ? 1 : progress(frame, cutIn);
+  const pOut = last ? 0 : progress(frame, cutOut);
+  const [g0, g1] = groupSpan(index);
+  let scale = 1 + CREEP * clamp01((frame - g0) / (g1 - g0));
   let opacity = 1;
-  let scale = 1;
-  let blur = 0;
-  let tx = 0;
-  let ty = 0;
-  let ry = 0;
-  if (pIn < 1) {
-    const t = TRANS[index - 1];
-    const e = ease(pIn);
-    if (t === "zoom") {
-      opacity = e; scale = 0.72 + 0.28 * e; blur = (1 - e) * 14;
-    } else if (t === "flash") {
-      opacity = pIn >= 0.5 ? 1 : 0;
-    } else if (t === "slide") {
-      tx = (1 - e) * 100; blur = Math.sin(Math.PI * pIn) * 5;
-    } else if (t === "slideUp") {
-      ty = (1 - e) * 100; blur = Math.sin(Math.PI * pIn) * 5;
-    } else {
-      opacity = pIn >= 0.5 ? 1 : 0; ry = -90 + ease(clamp01((pIn - 0.5) * 2)) * 90;
-    }
+  let streak = 0; // 0..1 strength of the forward motion blur
+
+  if (tIn === "none") {
+    if (frame < cutIn) opacity = 0;
+  } else if (tIn === "dissolve") {
+    opacity = ease(pIn);
+  } else if (pIn < 1) {
+    const d = 1 - Math.pow(1 - pIn, 3); // decelerating out of the push
+    scale *= 0.7 + 0.3 * d;
+    streak = Math.max(streak, 1 - d);
+    opacity = ease(clamp01((pIn - 0.36) / 0.2));
   }
-  if (pOut > 0) {
-    const t = TRANS[index];
-    const e = ease(pOut);
-    if (t === "zoom") {
-      scale = 1 + 0.7 * e; blur = e * 14;
-    } else if (t === "flash") {
-      opacity = pOut < 0.5 ? 1 : 0;
-    } else if (t === "slide") {
-      tx = -e * 100; blur = Math.sin(Math.PI * pOut) * 5;
-    } else if (t === "slideUp") {
-      ty = -e * 100; blur = Math.sin(Math.PI * pOut) * 5;
-    } else {
-      opacity = pOut < 0.5 ? 1 : 0; ry = ease(clamp01(pOut * 2)) * 90;
-    }
+  if (tOut === "none") {
+    if (frame >= cutOut) opacity = 0;
+  } else if (tOut === "dissolve") {
+    scale *= 1 + 0.06 * ease(pOut);
+  } else if (pOut > 0) {
+    const e = Math.pow(pOut, 3); // accelerating into the cut
+    scale *= 1 + 1.6 * e;
+    streak = Math.max(streak, e);
+    if (pOut >= 0.58) opacity = 0;
   }
+  if (opacity <= 0) return null;
+
+  const src = staticFile(`shots/${shots[index].id}.mp4`);
+  const video = <OffthreadVideo src={src} style={{ width: "100%", height: "100%" }} muted />;
+  const layers = streak > 0.03 ? [0, 1, 2, 3] : [0];
   return (
-    <AbsoluteFill style={{ perspective: 1400 }}>
-      <AbsoluteFill
-        style={{
-          opacity,
-          transform: `translate(${tx}%, ${ty}%) rotateY(${ry}deg) scale(${scale})`,
-          filter: blur > 0.05 ? `blur(${blur}px)` : undefined,
-        }}
-      >
-        <OffthreadVideo src={staticFile(`shots/${shots[index].id}.mp4`)} style={{ width: "100%", height: "100%" }} muted />
-      </AbsoluteFill>
+    <AbsoluteFill style={{ opacity }}>
+      {scale < 0.999 ? (
+        <AbsoluteFill style={{ transform: "scale(1.7)", filter: "blur(22px)" }}>{video}</AbsoluteFill>
+      ) : null}
+      {layers.map((j) => (
+        <AbsoluteFill
+          key={j}
+          style={{
+            opacity: 1 / (j + 1),
+            transform: `scale(${scale * (1 + 0.07 * j * streak)})`,
+            filter: streak > 0.03 ? `blur(${streak * 5}px)` : undefined,
+          }}
+        >
+          {video}
+        </AbsoluteFill>
+      ))}
     </AbsoluteFill>
   );
-};
-
-const Flash: React.FC = () => {
-  const frame = useCurrentFrame();
-  let o = 0;
-  TRANS.forEach((t, i) => {
-    if (t === "flash") {
-      const p = progress(frame, shots[i + 1].start);
-      if (p > 0 && p < 1) o = Math.max(o, Math.pow(1 - Math.abs(2 * p - 1), 1.4));
-    }
-  });
-  return <AbsoluteFill style={{ backgroundColor: "white", opacity: o }} />;
 };
 
 const Caption: React.FC = () => {
@@ -142,7 +147,6 @@ export const CoinStory: React.FC = () => {
             <Shot index={i} />
           </Sequence>
         ))}
-        <Flash />
       </AbsoluteFill>
       <AbsoluteFill
         style={{ background: "radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0) 58%, rgba(0,0,0,0.38) 100%)" }}
