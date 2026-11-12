@@ -24,10 +24,12 @@ R = math.radians
 # shot -> (start, end) seconds in the voiceover
 TIMES = {
     "A": (0.00, 4.25), "B": (4.25, 7.40), "C": (7.40, 11.90), "D": (11.90, 14.60), "E1": (14.60, 17.30),
-    "E2": (17.30, 20.35), "F": (20.35, 23.50), "G1": (23.50, 26.45), "G2": (26.45, 29.35), "H": (29.35, 35.15),
-    "I": (35.15, 37.70), "J": (37.70, 40.55), "K1": (40.55, 42.15), "K2": (42.15, 44.30), "L": (44.30, 48.58),
-    "M1": (48.58, 50.63), "M2": (50.63, 53.30),
+    "E2": (17.30, 20.35), "F": (20.35, 23.50), "G1": (23.50, 26.45), "G2": (26.45, 29.35),
+    "S": (29.35, 48.58), "T": (48.58, 53.30),
 }
+# cuts that are not cuts at all (same scene + camera pose on both sides) / slow match dissolves
+CONTINUOUS = [("C", "D"), ("G1", "G2")]
+DISSOLVE = [("A", "B")]
 
 
 def nframes(shot):
@@ -159,25 +161,29 @@ def key_vis(o, frame, visible):
         c.keyframe_insert("hide_render", frame=frame)
 
 
-def ballistic(o, f0, p0, v0, floor=None, g=9.8, frames=60, spin=(9, 5, 0), rest_rot=(0, 0, 0)):
-    """Keyframe a thrown object; stops when it reaches `floor` (z)."""
-    p0 = Vector(p0); v0 = Vector(v0)
-    o.location = p0
-    o.keyframe_insert("location", frame=max(1, f0 - 1))
+def ballistic(o, f0, p0, v0, floor=None, g=9.8, frames=60, spin=(9, 5, 0), rest_rot=(0, 0, 0), bounce=0.3):
+    """Keyframe a thrown object with gravity; it bounces once or twice on `floor` (z) and comes to rest."""
+    p = Vector(p0); v = Vector(v0); rot = Vector((0, 0, 0)); dt = 1.0 / FPS
+    o.location = p
+    o.keyframe_insert("location", frame=f0 - 1)
+    resting = False
     for i in range(frames + 1):
-        t = i / FPS
-        p = p0 + v0 * t + Vector((0, 0, -0.5 * g * t * t))
-        done = floor is not None and p.z <= floor and (v0.z - g * t) < 0
-        if done:
-            p.z = floor
-            o.rotation_euler = rest_rot
-        else:
-            o.rotation_euler = (spin[0] * t, spin[1] * t, spin[2] * t)
         o.location = p
+        o.rotation_euler = rest_rot if resting else tuple(rot)
         o.keyframe_insert("location", frame=f0 + i)
         o.keyframe_insert("rotation_euler", frame=f0 + i)
-        if done:
+        if resting:
             break
+        v.z -= g * dt
+        p = p + v * dt
+        rot += Vector(spin) * dt
+        if floor is not None and p.z <= floor and v.z < 0:
+            p.z = floor
+            if bounce and abs(v.z) > 1.3:
+                v.z = -v.z * bounce; v.x *= 0.45; v.y *= 0.45
+                spin = tuple(c * 0.4 for c in spin)
+            else:
+                resting = True
 
 
 def ghostify(rig):
@@ -360,7 +366,7 @@ def lay_down(rig, feet, floor_z):
 
 def graveyard(night=False, pits=((0, 0),), closed=(), greek=True, seed=2):
     rnd = random.Random(seed)
-    gm = P.ground_mat((0.06, 0.42, 0.04), (0.3, 0.55, 0.2)) if not night else P.ground_mat((0.03, 0.3, 0.12), (0.2, 0.45, 0.32))
+    gm = P.ground_mat((0.06, 0.42, 0.04), (0.2, 0.33, 0.13)) if not night else P.ground_mat((0.03, 0.3, 0.12), (0.16, 0.3, 0.2))
     ground = P.box("ground", (160, 160, 4), (0, 0, -2), gm)
     for i, (px, py) in enumerate(pits):
         cut = P.box(f"cut{i}", (1.1, 2.3, 1.5), (px, py + 0.8, 0), None)
@@ -374,26 +380,30 @@ def graveyard(night=False, pits=((0, 0),), closed=(), greek=True, seed=2):
     for i, (cx, cy) in enumerate(closed):
         P.mound((cx, cy + 0.8, -0.05), (0.55, 1.1, 0.25))
         P.tombstone(f"tc{i}", (cx, cy + 2.25, 0), h=rnd.uniform(0.8, 1.3), rot_z=rnd.uniform(-0.08, 0.08))
-    for i in range(14):
-        x = rnd.uniform(-22, 22); y = rnd.uniform(9, 30)
-        P.cypress((x, y, 0), h=rnd.uniform(3.5, 6))
+    blocked = list(pits) + list(closed)
+
+    def free(x, y):
+        return not any(abs(x - bx) < 1.05 and -0.75 < y - by < 2.75 for bx, by in blocked)
+
+    for i in range(7):
+        x = rnd.uniform(-17, 17); y = rnd.uniform(9, 24)
+        if abs(x) > 2.5:
+            P.place("island_tree_02", (x, y, 0), rnd.uniform(1.7, 2.5), rnd.uniform(0, 6.28))
     for i in range(10):
         x = rnd.uniform(-14, 14); y = rnd.uniform(5, 16)
         if abs(x) > 2.5:
             P.tombstone(f"bg{i}", (x, y, 0), h=rnd.uniform(0.7, 1.4), rot_z=rnd.uniform(-0.15, 0.15))
-    for x, y, s in ((-30, 60, 22), (10, 75, 30), (45, 58, 20)):
-        h = P.sphere("hill", s, (x, y, -s * 0.55), mat("leaf") if not night else P.M("hilln", (0.03, 0.12, 0.3), rough=1), subdiv=4)
-    fl = [P.M(f"fl{i}", c, emit=c, es=0.4 if not night else 0.15) for i, c in enumerate(((1, 1, 1), (1, 0.85, 0.1), (1, 0.4, 0.6)))]
-    fbase = [P.sphere("flower", 0.035, (0, 0, -50), m, scale=(1, 1, 0.5), subdiv=1) for m in fl]
-    peb = P.sphere("pebble", 0.07, (0, 0, -50), mat("stone"), scale=(1, 0.8, 0.5), subdiv=2)
-    blocked = list(pits) + list(closed)
-    for i in range(170):
-        x = rnd.uniform(-9, 12); y = rnd.uniform(-5, 10)
-        if any(abs(x - bx) < 1.0 and -0.6 < y - by < 2.6 for bx, by in blocked):
-            continue
-        d = P.dup(fbase[i % 3] if i % 4 else peb)
-        d.location = (x, y, 0.04 if i % 4 else 0.02)
-        d.rotation_euler = (0, 0, rnd.uniform(0, 3))
+    for x, y, sc in ((-30, 60, 22), (10, 75, 30), (45, 58, 20)):
+        P.sphere("hill", sc, (x, y, -sc * 0.55), mat("leaf") if not night else P.M("hilln", (0.03, 0.12, 0.3), rough=1), subdiv=4)
+    x0 = min(px for px, _ in blocked) - 5 if blocked else -6
+    x1 = max(px for px, _ in blocked) + 5 if blocked else 6
+    P.scatter("grass_medium_01", 150, (x0, x1), (-4.5, 8), seed=seed, keep=free, scale=(0.5, 0.9))
+    P.scatter("grass_medium_02", 240, (x0, x1), (-4.5, 8), seed=seed + 1, keep=free, scale=(0.8, 1.4))
+    P.scatter("fern_02", 9, (x0, x1), (-3, 8), seed=seed + 2, keep=free, scale=(0.5, 0.8))
+    P.scatter("flower_gazania", 8, (x0, x1), (-4, 7), seed=seed + 3, keep=free, scale=(0.7, 1.0))
+    P.scatter("dandelion_01", 8, (x0, x1), (-4, 7), seed=seed + 4, keep=free, scale=(0.8, 1.2))
+    P.scatter("rock_07", 16, (x0, x1), (-4, 8), seed=seed + 5, keep=free, scale=(1.0, 2.5))
+    P.scatter("boulder_01", 3, (x0 - 1, x1 + 1), (4, 9), seed=seed + 6, keep=free, scale=(0.5, 0.9))
     if greek:
         P.temple((-6.5, 13, 0))
         P.column("ruin1", (4.6, 7.5, 0), broken=True)
@@ -470,16 +480,17 @@ def bob(root, amp=0.025):
     P.drive(root, "rotation_euler", 1, "0.02*sin(frame/12.0)")
 
 
-def china(pit=False):
+def china(pits=()):
     fm = P.tex_mat("paving", 0.45, tint=(1.25, 1.1, 0.95))
     floor = P.box("floor", (120, 120, 4), (0, 0, -2), fm)
-    if pit:
-        cut = P.box("cut", (1.3, 1.5, 1.3), (0, 2.6, 0), None)
+    for i, (cx, cy) in enumerate(pits):
+        cut = P.box(f"cut{i}", (1.3, 1.5, 1.3), (cx, cy, 0), None)
         cut.hide_render = True
-        b = floor.modifiers.new("pit", "BOOLEAN"); b.object = cut; b.operation = "DIFFERENCE"
-        for sz, lc in (((1.3, 1.5, 0.02), (0, 2.6, -0.64)), ((0.02, 1.5, 0.65), (-0.64, 2.6, -0.33)), ((0.02, 1.5, 0.65), (0.64, 2.6, -0.33)),
-                       ((1.3, 0.02, 0.65), (0, 1.86, -0.33)), ((1.3, 0.02, 0.65), (0, 3.34, -0.33))):
-            P.box("liner", sz, lc, mat("soil"))
+        bm = floor.modifiers.new(f"pit{i}", "BOOLEAN"); bm.object = cut; bm.operation = "DIFFERENCE"
+        for sz, lc in (((1.3, 1.5, 0.02), (0, 0, -0.64)), ((0.02, 1.5, 0.65), (-0.64, 0, -0.33)), ((0.02, 1.5, 0.65), (0.64, 0, -0.33)),
+                       ((1.3, 0.02, 0.65), (0, -0.74, -0.33)), ((1.3, 0.02, 0.65), (0, 0.74, -0.33))):
+            P.box("liner", sz, (cx + lc[0], cy + lc[1], lc[2]), mat("soil"))
+        P.mound((cx + (1.2 if cx > 0 else -1.2), cy, -0.05), (0.45, 0.7, 0.26))
     P.paifang((0, 0, 0))
     for i, x in enumerate((-1.5, -0.5, 0.5, 1.5)):
         P.red_lantern((x, -0.1, 3.05), hang=0.35 + 0.15 * (i % 2), ph=i * 1.3, light=160 if i in (0, 3) else 0)
@@ -494,8 +505,15 @@ def china(pit=False):
     tomb = P.sphere("tomb", 1.7, (0, 6.6, -0.25), mat("stone"), scale=(1.25, 1, 0.85), subdiv=4)
     P.tombstone("stele", (0, 4.75, 0), w=0.8, h=1.25, t=0.2, material="stone")
     P.box("stele_red", (0.5, 0.02, 0.85), (0, 4.63, 0.72), mat("red"))
-    for i, (x, y, s) in enumerate(((-5.2, 5.5, 1.2), (5.4, 7.5, 1.35), (-5.6, -6, 1.1), (5.6, -4.5, 1.2))):
-        P.blossom_tree((x, y, 0), seed=i + 1, s=s)
+    for x, y, sc in ((-5.6, 8.0, 0.3), (5.7, 8.4, 0.34), (5.9, -6.0, 0.28), (-6.0, -7.0, 0.3)):
+        P.place("jacaranda_tree", (x, y, 0), sc, x * 1.3)
+    for x, y, sc, rz in ((-2.9, 5.3, 0.8, 0.4), (2.6, 5.6, 0.9, 2.0), (6.3, 1.5, 1.0, 1.0), (-6.4, 0.8, 0.9, 3.0)):
+        P.place("boulder_01", (x, y, 0), sc, rz)
+    for x in (-0.75, 0.75):
+        P.place("brass_vase_01", (x, 4.45, 0), 1.4)
+    for x, y in ((-1.6, -2.5), (1.6, -2.5), (-1.6, -6.5), (1.6, -6.5)):
+        P.place("wooden_lantern_01", (x, y, 0), 1.5)
+        point((x, y, 0.45), 30, (1.0, 0.6, 0.25), radius=0.1)
     mm = P.M("mnt", (0.2, 0.3, 0.75), rough=1)
     mm2 = P.M("mnt2", (0.45, 0.3, 0.7), rough=1)
     rnd = random.Random(5)
@@ -809,21 +827,36 @@ G_CLOSED = [(-3.2, 0), (-6.4, 0), (-3.2, 4.5), (0, 4.5), (3.2, 4.5), (-6.4, 4.5)
 
 
 def thieves_yard(n, frame_off=0):
-    """Night graveyard with coin markers, two digging thieves and a bank; shared by G1 and G2."""
+    """Night graveyard: glowing markers show where the coins are; each thief digs inside a marked grave."""
     graveyard(night=True, pits=G_PITS, closed=G_CLOSED, greek=False, seed=4)
     gm = P.M("mark", (1, 0.8, 0.2), emit=(1.0, 0.7, 0.1), es=2.5, metal=1, rough=0.2)
     for i, (x, y) in enumerate(G_CLOSED + G_PITS):
         c = P.cyl("marker", 0.22, 0.04, (x, y + 0.8, 1.9), gm, segs=32, rot=(R(90), 0, 0))
         P.drive(c, "rotation_euler", 2, f"(frame+{frame_off})*0.12+{i}")
-        P.drive(c, "location", 2, f"1.9+0.08*sin((frame+{frame_off})/6.0+{i})")
+        P.drive(c, "location", 2, f"2.0+0.08*sin((frame+{frame_off})/6.0+{i})")
         point((x, y + 0.8, 1.5), 25, (1.0, 0.75, 0.3), radius=0.2)
+    rnd = random.Random(11)
+    clod = P.sphere("clod", 0.06, (0, 0, -50), mat("soil"), subdiv=1)
+    P.displace(clod, 0.02, 0.05)
+    total = frame_off + n
     for i, (px, py) in enumerate(G_PITS):
         if i != 1:
             t = make_thief(f"thief{i}")
-            t.rotation_euler = (0, 0, R(90)); t.location = (px - 0.98, 0.7, 0)
+            t.rotation_euler = (0, 0, R(180)); t.location = (px, 0.05, -0.75)
             dig_setup(t, phase=(i * 5 + frame_off) % 16, n=n, period=16)
-        P.sack((px - 1.5, 1.7, 0), 0.8)
-        P.lantern((px - 0.9, -0.55, 0), watts=150, pole=0.45)
+            # soil thrown out of the grave on every upswing
+            f = 9 - (i * 5) % 16
+            while f < total + 16:
+                for k in range(4):
+                    d = P.dup(clod)
+                    d.scale = (rnd.uniform(0.6, 1.4),) * 3
+                    ballistic(d, f - frame_off + k, (px + 0.1, 0.75, -0.25), (rnd.uniform(1.3, 1.9), rnd.uniform(-0.3, 0.3), rnd.uniform(3.6, 4.6)),
+                              floor=0.28, frames=30, bounce=0)
+                    key_vis(d, f - frame_off + k - 2, False); key_vis(d, f - frame_off + k - 1, True)
+                f += 16
+        P.sack((px - 1.35, 1.6, 0), 0.8)
+        P.place("wooden_lantern_01", (px - 0.95, -0.6, 0), 1.6)
+        point((px - 0.95, -0.6, 0.5), 110, (1.0, 0.6, 0.25), radius=0.12)
     bx = 11.5
     P.box("bank", (7, 4, 4.2), (bx, 13, 2.1), mat("marble"))
     for k in range(4):
@@ -833,7 +866,7 @@ def thieves_yard(n, frame_off=0):
     point((bx, 9.3, 2.2), 900, (1.0, 0.8, 0.5), radius=0.6)
 
 
-G1_END = ((1.9, -1.6, 0.85), (-0.5, 0.7, 1.05))
+G1_END = ((1.7, -1.9, 1.5), (0.0, 0.7, 0.35))
 
 
 def shot_G1(n):
@@ -842,7 +875,7 @@ def shot_G1(n):
 
 
 def shot_G2(n):
-    """Continues G1 without a cut: the camera tracks along the row of graves to the next thief."""
+    """Continues G1 without a cut: the camera tracks along the row of robbed graves, coins flying into the sacks."""
     thieves_yard(n, frame_off=nframes("G1"))
     rnd = random.Random(9)
     base = P.coin(r=0.035); base.location = (0, 0, -50)
@@ -850,181 +883,162 @@ def shot_G2(n):
         for k in range(7):
             c = P.dup(base)
             f0 = 4 + i * 14 + k * 5 + rnd.randint(0, 3)
-            ballistic(c, f0, (px + rnd.uniform(-0.2, 0.2), 0.8, -0.5),
-                      (rnd.uniform(-1.1, -0.5), rnd.uniform(-0.5, 0.6), rnd.uniform(4.6, 5.6)), floor=0.02, frames=44)
-    camera([(1, *G1_END), (30, (4.6, -3.7, 1.45), (4.6, 0.8, 0.9)), (n, (9.7, -2.3, 1.15), (9.0, 0.7, 1.05))], lens=20)
+            ballistic(c, f0, (px + rnd.uniform(-0.2, 0.2), 1.1, -0.5),
+                      (rnd.uniform(-1.3, -0.9), rnd.uniform(0.2, 0.5), rnd.uniform(4.6, 5.4)), floor=0.02, frames=44)
+    camera([(1, *G1_END), (32, (4.9, -3.6, 1.6), (4.8, 0.8, 0.6)), (n, (9.9, -2.1, 1.5), (9.6, 0.6, 0.45))], lens=20)
 
 
-def shot_H(n):
-    china()
-    for i, (loc, face) in enumerate((((0.9, 3.45, 0), 15), ((-0.9, 3.4, 0), -20))):
-        mourner(i, PEOPLE[i], loc, face)
-    P.brazier((0, 2.4, 0))
-    P.fire((0, 2.4, 0.72), scale=0.7, watts=110)
-    kin = make_kin(skin="middleage_asian_male")
-    kin.rotation_euler = (0, 0, R(180)); kin.location = (0.0, 1.35, 0)
-    stand_relaxed(kin)
-    C.aim(kin, "spine03", (0, -0.2, 1)); C.aim(kin, "head", (0, -0.4, 1))
-    C.reach(kin, "L", (0.07, -0.3, 1.2), pole=(1, 0.4, -0.6)); C.reach(kin, "R", (-0.07, -0.3, 1.2), pole=(-1, 0.4, -0.6))
-    camera([(1, (0.6, -15, 0.9), (0, 0, 3.4)), (70, (0.3, -6.5, 1.5), (0, 0.5, 2.6)),
-            (112, (0.9, -2.2, 1.75), (0, 3.2, 1.2)), (n, (1.3, -1.0, 1.8), (0, 3.4, 0.95))], lens=19)
+def fire_pit(loc, scale=1.0, watts=260, notes=0, seed=1, frames=0, top=7.0):
+    """Stone fire pit with a volumetric flame; optionally a column of burning paper notes rising from it."""
+    P.place("stone_fire_pit", (loc[0], loc[1], 0.12), 0.8 * scale, seed)
+    P.fire_volume((loc[0], loc[1], 0.1), scale=scale, watts=watts)
+    P.embers((loc[0], loc[1], 0.5), n=14, radius=0.25 * scale, height=3.0, seed=seed)
+    if notes:
+        flying_notes((loc[0], loc[1], 0), notes, frames, seed=seed, radius=0.5 * scale, top=top, rise=0.075, big=1.6, start_z=0.6)
 
 
-def shot_I(n):
-    china(pit=True)
+def shot_S(n):
+    """One continuous camera move: through the gate -> buried gold and a lurking thief -> family burning
+    paper money -> the ghost receiving it -> the thief finding only ash -> fires everywhere, notes filling the sky."""
+    GOLD, ASH, FIRE = (-3.6, 3.0), (3.6, 3.0), (0.0, 2.6)
+    china(pits=(GOLD, ASH))
     rnd = random.Random(3)
-    for i in range(16):
-        ig = P.ingot((rnd.uniform(-0.45, 0.45), 2.6 + rnd.uniform(-0.5, 0.5), -0.62 + 0.07 * (i // 6)), s=rnd.uniform(1.4, 2.0))
+    # --- the old way: gold in the grave
+    P.place("treasure_chest", (GOLD[0], GOLD[1] + 0.25, -0.63), 0.9, 0.3)
+    for i in range(10):
+        ig = P.ingot((GOLD[0] + rnd.uniform(-0.45, 0.45), GOLD[1] - 0.35 + rnd.uniform(-0.25, 0.25), -0.62 + 0.06 * (i // 5)), s=rnd.uniform(1.3, 1.8))
         ig.rotation_euler = (0, 0, rnd.uniform(0, 3))
     base = P.coin(r=0.04); base.location = (0, 0, -50)
-    for i in range(40):
+    for i in range(34):
         c = P.dup(base)
-        c.location = (rnd.uniform(-0.55, 0.55), 2.6 + rnd.uniform(-0.6, 0.6), -0.61 + rnd.uniform(0, 0.12))
-        c.rotation_euler = (rnd.uniform(-0.6, 0.6), rnd.uniform(-0.6, 0.6), 0)
-    point((0, 2.6, -0.05), 90, (1.0, 0.8, 0.4), radius=0.3)
-    thief = make_thief()
-    thief.location = (0.85, 5.0, -0.5)
-    C.pose(thief, {"upperarm01.L": (0.5, -0.5, 0.2), "lowerarm01.L": (-0.2, -0.6, 1),
-                   "upperarm01.R": (-0.5, -0.5, 0.2), "lowerarm01.R": (0.2, -0.6, 1)})
-    C.aim(thief, "head", (0, -0.25, 1))
-    key_loc(thief, 1, (1.6, 5.3, -0.3)); key_loc(thief, 24, (1.6, 5.3, -0.3)); key_loc(thief, 38, (0.72, 4.9, -0.12))
-    key_loc(thief, n, (0.68, 4.85, -0.1))
-    camera([(1, (0.9, 0.3, 2.3), (0, 2.6, -0.5)), (28, (0.5, 1.2, 1.3), (0, 2.7, -0.4)),
-            (n, (0.3, 2.2, 1.25), (0.5, 4.9, 1.25))], lens=20)
-
-
-def shot_J(n):
-    china()
-    for i, (loc, face) in enumerate((((0.9, 3.45, 0), 15), ((-0.9, 3.4, 0), -20))):
-        mourner(i, PEOPLE[i], loc, face)
-    P.brazier((0, 2.4, 0))
-    P.fire((0, 2.4, 0.72), scale=1.0, watts=90)
-    P.embers((0, 2.4, 0.9), n=24, radius=0.25, height=2.4)
-    kin = make_kin(skin="middleage_asian_male")
-    kin.rotation_euler = (0, 0, R(90)); kin.location = (-0.82, 2.4, 0)
-    C.pose(kin, {"spine03": (0, -0.2, 1)})
-    C.aim(kin, "head", (0, -0.6, 1))
-    C.reach(kin, "L", Vector((-0.18, 2.52, 1.32)), pole=(0.6, 0.5, -1), world=True)
-    C.reach(kin, "R", Vector((-0.18, 2.28, 1.32)), pole=(-0.6, 0.5, -1), world=True)
-    for s in "LR":
-        C.curl_fingers(kin, s, 0.5, 0.5)
-    base = P.note("jn", 0.19, 0.085); base.location = (0, 0, -50)
-    rnd = random.Random(2)
-    for i in range(6):
-        st = P.dup(base); st.location = (-0.2, 2.4, 1.25 + i * 0.006); st.rotation_euler = (0, 0, R(90) + rnd.uniform(-0.2, 0.2))
-    for i in range(12):
-        d = P.dup(base)
-        f0 = 4 + i * 5
-        ballistic(d, f0, (-0.16, 2.4 + rnd.uniform(-0.08, 0.08), 1.27), (rnd.uniform(0.25, 0.6), rnd.uniform(-0.15, 0.15), 0.7),
-                  floor=0.82, g=3.2, frames=40, spin=(4, 3, 2))
-        key_vis(d, 1, True)
-        last = f0 + 22
-        key_vis(d, last, True); key_vis(d, last + 4, False)
-    camera([(1, (2.6, 0.5, 2.0), (0, 2.4, 1.0)), (40, (1.4, 1.1, 1.5), (0, 2.4, 1.0)),
-            (n, (0.75, 1.55, 1.25), (0, 2.4, 0.98))], lens=21)
-
-
-def shot_K1(n):
-    ghost = ghost_at_grave(n, rise=False)
-    C.pose(ghost, {"upperarm01.L": (0.8, -0.1, 0.9), "lowerarm01.L": (0.3, -0.3, 1),
-                   "upperarm01.R": (-0.8, -0.1, 0.9), "lowerarm01.R": (-0.3, -0.3, 1)})
-    C.aim(ghost, "head", (0, 0.25, 1))
-    falling_notes((0, 0.5, 0.2), 46, n, radius=1.1)
-    camera([(1, (0.5, -2.4, 0.5), (0, 0.6, 1.3)), (n, (0.2, -1.5, 1.0), (0, 0.6, 1.65))], lens=19)
-
-
-def shot_K2(n):
-    graveyard(night=True, greek=False, closed=((-3, 0), (3, 0)))
-    P.lantern((1.0, -0.25, 0), watts=180, pole=0.5)
-    ash = P.sphere("ashpile", 0.4, (0, 0.5, -0.74), mat("ash"), scale=(1, 1.3, 0.3), subdiv=4)
-    P.displace(ash, 0.1, 0.2)
-    thief = make_thief()
-    thief.location = (0, 1.25, -0.75)
+        c.location = (GOLD[0] + rnd.uniform(-0.55, 0.55), GOLD[1] + rnd.uniform(-0.65, 0.65), -0.615 + rnd.uniform(0, 0.03))
+        c.rotation_euler = (rnd.uniform(-0.3, 0.3), rnd.uniform(-0.3, 0.3), 0)
+    point((GOLD[0], GOLD[1], -0.1), 70, (1.0, 0.8, 0.4), radius=0.3)
+    P.place("boulder_01", (-4.9, 4.5, 0), 1.25, 1.2)
+    thief = make_thief("thief")
     C.pose(thief, {"spine03": (0, -0.3, 1)})
-    C.aim(thief, "head", (0, -0.7, 0.8))
-    C.reach(thief, "L", (0.16, -0.42, 1.02), pole=(1, 0.5, -0.5)); C.reach(thief, "R", (-0.16, -0.42, 1.02), pole=(-1, 0.5, -0.5))
-    C.twist(thief, "lowerarm02.L", 80, "Y"); C.twist(thief, "lowerarm02.R", -80, "Y")
-    rnd = random.Random(5)
+    C.aim(thief, "head", (0.25, -0.5, 1))
+    C.reach(thief, "R", (-0.25, -0.35, 1.25), pole=(-1, 0.5, -0.5)); C.reach(thief, "L", (0.2, -0.3, 1.0), pole=(1, 0.5, -0.5))
+    thief.rotation_euler = (0, 0, R(-35))
+    key_loc(thief, 1, (-6.3, 5.3, -0.35)); key_loc(thief, 168, (-6.3, 5.3, -0.35))
+    key_loc(thief, 190, (-5.75, 5.05, -0.12)); key_loc(thief, 215, (-5.7, 5.0, -0.1)); key_loc(thief, 240, (-6.3, 5.3, -0.35))
+    # --- the new way: the family burns paper money
+    fire_pit(FIRE, 1.0, watts=200, notes=46, seed=2, frames=n, top=6.0)
+    kin = make_kin(skin="middleage_asian_male")
+    kin.rotation_euler = (0, 0, R(90)); kin.location = (FIRE[0] - 1.0, FIRE[1], 0)
+    C.pose(kin, {"spine03": (0, -0.2, 1)})
+    C.legs_together(kin)
+    C.aim(kin, "head", (0, -0.6, 1))
+    C.reach(kin, "L", Vector((FIRE[0] - 0.42, FIRE[1] + 0.12, 1.3)), pole=(0.6, 0.5, -1), world=True)
+    C.reach(kin, "R", Vector((FIRE[0] - 0.42, FIRE[1] - 0.12, 1.3)), pole=(-0.6, 0.5, -1), world=True)
+    for sd in "LR":
+        C.curl_fingers(kin, sd, 0.5, 0.5)
+    nb = P.note("jn", 0.19, 0.085); nb.location = (0, 0, -50)
+    for i in range(6):
+        st = P.dup(nb); st.location = (FIRE[0] - 0.43, FIRE[1], 1.24 + i * 0.006); st.rotation_euler = (0, 0, R(90) + rnd.uniform(-0.2, 0.2))
+    for i in range(14):
+        d = P.dup(nb)
+        f0 = 196 + i * 5
+        ballistic(d, f0, (FIRE[0] - 0.4, FIRE[1] + rnd.uniform(-0.08, 0.08), 1.27), (rnd.uniform(0.3, 0.6), rnd.uniform(-0.12, 0.12), 0.7),
+                  floor=0.45, g=3.2, frames=40, spin=(4, 3, 2), bounce=0)
+        key_vis(d, 1, False); key_vis(d, f0 - 1, True); key_vis(d, f0 + 24, True); key_vis(d, f0 + 28, False)
+    mourner(0, PEOPLE[0], (1.15, 3.7, 0), 20)
+    mourner(1, PEOPLE[2], (-0.7, 4.0, 0), -15)
+    # --- the dead still got paid: the ghost above the flames
+    ghost = make_dead("ghost"); ghostify(ghost)
+    C.legs_together(ghost)
+    C.pose(ghost, {"upperarm01.L": (0.8, -0.3, 0.6), "lowerarm01.L": (0.2, -0.6, 0.8),
+                   "upperarm01.R": (-0.8, -0.3, 0.6), "lowerarm01.R": (-0.2, -0.6, 0.8)})
+    C.aim(ghost, "head", (0, -0.5, 1))
+    ghost.location = (0.5, 3.0, 3.1)
+    P.drive(ghost, "location", 2, "3.1+0.06*sin(frame/8.0)")
+    for c in ghost.children_recursive:
+        c.hide_render = True; c.keyframe_insert("hide_render", frame=1); c.keyframe_insert("hide_render", frame=255)
+        c.hide_render = False; c.keyframe_insert("hide_render", frame=256)
+    falling_notes((0.5, 2.9, 2.6), 40, n, radius=0.9, top=2.6)
+    point((0.5, 2.6, 3.6), 80, (0.4, 0.8, 1.0), radius=0.5)
+    # --- the thieves got nothing but ash
+    ash = P.sphere("ashpile", 0.4, (ASH[0], ASH[1] - 0.25, -0.62), mat("ash"), scale=(1, 1.2, 0.3), subdiv=4)
+    P.displace(ash, 0.1, 0.2)
+    t2 = make_thief("thief2")
+    t2.location = (ASH[0], ASH[1] + 0.4, -0.63)
+    C.pose(t2, {"spine03": (0, -0.3, 1)})
+    C.aim(t2, "head", (0, -0.7, 0.8))
+    C.reach(t2, "L", (0.16, -0.42, 1.02), pole=(1, 0.5, -0.5)); C.reach(t2, "R", (-0.16, -0.42, 1.02), pole=(-1, 0.5, -0.5))
+    C.twist(t2, "lowerarm02.L", 80, "Y"); C.twist(t2, "lowerarm02.R", -80, "Y")
+    for c in t2.children_recursive:
+        c.hide_render = True; c.keyframe_insert("hide_render", frame=1); c.keyframe_insert("hide_render", frame=285)
+        c.hide_render = False; c.keyframe_insert("hide_render", frame=286)
     for i in range(46):
-        a = P.sphere("ashbit", rnd.uniform(0.008, 0.02), (0, 0, -50), mat("ash"), subdiv=1)
-        f0 = 1 + rnd.randint(0, n - 12)
-        ballistic(a, f0, (rnd.uniform(-0.2, 0.2), 0.82 + rnd.uniform(-0.05, 0.05), 0.24), (rnd.uniform(-0.1, 0.1), -0.1, 0),
-                  floor=-0.56, g=5.0, frames=20, spin=(0, 0, 0))
-    P.shovel().location = (0.75, 1.9, 1.2)
-    camera([(1, (0.25, -0.5, 2.7), (0, 0.7, -0.6)), (30, (0.7, -0.9, 1.5), (0, 0.9, 0.1)),
-            (n, (0.75, -0.75, 0.75), (0, 1.1, 0.7))], lens=19)
+        ab = P.sphere("ashbit", rnd.uniform(0.008, 0.02), (0, 0, -50), mat("ash"), subdiv=1)
+        f0 = 300 + rnd.randint(0, 70)
+        ballistic(ab, f0, (ASH[0] + rnd.uniform(-0.2, 0.2), ASH[1] - 0.03 + rnd.uniform(-0.05, 0.05), 0.38), (rnd.uniform(-0.1, 0.1), -0.1, 0),
+                  floor=-0.5, g=5.0, frames=22, spin=(0, 0, 0), bounce=0)
+    sh = P.shovel(); sh.location = (ASH[0] + 0.9, ASH[1] + 0.5, 1.2); sh.rotation_euler = (R(6), R(-10), 0)
+    # --- today: fires everywhere, notes filling the sky
+    for i, (x, y, sc) in enumerate(((-4.6, -3.2, 1.2), (4.6, -3.6, 1.3), (-5.2, 8.6, 1.1), (5.0, 9.0, 1.2),
+                                    (-13, 4, 2.2), (13, 6, 2.4), (0, 17, 2.6), (-12, -9, 2.2), (12, -10, 2.2))):
+        fire_pit((x, y, 0), sc, watts=160 * sc, notes=26, seed=10 + i, frames=n, top=12.0)
+    camera([
+        (1, (0.6, -15, 0.9), (0, 0, 3.4)),
+        (70, (0.3, -6.5, 1.5), (0, 0.5, 2.6)),
+        (125, (0.2, -1.2, 1.7), (0, 3.5, 1.2)),
+        (165, (-1.9, 0.6, 1.9), (GOLD[0], GOLD[1], -0.3)),
+        (198, (-2.4, 1.3, 1.5), (-5.2, 4.8, 1.25)),
+        (232, (-0.4, 0.5, 1.5), (FIRE[0], FIRE[1], 0.9)),
+        (264, (0.55, 1.2, 1.2), (0.1, 2.6, 1.0)),
+        (292, (0.9, 0.5, 1.5), (0.5, 3.0, 3.9)),
+        (306, (1.0, 0.4, 1.8), (0.5, 3.0, 4.0)),
+        (336, (2.4, 0.7, 2.0), (ASH[0], ASH[1] + 0.2, -0.1)),
+        (358, (2.8, 1.5, 1.3), (ASH[0], ASH[1] + 0.4, 0.75)),
+        (384, (1.2, 0.2, 1.6), (0.4, 3.0, 1.6)),
+        (410, (0.9, -3.8, 2.6), (0, 2.6, 3.0)),
+        (n, (0.7, -8.5, 5.4), (0, 3, 12.0)),
+    ], lens=19)
 
 
-def shot_L(n):
-    china()
-    c = (0, -4.0, 0)
-    note_pile(c, n=170, radius=1.1, height=0.6)
-    P.fire((c[0], c[1], 0.25), scale=2.0, n=8, watts=220)
-    P.fire((c[0] + 0.6, c[1] + 0.3, 0.15), scale=1.3, n=4, watts=300, seed=4)
-    P.fire((c[0] - 0.6, c[1] - 0.2, 0.15), scale=1.4, n=4, watts=300, seed=6)
-    P.embers((c[0], c[1], 0.6), n=70, radius=0.8, height=8.0, size=0.02)
-    flying_notes(c, 150, n, radius=1.0, top=11.0, rise=0.085, big=2.0)
-    for i, ang in enumerate((60, 120, 185)):
-        a = R(ang)
-        mourner(i, PEOPLE[i], (c[0] + math.cos(a) * 2.9, c[1] + math.sin(a) * 2.9, 0), ang + 90, mode="up" if i % 2 else "clasp")
-    camera([(1, (2.6, -9.5, 0.8), (0, -4.0, 1.0)), (45, (1.9, -8.0, 1.6), (0, -4.0, 3.0)),
-            (n, (0.9, -6.3, 3.4), (0, -4.0, 10.0))], lens=18)
-
-
-def shot_M1(n):
+def shot_T(n):
+    """Continuous: the coin still in the dead man's mouth -> pull back and up to the thief on his pile of gold."""
     graveyard(night=False)
-    for o in bpy.data.objects:
-        if o.type == "LIGHT" and o.data.type == "SUN":
-            o.data.color = (1.0, 0.7, 0.45); o.rotation_euler = (R(25), 0, R(20))
     dead = grave_body(coin_in_mouth=True)
     mp = mouth_pos(dead)
     c = P.coin(r=0.024); c.location = mp; c.rotation_euler = (R(12), 0, 0)
     rnd = random.Random(1)
-    base = P.coin(r=0.03); base.location = (0, 0, -50)
-    for i in range(22):
+    base = P.coin(r=0.045); base.location = (0, 0, -50)
+    for i in range(18):
         d = P.dup(base)
         tx = rnd.uniform(-0.38, 0.38); ty = rnd.uniform(0.2, 1.5)
         on_body = abs(tx) < 0.17 and 0.75 < ty < 1.3
         d.location = (tx, ty, -0.75 + (0.275 if on_body else 0.012))
         d.rotation_euler = (rnd.uniform(-0.15, 0.15), rnd.uniform(-0.15, 0.15), 0)
-    camera([(1, (0.45, 0.2, 1.5), mp), (n, (0.1, 1.05, -0.02), mp)], lens=22, fstop=2.4)
-
-
-def shot_M2(n):
-    graveyard(night=True, pits=(), closed=((-3.2, 2), (3.2, 2), (0, 5)), greek=False)
-    pile = P.sphere("goldpile", 1.0, (0, 0, -0.1), mat("gold"), scale=(1.5, 1.5, 0.55), subdiv=4)
+    G = (0.0, 5.4)
+    pile = P.sphere("goldpile", 1.0, (G[0], G[1], -0.1), mat("gold"), scale=(1.5, 1.5, 0.55), subdiv=4)
     P.displace(pile, 0.12, 0.12)
-    rnd = random.Random(8)
-    base = P.coin(r=0.05); base.location = (0, 0, -50)
-    for i in range(140):
-        a = rnd.uniform(0, 6.28); r = 1.6 * math.sqrt(rnd.random())
-        d = P.dup(base)
-        d.location = (math.cos(a) * r, math.sin(a) * r, max(0.02, 0.46 * (1 - (r / 1.5) ** 2)) + 0.02)
+    big = P.coin(r=0.05); big.location = (0, 0, -50)
+    for i in range(150):
+        a = rnd.uniform(0, 6.28); r = 1.65 * math.sqrt(rnd.random())
+        d = P.dup(big)
+        d.location = (G[0] + math.cos(a) * r, G[1] + math.sin(a) * r, max(0.02, 0.46 * (1 - (r / 1.5) ** 2)) + 0.02)
         d.rotation_euler = (rnd.uniform(-0.7, 0.7), rnd.uniform(-0.7, 0.7), 0)
-    P.lantern((1.5, -1.2, 0), watts=420, pole=0.6)
-    P.lantern((-1.7, -0.6, 0), watts=300, pole=0.6)
-    point((0, -1.6, 2.2), 260, (1.0, 0.85, 0.6), radius=0.6)
-    P.sack((1.2, 0.6, 0.1), 1.2)
-    P.sack((-1.25, 0.5, 0.1), 1.0)
+    P.place("treasure_chest", (G[0] + 1.5, G[1] - 0.3, 0), 1.1, -0.5)
+    P.place("treasure_chest", (G[0] - 1.6, G[1] + 0.1, 0), 1.0, 0.6)
+    P.sack((G[0] + 1.0, G[1] + 1.0, 0.1), 1.2)
     thief = make_thief()
-    thief.location = (0, 0.1, 0.42)
-    C.pose(thief, {"upperarm01.L": (0.7, -0.1, 1), "lowerarm01.L": (0.2, -0.2, 1),
-                   "upperarm01.R": (-0.7, -0.1, 1), "lowerarm01.R": (-0.2, -0.2, 1)})
-    C.aim(thief, "head", (0, 0.2, 1))
-    C.key_pose(thief, 1)
-    C.pose(thief, {"upperarm01.L": (0.9, -0.3, 0.5), "lowerarm01.L": (0.4, -0.5, 1),
-                   "upperarm01.R": (-0.9, -0.3, 0.5), "lowerarm01.R": (-0.4, -0.5, 1)})
-    C.key_pose(thief, 14)
-    C.pose(thief, {"upperarm01.L": (0.7, -0.1, 1), "lowerarm01.L": (0.2, -0.2, 1),
-                   "upperarm01.R": (-0.7, -0.1, 1), "lowerarm01.R": (-0.2, -0.2, 1)})
-    C.key_pose(thief, 26); C.key_pose(thief, 40); C.key_pose(thief, n)
-    for i in range(34):
-        d = P.dup(base)
-        s = rnd.choice((-1, 1))
-        f0 = rnd.choice((1, 24, 26, 28)) + rnd.randint(0, 6)
-        ballistic(d, f0, (s * 0.45, 0.0, 2.2), (s * rnd.uniform(0.2, 1.3), rnd.uniform(-1.0, 0.6), rnd.uniform(2.5, 4.6)),
-                  floor=0.1, frames=52)
-    camera([(1, (0.35, -1.25, 1.95), (0, 0.1, 1.95)), (n, (1.9, -5.4, 2.7), (0, 0.1, 1.5))], lens=20)
+    thief.location = (G[0], G[1] + 0.1, 0.42)
+    up = {"upperarm01.L": (0.7, -0.1, 1), "lowerarm01.L": (0.2, -0.2, 1), "upperarm01.R": (-0.7, -0.1, 1), "lowerarm01.R": (-0.2, -0.2, 1)}
+    down = {"upperarm01.L": (0.9, -0.3, 0.5), "lowerarm01.L": (0.4, -0.5, 1), "upperarm01.R": (-0.9, -0.3, 0.5), "lowerarm01.R": (-0.4, -0.5, 1)}
+    C.legs_together(thief, 0.08)
+    C.aim(thief, "head", (0, 0.15, 1))
+    for f, pz in ((1, down), (52, down), (62, up), (76, down), (86, up), (100, down), (n, up)):
+        C.pose(thief, pz); C.key_pose(thief, f)
+    for i in range(40):
+        d = P.dup(big)
+        sx = rnd.choice((-1, 1))
+        f0 = rnd.choice((60, 62, 84, 86, 108)) + rnd.randint(0, 5)
+        ballistic(d, f0, (G[0] + sx * 0.45, G[1], 2.25), (sx * rnd.uniform(0.2, 1.3), rnd.uniform(-1.0, 0.6), rnd.uniform(2.5, 4.6)),
+                  floor=0.1, frames=50)
+    camera([(1, (0.1, 1.02, -0.02), mp), (40, (0.3, 0.5, 1.2), mp + Vector((0, 0.1, 0))),
+            (74, (0.45, -1.3, 1.9), (G[0], G[1] - 0.6, 1.2)), (n, (0.55, -2.7, 2.3), (G[0], G[1], 1.6))], lens=20)
 
 
 SHOTS = {k: globals()["shot_" + k] for k in TIMES}
@@ -1058,7 +1072,7 @@ def setup_render(preview, threads):
                 except Exception as e:
                     print("MAT_FAIL", e)
     c = s.cycles
-    c.samples = 10 if preview or eevee else int(os.environ.get("SPP", 12))
+    c.samples = 10 if preview or eevee else int(os.environ.get("SPP", 10))
     c.use_adaptive_sampling = True
     c.adaptive_threshold = float(os.environ.get("AT", 0.08))
     c.use_denoising = os.environ.get("DN", "1") == "1"
@@ -1072,12 +1086,14 @@ def setup_render(preview, threads):
     c.diffuse_bounces = 1
     c.glossy_bounces = 2
     c.transmission_bounces = 2
-    c.transparent_max_bounces = 10
+    c.transparent_max_bounces = 8
+    c.volume_step_rate = 2.0
+    c.volume_max_steps = 64
     c.caustics_reflective = False
     c.caustics_refractive = False
     c.sample_clamp_indirect = 6
     s.render.use_persistent_data = True
-    s.render.resolution_x, s.render.resolution_y = (360, 640) if preview else tuple(int(v) for v in os.environ.get("RES", "720x1280").split("x"))
+    s.render.resolution_x, s.render.resolution_y = (360, 640) if preview else tuple(int(v) for v in os.environ.get("RES", "630x1120").split("x"))
     s.render.resolution_percentage = 100
     s.render.image_settings.file_format = "JPEG"
     s.render.image_settings.quality = 93

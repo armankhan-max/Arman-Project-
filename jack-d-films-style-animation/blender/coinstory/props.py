@@ -630,3 +630,134 @@ def blossom_tree(loc, seed=1, s=1.0):
         displace(c, 0.25 * s, 0.3)
         c.parent = root
     return root
+
+
+# ---------- Poly Haven models (instanced) ----------
+_models = {}
+
+
+def model(name):
+    """Import a Poly Haven glTF once and return a collection that can be instanced many times."""
+    if name in _models:
+        return _models[name]
+    before = set(bpy.data.objects)
+    bpy.ops.import_scene.gltf(filepath=os.path.join(ASSETS, "models", name, name + ".gltf"))
+    objs = [o for o in bpy.data.objects if o not in before]
+    col = bpy.data.collections.new("mdl_" + name)
+    for o in objs:
+        for c in list(o.users_collection):
+            c.objects.unlink(o)
+        col.objects.link(o)
+    _models[name] = col
+    return col
+
+
+def place(name, loc, scale=1.0, rot_z=0.0, tilt=(0.0, 0.0)):
+    e = link(bpy.data.objects.new(name + "_i", None))
+    e.instance_type = "COLLECTION"
+    e.instance_collection = model(name)
+    e.location = loc
+    e.scale = (scale, scale, scale)
+    e.rotation_euler = (tilt[0], tilt[1], rot_z)
+    return e
+
+
+def scatter(name, n, xr, yr, z=0.0, scale=(0.8, 1.3), seed=1, avoid=(), avoid_r=1.0, keep=None):
+    """Scatter n instances over a rectangle, skipping points near `avoid` (x, y) or rejected by keep(x, y)."""
+    rnd = random.Random(seed)
+    out = []
+    tries = 0
+    while len(out) < n and tries < n * 20:
+        tries += 1
+        x = rnd.uniform(*xr); y = rnd.uniform(*yr)
+        if any((x - ax) ** 2 + (y - ay) ** 2 < avoid_r ** 2 for ax, ay in avoid):
+            continue
+        if keep and not keep(x, y):
+            continue
+        out.append(place(name, (x, y, z), rnd.uniform(*scale), rnd.uniform(0, 6.28)))
+    return out
+
+
+def fire_volume(loc, scale=1.0, watts=300, strength=14.0):
+    """Procedural volumetric flame (animated noise, no simulation) plus a flickering light."""
+    root = empty("vfire", loc)
+    dom = box("vfire_dom", (1.0, 1.0, 2.2), (0, 0, 1.1), None)
+    dom.parent = root
+    dom.visible_shadow = False
+    m = bpy.data.materials.new("vfire")
+    m.use_nodes = True
+    nt = m.node_tree
+    nt.nodes.remove(bsdf(m))
+    out = nt.nodes["Material Output"]
+    N = nt.nodes.new
+    Lk = nt.links.new
+
+    def math(op, a, b=None, c=None):
+        n = N("ShaderNodeMath")
+        n.operation = op
+        for i, v in enumerate((a, b, c)):
+            if v is None:
+                continue
+            if isinstance(v, (int, float)):
+                n.inputs[i].default_value = v
+            else:
+                Lk(v, n.inputs[i])
+        return n.outputs[0]
+
+    tc = N("ShaderNodeTexCoord")
+    sep = N("ShaderNodeSeparateXYZ")
+    Lk(tc.outputs["Object"], sep.inputs[0])
+    h = math("DIVIDE", math("ADD", sep.outputs["Z"], 1.1), 2.2)          # 0 at base, 1 at top
+    r = math("SQRT", math("ADD", math("MULTIPLY", sep.outputs["X"], sep.outputs["X"]),
+                          math("MULTIPLY", sep.outputs["Y"], sep.outputs["Y"])))
+    mp = N("ShaderNodeMapping")
+    Lk(tc.outputs["Object"], mp.inputs["Vector"])
+    fc = mp.inputs["Location"].driver_add("default_value", 2)
+    fc.driver.expression = "-frame*0.09"
+    noise = N("ShaderNodeTexNoise")
+    noise.noise_dimensions = "4D"
+    noise.inputs["Scale"].default_value = 3.2
+    noise.inputs["Detail"].default_value = 4.0
+    Lk(mp.outputs["Vector"], noise.inputs["Vector"])
+    wd = noise.inputs["W"].driver_add("default_value")
+    wd.driver.expression = "frame*0.05"
+    wob = math("MULTIPLY", math("SUBTRACT", noise.outputs["Fac"], 0.5), math("ADD", math("MULTIPLY", h, 0.75), 0.18))
+    width = math("MULTIPLY", math("POWER", math("SUBTRACT", 1.0, h), 0.75), 0.36)
+    shape = math("ADD", math("SUBTRACT", width, r), wob)
+    dens = math("SMOOTHSTEP", shape, 0.0, 0.14) if False else None
+    ramp_d = N("ShaderNodeMapRange")
+    ramp_d.interpolation_type = "SMOOTHSTEP"
+    Lk(shape, ramp_d.inputs[0])
+    ramp_d.inputs[1].default_value = 0.0
+    ramp_d.inputs[2].default_value = 0.16
+    base_fade = N("ShaderNodeMapRange")
+    Lk(h, base_fade.inputs[0])
+    base_fade.inputs[1].default_value = 0.0
+    base_fade.inputs[2].default_value = 0.06
+    d = math("MULTIPLY", ramp_d.outputs[0], base_fade.outputs[0])
+    col = N("ShaderNodeValToRGB")
+    e = col.color_ramp.elements
+    e[0].position = 0.0; e[0].color = (0.9, 0.06, 0.0, 1)
+    e[1].position = 1.0; e[1].color = (1.0, 0.85, 0.35, 1)
+    mid = e.new(0.45); mid.color = (1.0, 0.33, 0.02, 1)
+    heat = math("MULTIPLY", ramp_d.outputs[0], math("SUBTRACT", 1.15, h))
+    Lk(heat, col.inputs["Fac"])
+    vol = N("ShaderNodeVolumePrincipled")
+    vol.inputs["Color"].default_value = (0.02, 0.01, 0.01, 1)
+    Lk(math("MULTIPLY", d, 1.5), vol.inputs["Density"])
+    Lk(col.outputs["Color"], vol.inputs["Emission Color"])
+    Lk(math("MULTIPLY", d, strength), vol.inputs["Emission Strength"])
+    for l in list(out.inputs["Surface"].links):
+        nt.links.remove(l)
+    Lk(vol.outputs[0], out.inputs["Volume"])
+    dom.data.materials.append(m)
+    li = bpy.data.lights.new("fireL", "POINT")
+    li.energy = watts
+    li.color = (1.0, 0.5, 0.15)
+    li.shadow_soft_size = 0.25
+    lo = link(bpy.data.objects.new("fireL", li))
+    lo.location = (0, 0, 0.5)
+    lo.parent = root
+    drive(li, "energy", None, f"{watts}*(1+0.25*sin(frame*1.3)+0.12*sin(frame*2.9))")
+    root.scale = (scale, scale, scale)
+    return root
