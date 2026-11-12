@@ -50,16 +50,16 @@ def find_city(name):
     return next((c for c in _cities if c[0].lower() == q), None) or next((c for c in _cities if q in c[0].lower()), None)
 
 
-TYPES = {
-    "map": "map: Egypt (a country) or map: Giza, 29.98, 31.13",
-    "city": "city: Paris (a city, zooms in close)",
-    "conflict": "conflict: Russia vs Ukraine (two countries facing each other)",
-    "bars": "bars: Honey=3000, Milk=7 (days)",
-    "compare": "compare: Honey vs Sugar; Lasts=3000 years|2 years; Water=17%|0.1%",
-    "timeline": "timeline: 1922=Tomb opened; 2026=Still edible",
-    "icons": "icons: Fast; Cheap; Safe (3 to 5 short key points in circles)",
-    "card": "card: Cleopatra; Last pharaoh of Egypt; 69 BC to 30 BC (a person profile card)",
-    "stat": "stat: 3,000 years; Age of the oldest honey ever found (one big number)",
+TYPES = {  # forms shown to the AI planner; placeholders in <> so it never copies an example
+    "map": "map: <Country name>  or  map: <Place>, <latitude>, <longitude>",
+    "city": "city: <City name>",
+    "conflict": "conflict: <Country A> vs <Country B>",
+    "bars": "bars: <Label>=<number>, <Label>=<number> (<unit>)",
+    "compare": "compare: <Thing A> vs <Thing B>; <Row label>=<value A>|<value B>; <Row label>=<value A>|<value B>",
+    "timeline": "timeline: <year>=<event>; <year>=<event>",
+    "icons": "icons: <point>; <point>; <point>",
+    "card": "card: <Person name>; <who they are>; <years>",
+    "stat": "stat: <number with unit>; <what it means>",
 }
 
 

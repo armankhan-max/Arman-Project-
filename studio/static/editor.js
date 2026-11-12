@@ -51,7 +51,7 @@ async function openEditor(p) {
   $('#edSave').onclick = () => edSave(false);
   $('#edDraft').onclick = () => edSave(true);
   const v = $('#edVideo');
-  v.ontimeupdate = () => { $('#edTime').textContent = fmt(v.currentTime) || '0:00'; const ph = $('#edPh'); if (ph) ph.style.left = (60 + v.currentTime * ED.pps) + 'px'; };
+  v.ontimeupdate = () => { if (!$('#edTime')) return; $('#edTime').textContent = fmt(v.currentTime) || '0:00'; const ph = $('#edPh'); if (ph) ph.style.left = (60 + v.currentTime * ED.pps) + 'px'; };
   ED.sel = { t: 'look' };
   edDraw();
 }
