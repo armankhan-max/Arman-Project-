@@ -77,6 +77,13 @@ def render_shot(asset, out, dur, w, h, grade, move, slowmo=False, speed=1.0):
               f"[bg][fg]overlay=x='(W-w)/2+{w * 0.035:.0f}-{w * 0.07:.0f}*t/{D:.3f}':y='(H-h)/2',setsar=1{g}")
         run(["ffmpeg", "-y", "-v", "error", "-loop", "1", "-i", asset["path"], "-filter_complex", fc] + enc)
         return
+    if move in ("card", "circles"):  # collage looks: photo card on grid paper, or two round cut-outs on split colours
+        import collage
+        comp = asset["path"] + f".{move}.{w}x{h}.jpg"
+        collage.compose(move, asset["path"], asset.get("b"), comp, w, h, asset.get("accent", "#E23B3B"),
+                        asset.get("root"), seed=abs(hash(asset["path"])) % 997)
+        asset = {**asset, "path": comp, "type": "image"}
+        move = "push_in"
     if move == "static":
         vf = f"scale={w}:{h}:force_original_aspect_ratio=increase,crop={w}:{h},fps={FPS},setsar=1{g}"
         run(["ffmpeg", "-y", "-v", "error", "-loop", "1", "-i", asset["path"], "-vf", vf] + enc)
@@ -183,6 +190,8 @@ Style: Cap,{font},{int(cs * (1.45 if cstyle == "single" else 0.85 if cstyle in (
 Style: Big,{font},{ts},&H00FFFFFF,&H00FFFFFF,&H00000000,&H96000000,-1,0,0,0,100,100,0,0,1,{ts * 0.08:.1f},{ts * 0.05:.1f},5,{int(w * 0.06)},{int(w * 0.06)},0,1
 Style: Tag,{font},{int(cs * 0.8)},&H00101010,&H00FFFFFF,{accent},{accent},-1,0,0,0,100,100,1,0,3,{cs * 0.22:.1f},0,7,{int(w * 0.05)},0,{int(h * 0.07)},1
 Style: Small,{font},{int(cs * 0.55)},&H00DDDDDD,&H00FFFFFF,&H00000000,&H96000000,0,0,0,0,100,100,0,0,1,2,0,2,{int(w * 0.08)},{int(w * 0.08)},{int(h * 0.12)},1
+Style: Label,{font},{int(cs * 0.95)},&H00FFFFFF,&H00FFFFFF,&H00000000,&H80000000,-1,0,0,0,100,100,1,0,1,{cs * 0.03:.1f},{cs * 0.05:.1f},7,0,0,0,1
+Style: Mono,{look.get("mono_font") or "IBM Plex Mono"},{int(cs * 0.36)},&H00C8C8C8,&H00FFFFFF,&H00000000,&H80000000,-1,0,0,0,100,100,1,0,1,{cs * 0.02:.1f},{cs * 0.03:.1f},1,0,0,0,1
 Style: Box,{font},10,{accent},{accent},{accent},{accent},0,0,0,0,100,100,0,0,1,0,0,7,0,0,0,1
 
 [Events]
@@ -190,6 +199,8 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 """
     ev = []
     tstyle = look.get("title_style", "tag")
+    if tstyle == "center_big" and scenes and any(a.get("source") == "motion graphic" for a in scenes[0].get("assets", [])):
+        tstyle = "tag"  # never cover an opening time card or map
     if title and tstyle == "center_big":
         ev.append(f"Dialogue: 2,{_ts(0.3)},{_ts(3.6)},Big,,0,0,0,,{{\\an5\\pos({w // 2},{int(h * 0.45)})\\fad(200,400)\\fscx70\\fscy70\\t(0,300,\\fscx100\\fscy100)}}"
                   + _esc(title.upper() if not hindi else title))
@@ -203,10 +214,40 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     for k, sc in enumerate(scenes):
         s0, s1 = sc["start"], sc["start"] + sc["dur"]
         txt = (sc.get("text") or "").strip()
+        gfx_scene = any(a.get("source") == "motion graphic" for a in sc.get("assets", []))
+        if look.get("text_style") == "label" and not gfx_scene:
+            # documentary labels: vertical accent bar, bold title, small sub-line; tiny source credit bottom-left
+            cr = next((a.get("credit") for a in sc.get("assets", []) if a.get("credit")), "")
+            if cr:
+                ev.append(f"Dialogue: 0,{_ts(s0 + 0.2)},{_ts(s1)},Mono,,0,0,0,,{{\\an1\\pos({int(w * 0.03)},{int(h * 0.965)})\\fad(200,200)}}| "
+                          + _esc(cr.upper())[:90])
+            if txt:
+                main, _, sub = txt.partition("|")
+                x0, y0 = int(w * 0.035), int(h * 0.80)
+                bar = max(4, int(h * 0.006))
+                ev.append(f"Dialogue: 1,{_ts(s0 + 0.3)},{_ts(min(s1, s0 + 5))},Box,,0,0,0,,{{\\an7\\pos({x0},{y0})\\fad(150,250)\\p1}}"
+                          f"m 0 0 l {bar} 0 {bar} {int(h * 0.085)} 0 {int(h * 0.085)}{{\\p0}}")
+                ev.append(f"Dialogue: 1,{_ts(s0 + 0.35)},{_ts(min(s1, s0 + 5))},Label,,0,0,0,,{{\\an7\\pos({x0 + bar * 3},{y0 - int(h * 0.005)})\\fad(150,250)"
+                          f"\\clip({x0},{0},{w},{h})}}" + _esc(main.strip().upper()))
+                if sub.strip():
+                    ev.append(f"Dialogue: 1,{_ts(s0 + 0.5)},{_ts(min(s1, s0 + 5))},Mono,,0,0,0,,{{\\an7\\pos({x0 + bar * 3},{y0 + int(h * 0.05)})\\fad(150,250)\\c{accent}&}}"
+                              + _esc(sub.strip().upper()))
+            txt = ""
+        if look.get("kicker") and sc.get("kicker"):
+            ev.append(f"Dialogue: 0,{_ts(s0 + 0.2)},{_ts(min(s1, s0 + 4))},Mono,,0,0,0,,{{\\an7\\pos({int(w * 0.03)},{int(h * 0.05)})\\fad(150,200)\\c{accent}&}}"
+                      + _esc(sc["kicker"].upper()))
+        if txt and "|" in txt:  # "NAME | date" labels read best as a lower-left callout in any style
+            main, _, sub = txt.partition("|")
+            yy = int(h * 0.74) if captions else int(h * 0.8)
+            ev.append(f"Dialogue: 1,{_ts(s0 + 0.3)},{_ts(min(s1, s0 + 4.5))},Tag,,0,0,0,,{{\\an4\\fs{int(cs * 0.95)}\\move({-int(w * 0.4)},{yy},{int(w * 0.04)},{yy},0,320)\\fad(0,220)}}"
+                      + _esc(main.strip().upper()) + (f"{{\\fs{int(cs * 0.6)}\\alpha&H30&}}  {_esc(sub.strip().upper())}" if sub.strip() else ""))
+            txt = ""
         if txt:
             a, b = s0 + 0.25, min(s1 - 0.1, s0 + 4.0)
             show = _esc(txt.upper() if not hindi else txt)
             m = NUM.search(show)
+            if m and re.fullmatch(r"1[0-9]{3}|20[0-9]{2}", m.group(1)):
+                m = None  # a year is a date, not a number to count up
             if m:  # stat card: number counts up, accent bar slides in under it
                 val = float(m.group(1).replace(",", ""))
                 dec = len(m.group(1).split(".")[1]) if "." in m.group(1) else 0

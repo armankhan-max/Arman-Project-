@@ -11,7 +11,7 @@ import numpy as np
 import requests
 from PIL import Image, ImageDraw, ImageFilter
 
-UA = {"User-Agent": "AIVideoStudio/1.1 (self-hosted video maker; python-requests)"}
+UA = {"User-Agent": "AIVideoStudio/1.2 (self-hosted video maker; python-requests)"}
 _locks = {"commons": threading.Lock(), "ai": threading.Lock()}
 _last = {"commons": 0.0, "ai": 0.0}
 
@@ -26,8 +26,19 @@ def _throttle(name, gap):
 _cache = {}
 
 
+CONTACT = {"ua": ""}
+
+
 def _get(url, **kw):
-    r = requests.get(url, timeout=kw.pop("timeout", 40), headers={**UA, **kw.pop("headers", {})}, **kw)
+    ua = dict(UA)
+    if CONTACT["ua"]:  # Wikimedia asks automated clients for a contact address; the owner can set one in Settings
+        ua["User-Agent"] = UA["User-Agent"].replace(")", f"; {CONTACT['ua']})")
+    for attempt in range(3):
+        r = requests.get(url, timeout=kw.get("timeout", 40), headers={**ua, **kw.get("headers", {})},
+                         **{k: v for k, v in kw.items() if k not in ("timeout", "headers")})
+        if r.status_code not in (502, 503, 504) or attempt == 2:
+            break
+        time.sleep(2 + attempt * 3)
     r.raise_for_status()
     return r
 
@@ -75,22 +86,23 @@ def _search_inner(kind, query, cfg, portrait, key):
             files = [f for f in v.get("video_files", []) if f.get("file_type") == "video/mp4" and f.get("width")]
             if files and 4 <= v.get("duration", 0) <= 60:
                 best = min(files, key=lambda f: abs(max(f["width"], f["height"]) - 1920))
-                out.append({"url": best["link"], "credit": "Pexels / " + (v.get("user") or {}).get("name", ""), "preview": v.get("image", "")})
+                out.append({"url": best["link"], "credit": "Pexels / " + (v.get("user") or {}).get("name", ""), "preview": v.get("image", ""),
+                            "text": re.sub(r"[-/\\d]+", " ", (v.get("url") or "").split("/video/")[-1])})
     elif kind == "pexels_photo" and cfg.get("pexels_key"):
         j = _get("https://api.pexels.com/v1/search", headers={"Authorization": cfg["pexels_key"]},
                  params={"query": query, "per_page": 15, "orientation": orient}).json()
-        out = [{"url": p["src"]["large2x"], "credit": "Pexels / " + p.get("photographer", ""), "preview": p["src"].get("medium", "")} for p in j.get("photos", [])]
+        out = [{"url": p["src"]["large2x"], "credit": "Pexels / " + p.get("photographer", ""), "preview": p["src"].get("medium", ""), "text": p.get("alt") or ""} for p in j.get("photos", [])]
     elif kind == "pixabay_video" and cfg.get("pixabay_key"):
         j = _get("https://pixabay.com/api/videos/", params={"key": cfg["pixabay_key"], "q": query, "per_page": 15}).json()
         for h in j.get("hits", []):
             v = h.get("videos", {})
             f = v.get("large") if (v.get("large") or {}).get("url") and v["large"].get("width", 9999) <= 1920 else v.get("medium")
             if f and f.get("url") and 4 <= h.get("duration", 0) <= 60:
-                out.append({"url": f["url"], "credit": "Pixabay / " + h.get("user", ""), "preview": (v.get("tiny") or {}).get("thumbnail") or f.get("thumbnail", "")})
+                out.append({"url": f["url"], "credit": "Pixabay / " + h.get("user", ""), "preview": (v.get("tiny") or {}).get("thumbnail") or f.get("thumbnail", ""), "text": h.get("tags", "")})
     elif kind == "pixabay_photo" and cfg.get("pixabay_key"):
         j = _get("https://pixabay.com/api/", params={"key": cfg["pixabay_key"], "q": query, "per_page": 15,
                                                       "image_type": "photo", "orientation": "vertical" if portrait else "horizontal"}).json()
-        out = [{"url": h["largeImageURL"], "credit": "Pixabay / " + h.get("user", ""), "preview": h.get("webformatURL", "")} for h in j.get("hits", [])]
+        out = [{"url": h["largeImageURL"], "credit": "Pixabay / " + h.get("user", ""), "preview": h.get("webformatURL", ""), "text": h.get("tags", "")} for h in j.get("hits", [])]
     elif kind == "commons" and cfg.get("use_openverse", True):
         _throttle("commons", 1.2)
         # Wikimedia Commons: historical photographs, maps, satellite images (free licences)
@@ -104,12 +116,14 @@ def _search_inner(kind, query, cfg, portrait, key):
                 meta = ii.get("extmetadata") or {}
                 lic = (meta.get("LicenseShortName") or {}).get("value", "")
                 art = re.sub(r"<[^>]+>", "", (meta.get("Artist") or {}).get("value", ""))[:60]
-                out.append({"url": ii["thumburl"], "credit": f"{art or 'Wikimedia Commons'} ({lic}) via Wikimedia Commons", "preview": ii["thumburl"]})
+                out.append({"url": ii["thumburl"], "credit": f"{art or 'Wikimedia Commons'} ({lic}) via Wikimedia Commons", "preview": ii["thumburl"],
+                            "text": re.sub(r"^File:|\\.\\w+$|[_\\-]", " ", pg.get("title", ""))})
     elif kind == "openverse" and cfg.get("use_openverse", True):
         j = _get("https://api.openverse.org/v1/images/", params={
             "q": query, "license_type": "commercial", "page_size": 15, "aspect_ratio": "tall" if portrait else "wide",
             "size": "large,medium"}).json()
-        out = [{"url": h["url"], "credit": f"{h.get('creator') or 'unknown'} ({(h.get('license') or '').upper()}) via Openverse", "preview": h.get("thumbnail") or h["url"]}
+        out = [{"url": h["url"], "credit": f"{h.get('creator') or 'unknown'} ({(h.get('license') or '').upper()}) via Openverse", "preview": h.get("thumbnail") or h["url"],
+                "text": (h.get("title") or "") + " " + " ".join(t.get("name", "") for t in (h.get("tags") or [])[:12])}
                for h in j.get("results", []) if h.get("url")]
     _cache[key] = out
     return out
@@ -167,6 +181,7 @@ def _ai_image(prompt, path, w, h, seed):
 
 
 def fetch(scene, n, cfg, style, outdir, w, h, used, source, log=lambda m: None, seed0=0):
+    CONTACT["ua"] = cfg.get("contact_for_sources", "")
     """Find n visuals for one scene. Returns [{path, type, source, credit}]."""
     portrait = h > w
     queries = [q for q in scene.get("queries", []) if q] or ["nature"]
@@ -205,7 +220,9 @@ def fetch(scene, n, cfg, style, outdir, w, h, used, source, log=lambda m: None, 
                             and not any(bw in (x.get("credit", "") + x["url"]).lower() for bw in bad_w)]
                     if not hits:
                         continue
-                    hit = hits[seed % min(len(hits), 5)]
+                    hit = best_hit(hits, scene, q, seed, cfg)
+                    if hit is None:
+                        continue  # nothing here really shows this scene: try the next source
                     is_video = kind.endswith("video")
                     p = _download(hit["url"], base + (".mp4" if is_video else ".jpg"))
                     if not is_video:
@@ -247,3 +264,63 @@ def download_pick(url, typ, outdir):
         if typ != "video":
             Image.open(path).convert("RGB").save(path, quality=92)
     return path
+
+
+_WORD = re.compile(r"[a-z]{3,}")
+
+
+def _stem(w):
+    for suf in ("ing", "es", "s", "ed"):
+        if w.endswith(suf) and len(w) > len(suf) + 3:
+            return w[: -len(suf)]
+    return w
+
+
+def relevance(hit_text, want):
+    have = {_stem(w) for w in _WORD.findall((hit_text or "").lower())}
+    return sum(1 for w in want if w in have)
+
+
+def best_hit(hits, scene, query, seed, cfg):
+    """Pick the result that really shows the scene: rank by word overlap with the search words and narration,
+    drop results with no overlap at all, and (with a Claude key) ask Claude to confirm the picture fits."""
+    import llm
+    q_words = {_stem(w) for w in _WORD.findall(query.lower())} - llm.STOP
+    n_words = {_stem(w) for w in _WORD.findall((scene.get("narration", "") + " " + scene.get("image_prompt", "")).lower())} - llm.STOP
+    scored = []
+    for i, h in enumerate(hits[:15]):
+        txt = h.get("text", "")
+        s = 3 * relevance(txt, q_words) + relevance(txt, n_words)
+        if not txt:
+            s = 1  # provider gave no description: neutral
+        scored.append((s, -i, h))
+    scored.sort(key=lambda x: (x[0], x[1]), reverse=True)
+    good = [x for x in scored if x[0] > 0]
+    if not good:
+        return None
+    top = [h for s, _, h in good if s >= good[0][0] - 1][:3]
+    order = top[seed % len(top):] + top[: seed % len(top)]
+    if cfg.get("anthropic_key"):
+        for h in order:
+            ok = vision_check(cfg, h.get("preview") or h["url"], scene.get("narration", ""))
+            if ok is not False:
+                return h
+        return None
+    return order[0]
+
+
+def vision_check(cfg, image_url, narration):
+    """True/False from Claude looking at the picture; None if it could not check."""
+    try:
+        r = requests.post("https://api.anthropic.com/v1/messages", timeout=60, headers={
+            "x-api-key": cfg["anthropic_key"], "anthropic-version": "2023-06-01", "content-type": "application/json"},
+            json={"model": cfg.get("anthropic_model") or "claude-sonnet-5-5", "max_tokens": 5, "messages": [{"role": "user", "content": [
+                {"type": "image", "source": {"type": "url", "url": image_url}},
+                {"type": "text", "text": "A documentary narrator says: \"" + narration[:400] + "\"\nWould this picture be a fitting, accurate visual "
+                                         "for that line (no unrelated subject, no visible watermark, no text-heavy graphic)? Answer only YES or NO."}]}]})
+        if r.status_code != 200:
+            return None
+        ans = "".join(b.get("text", "") for b in r.json().get("content", [])).strip().upper()
+        return ans.startswith("Y")
+    except Exception:
+        return None

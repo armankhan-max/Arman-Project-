@@ -178,6 +178,7 @@ def basic_annotation(narrations, title, style):
 def annotate(cfg, narrations, title, style, log=lambda m: None, allowed=None):
     """Ask the AI for B-roll search terms, image prompts and on-screen text for every scene."""
     import graphics
+    style_cfg = cfg.get("styles", {}).get(style, {})
     scenes = basic_annotation(narrations, title, style)
     allowed = list(allowed if allowed is not None else graphics.TYPES)
     if provider(cfg) == "none":
@@ -193,7 +194,7 @@ def annotate(cfg, narrations, title, style, log=lambda m: None, allowed=None):
               'Use exactly one of these forms: ' + " | ".join(graphics.TYPES[k] for k in allowed if k in graphics.TYPES)
               + '. Every number, date and name must come from the narration and be true. Use a graphic in at most one scene in four, '
               'otherwise an empty string. '
-              + "Give on-screen text to roughly one scene in three. Output ONLY the JSON array.")
+              + "Give on-screen text to roughly one scene in three. " + (style_cfg.get("text_hint") or "") + " Output ONLY the JSON array.")
     for a in range(0, len(narrations), 12):
         chunk = narrations[a:a + 12]
         user = f"Video title: {title}\n\n" + "\n".join(f"{a + j}. {n}" for j, n in enumerate(chunk))

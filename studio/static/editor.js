@@ -231,6 +231,8 @@ function edInspector() {
       <div><label>Accent colour</label><input type="color" id="edAcc" value="${esc(L.accent || '#FFD400')}"></div>
       <div><label>Colour grade (whole video)</label><select id="edGr">${opt(O.filters, L.grade || 'none')}</select></div>
       <div><label>Atmosphere (makes photos feel alive)</label><select id="edAtm">${opt(Object.keys(O.atmospheres), L.atmosphere || 'none', O.atmospheres)}</select></div>
+      <div><label>Graphics theme</label><select id="edMt">${opt(O.map_themes, L.map_theme || 'navy')}</select></div>
+      <div><label>On-screen text style</label><select id="edTxs">${opt(O.text_styles, L.text_style || 'pop')}</select></div>
       <div><label>Living light on photos</label><select id="edLiv"><option value="1">On</option><option value="0" ${L.living === false ? 'selected' : ''}>Off</option></select></div>
     </div>
     <div class="swatch">${O.palettes.map(c => `<i style="background:${c}" data-c="${c}"></i>`).join('')}</div>
@@ -238,7 +240,7 @@ function edInspector() {
   const set = (id, f, tr = x => x) => $(id).onchange = () => { edSnapshot(); L[f] = tr($(id).value); delete L._regen; edDraw(); };
   set('#edCs', 'caption_style'); set('#edCp', 'caption_pos'); set('#edFont', 'font'); set('#edTs', 'title_style'); set('#edAcc', 'accent');
   set('#edGr', 'grade', v => v === 'none' ? '' : v);
-  set('#edAtm', 'atmosphere'); set('#edLiv', 'living', v => v === '1');
+  set('#edAtm', 'atmosphere'); set('#edMt', 'map_theme'); set('#edTxs', 'text_style'); set('#edLiv', 'living', v => v === '1');
   $('#edCap').onchange = () => { edSnapshot(); ED.captions = $('#edCap').checked; edDraw(); };
   $$('.swatch i').forEach(i => i.onclick = () => { edSnapshot(); L.accent = i.dataset.c; delete L._regen; edDraw(); });
 }

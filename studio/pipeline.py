@@ -79,7 +79,7 @@ def _run(pid, preview):
     OUTRO = 4.0 if style.get("outro", True) else 0.0  # end card only for styles that want one
     if not p.get("look") or p["look"].get("regen_seed"):  # this video's own fonts, colours, captions, moves, music
         keep = {k: v for k, v in (p.get("look") or {}).items() if k in ("music_volume", "voice_volume", "sfx_volume")}
-        p["look"] = {**looks.generate(p["title"], p.get("style", ""), style, (p.get("look") or {}).get("regen_seed")), **keep}
+        p["look"] = {**looks.generate_for(p["title"], p.get("style", ""), style, (p.get("look") or {}).get("regen_seed")), **keep}
     L = p["look"]
     style = {**style, "accent": L.get("accent") or style.get("accent", "#FFD400"),
              "image_suffix": ", ".join(x for x in (style.get("image_suffix", ""), L.get("flavor", "")) if x)}
@@ -184,7 +184,7 @@ def _run(pid, preview):
             return  # the owner arranged this scene's shots by hand in the editor
         if g and not s.get("custom"):
             extra = OUTRO + 1 if i == len(scenes) - 1 else 1.0
-            key = hashlib.md5(f"{s['graphic']}|{s['dur']}|{w}x{h}|{style.get('accent')}".encode()).hexdigest()[:12]
+            key = hashlib.md5(f"{s['graphic']}|{s['dur']}|{w}x{h}|{style.get('accent')}|{L.get('map_theme')}".encode()).hexdigest()[:12]
             gp = os.path.join(vdir, f"graphic_{key}.mp4")
             try:
                 if not os.path.exists(gp):
@@ -196,7 +196,8 @@ def _run(pid, preview):
                         except Exception:
                             portrait = None
                     graphics.render(g, gp, s["dur"] + extra, w, h, style.get("accent", "#FFD400"),
-                                    s.get("text", "") if g["type"] in ("bars", "timeline", "compare", "icons") else "", portrait)
+                                    s.get("text", "") if g["type"] in ("bars", "timeline", "compare", "icons") else "", portrait,
+                                    L.get("map_theme") or "navy")
                 s["assets"] = [{"path": os.path.relpath(gp, d), "type": "video", "source": "motion graphic", "credit": ""}]
                 done[0] += 1
                 return
@@ -300,7 +301,13 @@ def _run(pid, preview):
             grade = style.get("host_grade", "eq=saturation=1.05:gamma_r=1.03") if host else ("" if gfx else style.get("grade", ""))
             extra_f = [x for x in (look_grade if not (host or gfx) else "", looks.FILTERS.get(a.get("filter") or "", "")) if x]
             grade = ",".join([x for x in [grade] + extra_f if x])
-            shots.append({"asset": {**a, "path": os.path.join(d, a["path"]), "root": d}, "dur": dur, "move": move, "trans": trans,
+            if move in ("card", "circles") and a["type"] != "image":
+                move = "push_in"  # compositions are for photos
+            if move == "circles" and not a.get("b"):
+                other = next((x for x in s["assets"] if x is not a and x["type"] == "image"), None) or \
+                        next((x for sc2 in scenes for x in sc2["assets"] if x is not a and x["type"] == "image" and x.get("source") != "motion graphic"), None)
+                a = {**a, "b": other["path"] if other else None}
+            shots.append({"asset": {**a, "path": os.path.join(d, a["path"]), "root": d, "accent": style.get("accent")}, "dur": dur, "move": move, "trans": trans,
                           "slowmo": bool(style.get("slowmo")) and a["type"] == "video" and not host and not gfx,
                           "speed": float(a.get("speed") or 1.0), "grade": grade})
             timeline.append({"scene": si, "k": k, "start": round(tpos, 2), "dur": dur, "move": move, "trans": trans or "cut",

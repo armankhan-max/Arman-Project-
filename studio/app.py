@@ -291,7 +291,8 @@ def editor_options():
     import look as looks
     return {"moves": looks.MOVES, "transitions": looks.TRANSITIONS, "filters": list(looks.FILTERS), "fonts": list(looks.FONTS),
             "caption_styles": looks.CAPTION_STYLES, "title_styles": looks.TITLE_STYLES, "palettes": looks.PALETTES,
-            "graphics": __import__("graphics").TYPES, "atmospheres": __import__("atmos").KINDS}
+            "graphics": __import__("graphics").TYPES, "atmospheres": __import__("atmos").KINDS,
+            "map_themes": list(__import__("graphics").THEMES), "text_styles": ["pop", "label"]}
 
 
 @app.post("/api/projects/{pid}/candidates")

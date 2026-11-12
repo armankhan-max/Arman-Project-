@@ -5,6 +5,7 @@ import hashlib
 import random
 
 FONTS = {  # ASS family name -> file in fonts/ (for thumbnails / PIL)
+    "IBM Plex Mono": "IBMPlexMono-SemiBold.ttf",
     "Inter ExtraBold": "Inter-ExtraBold.otf",
     "Anton": "Anton-Regular.ttf",
     "Bebas Neue": "BebasNeue-Regular.ttf",
@@ -52,7 +53,8 @@ TRANSITIONS = ["cut", "fade", "fadeblack", "fadewhite", "dissolve", "slideleft",
                "hblur", "pixelize", "distance", "diagtl", "rectcrop"]
 CALM_TRANS = ["fade", "dissolve", "fadeblack", "hblur", "distance"]
 ENERGY_TRANS = ["slideleft", "smoothleft", "smoothright", "zoomin", "circleopen", "wipeleft", "slideup", "radial", "rectcrop", "diagtl"]
-MOVES = ["push_in", "pull_out", "pan_left", "pan_right", "tilt_up", "diag", "orbit", "parallax", "zoom_punch", "static", "handheld"]
+MOVES = ["push_in", "pull_out", "pan_left", "pan_right", "tilt_up", "diag", "orbit", "parallax", "zoom_punch", "static", "handheld",
+         "card", "circles"]
 TITLE_STYLES = ["tag", "center_big", "lower_third", "none"]
 FLAVORS = ["shot on 35mm film, natural grain", "aerial drone perspective where it fits", "macro close-up details", "golden hour light",
            "soft overcast light", "dramatic low-key lighting", "wide-angle lens, deep focus", "telephoto compression, shallow depth of field",
@@ -77,7 +79,7 @@ def generate(title, style_key, style, seed=None):
     if not any(style.get("transitions") or ["x"]):  # format wants hard cuts (avatar)
         trans = ["cut"]
     base_mv = style.get("moves") or MOVES
-    extra = [m for m in MOVES if m not in ("handheld", "static") and m not in base_mv]
+    extra = [m for m in MOVES if m not in ("handheld", "static", "card", "circles") and m not in base_mv]
     moves = list(base_mv) + rnd.sample(extra, k=min(2, len(extra)))
     rnd.shuffle(moves)
     cap_choices = ["karaoke", "single", "bar", "boxed", "classic"] if mood in ("bold", "fun") else ["karaoke", "bar", "classic", "boxed"]
@@ -103,6 +105,14 @@ def generate(title, style_key, style, seed=None):
         "voice_volume": 1.0,
         "sfx_volume": 1.0,
     }
+
+
+def generate_for(title, style_key, style, seed=None):
+    """Random look, but a format that follows a reference keeps its signature pieces (fonts, labels, map theme...)."""
+    L = generate(title, style_key, style, seed)
+    L.update({k: v for k, v in (style.get("look") or {}).items()})
+    L.setdefault("map_theme", "navy")
+    return L
 
 
 def font_file(name):

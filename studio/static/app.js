@@ -366,7 +366,7 @@ $('#thGo').onclick = e => busy(e.target, async () => {
 }).catch(err => $('#thErr').textContent = err.message);
 
 // ---------- owner settings ----------
-const S_TEXT = ['llm_provider', 'anthropic_key', 'anthropic_model', 'openai_base', 'openai_key', 'openai_model', 'pollinations_key', 'pexels_key', 'pixabay_key', 'elevenlabs_key', 'youtube_key', 'lipsync_provider', 'did_key', 'script_rules'];
+const S_TEXT = ['llm_provider', 'anthropic_key', 'anthropic_model', 'openai_base', 'openai_key', 'openai_model', 'pollinations_key', 'pexels_key', 'pixabay_key', 'elevenlabs_key', 'youtube_key', 'contact_for_sources', 'lipsync_provider', 'did_key', 'script_rules'];
 const S_NUM = ['words_per_minute', 'music_volume'], S_BOOL = ['use_pollinations', 'use_openverse'];
 async function loadSettings() {
   settings = await api('/api/settings');

@@ -60,6 +60,7 @@ TYPES = {  # forms shown to the AI planner; placeholders in <> so it never copie
     "icons": "icons: <point>; <point>; <point>",
     "card": "card: <Person name>; <who they are>; <years>",
     "stat": "stat: <number with unit>; <what it means>",
+    "timecard": "timecard: <clock time or date>; <place or date line>",
 }
 
 
@@ -121,6 +122,9 @@ def parse(spec):
             parts = [x.strip() for x in body.split(";")]
             return {"type": "card", "name": parts[0], "role": parts[1] if len(parts) > 1 else "",
                     "years": parts[2] if len(parts) > 2 else ""} if parts[0] else None
+        if kind == "timecard":
+            parts = [x.strip() for x in body.split(";")]
+            return {"type": "timecard", "value": parts[0], "label": parts[1] if len(parts) > 1 else ""}
         if kind == "stat":
             parts = [x.strip() for x in body.split(";")]
             return {"type": "stat", "value": parts[0], "label": parts[1] if len(parts) > 1 else ""}
@@ -159,9 +163,28 @@ def _inside(x, y, ring):
     return c
 
 
+THEMES = {  # colour + type systems for the graphics; one per video, chosen by the format/look
+    "navy": {"bg_top": (24, 32, 50), "bg_bot": (10, 14, 22), "ocean": (9, 22, 38), "grid": (17, 34, 54), "land": (38, 54, 72),
+             "border": (84, 108, 134), "mono": False},
+    "hud": {"bg_top": (12, 22, 34), "bg_bot": (6, 12, 20), "ocean": (8, 26, 38), "grid": (14, 40, 52), "land": (30, 58, 70),
+            "border": (70, 130, 140), "mono": True},
+    "dark_red": {"bg_top": (40, 40, 44), "bg_bot": (22, 22, 24), "ocean": (30, 30, 33), "grid": (38, 38, 42), "land": (64, 64, 68),
+                 "border": (95, 95, 100), "mono": False},
+    "paper": {"bg_top": (244, 241, 232), "bg_bot": (230, 226, 214), "ocean": (214, 228, 236), "grid": (200, 214, 222),
+              "land": (236, 230, 214), "border": (150, 140, 120), "mono": False, "ink": (30, 30, 30)},
+}
+THEME = dict(THEMES["navy"], name="navy")
+
+
+def set_theme(name):
+    global THEME
+    THEME = dict(THEMES.get(name) or THEMES["navy"], name=name if name in THEMES else "navy")
+
+
 def _font(size, text=""):
     deva = any("ऀ" <= ch <= "ॿ" for ch in text)
-    for n in (["FreeSansBold.ttf"] if deva else []) + ["Inter-ExtraBold.otf", "FreeSansBold.ttf"]:
+    first = ["IBMPlexMono-SemiBold.ttf"] if THEME.get("mono") and not deva else []
+    for n in (["FreeSansBold.ttf"] if deva else []) + first + ["Inter-ExtraBold.otf", "FreeSansBold.ttf"]:
         try:
             return ImageFont.truetype(os.path.join(store.FONTS, n), size)
         except Exception:
@@ -187,8 +210,8 @@ def _back(t):  # overshoot ease for pops
 
 
 def _background(w, h):
-    bg = Image.new("RGB", (w, h), (10, 14, 22))
-    top = Image.new("RGB", (w, h), (24, 32, 50))
+    bg = Image.new("RGB", (w, h), THEME["bg_bot"])
+    top = Image.new("RGB", (w, h), THEME["bg_top"])
     mask = Image.linear_gradient("L").resize((w, h)).point(lambda v: 255 - v)
     return Image.composite(top, bg, mask)
 
@@ -218,24 +241,24 @@ def _xy(lon, lat):
 
 
 def _world(highlight, accent):
-    key = (highlight, accent)
+    key = (highlight, accent, THEME["name"])
     if key in _maps:
         return _maps[key]
-    img = Image.new("RGB", (MW, MH), (9, 22, 38))
+    img = Image.new("RGB", (MW, MH), THEME["ocean"])
     d = ImageDraw.Draw(img)
     for lon in range(-180, 181, 15):  # graticule
         x, _ = _xy(lon, 0)
-        d.line([(x, 0), (x, MH)], fill=(17, 34, 54), width=3)
+        d.line([(x, 0), (x, MH)], fill=THEME["grid"], width=3)
     for lat in range(-60, 85, 15):
         _, y = _xy(0, lat)
-        d.line([(0, y), (MW, y)], fill=(17, 34, 54), width=3)
+        d.line([(0, y), (MW, y)], fill=THEME["grid"], width=3)
     acc = _rgb(accent)
     for c in countries():
         hl = c["n"] == highlight
         for ring in c["r"]:
             pts = [_xy(x, y) for x, y in ring]
             if len(pts) > 2:
-                d.polygon(pts, fill=tuple(int(v * 0.85) for v in acc) if hl else (38, 54, 72), outline=(84, 108, 134))
+                d.polygon(pts, fill=tuple(int(v * 0.85) for v in acc) if hl else THEME["land"], outline=THEME["border"])
     _maps.clear()
     _maps[key] = img
     return img
@@ -348,6 +371,70 @@ def _wrap(d, text, font, maxw):
     if cur:
         lines.append(cur)
     return lines[:3]
+
+
+def render_timeline_hud(g, path, dur, w, h, accent, title=""):
+    ev = g["events"]
+    n = max(2, round(dur * FPS))
+    base = _background(w, h)
+    acc = _rgb(accent)
+    k = len(ev)
+    left, right, y = w * 0.2, w * 0.8, h * 0.55
+    f_t, f_l, f_s = _font(int(h * 0.03)), _font(int(h * 0.026)), _font(int(h * 0.02))
+    per = min(1.2, max(0.5, (dur - 1.0) / max(1, k)))
+    head = (title or "").upper()
+
+    def frame(t):
+        im = base.copy()
+        d = ImageDraw.Draw(im, "RGBA")
+        if head:
+            d.text((left, h * 0.18), head, font=f_s, fill=acc + (int(255 * min(1, t / 0.4)),))
+        p = _ease(t / 0.8)
+        d.line([(left, y), (left + (right - left) * p, y)], fill=(90, 120, 130), width=2)
+        for j in range(13):  # ticks
+            x = left + (right - left) * j / 12
+            if x <= left + (right - left) * p:
+                d.line([(x, y - 5), (x, y + 5)], fill=(90, 120, 130), width=1)
+        for i, (lab, txt) in enumerate(ev):
+            ti = t - 0.4 - i * per
+            if ti <= 0:
+                continue
+            a = int(255 * min(1, ti / 0.35))
+            x = left + (right - left) * (i + 0.5) / k
+            up = i % 2 == 0
+            ly = y - h * (0.06 + 0.05 * (i % 3)) if up else y + h * (0.04 + 0.05 * (i % 3))
+            d.line([(x, y), (x, ly + (h * 0.05 if up else 0))], fill=acc + (a,), width=1)
+            r = h * 0.006
+            d.ellipse([x - r, y - r, x + r, y + r], fill=acc + (a,))
+            d.text((x + 6, ly), lab, font=f_l, fill=(255, 255, 255, a))
+            d.text((x + 6, ly + h * 0.032), txt.upper()[:42], font=f_s, fill=(170, 200, 205, a))
+        return im
+
+    _pipe(path, w, h, n, frame)
+
+
+def render_timecard(g, path, dur, w, h, accent):
+    """Big time/date card, typed on: '6:45 AM' + 'DECEMBER 7, 1941'."""
+    base = _background(w, h)
+    acc = _rgb(accent)
+    n = max(2, round(dur * FPS))
+    f_b, f_s = _font(int(h * 0.11)), _font(int(h * 0.028))
+    big, sub = g["value"].upper(), g["label"].upper()
+
+    def frame(t):
+        im = base.copy()
+        d = ImageDraw.Draw(im, "RGBA")
+        k = min(len(big), int(t / 0.06) + 1)
+        x, y = w * 0.1, h * 0.42
+        d.text((x, y), big[:k], font=f_b, fill=(255, 255, 255))
+        if k < len(big) or (t % 1.0) < 0.5:  # blinking cursor
+            cx = x + d.textlength(big[:k], font=f_b) + 8
+            d.rectangle([cx, y + h * 0.02, cx + h * 0.012, y + h * 0.11], fill=acc)
+        a = int(255 * _ease((t - len(big) * 0.06 - 0.1) / 0.4))
+        d.text((x + 4, y + h * 0.14), sub, font=f_s, fill=acc + (a,))
+        return im
+
+    _pipe(path, w, h, n, frame)
 
 
 def render_timeline(g, path, dur, w, h, accent, title=""):
@@ -594,10 +681,16 @@ def render_stat(g, path, dur, w, h, accent):
     _pipe(path, w, h, n, frame)
 
 
-def render(spec, path, dur, w, h, accent="#FFD400", title="", portrait=None):
+def render(spec, path, dur, w, h, accent="#FFD400", title="", portrait=None, theme=None):
+    if theme:
+        set_theme(theme)
     g = parse(spec) if isinstance(spec, str) else spec
     if not g:
         raise ValueError("not a graphic")
+    if g["type"] == "timecard":
+        return render_timecard(g, path, dur, w, h, accent) or path
+    if g["type"] == "timeline" and THEME.get("mono"):
+        return render_timeline_hud(g, path, dur, w, h, accent, title) or path
     if g["type"] == "map":
         render_map(g, path, dur, w, h, accent)
     elif g["type"] == "conflict":
