@@ -147,7 +147,7 @@ DEFAULT_STYLES = {
         "transitions": ["fadeblack", "fade", "dissolve"],
         "moves": ["push_in", "push_in", "diag", "pull_out", "orbit"],
         "ambience": "night", "sfx": True, "slowmo": True, "grain": 7,
-        "grade": "eq=contrast=1.15:brightness=-0.06:saturation=0.7,colorbalance=bs=0.08:ms=0.04,vignette=PI/3.5",
+        "grade": "eq=contrast=1.15:brightness=-0.06:saturation=0.7,colorbalance=bs=0.08:bm=0.04,vignette=PI/3.5",
         "image_suffix": "dark moody cinematic photograph, night, fog, low key lighting, mysterious, realistic, no text",
         "source": "mix", "captions": True, "caption_upper": False, "accent": "#FF3B3B", "music": "suspense", "shot_seconds": 5,
         "script_hint": "Tone: a hushed, gripping narrator who builds suspense. Open with the strangest detail, reveal facts one at a time.",

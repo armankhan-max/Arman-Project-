@@ -308,7 +308,7 @@ def render(p, shots, narration_wav, music_wav, sfx_wav, out, progress=lambda f: 
         except Exception:
             import media  # a broken download must never kill the whole video
             fb = media.procedural(os.path.join(sdir, f"fb{i}.jpg"), w, h, i)
-            render_shot({"path": fb, "type": "image"}, out_i, rdur[i], w, h, s["grade"], "push_in")
+            render_shot({"path": fb, "type": "image"}, out_i, rdur[i], w, h, "", "push_in")
         a = s["asset"]
         if a.get("type") == "image" and not a.get("source", "").startswith(("avatar", "motion")) and (overlay or living):
             atmos.apply(out_i, overlay, float(look.get("atmosphere_opacity") or 0.55), living)  # still photo -> living footage
