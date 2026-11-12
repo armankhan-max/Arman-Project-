@@ -10,6 +10,7 @@ from concurrent.futures import ThreadPoolExecutor
 import numpy as np
 
 import avatar
+import graphics
 import llm
 import media
 import render
@@ -82,6 +83,8 @@ def _run(pid, preview):
     # 3. voice
     step("Recording the voiceover", 18)
     os.makedirs(os.path.join(d, "audio"), exist_ok=True)
+    if p.get("avatar_video") and not p.get("voiceover"):
+        p["voiceover"], p["voice_mode"] = p["avatar_video"], "upload"  # the avatar clip's own voice drives the timeline
     if p.get("voice_mode") == "upload" and p.get("voiceover"):
         full = tts.decode(os.path.join(d, p["voiceover"]))
         total = len(full) / tts.SR
@@ -120,12 +123,28 @@ def _run(pid, preview):
     vdir = os.path.join(d, "visuals")
     os.makedirs(vdir, exist_ok=True)
     has_avatar = bool(p.get("avatar")) and os.path.exists(os.path.join(d, p["avatar"]))
+    has_avatar_video = bool(p.get("avatar_video")) and os.path.exists(os.path.join(d, p["avatar_video"]))
     used, done = set(), [0]
 
     def visuals(i):
         s = scenes[i]
         n = max(1, round(s["dur"] / float(style.get("shot_seconds", 5))))
-        if s.get("kind") == "aroll" and has_avatar and not s.get("custom"):
+        g = graphics.parse(s.get("graphic", "")) if s.get("graphic") else None
+        if g and not s.get("custom"):
+            extra = OUTRO + 1 if i == len(scenes) - 1 else 1.0
+            key = hashlib.md5(f"{s['graphic']}|{s['dur']}|{w}x{h}|{style.get('accent')}".encode()).hexdigest()[:12]
+            gp = os.path.join(vdir, f"graphic_{key}.mp4")
+            try:
+                if not os.path.exists(gp):
+                    graphics.render(g, gp, s["dur"] + extra, w, h, style.get("accent", "#FFD400"), s.get("text", "") if g["type"] != "map" else "")
+                s["assets"] = [{"path": os.path.relpath(gp, d), "type": "video", "source": "motion graphic", "credit": ""}]
+                done[0] += 1
+                return
+            except Exception as e:
+                log(f"  Graphic '{s['graphic']}' failed, using B-roll instead ({e})")
+        if s.get("kind") == "aroll" and has_avatar_video and not s.get("custom"):
+            s["assets"] = [{"path": p["avatar_video"], "type": "video", "source": "avatar video", "credit": "", "ss": s["start"]}]
+        elif s.get("kind") == "aroll" and has_avatar and not s.get("custom"):
             clip = avatar.lipsync(cfg, os.path.join(d, p["avatar"]), os.path.join(d, "audio", f"{s.get('tts_key')}.mp3"),
                                   os.path.join(vdir, f"aroll_{s.get('tts_key')}.mp4"), log)
             s["assets"] = [{"path": os.path.relpath(clip, d), "type": "video", "source": "avatar lip-sync", "credit": ""}] if clip else \
@@ -134,7 +153,7 @@ def _run(pid, preview):
             s["assets"] = s["assets"][:1]
         else:
             ok = s.get("assets") and len(s["assets"]) == n and all(
-                os.path.exists(os.path.join(d, a["path"])) and a.get("source") not in ("avatar", "avatar lip-sync") for a in s["assets"])
+                os.path.exists(os.path.join(d, a["path"])) and a.get("source") not in ("avatar", "avatar lip-sync", "avatar video", "motion graphic") for a in s["assets"])
             if not ok:
                 s["custom"] = False
                 s["assets"] = media.fetch(s, n, cfg, style, vdir, w, h, used, p.get("source") or style.get("source", "mix"), log, i)
@@ -192,8 +211,9 @@ def _run(pid, preview):
                 move = moves[mi % len(moves)]
                 mi += 1
             shots.append({"asset": {**a, "path": os.path.join(d, a["path"])}, "dur": dur, "move": move, "trans": trans,
-                          "slowmo": bool(style.get("slowmo")) and a["type"] == "video" and not host,
-                          "grade": style.get("host_grade", "eq=saturation=1.05:gamma_r=1.03") if host else style.get("grade", "")})
+                          "slowmo": bool(style.get("slowmo")) and a["type"] == "video" and not host and a.get("source") != "motion graphic",
+                          "grade": style.get("host_grade", "eq=saturation=1.05:gamma_r=1.03") if host else
+                          ("" if a.get("source") == "motion graphic" else style.get("grade", ""))})
     total_v = total + OUTRO
     drift = total_v - sum(x["dur"] for x in shots)
     shots[-1]["dur"] = max(0.4, shots[-1]["dur"] + drift)

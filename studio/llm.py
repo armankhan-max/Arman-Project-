@@ -2,6 +2,8 @@
 API, the free Pollinations text endpoint, or (for pasted scripts) with no AI at all."""
 import json
 import re
+import threading
+import time
 
 import requests
 
@@ -45,15 +47,43 @@ def chat(cfg, system, user, max_tokens=4000):
                 headers = {"Authorization": "Bearer " + cfg.get("openai_key", "")}
                 model = cfg.get("openai_model") or "gpt-4o-mini"
             else:
-                url, headers, model = "https://text.pollinations.ai/openai", {}, "openai"
-            r = requests.post(url, timeout=900, headers=headers, json={
-                "model": model, "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}]})
-            if r.status_code != 200:
-                raise LLMError(f"AI text API error {r.status_code}: {r.text[:300]}")
-            return r.json()["choices"][0]["message"]["content"]
+                url, model = "https://text.pollinations.ai/openai", "openai"
+                headers = {"Authorization": "Bearer " + cfg["pollinations_key"]} if cfg.get("pollinations_key") else {}
+            body = {"model": model, "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}]}
+            if p == "pollinations":
+                body.update(reasoning_effort="low", max_tokens=max(4000, max_tokens * 2))
+            for attempt in range(5):  # free endpoints fail or rate-limit now and then; wait and try again
+                if p == "pollinations" and not cfg.get("pollinations_key"):
+                    _free_wait()
+                r = requests.post(url, timeout=900, headers=headers, json=body)
+                if r.status_code == 402 and attempt < 4:
+                    m = re.search(r"[Rr]etry after (\d+)", r.text)
+                    time.sleep(int(m.group(1)) + 2 if m else 46)
+                    continue
+                if r.status_code == 200:
+                    out = r.json()["choices"][0]["message"].get("content") or ""
+                    if out.strip():
+                        return out
+                elif r.status_code not in (400, 429, 500, 502, 503, 504) or attempt == 4:
+                    raise LLMError(f"AI text API error {r.status_code}: {r.text[:300]}")
+                time.sleep(3 + attempt * 5)
+            raise LLMError("The AI text service returned an empty answer. Try again, or add a Claude key in Settings.")
     except requests.RequestException as e:
         raise LLMError(f"Could not reach the AI text service ({p}): {e}")
     raise LLMError("No AI text provider is set. Add a key in Settings, or paste your own script.")
+
+
+_free_lock = threading.Lock()
+_free_last = [0.0]
+
+
+def _free_wait():
+    """The free Pollinations tier allows one reply every 45 seconds per IP."""
+    with _free_lock:
+        wait = _free_last[0] + 46 - time.time()
+        if wait > 0:
+            time.sleep(wait)
+        _free_last[0] = time.time()
 
 
 def _json(text):
@@ -136,18 +166,28 @@ def annotate(cfg, narrations, title, style, log=lambda m: None):
               '"kind": "aroll" or "broll"}. '
               + ('Mark as "aroll" the scenes where the host should be on camera: the hook, personal stories, asks and the ending '
                  "(about 40 percent of scenes); the rest are broll. " if style == "avatar" else 'Always use "broll". ')
+              + '"graphic": optional animated graphic, ONLY when the narration names a real place, compares numbers, or lists dates, '
+              'written in exactly one of these forms: "map: Egypt" (a country) or "map: Giza, 29.98, 31.13" (place, latitude, longitude), '
+              '"bars: Honey=3000, Milk=7 (days)" (2 to 5 true numbers from the narration, unit in brackets), '
+              '"timeline: 1922=Tomb opened; 2026=Still edible" (2 to 5 true dates). Use a graphic in at most one scene in five, '
+              'otherwise an empty string. '
               + "Give on-screen text to roughly one scene in three. Output ONLY the JSON array.")
-    for a in range(0, len(narrations), 30):
-        chunk = narrations[a:a + 30]
+    for a in range(0, len(narrations), 12):
+        chunk = narrations[a:a + 12]
         user = f"Video title: {title}\n\n" + "\n".join(f"{a + j}. {n}" for j, n in enumerate(chunk))
         try:
-            for o in _json(chat(cfg, system, user, max_tokens=6000)):
+            try:
+                items = _json(chat(cfg, system, user, max_tokens=6000))
+            except Exception:
+                items = _json(chat(cfg, system, user, max_tokens=6000))  # free models sometimes return junk once
+            for o in items:
                 i = int(o.get("i", -1))
                 if 0 <= i < len(scenes):
                     q = [str(x) for x in (o.get("queries") or []) if x][:3]
                     scenes[i].update({"queries": q or scenes[i]["queries"],
                                       "image_prompt": str(o.get("image_prompt") or scenes[i]["image_prompt"]),
                                       "text": str(o.get("text") or "")[:40],
+                                      "graphic": str(o.get("graphic") or "")[:200],
                                       "kind": "aroll" if o.get("kind") == "aroll" and style == "avatar" else "broll"})
         except Exception as e:  # keep the keyword fallback for this batch
             log(f"AI scene planning failed for scenes {a}-{a + len(chunk)}, using keywords instead ({e})")

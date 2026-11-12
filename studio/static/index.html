@@ -64,8 +64,8 @@
         <label>Voiceover</label>
         <div class="seg" id="cVoiceMode"><a data-v="tts" class="on">AI voice</a><a data-v="upload">Upload my own voiceover</a></div>
         <div id="cTts" class="row">
-          <select id="cVoiceLang" style="max-width:150px"></select>
-          <select id="cVoice"></select>
+          <select id="cVoiceLang" style="max-width:150px"><option>en-US</option></select>
+          <select id="cVoice"><option value="en-US-AndrewMultilingualNeural">Loading voices…</option></select>
           <select id="cRate" style="max-width:130px"><option value="-10">Slower</option><option value="0" selected>Normal speed</option><option value="8">Faster</option><option value="15">Fast</option></select>
           <button class="btn" id="cPreview">▶ Listen</button>
         </div>
@@ -83,9 +83,12 @@
         </div>
 
         <div id="cAvatarBox" class="hidden">
-          <label>Avatar / host picture (A-roll)</label>
+          <label>Avatar talking video (best: lip-synced clip from HeyGen, D-ID, Hedra… or your own recording)</label>
+          <input type="file" id="cAvatarVideo" accept="video/*">
+          <p class="muted small">Its own voice becomes the voiceover. The studio cuts between the talking avatar (A-roll) and matching B-roll, and the lips always stay in sync. Paste the same script under “More options”.</p>
+          <label>…or just a host picture</label>
           <input type="file" id="cAvatar" accept="image/*">
-          <p class="muted small">The host appears on camera in A-roll scenes. For real lip-sync add a D-ID key in the Owner panel; without it the host picture is shown with a slow camera move.</p>
+          <p class="muted small">Used for A-roll scenes with a handheld phone-camera feel, and for the thumbnail. For a real talking face from a picture, add a D-ID key in the Owner panel.</p>
         </div>
 
         <details>
@@ -179,12 +182,18 @@
           <label>OpenAI-compatible base URL</label><input id="s_openai_base">
           <label>OpenAI-compatible key</label><input id="s_openai_key">
           <label>OpenAI-compatible model</label><input id="s_openai_model">
+          <label>Pollinations key (optional: the free tier allows 1 reply per 45 seconds, a key removes the wait)</label><input id="s_pollinations_key">
+          <p class="muted small">Best scripts: a Claude key. The free writer is fine for tests but can make mistakes, so always read the script.</p>
           <label>Speaking speed used to size scripts (words per minute)</label><input id="s_words_per_minute" type="number">
         </div>
         <div class="card">
           <h3>Visuals</h3>
-          <label>Pexels API key (free at pexels.com/api)</label><input id="s_pexels_key">
-          <label>Pixabay API key (free at pixabay.com/api/docs)</label><input id="s_pixabay_key">
+          <p class="note small">For real stock footage with <b>no watermark</b>, make two free keys (2 minutes each):<br>
+            1. <a href="https://www.pexels.com/api/" target="_blank" rel="noopener">pexels.com/api</a> → sign up → “Your API key”.<br>
+            2. <a href="https://pixabay.com/api/docs/" target="_blank" rel="noopener">pixabay.com/api/docs</a> → log in → key is shown under “Parameters”.<br>
+            Without keys the studio still uses Wikimedia Commons, Openverse and AI images (no watermarks).</p>
+          <label>Pexels API key</label><input id="s_pexels_key">
+          <label>Pixabay API key</label><input id="s_pixabay_key">
           <label class="check"><input type="checkbox" id="s_use_pollinations"> Free AI images (Pollinations)</label>
           <label class="check"><input type="checkbox" id="s_use_openverse"> Free photos (Openverse)</label>
           <h3>Avatar lip-sync</h3>

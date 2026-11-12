@@ -2,6 +2,8 @@
 import hashlib
 import os
 import random
+import threading
+import time
 import re
 import urllib.parse
 
@@ -9,7 +11,18 @@ import numpy as np
 import requests
 from PIL import Image, ImageDraw, ImageFilter
 
-UA = {"User-Agent": "Mozilla/5.0 (video-studio)"}
+UA = {"User-Agent": "AIVideoStudio/1.1 (self-hosted video maker; python-requests)"}
+_locks = {"commons": threading.Lock(), "ai": threading.Lock()}
+_last = {"commons": 0.0, "ai": 0.0}
+
+
+def _throttle(name, gap):
+    """Free services allow few requests per second; space them out politely."""
+    with _locks[name]:
+        wait = _last[name] + gap - time.time()
+        if wait > 0:
+            time.sleep(wait)
+        _last[name] = time.time()
 _cache = {}
 
 
@@ -34,11 +47,25 @@ def _download(url, path, max_mb=80):
     return path
 
 
+_cool = {}
+
+
 def _search(kind, query, cfg, portrait):
     """Returns a list of {url, credit} for one provider + query (cached)."""
     key = (kind, query, portrait)
     if key in _cache:
         return _cache[key]
+    if _cool.get(kind, 0) > time.time():
+        return []
+    try:
+        return _search_inner(kind, query, cfg, portrait, key)
+    except requests.HTTPError as e:
+        if e.response is not None and e.response.status_code == 429:
+            _cool[kind] = time.time() + 90  # back off instead of hammering a free service
+        raise
+
+
+def _search_inner(kind, query, cfg, portrait, key):
     orient = "portrait" if portrait else "landscape"
     out = []
     if kind == "pexels_video" and cfg.get("pexels_key"):
@@ -65,6 +92,7 @@ def _search(kind, query, cfg, portrait):
                                                       "image_type": "photo", "orientation": "vertical" if portrait else "horizontal"}).json()
         out = [{"url": h["largeImageURL"], "credit": "Pixabay / " + h.get("user", "")} for h in j.get("hits", [])]
     elif kind == "commons" and cfg.get("use_openverse", True):
+        _throttle("commons", 1.2)
         # Wikimedia Commons: historical photographs, maps, satellite images (free licences)
         j = _get("https://commons.wikimedia.org/w/api.php", params={
             "action": "query", "format": "json", "generator": "search", "gsrsearch": f"filetype:bitmap {query}",
@@ -115,10 +143,26 @@ def procedural(path, w, h, seed, accent="#FFD400"):
 
 
 def ai_image(prompt, path, w, h, seed):
+    last = None
+    for attempt in range(4):  # the free tier allows one image at a time
+        _throttle("ai", 3)
+        try:
+            return _ai_image(prompt, path, w, h, seed)
+        except requests.HTTPError as e:
+            last = e
+            if e.response is None or e.response.status_code not in (402, 429, 500, 502, 503):
+                raise
+            time.sleep(4 + attempt * 4)
+    raise last
+
+
+def _ai_image(prompt, path, w, h, seed):
     url = ("https://image.pollinations.ai/prompt/" + urllib.parse.quote(prompt[:900], safe="")
-           + f"?width={w}&height={h}&nologo=true&seed={seed}&model=flux")
+           + f"?width={w}&height={int(h * 1.1)}&nologo=true&seed={seed}&model=flux")
     _download(url, path)
-    Image.open(path).verify()
+    im = Image.open(path).convert("RGB")
+    # the free tier stamps a small logo in the bottom corner: crop that strip off (the camera move hides the size change)
+    im.crop((0, 0, im.width, int(im.height * 0.91))).save(path, quality=93)
     return path
 
 

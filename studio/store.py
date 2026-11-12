@@ -25,7 +25,7 @@ SCRIPT_RULES = """Write ONLY the words the narrator speaks. No title, headings, 
 - Spoken rhythm: mostly medium and long flowing sentences joined by and, but, so, because, with a short punchy line now and then. Never strings of tiny fragments. Vary sentence openings.
 - Punctuation: commas, periods, question marks only. No dashes, semicolons, colons or parentheses.
 - Plain human words. Never use: delve, tapestry, testament, realm, unlock, unleash, elevate, empower, harness, leverage, robust, seamless, crucial, vital, pivotal, game-changer, let's dive in, buckle up, picture this, here's the thing, it's worth noting, in conclusion, moreover, furthermore, ultimately, myriad, vibrant, mind-blowing, life-changing, trust me.
-- Specific details everywhere: real numbers, amounts, times. Every fact must be true and every method safe. No brand names. No medical, legal or investment advice.
+- Specific details everywhere: real numbers, amounts, times. Every fact must be true and every method safe. Never invent a fact, tip or number; if you are not sure it is true, leave it out. No brand names. No medical, legal or investment advice.
 - Voiceover friendly: write numbers and symbols as spoken words (seventeen dollars, percent), no abbreviations.
 - Name concrete objects and actions often so matching footage can be found.
 - End with a short warm recap that sounds like a person, one specific question for the comments, and a one-line tease of a related next video."""
@@ -104,6 +104,7 @@ DEFAULT_SETTINGS = {
     "openai_base": "https://api.openai.com/v1",
     "openai_key": "",
     "openai_model": "gpt-4o-mini",
+    "pollinations_key": "",
     "pexels_key": "",
     "pixabay_key": "",
     "use_pollinations": True,

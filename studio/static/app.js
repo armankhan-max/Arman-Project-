@@ -102,6 +102,10 @@ $('#cGo').onclick = e => busy(e.target, async () => {
   }));
   if (voiceMode === 'upload') { if (!$('#cVoFile').files[0]) throw new Error('Choose your voiceover file.'); fd.append('voiceover', $('#cVoFile').files[0]); }
   if (style === 'avatar' && $('#cAvatar').files[0]) fd.append('avatar', $('#cAvatar').files[0]);
+  if (style === 'avatar' && $('#cAvatarVideo').files[0]) {
+    if (!$('#cScript').value.trim()) throw new Error('Paste the script your avatar video speaks under “More options”, so scenes can be matched.');
+    fd.append('avatar_video', $('#cAvatarVideo').files[0]);
+  }
   const p = await api('/api/projects', { method: 'POST', body: fd });
   openProject(p.id);
 }).catch(err => $('#cErr').textContent = err.message);
@@ -198,6 +202,9 @@ function sceneRow(p, s, i) {
     <div class="row" style="margin-top:6px">
       <input data-f="text" value="${esc(s.text || '')}" placeholder="On-screen text (optional)" style="max-width:220px">
       <input data-f="queries" value="${esc((s.queries || []).join(', '))}" placeholder="B-roll search words, comma separated">
+    </div>
+    <div class="row" style="margin-top:6px">
+      <input data-f="graphic" value="${esc(s.graphic || '')}" placeholder="Animated graphic (optional): map: Egypt · bars: Honey=3000, Milk=7 (days) · timeline: 1922=Tomb opened; 2026=Still edible">
       ${p.style === 'avatar' ? `<select data-f="kind" style="max-width:110px"><option value="broll">B-roll</option><option value="aroll" ${s.kind === 'aroll' ? 'selected' : ''}>A-roll (host)</option></select>` : ''}
     </div>
     <div class="row" style="margin-top:6px"><label class="check small" style="margin:0"><input type="checkbox" data-f="refresh"> New visuals</label>
@@ -208,7 +215,7 @@ function sceneRow(p, s, i) {
 async function saveScenes(p, preview) {
   const scenes = $$('#pScenes .scene').map(el => ({
     _i: +el.dataset.i, narration: $('[data-f=narration]', el).value, text: $('[data-f=text]', el).value,
-    queries: $('[data-f=queries]', el).value.split(','), kind: ($('[data-f=kind]', el) || {}).value || 'broll',
+    queries: $('[data-f=queries]', el).value.split(','), graphic: $('[data-f=graphic]', el).value, kind: ($('[data-f=kind]', el) || {}).value || 'broll',
     refresh: $('[data-f=refresh]', el).checked
   }));
   const body = { render: true, preview };
@@ -239,7 +246,7 @@ $('#thGo').onclick = e => busy(e.target, async () => {
 }).catch(err => $('#thErr').textContent = err.message);
 
 // ---------- owner settings ----------
-const S_TEXT = ['llm_provider', 'anthropic_key', 'anthropic_model', 'openai_base', 'openai_key', 'openai_model', 'pexels_key', 'pixabay_key', 'lipsync_provider', 'did_key', 'script_rules'];
+const S_TEXT = ['llm_provider', 'anthropic_key', 'anthropic_model', 'openai_base', 'openai_key', 'openai_model', 'pollinations_key', 'pexels_key', 'pixabay_key', 'lipsync_provider', 'did_key', 'script_rules'];
 const S_NUM = ['words_per_minute', 'music_volume'], S_BOOL = ['use_pollinations', 'use_openverse'];
 async function loadSettings() {
   settings = await api('/api/settings');

@@ -42,6 +42,10 @@ def render_shot(asset, out, dur, w, h, grade, move, slowmo=False):
     if asset["type"] == "video":
         speed = "setpts=1.25*PTS," if slowmo else ""
         vf = f"{speed}scale={w}:{h}:force_original_aspect_ratio=increase,crop={w}:{h},fps={FPS},setsar=1{g}"
+        if asset.get("ss") is not None:  # a slice of the avatar's own recording, so lips stay in sync with the voice
+            vf = vf.replace(f"fps={FPS}", f"fps={FPS},tpad=stop_mode=clone:stop_duration=10")
+            run(["ffmpeg", "-y", "-v", "error", "-ss", f"{float(asset['ss']):.3f}", "-i", asset["path"], "-vf", vf] + enc)
+            return
         run(["ffmpeg", "-y", "-v", "error", "-stream_loop", "-1", "-i", asset["path"], "-vf", vf] + enc)
         return
     D = n / FPS
@@ -273,7 +277,8 @@ def render(p, shots, narration_wav, music_wav, sfx_wav, out, progress=lambda f: 
           + f",fade=t=in:st=0:d=0.35,fade=t=out:st={max(0, total - 0.8):.2f}:d=0.8[v]")
     # voice chain: clean low rumble, tame "s" sounds, even out levels, add presence
     vo = ("[1:a]highpass=f=75,deesser=i=0.4,acompressor=threshold=-21dB:ratio=3:attack=6:release=120:makeup=2.5,"
-          "equalizer=f=3200:t=q:w=1.2:g=2,equalizer=f=250:t=q:w=1:g=-1.5,apad[vo]")
+          "equalizer=f=3200:t=q:w=1.2:g=2,equalizer=f=250:t=q:w=1:g=-1.5,"
+          f"apad=whole_dur={total:.3f},atrim=0:{total:.3f}[vo]")
     fc = [vf, vo]
     mix = ["[vo1]"]
     n_in = 2
@@ -291,10 +296,10 @@ def render(p, shots, narration_wav, music_wav, sfx_wav, out, progress=lambda f: 
         mix.append("[m]")
         n_in += 1
     elif sfx_wav:
-        fc.append("[vkey]anullsink")
+        fc[-1] = "[vo0]anull[vo1]"
     if sfx_wav:
         inputs += ["-i", os.path.basename(sfx_wav)]
-        fc.append(f"[{n_in}:a]volume=1.0[s]")
+        fc.append(f"[{n_in}:a]apad=whole_dur={total:.3f},atrim=0:{total:.3f}[s]")
         mix.append("[s]")
     fc.append(f"{''.join(mix)}amix=inputs={len(mix)}:duration=longest:normalize=0,"
               "loudnorm=I=-14:TP=-1.5:LRA=11,alimiter=limit=0.89,aresample=48000[a]")

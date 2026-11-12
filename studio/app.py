@@ -21,7 +21,7 @@ import tts
 
 app = FastAPI(title="AI Video Studio")
 STATIC = os.path.join(store.BASE, "static")
-SECRET_KEYS = ("anthropic_key", "openai_key", "pexels_key", "pixabay_key", "did_key")
+SECRET_KEYS = ("anthropic_key", "openai_key", "pollinations_key", "pexels_key", "pixabay_key", "did_key")
 
 
 # ---------------- owner login ----------------
@@ -172,7 +172,8 @@ def projects():
 
 
 @app.post("/api/projects")
-async def create_project(data: str = Form(...), voiceover: UploadFile = File(None), avatar: UploadFile = File(None)):
+async def create_project(data: str = Form(...), voiceover: UploadFile = File(None), avatar: UploadFile = File(None),
+                         avatar_video: UploadFile = File(None)):
     b = json.loads(data)
     title = (b.get("title") or "").strip()
     if not title:
@@ -180,7 +181,7 @@ async def create_project(data: str = Form(...), voiceover: UploadFile = File(Non
     cfg = store.get_settings()
     if not (b.get("script") or "").strip() and llm.provider(cfg) == "none":
         raise HTTPException(400, "AI script writing is off. Paste a script or turn on an AI provider in Settings.")
-    if voiceover is not None and not (b.get("script") or "").strip():
+    if (voiceover is not None or avatar_video is not None) and not (b.get("script") or "").strip():
         raise HTTPException(400, "When you upload your own voiceover, also paste the script it reads, so scenes can be matched.")
     fields = ("style", "language", "voice", "rate", "aspect", "source", "captions", "music", "script", "notes", "persona", "show_title", "sfx")
     p = store.new_project({"title": title, "minutes": max(0.3, min(33, float(b.get("minutes") or 1))),
@@ -190,6 +191,8 @@ async def create_project(data: str = Form(...), voiceover: UploadFile = File(Non
         p["voice_mode"] = "upload"
     if avatar is not None:
         p["avatar"] = _save_upload(avatar, p["id"], "avatar")
+    if avatar_video is not None:
+        p["avatar_video"] = _save_upload(avatar_video, p["id"], "avatar_video")
     store.save_project(p)
     pipeline.start(p["id"], bool(b.get("preview")))
     return p
@@ -223,6 +226,7 @@ async def edit_project(pid: str, request: Request):
             o = old[s["_i"]] if isinstance(s.get("_i"), int) and 0 <= s["_i"] < len(old) else {}
             n = {**o, "narration": str(s.get("narration", "")).strip(), "text": str(s.get("text", ""))[:60],
                  "queries": [q.strip() for q in s.get("queries", []) if q.strip()], "kind": s.get("kind", "broll"),
+                 "graphic": str(s.get("graphic", "")).strip()[:200],
                  "image_prompt": s.get("image_prompt") or o.get("image_prompt", "")}
             if not n["narration"]:
                 continue
