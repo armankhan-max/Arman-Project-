@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: ai-video-studio
+    runtime: docker
+    plan: free
+    dockerContext: ./studio
+    dockerfilePath: ./studio/Dockerfile
+    healthCheckPath: /api/me
+    envVars:
+      - key: RENDER_WORKERS
+        value: "1"

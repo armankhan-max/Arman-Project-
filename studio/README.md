@@ -1,8 +1,31 @@
+---
+title: AI Video Studio
+emoji: 🎬
+colorFrom: yellow
+colorTo: gray
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # AI Video Studio
 
 Type a title, then pick a style and a voice. The studio writes the script, records the voiceover, finds B-roll, edits everything together and gives you a finished MP4 with a thumbnail and an upload pack.
 
-## Run it
+## Put it online (public link)
+**Option A: Render (one click, free).** Open
+https://render.com/deploy?repo=https://github.com/armankhan-max/Arman-Project-/tree/claude/ai-video-generator-vc03rk
+then log in with GitHub and press **Deploy**. After about 5 minutes you get a link like `https://ai-video-studio.onrender.com`.
+The free plan has 512 MB of memory: use **Fast draft** for long videos, and expect the site to sleep after 15 minutes of no use (the first visit then takes about 1 minute).
+
+**Option B: Hugging Face Spaces (free, 16 GB memory, better for long videos).**
+1. Go to huggingface.co, then **New Space**, choose **Docker** and **Blank**, and make it **Private** or Public.
+2. Open **Files**, choose **Upload files**, and drag in everything inside this `studio` folder (not the `data` folder).
+3. Wait for the build to finish. Your link is `https://huggingface.co/spaces/<you>/<space-name>`.
+
+On both hosts, made videos are deleted when the server restarts. Download the ones you want to keep.
+
+## Run it on your own computer
 ```bash
 # needs Python 3.10+ and ffmpeg (sudo apt install ffmpeg, or brew install ffmpeg)
 pip install -r requirements.txt

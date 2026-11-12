@@ -266,7 +266,7 @@ def render(p, shots, narration_wav, music_wav, sfx_wav, out, progress=lambda f: 
         done[0] += 1
         progress(done[0] / len(shots) * 0.7)
 
-    with ThreadPoolExecutor(max_workers=max(1, min(4, (os.cpu_count() or 2) - 1))) as ex:
+    with ThreadPoolExecutor(max_workers=int(os.environ.get("RENDER_WORKERS") or max(1, min(4, (os.cpu_count() or 2) - 1)))) as ex:
         list(ex.map(one, range(len(shots))))
     join([f"shots/{i:04d}.mp4" for i in range(len(shots))], rdur, [s.get("trans") for s in shots], "joined.mp4", d)
     progress(0.82)
