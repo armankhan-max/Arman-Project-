@@ -267,7 +267,7 @@ def render_bars(g, path, dur, w, h, accent, title=""):
             d.text((x + bw / 2 - lw / 2, bottom + h * 0.02), lab, font=f_lab, fill=(220, 225, 235, int(255 * min(1, max(0, t - i * 0.18) / 0.3))))
         if unit:
             uw = d.textlength(unit, font=f_lab)
-            d.text(((w - uw) / 2, h * 0.9), unit.upper(), font=f_lab, fill=(150, 160, 180))
+            d.text(((w - uw) / 2, h * (0.15 if title else 0.08)), unit.upper(), font=f_lab, fill=(170, 180, 200))
         return im
 
     _pipe(path, w, h, n, frame)
