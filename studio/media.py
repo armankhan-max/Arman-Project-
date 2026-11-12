@@ -174,6 +174,7 @@ def fetch(scene, n, cfg, style, outdir, w, h, used, source, log=lambda m: None, 
         "stock_video": ["pexels_video", "pixabay_video", "pexels_photo", "pixabay_photo", "commons", "openverse", "ai"],
         "stock_photo": ["pexels_photo", "pixabay_photo", "commons", "openverse", "pexels_video", "ai"],
         "archive": ["commons", "openverse", "pexels_photo", "ai"],
+        "stock_video_ai": ["pexels_video", "pixabay_video", "ai", "pexels_photo", "pixabay_photo"],
         "ai_image": ["ai", "pexels_photo", "pixabay_photo", "openverse"],
     }
     assets = []

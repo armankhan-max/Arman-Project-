@@ -41,27 +41,52 @@ function tab(name) {
 }
 $$('#nav a').forEach(a => a.onclick = () => tab(a.dataset.tab));
 
+let ages = {}, voiceSel = null, thumbRef = '', gfxSel = null, wstep = 1;
+const GFX = [['map', '🗺️ Country map'], ['city', '📍 City map'], ['conflict', '⚔️ Conflict map'], ['bars', '📊 Bar chart'],
+['compare', '⚖️ Comparison'], ['timeline', '🕰️ Timeline'], ['icons', '🔵 Circle icons'], ['card', '🪪 Character card'], ['stat', '🔢 Big number']];
+
 async function boot() {
   $('#gate').classList.add('hidden'); $('#app').classList.remove('hidden');
   settings = await api('/api/settings');
   style = settings.styles[settings.default_style] ? settings.default_style : Object.keys(settings.styles)[0];
   renderStyles(); renderMusic(); applyStyleDefaults();
   $('#aiWarn').classList.toggle('hidden', settings.llm_active !== 'none');
-  $('#aiWarn').textContent = 'AI script writing is off, so paste your own script under “More options”. Turn it on in the Owner panel.';
-  voices = await api('/api/voices');
+  $('#aiWarn').textContent = 'AI script writing is off, so paste your own script in step 1. Turn it on in the Owner panel.';
+  const r = await api('/api/voices');
+  voices = r.voices; ages = r.ages;
+  $('#vfAge').innerHTML = '<option value="">Natural age</option>' + Object.entries(ages).map(([k, a]) => `<option value="${k}">${esc(a.label)}</option>`).join('');
   const langs = [...new Set(voices.map(v => v.lang))].sort();
-  const pref = ['en-US', 'en-IN', 'hi-IN', 'en-GB'];
-  $('#cVoiceLang').innerHTML = [...pref.filter(l => langs.includes(l)), ...langs.filter(l => !pref.includes(l))].map(l => `<option>${l}</option>`).join('');
-  const dv = voices.find(v => v.id === settings.default_voice);
-  if (dv) $('#cVoiceLang').value = dv.lang;
-  fillVoices(dv && dv.id);
+  const pref = ['multi', 'en-US', 'en-GB', 'en-IN', 'hi-IN'];
+  $('#vfLang').innerHTML = '<option value="">All languages</option>' + [...pref.filter(l => langs.includes(l)), ...langs.filter(l => !pref.includes(l))]
+    .map(l => `<option value="${l}">${l === 'multi' ? 'Multilingual (ElevenLabs)' : l}</option>`).join('');
+  $('#vfLang').value = 'en-US';
+  voiceSel = voices.find(v => v.id === settings.default_voice) ? settings.default_voice : (voices[0] || {}).id;
+  $('#vNote').textContent = voices.some(v => v.provider === 'elevenlabs') ? '' : 'Add an ElevenLabs key in the Owner panel to unlock premium voices.';
+  renderVoices();
 }
-function fillVoices(sel) {
-  const l = $('#cVoiceLang').value;
-  $('#cVoice').innerHTML = voices.filter(v => v.lang === l).map(v => `<option value="${v.id}">${esc(v.name)}</option>`).join('');
-  if (sel) $('#cVoice').value = sel;
+function goStep(n) {
+  if (n > 1 && !$('#cTitle').value.trim()) { $('#cErr').textContent = ''; $('#cTitle').focus(); $('#cTitle').placeholder = 'Type a title first'; n = 1; }
+  wstep = n;
+  $$('.wstep').forEach(el => el.classList.toggle('hidden', +el.dataset.s !== n));
+  $$('#wSteps a').forEach(a => { a.classList.toggle('on', +a.dataset.s === n); a.classList.toggle('done', +a.dataset.s < n); });
+  if (n === 4 && !$('#tRefTopic').value) $('#tRefTopic').value = $('#cTitle').value;
+  if (n === 5) renderReview();
+  window.scrollTo(0, 0);
 }
-$('#cVoiceLang').onchange = () => fillVoices();
+$$('#wSteps a').forEach(a => a.onclick = () => goStep(+a.dataset.s));
+document.addEventListener('click', e => { const g = e.target.closest('[data-go]'); if (g) goStep(+g.dataset.go); });
+
+// step 1
+$$('#cDurChips .chip').forEach(c => c.onclick = () => { $$('#cDurChips .chip').forEach(x => x.classList.toggle('on', x === c)); $('#cMinutes').value = c.dataset.m; });
+$('#cMinutes').oninput = () => $$('#cDurChips .chip').forEach(x => x.classList.toggle('on', +x.dataset.m === +$('#cMinutes').value));
+$('#cSuggest').onclick = e => busy(e.target, async () => {
+  const topic = $('#cTitle').value.trim(); if (!topic) { $('#cTitle').focus(); return; }
+  const r = await api('/api/titles', { json: { topic, count: 8, language: $('#cLang').value } });
+  $('#cIdeas').innerHTML = r.titles.map(t => `<span class="chip">${esc(t)}</span>`).join('');
+  $$('#cIdeas .chip').forEach(c => c.onclick = () => $('#cTitle').value = c.textContent);
+}).catch(err => alert(err.message));
+
+// step 2
 function renderStyles() {
   $('#cStyles').innerHTML = Object.entries(settings.styles).map(([k, s]) =>
     `<div class="style ${k === style ? 'on' : ''}" data-k="${esc(k)}"><b>${esc(s.label || k)}</b><span>${esc(s.desc || '')}</span></div>`).join('');
@@ -73,13 +98,27 @@ function applyStyleDefaults() {
   $('#cCaptions').value = s.captions === false ? '0' : '1';
   $('#cShowTitle').checked = s.show_title !== false;
   $('#cSfx').checked = s.sfx !== false;
+  gfxSel = new Set(s.graphics || GFX.map(g => g[0]));
+  renderGfx();
+}
+function renderGfx() {
+  $('#cGfx').innerHTML = GFX.map(([k, l]) => `<label class="gchip ${gfxSel.has(k) ? 'on' : ''}"><input type="checkbox" data-g="${k}" ${gfxSel.has(k) ? 'checked' : ''} hidden>${l}</label>`).join('');
+  $$('#cGfx input').forEach(i => i.onchange = () => { i.checked ? gfxSel.add(i.dataset.g) : gfxSel.delete(i.dataset.g); renderGfx(); });
 }
 const STYLE_WORDS = [
   ['avatar_captions', /caption|subtitle/i, /avatar|host|grandma|grandpa|grandmother|talking|presenter|face|amish|farmer/i],
   ['avatar', /avatar|host|grandma|grandpa|grandmother|grandfather|talking head|talks to (the )?camera|presenter|amish|farmer|kitchen/i],
-  ['animated', /anim|cartoon|2d|illustrat|kids|explainer|motion graphic/i],
-  ['facts', /fact|list|top \d+|countdown|short|reel|kinetic|text/i],
-  ['documentary', /documentar|history|historical|mystery|cinematic|war|ancient|science|space|nature/i],
+  ['stickman', /stick ?man|stick ?figure|stickman/i],
+  ['sleep', /sleep|bedtime|relax|calm/i],
+  ['space_ocean', /space|ocean|deep sea|trench|planet|galaxy|universe|8k/i],
+  ['mystery', /myster|crime|creepy|horror|dark|unsolved|scary/i],
+  ['history', /histor|ancient|war|empire|king|pharaoh|medieval/i],
+  ['top10', /top \d+|countdown|ranking|list/i],
+  ['news', /news|current|politic|econom|conflict/i],
+  ['motivation', /motivat|inspir|success|mindset|story/i],
+  ['animated', /anim|cartoon|2d|illustrat|kids|explainer/i],
+  ['facts', /fact|short|reel|kinetic|text/i],
+  ['documentary', /documentar|cinematic|science|nature/i],
 ];
 $('#cStyleText').oninput = () => {
   const t = $('#cStyleText').value;
@@ -88,41 +127,91 @@ $('#cStyleText').oninput = () => {
   }
 };
 function musicOptions(sel) {
-  const opts = [['', 'Best for this style'], ['cinematic', 'Cinematic'], ['suspense', 'Suspense'], ['emotional', 'Emotional'], ['calm', 'Calm'], ['upbeat', 'Upbeat'],
+  const opts = [['', 'Best for this format'], ['cinematic', 'Cinematic'], ['suspense', 'Suspense'], ['emotional', 'Emotional'], ['calm', 'Calm'], ['upbeat', 'Upbeat'],
   ...(settings.music_library || []).map(m => [m, '♪ ' + m]), ['none', 'No music']];
   return opts.map(([v, t]) => `<option value="${esc(v)}" ${v === (sel || '') ? 'selected' : ''}>${esc(t)}</option>`).join('');
 }
 function renderMusic() { $('#cMusic').innerHTML = musicOptions(''); }
 
-// ---------- create ----------
+// step 3: voices
 $$('#cVoiceMode a').forEach(a => a.onclick = () => {
   voiceMode = a.dataset.v;
   $$('#cVoiceMode a').forEach(x => x.classList.toggle('on', x === a));
   $('#cTts').classList.toggle('hidden', voiceMode !== 'tts'); $('#cUpload').classList.toggle('hidden', voiceMode !== 'upload');
 });
-$('#cPreview').onclick = e => busy(e.target, async () => {
-  const r = await api('/api/voice-preview', { json: { voice: $('#cVoice').value, rate: +$('#cRate').value }, raw: true });
-  const p = $('#player'); p.src = URL.createObjectURL(await r.blob()); p.play();
-}).catch(err => $('#cErr').textContent = err.message);
-$('#cSuggest').onclick = e => busy(e.target, async () => {
-  const topic = $('#cTitle').value.trim(); if (!topic) { $('#cErr').textContent = 'Type a topic first.'; return; }
-  const r = await api('/api/titles', { json: { topic, count: 8, language: $('#cLang').value } });
-  $('#cIdeas').innerHTML = r.titles.map(t => `<span class="chip">${esc(t)}</span>`).join('');
-  $$('#cIdeas .chip').forEach(c => c.onclick = () => $('#cTitle').value = c.textContent);
-}).catch(err => $('#cErr').textContent = err.message);
+['#vfProv', '#vfLang', '#vfGender', '#vfAge'].forEach(s => $(s).onchange = renderVoices);
+function renderVoices() {
+  const pv = $('#vfProv').value, lg = $('#vfLang').value, gd = $('#vfGender').value, ag = $('#vfAge').value;
+  const list = voices.filter(v => (!pv || v.provider === pv) && (!lg || v.lang === lg || v.lang === 'multi') && (!gd || v.gender === gd)
+    && (!ag || v.provider === 'free' || v.age === ag || v.age === 'adult'));
+  $('#voiceList').innerHTML = list.slice(0, 120).map(v => `<div class="voice ${v.id === voiceSel ? 'on' : ''}" data-id="${esc(v.id)}">
+      <div><b>${esc(v.name)}</b> ${v.provider === 'elevenlabs' ? '<span class="badge prem">Premium</span>' : ''}
+      <div class="muted small">${esc(v.gender)} · ${esc(v.lang)}${v.age && v.age !== 'adult' ? ' · ' + esc(v.age) : ''}${v.style ? ' · ' + esc(v.style) : ''}</div></div>
+      <button class="btn small" data-play="${esc(v.id)}">▶</button></div>`).join('') || '<p class="muted">No voice matches these filters.</p>';
+  $$('#voiceList .voice').forEach(el => el.onclick = e => { if (e.target.dataset.play) return; voiceSel = el.dataset.id; renderVoices(); });
+  $$('#voiceList [data-play]').forEach(b => b.onclick = () => busy(b, async () => {
+    const v = voices.find(x => x.id === b.dataset.play);
+    const p = $('#player');
+    if (v.preview && !$('#vfAge').value) { p.src = v.preview; p.play(); return; }
+    const r = await api('/api/voice-preview', { json: { voice: v.id, rate: +$('#cRate').value, age: $('#vfAge').value }, raw: true });
+    p.src = URL.createObjectURL(await r.blob()); p.play();
+  }).catch(err => alert(err.message)));
+}
+
+// step 4: thumbnail reference
+$$('#tRefMode a').forEach(a => a.onclick = () => {
+  $$('#tRefMode a').forEach(x => x.classList.toggle('on', x === a));
+  $('#tOutBox').classList.toggle('hidden', a.dataset.v !== 'out'); $('#tUrlBox').classList.toggle('hidden', a.dataset.v !== 'url');
+});
+function setRef(url, img) {
+  thumbRef = url;
+  $('#tRefPrev').innerHTML = img ? `<img class="thumb" src="${esc(img)}"><button class="btn small ghost" id="tRefClear" style="margin-top:8px">Remove reference</button>` : '<span class="muted">No reference chosen. We will design from your title.</span>';
+  if ($('#tRefClear')) $('#tRefClear').onclick = () => { setRef('', ''); $$('.ref').forEach(x => x.classList.remove('on')); };
+}
+const nf = n => n >= 1e6 ? (n / 1e6).toFixed(1) + 'M' : n >= 1e3 ? Math.round(n / 1e3) + 'K' : n;
+$('#tRefFind').onclick = e => busy(e.target, async () => {
+  const r = await api('/api/thumb-refs?topic=' + encodeURIComponent($('#tRefTopic').value || $('#cTitle').value));
+  $('#tRefNote').textContent = r.error || (r.items.length ? 'Score = views ÷ channel subscribers. Higher means the idea broke out.' : 'Nothing found.');
+  $('#tRefGrid').innerHTML = r.items.map(x => `<div class="ref" data-u="https://www.youtube.com/watch?v=${x.id}" data-i="${esc(x.thumb)}">
+     <img src="${esc(x.thumb)}" loading="lazy"><span class="score">${x.score}x</span><div class="small">${esc(x.title)}<br><span class="muted">${nf(x.views)} views · ${esc(x.channel)}</span></div></div>`).join('');
+  $$('#tRefGrid .ref').forEach(el => el.onclick = () => { $$('.ref').forEach(x => x.classList.toggle('on', x === el)); setRef(el.dataset.u, el.dataset.i); });
+});
+$('#tRefLoad').onclick = e => busy(e.target, async () => {
+  $('#tRefErr').textContent = '';
+  try { const r = await api('/api/thumb-ref-preview', { json: { url: $('#tRefUrl').value } }); setRef($('#tRefUrl').value, r.url); }
+  catch (err) { $('#tRefErr').textContent = err.message; }
+});
+
+// step 5: review
+function renderReview() {
+  const s = settings.styles[style] || {};
+  const v = voices.find(x => x.id === voiceSel) || {};
+  const rows = [
+    ['Title', $('#cTitle').value, 1], ['Language', $('#cLang').value, 1],
+    ['Duration', `${$('#cMinutes').value} min · ${$('#cAspect').value} · ${$('#cQuality').value === 'draft' ? 'fast draft 720p' : 'Full HD'}`, 1],
+    ['Script', $('#cScript').value.trim() ? 'Your own script' : 'AI writes it from the title', 1],
+    ['Format', s.label || style, 2], ['Visuals', $('#cSource').selectedOptions[0].text, 2],
+    ['Motion graphics', [...gfxSel].join(', ') || 'none', 2],
+    ['Captions / music / SFX', `${$('#cCaptions').value === '1' ? 'captions' : 'no captions'} · ${$('#cMusic').selectedOptions[0].text} · ${$('#cSfx').checked ? 'SFX on' : 'SFX off'}`, 2],
+    ['Voice', voiceMode === 'upload' ? 'Your uploaded voiceover' : `${v.name || voiceSel}${$('#vfAge').value ? ' · ' + ages[$('#vfAge').value].label : ''} · ${$('#cRate').selectedOptions[0].text}`, 3],
+    ['Thumbnail', thumbRef ? 'Inspired by your reference' + ($('#cThumbText').value ? ` · “${$('#cThumbText').value}”` : '') : '3 designs from your title', 4],
+  ];
+  $('#cReview').innerHTML = rows.map(([k, val, st]) => `<div class="rv"><span class="muted">${k}</span><b>${esc(val)}</b><a class="small" data-go="${st}">Edit</a></div>`).join('');
+}
 $('#cGo').onclick = e => busy(e.target, async () => {
   $('#cErr').textContent = '';
   const fd = new FormData();
   fd.append('data', JSON.stringify({
     title: $('#cTitle').value, style, minutes: +$('#cMinutes').value, aspect: $('#cAspect').value, language: $('#cLang').value,
-    voice: $('#cVoice').value, rate: +$('#cRate').value, source: $('#cSource').value, music: $('#cMusic').value,
+    voice: voiceSel, rate: +$('#cRate').value, age: $('#vfAge').value, source: $('#cSource').value, music: $('#cMusic').value,
     captions: $('#cCaptions').value === '1', script: $('#cScript').value, notes: $('#cNotes').value, persona: $('#cPersona').value,
-    show_title: $('#cShowTitle').checked, sfx: $('#cSfx').checked, style_prompt: $('#cStyleText').value, preview: $('#cFast').checked
+    show_title: $('#cShowTitle').checked, sfx: $('#cSfx').checked, style_prompt: $('#cStyleText').value, preview: $('#cQuality').value === 'draft',
+    graphics: [...gfxSel], thumb_ref: thumbRef, thumb_text: $('#cThumbText').value
   }));
-  if (voiceMode === 'upload') { if (!$('#cVoFile').files[0]) throw new Error('Choose your voiceover file.'); fd.append('voiceover', $('#cVoFile').files[0]); }
+  if (voiceMode === 'upload') { if (!$('#cVoFile').files[0]) throw new Error('Choose your voiceover file in step 3.'); fd.append('voiceover', $('#cVoFile').files[0]); }
   if (style.startsWith('avatar') && $('#cAvatar').files[0]) fd.append('avatar', $('#cAvatar').files[0]);
   if (style.startsWith('avatar') && $('#cAvatarVideo').files[0]) {
-    if (!$('#cScript').value.trim()) throw new Error('Paste the script your avatar video speaks under “More options”, so scenes can be matched.');
+    if (!$('#cScript').value.trim()) throw new Error('Paste the script your avatar video speaks in step 1, so scenes can be matched.');
     fd.append('avatar_video', $('#cAvatarVideo').files[0]);
   }
   const p = await api('/api/projects', { method: 'POST', body: fd });
@@ -181,6 +270,7 @@ function renderProject(p) {
     ${p.thumb ? `<a class="btn" href="${base}${p.thumb}?download=1">⬇ Thumbnail</a>` : ''}
     <span class="muted small">${fmt(p.duration)} · ${esc(p.aspect || '16:9')}${p.preview ? ' · fast draft (720p)' : ''}</span></div></div>`;
   if (p.video) html += `<div class="two"><div class="card"><h3>Thumbnail</h3>${p.thumb ? `<img class="thumb" src="${base}${p.thumb}${v}">` : ''}
+      ${(p.thumbs || []).length ? `<p class="muted small">Pick one of the designs:</p><div class="thumbs3">${p.thumbs.map(t => `<img src="${base}${t}${v}" data-t="${t}" class="${t === p.thumb ? 'on' : ''}">`).join('')}</div>` : ''}
       <div class="row" style="margin-top:10px"><input id="pThText" value="${esc(m.thumb_text || '')}" placeholder="Thumbnail text">
       <select id="pThLayout" style="max-width:130px"><option value="left">Text left</option><option value="right">Text right</option><option value="center">Centre</option></select>
       <button class="btn" id="pThGo">Remake</button></div></div>
@@ -202,6 +292,7 @@ function renderProject(p) {
   $('#pDel').onclick = async () => { if (confirm('Delete this video and all its files?')) { await api('/api/projects/' + p.id, { method: 'DELETE' }); tab('videos'); } };
   if ($('#pRetry')) $('#pRetry').onclick = () => saveScenes(p, false);
   if ($('#pThGo')) $('#pThGo').onclick = e => busy(e.target, async () => { renderProject(current = await api(`/api/projects/${p.id}/thumb`, { json: { text: $('#pThText').value, layout: $('#pThLayout').value } })); });
+  $$('.thumbs3 img').forEach(im => im.onclick = async () => { renderProject(current = await api('/api/projects/' + p.id, { method: 'PUT', json: { thumb: im.dataset.t } })); });
   if ($('#pRender')) { $('#pRender').onclick = () => saveScenes(p, false); $('#pDraft').onclick = () => saveScenes(p, true); }
   $$('.scene input[type=file]').forEach(inp => inp.onchange = async () => {
     const fd = new FormData(); fd.append('file', inp.files[0]);
@@ -265,7 +356,7 @@ $('#thGo').onclick = e => busy(e.target, async () => {
 }).catch(err => $('#thErr').textContent = err.message);
 
 // ---------- owner settings ----------
-const S_TEXT = ['llm_provider', 'anthropic_key', 'anthropic_model', 'openai_base', 'openai_key', 'openai_model', 'pollinations_key', 'pexels_key', 'pixabay_key', 'lipsync_provider', 'did_key', 'script_rules'];
+const S_TEXT = ['llm_provider', 'anthropic_key', 'anthropic_model', 'openai_base', 'openai_key', 'openai_model', 'pollinations_key', 'pexels_key', 'pixabay_key', 'elevenlabs_key', 'youtube_key', 'lipsync_provider', 'did_key', 'script_rules'];
 const S_NUM = ['words_per_minute', 'music_volume'], S_BOOL = ['use_pollinations', 'use_openverse'];
 async function loadSettings() {
   settings = await api('/api/settings');

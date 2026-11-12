@@ -21,7 +21,7 @@ import tts
 
 app = FastAPI(title="AI Video Studio")
 STATIC = os.path.join(store.BASE, "static")
-SECRET_KEYS = ("anthropic_key", "openai_key", "pollinations_key", "pexels_key", "pixabay_key", "did_key")
+SECRET_KEYS = ("elevenlabs_key", "youtube_key", "anthropic_key", "openai_key", "pollinations_key", "pexels_key", "pixabay_key", "did_key")
 
 
 # ---------------- owner login ----------------
@@ -143,7 +143,7 @@ async def upload_music(file: UploadFile = File(...)):
 
 @app.get("/api/voices")
 def voices():
-    return tts.voices()
+    return {"voices": tts.voices(store.get_settings()), "ages": tts.AGES}
 
 
 @app.post("/api/voice-preview")
@@ -151,7 +151,10 @@ async def voice_preview(request: Request):
     b = await request.json()
     out = os.path.join(store.DATA, "preview.mp3")
     try:
-        await run_in_threadpool(tts.synth, (b.get("text") or "Hello! This is how your video will sound with this voice.")[:300], b["voice"], out, int(b.get("rate", 0)))
+        age = tts.AGES.get(b.get("age") or "", {})
+        rate = int(b.get("rate", 0)) + (age.get("rate", 0) if not b["voice"].startswith("el:") else 0)
+        await run_in_threadpool(tts.synth, (b.get("text") or "Hello! This is how your video will sound with this voice.")[:300],
+                                b["voice"], out, rate, age.get("pitch", 0))
     except Exception as e:
         raise HTTPException(502, str(e))
     return FileResponse(out, media_type="audio/mpeg", headers={"Cache-Control": "no-store"})
@@ -183,8 +186,9 @@ async def create_project(data: str = Form(...), voiceover: UploadFile = File(Non
         raise HTTPException(400, "AI script writing is off. Paste a script or turn on an AI provider in Settings.")
     if (voiceover is not None or avatar_video is not None) and not (b.get("script") or "").strip():
         raise HTTPException(400, "When you upload your own voiceover, also paste the script it reads, so scenes can be matched.")
-    fields = ("style", "language", "voice", "rate", "aspect", "source", "captions", "music", "script", "notes", "persona", "show_title", "sfx", "style_prompt")
-    p = store.new_project({"title": title, "minutes": max(0.3, min(33, float(b.get("minutes") or 1))),
+    fields = ("style", "language", "voice", "rate", "aspect", "source", "captions", "music", "script", "notes", "persona", "show_title", "sfx", "style_prompt", "age", "graphics",
+              "thumb_ref", "thumb_text")
+    p = store.new_project({"title": title, "minutes": max(0.3, min(60, float(b.get("minutes") or 1))),
                            **{k: b[k] for k in fields if k in b}})
     if voiceover is not None:
         p["voiceover"] = _save_upload(voiceover, p["id"], "voiceover")
@@ -216,7 +220,7 @@ async def edit_project(pid: str, request: Request):
     if p["status"] in ("queued", "working"):
         raise HTTPException(409, "This video is rendering right now.")
     b = await request.json()
-    for k in ("title", "style", "voice", "rate", "aspect", "source", "captions", "music", "show_title", "meta", "sfx"):
+    for k in ("title", "style", "voice", "rate", "aspect", "source", "captions", "music", "show_title", "meta", "sfx", "thumb"):
         if k in b:
             p[k] = b[k]
     if "scenes" in b:
@@ -310,6 +314,27 @@ async def gen_thumb(text: str = Form(...), layout: str = Form("left"), accent: s
     out = os.path.join(store.THUMBS, f"{tid}.jpg")
     thumb.make(out, text, paths.get("bg"), paths.get("subject"), layout, accent, arrow == "1")
     return {"url": f"/media/_thumbs/{tid}.jpg", "note": note}
+
+
+@app.get("/api/thumb-refs")
+def thumb_refs(topic: str):
+    import thumbref
+    try:
+        return {"items": thumbref.outliers(topic, store.get_settings().get("youtube_key"))}
+    except Exception as e:
+        return {"items": [], "error": str(e)}
+
+
+@app.post("/api/thumb-ref-preview")
+async def thumb_ref_preview(request: Request):
+    import thumbref
+    url = (await request.json()).get("url", "")
+    name = secrets.token_hex(5) + ".jpg"
+    try:
+        await run_in_threadpool(thumbref.fetch_reference, url, os.path.join(store.THUMBS, name))
+    except Exception as e:
+        raise HTTPException(400, str(e))
+    return {"url": f"/media/_thumbs/{name}"}
 
 
 @app.get("/")

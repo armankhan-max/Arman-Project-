@@ -1,1 +1,2 @@
 Country shapes: Natural Earth (public domain), naturalearthdata.com
+City points: Natural Earth populated places (public domain)

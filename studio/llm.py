@@ -110,7 +110,28 @@ def write_script(cfg, title, style, minutes, language, notes="", persona=""):
             + (f"Host persona (write in this voice, use the name, sign-off and people from it):\n{persona}\n" if persona else "")
             + (f"Extra notes from the owner:\n{notes}\n" if notes else "")
             + "Write the full voiceover script now. Output only the spoken words.")
-    return clean_script(chat(cfg, system, user, max_tokens=min(16000, int(words * 2.2) + 800)))
+    if words <= 2200:
+        return clean_script(chat(cfg, system, user, max_tokens=min(16000, int(words * 2.2) + 800)))
+    # long videos (up to 60 minutes): outline first, then write each part with the story so far
+    parts = max(2, round(words / 1500))
+    outline = _json(chat(cfg, "You plan long YouTube scripts. Return ONLY a JSON array of strings.",
+                         f"Video title: {title}\nLanguage: {language}\n{notes}\nPlan {parts} parts for a {minutes:g} minute video. "
+                         "Each string: what this part covers, its open loop or tease, and how it hands over to the next part. "
+                         "Part one opens with the hook, the last part pays off the big promise and ends the video.", 3000))
+    outline = [str(x) for x in outline][:parts] or [title] * parts
+    per = words // len(outline)
+    out = []
+    for k, part in enumerate(outline):
+        tail = " ".join(" ".join(out).split()[-120:])
+        u = (user.rsplit("Write the full", 1)[0]
+             + f"\nFull plan:\n" + "\n".join(f"{j + 1}. {x}" for j, x in enumerate(outline))
+             + f"\n\nNow write ONLY part {k + 1} of {len(outline)} ({part}), about {per} words."
+             + (f" Continue naturally from where the script left off: ...{tail}" if tail else " Start with the hook.")
+             + (" This is the final part: pay off the promise and end the video." if k == len(outline) - 1 else
+                " Do not end the video and do not say goodbye.")
+             + " Output only the spoken words.")
+        out.append(clean_script(chat(cfg, system, u, max_tokens=min(16000, int(per * 2.2) + 800))))
+    return "\n\n".join(out)
 
 
 def split_scenes(script, target_words=32):
@@ -154,9 +175,11 @@ def basic_annotation(narrations, title, style):
     return scenes
 
 
-def annotate(cfg, narrations, title, style, log=lambda m: None):
+def annotate(cfg, narrations, title, style, log=lambda m: None, allowed=None):
     """Ask the AI for B-roll search terms, image prompts and on-screen text for every scene."""
+    import graphics
     scenes = basic_annotation(narrations, title, style)
+    allowed = list(allowed if allowed is not None else graphics.TYPES)
     if provider(cfg) == "none":
         return scenes
     system = ("You are a video editor planning visuals. For each numbered narration scene return a JSON array of objects: "
@@ -166,10 +189,9 @@ def annotate(cfg, narrations, title, style, log=lambda m: None):
               '"kind": "aroll" or "broll"}. '
               + ('Mark as "aroll" the scenes where the host should be on camera: the hook, personal stories, asks and the ending '
                  "(about 40 percent of scenes); the rest are broll. " if style.startswith("avatar") else 'Always use "broll". ')
-              + '"graphic": optional animated graphic, ONLY when the narration names a real place, compares numbers, or lists dates, '
-              'written in exactly one of these forms: "map: Egypt" (a country) or "map: Giza, 29.98, 31.13" (place, latitude, longitude), '
-              '"bars: Honey=3000, Milk=7 (days)" (2 to 5 true numbers from the narration, unit in brackets), '
-              '"timeline: 1922=Tomb opened; 2026=Still edible" (2 to 5 true dates). Use a graphic in at most one scene in five, '
+              + '"graphic": optional animated graphic, ONLY when the narration names a real place, person, numbers or dates. '
+              'Use exactly one of these forms: ' + " | ".join(graphics.TYPES[k] for k in allowed if k in graphics.TYPES)
+              + '. Every number, date and name must come from the narration and be true. Use a graphic in at most one scene in four, '
               'otherwise an empty string. '
               + "Give on-screen text to roughly one scene in three. Output ONLY the JSON array.")
     for a in range(0, len(narrations), 12):

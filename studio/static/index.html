@@ -34,79 +34,126 @@
   <main>
     <!-- CREATE -->
     <section id="tab-create">
-      <h1>Make a video from a title</h1>
-      <p class="muted">Type a title, pick a style and a voice. The studio writes the script, records the voice, finds B-roll, adds captions and text animation, and edits the final video.</p>
+      <div class="wiz-head">
+        <h1>Create a video</h1>
+        <div class="steps" id="wSteps">
+          <a data-s="1" class="on"><i>1</i>Topic</a><a data-s="2"><i>2</i>Format</a><a data-s="3"><i>3</i>Voice</a>
+          <a data-s="4"><i>4</i>Thumbnail</a><a data-s="5"><i>5</i>Review</a>
+        </div>
+      </div>
       <div id="aiWarn" class="note hidden"></div>
-      <div class="card">
-        <label>Video title</label>
+
+      <!-- STEP 1 -->
+      <div class="card wstep" data-s="1">
+        <h3>What is your video about?</h3>
+        <label>Video title or topic</label>
         <div class="row">
-          <input id="cTitle" placeholder="e.g. Why Honey Never Spoils" maxlength="120">
-          <button class="btn" id="cSuggest" title="Get better title ideas">✨ Ideas</button>
+          <input id="cTitle" placeholder="e.g. The Deepest Place on Earth" maxlength="120">
+          <button class="btn" id="cSuggest" title="Get title ideas">✨ Title ideas</button>
         </div>
         <div id="cIdeas" class="chips"></div>
-
-        <label>Describe the video style you want (optional, the studio picks the closest style for you)</label>
-        <input id="cStyleText" placeholder="e.g. grandma talking to camera with real-looking home B-roll · dark history documentary · 2D cartoon explainer">
-        <label>Style</label>
-        <div id="cStyles" class="styles"></div>
-
         <div class="grid3">
-          <div><label>Length</label>
-            <select id="cMinutes">
-              <option value="0.5">30 seconds (test)</option><option value="1" selected>1 minute</option><option value="2">2 minutes</option>
-              <option value="5">5 minutes</option><option value="8">8 minutes</option><option value="12">12 minutes</option>
-              <option value="15">15 minutes</option><option value="20">20 minutes</option><option value="30">30 minutes</option>
-            </select></div>
+          <div><label>Video language</label>
+            <select id="cLang"><option>English</option><option>Hindi</option><option value="Hinglish (Hindi in Roman letters)">Hinglish</option><option>Spanish</option><option>Portuguese</option><option>French</option><option>German</option><option>Arabic</option><option>Urdu</option><option>Bengali</option><option>Indonesian</option><option>Japanese</option></select></div>
           <div><label>Shape</label>
             <select id="cAspect"><option value="16:9">16:9 YouTube</option><option value="9:16">9:16 Shorts / Reels</option><option value="1:1">1:1 Square</option></select></div>
-          <div><label>Script language</label>
-            <select id="cLang"><option>English</option><option>Hindi</option><option value="Hinglish (Hindi in Roman letters)">Hinglish</option><option>Spanish</option><option>Urdu</option><option>Bengali</option><option>Arabic</option><option>Portuguese</option></select></div>
+          <div><label>Render quality</label>
+            <select id="cQuality"><option value="full">Full HD 1080p</option><option value="draft">Fast draft 720p</option></select></div>
         </div>
+        <label>Duration</label>
+        <div class="chips" id="cDurChips">
+          <span class="chip" data-m="0.5">30 sec</span><span class="chip on" data-m="1">1 min</span><span class="chip" data-m="3">3 min</span>
+          <span class="chip" data-m="5">5 min</span><span class="chip" data-m="8">8 min</span><span class="chip" data-m="12">12 min</span>
+          <span class="chip" data-m="20">20 min</span><span class="chip" data-m="30">30 min</span><span class="chip" data-m="45">45 min</span><span class="chip" data-m="60">60 min</span>
+        </div>
+        <div class="row" style="margin-top:8px"><span class="muted small">Or exact minutes (up to 60):</span>
+          <input type="number" id="cMinutes" min="0.3" max="60" step="0.5" value="1" style="max-width:110px"></div>
+        <details>
+          <summary>Your own script, notes, persona (optional)</summary>
+          <label>Your own script. Leave empty and the AI writes it from the title.</label>
+          <textarea id="cScript" rows="7" placeholder="Only the spoken words."></textarea>
+          <label>Notes for the AI writer</label>
+          <textarea id="cNotes" rows="2" placeholder="e.g. countdown of 7 tips, funny tone, mention winter"></textarea>
+          <label>Persona Bible (avatar channels)</label>
+          <textarea id="cPersona" rows="3" placeholder="Name, age, backstory, voice, signature phrases, sign-off..."></textarea>
+        </details>
+        <div class="wnav"><span></span><button class="btn primary" data-go="2">Next: Format →</button></div>
+      </div>
 
-        <label>Voiceover</label>
+      <!-- STEP 2 -->
+      <div class="card wstep hidden" data-s="2">
+        <h3>Editing format</h3>
+        <label>Describe the style you want (optional, we pick the closest format)</label>
+        <input id="cStyleText" placeholder="e.g. grandma talking to camera · dark history documentary · stickman animation · deep ocean 8K">
+        <div id="cStyles" class="styles" style="margin-top:12px"></div>
+        <div class="grid3">
+          <div><label>Visuals (B-roll)</label>
+            <select id="cSource"><option value="">Best for this format</option><option value="stock_video_ai">Stock video first, then AI images</option><option value="mix">Mix: stock video + AI + photos</option><option value="stock_video">Stock videos</option><option value="stock_photo">Stock photos</option><option value="ai_image">AI images only</option><option value="archive">Historical photos, maps (Wikimedia)</option></select></div>
+          <div><label>Music</label><select id="cMusic"></select></div>
+          <div><label>Captions</label><select id="cCaptions"><option value="1">On (word by word)</option><option value="0">Off</option></select></div>
+        </div>
+        <label>Motion graphics the AI may use</label>
+        <div class="gfx" id="cGfx"></div>
+        <div class="row" style="margin-top:10px">
+          <label class="check"><input type="checkbox" id="cSfx" checked> Sound effects</label>
+          <label class="check"><input type="checkbox" id="cShowTitle" checked> Title tag at the start</label>
+        </div>
+        <div class="wnav"><button class="btn" data-go="1">← Back</button><button class="btn primary" data-go="3">Next: Voice →</button></div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="card wstep hidden" data-s="3">
+        <h3>Voiceover</h3>
         <div class="seg" id="cVoiceMode"><a data-v="tts" class="on">AI voice</a><a data-v="upload">Upload my own voiceover</a></div>
-        <div id="cTts" class="row">
-          <select id="cVoiceLang" style="max-width:150px"><option>en-US</option></select>
-          <select id="cVoice"><option value="en-US-AndrewMultilingualNeural">Loading voices…</option></select>
-          <select id="cRate" style="max-width:130px"><option value="-10">Slower</option><option value="0" selected>Normal speed</option><option value="8">Faster</option><option value="15">Fast</option></select>
-          <button class="btn" id="cPreview">▶ Listen</button>
+        <div id="cTts">
+          <div class="row">
+            <select id="vfProv" style="max-width:170px"><option value="">All voices</option><option value="free">Free voices</option><option value="elevenlabs">ElevenLabs premium</option></select>
+            <select id="vfLang" style="max-width:150px"></select>
+            <select id="vfGender" style="max-width:130px"><option value="">Any gender</option><option>Male</option><option>Female</option></select>
+            <select id="vfAge" style="max-width:170px"><option value="">Natural age</option></select>
+            <select id="cRate" style="max-width:130px"><option value="-10">Slower</option><option value="0" selected>Normal speed</option><option value="8">Faster</option><option value="15">Fast</option></select>
+          </div>
+          <p class="muted small" id="vNote"></p>
+          <div class="voices" id="voiceList"></div>
         </div>
         <div id="cUpload" class="hidden">
           <input type="file" id="cVoFile" accept="audio/*,video/mp4">
-          <p class="muted small">Also paste the same script below (in “More options”), so each scene can be matched to your voice.</p>
+          <p class="muted small">Also paste the same script in step 1 (“Your own script”) so scenes can be matched.</p>
         </div>
-
-        <div class="grid3">
-          <div><label>Visuals (B-roll)</label>
-            <select id="cSource"><option value="">Best for this style</option><option value="mix">Mix: stock video + AI images + photos</option><option value="stock_video">Stock videos</option><option value="stock_photo">Stock photos</option><option value="ai_image">AI images</option><option value="archive">Historical photos, maps, satellite (Wikimedia)</option></select></div>
-          <div><label>Music</label><select id="cMusic"></select></div>
-          <div><label>Captions</label>
-            <select id="cCaptions"><option value="1">On (word by word)</option><option value="0">Off</option></select></div>
-        </div>
-
         <div id="cAvatarBox" class="hidden">
-          <label>Avatar talking video (best: lip-synced clip from HeyGen, D-ID, Hedra… or your own recording)</label>
+          <label>Avatar talking video (lip-synced clip from HeyGen, D-ID, Hedra… or your phone)</label>
           <input type="file" id="cAvatarVideo" accept="video/*">
-          <p class="muted small">Its own voice becomes the voiceover. The studio cuts between the talking avatar (A-roll) and matching B-roll, and the lips always stay in sync. Paste the same script under “More options”.</p>
-          <label>…or just a host picture</label>
+          <p class="muted small">Its voice becomes the voiceover and the lips always stay in sync. Paste its script in step 1.</p>
+          <label>…or a host picture</label>
           <input type="file" id="cAvatar" accept="image/*">
-          <p class="muted small">Used for A-roll scenes with a handheld phone-camera feel, and for the thumbnail. For a real talking face from a picture, add a D-ID key in the Owner panel.</p>
         </div>
+        <div class="wnav"><button class="btn" data-go="2">← Back</button><button class="btn primary" data-go="4">Next: Thumbnail →</button></div>
+      </div>
 
-        <details>
-          <summary>More options: your own script, notes, persona</summary>
-          <label>Your own script (optional). Leave empty and AI writes it from the title.</label>
-          <textarea id="cScript" rows="7" placeholder="Paste the full voiceover script here. Only the spoken words."></textarea>
-          <label>Notes for the AI writer (optional)</label>
-          <textarea id="cNotes" rows="2" placeholder="e.g. countdown of 7 tips, funny tone, mention winter"></textarea>
-          <label>Persona Bible (optional, for avatar channels)</label>
-          <textarea id="cPersona" rows="3" placeholder="Name, age, backstory, voice, signature phrases, sign-off..."></textarea>
-          <label class="check"><input type="checkbox" id="cShowTitle" checked> Show the title tag at the start</label>
-          <label class="check"><input type="checkbox" id="cSfx" checked> Sound effects (whooshes, hits, risers, ambience)</label>
-          <label class="check"><input type="checkbox" id="cFast"> Fast draft (720p, quicker to render)</label>
-        </details>
+      <!-- STEP 4 -->
+      <div class="card wstep hidden" data-s="4">
+        <div class="row"><h3 style="flex:1;margin:0">Thumbnail reference</h3><button class="btn ghost small" data-go="5">Skip →</button></div>
+        <p class="muted small">Pick a reference. The studio designs 3 ORIGINAL thumbnails inspired by its mood, colours and layout (never a copy).</p>
+        <div class="two">
+          <div>
+            <div class="seg" id="tRefMode"><a data-v="out" class="on">Outliers on your topic</a><a data-v="url">Custom URL</a></div>
+            <div id="tOutBox"><div class="row"><input id="tRefTopic" placeholder="Topic to search"><button class="btn" id="tRefFind">Find</button></div>
+              <p class="muted small" id="tRefNote"></p><div class="refgrid" id="tRefGrid"></div></div>
+            <div id="tUrlBox" class="hidden"><div class="row"><input id="tRefUrl" placeholder="YouTube video link or image URL"><button class="btn" id="tRefLoad">Load</button></div><p class="err" id="tRefErr"></p></div>
+            <label>Thumbnail text (2 to 4 words that add to the title)</label>
+            <input id="cThumbText" maxlength="40" placeholder="e.g. 11,000 METERS DOWN">
+          </div>
+          <div><label>Preview</label><div class="refprev" id="tRefPrev"><span class="muted">No reference chosen. We will design from your title.</span></div></div>
+        </div>
+        <div class="wnav"><button class="btn" data-go="3">← Back</button><button class="btn primary" data-go="5">Next: Review →</button></div>
+      </div>
 
-        <button class="btn primary big" id="cGo">🎬 Generate video</button>
+      <!-- STEP 5 -->
+      <div class="card wstep hidden" data-s="5">
+        <h3>Review and confirm</h3>
+        <div id="cReview" class="review"></div>
+        <p class="muted small">Tip: test with 1 minute and Fast draft first. Long videos (30–60 min) take a while to render.</p>
+        <div class="wnav"><button class="btn" data-go="4">← Back</button><button class="btn primary big" id="cGo" style="width:auto;margin:0">🎬 Generate video</button></div>
         <p class="err" id="cErr"></p>
       </div>
     </section>
@@ -198,6 +245,10 @@
           <label>Pixabay API key</label><input id="s_pixabay_key">
           <label class="check"><input type="checkbox" id="s_use_pollinations"> Free AI images (Pollinations)</label>
           <label class="check"><input type="checkbox" id="s_use_openverse"> Free photos (Openverse)</label>
+          <h3>Premium voices</h3>
+          <label>ElevenLabs API key (elevenlabs.io → Profile → API keys)</label><input id="s_elevenlabs_key">
+          <h3>Thumbnail references</h3>
+          <label>YouTube Data API key (free: console.cloud.google.com → enable “YouTube Data API v3” → Credentials → API key)</label><input id="s_youtube_key">
           <h3>Avatar lip-sync</h3>
           <select id="s_lipsync_provider"><option value="none">Off (still host picture)</option><option value="d-id">D-ID (paid, needs key)</option></select>
           <label>D-ID API key</label><input id="s_did_key">

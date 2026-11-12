@@ -11,6 +11,7 @@ import numpy as np
 
 import avatar
 import graphics
+import stick2d
 import llm
 import media
 import render
@@ -78,7 +79,10 @@ def _run(pid, preview):
         narr = llm.split_scenes(llm.clean_script(p["script"]))
         if not narr:
             raise RuntimeError("The script is empty.")
-        p["scenes"] = llm.annotate(cfg, narr, p["title"], p["style"], log)
+        allowed = p.get("graphics")
+        if allowed is None:
+            allowed = style.get("graphics") or list(graphics.TYPES)
+        p["scenes"] = llm.annotate(cfg, narr, p["title"], p["style"], log, allowed)
     scenes = p["scenes"]
 
     # 3. voice
@@ -98,13 +102,17 @@ def _run(pid, preview):
         tts.write_wav(os.path.join(d, "narration.wav"), full)
     else:
         voice, rate = p.get("voice") or cfg["default_voice"], int(p.get("rate", 0))
+        age = tts.AGES.get(p.get("age") or "", {})
+        pitch = int(p.get("pitch", age.get("pitch", 0)))
+        if not voice.startswith("el:"):
+            rate += age.get("rate", 0)
 
         def speak(i):
             s = scenes[i]
-            key = hashlib.md5(f"{s['narration']}|{voice}|{rate}".encode()).hexdigest()
+            key = hashlib.md5(f"{s['narration']}|{voice}|{rate}|{pitch}".encode()).hexdigest()
             path = os.path.join(d, "audio", f"{key}.mp3")
             if s.get("tts_key") != key or not os.path.exists(path) or not s.get("words"):
-                s["words"] = tts.synth(s["narration"], voice, path, rate)
+                s["words"] = tts.synth(s["narration"], voice, path, rate, pitch)
                 s["tts_key"] = key
             return tts.decode(path)
 
@@ -141,12 +149,36 @@ def _run(pid, preview):
             gp = os.path.join(vdir, f"graphic_{key}.mp4")
             try:
                 if not os.path.exists(gp):
-                    graphics.render(g, gp, s["dur"] + extra, w, h, style.get("accent", "#FFD400"), s.get("text", "") if g["type"] != "map" else "")
+                    portrait = None
+                    if g["type"] == "card":
+                        try:
+                            portrait = os.path.join(d, media.fetch({**s, "image_prompt": f"portrait of {g['name']}, {g['role']}, realistic painting, head and shoulders"},
+                                                                    1, cfg, style, vdir, 640, 800, used, "ai_image", log, i + 700)[0]["path"])
+                        except Exception:
+                            portrait = None
+                    graphics.render(g, gp, s["dur"] + extra, w, h, style.get("accent", "#FFD400"),
+                                    s.get("text", "") if g["type"] in ("bars", "timeline", "compare", "icons") else "", portrait)
                 s["assets"] = [{"path": os.path.relpath(gp, d), "type": "video", "source": "motion graphic", "credit": ""}]
                 done[0] += 1
                 return
             except Exception as e:
                 log(f"  Graphic '{s['graphic']}' failed, using B-roll instead ({e})")
+        if style.get("renderer") == "stick2d" and not s.get("custom"):
+            key = hashlib.md5(f"{s['narration']}|{s.get('text')}|{s['dur']}|{s['start']}|{w}x{h}|{i}".encode()).hexdigest()[:12]
+            sp = os.path.join(vdir, f"stick_{key}.mp4")
+            if not os.path.exists(sp):
+                prop = None
+                if i % 2 == 0:  # every other scene gets an illustrated prop card, the rest a checklist
+                    try:
+                        prop = os.path.join(d, media.fetch(s, 1, cfg, style, vdir, 768, 768, used, "ai_image", log, i + 900)[0]["path"])
+                    except Exception as e:
+                        log(f"  prop image failed ({e})")
+                extra = OUTRO + 1 if i == len(scenes) - 1 else 1.0
+                stick2d.render(s, i, sp, s["dur"] + extra, w, h, style.get("accent", "#FFB347"), prop,
+                               os.path.join(d, "narration.wav"), s["start"])
+            s["assets"] = [{"path": os.path.relpath(sp, d), "type": "video", "source": "motion graphic", "credit": ""}]
+            done[0] += 1
+            return
         if s.get("kind") == "aroll" and has_avatar_video and not s.get("custom"):
             s["assets"] = [{"path": p["avatar_video"], "type": "video", "source": "avatar video", "credit": "", "ss": s["start"]}]
             if i in split_ids:  # host on one half, the thing they talk about on the other
@@ -254,8 +286,21 @@ def _run(pid, preview):
     step("Writing titles, description and tags", 93)
     if not p.get("meta"):
         p["meta"] = llm.metadata(cfg, p["title"], p["script"], p.get("language", "English"))
-    step("Making the thumbnail", 97)
+    step("Designing 3 thumbnails", 96)
     make_thumb(p)
+    try:
+        import thumbref
+        ref = None
+        if p.get("thumb_ref"):
+            ref = thumbref.fetch_reference(p["thumb_ref"], os.path.join(d, "thumb_ref.jpg"))
+        subject = os.path.join(d, p["avatar"]) if p.get("avatar") else None
+        files, _ = thumbref.make_variants(cfg, p["title"], scenes[0].get("image_prompt") or p["title"], ref, d,
+                                          p.get("thumb_text") or (p.get("meta") or {}).get("thumb_text"), subject,
+                                          style.get("image_suffix", ""))
+        p["thumbs"] = [os.path.basename(f) for f in files]
+        p["thumb"] = p["thumbs"][0]
+    except Exception as e:
+        log(f"  Extra thumbnails failed: {e}")
     p["credits"] = sorted({a["credit"] for s in scenes for a in s["assets"] if a.get("credit")})
     p.update(status="done", progress=100, step="Finished", duration=round(total, 1), video=name, version=int(time.time()),
              preview=bool(preview))

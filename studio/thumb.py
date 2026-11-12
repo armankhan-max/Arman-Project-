@@ -31,7 +31,9 @@ def _wrap(text, max_lines=3):
     return [" ".join(words[i:i + per]) for i in range(0, len(words), per)]
 
 
-def make(out, text, bg=None, subject=None, layout="left", accent="#FFD400", arrow=True, size=(1280, 720)):
+def make(out, text, bg=None, subject=None, layout="left", accent="#FFD400", arrow=True, size=(1280, 720), badge="", serif=False):
+    if layout == "bottom":
+        return make_cinematic(out, text, bg, accent, badge, serif, size)
     W, H = size
     if bg and os.path.exists(bg):
         img = ImageOps.fit(Image.open(bg).convert("RGB"), size, Image.LANCZOS)
@@ -100,5 +102,41 @@ def make(out, text, bg=None, subject=None, layout="left", accent="#FFD400", arro
             hd = 30 + wdt
             d.line([a0, ay, a1 - s * hd // 2, ay], fill=col, width=wdt)
             d.polygon([(a1 + s * (wdt // 4), ay), (a1 - s * hd, ay - hd * 0.8), (a1 - s * hd, ay + hd * 0.8)], fill=col)
+    img.convert("RGB").save(out, quality=93)
+    return out
+
+
+def make_cinematic(out, text, bg, accent="#FFD400", badge="", serif=False, size=(1280, 720)):
+    """Documentary look: full-bleed picture, dark fade at the bottom, small badge, huge title bottom-left."""
+    W, H = size
+    if bg and os.path.exists(bg):
+        img = ImageOps.fit(Image.open(bg).convert("RGB"), size, Image.LANCZOS)
+    else:
+        import media
+        tmp = out + ".bg.jpg"
+        img = Image.open(media.procedural(tmp, W, H, abs(hash(text)) % 9999, accent)).convert("RGB")
+        os.remove(tmp)
+    grad = Image.linear_gradient("L").resize(size).point(lambda v: int(max(0, v - 90) * 1.5))
+    img = Image.composite(Image.new("RGB", size, (0, 0, 0)), img, grad).convert("RGBA")
+    d = ImageDraw.Draw(img)
+    fname = "DejaVuSerif-Bold.ttf" if serif else None
+    lines = _wrap(text.upper(), 2)
+    fs = 260
+    while fs > 40:
+        f = ImageFont.truetype(os.path.join(store.FONTS, fname), fs) if fname else _font(fs, text)
+        if max(d.textlength(l, font=f) for l in lines) <= W * 0.9 and fs * 1.05 * len(lines) <= H * 0.42:
+            break
+        fs -= 6
+    lh = int(fs * 1.08)
+    y = H - int(H * 0.1) - lh * len(lines)
+    x = int(W * 0.045)
+    if badge:
+        fb = _font(int(H * 0.05))
+        bw = d.textlength(badge.upper(), font=fb)
+        by = y - int(H * 0.085)
+        d.rectangle([x, by, x + bw + 26, by + int(H * 0.068)], fill=_rgb(accent))
+        d.text((x + 13, by + int(H * 0.006)), badge.upper(), font=fb, fill=(10, 10, 10))
+    for i, l in enumerate(lines):
+        d.text((x, y + i * lh), l, font=f, fill=(255, 255, 255), stroke_width=max(2, fs // 40), stroke_fill=(0, 0, 0))
     img.convert("RGB").save(out, quality=93)
     return out

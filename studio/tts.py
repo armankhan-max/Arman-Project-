@@ -21,27 +21,118 @@ FALLBACK_VOICES = [
 _voices = None
 
 
-def voices():
+CHILD = {"en-US-AnaNeural", "en-GB-MaisieNeural"}
+# Age tone presets for the free voices (pitch / speed shift). ElevenLabs voices carry their real age.
+AGES = {
+    "child": {"label": "Child / teen", "pitch": 28, "rate": 6},
+    "young": {"label": "Young adult", "pitch": 8, "rate": 4},
+    "middle": {"label": "Middle aged", "pitch": 0, "rate": 0},
+    "old": {"label": "Old / elderly", "pitch": -14, "rate": -12},
+}
+EL_API = "https://api.elevenlabs.io/v1"
+_el_cache = {}
+
+
+def voices(cfg=None):
+    """Free neural voices + the owner's ElevenLabs voices (if a key is set), with category labels."""
     global _voices
     if _voices is None:
         try:
             import edge_tts
             raw = asyncio.run(edge_tts.list_voices(proxy=PROXY))
-            _voices = [{"id": v["ShortName"], "lang": v["Locale"], "gender": v["Gender"],
-                        "name": v["ShortName"].split("-", 2)[2].replace("Neural", "").replace("Multilingual", " (multilingual)")
-                        + f" · {v['Locale']} · {v['Gender']}"} for v in raw]
+            _voices = []
+            for v in raw:
+                tag = v.get("VoiceTag") or {}
+                nm = v["ShortName"].split("-", 2)[2].replace("Neural", "").replace("Multilingual", " (multilingual)")
+                _voices.append({"id": v["ShortName"], "lang": v["Locale"], "gender": v["Gender"], "provider": "free",
+                                "age": "child" if v["ShortName"] in CHILD else "adult",
+                                "style": ", ".join(tag.get("VoicePersonalities") or [])[:60],
+                                "name": nm})
         except Exception:
-            return FALLBACK_VOICES
-    return _voices
+            _voices = None
+            out = [dict(v, provider="free", age="adult", style="") for v in FALLBACK_VOICES]
+        else:
+            out = list(_voices)
+    else:
+        out = list(_voices)
+    key = (cfg or {}).get("elevenlabs_key")
+    if key:
+        out = elevenlabs_voices(key) + out
+    return out
 
 
-def synth(text, voice, out_mp3, rate=0):
+def elevenlabs_voices(key):
+    if key in _el_cache:
+        return _el_cache[key]
+    import requests
+    try:
+        r = requests.get(EL_API + "/voices", headers={"xi-api-key": key}, timeout=30)
+        r.raise_for_status()
+        out = []
+        for v in r.json().get("voices", []):
+            lb = v.get("labels") or {}
+            age = (lb.get("age") or "").lower()
+            age = "old" if "old" in age else "middle" if "middle" in age else "young" if "young" in age else "child" if ("child" in age or "teen" in age) else "adult"
+            out.append({"id": "el:" + v["voice_id"], "lang": "multi", "gender": (lb.get("gender") or "").title() or "Any",
+                        "provider": "elevenlabs", "age": age, "preview": v.get("preview_url") or "",
+                        "style": ", ".join(x for x in (lb.get("accent"), lb.get("description"), lb.get("use_case") or lb.get("use case")) if x)[:60],
+                        "name": v.get("name", "voice")})
+        _el_cache[key] = out
+        return out
+    except Exception:
+        return []
+
+
+def _el_synth(text, voice_id, out_mp3, key, speed=1.0):
+    import base64
+    import requests
+    body = {"text": text, "model_id": "eleven_multilingual_v2"}
+    if abs(speed - 1.0) > 0.01:
+        body["voice_settings"] = {"stability": 0.5, "similarity_boost": 0.75, "speed": max(0.7, min(1.2, speed))}
+    r = requests.post(f"{EL_API}/text-to-speech/{voice_id}/with-timestamps", headers={"xi-api-key": key},
+                      json=body, timeout=300)
+    if r.status_code != 200:
+        raise RuntimeError(f"ElevenLabs error {r.status_code}: {r.text[:200]}")
+    j = r.json()
+    with open(out_mp3, "wb") as f:
+        f.write(base64.b64decode(j["audio_base64"]))
+    al = j.get("alignment") or j.get("normalized_alignment") or {}
+    chars, st, en = al.get("characters", []), al.get("character_start_times_seconds", []), al.get("character_end_times_seconds", [])
+    words, cur, a, b = [], "", None, None
+    for ch, s0, e0 in zip(chars, st, en):
+        if ch.isspace():
+            if cur:
+                words.append([round(a, 3), round(b, 3), cur])
+            cur, a = "", None
+            continue
+        if a is None:
+            a = s0
+        cur += ch
+        b = e0
+    if cur:
+        words.append([round(a, 3), round(b, 3), cur])
+    return words
+
+
+def synth(text, voice, out_mp3, rate=0, pitch=0):
     """Speak text to out_mp3. Returns word timings [[start, end, word], ...] in seconds."""
+    if voice.startswith("el:"):
+        import store
+        key = store.get_settings().get("elevenlabs_key")
+        if not key:
+            raise RuntimeError("This is an ElevenLabs voice: add your ElevenLabs key in the Owner panel.")
+        last = None
+        for _ in range(3):
+            try:
+                return _el_synth(text, voice[3:], out_mp3, key, 1 + int(rate) / 100)
+            except Exception as e:
+                last = e
+        raise RuntimeError(f"Voice generation failed: {last}")
     import edge_tts
 
     async def run():
         words = []
-        c = edge_tts.Communicate(text, voice, rate=f"{int(rate):+d}%", boundary="WordBoundary", proxy=PROXY)
+        c = edge_tts.Communicate(text, voice, rate=f"{int(rate):+d}%", pitch=f"{int(pitch):+d}Hz", boundary="WordBoundary", proxy=PROXY)
         with open(out_mp3, "wb") as f:
             async for ch in c.stream():
                 if ch["type"] == "audio":

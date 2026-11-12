@@ -12,6 +12,13 @@ pinned: false
 
 Type a title, then pick a style and a voice. The studio writes the script, records the voiceover, finds B-roll, edits everything together and gives you a finished MP4 with a thumbnail and an upload pack.
 
+## What's in the Create wizard
+1. **Topic**: title ideas, language, duration (30 seconds to 60 minutes, or type exact minutes), shape, and draft or Full HD quality.
+2. **Format**: 13 editing formats, including Documentary, History, Mystery / true crime, Space & deep ocean, Sleep documentary, Top 10, News, Motivational, Animated explainer, 2D stickman animation, AI avatar, AI avatar with captions, and Kinetic facts. You can also describe the format you want in words. Pick the motion graphics you want (country / city / conflict maps, bar charts, comparisons, timelines, circle icons, character cards, big numbers).
+3. **Voice**: free neural voices, plus ElevenLabs premium voices if you add a key. Filter by language, gender and age (child, young, middle aged, old), and preview each voice.
+4. **Thumbnail reference**: outliers on your topic (views ÷ subscribers, needs a free YouTube API key) or a custom URL. The studio designs 3 original thumbnails inspired by the reference.
+5. **Review & confirm**: check every choice and edit it, then generate.
+
 ## Put it online (public link)
 **Option A: Render (one click, free).** Open
 https://render.com/deploy?repo=https://github.com/armankhan-max/Arman-Project-/tree/claude/ai-video-generator-vc03rk
