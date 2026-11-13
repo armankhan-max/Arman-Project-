@@ -123,6 +123,10 @@ function System() {
     <div className="card grid gap-2 text-sm">
       {h && Object.entries(h).map(([k, v]) => <div key={k} className="flex gap-2"><b className="w-24">{k}</b><span className={String(v) === "ok" ? "text-ok" : "text-warn"}>{String(v)}</span></div>)}
       {cat && <div className="flex gap-2"><b className="w-24">Blender</b><span>{cat.blender.available ? "available · templates: " + cat.blender.templates.join(", ") : "not installed"}</span></div>}
+      <div className="mt-2 flex items-center gap-2 border-t border-line pt-3">
+        <button className="btn btn-sm" onClick={async () => { try { const r = await api("/maintenance/cleanup", { body: {} }); toast(`Purged ${r.projects_purged} deleted projects, removed ${r.scratch_removed} scratch folders`); } catch (e: any) { toast(e.message, "bad"); } }}>Clean up storage</button>
+        <span className="text-xs text-dim">Removes projects deleted more than 7 days ago and old scratch files. Runs automatically every 6 hours with Celery beat.</span>
+      </div>
     </div>
   );
 }

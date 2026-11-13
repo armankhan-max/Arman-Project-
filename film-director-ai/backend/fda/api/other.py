@@ -534,6 +534,15 @@ def voices(provider: str = "edge_tts", lang: str = "en", db=Depends(get_db), u=D
     return [v for v in vs if not pre or provider != "edge_tts" or v["locale"].lower().startswith(pre) or "Multilingual" in v["id"]]
 
 
+@router.post("/maintenance/cleanup")
+def maintenance_cleanup(body: dict = Body(default={}), db=Depends(get_db), u=Depends(current_user)):
+    from fda.services.retention import cleanup
+    r = cleanup(int(body.get("deleted_days", 7)), int(body.get("scratch_hours", 24)))
+    audit(db, "owner", "storage_cleanup", "", **r)
+    db.commit()
+    return r
+
+
 @router.get("/dashboard")
 def dashboard(db=Depends(get_db), u=Depends(current_user)):
     projects = db.query(m.Project).filter_by(user_id=u.id, deleted_at=None).order_by(m.Project.updated_at.desc()).limit(8).all()

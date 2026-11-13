@@ -77,7 +77,8 @@ First sign-in: `owner@localhost` and the password from `FDA_OWNER_PASSWORD`, or 
 ```bash
 cd backend && createdb fda_test && psql fda_test -c "create extension vector"
 pytest -q                     # unit + API integration + offline end-to-end render/QC/chat-edit
-cd ../frontend && npm run build
+cd ../frontend && npm run build && npm test
+FDA_PASSWORD=... node tests/e2e/ui.e2e.cjs   # UI check against running servers (needs Playwright)
 ```
 
 ## Documentation

@@ -21,7 +21,7 @@ an allow-list (no Hugging Face, Wikipedia or NASA; Wikimedia Commons, Pollinatio
 
 ## Tested
 
-- `pytest`: 33 tests (unit, API integration, offline end-to-end: storyboard → audio → timeline → render → ffprobe
+- `pytest`: 34 tests (unit, API integration, offline end-to-end: storyboard → audio → timeline → render → ffprobe
   verify → QC → chat edit preserving unaffected scenes → rebuild keeping owner edits).
 - Live run through the API with only free providers: script → neural narration → 6-scene storyboard (stock video,
   Blender, motion graphics) → Wikimedia archive + Pollinations image substitutions recorded → Blender renders →
@@ -34,7 +34,9 @@ an allow-list (no Hugging Face, Wikipedia or NASA; Wikimedia Commons, Pollinatio
   re-rendered and re-checked as version 2, other scenes unchanged.
 - Crash recovery: API and workers were killed mid-Blender-render; on restart the scene was re-queued from the
   checkpoint and the run completed (QC then scheduled and finished one automatic repair round).
-- `next build` of the frontend: all pages compile and type-check; Vitest: 3 tests.
+- `next build` of the frontend: all pages compile and type-check; Vitest: 3 tests; Playwright UI check
+  (`tests/e2e/ui.e2e.cjs`): login, project creation, every workspace tab, chat, all pages, no horizontal scroll at phone width.
+- Storage retention: purge of projects deleted >7 days ago and stale scratch folders (test + Celery beat every 6 h + Settings button).
 
 ## Missing credentials (features built, waiting for keys)
 
@@ -54,12 +56,11 @@ estimates before paid providers will run.
 - Blender on CPU is slow (minutes per scene); EEVEE is preferred and Cycles is the fallback.
 - QC creative review is text-based (narration vs. plan, asset title); it does not look at pixels.
 - YouTube impressions/CTR are not available from the Analytics API and are shown as unavailable.
-- Project deletion is a soft delete; a storage cleanup job for deleted projects is not implemented yet.
+- Project deletion is a soft delete; files are purged 7 days later by the retention job.
 
 ## Next tasks
 
 1. Live-test Pexels/Pixabay, Anthropic, Runway, YouTube OAuth once keys are available.
 2. Vision-based creative QC (frame samples → multimodal model) when a vision-capable provider is configured.
-3. Storage retention job (purge soft-deleted projects, `.work/` scratch).
-4. Frontend component tests (Vitest) and Playwright e2e for the editor.
-5. Optional Remotion renderer adapter.
+3. More frontend component tests (editor interactions).
+4. Optional Remotion renderer adapter.
