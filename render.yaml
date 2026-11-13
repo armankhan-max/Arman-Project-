@@ -1,7 +1,8 @@
-# Render Blueprint: one-click deploy of Film Director AI
+# Render Blueprint: one-click deploy of Film Director AI (all free plans, no card).
+# Free plan limits: files in /tmp are lost on restart, services sleep when idle, free database expires after 30 days.
 databases:
   - name: fda-db
-    plan: basic-256mb
+    plan: free
     databaseName: fda
     postgresMajorVersion: "16"
 
@@ -9,14 +10,10 @@ services:
   - type: web
     name: fda-backend
     runtime: docker
-    plan: standard
+    plan: free
     dockerContext: ./film-director-ai
     dockerfilePath: ./film-director-ai/infra/docker/backend.Dockerfile
     healthCheckPath: /api/health
-    disk:
-      name: fda-storage
-      mountPath: /data/storage
-      sizeGB: 20
     envVars:
       - key: PORT
         value: "8000"
@@ -25,7 +22,7 @@ services:
       - key: FDA_USE_CELERY
         value: "false"
       - key: FDA_STORAGE_DIR
-        value: /data/storage
+        value: /tmp/storage
       - key: FDA_DATABASE_URL
         fromDatabase: { name: fda-db, property: connectionString }
       - key: FDA_SECRET_KEY
@@ -40,7 +37,7 @@ services:
   - type: web
     name: fda-web
     runtime: docker
-    plan: starter
+    plan: free
     dockerContext: ./film-director-ai
     dockerfilePath: ./film-director-ai/infra/docker/frontend.Dockerfile
     envVars:
