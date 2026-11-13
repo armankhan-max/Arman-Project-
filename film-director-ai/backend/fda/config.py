@@ -2,6 +2,7 @@
 import os
 from functools import lru_cache
 
+from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 BACKEND_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -16,6 +17,14 @@ class Settings(BaseSettings):
     redis_url: str = "redis://localhost:6379/0"
     # Celery: when false (or Redis is down) jobs run in a local thread pool inside the API process.
     use_celery: bool = True
+
+    @field_validator("database_url")
+    @classmethod
+    def _driver(cls, v):  # managed hosts hand out plain postgres:// URLs
+        for pre in ("postgres://", "postgresql://"):
+            if v.startswith(pre):
+                return "postgresql+psycopg://" + v[len(pre):]
+        return v
 
     # single-owner auth
     owner_email: str = "owner@localhost"

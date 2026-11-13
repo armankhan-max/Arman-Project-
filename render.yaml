@@ -1,0 +1,50 @@
+# Render Blueprint: one-click deploy of Film Director AI
+databases:
+  - name: fda-db
+    plan: basic-256mb
+    databaseName: fda
+    postgresMajorVersion: "16"
+
+services:
+  - type: web
+    name: fda-backend
+    runtime: docker
+    plan: standard
+    dockerContext: ./film-director-ai
+    dockerfilePath: ./film-director-ai/infra/docker/backend.Dockerfile
+    healthCheckPath: /api/health
+    disk:
+      name: fda-storage
+      mountPath: /data/storage
+      sizeGB: 20
+    envVars:
+      - key: PORT
+        value: "8000"
+      - key: FDA_ENV
+        value: production
+      - key: FDA_USE_CELERY
+        value: "false"
+      - key: FDA_STORAGE_DIR
+        value: /data/storage
+      - key: FDA_DATABASE_URL
+        fromDatabase: { name: fda-db, property: connectionString }
+      - key: FDA_SECRET_KEY
+        generateValue: true
+      - key: FDA_OWNER_PASSWORD
+        generateValue: true
+      - key: FDA_CORS_ORIGINS
+        value: https://fda-web.onrender.com
+      - key: FDA_PUBLIC_BASE_URL
+        value: https://fda-web.onrender.com
+
+  - type: web
+    name: fda-web
+    runtime: docker
+    plan: starter
+    dockerContext: ./film-director-ai
+    dockerfilePath: ./film-director-ai/infra/docker/frontend.Dockerfile
+    envVars:
+      - key: BACKEND_URL
+        value: http://fda-backend:8000
+      - key: PORT
+        value: "3000"

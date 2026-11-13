@@ -11,4 +11,4 @@ WORKDIR /app
 COPY --from=build /app ./
 ENV BACKEND_URL=http://backend:8000
 EXPOSE 3000
-CMD ["npm", "start"]
+CMD ["sh", "-c", "npx next start -p ${PORT:-3000}"]
