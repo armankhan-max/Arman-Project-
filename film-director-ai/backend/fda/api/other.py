@@ -504,6 +504,17 @@ def set_budget(body: dict = Body(...), db=Depends(get_db), u=Depends(current_use
     return budget.status(db)
 
 
+@router.put("/budget/override")
+def budget_override(body: dict = Body(...), db=Depends(get_db), u=Depends(current_user)):
+    from fda.auth.security import verify_password
+    if not verify_password(str(body.get("password", "")), u.password_hash):
+        raise HTTPException(403, "Wrong owner password")
+    budget.set_override(db, bool(body.get("on")))
+    audit(db, "owner", "budget_override", "", on=bool(body.get("on")))
+    db.commit()
+    return budget.status(db)
+
+
 @router.get("/usage")
 def usage(days: int = 30, db=Depends(get_db), u=Depends(current_user)):
     since = datetime.now(timezone.utc) - timedelta(days=days)

@@ -52,7 +52,8 @@ celery -A fda.workers.celery_app worker -Q render,blender -c 1                  
 cd ../frontend && npm install && npm run dev   # http://localhost:3000
 ```
 
-With Docker: `cp .env.example .env && docker compose up --build`, then open http://localhost:3000.
+With Docker: `cp .env.example .env && docker compose up --build`, then open http://localhost:3000 (website and API from one container).
+On Render: use the `render.yaml` blueprint at the repo root (one service, files stored in the database).
 
 First sign-in: `owner@localhost` and the password from `FDA_OWNER_PASSWORD`, or from
 `storage/OWNER_CREDENTIALS.txt` if you left it empty.
@@ -78,7 +79,7 @@ First sign-in: `owner@localhost` and the password from `FDA_OWNER_PASSWORD`, or 
 cd backend && createdb fda_test && psql fda_test -c "create extension vector"
 pytest -q                     # unit + API integration + offline end-to-end render/QC/chat-edit
 cd ../frontend && npm run build && npm test
-FDA_PASSWORD=... node tests/e2e/ui.e2e.cjs   # UI check against running servers (needs Playwright)
+FDA_PASSWORD=... node tests/e2e/ui.e2e.cjs   # UI check against the running API on :8000 (needs Playwright)
 ```
 
 ## Documentation

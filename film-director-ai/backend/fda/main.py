@@ -99,3 +99,10 @@ def check_free_providers():
                     registry.check(db, name)
         except Exception as e:  # never block start-up
             log.warning("provider check %s failed: %s", name, e)
+
+
+# Serve the built website (static export) from the same origin when it is present (production container).
+_web = os.environ.get("FDA_WEB_DIR") or os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "web")
+if os.path.isdir(_web):
+    from fastapi.staticfiles import StaticFiles
+    app.mount("/", StaticFiles(directory=_web, html=True), name="web")

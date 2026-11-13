@@ -68,7 +68,7 @@ export default function Chat({ projectId, onAction }: { projectId?: string; onAc
               {m.content}
               {(m.data?.actions || []).map((a: any, i: number) => (
                 <div key={i} className="mt-2 rounded-lg border border-line bg-bg p-2 text-xs">
-                  {a.type === "production_started" && <><Link className="font-semibold text-acc" href={`/projects/${a.project_id}`}>Open project →</Link><div className="mt-2"><RunMonitor runId={a.run_id} compact /></div></>}
+                  {a.type === "production_started" && <><Link className="font-semibold text-acc" href={`/project/?id=${a.project_id}`}>Open project →</Link><div className="mt-2"><RunMonitor runId={a.run_id} compact /></div></>}
                   {(a.type === "edit_started" || a.type === "render_started") && <RunMonitor runId={a.run_id} compact onEnd={onAction} />}
                   {a.type === "remembered" && <span className="text-ok">Saved to memory: {a.content}</span>}
                   {a.type === "not_remembered" && <span className="text-warn">Not saved: {a.reason}</span>}

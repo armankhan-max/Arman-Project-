@@ -17,7 +17,7 @@ export default function Projects() {
       <div className="flex flex-col gap-1">
         {data?.length === 0 && <Empty>No projects yet.</Empty>}
         {data?.map((p) => (
-          <Link key={p.id} href={`/projects/${p.id}`} className="grid grid-cols-[1fr_auto] items-center gap-3 rounded-xl border border-transparent px-3 py-3 hover:border-line hover:bg-panel">
+          <Link key={p.id} href={`/project/?id=${p.id}`} className="grid grid-cols-[1fr_auto] items-center gap-3 rounded-xl border border-transparent px-3 py-3 hover:border-line hover:bg-panel">
             <div>
               <div className="font-semibold">{p.title}</div>
               <div className="text-xs text-dim">{cat?.modes?.[p.mode]?.name || p.mode} · {p.language} · {p.scenes} scenes · version {p.current_version} · updated {ago(p.updated_at)}</div>
@@ -44,7 +44,7 @@ function NewProject({ cat }: { cat: any }) {
     for (const r of refs) { const fd = new FormData(); fd.append("file", r); fd.append("purpose", r.type.startsWith("video") ? "footage" : "reference"); await api(`/projects/${p.id}/uploads`, { form: fd }); }
     if (start) await api(`/projects/${p.id}/produce`, { method: "POST" });
     toast(start ? "Production started" : "Project created");
-    location.href = `/projects/${p.id}`;
+    location.href = `/project/?id=${p.id}`;
   });
   return (
     <div className="card grid gap-4 md:grid-cols-2">

@@ -34,7 +34,7 @@ class Settings(BaseSettings):
     cors_origins: str = "http://localhost:3000"
 
     # storage
-    storage_backend: str = "local"       # local | s3
+    storage_backend: str = "local"       # local | db (files in PostgreSQL, survive restarts) | s3
     storage_dir: str = os.path.join(REPO_DIR, "storage")
     s3_bucket: str = ""
     s3_endpoint_url: str = ""

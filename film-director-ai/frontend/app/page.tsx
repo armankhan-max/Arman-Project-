@@ -28,7 +28,7 @@ export default function Dashboard() {
         <h2 className="h2 mb-2">Active production</h2>
         {data.active.length === 0 ? <Empty>No jobs running.</Empty> : data.active.map((r: any) => (
           <div key={r.id} className="card mb-3">
-            <div className="mb-2 flex items-center justify-between"><Link href={`/projects/${r.project_id}`} className="font-semibold hover:text-acc">{r.project_title}</Link><span className="text-xs text-dim">{r.kind} · started {ago(r.started_at)}</span></div>
+            <div className="mb-2 flex items-center justify-between"><Link href={`/project/?id=${r.project_id}`} className="font-semibold hover:text-acc">{r.project_title}</Link><span className="text-xs text-dim">{r.kind} · started {ago(r.started_at)}</span></div>
             <RunMonitor runId={r.id} compact onEnd={reload} />
           </div>
         ))}
@@ -39,7 +39,7 @@ export default function Dashboard() {
           <div className="flex flex-col gap-1">
             {data.projects.length === 0 && <Empty>No projects yet. Ask the Director to make your first video.</Empty>}
             {data.projects.map((p: any) => (
-              <Link key={p.id} href={`/projects/${p.id}`} className="flex items-center justify-between rounded-lg px-3 py-2 hover:bg-panel">
+              <Link key={p.id} href={`/project/?id=${p.id}`} className="flex items-center justify-between rounded-lg px-3 py-2 hover:bg-panel">
                 <div><div className="font-medium">{p.title}</div><div className="text-xs text-dim">{p.mode} · v{p.current_version} · {ago(p.updated_at)}</div></div><Status s={p.status} />
               </Link>
             ))}
@@ -50,7 +50,7 @@ export default function Dashboard() {
           <div className="flex flex-col gap-1">
             {data.renders.length === 0 && <Empty>No renders yet.</Empty>}
             {data.renders.map((r: any) => (
-              <Link key={r.id} href={`/projects/${r.project_id}?tab=renders`} className="flex items-center justify-between rounded-lg px-3 py-2 hover:bg-panel">
+              <Link key={r.id} href={`/project/?id=${r.project_id}&tab=renders`} className="flex items-center justify-between rounded-lg px-3 py-2 hover:bg-panel">
                 <div><div className="font-medium">{r.project_title}</div><div className="text-xs text-dim">{r.kind} · v{r.project_version} · {r.settings?.width}×{r.settings?.height} · {ago(r.created_at)}</div></div>
                 <Status s={r.verified ? "passed" : r.status} />
               </Link>

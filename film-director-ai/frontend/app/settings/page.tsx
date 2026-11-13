@@ -69,6 +69,7 @@ function Budget() {
   const { data, reload } = useApi<any>("/budget");
   const [d, setD] = useState("");
   const [mo, setMo] = useState("");
+  const [pw, setPw] = useState("");
   const { busy, run } = useBusy();
   if (!data) return null;
   const set = (scope: string, v: string) => run(scope, async () => { await api("/budget", { method: "PUT", body: { scope, limit_usd: v === "" ? null : +v } }); toast("Budget updated"); reload(); });
@@ -79,7 +80,14 @@ function Budget() {
         <div className="flex gap-2"><input className="input" type="number" min={0} step="0.5" placeholder="USD" value={d} onChange={(e) => setD(e.target.value)} /><button className="btn" disabled={!!busy} onClick={() => set("daily", d)}>Set</button><button className="btn btn-ghost" onClick={() => set("daily", "")}>Remove</button></div></div>
       <div className="card flex flex-col gap-2 text-sm"><b>Monthly limit</b><div className="text-dim">Spent this month {usd(data.monthly.spent)} of {data.monthly.limit == null ? "no limit" : usd(data.monthly.limit)}</div>
         <div className="flex gap-2"><input className="input" type="number" min={0} step="1" placeholder="USD" value={mo} onChange={(e) => setMo(e.target.value)} /><button className="btn" disabled={!!busy} onClick={() => set("monthly", mo)}>Set</button><button className="btn btn-ghost" onClick={() => set("monthly", "")}>Remove</button></div></div>
-      <div className="card text-sm text-dim md:col-span-2">The Director can never raise its own limits. Per-project and per-provider limits can be set through the API (<code>PUT /api/v1/budget</code> with scope project/provider). Retries per task and concurrency are capped by <code>FDA_MAX_RETRIES</code> and <code>FDA_MAX_CONCURRENT_JOBS</code>.</div>
+      <div className="card flex flex-col gap-2 text-sm md:col-span-2">
+        <b>Owner unlimited mode</b>
+        <p className="text-dim">Turn off all spending blocks so every provider you have connected can run without limits or cost estimates. Usage is still recorded. Your own provider accounts are still billed by their vendors. Needs your password.</p>
+        <div className="flex items-center gap-2"><span className={`tag ${data.owner_override ? "text-ok" : ""}`}>{data.owner_override ? "unlimited ON" : "limits apply"}</span>
+          <input className="input max-w-xs" type="password" placeholder="Owner password" value={pw} onChange={(e) => setPw(e.target.value)} />
+          <button className="btn" disabled={!!busy || !pw} onClick={() => run("o", async () => { await api("/budget/override", { method: "PUT", body: { on: !data.owner_override, password: pw } }); setPw(""); toast(data.owner_override ? "Limits are back on" : "Unlimited mode on"); reload(); })}>{data.owner_override ? "Turn off" : "Turn on"}</button></div>
+      </div>
+      <div className="card text-sm text-dim md:col-span-2">The Director can never change limits or this mode by itself. Per-project and per-provider limits can be set through the API (<code>PUT /api/v1/budget</code> with scope project/provider). Retries per task and concurrency are capped by <code>FDA_MAX_RETRIES</code> and <code>FDA_MAX_CONCURRENT_JOBS</code>.</div>
     </div>
   );
 }

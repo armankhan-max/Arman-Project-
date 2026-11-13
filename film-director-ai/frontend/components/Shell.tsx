@@ -17,7 +17,7 @@ const NAV = [
 export default function Shell({ children }: { children: React.ReactNode }) {
   const path = usePathname() || "/";
   if (path.startsWith("/login")) return <>{children}<Toasts /></>;
-  const wide = path.startsWith("/projects/");
+  const wide = path.startsWith("/project/");
   return (
     <div className="flex min-h-screen">
       <aside className="sticky top-0 hidden h-screen w-56 shrink-0 flex-col gap-1 border-r border-line bg-[#0e1014] p-3 md:flex">
@@ -25,7 +25,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
           <span className="grid h-7 w-7 place-items-center rounded-md bg-acc text-xs text-black">▶</span> Film Director AI
         </Link>
         {NAV.map(([href, label]) => {
-          const on = href === "/" ? path === "/" : path.startsWith(href);
+          const on = href === "/" ? path === "/" : (path.startsWith(href) && !(href === "/projects" && path.startsWith("/project/")));
           return (
             <Link key={href} href={href} className={`rounded-lg px-3 py-2 text-sm font-medium ${on ? "bg-panel2 text-ink" : "text-dim hover:bg-panel hover:text-ink"}`}>
               {label}

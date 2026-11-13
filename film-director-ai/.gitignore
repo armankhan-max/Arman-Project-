@@ -7,3 +7,4 @@ frontend/.next/
 frontend/next-env.d.ts
 frontend/tsconfig.tsbuildinfo
 .pytest_cache/
+frontend/out/

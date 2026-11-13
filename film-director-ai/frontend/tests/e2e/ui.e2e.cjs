@@ -1,7 +1,7 @@
 // UI end-to-end check against running servers (frontend :3000, backend :8000).
 // Usage: FDA_PASSWORD=... node tests/e2e/ui.e2e.cjs   (needs Playwright with Chromium)
 const { chromium } = require("playwright");
-const BASE = process.env.FDA_WEB || "http://localhost:3000";
+const BASE = process.env.FDA_WEB || "http://localhost:8000";
 (async () => {
   const b = await chromium.launch();
   const p = await b.newPage({ viewport: { width: 1280, height: 860 } });
@@ -13,10 +13,10 @@ const BASE = process.env.FDA_WEB || "http://localhost:3000";
   await p.click("button");
   await p.waitForURL(BASE + "/");
   if (!(await p.textContent("h1")).includes("Dashboard")) fail("dashboard");
-  await p.goto(BASE + "/projects?new=1");
+  await p.goto(BASE + "/projects/?new=1");
   await p.fill("input.text-base", "UI test project");
   await p.click("text=Create only");
-  await p.waitForURL(/\/projects\/[0-9a-f-]+/);
+  await p.waitForURL(/\/project\/\?id=[0-9a-f-]+/);
   for (const tab of ["Script & narration", "Storyboard", "Editor", "Assets", "Renders & QC", "Research", "Versions", "Jobs", "Project settings", "Director"]) {
     await p.click(`button:has-text("${tab}")`);
     await p.waitForTimeout(400);

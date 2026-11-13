@@ -8,7 +8,7 @@
 | General worker | `celery -A fda.workers.celery_app worker -Q default,research,transcription,visual,audio,qc -c 4` | Network/IO-bound work. |
 | Render worker | `celery -A fda.workers.celery_app worker -Q render,blender -c 1` | CPU-bound; one job at a time, each render already uses `FDA_RENDER_WORKERS` processes. Put it on a separate machine for long videos. |
 | Beat | `celery -A fda.workers.celery_app beat` | Re-queues tasks whose worker died. |
-| Frontend | `npm run build && npm start` | Set `BACKEND_URL` to the API address. |
+| Website | built into the backend image (`npm run build` → `frontend/out`, served by the API) | `npm run dev` for development. |
 
 If Redis or Celery workers are not available, the API runs jobs in an in-process thread pool (fine for one owner on
 one machine). Jobs never depend on the browser staying open.

@@ -1,9 +1,21 @@
+# One image: builds the website, then serves it and the API from the same FastAPI process.
+FROM node:22-slim AS web
+WORKDIR /w
+COPY frontend/package.json frontend/package-lock.json ./
+RUN npm ci
+COPY frontend/ .
+RUN npm run build
+
 FROM python:3.13-slim
-RUN apt-get update && apt-get install -y --no-install-recommends ffmpeg libegl1 libgl1 libfontconfig1 blender && rm -rf /var/lib/apt/lists/*
+ARG INSTALL_BLENDER=false
+RUN apt-get update && apt-get install -y --no-install-recommends ffmpeg libegl1 libgl1 libfontconfig1 libglib2.0-0 \
+    && if [ "$INSTALL_BLENDER" = "true" ]; then apt-get install -y --no-install-recommends blender; fi \
+    && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 COPY backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY backend/ .
+COPY --from=web /w/out /app/web
 ENV PYTHONUNBUFFERED=1
 EXPOSE 8000
 CMD ["sh", "-c", "alembic upgrade head && uvicorn fda.main:app --host 0.0.0.0 --port ${PORT:-8000}"]

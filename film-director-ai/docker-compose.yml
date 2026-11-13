@@ -1,4 +1,4 @@
-# Development stack: docker compose up --build   →  http://localhost:3000
+# docker compose up --build   →  http://localhost:3000 (website + API from one container)
 services:
   db:
     image: pgvector/pgvector:pg16
@@ -16,7 +16,7 @@ services:
       FDA_STORAGE_DIR: /data/storage
       FDA_CORS_ORIGINS: http://localhost:3000
     volumes: [storage:/data/storage]
-    ports: ["8000:8000"]
+    ports: ["3000:8000"]
     depends_on: { db: { condition: service_healthy }, redis: { condition: service_started } }
   worker:   # research, transcription, visuals, audio, QC
     build: { context: ., dockerfile: infra/docker/backend.Dockerfile }
@@ -37,9 +37,5 @@ services:
     env_file: .env
     environment: { FDA_DATABASE_URL: "postgresql+psycopg://postgres:postgres@db:5432/fda", FDA_REDIS_URL: "redis://redis:6379/0" }
     command: celery -A fda.workers.celery_app beat --loglevel=info
-    depends_on: [backend]
-  frontend:
-    build: { context: ., dockerfile: infra/docker/frontend.Dockerfile }
-    ports: ["3000:3000"]
     depends_on: [backend]
 volumes: { pgdata: {}, storage: {} }

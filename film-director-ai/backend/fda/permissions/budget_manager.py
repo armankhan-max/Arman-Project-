@@ -22,7 +22,7 @@ def _spent(db, since=None, project_id=None, provider=None):
 
 
 def limits(db):
-    return {(b.scope, b.scope_ref): float(b.limit_usd) for b in db.query(m.Budget).filter_by(active=True).all()}
+    return {(b.scope, b.scope_ref): float(b.limit_usd) for b in db.query(m.Budget).filter_by(active=True).all() if b.scope != "override"}
 
 
 def status(db, project_id=None):
@@ -34,7 +34,8 @@ def status(db, project_id=None):
     if project_id:
         out["project"] = {"limit": L.get(("project", str(project_id))), "spent": _spent(db, None, project_id)}
     out["providers"] = {ref: {"limit": v, "spent": _spent(db, month, None, ref)} for (sc, ref), v in L.items() if sc == "provider"}
-    out["configured"] = bool(L.get(("daily", "")) is not None or L.get(("monthly", "")) is not None)
+    out["owner_override"] = owner_override(db)
+    out["configured"] = out["owner_override"] or bool(L.get(("daily", "")) is not None or L.get(("monthly", "")) is not None)
     return out
 
 
@@ -51,11 +52,27 @@ def set_limit(db, scope, ref, usd):
     return b
 
 
+def owner_override(db):
+    """Owner chose unlimited mode (confirmed with their password). Spending is still recorded, just not blocked."""
+    b = db.query(m.Budget).filter_by(scope="override", scope_ref="owner", active=True).one_or_none()
+    return b is not None
+
+
+def set_override(db, on):
+    b = db.query(m.Budget).filter_by(scope="override", scope_ref="owner").one_or_none()
+    if on and b is None:
+        db.add(m.Budget(scope="override", scope_ref="owner", limit_usd=0))
+    elif b is not None:
+        b.active = bool(on)
+
+
 def reserve(db, provider, operation, units, unit, project_id=None):
     """Free providers are recorded at $0. Paid providers need (a) an owner cost estimate and (b) a daily or monthly limit,
     and the reservation must fit every applicable limit."""
     est = provider.estimate(units) if provider.paid else 0.0
-    if provider.paid:
+    if provider.paid and owner_override(db):
+        est = provider.estimate(units) or 0.0
+    elif provider.paid:
         L = limits(db)
         if L.get(("daily", "")) is None and L.get(("monthly", "")) is None:
             raise BudgetError("Paid provider '%s' needs a spending limit. Set a daily or monthly budget in Settings → Budget." % provider.label)

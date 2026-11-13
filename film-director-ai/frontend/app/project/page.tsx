@@ -1,6 +1,6 @@
 "use client";
-import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useState } from "react";
 import { ago, api, fmtShort } from "@/lib/api";
 import { useApi } from "@/lib/useApi";
 import Chat from "@/components/Chat";
@@ -11,13 +11,18 @@ import { Empty, ErrorBox, Status, Tabs, toast, useBusy } from "@/components/ui";
 const TABS: [string, string][] = [["director", "Director"], ["script", "Script & narration"], ["storyboard", "Storyboard"], ["editor", "Editor"], ["assets", "Assets"],
   ["renders", "Renders & QC"], ["research", "Research"], ["versions", "Versions"], ["jobs", "Jobs"], ["settings", "Project settings"]];
 
-export default function Workspace() {
-  const { id } = useParams<{ id: string }>();
-  const { data: p, error, reload } = useApi<any>(`/projects/${id}`);
+export default function Page() {
+  return <Suspense fallback={<div className="p-6 text-dim">Loading…</div>}><Workspace /></Suspense>;
+}
+
+function Workspace() {
+  const id = useSearchParams().get("id") || "";
+  const { data: p, error, reload } = useApi<any>(id ? `/projects/${id}` : null);
   const { data: cat } = useApi<any>("/catalog");
   const [tab, setTab] = useState("director");
   const { busy, run } = useBusy();
   useEffect(() => { const t = new URLSearchParams(location.search).get("tab"); if (t) setTab(t); }, []);
+  if (!id) return <div className="p-6 text-dim">No project selected.</div>;
   if (error) return <div className="p-6"><ErrorBox e={error} /></div>;
   if (!p) return <div className="p-6 text-dim">Loading…</div>;
   const active = p.runs.find((r: any) => ["pending", "running"].includes(r.status));

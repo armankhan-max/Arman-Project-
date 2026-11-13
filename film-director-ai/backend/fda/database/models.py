@@ -566,3 +566,12 @@ class AuditLog(Base):
     detail: Mapped[dict] = mapped_column(JSONB, default=dict)
     ip: Mapped[str | None] = mapped_column(String(64))
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now, nullable=False, index=True)
+
+
+class StoredFile(Base):
+    """File bytes kept in PostgreSQL (storage backend 'db'), so uploads and renders survive container restarts."""
+    __tablename__ = "stored_files"
+    key: Mapped[str] = mapped_column(Text, primary_key=True)
+    data: Mapped[bytes] = mapped_column(LargeBinary, nullable=False)
+    size_bytes: Mapped[int] = mapped_column(BigInteger, default=0)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now, server_default=func.now(), nullable=False)
