@@ -71,16 +71,16 @@ def clean_params(template, params):
 
 
 def render(db, project_id, template, params, duration, width=1280, height=720, fps=24, samples=None, seed=1, timeout=3000, engine=None, progress=None):
-    engine = engine or os.environ.get("FDA_BLENDER_ENGINE", "EEVEE")
+    engine = engine or (os.environ.get("FDA_BLENDER_ENGINE") or "EEVEE").upper()
     s = get_settings()
     if not available():
         raise ProviderError("Blender is not installed or not on PATH (FDA_BLENDER_BIN)", retryable=False, code="not_configured")
     work = scratch_dir(project_id, "blender", "%s_%d" % (template, seed))
     P = dict(clean_params(template, params), engine=engine, template=template, duration=max(1.0, min(30.0, float(duration))), width=int(width), height=int(height), fps=int(fps),
-             samples=int(samples or (32 if engine == "EEVEE" else 28)), seed=int(seed), out=os.path.join(work, "render.mp4"), blend=os.path.join(work, "scene.blend"))
+             samples=int(samples or int(os.environ.get("FDA_BLENDER_SAMPLES") or (8 if engine == "EEVEE" else 12))), seed=int(seed), out=os.path.join(work, "render.mp4"), blend=os.path.join(work, "scene.blend"))
     pj = os.path.join(work, "params.json")
     json.dump(P, open(pj, "w"))
-    scale = float(os.environ.get("FDA_BLENDER_SCALE", "0.75"))
+    scale = max(0.25, min(1.0, float(os.environ.get("FDA_BLENDER_SCALE") or 0.75)))
     P["width"], P["height"] = int(width * scale) // 2 * 2, int(height * scale) // 2 * 2
     json.dump(P, open(pj, "w"))
     nframes = max(2, int(round(P["fps"] * P["duration"])))

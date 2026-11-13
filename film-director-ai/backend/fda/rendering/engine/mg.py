@@ -179,7 +179,8 @@ def g_lower_third(c, sp, t, dur, T, VW, VH, v):
 def g_stat(c, sp, t, dur, T, VW, VH, v):
     val = num(sp.get("value"))
     p = ease_out(ramp(t, 0.2, min(1.8, dur * 0.55)), 3)
-    s = S(sp.get("prefix")) + fmt_num(val * p if val else 0) + S(sp.get("suffix"))
+    suf = S(sp.get("suffix"))
+    s = S(sp.get("prefix")) + fmt_num(val * p if val else 0) + ((" " + suf) if suf[:1].isalpha() else suf)
     if not val:
         s = S(sp.get("value"), "?")
     size = fit_size(s, T["display"], VW * 0.8, VH * 0.3, 60)

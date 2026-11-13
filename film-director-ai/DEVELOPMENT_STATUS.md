@@ -26,7 +26,15 @@ an allow-list (no Hugging Face, Wikipedia or NASA; Wikimedia Commons, Pollinatio
 - Live run through the API with only free providers: script → neural narration → 6-scene storyboard (stock video,
   Blender, motion graphics) → Wikimedia archive + Pollinations image substitutions recorded → Blender renders →
   score/SFX/mix → timeline → render → QC.
-- `next build` of the frontend: all pages compile and type-check.
+- Acceptance test through the API with Celery workers (uploaded narration + script, documentary style):
+  analyze → research (no sources reachable → findings marked unverified) → narration analysed, original preserved,
+  script aligned to detected speech (Whisper model unavailable here) → 7-scene storyboard → visuals → score/SFX/mix →
+  timeline → 1280×720@30 render verified → QC passed → project version 1. Chat edit “Scene 2 ko more realistic bana
+  aur background music thoda lower kar” → only scene 2 regenerated (now Wikimedia stock video), music 0.5 → 0.4,
+  re-rendered and re-checked as version 2, other scenes unchanged.
+- Crash recovery: API and workers were killed mid-Blender-render; on restart the scene was re-queued from the
+  checkpoint and the run completed (QC then scheduled and finished one automatic repair round).
+- `next build` of the frontend: all pages compile and type-check; Vitest: 3 tests.
 
 ## Missing credentials (features built, waiting for keys)
 

@@ -115,6 +115,24 @@ def qc_run(ctx):
             gap = it.start_s - (prev.start_s + prev.duration_s)
             if abs(gap) > 0.05:
                 issues.append(issue("timeline_gap", "major", "%s of %.2fs at %.1fs" % ("Gap" if gap > 0 else "Overlap", abs(gap), it.start_s), None, "rebuild timeline", True, "editing"))
+    ps = db.query(m.ProjectSettings).filter_by(project_id=p.id).one()
+    low = []
+    for it in items:
+        a = db.get(m.Asset, it.asset_id) if it.asset_id else None
+        if a and a.kind in ("image", "video"):
+            w, h = a.width or 0, a.height or 0
+            if not w and a.kind == "image":
+                try:
+                    from PIL import Image
+                    with Image.open(assets.local(a)) as im:
+                        w, h = im.size
+                except Exception:
+                    pass
+            if w and h and max(ps.width / w, ps.height / h) > 1.4:
+                low.append("%s (%dx%d)" % (next((s.idx for s in scs if s.id == it.scene_id), "?"), w, h))
+    if low:
+        issues.append(issue("upscaled_sources", "info", "Upscaled to %dx%d from lower-resolution sources in scenes %s" % (ps.width, ps.height, ", ".join(low[:12])),
+                            repair="replace with higher-resolution footage if quality matters", kind="technical"))
     order = [s.idx for s in sorted(scs, key=lambda s: s.start_s)]
     if order != sorted(order):
         issues.append(issue("scene_order", "major", "Scene order does not follow narration time", repair="rebuild timeline", auto=True, kind="editing"))

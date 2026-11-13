@@ -100,7 +100,7 @@ def plan_batch(project_id, title, mode, lang, allowed, prefer, continuity, batch
         prompt = """VIDEO: %s
 ALLOWED visual_type values: %s (preference for this mode, best first: %s)
 Use ai_video only for scenes that truly need motion that no stock footage could show. Use archive only for real historical people, places and events.
-Use motion_graphic when a number, date, place, comparison, list or quote is the point. Use blender for scientific/3D explanations: %s
+Use motion_graphic when a number, date, place, comparison, list or quote is the point, but for no more than about one scene in four. Use blender for scientific/3D explanations: %s
 %s
 OWNER'S SAVED PREFERENCES (follow them unless the narration needs otherwise):
 %s
@@ -155,6 +155,19 @@ def run(ctx):
         prev += [plans[s["n"]].visual_type for s in b if s["n"] in plans]
         ctx.progress(0.1 + 0.8 * (bi + 1) / len(batches), "Planned %d/%d scenes" % (min(len(segs), (bi + 1) * B), len(segs)))
     rnd = random.Random(str(p.id))
+    # keep graphics from crowding out pictures: at most ~30% motion graphics unless the mode is graphics-led
+    if p.mode not in ("motion_graphics", "educational"):
+        mgs = [n for n, pl in sorted(plans.items()) if pl.visual_type == "motion_graphic"]
+        cap = max(1, int(len(segs) * 0.3))
+        if len(mgs) > cap:
+            alt = next((t for t in prefer if t in allowed and t not in ("motion_graphic", "avatar", "blender")), "ai_image")
+            keep = set(sorted(mgs, key=lambda n: -sum(ch.isdigit() for ch in segs[n - 1]["text"]))[:cap])
+            for n in mgs:
+                if n not in keep:
+                    pl = plans[n]
+                    pl.visual_type, pl.motion_graphic = alt, None
+                    pl.search_query = pl.search_query or " ".join(keywords(segs[n - 1]["text"], 3))
+            ctx.log("Converted %d of %d motion-graphic scenes to %s to keep the edit picture-led" % (len(mgs) - cap, len(mgs), alt))
     sb = m.Storyboard(project_id=p.id, version=(old.version + 1) if old else 1, continuity=cont)
     db.add(sb)
     db.flush()

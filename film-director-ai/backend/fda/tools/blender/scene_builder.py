@@ -157,10 +157,8 @@ def t_planet():
         r.data.materials.append(mat("rings", P.get("ring_color", "#d9c39a"), noise=1, color2="#8a7350", scale=30, rough=0.9))
         r.rotation_euler = (math.radians(14), math.radians(-8), 0)
     if P.get("atmosphere", False):
-        a = sphere("Atmo", 2.08, (0, 0, 0), mat("atmo", P.get("atmo_color", "#7fb6ff"), emission=0.6, rough=1))
-        a.active_material.blend_method = "BLEND"
-        bsdf = a.active_material.node_tree.nodes["Principled BSDF"]
-        bsdf.inputs["Alpha"].default_value = 0.12
+        # thin limb glow: a back light that grazes the edge instead of a semi-transparent shell (renders the same in EEVEE and Cycles)
+        light_sun(1.5, (math.radians(100), 0, math.radians(200)), P.get("atmo_color", "#7fb6ff"))
     light_sun(float(P.get("sun", 4.0)))
     stars()
     camera(move=P.get("move", "orbit"), dist=12.5 if P.get("rings") else 8.5)

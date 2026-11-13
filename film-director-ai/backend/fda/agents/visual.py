@@ -205,6 +205,10 @@ def run(ctx):
     work = scratch_dir(ctx.project.id, "scenes", scene.idx)
     seed = random.Random("%s-%s" % (scene.id, ctx.task.attempts + (scene.version or 1))).randint(1, 10 ** 6)
     used = used_sources(db, ctx.project.id, scene.id)
+    if ctx.params.get("redo") and scene.asset_id:  # a regeneration must not hand back the same picture
+        cur = db.get(m.Asset, scene.asset_id)
+        if cur and cur.meta.get("source_id"):
+            used.add(cur.meta["source_id"])
     requested = scene.visual_type
     chain = [requested] + [t for t in FALLBACK.get(requested, []) if (st.get("sources") or {}).get(t, True) or t == "ai_image"]
     scene.asset_status = "generating"
