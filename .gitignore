@@ -4,3 +4,5 @@ __pycache__/
 gta-tatiana/voice-video/
 gta-tatiana/*.log
 gta-tatiana/reference/
+gta-tatiana/drive.out
+gta-tatiana/frames/
