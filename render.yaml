@@ -1,9 +1,9 @@
 # Render Blueprint: one-click deploy of Film Director AI (website + API in one service).
 # Files are stored in the database (FDA_STORAGE_BACKEND=db), so restarts do not delete videos.
-# Free plan: the service sleeps when idle; Render's free database expires after 30 days.
+# Paid plans: the database never expires and the service never sleeps.
 databases:
   - name: fda-db
-    plan: free
+    plan: basic-256mb
     databaseName: fda
     postgresMajorVersion: "16"
 
@@ -11,7 +11,7 @@ services:
   - type: web
     name: film-director-ai
     runtime: docker
-    plan: free
+    plan: standard
     dockerContext: ./film-director-ai
     dockerfilePath: ./film-director-ai/infra/docker/backend.Dockerfile
     healthCheckPath: /api/health

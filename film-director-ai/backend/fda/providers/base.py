@@ -120,18 +120,48 @@ def http(method, url, retries=2, timeout=60, ok=(200, 201, 202), **kw):
     raise last
 
 
-def download(url, dest, timeout=180, max_mb=500, headers=None):
-    with requests.get(url, stream=True, timeout=timeout, headers=headers or {"User-Agent": "FilmDirectorAI/1.0"}) as r:
-        if r.status_code != 200:
-            raise ProviderError("Download failed: HTTP %s" % r.status_code)
-        n = 0
-        with open(dest + ".part", "wb") as f:
-            for chunk in r.iter_content(1 << 16):
-                n += len(chunk)
-                if n > max_mb << 20:
-                    raise ProviderError("Downloaded file exceeds %d MB" % max_mb, retryable=False)
-                f.write(chunk)
-    if n < 500:
-        raise ProviderError("Downloaded file is empty")
-    os.replace(dest + ".part", dest)
-    return dest
+UA_DEFAULT = "FilmDirectorAI/1.0 (personal documentary studio; https://github.com/armankhan-max/Arman-Project-) python-requests"
+_host_gates = {}
+_gate_lock = __import__("threading").Lock()
+
+
+def _gate(host):
+    """At most two concurrent downloads per host: media archives rate-limit bursts (HTTP 429)."""
+    with _gate_lock:
+        if host not in _host_gates:
+            _host_gates[host] = __import__("threading").Semaphore(2)
+        return _host_gates[host]
+
+
+def download(url, dest, timeout=180, max_mb=500, headers=None, tries=4):
+    host = url.split("/")[2] if "//" in url else ""
+    hdr = {"User-Agent": UA_DEFAULT}
+    hdr.update(headers or {})
+    last = None
+    for i in range(tries):
+        with _gate(host):
+            try:
+                with requests.get(url, stream=True, timeout=timeout, headers=hdr) as r:
+                    if r.status_code in (429, 503):
+                        wait = r.headers.get("Retry-After", "")
+                        last = ProviderError("Download failed: HTTP %s" % r.status_code)
+                        time.sleep(min(30, int(wait) if wait.isdigit() else 4 * (i + 1)))
+                        continue
+                    if r.status_code != 200:
+                        raise ProviderError("Download failed: HTTP %s" % r.status_code)
+                    n = 0
+                    with open(dest + ".part", "wb") as f:
+                        for chunk in r.iter_content(1 << 16):
+                            n += len(chunk)
+                            if n > max_mb << 20:
+                                raise ProviderError("Downloaded file exceeds %d MB" % max_mb, retryable=False)
+                            f.write(chunk)
+            except requests.RequestException as e:
+                last = ProviderError("Download failed: %s" % e)
+                time.sleep(2 * (i + 1))
+                continue
+        if n < 500:
+            raise ProviderError("Downloaded file is empty")
+        os.replace(dest + ".part", dest)
+        return dest
+    raise last or ProviderError("Download failed")

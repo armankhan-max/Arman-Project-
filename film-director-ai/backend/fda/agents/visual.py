@@ -5,6 +5,7 @@ scene plan and the event log; nothing is swapped silently, and a still is never 
 import base64
 import os
 import random
+import re
 
 from PIL import Image
 
@@ -16,7 +17,7 @@ from fda.services import assets
 from fda.storage.store import scratch_dir
 
 from . import blender as blender_agent
-from .common import style
+from .common import STOP, keywords, style
 
 FALLBACK = {"stock_video": ["stock_image", "archive", "ai_image"], "stock_image": ["archive", "ai_image", "stock_video"],
             "archive": ["stock_image", "ai_image"], "ai_image": ["stock_image", "archive", "stock_video"], "ai_video": ["stock_video", "ai_image"],
@@ -45,40 +46,85 @@ def used_sources(db, project_id, except_scene):
     return ids
 
 
+def scene_queries(ctx, scene):
+    """Search phrases for one scene: the storyboard's query, its subject, named things in the narration, and the project topic."""
+    plan = scene.plan or {}
+    names = re.findall(r"(?:[A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,3})", scene.narration or "")
+    names = [n for n in names if n.lower() not in STOP and len(n) > 3][:3]
+    qs = [plan.get("search_query"), plan.get("subject"), " ".join(names), " ".join(keywords(scene.narration, 3)),
+          " ".join(keywords(ctx.project.title, 3))]
+    out = []
+    for q in qs:
+        q = (q or "").strip()
+        if q and q.lower() not in [x.lower() for x in out]:
+            out.append(q)
+    return out[:4]
+
+
+BROAD = {"internet_archive", "nasa_video"}
+GENERIC = {"nasa", "video", "image", "photo", "footage", "film", "shot", "close", "wide", "view", "scene", "cinematic", "stock"}
+
+
+def relevance(c, terms, need):
+    text = (c.get("title") or "").lower()
+    hits = sum(1 for t in terms if t in text)
+    s = hits * 2.0 + (1.5 if hits >= 2 else 0)
+    if c["kind"] == "video":
+        s += 1.0 if (c.get("duration") or 0) >= need or not c.get("duration") else -0.5
+    w, h = c.get("width") or 0, c.get("height") or 0
+    if w and h:
+        s += 0.5 if w >= 1280 else -0.5 if w < 800 else 0
+    return s
+
+
 def from_search(ctx, scene, vtype, work, used, blocked):
+    """Internet visual research for one scene: query every configured source with several phrasings,
+    rank candidates by relevance to the narration, then download the best licence-cleared result."""
     cap, kind = SEARCH_CAP[vtype]
     portrait = style(ctx.db, ctx.project)[1].get("aspect") == "9:16"
-    plan = scene.plan or {}
-    queries = [q for q in [plan.get("search_query"), plan.get("subject"), " ".join((scene.narration or "").split()[:6])] if q]
-    errors = []
+    queries = scene_queries(ctx, scene)
+    terms = set(keywords(" ".join([scene.narration or "", (scene.plan or {}).get("subject") or "", (scene.plan or {}).get("search_query") or ""]), 12)) - GENERIC
+    need = scene.end_s - scene.start_s
+    errors, pool, seen = [], [], set()
     for prov in registry.for_cap(ctx.db, cap):
-        for q in queries[:2]:
+        for q in queries[:3]:
             try:
-                cands = prov.search(q, kind=kind, n=10, portrait=portrait)
+                for c in prov.search(q, kind=kind, n=8, portrait=portrait):
+                    if c["id"] in seen or c["id"] in used or c.get("commercial_use") == "no" or any(b in (c.get("title") or "").lower() for b in blocked):
+                        continue
+                    seen.add(c["id"])
+                    c["_q"], c["_prov"] = q, prov.name
+                    c["_score"] = relevance(c, terms, need) - 0.3 * queries.index(q)
+                    if prov.name in BROAD and not any(t in (c.get("title") or "").lower() for t in terms):
+                        continue  # full-text archives return loosely related films; demand a real match
+                    pool.append(c)
             except ProviderError as e:
-                errors.append("%s: %s" % (prov.label, e))
+                errors.append("%s: %s" % (prov.label, str(e)[:120]))
                 break
-            need = scene.end_s - scene.start_s
-            cands.sort(key=lambda c: (c["kind"] == "video" and c.get("duration", 0) < need))  # long-enough clips first
-            for c in cands:
-                if c["id"] in used or any(b in (c.get("title") or "").lower() for b in blocked):
-                    continue
-                if c.get("commercial_use") == "no":
-                    continue
-                ext = ".webm" if ".webm" in c["url"] else ".mp4" if kind == "video" else ".jpg"
-                raw = os.path.join(work, "%s%s" % (c["id"].replace("/", "_"), ext if kind == "video" else ".raw"))
-                try:
-                    download(c["url"], raw, timeout=240, max_mb=250 if kind == "video" else 40)
-                    path = raw if kind == "video" else normalise_image(raw, raw[:-4] + ".jpg")
-                    a = assets.register(ctx.db, path, ctx.project.id, "scene", "scenes", os.path.basename(path), origin="archive" if vtype == "archive" else "stock",
-                                        provider=prov.name, source_url=c.get("source_page") or c["url"], settings={"query": q}, license=c["license"],
-                                        attribution=c.get("attribution", ""), commercial_use=c.get("commercial_use", "unknown"), terms_url=c.get("terms_url"),
-                                        meta={"source_id": c["id"], "title": c.get("title", "")})
-                    return a, prov.name
-                except Exception as e:
-                    errors.append("%s download: %s" % (prov.label, str(e)[:120]))
-                    continue
-    raise ProviderError("No usable %s result (%s)" % (vtype, "; ".join(errors[-3:]) or "no matches"), retryable=True)
+        if len([c for c in pool if c["_score"] >= 2]) >= 6:
+            break  # enough relevant material; do not hammer every source
+    pool.sort(key=lambda c: -c["_score"])
+    # try the best results but spread across sources, so one rate-limited host cannot sink the scene
+    order, per = [], {}
+    for c in pool:
+        if per.get(c["_prov"], 0) < 3:
+            order.append(c)
+            per[c["_prov"]] = per.get(c["_prov"], 0) + 1
+    for c in order[:9]:
+        ext = ".webm" if ".webm" in c["url"] else ".mp4" if kind == "video" else ".jpg"
+        raw = os.path.join(work, "%s%s" % (re.sub(r"[^\w.-]", "_", c["id"])[:80], ext if kind == "video" else ".raw"))
+        try:
+            download(c["url"], raw, timeout=240, max_mb=250 if kind == "video" else 40)
+            path = raw if kind == "video" else normalise_image(raw, raw[:-4] + ".jpg")
+            a = assets.register(ctx.db, path, ctx.project.id, "scene", "scenes", os.path.basename(path), origin="archive" if vtype == "archive" else "stock",
+                                provider=c["_prov"], source_url=c.get("source_page") or c["url"], settings={"query": c["_q"], "relevance": round(c["_score"], 2)},
+                                license=c["license"], attribution=c.get("attribution", ""), commercial_use=c.get("commercial_use", "unknown"), terms_url=c.get("terms_url"),
+                                meta={"source_id": c["id"], "title": c.get("title", "")[:300]})
+            ctx.log("Scene %d: found '%s' on %s (query '%s')" % (scene.idx, (c.get("title") or "")[:70], c["_prov"], c["_q"]))
+            return a, c["_prov"]
+        except Exception as e:
+            errors.append("%s download: %s" % (c["_prov"], str(e)[:120]))
+    raise ProviderError("No usable %s result for %s (%s)" % (vtype, queries, "; ".join(errors[-3:]) or "no matches"), retryable=True)
 
 
 def ai_image(ctx, scene, work, seed):

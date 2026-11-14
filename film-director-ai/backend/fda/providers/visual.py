@@ -6,7 +6,8 @@ import urllib.parse
 
 from .base import CredField, Provider, ProviderError, download, http
 
-UA = {"User-Agent": "FilmDirectorAI/1.0 (personal video studio)"}
+from .base import UA_DEFAULT
+UA = {"User-Agent": UA_DEFAULT}
 
 
 # ------------------------------------------------------------------ image generation
@@ -312,6 +313,122 @@ class NASAImages(Provider):
     def validate(self):
         try:
             self.search("moon", n=1)
+            return True, "Reachable"
+        except ProviderError as e:
+            return False, str(e)
+
+
+# ------------------------------------------------------------------ more keyless internet sources
+OPENVERSE_OK = {"cc0", "pdm", "by", "by-sa"}
+
+
+class Openverse(Provider):
+    def __init__(self):
+        super().__init__(name="openverse", label="Openverse (CC & public-domain images)", caps=("stock_image", "archive_image"), paid=False, unit="requests",
+                         docs="https://api.openverse.org/v1/", notes="No key. Searches hundreds of millions of openly licensed images; only licences that allow commercial use are kept.")
+
+    def search(self, q, kind="image", n=8, portrait=False):
+        j = http("GET", "https://api.openverse.org/v1/images/", headers=UA, timeout=30, retries=1,
+                 params={"q": q[:200], "page_size": min(20, n * 2), "license": ",".join(sorted(OPENVERSE_OK)), "aspect_ratio": "tall" if portrait else "wide",
+                         "size": "large", "mature": "false"}).json()
+        out = []
+        for r in j.get("results", []):
+            if (r.get("license") or "").lower() not in OPENVERSE_OK or not r.get("url"):
+                continue
+            lic = "CC %s %s" % (r.get("license", "").upper(), r.get("license_version") or "") if r.get("license") not in ("cc0", "pdm") else r.get("license", "").upper()
+            out.append(_cand("image", r["url"], r.get("thumbnail"), "openverse", lic.strip(), r.get("attribution") or "%s via Openverse" % (r.get("creator") or "unknown"),
+                             r.get("foreign_landing_url"), r.get("width") or 0, r.get("height") or 0, 0, " ".join([r.get("title") or ""] + [t.get("name", "") for t in (r.get("tags") or [])[:8]]),
+                             "openverse-%s" % r["id"], "yes", r.get("license_url")))
+            if len(out) >= n:
+                break
+        return out
+
+    def validate(self):
+        try:
+            self.search("mountain", n=1)
+            return True, "Reachable"
+        except ProviderError as e:
+            return False, str(e)
+
+
+class NASAVideo(Provider):
+    def __init__(self):
+        super().__init__(name="nasa_video", label="NASA video library", caps=("stock_video",), paid=False, unit="requests", docs="https://images.nasa.gov",
+                         notes="No key. Real space, Earth-science and mission footage; NASA media is generally not copyrighted.")
+
+    def search(self, q, kind="video", n=6, portrait=False):
+        if kind != "video":
+            return []
+        j = http("GET", "https://images-api.nasa.gov/search", params={"q": q, "media_type": "video"}, timeout=30, retries=1).json()
+        out = []
+        for it in (j.get("collection") or {}).get("items", [])[:n * 2]:
+            d = (it.get("data") or [{}])[0]
+            nid = d.get("nasa_id")
+            if not nid:
+                continue
+            try:
+                files = http("GET", it["href"], timeout=20, retries=0).json()
+            except (ProviderError, ValueError, KeyError):
+                continue
+            mp4 = [f for f in files if f.endswith(".mp4")]
+            pick = next((f for f in mp4 if "~medium" in f), None) or next((f for f in mp4 if "~orig" in f), None) or next(iter(mp4), None)
+            if not pick:
+                continue
+            thumb = next((f for f in files if f.endswith((".jpg", ".png"))), None)
+            out.append(_cand("video", pick.replace("http://", "https://"), thumb, "nasa_video", "NASA media usage guidelines", "Video: NASA (%s)" % nid,
+                             "https://images.nasa.gov/details/%s" % nid, 1280, 720, 0, "%s %s" % (d.get("title", ""), " ".join(d.get("keywords") or [])),
+                             "nasa-v-%s" % nid, "yes", "https://www.nasa.gov/nasa-brand-center/images-and-media/"))
+            if len(out) >= n:
+                break
+        return out
+
+    def validate(self):
+        try:
+            http("GET", "https://images-api.nasa.gov/search", params={"q": "moon", "media_type": "video"}, timeout=20, retries=0)
+            return True, "Reachable"
+        except ProviderError as e:
+            return False, str(e)
+
+
+class InternetArchive(Provider):
+    def __init__(self):
+        super().__init__(name="internet_archive", label="Internet Archive (public-domain film & newsreels)", caps=("stock_video",), paid=False, unit="requests",
+                         docs="https://archive.org/advancedsearch.php",
+                         notes="No key. Public-domain material only: Prelinger Archives, Universal Newsreels, FedFlix and items marked public domain.")
+
+    def search(self, q, kind="video", n=6, portrait=False):
+        if kind != "video":
+            return []
+        query = '(%s) AND mediatype:movies AND (collection:prelinger OR collection:universal_newsreels OR collection:FedFlix OR licenseurl:*publicdomain*)' % q.replace('"', "")
+        j = http("GET", "https://archive.org/advancedsearch.php", headers=UA, timeout=30, retries=1,
+                 params={"q": query, "fl[]": ["identifier", "title", "licenseurl", "subject", "year"], "rows": n * 2, "sort[]": "downloads desc", "output": "json"}).json()
+        out = []
+        for d in (j.get("response") or {}).get("docs", []):
+            ident = d.get("identifier")
+            lic = d.get("licenseurl") or ""
+            if not ident or (lic and "publicdomain" not in lic):
+                continue  # only public domain (licence URL, or the public-domain Prelinger / Universal Newsreels / FedFlix collections)
+            try:
+                meta = http("GET", "https://archive.org/metadata/%s" % ident, headers=UA, timeout=20, retries=0).json()
+            except (ProviderError, ValueError):
+                continue
+            vids = [f for f in meta.get("files", []) if (f.get("name", "").lower().endswith(".mp4")) and int(f.get("size") or 0) < 220 * (1 << 20)]
+            if not vids:
+                continue
+            f = sorted(vids, key=lambda f: -int(f.get("size") or 0))[0]
+            subj = d.get("subject") or []
+            out.append(_cand("video", "https://archive.org/download/%s/%s" % (ident, f["name"]), "https://archive.org/services/img/%s" % ident, "internet_archive",
+                             "Public domain",
+                             "%s, Internet Archive" % (d.get("title") or ident), "https://archive.org/details/%s" % ident, int(f.get("width") or 0), int(f.get("height") or 0),
+                             float(f.get("length") or 0) if str(f.get("length") or "").replace(".", "").isdigit() else 0,
+                             "%s %s" % (d.get("title") or "", " ".join(subj) if isinstance(subj, list) else subj), "ia-%s" % ident, "yes", lic))
+            if len(out) >= n:
+                break
+        return out
+
+    def validate(self):
+        try:
+            http("GET", "https://archive.org/advancedsearch.php", params={"q": "moon", "rows": 1, "output": "json"}, timeout=20, retries=0)
             return True, "Reachable"
         except ProviderError as e:
             return False, str(e)

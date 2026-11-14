@@ -90,13 +90,13 @@ class ProceduralAudio(Provider):
 
 
 FACTORIES = [llm.Anthropic, llm.OpenAI, llm.Groq, llm.Pollinations, visual.PollinationsImage, visual.OpenAIImage, visual.RunwayVideo, visual.LumaVideo,
-             visual.Pexels, visual.Pixabay, visual.WikimediaCommons, visual.NASAImages, audio.LocalWhisper, audio.OpenAIWhisper, audio.EdgeNeural,
+             visual.Pexels, visual.Pixabay, visual.WikimediaCommons, visual.NASAImages, visual.Openverse, visual.NASAVideo, visual.InternetArchive, audio.LocalWhisper, audio.OpenAIWhisper, audio.EdgeNeural,
              audio.ElevenLabs, audio.DID, audio.LocalTalkingPhoto, audio.Wikipedia, audio.Tavily, HashEmbeddings, OpenAIEmbeddings, YouTubeData,
              GoogleOAuth, ProceduralAudio]
 # preference order when several providers can do the same job
 PREFERENCE = {"llm": ["anthropic", "openai", "groq", "pollinations_text"], "text_to_image": ["openai_image", "pollinations_image"],
-              "image_to_video": ["runway", "luma"], "text_to_video": ["luma", "runway"], "stock_video": ["pexels", "pixabay", "wikimedia"],
-              "stock_image": ["pexels", "pixabay"], "archive_image": ["wikimedia", "nasa"], "stt": ["whisper_local", "openai_stt"],
+              "image_to_video": ["runway", "luma"], "text_to_video": ["luma", "runway"], "stock_video": ["pexels", "pixabay", "wikimedia", "nasa_video", "internet_archive"],
+              "stock_image": ["pexels", "pixabay", "openverse"], "archive_image": ["wikimedia", "nasa", "openverse"], "stt": ["whisper_local", "openai_stt"],
               "tts": ["elevenlabs", "edge_tts"], "avatar": ["d_id", "talking_photo"], "web_search": ["tavily", "wikipedia"],
               "embeddings": ["openai_embeddings", "hash_embeddings"]}
 
