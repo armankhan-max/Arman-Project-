@@ -25,7 +25,8 @@ class PollinationsImage(ImageProvider):
         full = prompt.strip() + (". Avoid: " + negative if negative else "")
         url = "https://image.pollinations.ai/prompt/" + urllib.parse.quote(full[:900], safe="")
         pad = 72  # the free service may stamp its name in the bottom corner; generate taller and cut that strip off
-        q = "?width=%d&height=%d&seed=%d&nologo=true&model=%s" % (width, height + pad, seed % 999983, (self.config or {}).get("model", "flux"))
+        model = (self.config or {}).get("model") or ""  # the free service changes its model list; send one only if the owner chose it
+        q = "?width=%d&height=%d&seed=%d&nologo=true%s" % (width, height + pad, seed % 999983, ("&model=" + model) if model else "")
         last = None
         for i in range(4):
             try:
@@ -35,7 +36,7 @@ class PollinationsImage(ImageProvider):
                     im = im.convert("RGB")
                     cut = int(round(im.height * pad / float(height + pad)))
                     im.crop((0, 0, im.width, im.height - cut)).save(dest, "PNG")
-                return {"model": (self.config or {}).get("model", "flux"), "seed": seed}
+                return {"model": model or "default", "seed": seed}
             except ProviderError as e:
                 last = e
                 time.sleep(3 + 4 * i)
