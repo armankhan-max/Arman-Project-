@@ -6,6 +6,8 @@ mkdir -p $C
 log(){ echo "$(date '+%H:%M') [w$$] $*" >> $G/drive.log; }
 do_part(){
   n=$1; NN=$(printf %02d $n); prev=""; R="$2"
+  old=$(ls -dt /root/gta-runs/*-part$NN* 2>/dev/null | head -1)
+  [ -z "$R" ] && [ -n "$old" ] && [ -d "$old/work" ] && [ ! -f "$old/broll.mp4" ] && prev="$old"
   for attempt in 1 2 3 4 5 6 7 8 9 10 11 12; do
     if [ -n "$R" ] && pgrep -f "run_sealed.py $R\$" >/dev/null; then
       while pgrep -f "run_sealed.py $R\$" >/dev/null; do sleep 30; done
