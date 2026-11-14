@@ -10,3 +10,7 @@ gta-tatiana/drive.log
 gta-tatiana/claims/
 gta-tatiana/*.out
 gta-tatiana/finish.log
+gta-tatiana/output/
+gta-tatiana/fast/seg/
+gta-tatiana/fast/*.mp4
+gta-tatiana/fast/*.log
