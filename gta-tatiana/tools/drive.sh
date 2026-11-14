@@ -8,8 +8,9 @@ for n in $(seq 2 15); do
   prev=""
   for attempt in 1 2 3 4 5 6 7 8; do
     python3 $G/tools/make_pack.py $n >/dev/null 2>&1
-    R=$(ls -d /root/gta-runs/*tatiana-part$NN* 2>/dev/null | tail -1)
-    if [ -z "$R" ] || [ -n "$prev" ]; then
+    old=$(ls -d /root/gta-runs/*tatiana*-part$NN 2>/dev/null | tail -1)
+    [ -z "$prev" ] && [ -n "$old" ] && [ ! -f "$old/broll.mp4" ] && prev="$old"
+    if true; then
       extra=(); [ -n "$prev" ] && extra=(--work-before "$prev")
       R=$(python3 $S/new_run.py --job $J --part $n --total 15 --look --name tatiana${attempt} "${extra[@]}" --notes "$(cat $G/tools/notes.txt)" 2>&1 | tail -1)
     fi
