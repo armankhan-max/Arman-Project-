@@ -23,8 +23,6 @@ services:
         value: /tmp/storage
       - key: FDA_PG_DIR
         value: /tmp/pg
-      - key: FDA_DATABASE_URL
-        sync: false
       - key: FDA_SECRET_KEY
         generateValue: true
       - key: FDA_OWNER_PASSWORD

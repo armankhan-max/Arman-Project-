@@ -95,7 +95,7 @@ def check_free_providers():
         try:
             with session_scope() as db:
                 p = registry.get(db, name)
-                if not p.fields:
+                if not p.fields and name != "whisper_local":  # loading the speech model at start-up would exhaust small servers
                     registry.check(db, name)
         except Exception as e:  # never block start-up
             log.warning("provider check %s failed: %s", name, e)
