@@ -139,7 +139,7 @@ class Renderer:
         m = sh.get("motion") or "push_in"
         fx, fy = (sh.get("focus") or [0.5, 0.45])[:2]
         iw, ih = img.width(), img.height()
-        if iw / float(ih) < (VW / float(VH)) * 0.8 and m not in ("card", "polaroid"):
+        if iw / float(ih) < min(1.0, VW / float(VH)) * 0.92 and m not in ("card", "polaroid"):
             m = "card"  # tall pictures get a framed layout instead of a brutal crop
         if m in ("card", "polaroid", "parallax"):
             b = gfx.blurred(img, 30, 0.2, key=sh["asset"]["path"])
@@ -229,7 +229,7 @@ class Renderer:
         if kind == "mg" and sh.get("mg"):
             mg.draw(c, sh["mg"], tl, sh["dur"], T, VW, VH, v, img)
         elif kind == "avatar" and self.avatar is not None:
-            zoom = 1.0 if (sh.get("v") or 0) % 3 else 1.14  # punch-in on some cuts, like a real edit
+            zoom = 1.0 if (sh.get("v") or 0) % 3 or self.avatar.face[2] > self.avatar.w * 0.3 else 1.14  # punch-in on some cuts, unless the shot is already tight
             self.avatar.draw(c, sh["start"] + tl, self.speech(sh["start"] + tl), 0, 0, VW, VH, zoom, paint)
         elif kind == "anim2d":
             stick.draw_scene(c, sh, tl, sh["dur"], T, VW, VH, img, self.speech(sh["start"] + tl), paint)

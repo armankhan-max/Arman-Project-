@@ -56,6 +56,7 @@ def production_tasks():
         {"key": "render", "agent": "render", "queue": "render", "depends_on": ["edit"], "params": {"kind": "final"}, "timeout_s": 14400},
         {"key": "qc", "agent": "qc", "queue": "qc", "depends_on": ["render"]},
         {"key": "finalize", "agent": "finalize", "depends_on": ["*qc"]},
+        {"key": "pack", "agent": "pack", "depends_on": ["finalize"], "max_attempts": 1},
     ]
 
 

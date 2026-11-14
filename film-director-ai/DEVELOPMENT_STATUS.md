@@ -44,6 +44,16 @@ Anthropic / OpenAI / Groq (stronger reasoning), Pexels and Pixabay (stock video,
 D-ID, Tavily, YouTube Data API key, Google OAuth client. Set a daily or monthly budget and per-provider cost
 estimates before paid providers will run.
 
+## Added 2026-11-14
+
+- Internet visual research per scene (Openverse, NASA video, Internet Archive public-domain film, Wikimedia) with relevance ranking; verified in a live run.
+- AI avatar channel mode: saved Characters (persona, face, voice), avatar script rules, host/B-roll scene pattern, phone-camera style AI B-roll, full-frame pictures.
+- Lip sync: HeyGen adapter (photo + narration → talking video, cut per scene) built from public docs, awaiting an API key; without it the built-in talking photo is used (approximate mouth movement only).
+- Upload pack after every production: titles, description with chapters, tags, hashtags, pinned comment and three thumbnails in channel styles (banner, clean, boxed, hero).
+- Free hosting: the container runs its own PostgreSQL when no FDA_DATABASE_URL is set; `render.yaml` uses the free plan. Data is temporary there unless an external free Postgres URL (e.g. Neon) is supplied.
+- Owner unlimited mode, database-backed file storage.
+- The free image generator currently returns lower-quality pictures and sometimes ignores framing instructions; an OpenAI image key or an uploaded host photo gives much better avatars and thumbnails.
+
 ## Known limitations
 
 - Without a paid LLM the free text model is used; it is slower and storyboard batches sometimes fall back to the

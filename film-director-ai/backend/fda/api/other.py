@@ -219,6 +219,94 @@ async def loose_upload(file: UploadFile = File(...), db=Depends(get_db), u=Depen
     return {"id": str(a.id), "filename": a.filename, "kind": a.kind}
 
 
+# ------------------------------------------------------------------ saved characters (AI hosts)
+def char_view(db, c):
+    d = row(c)
+    d["image_url"] = "/api/v1/assets/%s/file" % c.image_asset_id if c.image_asset_id else None
+    d["lipsync_ready"] = bool((c.external or {}).get("heygen_talking_photo_id"))
+    return d
+
+
+@router.get("/characters")
+def characters(db=Depends(get_db), u=Depends(current_user)):
+    return [char_view(db, c) for c in db.query(m.Character).filter_by(user_id=u.id).order_by(m.Character.updated_at.desc()).all()]
+
+
+@router.post("/characters/design")
+def character_design(body: dict = Body(...), db=Depends(get_db), u=Depends(current_user)):
+    from fda.services import characters as cs
+    try:
+        persona = cs.design(db, str(body.get("topic", "")), str(body.get("bible", "")))
+    except (ProviderError, budget.BudgetError) as e:
+        raise HTTPException(502, str(e))
+    db.commit()
+    return persona
+
+
+@router.post("/characters")
+def character_save(body: dict = Body(...), db=Depends(get_db), u=Depends(current_user)):
+    from fda.services import characters as cs
+    c = db.get(m.Character, body["id"]) if body.get("id") else None
+    if c is None:
+        c = m.Character(user_id=u.id, name=str(body.get("name") or (body.get("persona") or {}).get("name") or "Host")[:200])
+        db.add(c)
+    elif c.user_id != u.id:
+        raise HTTPException(404, "Not found")
+    for k in ("name", "voice", "tts_provider"):
+        if k in body:
+            setattr(c, k, str(body[k])[:200])
+    for k in ("voice_rate", "voice_pitch"):
+        if k in body:
+            setattr(c, k, int(body[k] or 0))
+    if isinstance(body.get("persona"), dict):
+        c.persona = body["persona"]
+    if body.get("image_asset_id"):
+        c.image_asset_id = body["image_asset_id"]
+        c.external = {}
+    db.flush()
+    if body.get("generate_portrait") or (not c.image_asset_id and body.get("auto_portrait", True)):
+        try:
+            cs.make_portrait(db, c, body.get("seed"))
+        except ProviderError as e:
+            db.commit()
+            raise HTTPException(502, str(e))
+    audit(db, "owner", "character_save", c.id)
+    db.commit()
+    return char_view(db, c)
+
+
+@router.post("/characters/{cid}/image")
+async def character_image(cid: str, file: UploadFile = File(...), db=Depends(get_db), u=Depends(current_user)):
+    from fda.services import assets
+    from fda.agents.visual import normalise_image
+    c = db.get(m.Character, cid)
+    if not c or c.user_id != u.id:
+        raise HTTPException(404, "Not found")
+    tmpd = tempfile.mkdtemp()
+    raw = os.path.join(tmpd, "u" + os.path.splitext(file.filename or ".jpg")[1].lower())
+    with open(raw, "wb") as f:
+        shutil.copyfileobj(file.file, f)
+    try:
+        jpg = normalise_image(raw, os.path.join(tmpd, "face.jpg"))
+        a = assets.register(db, jpg, None, "character", "characters", "%s.jpg" % c.name[:40], origin="upload", license="Owner upload", kind="image", meta={"character_id": str(c.id)})
+    except Exception as e:
+        raise HTTPException(400, "Unreadable image: %s" % str(e)[:160])
+    finally:
+        shutil.rmtree(tmpd, ignore_errors=True)
+    c.image_asset_id, c.external = a.id, {}
+    db.commit()
+    return char_view(db, c)
+
+
+@router.delete("/characters/{cid}")
+def character_delete(cid: str, db=Depends(get_db), u=Depends(current_user)):
+    c = db.get(m.Character, cid)
+    if c and c.user_id == u.id:
+        db.delete(c)
+        db.commit()
+    return {"ok": True}
+
+
 # ------------------------------------------------------------------ YouTube
 def _yt_err(e):
     raise HTTPException(400 if isinstance(e, NotConfigured) else 502, str(e))

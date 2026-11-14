@@ -575,3 +575,18 @@ class StoredFile(Base):
     data: Mapped[bytes] = mapped_column(LargeBinary, nullable=False)
     size_bytes: Mapped[int] = mapped_column(BigInteger, default=0)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now, server_default=func.now(), nullable=False)
+
+
+class Character(Base, Timestamps):
+    """A saved AI host: persona, face image and voice, reusable across videos."""
+    __tablename__ = "characters"
+    id: Mapped[uuid.UUID] = pk()
+    user_id = fk("users.id")
+    name: Mapped[str] = mapped_column(String(200), nullable=False)
+    persona: Mapped[dict] = mapped_column(JSONB, default=dict)   # age, heritage, one_liner, look, set, sign_off, bible …
+    image_asset_id = fk("assets.id", ondelete="SET NULL", nullable=True)
+    voice: Mapped[str] = mapped_column(String(120), default="")
+    tts_provider: Mapped[str] = mapped_column(String(60), default="")
+    voice_rate: Mapped[int] = mapped_column(Integer, default=0)
+    voice_pitch: Mapped[int] = mapped_column(Integer, default=0)
+    external: Mapped[dict] = mapped_column(JSONB, default=dict)  # provider ids, e.g. HeyGen talking_photo_id

@@ -24,11 +24,17 @@ class PollinationsImage(ImageProvider):
     def generate(self, prompt, dest, width=1280, height=720, seed=1, negative=""):
         full = prompt.strip() + (". Avoid: " + negative if negative else "")
         url = "https://image.pollinations.ai/prompt/" + urllib.parse.quote(full[:900], safe="")
-        q = "?width=%d&height=%d&seed=%d&nologo=true&model=%s" % (width, height, seed % 999983, (self.config or {}).get("model", "flux"))
+        pad = 72  # the free service may stamp its name in the bottom corner; generate taller and cut that strip off
+        q = "?width=%d&height=%d&seed=%d&nologo=true&model=%s" % (width, height + pad, seed % 999983, (self.config or {}).get("model", "flux"))
         last = None
         for i in range(4):
             try:
                 download(url + q, dest, timeout=180, max_mb=30)
+                from PIL import Image
+                with Image.open(dest) as im:
+                    im = im.convert("RGB")
+                    cut = int(round(im.height * pad / float(height + pad)))
+                    im.crop((0, 0, im.width, im.height - cut)).save(dest, "PNG")
                 return {"model": (self.config or {}).get("model", "flux"), "seed": seed}
             except ProviderError as e:
                 last = e

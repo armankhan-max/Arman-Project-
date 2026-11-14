@@ -9,7 +9,7 @@ from fda.services.llm import LLM, external
 
 from .common import clean_narration, latest_script, style, words
 
-WPM = 145
+WPM = 145  # avatar scripts use 140
 RULES = """Write narration that will be read aloud.
 - Output only the spoken words: no headings, labels, stage directions, brackets, lists or markdown.
 - Flowing spoken sentences of mixed length; never strings of tiny fragments.
@@ -24,7 +24,14 @@ STYLE = {
     "educational": "Educational explainer. One driving question, analogies from daily life, step by step with the why.",
     "science": "Science documentary. Wonder first, then mechanism. Scale comparisons the viewer can feel. Separate known from uncertain.",
     "realistic": "Cinematic, sensory, scene-led narration.",
-    "avatar": "A host speaking straight to camera in first person, warm and conversational.",
+    "avatar": ("An older host with lived experience talking straight to camera across a kitchen table, first person. Every line must sound like a real, warm, slightly funny person talking to one friend. "
+               "HOOK: open inside a scene (the viewer's own frustration in vivid detail, a surprising concrete claim with a number, or a tiny story with tension), never a greeting. In the first 20 seconds absolve the viewer "
+               "('it was never your fault'), say what they will get, and open the big loop that is paid off at the end. Introduce the host by name only after the hook with one personal detail, never a credential. "
+               "RETENTION: a new tease every 60 to 90 seconds and close every one; bridges that pull forward; one true twist around two thirds; the strongest secret last; the ending calls back to the opening. "
+               "Teach the WHY behind every trick in plain words. Dry, gentle, personal humor and short family stories with the recurring people from the persona. Name concrete objects and actions often so matching pictures can be made. "
+               "Every method must be correct and safe for a normal home with the real safety warning where it applies; if a popular trick is a myth, say so. No brand names, no medical, legal or investment advice. "
+               "One mid-video ask phrased as a small favor between 35 and 55 percent. End with a warm human recap, one small homework, one question for the comments, a one-line tease of a related video, and the host's exact sign-off as the last line. "
+               "Mostly medium and long flowing sentences joined by and, but, so, because; never more than one short fragment in a row; at most three ellipses; no colons inside spoken lines. Years are written as spoken."),
     "anim2d": "Story-driven narration with simple, visual beats a character can act out.",
     "blender3d": "Scientific visual narration: each sentence describes something that can be shown in 3D.",
     "motion_graphics": "Punchy explainer where numbers, comparisons and lists carry the story.",
@@ -58,8 +65,11 @@ def run(ctx):
     if a.get("has_voiceover") and not ctx.params.get("rewrite"):
         return {"skipped": True, "summary": "Narration comes from the uploaded voiceover"}
     ps, st = style(db, p)
-    total = int(ps.target_minutes * WPM)
+    total = int(ps.target_minutes * (140 if p.mode == "avatar" else WPM))
     facts, prefs, know = context_for(db, p, p.user_id)
+    persona = st.get("persona") or {}
+    if p.mode == "avatar" and persona:
+        prefs = (prefs + "\n" if prefs else "") + "HOST PERSONA (write in this person's voice): " + (persona.get("bible") or str({k: v for k, v in persona.items() if k != "bible"}))[:3000]
     llm = LLM(db, p.id, "script")
     n = max(1, min(30, round(ps.target_minutes / 1.5)))
     ctx.progress(0.05, "Outlining")
@@ -79,6 +89,7 @@ Plan about %d words of narration in %d chapters. Chapter 1 is the cold open; the
     for c in chs:
         c.words = max(40, int(max(40, c.words) * total / s))
     texts = [None] * len(chs)
+    host = ("HOST PERSONA: " + (persona.get("bible") or str(persona))[:2000] + "\n") if p.mode == "avatar" and persona else ""
 
     def write(i):
         d = SessionLocal()
@@ -88,7 +99,7 @@ Plan about %d words of narration in %d chapters. Chapter 1 is the cold open; the
                    "FINAL chapter: answer the big question, end with one clean memorable line." if i == len(chs) - 1 else
                    "Middle chapter: continue directly, no recap, end with a line that pulls into the next chapter.")
             txt = LLM(d, p.id, "script").complete(RULES + "\n" + STYLE.get(p.mode, "") + "\n" + lang_line(p.language),
-                                                    "VIDEO: %s\nHOOK: %s\nBIG QUESTION: %s\nCHAPTERS: %s\nFACTS:\n%s\n\nWrite chapter %d of %d, \"%s\": %s\n%s\nAbout %d words." % (
+                                                    ("VIDEO: %s\nHOOK: %s\nBIG QUESTION: %s\nCHAPTERS: %s\n" + host.replace("%", "%%") + "FACTS:\n%s\n\nWrite chapter %d of %d, \"%s\": %s\n%s\nAbout %d words.") % (
                                                         o.title, o.hook, o.big_question, " | ".join(x.title for x in chs), external(facts[:2500], "research"),
                                                         i + 1, len(chs), c.title, c.summary, pos, c.words), max_tokens=int(c.words * 2.5) + 400, temperature=0.8)
             d.commit()

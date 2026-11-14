@@ -9,7 +9,7 @@ import RunMonitor from "@/components/RunMonitor";
 import { Empty, ErrorBox, Status, Tabs, toast, useBusy } from "@/components/ui";
 
 const TABS: [string, string][] = [["director", "Director"], ["script", "Script & narration"], ["storyboard", "Storyboard"], ["editor", "Editor"], ["assets", "Assets"],
-  ["renders", "Renders & QC"], ["research", "Research"], ["versions", "Versions"], ["jobs", "Jobs"], ["settings", "Project settings"]];
+  ["renders", "Renders & QC"], ["pack", "Upload pack"], ["research", "Research"], ["versions", "Versions"], ["jobs", "Jobs"], ["settings", "Project settings"]];
 
 export default function Page() {
   return <Suspense fallback={<div className="p-6 text-dim">Loading…</div>}><Workspace /></Suspense>;
@@ -58,6 +58,7 @@ function Workspace() {
         {tab === "editor" && <Editor projectId={id} cat={cat} onApplied={reload} busyRun={!!active} />}
         {tab === "assets" && <Assets p={p} reload={reload} />}
         {tab === "renders" && <Renders p={p} cat={cat} reload={reload} />}
+        {tab === "pack" && <UploadPack p={p} reload={reload} />}
         {tab === "research" && <Research p={p} />}
         {tab === "versions" && <Versions p={p} reload={reload} />}
         {tab === "jobs" && <Jobs p={p} />}
@@ -248,6 +249,38 @@ function Renders({ p, cat, reload }: { p: any; cat: any; reload: () => void }) {
           {r.asset && <a className="btn btn-sm ml-auto" href={r.asset.url + "?download=1"}>Download</a>}
         </div>
       ))}
+    </div>
+  );
+}
+
+function Copy({ label, text }: { label: string; text: string }) {
+  return (
+    <div className="card">
+      <div className="mb-2 flex items-center justify-between"><b className="text-sm">{label}</b><button className="btn btn-sm" onClick={() => navigator.clipboard?.writeText(text).then(() => toast("Copied"))}>Copy</button></div>
+      <pre className="max-h-64 overflow-auto whitespace-pre-wrap font-sans text-sm text-dim">{text}</pre>
+    </div>
+  );
+}
+
+function UploadPack({ p, reload }: { p: any; reload: () => void }) {
+  const { busy, run } = useBusy();
+  const k = p.pack;
+  return (
+    <div className="flex flex-col gap-4">
+      <div className="flex items-center justify-between"><p className="text-sm text-dim">Titles, description with chapters, tags, hashtags, pinned comment and AI thumbnails for this video.</p>
+        <button className="btn" disabled={!!busy || !p.scenes.length} onClick={() => run("k", async () => { await api(`/projects/${p.id}/pack`, { method: "POST" }); toast("Creating the upload pack"); reload(); })}>{k ? "Make a new pack" : "Create upload pack"}</button></div>
+      {!k ? <Empty>Created automatically after the first render.</Empty> : (
+        <>
+          {k.thumbnails?.length > 0 && <div className="grid gap-3 md:grid-cols-3">{k.thumbnails.map((t: any) => (
+            <div key={t.asset_id} className="card p-2"><img src={t.url} alt="" className="aspect-video w-full rounded-lg object-cover" /><div className="mt-2 text-xs text-dim">{t.idea}</div>
+              <a className="btn btn-sm mt-2" href={t.url + "?download=1"}>Download</a></div>))}</div>}
+          <Copy label="Titles" text={(k.titles || []).map((t: string, i: number) => `${i + 1}. ${t}`).join("\n")} />
+          <Copy label="Description" text={k.description || ""} />
+          <div className="grid gap-4 md:grid-cols-2"><Copy label="Tags" text={k.tags || ""} /><Copy label="Hashtags" text={k.hashtags || ""} /></div>
+          <Copy label="Pinned comment" text={k.pinned_comment || ""} />
+          {k.synthetic_notice && <div className="rounded-lg border border-warn/40 bg-warn/10 px-3 py-2 text-sm text-warn">{k.synthetic_notice}</div>}
+        </>
+      )}
     </div>
   );
 }

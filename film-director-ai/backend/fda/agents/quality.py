@@ -136,7 +136,8 @@ def qc_run(ctx):
     order = [s.idx for s in sorted(scs, key=lambda s: s.start_s)]
     if order != sorted(order):
         issues.append(issue("scene_order", "major", "Scene order does not follow narration time", repair="rebuild timeline", auto=True, kind="editing"))
-    use = Counter(it.asset_id for it in items if it.asset_id)
+    host_assets = {sc.asset_id for sc in scs if sc.visual_type == "avatar"}  # the host is meant to recur
+    use = Counter(it.asset_id for it in items if it.asset_id and it.asset_id not in host_assets)
     for aid, n in use.items():
         if n > 1:
             dup = [s.idx for s in scs if s.asset_id == aid][1:]

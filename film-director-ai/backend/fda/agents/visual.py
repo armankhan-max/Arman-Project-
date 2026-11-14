@@ -92,6 +92,8 @@ def from_search(ctx, scene, vtype, work, used, blocked):
                 for c in prov.search(q, kind=kind, n=8, portrait=portrait):
                     if c["id"] in seen or c["id"] in used or c.get("commercial_use") == "no" or any(b in (c.get("title") or "").lower() for b in blocked):
                         continue
+                    if kind == "image" and not portrait and c.get("width") and c.get("height") and c["width"] / float(c["height"]) < 1.25:
+                        continue  # landscape projects use pictures that fill the frame
                     seen.add(c["id"])
                     c["_q"], c["_prov"] = q, prov.name
                     c["_score"] = relevance(c, terms, need) - 0.3 * queries.index(q)
@@ -134,7 +136,13 @@ def ai_image(ctx, scene, work, seed):
     w, h = (720, 1280) if portrait else (1280, 720)
     prompt = plan.get("prompt") or scene.narration
     extras = ", ".join(x for x in [plan.get("shot", "").replace("_", " ") + " shot" if plan.get("shot") else "", plan.get("lens"), plan.get("lighting"), plan.get("color")] if x)
-    full = "%s. %s. Photorealistic, natural skin and materials, no text, no watermark, no logo." % (prompt.rstrip("."), extras)
+    if ctx.project.mode == "avatar":
+        persona = st.get("persona") or {}
+        full = ("%s. Candid photo taken on a smartphone by an ordinary person%s, natural daylight, true-to-life colors, slightly imperfect framing, real textures and small everyday clutter, "
+                "sharp focus on the subject, wide 16:9 frame filled edge to edge. Show the objects and at most a pair of hands, no faces. Photorealistic, no studio lighting, no text, no watermark, no logo.") % (
+            prompt.rstrip("."), (" in " + persona["set"].rstrip(".")) if persona.get("set") and scene.idx % 3 == 0 else " at home")
+    else:
+        full = "%s. %s. Photorealistic, natural skin and materials, no text, no watermark, no logo." % (prompt.rstrip("."), extras)
     neg = ", ".join(x for x in [plan.get("negative_prompt"), "text, watermark, logo, plastic skin, deformed hands, extra fingers", st.get("blocklist")] if x)
     errors = []
     for prov in registry.for_cap(ctx.db, "text_to_image"):
@@ -199,14 +207,62 @@ def avatar_portrait(ctx, work):
         if a:
             return a
     persona = st.get("persona") or {}
+    if st.get("character_id"):
+        ch = db.get(m.Character, st["character_id"])
+        if ch and ch.image_asset_id and db.get(m.Asset, ch.image_asset_id):
+            return db.get(m.Asset, ch.image_asset_id)
     look = persona.get("look") or "a friendly middle-aged presenter with short grey hair, round glasses and a navy sweater"
-    prompt = ("Medium close-up, chest up, of an original fictional character: %s. Looking straight into the camera, mouth gently closed, slight warm smile, "
-              "face centred in the upper middle of the frame, both eyes visible, in %s. Natural window light, filmed on a smartphone at eye level, photorealistic.") % (
-        look, persona.get("set", "a tidy home studio with soft background blur"))
+    from fda.services.characters import portrait_prompt
+    prompt = portrait_prompt(dict(persona, look=look, set=persona.get("set", "a tidy lived-in kitchen")))
     fake = type("S", (), {"plan": {"prompt": prompt}, "narration": prompt, "idx": 0, "id": "avatar"})()
     a, _ = ai_image(ctx, fake, work, 7)
     st["avatar_image_asset"] = str(a.id)
     ps.style = dict(ps.style or {}, avatar_image_asset=str(a.id))
+    return a
+
+
+def lipsync_video(ctx, portrait_asset, work):
+    """One lip-synced talking-head video for the whole narration (made once per project, reused by every avatar scene).
+    Returns None when no lip-sync provider is configured, so the built-in talking photo is used instead."""
+    from sqlalchemy import text as sql
+    db, p = ctx.db, ctx.project
+    provs = [x for x in registry.for_cap(db, "lipsync")]
+    if not provs:
+        return None
+    prov = provs[0]
+    db.execute(sql("SELECT pg_advisory_xact_lock(:k)"), {"k": p.id.int % (2 ** 62)})  # scenes run in parallel; only one may generate
+    ps = db.query(m.ProjectSettings).filter_by(project_id=p.id).one()
+    db.refresh(ps)
+    vo = db.query(m.Voiceover).filter_by(project_id=p.id).order_by(m.Voiceover.created_at.desc()).first()
+    key = "%s:%s" % (portrait_asset.id, vo.id if vo else "")
+    cur = (ps.style or {}).get("avatar_video")
+    if cur and cur.get("key") == key and db.get(m.Asset, cur["asset_id"]):
+        return db.get(m.Asset, cur["asset_id"])
+    if not vo or not vo.processed_asset_id:
+        return None
+    from fda.services import media
+    mp3 = os.path.join(work, "narration.mp3")
+    media.run(["ffmpeg", "-y", "-v", "error", "-i", assets.local(db.get(m.Asset, vo.processed_asset_id)), "-b:a", "128k", mp3])
+    rec = budget.reserve(db, prov, "lipsync", vo.duration_s or 0, "seconds", p.id)
+    try:
+        char = db.get(m.Character, (ps.style or {}).get("character_id")) if (ps.style or {}).get("character_id") else None
+        tp = (char.external or {}).get("heygen_talking_photo_id") if char else None
+        if not tp:
+            tp = prov.upload_photo(assets.local(portrait_asset))
+            if char:
+                char.external = dict(char.external or {}, heygen_talking_photo_id=tp)
+        ps_ = db.query(m.ProjectSettings).filter_by(project_id=p.id).one()
+        job = prov.submit_talk(tp, prov.upload_audio(mp3), ps_.width, ps_.height)
+        ctx.log("Lip-sync video submitted to %s (job %s)" % (prov.label, job))
+        dest = prov.wait(job, os.path.join(work, "avatar_talk.mp4"), timeout=3600, every=15)
+    except Exception:
+        budget.release(db, rec)
+        raise
+    budget.commit(db, rec)
+    a = assets.register(db, dest, p.id, "scene", "avatar", "avatar_lipsync.mp4", origin="generated", provider=prov.name, settings={"job": job},
+                        license="AI-generated (%s terms)" % prov.label, commercial_use="unknown", meta={"ai_generated": True, "lipsync": True})
+    ps.style = dict(ps.style or {}, avatar_video={"key": key, "asset_id": str(a.id)})
+    db.commit()
     return a
 
 
@@ -226,7 +282,11 @@ def produce(ctx, scene, vtype, work, seed, used, blocked):
                                    progress=lambda f, msg: ctx.progress(f, msg))
         return a, "blender"
     if vtype == "avatar":
-        return avatar_portrait(ctx, work), "talking_photo"
+        portrait_asset = avatar_portrait(ctx, work)
+        talk = lipsync_video(ctx, portrait_asset, work)
+        if talk is not None:
+            return talk, "heygen"
+        return portrait_asset, "talking_photo"
     if vtype == "user":
         aid = (scene.plan or {}).get("user_asset_id")
         a = ctx.db.get(m.Asset, aid) if aid else None
@@ -277,7 +337,7 @@ def run(ctx):
             plan["substitution"] = {"requested": requested, "used": vt, "reason": "; ".join(errors)[:600]}
             ctx.log("Scene %d: %s unavailable, used %s instead (%s)" % (scene.idx, requested, vt, errors[-1][:200] if errors else ""), "warn")
         if vt == "avatar":
-            plan["avatar_engine"] = "talking_photo"
+            plan["avatar_engine"] = prov
         scene.plan = plan
         if ctx.params.get("redo"):
             scene.version = (scene.version or 1) + 1

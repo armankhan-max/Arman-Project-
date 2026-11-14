@@ -184,6 +184,19 @@ class AvatarProvider(Provider):
     def poll(self, job_id) -> dict:
         raise NotImplementedError
 
+    def wait(self, job_id, dest, timeout=3600, every=15):
+        import time
+        from .base import download
+        t0 = time.time()
+        while time.time() - t0 < timeout:
+            st = self.poll(job_id)
+            if st["status"] == "succeeded":
+                return download(st["url"], dest, timeout=600, max_mb=2000)
+            if st["status"] == "failed":
+                raise ProviderError("Avatar video failed: %s" % st.get("error", "unknown"), retryable=False)
+            time.sleep(every)
+        raise ProviderError("Avatar video timed out after %ds" % timeout, retryable=True, code="timeout")
+
 
 class DID(AvatarProvider):
     def __init__(self):
@@ -206,6 +219,60 @@ class DID(AvatarProvider):
         if j.get("status") in ("error", "rejected"):
             return {"status": "failed", "error": str(j.get("error"))}
         return {"status": "running"}
+
+
+class HeyGen(AvatarProvider):
+    """Photo + narration audio → lip-synced talking-head video."""
+
+    def __init__(self):
+        super().__init__(name="heygen", label="HeyGen (lip-synced avatar video)", caps=("avatar", "lipsync"), paid=True, unit="seconds",
+                         fields=(CredField("api_key", "API key", "HEYGEN_API_KEY"),), docs="https://docs.heygen.com", verified=False,
+                         notes="Written against HeyGen's public API docs; awaiting credentials for a live test. Uploads the saved character photo and the narration, returns a lip-synced video.")
+
+    def _h(self, ct="application/json"):
+        return {"X-Api-Key": self.creds["api_key"], "content-type": ct}
+
+    def upload_photo(self, path):
+        self.need()
+        ct = "image/png" if path.lower().endswith(".png") else "image/jpeg"
+        with open(path, "rb") as f:
+            j = http("POST", "https://upload.heygen.com/v1/talking_photo", headers=self._h(ct), data=f.read(), timeout=180).json()
+        return (j.get("data") or {}).get("talking_photo_id")
+
+    def upload_audio(self, path):
+        self.need()
+        with open(path, "rb") as f:
+            j = http("POST", "https://upload.heygen.com/v1/asset", headers=self._h("audio/mpeg"), data=f.read(), timeout=600).json()
+        return (j.get("data") or {}).get("id")
+
+    def submit_talk(self, talking_photo_id, audio_asset_id, width=1280, height=720):
+        self.need()
+        j = http("POST", "https://api.heygen.com/v2/video/generate", headers=self._h(), timeout=120,
+                 json={"video_inputs": [{"character": {"type": "talking_photo", "talking_photo_id": talking_photo_id},
+                                         "voice": {"type": "audio", "audio_asset_id": audio_asset_id}}],
+                       "dimension": {"width": width, "height": height}}).json()
+        vid = (j.get("data") or {}).get("video_id")
+        if not vid:
+            raise ProviderError("HeyGen did not return a video id: %s" % str(j)[:200], retryable=False)
+        return vid
+
+    def poll(self, job_id):
+        j = http("GET", "https://api.heygen.com/v1/video_status.get", headers=self._h(), params={"video_id": job_id}).json()
+        d = j.get("data") or {}
+        if d.get("status") == "completed":
+            return {"status": "succeeded", "url": d.get("video_url")}
+        if d.get("status") == "failed":
+            return {"status": "failed", "error": str(d.get("error"))}
+        return {"status": "running"}
+
+    def validate(self):
+        if not self.configured():
+            return False, "Missing API key"
+        try:
+            http("GET", "https://api.heygen.com/v2/avatars", headers=self._h(), retries=0, timeout=30)
+            return True, "Key accepted"
+        except ProviderError as e:
+            return False, str(e)
 
 
 class LocalTalkingPhoto(Provider):

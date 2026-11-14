@@ -143,6 +143,7 @@ def run(ctx):
     except ProviderError as e:
         cont = {}
         ctx.log("Continuity bible unavailable: %s" % e, "warn")
+    rnd0 = random.Random(str(p.id) + "a")
     prefs = mem_ctx(recall(db, p.user_id, "camera movement transitions editing pace visual style", "preference", k=8))
     plans, prev = {}, []
     B = 10
@@ -155,6 +156,21 @@ def run(ctx):
         prev += [plans[s["n"]].visual_type for s in b if s["n"] in plans]
         ctx.progress(0.1 + 0.8 * (bi + 1) / len(batches), "Planned %d/%d scenes" % (min(len(segs), (bi + 1) * B), len(segs)))
     rnd = random.Random(str(p.id))
+    if p.mode == "avatar":
+        # talking-head channel: host on camera for the hook and regularly after, AI phone-style B-roll in between
+        run_b = 0
+        for s_ in segs:
+            n = s_["n"]
+            pl = plans.get(n) or heuristic(n, s_["text"], allowed, rnd0, prefer)
+            plans[n] = pl
+            want = n <= 2 or n >= len(segs) or run_b >= 2 + (n % 2)
+            if want:
+                pl.visual_type, pl.motion_graphic, run_b = "avatar", None, 0
+            else:
+                run_b += 1
+                if pl.visual_type not in ("motion_graphic",) or not any(ch.isdigit() for ch in s_["text"]):
+                    pl.visual_type, pl.motion_graphic = "ai_image", None
+            pl.transition = "cut"
     # keep graphics from crowding out pictures: at most ~30% motion graphics unless the mode is graphics-led
     if p.mode not in ("motion_graphics", "educational"):
         mgs = [n for n, pl in sorted(plans.items()) if pl.visual_type == "motion_graphic"]

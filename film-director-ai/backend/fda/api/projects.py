@@ -64,6 +64,11 @@ def create_project(body: dict = Body(...), db=Depends(get_db), u=Depends(current
     db.flush()
     st = catalog.default_style(mode, lang)
     st.update({k: v for k, v in (body.get("style") or {}).items() if k in st or k in ("persona", "research", "ambience", "tts_provider", "avatar_pip")})
+    if body.get("character_id"):
+        from fda.services.characters import apply_to_style
+        ch = db.get(m.Character, body["character_id"])
+        if ch and ch.user_id == u.id:
+            st = apply_to_style(ch, st)
     aspect = body.get("aspect") or st["aspect"]
     w, h = catalog.RESOLUTIONS.get(aspect, catalog.RESOLUTIONS["16:9"])[0]
     st["aspect"] = aspect
@@ -110,8 +115,10 @@ def get_project(pid: str, db=Depends(get_db), u=Depends(current_user)):
     d["runs"] = [row(r, ("state", "plan")) for r in db.query(m.WorkflowRun).filter_by(project_id=p.id).order_by(m.WorkflowRun.created_at.desc()).limit(15).all()]
     q = db.query(m.QualityReport).filter_by(project_id=p.id).order_by(m.QualityReport.created_at.desc()).first()
     d["quality"] = row(q)
+    pk = db.query(m.ResearchReport).filter_by(project_id=p.id, kind="upload_pack").order_by(m.ResearchReport.created_at.desc()).first()
+    d["pack"] = dict(pk.data, thumbnails=[dict(t, url="/api/v1/assets/%s/file" % t["asset_id"]) for t in pk.data.get("thumbnails", [])]) if pk else None
     d["research"] = [dict(row(r), sources=[row(s) for s in db.query(m.ResearchSource).filter_by(report_id=r.id).all()])
-                     for r in db.query(m.ResearchReport).filter_by(project_id=p.id).order_by(m.ResearchReport.created_at.desc()).limit(5).all()]
+                     for r in db.query(m.ResearchReport).filter(m.ResearchReport.project_id == p.id, m.ResearchReport.kind != "upload_pack").order_by(m.ResearchReport.created_at.desc()).limit(5).all()]
     return d
 
 
@@ -236,6 +243,15 @@ def apply_changes(pid: str, body: dict = Body(default={}), db=Depends(get_db), u
               {"key": "finalize", "agent": "finalize", "depends_on": ["*qc"]}]
     p.status = "producing"
     run = workflow.create_run(db, p.id, "render", tasks)
+    db.commit()
+    workflow.dispatch(run.id)
+    return row(run, ("state",))
+
+
+@router.post("/projects/{pid}/pack")
+def make_pack(pid: str, db=Depends(get_db), u=Depends(current_user)):
+    p = project_or_404(db, pid, u)
+    run = workflow.create_run(db, p.id, "pack", [{"key": "pack", "agent": "pack", "max_attempts": 1}])
     db.commit()
     workflow.dispatch(run.id)
     return row(run, ("state",))

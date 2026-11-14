@@ -59,6 +59,8 @@ def build(db, project, resync_subtitles=True):
         elif a is None:
             kind = "placeholder"
             missing += 1
+        elif sc.visual_type == "avatar" and not (pl.get("substitution")) and a.kind == "video":
+            kind = "video"  # lip-synced talking-head video: play the part that matches this narration
         elif sc.visual_type == "avatar" and not (pl.get("substitution")):
             kind = "avatar"
         elif sc.visual_type == "blender" and not pl.get("substitution"):
@@ -80,7 +82,10 @@ def build(db, project, resync_subtitles=True):
                 if (prev.props or {}).get("user_edited") and k in (prev.props or {}):
                     props[k] = prev.props[k]
         in_s = 0.0
-        if a is not None and a.kind == "video" and a.duration_s:
+        if a is not None and a.kind == "video" and (a.meta or {}).get("lipsync"):
+            in_s = round(sc.start_s, 3)
+            props["motion"], props["lipsync"] = "static", True
+        elif a is not None and a.kind == "video" and a.duration_s:
             slack = a.duration_s - (sc.end_s - sc.start_s) - 0.3
             in_s = round(prev.in_s if prev and (prev.props or {}).get("user_edited") else (rnd.uniform(0, min(slack, 6)) if slack > 0.5 else 0.0), 2)
         db.add(m.TimelineItem(project_id=project.id, scene_id=sc.id, asset_id=a.id if a else None, track="V1", kind=kind, start_s=sc.start_s,

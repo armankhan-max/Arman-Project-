@@ -2,10 +2,10 @@
 
 
 def _h():
-    from . import audio, director, editor, quality, research, scriptwriter, storyboard, visual, voiceover
+    from . import audio, director, editor, pack, quality, research, scriptwriter, storyboard, visual, voiceover
     return {"analyze": director.analyze_run, "research": research.run, "script": scriptwriter.run, "voiceover": voiceover.run, "storyboard": storyboard.run,
             "visual": visual.run, "audio": audio.run, "editor": editor.run, "render": quality.render_run, "qc": quality.qc_run, "finalize": director.finalize_run,
-            "apply_edit": director.apply_edit_run}
+            "apply_edit": director.apply_edit_run, "pack": pack.run}
 
 
 class _Lazy(dict):

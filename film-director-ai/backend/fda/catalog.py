@@ -18,7 +18,7 @@ MODES = {
     "realistic": dict(name="Realistic cinematic", look="earth", music="cinematic", captions="clean", pace=5.0,
                       prefer=["ai_video", "stock_video", "ai_image"]),
     "avatar": dict(name="AI avatar host", look="home", music="warm", captions="highlight", pace=4.5,
-                   prefer=["avatar", "stock_video", "ai_image", "motion_graphic"]),
+                   prefer=["avatar", "ai_image", "motion_graphic"]),
     "anim2d": dict(name="2D animation", look="midnight", music="curious", captions="pop", pace=4.0, prefer=["ai_image", "motion_graphic"]),
     "blender3d": dict(name="Blender 3D animation", look="neon", music="ambient", captions="clean", pace=5.0, prefer=["blender", "motion_graphic"]),
     "motion_graphics": dict(name="2D motion graphics", look="clean", music="upbeat", captions="highlight", pace=3.5, prefer=["motion_graphic", "ai_image"]),

@@ -34,6 +34,8 @@ function NewProject({ cat }: { cat: any }) {
   const { busy, run } = useBusy();
   const [f, setF] = useState<any>({ title: "", brief: "", mode: "documentary", language: "en", target_minutes: 3, aspect: "16:9", fps: 30, preserve_narration: true, script: "" });
   const [vo, setVo] = useState<File | null>(null);
+  const { data: chars } = useApi<any[]>("/characters");
+  useEffect(() => { const c = new URLSearchParams(location.search).get("character"); if (c) setF((x: any) => ({ ...x, mode: "avatar", character_id: c })); }, []);
   const [refs, setRefs] = useState<File[]>([]);
   const set = (k: string, v: any) => setF({ ...f, [k]: v });
   const create = (start: boolean) => run("create", async () => {
@@ -53,6 +55,9 @@ function NewProject({ cat }: { cat: any }) {
       <label className="label">Production style
         <select className="input" value={f.mode} onChange={(e) => set("mode", e.target.value)}>{Object.entries(cat.modes).map(([k, v]: any) => <option key={k} value={k}>{v.name}</option>)}</select>
       </label>
+      {f.mode === "avatar" && <label className="label md:col-span-2">Host character
+        <select className="input" value={f.character_id || ""} onChange={(e) => set("character_id", e.target.value || undefined)}><option value="">Let the Director invent a host for this video</option>{chars?.map((c) => <option key={c.id} value={c.id}>{c.name}{c.voice ? " · " + c.voice : ""}</option>)}</select>
+        <span className="font-normal text-mute">Save hosts on the Characters page to reuse the same face and voice.</span></label>}
       <label className="label">Language
         <select className="input" value={f.language} onChange={(e) => set("language", e.target.value)}>{Object.entries(cat.languages).map(([k, v]: any) => <option key={k} value={k}>{v}</option>)}</select>
       </label>

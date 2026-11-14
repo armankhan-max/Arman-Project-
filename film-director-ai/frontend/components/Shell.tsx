@@ -8,6 +8,7 @@ const NAV = [
   ["/", "Dashboard"],
   ["/chat", "AI Director"],
   ["/projects", "Projects"],
+  ["/characters", "Characters"],
   ["/youtube", "YouTube Intelligence"],
   ["/knowledge", "Knowledge"],
   ["/memory", "Memory & Preferences"],
