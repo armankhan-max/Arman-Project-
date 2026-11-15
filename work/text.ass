@@ -1,0 +1,205 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1920
+PlayResY: 1080
+WrapStyle: 0
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Num,DejaVu Sans,230,&H0033CCFF,&H000000FF,&H00101010,&H90000000,1,0,0,0,100,100,0,0,1,10,6,5,0,0,0,1
+Style: Title,DejaVu Sans,82,&H00FFFFFF,&H000000FF,&H00202020,&HC0000000,1,0,0,0,100,100,1,0,3,18,0,5,0,0,0,1
+Style: Box,DejaVu Sans,64,&H00FFFFFF,&H000000FF,&H00141414,&H80000000,1,0,0,0,100,100,0,0,3,16,0,2,80,80,90,1
+Style: Gold,DejaVu Sans,64,&H0033CCFF,&H000000FF,&H00141414,&H80000000,1,0,0,0,100,100,0,0,3,16,0,2,80,80,90,1
+Style: Big,DejaVu Sans,150,&H00FFFFFF,&H000000FF,&H00101010,&H90000000,1,0,0,0,100,100,2,0,1,9,5,5,0,0,0,1
+Style: Badge,DejaVu Sans,46,&H00FFFFFF,&H000000FF,&H001E3A8A,&H00000000,1,0,0,0,100,100,0,0,3,14,0,9,0,50,45,1
+Style: Quote,DejaVu Serif,74,&H00FFFFFF,&H000000FF,&H00101010,&H90000000,1,1,0,0,100,100,0,0,1,6,4,5,0,0,0,1
+Style: Red,DejaVu Sans,70,&H00FFFFFF,&H000000FF,&H000000CC,&H00000000,1,0,0,0,100,100,1,0,3,20,0,5,0,0,0,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 1,0:00:01.00,0:00:04.60,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Looks great on the hanger...
+Dialogue: 1,0:00:05.00,0:00:09.20,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}...but something is OFF
+Dialogue: 1,0:00:20.40,0:00:26.80,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}It's NOT your fault
+Dialogue: 2,0:00:27.60,0:00:27.66,Big,,0,0,0,,{\an5\pos(960,480)}2 YEARS
+Dialogue: 2,0:00:27.66,0:00:27.72,Big,,0,0,0,,{\an5\pos(960,480)}5 YEARS
+Dialogue: 2,0:00:27.72,0:00:27.78,Big,,0,0,0,,{\an5\pos(960,480)}8 YEARS
+Dialogue: 2,0:00:27.78,0:00:27.84,Big,,0,0,0,,{\an5\pos(960,480)}10 YEARS
+Dialogue: 2,0:00:27.84,0:00:27.90,Big,,0,0,0,,{\an5\pos(960,480)}12 YEARS
+Dialogue: 2,0:00:27.90,0:00:27.96,Big,,0,0,0,,{\an5\pos(960,480)}15 YEARS
+Dialogue: 2,0:00:27.96,0:00:28.02,Big,,0,0,0,,{\an5\pos(960,480)}18 YEARS
+Dialogue: 2,0:00:28.02,0:00:28.08,Big,,0,0,0,,{\an5\pos(960,480)}20 YEARS
+Dialogue: 2,0:00:28.08,0:00:28.14,Big,,0,0,0,,{\an5\pos(960,480)}22 YEARS
+Dialogue: 2,0:00:28.14,0:00:28.20,Big,,0,0,0,,{\an5\pos(960,480)}25 YEARS
+Dialogue: 2,0:00:28.20,0:00:28.26,Big,,0,0,0,,{\an5\pos(960,480)}28 YEARS
+Dialogue: 2,0:00:28.26,0:00:28.32,Big,,0,0,0,,{\an5\pos(960,480)}30 YEARS
+Dialogue: 2,0:00:28.32,0:00:28.38,Big,,0,0,0,,{\an5\pos(960,480)}32 YEARS
+Dialogue: 2,0:00:28.38,0:00:28.44,Big,,0,0,0,,{\an5\pos(960,480)}35 YEARS
+Dialogue: 2,0:00:28.44,0:00:28.50,Big,,0,0,0,,{\an5\pos(960,480)}38 YEARS
+Dialogue: 2,0:00:28.50,0:00:28.56,Big,,0,0,0,,{\an5\pos(960,480)}40 YEARS
+Dialogue: 2,0:00:28.56,0:00:28.62,Big,,0,0,0,,{\an5\pos(960,480)}42 YEARS
+Dialogue: 2,0:00:28.62,0:00:28.68,Big,,0,0,0,,{\an5\pos(960,480)}45 YEARS
+Dialogue: 2,0:00:28.68,0:00:28.74,Big,,0,0,0,,{\an5\pos(960,480)}48 YEARS
+Dialogue: 2,0:00:28.74,0:00:31.00,Big,,0,0,0,,{\an5\pos(960,480)}50 YEARS
+Dialogue: 1,0:00:31.20,0:00:33.60,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}at the cutting table
+Dialogue: 2,0:00:37.00,0:00:37.05,Big,,0,0,0,,{\an5\pos(960,480)}0 MISTAKES
+Dialogue: 2,0:00:37.05,0:00:37.09,Big,,0,0,0,,{\an5\pos(960,480)}1 MISTAKES
+Dialogue: 2,0:00:37.09,0:00:37.13,Big,,0,0,0,,{\an5\pos(960,480)}2 MISTAKES
+Dialogue: 2,0:00:37.13,0:00:37.18,Big,,0,0,0,,{\an5\pos(960,480)}2 MISTAKES
+Dialogue: 2,0:00:37.18,0:00:37.23,Big,,0,0,0,,{\an5\pos(960,480)}2 MISTAKES
+Dialogue: 2,0:00:37.23,0:00:37.27,Big,,0,0,0,,{\an5\pos(960,480)}3 MISTAKES
+Dialogue: 2,0:00:37.27,0:00:37.31,Big,,0,0,0,,{\an5\pos(960,480)}4 MISTAKES
+Dialogue: 2,0:00:37.31,0:00:37.36,Big,,0,0,0,,{\an5\pos(960,480)}4 MISTAKES
+Dialogue: 2,0:00:37.36,0:00:37.41,Big,,0,0,0,,{\an5\pos(960,480)}4 MISTAKES
+Dialogue: 2,0:00:37.41,0:00:37.45,Big,,0,0,0,,{\an5\pos(960,480)}5 MISTAKES
+Dialogue: 2,0:00:37.45,0:00:37.49,Big,,0,0,0,,{\an5\pos(960,480)}6 MISTAKES
+Dialogue: 2,0:00:37.49,0:00:37.54,Big,,0,0,0,,{\an5\pos(960,480)}6 MISTAKES
+Dialogue: 2,0:00:37.54,0:00:37.59,Big,,0,0,0,,{\an5\pos(960,480)}6 MISTAKES
+Dialogue: 2,0:00:37.59,0:00:37.63,Big,,0,0,0,,{\an5\pos(960,480)}7 MISTAKES
+Dialogue: 2,0:00:37.63,0:00:37.67,Big,,0,0,0,,{\an5\pos(960,480)}8 MISTAKES
+Dialogue: 2,0:00:37.67,0:00:37.72,Big,,0,0,0,,{\an5\pos(960,480)}8 MISTAKES
+Dialogue: 2,0:00:37.72,0:00:37.77,Big,,0,0,0,,{\an5\pos(960,480)}8 MISTAKES
+Dialogue: 2,0:00:37.77,0:00:37.81,Big,,0,0,0,,{\an5\pos(960,480)}9 MISTAKES
+Dialogue: 2,0:00:37.81,0:00:37.85,Big,,0,0,0,,{\an5\pos(960,480)}10 MISTAKES
+Dialogue: 2,0:00:37.85,0:00:40.80,Big,,0,0,0,,{\an5\pos(960,480)}10 MISTAKES
+Dialogue: 1,0:00:42.00,0:00:46.00,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Counting down to #1 - the BIGGEST
+Dialogue: 1,0:00:46.50,0:00:51.40,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Costs less than a dinner out
+Dialogue: 1,0:00:53.90,0:00:58.00,Box,,0,0,0,,{\an1\pos(90,980)\fad(300,300)}MALCOLM {\c&H33CCFF&}- 50 years a tailor
+Dialogue: 1,0:00:57.50,0:01:02.80,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Started at 16 - sweeping cloth scraps
+Dialogue: 2,0:01:04.50,0:01:10.30,Quote,,0,0,0,,{\an5\pos(960,540)\fad(400,400)}"Measure it again, lad."\N{\fs44\i0}- Mr. Pettigrew
+Dialogue: 2,0:01:12.50,0:01:20.00,Big,,0,0,0,,{\an5\pos(960,470)\fscx40\fscy40\t(0,250,\fscx105\fscy105)\t(250,380,\fscx100\fscy100)\fad(0,300)}FIT FIRST.
+Dialogue: 2,0:01:13.60,0:01:20.00,Big,,0,0,0,,{\an5\pos(960,640)\c&H33CCFF&\fad(300,300)}FASHION SECOND.
+Dialogue: 2,0:01:22.40,0:01:26.60,Num,,0,0,0,,{\an5\pos(960,400)\fscx20\fscy20\t(0,260,\fscx120\fscy120)\t(260,420,\fscx100\fscy100)\fad(0,300)}#10
+Dialogue: 2,0:01:22.75,0:01:26.60,Title,,0,0,0,,{\an5\pos(960,640)\fad(250,300)\move(960,700,960,640,0,300)}TROUSERS TOO LONG
+Dialogue: 1,0:01:26.60,0:02:07.20,Badge,,0,0,0,,{\fad(300,300)}MISTAKE #10
+Dialogue: 1,0:01:27.00,0:01:32.60,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Bunching at the ankle
+Dialogue: 1,0:01:38.30,0:01:41.90,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Hem should just TOUCH the shoe
+Dialogue: 1,0:01:42.50,0:01:47.60,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}One small clean break - at most
+Dialogue: 1,0:01:48.80,0:01:53.60,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Quick job - costs very little
+Dialogue: 2,0:02:03.00,0:02:07.00,Quote,,0,0,0,,{\an5\pos(960,540)\fad(400,400)}"Hang up your shears."
+Dialogue: 2,0:02:07.20,0:02:11.40,Num,,0,0,0,,{\an5\pos(960,400)\fscx20\fscy20\t(0,260,\fscx120\fscy120)\t(260,420,\fscx100\fscy100)\fad(0,300)}#9
+Dialogue: 2,0:02:07.55,0:02:11.40,Title,,0,0,0,,{\an5\pos(960,640)\fad(250,300)\move(960,700,960,640,0,300)}SLEEVES TOO LONG
+Dialogue: 1,0:02:11.40,0:02:49.00,Badge,,0,0,0,,{\fad(300,300)}MISTAKE #9
+Dialogue: 1,0:02:11.20,0:02:14.70,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Arms down - look at your hands
+Dialogue: 1,0:02:15.00,0:02:20.40,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Covering the knuckles = TOO LONG
+Dialogue: 2,0:02:21.30,0:02:26.20,Big,,0,0,0,,{\an5\pos(960,480)\fscx30\fscy30\t(0,250,\fscx110\fscy110)\t(250,380,\fscx100\fscy100)\fad(0,250)}{\c&H33CCFF&}½ INCH
+Dialogue: 2,0:02:21.80,0:02:26.20,Title,,0,0,0,,{\an5\pos(960,650)\fad(250,250)}of shirt cuff showing
+Dialogue: 1,0:02:31.20,0:02:36.40,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Fixed in a day or two
+Dialogue: 2,0:02:37.00,0:02:41.80,Quote,,0,0,0,,{\an5\pos(960,540)\fad(400,400)}"The shoulders never lie."
+Dialogue: 2,0:02:49.30,0:02:53.50,Num,,0,0,0,,{\an5\pos(960,400)\fscx20\fscy20\t(0,260,\fscx120\fscy120)\t(260,420,\fscx100\fscy100)\fad(0,300)}#8
+Dialogue: 2,0:02:49.65,0:02:53.50,Title,,0,0,0,,{\an5\pos(960,640)\fad(250,300)\move(960,700,960,640,0,300)}TROUSERS SIT TOO LOW
+Dialogue: 1,0:02:53.50,0:03:32.00,Badge,,0,0,0,,{\fad(300,300)}MISTAKE #8
+Dialogue: 1,0:02:54.00,0:02:58.80,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Belt slides under the stomach
+Dialogue: 1,0:02:59.20,0:03:04.00,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Folds in front - shorter-looking legs
+Dialogue: 1,0:03:08.20,0:03:13.70,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Wear them at your NATURAL WAIST
+Dialogue: 1,0:03:13.90,0:03:16.80,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}≈ level with the belly button
+Dialogue: 1,0:03:17.30,0:03:22.00,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Higher rise + fitted waist
+Dialogue: 1,0:03:22.40,0:03:27.20,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Stand taller. Sit comfortably.
+Dialogue: 2,0:03:32.00,0:03:36.20,Num,,0,0,0,,{\an5\pos(960,400)\fscx20\fscy20\t(0,260,\fscx120\fscy120)\t(260,420,\fscx100\fscy100)\fad(0,300)}#7
+Dialogue: 2,0:03:32.35,0:03:36.20,Title,,0,0,0,,{\an5\pos(960,640)\fad(250,300)\move(960,700,960,640,0,300)}WEARING BLACK
+Dialogue: 1,0:03:36.30,0:04:12.50,Badge,,0,0,0,,{\fad(300,300)}MISTAKE #7
+Dialogue: 1,0:03:36.40,0:03:39.40,Box,,0,0,0,,{\an1\pos(90,980)\fad(300,300)}Evelyn {\c&H33CCFF&}- kept the books
+Dialogue: 1,0:03:40.00,0:03:44.40,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Black near the face is hard on silver hair
+Dialogue: 1,0:03:50.60,0:03:55.60,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Black drains colour from the skin
+Dialogue: 2,0:03:56.40,0:04:02.30,Badge,,0,0,0,,{\an7\pos(120,780)\3c&H5A2A12&\fad(200,0)\fscx40\fscy40\t(0,200,\fscx100\fscy100)}NAVY
+Dialogue: 2,0:03:57.50,0:04:02.30,Badge,,0,0,0,,{\an7\pos(470,780)\3c&H4A4A4A&\fad(200,0)\fscx40\fscy40\t(0,200,\fscx100\fscy100)}CHARCOAL
+Dialogue: 2,0:03:58.60,0:04:02.30,Badge,,0,0,0,,{\an7\pos(820,780)\3c&H2A4A7A&\fad(200,0)\fscx40\fscy40\t(0,200,\fscx100\fscy100)}BROWN
+Dialogue: 2,0:03:59.70,0:04:02.30,Badge,,0,0,0,,{\an7\pos(1170,780)\3c&H5A9AD0&\fad(200,0)\fscx40\fscy40\t(0,200,\fscx100\fscy100)}CAMEL
+Dialogue: 2,0:04:00.80,0:04:02.30,Badge,,0,0,0,,{\an7\pos(1520,780)\3c&H2A6A55&\fad(200,0)\fscx40\fscy40\t(0,200,\fscx100\fscy100)}OLIVE
+Dialogue: 1,0:04:05.20,0:04:07.80,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Keep black for the evening
+Dialogue: 1,0:04:08.20,0:04:12.60,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Try a navy sweater at the chin
+Dialogue: 2,0:04:12.60,0:04:16.80,Num,,0,0,0,,{\an5\pos(960,400)\fscx20\fscy20\t(0,260,\fscx120\fscy120)\t(260,420,\fscx100\fscy100)\fad(0,300)}#6
+Dialogue: 2,0:04:12.95,0:04:16.80,Title,,0,0,0,,{\an5\pos(960,640)\fad(250,300)\move(960,700,960,640,0,300)}THE WRONG COLLAR SIZE
+Dialogue: 1,0:04:16.90,0:04:55.00,Badge,,0,0,0,,{\fad(300,300)}MISTAKE #6
+Dialogue: 1,0:04:17.00,0:04:21.60,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Button up - slide ONE finger in
+Dialogue: 1,0:04:22.20,0:04:27.20,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}No finger = too tight
+Dialogue: 1,0:04:27.40,0:04:29.80,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Three fingers = too loose
+Dialogue: 1,0:04:34.00,0:04:38.80,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Necks change as we get older
+Dialogue: 1,0:04:39.20,0:04:44.20,Box,,0,0,0,,{\an1\pos(90,980)\fad(300,300)}Poppy {\c&H33CCFF&}- granddaughter, 19
+Dialogue: 1,0:04:49.70,0:04:55.00,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Get measured again
+Dialogue: 3,0:04:58.20,0:05:08.20,Red,,0,0,0,,{\an5\pos(780,860)\fscx30\fscy30\t(0,250,\fscx110\fscy110)\t(250,400,\fscx100\fscy100)\fad(0,300)}LIKE
+Dialogue: 3,0:04:59.20,0:05:08.20,Red,,0,0,0,,{\an5\pos(1150,860)\fscx30\fscy30\t(0,250,\fscx110\fscy110)\t(250,400,\fscx100\fscy100)\fad(0,300)}SUBSCRIBE
+Dialogue: 1,0:05:18.50,0:05:20.40,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}It ruins a good jacket in a week
+Dialogue: 2,0:05:24.30,0:05:28.50,Num,,0,0,0,,{\an5\pos(960,400)\fscx20\fscy20\t(0,260,\fscx120\fscy120)\t(260,420,\fscx100\fscy100)\fad(0,300)}#5
+Dialogue: 2,0:05:24.65,0:05:28.50,Title,,0,0,0,,{\an5\pos(960,640)\fad(250,300)\move(960,700,960,640,0,300)}STUFFED JACKET POCKETS
+Dialogue: 1,0:05:28.60,0:06:24.20,Badge,,0,0,0,,{\fad(300,300)}MISTAKE #5
+Dialogue: 1,0:05:28.30,0:05:32.70,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Wallet + phone + keys + receipts
+Dialogue: 1,0:05:33.00,0:05:37.90,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Sags & stretches in a week
+Dialogue: 1,0:05:43.50,0:05:46.10,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Pockets: hands & a handkerchief
+Dialogue: 1,0:05:46.40,0:05:53.20,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Slim wallet - inside pocket only
+Dialogue: 1,0:05:53.80,0:05:55.40,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}TIP!
+Dialogue: 1,0:05:55.70,0:06:04.30,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}New jackets: pockets stitched shut
+Dialogue: 1,0:06:09.00,0:06:13.90,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Snip the thread - pocket opens
+Dialogue: 2,0:06:24.20,0:06:28.40,Num,,0,0,0,,{\an5\pos(960,400)\fscx20\fscy20\t(0,260,\fscx120\fscy120)\t(260,420,\fscx100\fscy100)\fad(0,300)}#4
+Dialogue: 2,0:06:24.55,0:06:28.40,Title,,0,0,0,,{\an5\pos(960,640)\fad(250,300)\move(960,700,960,640,0,300)}WORN-DOWN SHOES
+Dialogue: 1,0:06:28.50,0:07:08.50,Badge,,0,0,0,,{\fad(300,300)}MISTAKE #4
+Dialogue: 1,0:06:26.60,0:06:31.20,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}The eye goes straight to the floor
+Dialogue: 1,0:06:36.60,0:06:40.90,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}New heel - modest price
+Dialogue: 1,0:06:42.20,0:06:47.40,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Small circles of polish...
+Dialogue: 1,0:06:47.70,0:06:52.50,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}...buff until it shines
+Dialogue: 1,0:07:05.40,0:07:08.30,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Plain leather sneakers - casual only
+Dialogue: 2,0:07:08.60,0:07:12.80,Num,,0,0,0,,{\an5\pos(960,400)\fscx20\fscy20\t(0,260,\fscx120\fscy120)\t(260,420,\fscx100\fscy100)\fad(0,300)}#3
+Dialogue: 2,0:07:08.95,0:07:12.80,Title,,0,0,0,,{\an5\pos(960,640)\fad(250,300)\move(960,700,960,640,0,300)}TIE: WRONG LENGTH OR WIDTH
+Dialogue: 1,0:07:12.90,0:07:47.70,Badge,,0,0,0,,{\fad(300,300)}MISTAKE #3
+Dialogue: 1,0:07:12.70,0:07:17.60,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Tip of tie = middle of belt buckle
+Dialogue: 1,0:07:18.30,0:07:23.50,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Too short = a bib
+Dialogue: 1,0:07:23.80,0:07:26.80,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Too long = a tongue
+Dialogue: 1,0:07:27.70,0:07:34.40,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Tie width ≈ lapel width
+Dialogue: 1,0:07:34.80,0:07:41.60,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Too short? Re-tie the knot lower
+Dialogue: 2,0:07:43.70,0:07:47.70,Quote,,0,0,0,,{\an5\pos(960,540)\fad(400,400)}"Measure twice."
+Dialogue: 2,0:07:47.70,0:07:51.90,Num,,0,0,0,,{\an5\pos(960,400)\fscx20\fscy20\t(0,260,\fscx120\fscy120)\t(260,420,\fscx100\fscy100)\fad(0,300)}#2
+Dialogue: 2,0:07:48.05,0:07:51.90,Title,,0,0,0,,{\an5\pos(960,640)\fad(250,300)\move(960,700,960,640,0,300)}THE TIRED SWEATER
+Dialogue: 1,0:07:52.00,0:08:33.00,Badge,,0,0,0,,{\fad(300,300)}MISTAKE #2
+Dialogue: 1,0:07:51.40,0:07:59.90,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Fuzzy balls on elbows & underarms
+Dialogue: 1,0:08:06.00,0:08:14.30,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Sweater comb - light strokes
+Dialogue: 1,0:08:15.30,0:08:21.20,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Cool water - gentle soap - never wring
+Dialogue: 1,0:08:21.40,0:08:23.90,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Dry it FLAT
+Dialogue: 1,0:08:24.50,0:08:31.80,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Loose floppy cuffs? Time to let go
+Dialogue: 1,0:08:37.60,0:08:41.70,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}It's NOT about spending more
+Dialogue: 1,0:08:42.10,0:08:50.60,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Expensive overcoat... hung like a tent
+Dialogue: 1,0:08:51.00,0:09:00.30,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Sale coat + alterations = looked BETTER
+Dialogue: 2,0:09:01.00,0:09:07.50,Quote,,0,0,0,,{\an5\pos(960,540)\fad(400,400)}"Price does not fit.\NTailoring does."
+Dialogue: 2,0:09:12.50,0:09:17.10,Num,,0,0,0,,{\an5\pos(960,400)\fscx20\fscy20\t(0,260,\fscx120\fscy120)\t(260,420,\fscx100\fscy100)\fad(0,300)}#1
+Dialogue: 2,0:09:12.85,0:09:17.10,Title,,0,0,0,,{\an5\pos(960,640)\fad(250,300)\move(960,700,960,640,0,300)}AN UNALTERED OFF-THE-RACK JACKET
+Dialogue: 1,0:09:17.20,0:10:21.30,Badge,,0,0,0,,{\fad(300,300)}MISTAKE #1
+Dialogue: 1,0:09:17.30,0:09:22.20,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Made for an 'average man' who doesn't exist
+Dialogue: 1,0:09:29.00,0:09:33.20,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Small alterations = bespoke look
+Dialogue: 1,0:09:33.50,0:09:38.00,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Check the SHOULDERS first
+Dialogue: 1,0:09:38.30,0:09:42.80,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Hardest part to change
+Dialogue: 1,0:09:43.10,0:09:47.60,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Seam ends where your shoulder ends
+Dialogue: 1,0:09:47.90,0:09:53.30,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Collar lies flat on the neck
+Dialogue: 1,0:09:54.30,0:09:59.60,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Sleeves - waist - length: all fixable
+Dialogue: 2,0:09:59.90,0:09:59.94,Big,,0,0,0,,{\an5\pos(960,430)}$1
+Dialogue: 2,0:09:59.94,0:09:59.98,Big,,0,0,0,,{\an5\pos(960,430)}$2
+Dialogue: 2,0:09:59.98,0:10:00.02,Big,,0,0,0,,{\an5\pos(960,430)}$2
+Dialogue: 2,0:10:00.02,0:10:00.06,Big,,0,0,0,,{\an5\pos(960,430)}$3
+Dialogue: 2,0:10:00.06,0:10:00.10,Big,,0,0,0,,{\an5\pos(960,430)}$4
+Dialogue: 2,0:10:00.10,0:10:00.14,Big,,0,0,0,,{\an5\pos(960,430)}$4
+Dialogue: 2,0:10:00.14,0:10:00.18,Big,,0,0,0,,{\an5\pos(960,430)}$5
+Dialogue: 2,0:10:00.18,0:10:00.22,Big,,0,0,0,,{\an5\pos(960,430)}$6
+Dialogue: 2,0:10:00.22,0:10:00.26,Big,,0,0,0,,{\an5\pos(960,430)}$7
+Dialogue: 2,0:10:00.26,0:10:00.30,Big,,0,0,0,,{\an5\pos(960,430)}$8
+Dialogue: 2,0:10:00.30,0:10:00.34,Big,,0,0,0,,{\an5\pos(960,430)}$8
+Dialogue: 2,0:10:00.34,0:10:00.38,Big,,0,0,0,,{\an5\pos(960,430)}$9
+Dialogue: 2,0:10:00.38,0:10:00.42,Big,,0,0,0,,{\an5\pos(960,430)}$10
+Dialogue: 2,0:10:00.42,0:10:00.46,Big,,0,0,0,,{\an5\pos(960,430)}$10
+Dialogue: 2,0:10:00.46,0:10:00.50,Big,,0,0,0,,{\an5\pos(960,430)}$11
+Dialogue: 2,0:10:00.50,0:10:00.54,Big,,0,0,0,,{\an5\pos(960,430)}$12
+Dialogue: 2,0:10:00.54,0:10:00.58,Big,,0,0,0,,{\an5\pos(960,430)}$13
+Dialogue: 2,0:10:00.58,0:10:00.62,Big,,0,0,0,,{\an5\pos(960,430)}$14
+Dialogue: 2,0:10:00.62,0:10:00.66,Big,,0,0,0,,{\an5\pos(960,430)}$14
+Dialogue: 2,0:10:00.66,0:10:03.40,Big,,0,0,0,,{\an5\pos(960,430)}$15
+Dialogue: 2,0:10:00.90,0:10:03.40,Big,,0,0,0,,{\an5\pos(960,620)\fscx70\fscy70\c&H33CCFF&\fad(200,0)}to $40
+Dialogue: 1,0:10:03.60,0:10:05.30,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Less than a dinner out
+Dialogue: 1,0:10:09.00,0:10:14.20,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Pulls into an X? Tell your tailor
+Dialogue: 2,0:10:14.50,0:10:21.30,Quote,,0,0,0,,{\an5\pos(960,540)\fad(400,400)}"Measure twice. Buy once."
+Dialogue: 2,0:10:28.80,0:10:32.90,Big,,0,0,0,,{\an5\pos(960,520)\fscx30\fscy30\t(0,250,\fscx110\fscy110)\t(250,380,\fscx100\fscy100)}CHUFFED!
+Dialogue: 2,0:10:33.00,0:10:39.80,Badge,,0,0,0,,{\an7\pos(110,260)\fad(250,0)\move(60,260,110,260,0,250)}✔ Hem the trousers
+Dialogue: 2,0:10:34.20,0:10:39.80,Badge,,0,0,0,,{\an7\pos(110,380)\fad(250,0)\move(60,380,110,380,0,250)}✔ Shorten the sleeves
+Dialogue: 2,0:10:34.60,0:10:39.80,Badge,,0,0,0,,{\an7\pos(110,500)\fad(250,0)\move(60,500,110,500,0,250)}✔ Lift the waist
+Dialogue: 2,0:10:36.50,0:10:39.80,Badge,,0,0,0,,{\an7\pos(110,620)\fad(250,0)\move(60,620,110,620,0,250)}✔ Swap black for navy
+Dialogue: 2,0:10:38.50,0:10:39.80,Badge,,0,0,0,,{\an7\pos(110,740)\fad(250,0)\move(60,740,110,740,0,250)}✔ Tailor that jacket
+Dialogue: 1,0:10:41.00,0:10:46.70,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Check your sleeves - 10 seconds
+Dialogue: 1,0:10:47.30,0:10:52.00,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Which mistake were YOU guilty of?
+Dialogue: 1,0:10:52.30,0:10:57.60,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Tell me in the comments!
+Dialogue: 1,0:10:58.00,0:11:02.50,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}NEXT: How a winter coat should fit
+Dialogue: 2,0:11:07.20,0:11:11.40,Title,,0,0,0,,{\an5\pos(960,880)\fad(400,0)}Stay sharp, my friend.
