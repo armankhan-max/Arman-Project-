@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Over-60 Fit and Style Guide | The Over-60 Fitting Room</title>
+<meta name="description" content="The complete fitting-room system for men over 60. Know what fits, what to alter and what to buy. 108-page PDF guide, instant download, $27.">
+<meta property="og:title" content="The Over-60 Fit and Style Guide">
+<meta property="og:description" content="It's not you. It's the fit. The complete system for men over 60 to look sharp without wasting money.">
+<meta property="og:image" content="assets/page-c.jpg">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@500;600;700&family=Homemade+Apple&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1F2A44; --navy-2:#283656; --ink:#1b1b1b; --gold:#C9A25E; --gold-d:#A9823F;
+  --cream:#F6F1E7; --paper:#FBF8F2; --chalk:#FFFFFF; --muted:#5c5a55; --red:#A23B2A; --green:#2F6B45;
+  --tape:#E9C04A; --radius:14px;
+  --serif:'Source Serif 4', Georgia, serif; --display:'Playfair Display', Georgia, serif; --sans:'Inter', system-ui, sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--serif);color:var(--ink);background:var(--paper);font-size:19px;line-height:1.65;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{width:min(1160px,100% - 40px);margin-inline:auto}
+.eyebrow{font-family:var(--sans);font-weight:700;letter-spacing:.18em;text-transform:uppercase;font-size:13px;color:var(--gold-d)}
+h1,h2,h3{font-family:var(--display);line-height:1.12;color:var(--navy)}
+h2{font-size:clamp(32px,4.4vw,52px);margin:.25em 0 .45em}
+h3{font-size:24px}
+.lead{font-size:clamp(19px,2vw,22px);color:var(--muted);max-width:720px}
+section{padding:110px 0;position:relative}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:12px;font-family:var(--sans);font-weight:700;font-size:18px;text-decoration:none;
+  padding:18px 30px;border-radius:999px;border:0;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s}
+.btn-gold{background:var(--gold);color:var(--navy);box-shadow:0 10px 26px -10px rgba(169,130,63,.8)}
+.btn-gold:hover{transform:translateY(-2px);background:#d6b06b;box-shadow:0 16px 32px -12px rgba(169,130,63,.9)}
+.btn-ghost{background:transparent;color:var(--navy);border:2px dashed var(--navy)}
+.btn-ghost:hover{background:var(--navy);color:#fff;border-style:solid}
+.btn .price{background:var(--navy);color:var(--gold);border-radius:999px;padding:3px 12px;font-size:15px}
+
+/* ---------- nav ---------- */
+nav{position:sticky;top:0;z-index:50;background:rgba(251,248,242,.88);backdrop-filter:blur(10px);border-bottom:1px solid rgba(31,42,68,.08)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand img{width:48px;height:48px;transition:transform .8s}
+.brand:hover img{transform:rotate(360deg)}
+.brand b{font-family:var(--display);font-size:20px;color:var(--navy);display:block;line-height:1.1}
+.brand small{font-family:var(--sans);font-size:11px;letter-spacing:.2em;color:var(--gold-d);text-transform:uppercase}
+nav .links{display:flex;gap:28px;align-items:center;font-family:var(--sans);font-weight:600;font-size:15px}
+nav .links a{text-decoration:none;color:var(--navy);opacity:.8}
+nav .links a:hover{opacity:1}
+nav .btn{padding:12px 22px;font-size:15px}
+@media(max-width:860px){nav .links a:not(.btn){display:none}}
+
+/* ---------- hero ---------- */
+.hero{padding:70px 0 90px;background:
+  radial-gradient(1200px 500px at 85% 0%,rgba(201,162,94,.18),transparent 60%),
+  linear-gradient(180deg,var(--paper),var(--cream));overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+@media(max-width:960px){.hero .wrap{grid-template-columns:1fr}}
+.hero h1{font-size:clamp(46px,6.6vw,88px);font-weight:800;letter-spacing:-.01em;margin:.2em 0 .25em}
+.hero h1 .w{display:inline-block;opacity:0;transform:translateY(40px) rotate(3deg);animation:wordIn .8s cubic-bezier(.2,.8,.2,1) forwards}
+.hero h1 .gold{color:var(--gold-d);font-style:italic;position:relative}
+.hero h1 .gold::after{content:"";position:absolute;left:0;right:0;bottom:.02em;height:6px;
+  background:repeating-linear-gradient(90deg,var(--gold) 0 10px,transparent 10px 16px);
+  transform:scaleX(0);transform-origin:left;animation:stitch 1.1s 1.4s ease forwards}
+@keyframes wordIn{to{opacity:1;transform:none}}
+@keyframes stitch{to{transform:scaleX(1)}}
+.hero .lead{margin-bottom:30px;opacity:0;animation:fadeUp .9s 1.2s forwards}
+.hero .cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center;opacity:0;animation:fadeUp .9s 1.5s forwards}
+.hero .micro{font-family:var(--sans);font-size:14px;color:var(--muted);margin-top:16px;display:flex;gap:18px;flex-wrap:wrap;opacity:0;animation:fadeUp .9s 1.7s forwards}
+.hero .micro span::before{content:"✓ ";color:var(--green);font-weight:700}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+/* tape measure */
+.tape{position:relative;height:58px;margin:34px 0 8px;border-radius:6px;background:var(--tape);overflow:hidden;
+  box-shadow:0 8px 20px -10px rgba(0,0,0,.35), inset 0 -3px 0 rgba(0,0,0,.08)}
+.tape .ticks{position:absolute;inset:0;width:200%;
+  background:
+   repeating-linear-gradient(90deg,#2a2a2a 0 1.5px,transparent 1.5px 12px) top/100% 12px no-repeat,
+   repeating-linear-gradient(90deg,#2a2a2a 0 2px,transparent 2px 60px) top/100% 22px no-repeat,
+   repeating-linear-gradient(90deg,#2a2a2a 0 2px,transparent 2px 120px) top/100% 30px no-repeat;
+  animation:tapeRoll 14s linear infinite}
+.tape .nums{position:absolute;left:0;bottom:6px;display:flex;font-family:var(--sans);font-weight:700;font-size:15px;color:#2a2a2a;animation:tapeRoll 14s linear infinite;width:200%}
+.tape .nums span{width:120px;flex:none;padding-left:4px}
+@keyframes tapeRoll{to{transform:translateX(-50%)}}
+.tape-read{font-family:var(--sans);font-size:14px;color:var(--muted);display:flex;justify-content:space-between}
+.tape-read b{color:var(--navy)}
+
+/* book */
+.book-stage{position:relative;perspective:1600px;min-height:560px;display:grid;place-items:center}
+.book{position:relative;width:min(360px,80%);aspect-ratio:2/3;transform-style:preserve-3d;transform:rotateY(-22deg) rotateX(6deg);
+  transition:transform .6s cubic-bezier(.2,.8,.2,1);animation:bookIn 1.2s .3s cubic-bezier(.2,.8,.2,1) both}
+.book:hover{transform:rotateY(-6deg) rotateX(2deg) translateY(-6px)}
+@keyframes bookIn{from{opacity:0;transform:rotateY(-60deg) translateX(80px)}}
+.book .cover{position:absolute;inset:0;border-radius:3px 8px 8px 3px;overflow:hidden;box-shadow:24px 30px 50px -18px rgba(20,25,40,.55);transform:translateZ(14px)}
+.book .cover img{width:100%;height:100%;object-fit:cover}
+.book .cover::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(255,255,255,.18),transparent 18%,transparent 70%,rgba(0,0,0,.18))}
+.book .pages{position:absolute;top:6px;bottom:6px;right:-12px;width:28px;transform:rotateY(90deg) translateZ(14px) translateX(-14px);
+  background:repeating-linear-gradient(90deg,#fff 0 2px,#e9e2d3 2px 3px)}
+.book .spine{position:absolute;top:0;bottom:0;left:0;width:28px;background:#141c30;transform:rotateY(-90deg) translateZ(14px) translateX(-14px)}
+.badge-price{position:absolute;top:30px;right:4%;width:118px;height:118px;border-radius:50%;background:var(--gold);color:var(--navy);
+  display:grid;place-items:center;text-align:center;font-family:var(--sans);font-weight:700;line-height:1;
+  box-shadow:0 14px 30px -12px rgba(0,0,0,.4);transform:rotate(12deg);animation:pop .7s 1.6s cubic-bezier(.3,1.6,.5,1) both;z-index:3}
+.badge-price::before{content:"";position:absolute;inset:7px;border-radius:50%;border:2px dashed rgba(31,42,68,.55)}
+.badge-price b{font-family:var(--display);font-size:42px;display:block}
+.badge-price small{font-size:11px;letter-spacing:.14em}
+@keyframes pop{from{transform:scale(0) rotate(-40deg)}}
+.talk{position:absolute;left:0;bottom:6px;display:flex;align-items:flex-end;gap:12px;z-index:3;animation:fadeUp .8s 2s both}
+.talk img{width:96px;height:96px;border-radius:50%;object-fit:cover;object-position:50% 22%;border:4px solid #fff;box-shadow:0 10px 24px -10px rgba(0,0,0,.45)}
+.bubble{background:#fff;border-radius:16px 16px 16px 4px;padding:12px 16px;font-family:var(--serif);font-style:italic;font-size:17px;color:var(--navy);
+  box-shadow:0 10px 24px -12px rgba(0,0,0,.35);max-width:240px;min-height:52px;margin-bottom:34px}
+.bubble .caret{display:inline-block;width:2px;height:1em;background:var(--gold-d);vertical-align:-2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}.rv.d4{transition-delay:.4s}
+
+/* ---------- scissors divider ---------- */
+.cutline{position:relative;height:40px;margin:0 auto;width:min(1160px,100% - 40px)}
+.cutline::before{content:"";position:absolute;left:0;right:0;top:50%;border-top:2px dashed rgba(31,42,68,.35)}
+.cutline .sc{position:absolute;top:50%;left:0;width:40px;height:40px;margin-top:-20px;transform:translateX(-50px)}
+.cutline.in .sc{animation:cut 3.2s cubic-bezier(.45,.05,.4,1) forwards}
+.cutline .sc g.blade-a{transform-origin:20px 20px;animation:snipA .35s ease-in-out infinite alternate}
+.cutline .sc g.blade-b{transform-origin:20px 20px;animation:snipB .35s ease-in-out infinite alternate}
+@keyframes cut{to{transform:translateX(calc(min(1160px,100vw - 40px) - 10px))}}
+@keyframes snipA{to{transform:rotate(-12deg)}}
+@keyframes snipB{to{transform:rotate(12deg)}}
+
+/* ---------- mirror moment ---------- */
+.mirror{background:var(--navy);color:#EDE6D6}
+.mirror h2{color:#fff}
+.mirror .lead{color:#c9c3b6}
+.moments{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:46px}
+@media(max-width:860px){.moments{grid-template-columns:1fr}}
+.moment{background:var(--navy-2);border-radius:var(--radius);padding:30px;border:1px solid rgba(201,162,94,.25);position:relative}
+.moment .n{font-family:var(--display);font-size:60px;color:var(--gold);line-height:1;opacity:.85}
+.moment h3{color:#fff;margin:10px 0 8px}
+.moment p{font-size:17px;color:#c9c3b6}
+.turn{margin-top:60px;text-align:center}
+.turn p{font-family:var(--display);font-size:clamp(30px,4vw,48px);color:#fff;line-height:1.2}
+.turn p em{color:var(--gold);font-style:italic}
+.turn small{display:block;font-size:19px;color:#c9c3b6;margin-top:14px;font-family:var(--serif)}
+
+/* ---------- wrong / right ---------- */
+.wr{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:40px}
+@media(max-width:760px){.wr{grid-template-columns:1fr}}
+.wr figure{position:relative;border-radius:var(--radius);overflow:hidden;background:#000;box-shadow:0 22px 44px -26px rgba(0,0,0,.6)}
+.wr figure img{aspect-ratio:16/10;object-fit:cover;width:100%;transition:transform 1.2s}
+.wr figure:hover img{transform:scale(1.05)}
+.wr figcaption{position:absolute;left:0;right:0;bottom:0;padding:60px 22px 20px;color:#fff;font-size:17px;background:linear-gradient(transparent,rgba(0,0,0,.82))}
+.stamp{position:absolute;top:18px;left:18px;font-family:var(--sans);font-weight:800;letter-spacing:.12em;font-size:18px;padding:8px 16px;border-radius:8px;
+  border:3px solid currentColor;transform:scale(2.4) rotate(-14deg);opacity:0;transition:all .45s cubic-bezier(.3,1.5,.5,1) .35s;background:rgba(255,255,255,.92)}
+.in .stamp{transform:scale(1) rotate(-8deg);opacity:1}
+.stamp.bad{color:var(--red)}.stamp.good{color:var(--green)}
+.wr-points{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}
+@media(max-width:760px){.wr-points{grid-template-columns:1fr}}
+.wr-points div{background:#fff;border-radius:12px;padding:18px 20px;border-left:4px solid var(--gold);font-size:17px}
+.wr-points b{font-family:var(--sans);font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);display:block;margin-bottom:4px}
+
+/* ---------- measurements ---------- */
+.measures{background:var(--cream)}
+.mgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:40px}
+@media(max-width:900px){.mgrid{grid-template-columns:repeat(2,1fr)}}
+.m{background:#fff;border-radius:var(--radius);padding:24px 20px 20px;position:relative;overflow:hidden;box-shadow:0 14px 30px -24px rgba(0,0,0,.5)}
+.m .val{font-family:var(--display);font-weight:800;font-size:58px;color:var(--navy);line-height:1}
+.m .unit{font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-d);margin-top:6px}
+.m p{font-size:16px;color:var(--muted);margin-top:8px;line-height:1.45}
+.m .bar{position:absolute;left:0;right:0;bottom:0;height:12px;background:var(--tape);transform:scaleX(0);transform-origin:left;transition:transform 1.6s cubic-bezier(.2,.8,.2,1)}
+.m .bar::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,#333 0 1px,transparent 1px 8px) top/100% 5px no-repeat}
+.m.in .bar{transform:scaleX(1)}
+
+/* ---------- inside (chapters) ---------- */
+.inside .wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px}
+@media(max-width:960px){.inside .wrap{grid-template-columns:1fr}}
+.sticky{position:sticky;top:110px;align-self:start}
+.chapters{position:relative;padding-left:74px}
+.ruler{position:absolute;left:0;top:0;bottom:0;width:46px;background:var(--tape);border-radius:6px;overflow:hidden;
+  box-shadow:inset -2px 0 0 rgba(0,0,0,.08)}
+.ruler::before{content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(180deg,#2a2a2a 0 1.5px,transparent 1.5px 10px) left/12px 100% no-repeat,
+             repeating-linear-gradient(180deg,#2a2a2a 0 2px,transparent 2px 50px) left/22px 100% no-repeat}
+.ruler .fill{position:absolute;left:0;right:0;top:0;height:0;background:rgba(31,42,68,.82);transition:height .2s linear}
+.ch{position:relative;padding:20px 0 22px;border-bottom:1px dashed rgba(31,42,68,.2)}
+.ch::before{content:"";position:absolute;left:-36px;top:34px;width:22px;height:2px;background:var(--navy)}
+.ch .no{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.16em;color:var(--gold-d);text-transform:uppercase}
+.ch h3{font-size:23px;margin:2px 0 4px}
+.ch p{font-size:17px;color:var(--muted)}
+
+/* ---------- peek ---------- */
+.peek{background:var(--navy);overflow:hidden}
+.peek h2{color:#fff}.peek .lead{color:#c9c3b6}
+.fan{position:relative;height:560px;margin-top:40px}
+.fan .pg{position:absolute;left:50%;top:20px;width:min(300px,42vw);aspect-ratio:2/3;border-radius:6px;overflow:hidden;background:#fff;
+  box-shadow:0 30px 60px -24px rgba(0,0,0,.7);transition:transform .7s cubic-bezier(.2,.8,.2,1),z-index 0s;transform:translateX(-50%)}
+.fan .pg img{width:100%;height:100%;object-fit:cover}
+.fan.in .pg:nth-child(1){transform:translateX(-50%) translateX(-120%) rotate(-16deg) translateY(50px)}
+.fan.in .pg:nth-child(2){transform:translateX(-50%) translateX(-62%) rotate(-8deg) translateY(14px)}
+.fan.in .pg:nth-child(3){transform:translateX(-50%) rotate(0) ;z-index:5}
+.fan.in .pg:nth-child(4){transform:translateX(-50%) translateX(62%) rotate(8deg) translateY(14px)}
+.fan.in .pg:nth-child(5){transform:translateX(-50%) translateX(120%) rotate(16deg) translateY(50px)}
+.fan .pg:hover{z-index:9!important;transform:translateX(-50%) translateY(-24px) scale(1.06)!important}
+@media(max-width:700px){.fan{height:420px}}
+
+/* ---------- mirror test quiz ---------- */
+.quiz{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:start}
+@media(max-width:900px){.quiz{grid-template-columns:1fr}}
+.qlist{list-style:none;display:grid;gap:12px}
+.qlist label{display:flex;gap:16px;align-items:flex-start;background:#fff;border-radius:12px;padding:16px 18px;cursor:pointer;
+  border:2px solid transparent;transition:border-color .2s,transform .2s;font-size:18px;line-height:1.45}
+.qlist label:hover{transform:translateX(4px)}
+.qlist input{position:absolute;opacity:0}
+.qlist .box{flex:none;width:28px;height:28px;border-radius:7px;border:2px dashed var(--navy);display:grid;place-items:center;margin-top:1px;transition:all .2s}
+.qlist .box svg{width:18px;height:18px;stroke:#fff;stroke-width:3.2;fill:none;stroke-dasharray:24;stroke-dashoffset:24;transition:stroke-dashoffset .35s .05s}
+.qlist input:checked + .box{background:var(--red);border:2px solid var(--red)}
+.qlist input:checked + .box svg{stroke-dashoffset:0}
+.qlist input:checked ~ span{color:var(--navy)}
+.qlist label:has(input:checked){border-color:rgba(162,59,42,.35)}
+.result{background:var(--navy);color:#EDE6D6;border-radius:18px;padding:34px;position:sticky;top:110px}
+.result .score{font-family:var(--display);font-size:96px;color:var(--gold);line-height:1;transition:transform .3s}
+.result .score.bump{transform:scale(1.15)}
+.result h3{color:#fff;margin:8px 0 10px}
+.result p{font-size:17px;color:#c9c3b6;margin-bottom:22px}
+.meter{height:14px;background:rgba(255,255,255,.12);border-radius:999px;overflow:hidden;margin:6px 0 22px}
+.meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),#e8c987);transition:width .5s cubic-bezier(.2,.8,.2,1)}
+
+/* ---------- letter ---------- */
+.letter{background:var(--cream)}
+.letter .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;align-items:center}
+@media(max-width:900px){.letter .wrap{grid-template-columns:1fr}}
+.portrait{position:relative}
+.portrait img{border-radius:18px;aspect-ratio:4/5;object-fit:cover;object-position:50% 25%;width:100%;box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
+.portrait::before{content:"";position:absolute;inset:-14px;border:2px dashed var(--gold);border-radius:24px;z-index:-1}
+.portrait .tag{position:absolute;right:-16px;bottom:28px;background:var(--navy);color:#fff;font-family:var(--sans);font-weight:700;font-size:14px;padding:10px 16px;border-radius:10px;transform:rotate(-3deg)}
+.paper{background:#fff;border-radius:6px;padding:46px 46px 40px;box-shadow:0 30px 60px -36px rgba(0,0,0,.45);position:relative;
+  background-image:repeating-linear-gradient(180deg,transparent 0 33px,rgba(31,42,68,.06) 33px 34px)}
+.paper p{margin-bottom:14px;font-size:19px}
+.sig{font-family:'Homemade Apple',cursive;font-size:30px;color:var(--navy);margin-top:10px}
+
+/* ---------- family ---------- */
+.family .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:40px}
+@media(max-width:860px){.family .grid{grid-template-columns:1fr}}
+.card{background:#fff;border-radius:var(--radius);padding:28px;box-shadow:0 18px 36px -30px rgba(0,0,0,.6);border-top:4px solid var(--gold)}
+.card h3{font-size:22px;margin-bottom:6px}
+.card p{font-size:17px;color:var(--muted)}
+
+/* ---------- pricing ---------- */
+.pricing{background:linear-gradient(180deg,var(--paper),var(--cream))}
+.price-card{max-width:760px;margin:40px auto 0;background:#fff;border-radius:22px;padding:50px clamp(24px,5vw,60px);position:relative;
+  box-shadow:0 40px 80px -40px rgba(20,25,40,.55)}
+.price-card svg.stitch{position:absolute;inset:12px;width:calc(100% - 24px);height:calc(100% - 24px);pointer-events:none;overflow:visible}
+.price-card svg.stitch rect{fill:none;stroke:var(--gold);stroke-width:2;stroke-dasharray:9 7;animation:march 18s linear infinite}
+@keyframes march{to{stroke-dashoffset:-320}}
+.price-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;border-bottom:1px dashed rgba(31,42,68,.25);padding-bottom:24px;margin-bottom:24px}
+.amount{font-family:var(--display);font-weight:800;font-size:96px;color:var(--navy);line-height:.9}
+.amount sup{font-size:40px;vertical-align:top;margin-right:4px}
+.amount small{display:block;font-family:var(--sans);font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-d);font-weight:700;margin-top:10px}
+.incl{list-style:none;display:grid;gap:12px;margin-bottom:34px}
+.incl li{display:flex;gap:14px;font-size:18px;line-height:1.45}
+.incl li::before{content:"";flex:none;width:24px;height:24px;margin-top:2px;border-radius:50%;background:var(--green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+.price-card .btn{width:100%;justify-content:center;font-size:20px;padding:22px}
+.secure{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;margin-top:16px;font-family:var(--sans);font-size:14px;color:var(--muted)}
+.note-checkout{display:none;margin-top:14px;text-align:center;font-family:var(--sans);font-size:14px;color:var(--red)}
+
+/* ---------- faq ---------- */
+.faq details{background:#fff;border-radius:12px;margin-bottom:12px;padding:0 24px;box-shadow:0 10px 24px -22px rgba(0,0,0,.6)}
+.faq summary{list-style:none;cursor:pointer;padding:22px 0;font-family:var(--display);font-size:22px;color:var(--navy);display:flex;justify-content:space-between;gap:20px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--sans);color:var(--gold-d);font-size:28px;line-height:1;transition:transform .3s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 0 22px;font-size:18px;color:var(--muted)}
+
+/* ---------- final ---------- */
+.final{background:var(--navy);text-align:center;color:#EDE6D6;overflow:hidden}
+.final h2{color:#fff;max-width:900px;margin-inline:auto}
+.final .lead{color:#c9c3b6;margin:0 auto 34px}
+.final .typed{font-family:var(--display);font-style:italic;color:var(--gold);font-size:clamp(26px,3vw,36px);min-height:1.4em;margin-bottom:26px}
+footer{background:#141c30;color:#9aa0ad;font-family:var(--sans);font-size:14px;padding:40px 0}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+footer img{width:40px;height:40px}
+
+/* sticky mobile bar */
+.mbar{position:fixed;left:12px;right:12px;bottom:12px;z-index:60;display:none;transform:translateY(130%);transition:transform .4s}
+.mbar.show{transform:none}
+.mbar .btn{width:100%;justify-content:center;box-shadow:0 14px 30px -10px rgba(0,0,0,.45)}
+@media(max-width:760px){.mbar{display:block}}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <img src="assets/logo.svg" alt="">
+      <span><b>The Over-60 Fitting Room</b><small>Fit first. Fashion second.</small></span>
+    </a>
+    <div class="links">
+      <a href="#inside">What's inside</a>
+      <a href="#test">Mirror test</a>
+      <a href="#family">For family</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn btn-gold buy" href="#pricing">Get the guide <span class="price">$27</span></a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">For men over 60 — and the families who dress them</div>
+      <h1 id="headline">It's not you.<br>It's the <span class="gold">fit.</span></h1>
+      <p class="lead">You find a jacket you like. It looks wonderful on the hanger. Then you put it on, look in the mirror, and <em>something is off</em> — and you can't say what. This guide tells you exactly what, and exactly how to fix it.</p>
+      <div class="cta">
+        <a class="btn btn-gold buy" href="#pricing">Get the guide <span class="price">$27</span></a>
+        <a class="btn btn-ghost" href="#test">Take the 60-second mirror test</a>
+      </div>
+      <div class="micro"><span>108-page PDF</span><span>Instant download</span><span>Large, easy-to-read print</span></div>
+      <div class="tape" aria-hidden="true"><div class="ticks"></div><div class="nums" id="tapeNums"></div></div>
+      <div class="tape-read"><span>Measure twice.</span><b>Buy once.</b></div>
+    </div>
+    <div class="book-stage">
+      <div class="badge-price"><div><small>ONLY</small><b>$27</b><small>PDF GUIDE</small></div></div>
+      <div class="book">
+        <div class="spine"></div>
+        <div class="cover"><img src="assets/page-c.jpg" alt="Cover of The Over-60 Fit and Style Guide"></div>
+        <div class="pages"></div>
+      </div>
+      <div class="talk">
+        <img src="assets/avatar.jpg" alt="Malcolm, your tailor">
+        <div class="bubble"><span id="say"></span><span class="caret"></span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="cutline rv" aria-hidden="true">
+  <svg class="sc" viewBox="0 0 40 40"><g fill="none" stroke="#1F2A44" stroke-width="2.4" stroke-linecap="round">
+    <g class="blade-a"><line x1="20" y1="20" x2="38" y2="14"/><circle cx="9" cy="13" r="5.5"/><line x1="13" y1="16" x2="20" y2="20"/></g>
+    <g class="blade-b"><line x1="20" y1="20" x2="38" y2="26"/><circle cx="9" cy="27" r="5.5"/><line x1="13" y1="24" x2="20" y2="20"/></g>
+  </g></svg>
+</div>
+
+<!-- MIRROR MOMENT -->
+<section class="mirror">
+  <div class="wrap">
+    <div class="eyebrow rv">The mirror moment</div>
+    <h2 class="rv d1">Every man over 60 knows this feeling.</h2>
+    <p class="lead rv d2">Most men never say it out loud. They just quietly stop enjoying getting dressed.</p>
+    <div class="moments">
+      <div class="moment rv d1"><div class="n">1</div><h3>"It looked good in the shop."</h3><p>On the hanger it was perfect. On you, it hangs, pulls or bunches — and the shop assistant still says it looks great.</p></div>
+      <div class="moment rv d2"><div class="n">2</div><h3>"Must be my age."</h3><p>So you blame your shoulders, your stomach, or the way clothes are made these days — and buy it anyway, with a little doubt.</p></div>
+      <div class="moment rv d3"><div class="n">3</div><h3>"A full closet. Nothing to wear."</h3><p>Rails of clothes that never quite go together, and the same three things worn every week because at least they feel safe.</p></div>
+    </div>
+    <div class="turn rv">
+      <p>It was never your fault.<br><em>Nobody ever taught you how clothes should fit.</em></p>
+      <small>Shop clothes are cut for an "average" man who doesn't exist. Every real body needs small adjustments — at every age.</small>
+    </div>
+  </div>
+</section>
+
+<!-- WRONG / RIGHT -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow rv">See the difference</div>
+    <h2 class="rv d1">Same budget. Different fit.</h2>
+    <p class="lead rv d2">The difference between "borrowed" and "made for him" is rarely money. It's a handful of checks most men were never shown.</p>
+    <div class="wr">
+      <figure class="rv"><img src="assets/wrong-fit.jpg" alt="An older man in a loose, boxy off-the-rack jacket"><span class="stamp bad">✗ WRONG</span>
+        <figcaption>Shoulders too wide, sleeves too long, a boxy middle. Looks borrowed — and he can feel it.</figcaption></figure>
+      <figure class="rv d2"><img src="assets/right-fit.jpg" alt="An older man smiling in a well-fitted navy jacket"><span class="stamp good">✓ RIGHT</span>
+        <figcaption>Shoulders that end where his do. A little shirt cuff showing. A clean line. He stands taller.</figcaption></figure>
+    </div>
+    <div class="wr-points">
+      <div class="rv d1"><b>Shoulders first</b>The one thing a tailor can't easily change. Learn to check it in five seconds.</div>
+      <div class="rv d2"><b>Show the cuff</b>A thin line of white shirt cuff is what makes a jacket look made for you.</div>
+      <div class="rv d3"><b>Hem to the shoe</b>No more cloth piling on your shoes. Your legs look longer instantly.</div>
+    </div>
+  </div>
+</section>
+
+<!-- MEASUREMENTS -->
+<section class="measures">
+  <div class="wrap">
+    <div class="eyebrow rv">By the measurements</div>
+    <h2 class="rv d1">Everything measured. Nothing wasted.</h2>
+    <p class="lead rv d2">No fluff, no fashion trends, no long motivational chapters. Every page gives you something to check, do, say or avoid.</p>
+    <div class="mgrid">
+      <div class="m rv"><div class="val" data-count="108">0</div><div class="unit">Pages</div><p>Large print, clear tables, wrong-vs-right boxes.</p><div class="bar"></div></div>
+      <div class="m rv d1"><div class="val" data-count="10">0</div><div class="unit">Fit mistakes</div><p>The ones that walk into every fitting room.</p><div class="bar"></div></div>
+      <div class="m rv d2"><div class="val" data-count="30">0</div><div class="unit">Outfit formulas</div><p>Everyday to weddings and funerals.</p><div class="bar"></div></div>
+      <div class="m rv d3"><div class="val" data-count="20">0</div><div class="unit">Piece wardrobe</div><p>Over a hundred combinations, all matching.</p><div class="bar"></div></div>
+      <div class="m rv d4"><div class="val" data-count="7">0</div><div class="unit">Day plan</div><p>One small task a day. Done by next week.</p><div class="bar"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- INSIDE -->
+<section class="inside" id="inside">
+  <div class="wrap">
+    <div class="sticky">
+      <div class="eyebrow rv">What's inside</div>
+      <h2 class="rv d1">A fitting-room manual, written for the man in the mirror.</h2>
+      <p class="lead rv d2">The checks a careful tailor runs through in the first two minutes — written down so you can do them yourself, at home, in the shop, or at the tailor's counter.</p>
+      <p class="rv d3" style="margin-top:26px"><a class="btn btn-gold buy" href="#pricing">Get all 11 chapters <span class="price">$27</span></a></p>
+    </div>
+    <div class="chapters" id="chapters">
+      <div class="ruler"><div class="fill" id="rulerFill"></div></div>
+      <div class="ch rv"><div class="no">Quick Start</div><h3>The 5-Minute Mirror Test</h3><p>One mirror, five minutes, and a scorecard that shows your three biggest problems.</p></div>
+      <div class="ch rv"><div class="no">Chapter 1</div><h3>The Fit Checklist</h3><p>Jackets, trousers, shirts, coats and sweaters — with "wrong versus right" boxes for each.</p></div>
+      <div class="ch rv"><div class="no">Chapter 2</div><h3>Tailor Talk</h3><p>What a tailor can fix, what they can't, word-for-word scripts, questions to ask and a pickup checklist.</p></div>
+      <div class="ch rv"><div class="no">Chapter 3</div><h3>Colours for Silver and Grey Hair</h3><p>The five-second chin test, your flattering palette, and an outfit combination chart.</p></div>
+      <div class="ch rv"><div class="no">Chapter 4</div><h3>The Closet Clean-Out</h3><p>Keep, Fix or Remove in five questions — plus your 20-piece capsule wardrobe.</p></div>
+      <div class="ch rv"><div class="no">Chapter 5</div><h3>Smart Shopping</h3><p>A priority list, a fitting-room checklist and the warning signs of a bad buy.</p></div>
+      <div class="ch rv"><div class="no">Chapter 6</div><h3>Outfit Formulas</h3><p>30 ready-made outfits: everyday, dinner, church, travel, weddings and funerals.</p></div>
+      <div class="ch rv"><div class="no">Chapter 7</div><h3>Comfort Without Looking Sloppy</h3><p>Soft waistbands, stretch and easy fabrics that still look sharp.</p></div>
+      <div class="ch rv"><div class="no">Chapter 8</div><h3>Shoes, Belts, Watches, Hats and Glasses</h3><p>The finishing details people notice second, right after your face.</p></div>
+      <div class="ch rv"><div class="no">Chapter 9</div><h3>Clothing Care and Repair</h3><p>Pressing, pilling, washing wool, polishing shoes and sewing on a button.</p></div>
+      <div class="ch rv"><div class="no">Chapter 10</div><h3>For Family: Buying Clothes for Him</h3><p>Sizes without asking, gifts he'll actually wear, and how to help without hurting his pride.</p></div>
+      <div class="ch rv"><div class="no">Chapter 11</div><h3>Common Mistakes &amp; One-Line Rules</h3><p>30 mistakes, 30 fixes, and the rules worth remembering.</p></div>
+      <div class="ch rv"><div class="no">Final &amp; Bonus</div><h3>7-Day Plan, Printables &amp; "Show This to Your Tailor"</h3><p>Printable checklists, a wallet fit card and a sheet you hand straight to your tailor.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PEEK -->
+<section class="peek">
+  <div class="wrap">
+    <div class="eyebrow rv">Take a peek</div>
+    <h2 class="rv d1">Clear pages. Big print. Real checklists.</h2>
+    <p class="lead rv d2">Designed to be read comfortably on a tablet, a computer, or printed out and kept by the wardrobe.</p>
+    <div class="fan rv" id="fan">
+      <div class="pg"><img src="assets/page-p37.jpg" alt="Colours chapter page"></div>
+      <div class="pg"><img src="assets/page-p17.jpg" alt="Fit checklist page with wrong versus right boxes"></div>
+      <div class="pg"><img src="assets/page-c.jpg" alt="Guide cover"></div>
+      <div class="pg"><img src="assets/page-p59.jpg" alt="Outfit formulas page"></div>
+      <div class="pg"><img src="assets/page-p97.jpg" alt="7-day action plan page"></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="test">
+  <div class="wrap">
+    <div class="eyebrow rv">Try it now — 60 seconds</div>
+    <h2 class="rv d1">The mini mirror test.</h2>
+    <p class="lead rv d2">Stand in front of a mirror in your most-worn jacket and trousers. Tick anything that's true. Be honest — nobody's watching.</p>
+    <div class="quiz" style="margin-top:36px">
+      <ul class="qlist rv" id="qlist">
+        <li><label><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span>My jacket sleeve hides my shirt cuff completely.</span></label></li>
+        <li><label><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span>My trousers bunch up in folds on top of my shoes.</span></label></li>
+        <li><label><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span>My belt sits under my stomach, not at my waist.</span></label></li>
+        <li><label><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span>There's a dent at the top of my jacket sleeve, below the shoulder.</span></label></li>
+        <li><label><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span>I can't fit one finger — or I can fit three — inside my buttoned shirt collar.</span></label></li>
+        <li><label><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span>I wear a lot of black near my face.</span></label></li>
+        <li><label><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span>My jacket pockets are usually full — phone, keys, wallet.</span></label></li>
+        <li><label><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span>My everyday shoes are scuffed or worn down at the heel.</span></label></li>
+      </ul>
+      <div class="result rv d2">
+        <div class="eyebrow" style="color:var(--gold)">Your fixes found</div>
+        <div class="score" id="score">0</div>
+        <div class="meter"><i id="meter"></i></div>
+        <h3 id="rTitle">Tick what's true for you.</h3>
+        <p id="rText">Each tick isn't a failure — it's a job. And almost every one of them is quick, inexpensive, or free to fix.</p>
+        <a class="btn btn-gold buy" href="#pricing">Show me how to fix them <span class="price">$27</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LETTER -->
+<section class="letter">
+  <div class="wrap">
+    <div class="portrait rv">
+      <img src="assets/avatar.jpg" alt="Malcolm in his tailoring workshop">
+      <div class="tag">"Measure it again, lad."</div>
+    </div>
+    <div class="paper rv d2">
+      <div class="eyebrow">A word from the cutting table</div>
+      <h2 style="font-size:clamp(30px,3.6vw,42px)">My friend,</h2>
+      <p>I've watched the same thing happen to good men for years. They walk in apologising — for their shoulders, their stomach, their age. And every time, the problem wasn't them. It was a jacket that had never been fitted to the man wearing it.</p>
+      <p>Nobody tells you these things. Friends are polite. Family don't want to hurt your feelings. The shop wants the sale. So you stop noticing — and everyone else notices for you.</p>
+      <p>I wrote this guide so you never have to guess again. It's the checks, the words to say to your tailor, and the small fixes that change everything. No fashion trends. No expensive labels. Just fit first, fashion second.</p>
+      <p>Start with the trousers you wear most. You'll see.</p>
+      <div class="sig">Malcolm</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAMILY -->
+<section class="family" id="family">
+  <div class="wrap">
+    <div class="eyebrow rv">Buying for Dad, your husband or Grandad?</div>
+    <h2 class="rv d1">The gift that makes everything else he owns look better.</h2>
+    <p class="lead rv d2">Chapter 10 is written for you: how to help him look sharp without ever making him feel criticised.</p>
+    <div class="grid">
+      <div class="card rv"><h3>Get his sizes, quietly</h3><p>How to read his best-fitting labels and measure his clothes — plus a full size and style sheet to keep on your phone.</p></div>
+      <div class="card rv d1"><h3>Gifts he'll actually wear</h3><p>The "almost always right" list, the risky list, and why a tailor voucher may be the best present of all.</p></div>
+      <div class="card rv d2"><h3>Help without hurting pride</h3><p>What to say, what never to say, and how to turn a wardrobe clean-out into a morning he enjoys.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div style="text-align:center">
+      <div class="eyebrow rv">One price. Everything included.</div>
+      <h2 class="rv d1">Less than a dinner out.<br>Worth it every time you get dressed.</h2>
+    </div>
+    <div class="price-card rv d2">
+      <svg class="stitch" aria-hidden="true"><rect x="0" y="0" width="100%" height="100%" rx="14"/></svg>
+      <div class="price-head">
+        <div>
+          <div class="eyebrow">The Over-60 Fit and Style Guide</div>
+          <h3 style="font-size:28px;margin-top:6px">Complete PDF guide + printables</h3>
+        </div>
+        <div class="amount"><sup>$</sup>27<small>One-time · Instant download</small></div>
+      </div>
+      <ul class="incl">
+        <li>The complete 108-page guide — 11 chapters, large clear print</li>
+        <li>The 5-Minute Mirror Test and scorecard</li>
+        <li>Tailor scripts: exactly what to say and what to ask</li>
+        <li>Colour palette and outfit chart for silver and grey hair</li>
+        <li>The 20-piece capsule wardrobe and 30 outfit formulas</li>
+        <li>Printable fit checklist, closet sheet and shopping list</li>
+        <li>Bonus: "Show This to Your Tailor" sheet and wallet-sized fit card</li>
+        <li>Family gift guide with a full size and style sheet</li>
+      </ul>
+      <a class="btn btn-gold" id="checkoutBtn" href="#pricing">Get instant access — $27</a>
+      <div class="note-checkout" id="checkoutNote">Checkout is being set up — please check back shortly.</div>
+      <div class="secure"><span>🔒 Secure checkout</span><span>📄 PDF — read on any device or print</span><span>⚡ Delivered instantly by email</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="wrap" style="max-width:860px">
+    <div class="eyebrow rv">Questions</div>
+    <h2 class="rv d1">Before you ask…</h2>
+    <details class="rv"><summary>Is this a fashion book?</summary><p>No. There are no trends and nothing that requires you to be young, slim or wealthy. It's a practical fitting-room manual: what fits, what to alter and what to buy.</p></details>
+    <details class="rv"><summary>Do I need to buy expensive clothes?</summary><p>Not at all. The whole idea is that fit beats price. Most of the biggest improvements come from small, routine alterations and better choices — not bigger budgets.</p></details>
+    <details class="rv"><summary>I'm not good with computers. How do I get it?</summary><p>After you buy, you'll receive an email with a download link. Click it and the guide opens on your computer, tablet or phone. You can also print it — many pages are designed to be printed.</p></details>
+    <details class="rv"><summary>Is the print large enough to read comfortably?</summary><p>Yes. The guide uses large, clear type, short sections and plenty of tables and checklists, so it's easy to read on a tablet or printed out.</p></details>
+    <details class="rv"><summary>I'm buying it for my father or husband. Is that okay?</summary><p>Absolutely — Chapter 10 is written especially for family members, with a size and style sheet and advice on helping without hurting his pride.</p></details>
+    <details class="rv"><summary>Does it name brands or shops?</summary><p>No. It teaches you how to judge fit and quality yourself, so you can shop anywhere with confidence.</p></details>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="final">
+  <div class="wrap">
+    <div class="eyebrow rv" style="color:var(--gold)">The last word</div>
+    <h2 class="rv d1">You don't need to look younger.<br>You deserve to look like yourself at your best.</h2>
+    <div class="typed" id="typed2"></div>
+    <a class="btn btn-gold buy rv d2" href="#pricing">Get the guide <span class="price">$27</span></a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div style="display:flex;gap:12px;align-items:center"><img src="assets/logo.svg" alt=""><span>© <span id="yr"></span> The Over-60 Fitting Room. All rights reserved.</span></div>
+    <div>Nothing in this guide is medical advice. Prices of alterations vary by location.</div>
+  </div>
+</footer>
+
+<div class="mbar" id="mbar"><a class="btn btn-gold buy" href="#pricing">Get the guide <span class="price">$27</span></a></div>
+
+<script>
+/* ======== CONFIG: paste your checkout link here (Gumroad, Stripe, Payhip, etc.) ======== */
+const CHECKOUT_URL = "";
+
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* headline word animation */
+(function(){
+  const h = document.getElementById('headline'); let i = 0;
+  const walk = node => {
+    [...node.childNodes].forEach(n => {
+      if (n.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(t => {
+          if (!t.trim()) { frag.appendChild(document.createTextNode(t)); return; }
+          const s = document.createElement('span'); s.className = 'w'; s.textContent = t;
+          s.style.animationDelay = (0.15 + i++ * 0.12) + 's'; frag.appendChild(s);
+        });
+        n.replaceWith(frag);
+      } else if (n.nodeType === 1 && n.tagName !== 'BR') {
+        if (n.classList.contains('gold')) { n.classList.add('w'); n.style.animationDelay = (0.15 + i++ * 0.12) + 's'; }
+        else walk(n);
+      }
+    });
+  };
+  walk(h);
+})();
+
+/* tape numbers */
+(function(){
+  const el = document.getElementById('tapeNums'); let html = '';
+  for (let k = 0; k < 2; k++) for (let n = 1; n <= 16; n++) html += '<span>' + n + '</span>';
+  el.innerHTML = html;
+})();
+
+/* typewriter */
+function typeLoop(el, lines, speed = 48, hold = 1900) {
+  let li = 0, ci = 0, del = false;
+  (function tick(){
+    const line = lines[li];
+    el.textContent = line.slice(0, ci);
+    if (!del && ci < line.length) { ci++; setTimeout(tick, speed); }
+    else if (!del) { del = true; setTimeout(tick, hold); }
+    else if (ci > 0) { ci--; setTimeout(tick, speed / 2.5); }
+    else { del = false; li = (li + 1) % lines.length; setTimeout(tick, 300); }
+  })();
+}
+setTimeout(() => typeLoop(document.getElementById('say'), [
+  "It's not you, my friend.", "Shoulders first.", "Show a little shirt cuff.", "Measure twice, buy once.", "Fit first. Fashion second."
+]), 2300);
+typeLoop(document.getElementById('typed2'), [
+  "Shoulders first.", "Show the cuff.", "Hem to the shoe.", "Measure twice. Buy once."
+], 60, 1600);
+
+/* reveal + counters */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  e.target.classList.add('in'); io.unobserve(e.target);
+  e.target.querySelectorAll('[data-count]').forEach(c => {
+    const end = +c.dataset.count, t0 = performance.now(), dur = 1600;
+    (function f(t){ const p = Math.min(1, (t - t0) / dur), v = Math.round(end * (1 - Math.pow(1 - p, 3)));
+      c.textContent = v; if (p < 1) requestAnimationFrame(f); })(t0);
+  });
+}), { threshold: 0.18 });
+document.querySelectorAll('.rv, .m, .cutline, .fan, .wr figure').forEach(el => io.observe(el));
+
+/* ruler fill on scroll */
+const chEl = document.getElementById('chapters'), fill = document.getElementById('rulerFill');
+const mbar = document.getElementById('mbar');
+addEventListener('scroll', () => {
+  const r = chEl.getBoundingClientRect(), vh = innerHeight;
+  const p = Math.min(1, Math.max(0, (vh * 0.6 - r.top) / r.height));
+  fill.style.height = (p * 100) + '%';
+  mbar.classList.toggle('show', scrollY > 700 && document.getElementById('pricing').getBoundingClientRect().top > vh);
+}, { passive: true });
+
+/* quiz */
+(function(){
+  const boxes = [...document.querySelectorAll('#qlist input')];
+  const score = document.getElementById('score'), meter = document.getElementById('meter');
+  const T = document.getElementById('rTitle'), P = document.getElementById('rText');
+  const msgs = [
+    ["Tick what's true for you.", "Each tick isn't a failure — it's a job. And almost every one of them is quick, inexpensive, or free to fix."],
+    ["A good start.", "One or two small fixes — exactly the kind of quick change that makes people say \"you look well\" without knowing why."],
+    ["A few easy wins waiting.", "These are some of the most common things a tailor sees every week. The guide shows you how to fix each one, in order."],
+    ["Plenty to gain — and that's good news.", "The more you ticked, the bigger the difference you'll see. Start with the trousers you wear most and work down the list."]
+  ];
+  boxes.forEach(b => b.addEventListener('change', () => {
+    const n = boxes.filter(x => x.checked).length;
+    score.textContent = n; score.classList.add('bump'); setTimeout(() => score.classList.remove('bump'), 220);
+    meter.style.width = (n / boxes.length * 100) + '%';
+    const m = n === 0 ? msgs[0] : n <= 2 ? msgs[1] : n <= 4 ? msgs[2] : msgs[3];
+    T.textContent = m[0]; P.textContent = m[1];
+  }));
+})();
+
+/* checkout */
+document.getElementById('checkoutBtn').addEventListener('click', e => {
+  if (CHECKOUT_URL) { e.preventDefault(); location.href = CHECKOUT_URL; }
+  else { e.preventDefault(); document.getElementById('checkoutNote').style.display = 'block'; }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="The Over-60 Fitting Room logo">
+  <defs>
+    <path id="ringTop" d="M 30 100 A 70 70 0 0 1 170 100"/>
+    <path id="ringBot" d="M 36 104 A 64 64 0 0 0 164 104"/>
+  </defs>
+  <circle cx="100" cy="100" r="96" fill="#1F2A44"/>
+  <circle cx="100" cy="100" r="90" fill="none" stroke="#C9A25E" stroke-width="1.5"/>
+  <circle cx="100" cy="100" r="58" fill="none" stroke="#C9A25E" stroke-width="1" stroke-dasharray="3 3"/>
+  <!-- tape ticks -->
+  <g stroke="#C9A25E" stroke-width="1.2">
+    <g id="ticks">
+      <line x1="100" y1="12" x2="100" y2="20"/>
+    </g>
+  </g>
+  <g id="tickring" stroke="#C9A25E" stroke-linecap="round"></g>
+  <text font-family="Georgia, 'Playfair Display', serif" font-size="15" letter-spacing="3.2" fill="#F3E9D2" font-weight="700">
+    <textPath href="#ringTop" startOffset="50%" text-anchor="middle">THE OVER-60</textPath>
+  </text>
+  <text font-family="Georgia, serif" font-size="11" letter-spacing="3" fill="#C9A25E">
+    <textPath href="#ringBot" startOffset="50%" text-anchor="middle">• FITTING ROOM •</textPath>
+  </text>
+  <!-- scissors -->
+  <g transform="translate(100 100) rotate(-35)" fill="none" stroke="#F3E9D2" stroke-width="3.2" stroke-linecap="round">
+    <line x1="-4" y1="-4" x2="30" y2="-12"/>
+    <line x1="-4" y1="4" x2="30" y2="12"/>
+    <circle cx="-16" cy="-9" r="8"/>
+    <circle cx="-16" cy="9" r="8"/>
+    <circle cx="0" cy="0" r="2.2" fill="#C9A25E" stroke="none"/>
+  </g>
+</svg>
