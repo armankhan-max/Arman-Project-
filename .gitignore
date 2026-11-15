@@ -8,3 +8,5 @@ work/av/
 work/seg/
 work/*.jpg
 work/*.png
+guide/out/*.png
+__pycache__/
