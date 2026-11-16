@@ -398,7 +398,8 @@ def stat_panel(c, t, b, ch):
         size = 170 if len(label) <= 8 else 130
         pop = 1 + 0.12 * math.exp(-max(0, t - hit - 0.9) * 6) * (t > hit + 0.9)
         glow(c, 0, 600, 420, GREEN if b["is_money"] else col, 0.18 * prog)
-        with xf(c, 0, 600, s=pop * (0.85 + 0.15 * ik)):
+        na = clamp((t - hit + 0.25) / 0.25)
+        with xf(c, 0, 600, s=pop * (0.6 + 0.4 * back_out(na)), alpha=na):
             text(c, label, 0, size * 0.36, size, GREEN if b["is_money"] else GOLD, shadow=True)
         if prog > 0.98:
             for i in range(6):
