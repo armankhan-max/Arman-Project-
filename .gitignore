@@ -10,3 +10,6 @@ work/*.jpg
 work/*.png
 guide/out/*.png
 __pycache__/
+work2/seg/
+work2/*.wav
+work/stock/th2/
