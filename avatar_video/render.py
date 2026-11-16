@@ -46,8 +46,8 @@ GRAD = (1 - _g)[:, None, None].astype(np.float32)
 
 # ---------------- captions ----------------
 CAP_FONT = ImageFont.truetype(FB, 58)
-CAP_CX = 1185   # caption centre x (right of the avatar)
-CAP_Y = 905
+CAP_CX = 1160   # caption centre x (right of the avatar)
+CAP_Y = 955
 CAP_MAXW = 1300
 
 

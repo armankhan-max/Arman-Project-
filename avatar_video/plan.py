@@ -87,7 +87,7 @@ CONCEPTS = [
 ]
 STOP = set("a an the of in on at and with to for from by over under into is are man woman person".split())
 
-BAD = re.compile(r"green screen|chroma|vertical|newlywed|wedding|bride|perfume|plumbing|euro|christmas|halloween|bikini|sexy|party|drunk|beer|wine|cigar|smok|gun|blood|police|zombie|santa|valentine|nightclub|dj|tattoo|fight|port|crane|badminton|pregnant|dna|sunglasses|password|code|programmer|developer|turbine|jet engine|chinese|praying|pool|escalator|pizza|ibiza|abandoned|dark|mustache|desert|judge|skull|hooded|autograph|celebrity|guitar|static|confused|mask|tokyo|hong kong|chicago|perfume|child patient|cancer|brain scan|x ray|sick|burn|betting|demanding|empty wallet|no longer|ham |poor|hungry|touching the skin")
+BAD = re.compile(r"green screen|screen|chroma|vertical|newlywed|wedding|bride|perfume|plumbing|euro|christmas|halloween|bikini|sexy|party|drunk|beer|wine|cigar|smok|gun|blood|police|zombie|santa|valentine|nightclub|dj|tattoo|fight|port|crane|badminton|pregnant|dna|sunglasses|password|code|programmer|developer|turbine|jet engine|chinese|praying|pool|escalator|pizza|ibiza|abandoned|dark|mustache|desert|judge|skull|hooded|autograph|celebrity|guitar|static|confused|mask|tokyo|hong kong|chicago|perfume|child patient|cancer|brain scan|x ray|sick|burn|betting|demanding|empty wallet|no longer|ham |poor|hungry|touching the skin")
 name_tokens = {k: set(re.findall(r"[a-z]+", v)) for k, v in CLIPS.items() if not BAD.search(v)}
 used = {}
 
@@ -116,12 +116,30 @@ def pick(text, t):
     return best
 
 
+CAT = json.load(open("catalog.json"))
+def pool(keys, rx):
+    ids = []
+    for k in keys:
+        for c in CAT.get(k, []):
+            if c["id"] in name_tokens and re.search(rx, c["name"]) and c["id"] not in ids: ids.append(c["id"])
+    random.shuffle(ids); return ids
+NATURE = pool(["forest", "waterfall", "ocean", "lake", "river", "clouds", "sunrise", "flowers", "mountains",
+               "landscape", "waves", "green field", "tree", "sky", "nature", "sunset", "mountain"],
+              r"forest|waterfall|ocean|lake|river|cloud|sunrise|sunset|flower|mountain|landscape|wave|field|tree|sky|valley|beach|sea|meadow")
+BUSINESS = pool(["office building", "business district", "aerial city", "corporate", "skyscraper", "bank building",
+                 "new york", "city", "night city"], r"building|skyscraper|city|downtown|tower|office|district|aerial")
+print("nature", len(NATURE), "business", len(BUSINESS))
+
 plan = {"duration": DUR, "scenes": [], "titles": [], "avatar": []}
 for i, sc in enumerate(scenes):
     s = 0.0 if i == 0 else sc[0]["s"] - 0.15
     e = DUR if i == len(scenes) - 1 else scenes[i + 1][0]["s"] - 0.15
     text = " ".join(w["w"] for w in sc)
-    plan["scenes"].append({"s": round(s, 3), "e": round(e, 3), "clip": pick(text, s), "text": text})
+    if i % 3 == 2 and NATURE: clip = NATURE.pop()
+    elif i % 7 == 4 and BUSINESS: clip = BUSINESS.pop()
+    else: clip = pick(text, s)
+    used[clip] = s
+    plan["scenes"].append({"s": round(s, 3), "e": round(e, 3), "clip": clip, "text": text})
 
 # ---------------- titles (text animation) ----------------
 def find(phrase, after=0):

@@ -25,7 +25,8 @@ def seg(i):
     off = 0.4 if d > need + 1.0 else 0
     loop = ["-stream_loop", "-1"] if d < need + off else []
     vf = ("scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,setsar=1,"
-          f"fps={FPS},eq=saturation=1.06:contrast=1.03")
+          f"fps={FPS},eq=saturation=1.05:contrast=1.04:brightness=-0.02,"
+          "colorchannelmixer=rr=0.55:gg=0.55:bb=0.55,vignette=angle=PI/4")
     subprocess.run(["ffmpeg", "-v", "error", "-y", *loop, "-ss", str(off), "-i", src, "-an", "-vf", vf,
                     "-frames:v", str(n), "-c:v", "libx264", "-preset", "veryfast", "-crf", "17",
                     "-pix_fmt", "yuv420p", "-g", "60", out + ".tmp.mp4"], check=True)
