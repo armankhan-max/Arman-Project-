@@ -15,6 +15,7 @@ import skia  # noqa: E402
 
 from gfx import (W, H, P, xf, rrect, poly, line, text, text_width, linear, radial, fill_shader, glow,  # noqa: E402
                  sparkle, clamp, lerp, smooth, ease_out, back_out, draw_char, font)
+import places as PL  # noqa: E402
 from icons import ICONS, pick_icon, coin, GREEN, GOLD, RED, BLUE, WHITE  # noqa: E402
 
 T = json.load(open(os.path.join(HERE, "transcript.json")))
@@ -147,6 +148,9 @@ for b in BEATS:
     if not b["icon"]:
         b["icon"] = _fallback[b["i"] % len(_fallback)]
     b["side"] = 1 if (b["i"] // 2) % 2 == 0 else -1
+    b["place"] = PL.pick_place(b["text"]) if b["kind"] == "text" else None
+    if b["kind"] == "text" and not b["place"] and b["i"] % 3 == 0:
+        b["place"] = "audience"
 
 NEG = ("broke", "debt", "tear", "crack", "ignored", "lose", "lost", "problem", "struggling", "mistake", "trap",
        "okay?", "need money")
@@ -527,6 +531,90 @@ def end_card(c, t):
         text(c, "THE BALANCE IS THE PROOF.", 0, 60, 60, GOLD)
 
 
+# ---------------------------------------------------------------- real-world locations
+def kinetic(c, t, words, cx, y0, size, maxw, col):
+    lines, cur, curw = [], [], 0
+    for w in words:
+        ww = text_width(w["w"].strip() + " ", size)
+        if curw + ww > maxw and cur:
+            lines.append(cur)
+            cur, curw = [], 0
+        cur.append(w)
+        curw += ww
+    if cur:
+        lines.append(cur)
+    for li, ln in enumerate(lines[:3]):
+        lw = sum(text_width(w["w"].strip() + " ", size) for w in ln)
+        x = cx - lw / 2
+        for w in ln:
+            s = w["w"].strip()
+            ww = text_width(s + " ", size)
+            p = clamp((t - w["s"] + 0.12) / 0.18)
+            if p > 0:
+                key = bool(re.search(r"\d", s)) or len(re.sub(r"\W", "", s)) >= 7
+                speaking = w["s"] - 0.02 <= t <= w["e"] + 0.05
+                colw = GOLD if key else "#ffffff"
+                yy = y0 + li * size * 1.3
+                if speaking:
+                    rrect(c, x - 7, yy - size * 0.9, text_width(s, size) + 14, size * 1.15, 9, col, 0.9)
+                    colw = "#ffffff"
+                with xf(c, x + text_width(s, size) / 2, yy - size * 0.35, s=0.6 + 0.4 * back_out(p)):
+                    text(c, s, 0, size * 0.35, size, colw, a=p)
+            x += ww
+    return len(lines[:3])
+
+
+def location_scene(c, t, b, ch):
+    col = theme(ch)
+    place = b["place"]
+    side = b["side"]
+    k = clamp((t - b["show0"]) / max(1.0, b["show1"] - b["show0"]))
+    if place == "audience":
+        background(c, t, col)
+        fill_shader(c, skia.Rect(0, 0, W, H), radial(W / 2, 200, 900, [("#ffffff", 0.10), ("#ffffff", 0)]))
+        rrect(c, W / 2 - 330, 330, 660, 380, 18, "#0c1424")
+        rrect(c, W / 2 - 330, 330, 660, 380, 18, col, stroke=5)
+        with xf(c, W / 2, 520, s=0.9):
+            ICONS[b["icon"]](c, t)
+        c.drawRect(skia.Rect(0, PL.FLOOR - 20, W, H), P("#151d30"))
+    else:
+        PL.draw_set(c, place, t, pan=-60 + 120 * k * side)
+    # crowd
+    if place in ("restaurant", "office", "audience", "street", "park", "shop") or b["i"] % 2 == 0:
+        n = 3 if place in ("audience", "restaurant", "office") else 2
+        PL.crowd(c, t, side, n, b["i"])
+    # main character walks in, then talks
+    x1 = 420 if side == 1 else W - 420
+    walk = clamp((t - b["show0"]) / 1.1)
+    aw = active_word(t)
+    talk = 0.5 + 0.5 * math.sin(t * 22) if aw else 0.0
+    if walk < 1 and place in PL.OUTDOOR + ("shop", "audience"):
+        x = x1 - side * 320 * (1 - ease_out(walk))
+        PL.walker(c, t, x, PL.FLOOR - 130, "you", 1.4, side == -1, "happy", b["show0"])
+    else:
+        low = b["text"].lower()
+        expr = "worried" if any(q in low for q in NEG) else "happy"
+        pose = ["give", "wave", "give", "hold"][b["i"] % 4]
+        draw_char(c, x1, PL.FLOOR - 130, "you", pose, expr, t, s=1.4, talk=talk,
+                  bob=-5 * abs(math.sin(t * 2.2)), flip=(side == -1), look=(side * 0.6, 0))
+    # place tag
+    if place != "audience":
+        lab = PL.LABEL[place]
+        tw = text_width(lab, 28, "Black") + 70
+        tx = W - 70 - tw if side == 1 else 70
+        rrect(c, tx, 100, tw, 50, 25, "#0b0f1a", 0.75)
+        c.drawCircle(tx + 28, 125, 9, P(col))
+        text(c, lab, tx + 42 + (tw - 56) / 2, 135, 28, "#ffffff")
+    # subtitle card with kinetic words
+    a = clamp((t - b["show0"]) / 0.3)
+    with xf(c, 0, 0, alpha=a):
+        rrect(c, W / 2 - 640, 175, 1280, 190, 26, "#0b0f1a", 0.78)
+        rrect(c, W / 2 - 640, 175, 10, 190, 5, col)
+        with xf(c, W / 2 - 545, 270, s=0.38):
+            ICONS[b["icon"]](c, t)
+        kinetic(c, t, b["words"], W / 2 + 70, 250, 46, 1000, col)
+
+
 # ---------------------------------------------------------------- master
 def render_frame(c, t):
     ch = chapter_at(t)
@@ -540,6 +628,11 @@ def render_frame(c, t):
     c.translate(W / 2 + dx, H / 2 + dy)
     c.scale(z, z)
     c.translate(-W / 2, -H / 2)
+    if b["kind"] == "text" and b.get("place"):
+        location_scene(c, t, b, ch)
+        c.restore()
+        _post(c, t, b, ch)
+        return
     background(c, t, col)
     # giant watermark number
     wm = "★" if ch["n"] in (0, 99) else f"{ch['n']:02d}"
@@ -555,6 +648,10 @@ def render_frame(c, t):
     else:
         text_panel(c, t, b, ch)
     c.restore()
+    _post(c, t, b, ch)
+
+
+def _post(c, t, b, ch):
     # flash on cut
     fk = t - b["show0"]
     if 0 <= fk < 0.12 and b["i"] > 0:
