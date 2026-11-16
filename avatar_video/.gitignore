@@ -8,3 +8,4 @@ voice_raw.mp3
 *.log
 __pycache__/
 final_video_send.mp4
+share/final_video_720p.mp4
