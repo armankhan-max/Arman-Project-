@@ -1,0 +1,9 @@
+clips/
+bgseg/
+parts/
+bg.mp4
+final_video.mp4
+*.wav
+voice_raw.mp3
+*.log
+__pycache__/
