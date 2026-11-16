@@ -2,7 +2,7 @@ import json
 F=0.965*0.97
 INS=json.load(open('/home/user/Arman-Project-/work2/inserts.json'))
 def M(t):
-    return (t+sum(d for c,d in INS if c<t))/F
+    return t
 TL=[
 (0.0,'d410a08c'),(2.9,'s:3322:2'),(5.1,'ff840775'),(8.9,'c8208ba4'),(11.3,'8162d234'),(13.5,'9612d6f2'),(15.0,'9a4edf03'),
 (18.4,'s:21669:1'),(21.1,'3810506e'),(23.3,'bc5f061a'),(26.8,'e49158b2'),(30.9,'s:11699:1'),(34.3,'73ffe241'),

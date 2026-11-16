@@ -19,727 +19,727 @@ Style: Lower,DejaVu Sans,46,&H00FFFFFF,&H000000FF,&H00443322,&H00000000,1,0,0,0,
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 1,0:00:00.00,0:00:01.60,Cap,,0,0,0,,{\fad(80,80)}{\kf9}You {\kf21}take {\kf26}your {\kf24}winter {\kf43}coat {\kf24}off
-Dialogue: 1,0:00:01.45,0:00:02.63,Cap,,0,0,0,,{\fad(80,80)}{\kf13}the {\kf17}hook {\kf28}by {\kf13}the {\kf32}door
-Dialogue: 1,0:00:02.88,0:00:05.15,Cap,,0,0,0,,{\fad(80,80)}{\kf26}on {\kf15}the {\kf32}first {\kf56}properly {\kf34}cold {\kf49}morning,
-Dialogue: 1,0:00:05.43,0:00:06.90,Cap,,0,0,0,,{\fad(80,80)}{\kf11}you {\kf30}slide {\kf30}your {\kf32}arms {\kf30}in,
-Dialogue: 1,0:00:07.22,0:00:09.06,Cap,,0,0,0,,{\fad(80,80)}{\kf17}and {\kf41}something {\kf30}is {\kf26}wrong {\kf56}again.
-Dialogue: 1,0:00:10.21,0:00:12.24,Cap,,0,0,0,,{\fad(80,80)}{\kf21}This {\kf17}leaves {\kf41}swallow {\kf51}half {\kf24}your {\kf34}hands.
-Dialogue: 1,0:00:12.86,0:00:15.00,Cap,,0,0,0,,{\fad(80,80)}{\kf6}The {\kf45}shoulders {\kf51}slump {\kf32}down {\kf19}your {\kf45}arms.
-Dialogue: 1,0:00:15.96,0:00:17.11,Cap,,0,0,0,,{\fad(80,80)}{\kf9}And {\kf15}when {\kf17}you {\kf21}reach {\kf24}for {\kf15}your
-Dialogue: 1,0:00:16.96,0:00:17.39,Cap,,0,0,0,,{\fad(80,80)}{\kf28}keys,
-Dialogue: 1,0:00:17.65,0:00:19.08,Cap,,0,0,0,,{\fad(80,80)}{\kf2}the {\kf17}whole {\kf30}coat {\kf34}rides {\kf30}up {\kf15}to
-Dialogue: 1,0:00:18.93,0:00:19.49,Cap,,0,0,0,,{\fad(80,80)}{\kf15}your {\kf26}belt
-Dialogue: 1,0:00:19.34,0:00:21.07,Cap,,0,0,0,,{\fad(80,80)}{\kf26}and {\kf15}lets {\kf24}the {\kf24}cold {\kf30}straight {\kf41}in.
-Dialogue: 1,0:00:21.54,0:00:23.20,Cap,,0,0,0,,{\fad(80,80)}{\kf21}So {\kf15}you {\kf19}tell {\kf36}yourself {\kf45}it {\kf15}is
-Dialogue: 1,0:00:23.05,0:00:24.02,Cap,,0,0,0,,{\fad(80,80)}{\kf19}just {\kf17}an {\kf17}old {\kf28}coat,
-Dialogue: 1,0:00:24.38,0:00:25.83,Cap,,0,0,0,,{\fad(80,80)}{\kf19}you {\kf26}promise {\kf30}to {\kf19}buy {\kf13}a {\kf24}better
-Dialogue: 1,0:00:25.68,0:00:26.56,Cap,,0,0,0,,{\fad(80,80)}{\kf26}one {\kf17}this {\kf30}year.
-Dialogue: 1,0:00:27.43,0:00:28.72,Cap,,0,0,0,,{\fad(80,80)}{\kf13}And {\kf15}then {\kf17}you {\kf24}stand {\kf32}in {\kf13}a
-Dialogue: 1,0:00:28.57,0:00:28.95,Cap,,0,0,0,,{\fad(80,80)}{\kf24}shop
-Dialogue: 1,0:00:28.80,0:00:30.51,Cap,,0,0,0,,{\fad(80,80)}{\kf34}with {\kf28}no {\kf43}idea {\kf28}what {\kf15}you {\kf9}are
-Dialogue: 1,0:00:30.36,0:00:31.11,Cap,,0,0,0,,{\fad(80,80)}{\kf26}looking {\kf34}at.
-Dialogue: 1,0:00:31.88,0:00:32.61,Cap,,0,0,0,,{\fad(80,80)}{\kf21}My {\kf36}friend,
-Dialogue: 1,0:00:32.84,0:00:33.97,Cap,,0,0,0,,{\fad(80,80)}{\kf26}it {\kf11}is {\kf24}not {\kf38}you.
-Dialogue: 1,0:00:33.82,0:00:36.56,Cap,,0,0,0,,{\fad(80,80)}{\kf132}And {\kf11}it {\kf13}was {\kf28}never {\kf32}your {\kf43}fault
-Dialogue: 1,0:00:36.92,0:00:38.87,Cap,,0,0,0,,{\fad(80,80)}{\kf26}because {\kf34}nobody {\kf45}ever {\kf32}taught {\kf26}you {\kf17}how
-Dialogue: 1,0:00:38.72,0:00:40.36,Cap,,0,0,0,,{\fad(80,80)}{\kf17}a {\kf24}coat {\kf32}is {\kf19}meant {\kf26}to {\kf32}fit.
-Dialogue: 1,0:00:40.87,0:00:43.05,Cap,,0,0,0,,{\fad(80,80)}{\kf47}Today {\kf64}I {\kf26}am {\kf21}going {\kf15}to {\kf30}teach
-Dialogue: 1,0:00:42.90,0:00:43.35,Cap,,0,0,0,,{\fad(80,80)}{\kf30}you
-Dialogue: 1,0:00:43.20,0:00:45.19,Cap,,0,0,0,,{\fad(80,80)}{\kf58}and {\kf13}I {\kf17}will {\kf26}show {\kf26}you {\kf45}five
-Dialogue: 1,0:00:45.04,0:00:46.90,Cap,,0,0,0,,{\fad(80,80)}{\kf32}coats {\kf41}I {\kf15}would {\kf28}trust {\kf34}on {\kf21}my
-Dialogue: 1,0:00:46.75,0:00:47.43,Cap,,0,0,0,,{\fad(80,80)}{\kf24}own {\kf30}back.
-Dialogue: 1,0:00:48.50,0:00:49.81,Cap,,0,0,0,,{\fad(80,80)}{\kf9}And {\kf13}the {\kf21}last {\kf38}one {\kf19}is {\kf15}the
-Dialogue: 1,0:00:49.66,0:00:50.79,Cap,,0,0,0,,{\fad(80,80)}{\kf21}coat {\kf36}I {\kf15}would {\kf26}buy
-Dialogue: 1,0:00:50.64,0:00:51.94,Cap,,0,0,0,,{\fad(80,80)}{\kf21}if {\kf11}I {\kf19}could {\kf13}only {\kf36}own {\kf15}a
-Dialogue: 1,0:00:51.79,0:00:53.27,Cap,,0,0,0,,{\fad(80,80)}{\kf21}single {\kf41}coat {\kf24}for {\kf11}the {\kf17}rest {\kf19}of
-Dialogue: 1,0:00:53.12,0:00:53.65,Cap,,0,0,0,,{\fad(80,80)}{\kf13}my {\kf26}life.
-Dialogue: 1,0:00:54.27,0:00:55.34,Cap,,0,0,0,,{\fad(80,80)}{\kf19}I'm {\kf19}Malcolm {\kf53}Ashby,
-Dialogue: 1,0:00:55.53,0:00:56.81,Cap,,0,0,0,,{\fad(80,80)}{\kf45}I'm {\kf68}72.
-Dialogue: 1,0:00:58.24,0:01:00.21,Cap,,0,0,0,,{\fad(80,80)}{\kf21}And {\kf9}I {\kf34}started {\kf30}at {\kf32}16 {\kf56}sweeping
-Dialogue: 1,0:01:00.06,0:01:01.07,Cap,,0,0,0,,{\fad(80,80)}{\kf26}scraps {\kf34}of {\kf26}cloth
-Dialogue: 1,0:01:01.32,0:01:02.95,Cap,,0,0,0,,{\fad(80,80)}{\kf26}off {\kf15}a {\kf19}cutting {\kf32}room {\kf26}floor {\kf30}in
-Dialogue: 1,0:01:02.80,0:01:03.91,Cap,,0,0,0,,{\fad(80,80)}{\kf9}a {\kf21}wool {\kf24}mill {\kf43}town
-Dialogue: 1,0:01:03.76,0:01:04.91,Cap,,0,0,0,,{\fad(80,80)}{\kf26}in {\kf11}the {\kf24}north {\kf21}of {\kf19}England.
-Dialogue: 1,0:01:05.42,0:01:06.32,Cap,,0,0,0,,{\fad(80,80)}{\kf28}Since {\kf47}then,
-Dialogue: 1,0:01:06.41,0:01:08.01,Cap,,0,0,0,,{\fad(80,80)}{\kf34}I've {\kf26}spent {\kf53}50 {\kf32}years
-Dialogue: 1,0:01:07.86,0:01:10.21,Cap,,0,0,0,,{\fad(80,80)}{\kf56}making {\kf28}and {\kf26}fitting {\kf45}coats {\kf32}and {\kf34}jackets
-Dialogue: 1,0:01:10.06,0:01:10.94,Cap,,0,0,0,,{\fad(80,80)}{\kf41}for {\kf32}bankers,
-Dialogue: 1,0:01:11.34,0:01:12.11,Cap,,0,0,0,,{\fad(80,80)}{\kf24}bus {\kf38}drivers,
-Dialogue: 1,0:01:12.58,0:01:13.29,Cap,,0,0,0,,{\fad(80,80)}{\kf56}grooms,
-Dialogue: 1,0:01:13.37,0:01:14.63,Cap,,0,0,0,,{\fad(80,80)}{\kf21}and {\kf90}grandfathers.
-Dialogue: 1,0:01:15.42,0:01:17.00,Cap,,0,0,0,,{\fad(80,80)}{\kf24}These {\kf32}days {\kf38}I {\kf13}have {\kf9}a {\kf28}small
-Dialogue: 1,0:01:16.85,0:01:17.71,Cap,,0,0,0,,{\fad(80,80)}{\kf30}shop {\kf21}in {\kf19}London
-Dialogue: 1,0:01:17.56,0:01:19.06,Cap,,0,0,0,,{\fad(80,80)}{\kf45}with {\kf13}a {\kf24}flat {\kf28}above {\kf26}it.
-Dialogue: 1,0:01:19.89,0:01:20.81,Cap,,0,0,0,,{\fad(80,80)}{\kf6}And {\kf15}my {\kf19}late {\kf36}wife,
-Dialogue: 1,0:01:21.13,0:01:21.73,Cap,,0,0,0,,{\fad(80,80)}{\kf45}Evelyn,
-Dialogue: 1,0:01:21.58,0:01:23.29,Cap,,0,0,0,,{\fad(80,80)}{\kf36}used {\kf19}to {\kf15}keep {\kf13}the {\kf15}books {\kf58}downstairs
-Dialogue: 1,0:01:23.48,0:01:25.40,Cap,,0,0,0,,{\fad(80,80)}{\kf28}and {\kf21}tell {\kf30}me {\kf60}quite {\kf38}honestly,
-Dialogue: 1,0:01:25.38,0:01:26.83,Cap,,0,0,0,,{\fad(80,80)}{\kf32}when {\kf11}a {\kf21}tie {\kf24}was {\kf19}too {\kf24}loud,
-Dialogue: 1,0:01:27.15,0:01:28.95,Cap,,0,0,0,,{\fad(80,80)}{\kf1}dot {\kf34}stay {\kf28}with {\kf30}me {\kf51}to {\kf21}the
-Dialogue: 1,0:01:28.80,0:01:29.16,Cap,,0,0,0,,{\fad(80,80)}{\kf21}end.
-Dialogue: 1,0:01:30.23,0:01:31.34,Cap,,0,0,0,,{\fad(80,80)}{\kf1}Because {\kf26}I'm {\kf15}going {\kf19}to {\kf21}tell {\kf15}you
-Dialogue: 1,0:01:31.19,0:01:32.43,Cap,,0,0,0,,{\fad(80,80)}{\kf24}why {\kf26}the {\kf21}extra {\kf38}room
-Dialogue: 1,0:01:32.28,0:01:33.56,Cap,,0,0,0,,{\fad(80,80)}{\kf19}you {\kf11}were {\kf19}told {\kf17}to {\kf17}buy {\kf30}for
-Dialogue: 1,0:01:33.41,0:01:34.16,Cap,,0,0,0,,{\fad(80,80)}{\kf13}your {\kf47}sweaters
-Dialogue: 1,0:01:34.01,0:01:35.89,Cap,,0,0,0,,{\fad(80,80)}{\kf49}is {\kf28}probably {\kf38}making {\kf28}you {\kf30}colder.
-Dialogue: 1,0:01:36.45,0:01:38.61,Cap,,0,0,0,,{\fad(80,80)}{\kf30}And {\kf53}almost {\kf36}every {\kf43}man {\kf21}has {\kf17}been
-Dialogue: 1,0:01:38.46,0:01:39.57,Cap,,0,0,0,,{\fad(80,80)}{\kf28}given {\kf28}that {\kf41}advice.
-Dialogue: 1,0:01:40.96,0:01:42.02,Cap,,0,0,0,,{\fad(80,80)}{\kf60}Right {\kf32}then,
-Dialogue: 1,0:01:42.37,0:01:43.65,Cap,,0,0,0,,{\fad(80,80)}{\kf30}before {\kf19}we {\kf17}look {\kf11}at {\kf9}a {\kf28}single
-Dialogue: 1,0:01:43.50,0:01:44.05,Cap,,0,0,0,,{\fad(80,80)}{\kf41}coat,
-Dialogue: 1,0:01:44.42,0:01:45.74,Cap,,0,0,0,,{\fad(80,80)}{\kf13}we {\kf24}need {\kf38}four {\kf43}checks,
-Dialogue: 1,0:01:46.00,0:01:47.69,Cap,,0,0,0,,{\fad(80,80)}{\kf38}because {\kf17}the {\kf38}finest {\kf30}coat {\kf17}in {\kf13}the
-Dialogue: 1,0:01:47.54,0:01:47.92,Cap,,0,0,0,,{\fad(80,80)}{\kf24}world
-Dialogue: 1,0:01:47.77,0:01:49.48,Cap,,0,0,0,,{\fad(80,80)}{\kf28}is {\kf30}wasted {\kf38}on {\kf11}a {\kf24}man {\kf26}who
-Dialogue: 1,0:01:49.33,0:01:50.42,Cap,,0,0,0,,{\fad(80,80)}{\kf47}doesn't {\kf24}know {\kf24}them.
-Dialogue: 1,0:01:51.06,0:01:52.60,Cap,,0,0,0,,{\fad(80,80)}{\kf15}The {\kf32}first {\kf30}check {\kf26}is {\kf9}a {\kf28}mistake.
-Dialogue: 1,0:01:53.73,0:01:55.83,Cap,,0,0,0,,{\fad(80,80)}{\kf4}I {\kf24}watch {\kf41}men {\kf43}make {\kf49}every {\kf34}November.
-Dialogue: 1,0:01:56.57,0:01:57.99,Cap,,0,0,0,,{\fad(80,80)}{\kf2}They {\kf24}walk {\kf32}into {\kf15}a {\kf24}shop {\kf30}wearing
-Dialogue: 1,0:01:57.84,0:01:58.86,Cap,,0,0,0,,{\fad(80,80)}{\kf21}a {\kf21}thin {\kf45}shirt,
-Dialogue: 1,0:01:59.35,0:02:00.38,Cap,,0,0,0,,{\fad(80,80)}{\kf9}they {\kf19}turn {\kf30}a {\kf30}coat,
-Dialogue: 1,0:02:00.89,0:02:02.84,Cap,,0,0,0,,{\fad(80,80)}{\kf24}they {\kf32}decide {\kf32}it {\kf24}feels {\kf56}roomy {\kf13}and
-Dialogue: 1,0:02:02.69,0:02:03.26,Cap,,0,0,0,,{\fad(80,80)}{\kf43}comfortable,
-Dialogue: 1,0:02:03.67,0:02:04.80,Cap,,0,0,0,,{\fad(80,80)}{\kf21}and {\kf17}they {\kf30}buy {\kf30}it.
-Dialogue: 1,0:02:05.76,0:02:07.09,Cap,,0,0,0,,{\fad(80,80)}{\kf17}Then {\kf30}January {\kf71}comes.
-Dialogue: 1,0:02:07.69,0:02:09.48,Cap,,0,0,0,,{\fad(80,80)}{\kf11}They {\kf19}put {\kf15}a {\kf43}flannel {\kf38}shirt {\kf38}and
-Dialogue: 1,0:02:09.33,0:02:10.27,Cap,,0,0,0,,{\fad(80,80)}{\kf15}a {\kf19}wool {\kf45}sweater
-Dialogue: 1,0:02:10.12,0:02:10.81,Cap,,0,0,0,,{\fad(80,80)}{\kf53}underneath,
-Dialogue: 1,0:02:11.15,0:02:13.03,Cap,,0,0,0,,{\fad(80,80)}{\kf9}and {\kf41}suddenly {\kf38}the {\kf24}coat {\kf30}is {\kf32}pulling
-Dialogue: 1,0:02:12.88,0:02:14.05,Cap,,0,0,0,,{\fad(80,80)}{\kf49}across {\kf24}the {\kf30}back.
-Dialogue: 1,0:02:15.16,0:02:17.17,Cap,,0,0,0,,{\fad(80,80)}{\kf17}So {\kf62}go {\kf107}shopping,
-Dialogue: 1,0:02:17.02,0:02:18.99,Cap,,0,0,0,,{\fad(80,80)}{\kf58}wearing {\kf49}the {\kf51}thickest {\kf24}thing
-Dialogue: 1,0:02:18.84,0:02:20.91,Cap,,0,0,0,,{\fad(80,80)}{\kf17}you {\kf17}will {\kf28}actually {\kf56}wear {\kf49}under {\kf26}the
-Dialogue: 1,0:02:20.76,0:02:21.25,Cap,,0,0,0,,{\fad(80,80)}{\kf34}coat.
-Dialogue: 1,0:02:21.83,0:02:23.43,Cap,,0,0,0,,{\fad(80,80)}{\kf43}Jacket {\kf34}and {\kf28}sweater {\kf41}included.
-Dialogue: 1,0:02:24.99,0:02:26.77,Cap,,0,0,0,,{\fad(80,80)}{\kf11}The {\kf41}second {\kf32}check {\kf32}is {\kf11}the {\kf36}shoulders.
-Dialogue: 1,0:02:27.49,0:02:28.65,Cap,,0,0,0,,{\fad(80,80)}{\kf13}And {\kf21}I'll {\kf21}say {\kf19}it {\kf9}the {\kf17}way
-Dialogue: 1,0:02:28.50,0:02:29.46,Cap,,0,0,0,,{\fad(80,80)}{\kf13}I {\kf19}always {\kf36}say {\kf13}it
-Dialogue: 1,0:02:29.31,0:02:30.31,Cap,,0,0,0,,{\fad(80,80)}{\kf6}at {\kf11}the {\kf17}cutting {\kf51}table,
-Dialogue: 1,0:02:30.61,0:02:33.15,Cap,,0,0,0,,{\fad(80,80)}{\kf19}the {\kf45}shoulders {\kf85}never {\kf90}lie.
-Dialogue: 1,0:02:34.27,0:02:35.78,Cap,,0,0,0,,{\fad(80,80)}{\kf11}The {\kf24}seam {\kf26}should {\kf26}sit {\kf34}right {\kf17}at
-Dialogue: 1,0:02:35.63,0:02:37.04,Cap,,0,0,0,,{\fad(80,80)}{\kf17}the {\kf21}edge {\kf13}of {\kf15}your {\kf19}own {\kf41}shoulder,
-Dialogue: 1,0:02:37.32,0:02:38.94,Cap,,0,0,0,,{\fad(80,80)}{\kf28}not {\kf36}hanging {\kf30}down {\kf21}your {\kf32}arm
-Dialogue: 1,0:02:38.79,0:02:40.55,Cap,,0,0,0,,{\fad(80,80)}{\kf19}and {\kf24}not {\kf34}climbing {\kf34}up {\kf30}toward {\kf19}your
-Dialogue: 1,0:02:40.40,0:02:40.78,Cap,,0,0,0,,{\fad(80,80)}{\kf24}neck.
-Dialogue: 1,0:02:41.40,0:02:42.64,Cap,,0,0,0,,{\fad(80,80)}{\kf2}If {\kf15}they {\kf21}look {\kf15}in {\kf56}shortness,
-Dialogue: 1,0:02:42.49,0:02:44.07,Cap,,0,0,0,,{\fad(80,80)}{\kf43}leave {\kf24}for {\kf13}the {\kf32}price {\kf21}of {\kf11}a
-Dialogue: 1,0:02:43.92,0:02:44.74,Cap,,0,0,0,,{\fad(80,80)}{\kf17}decent {\kf49}lunch.
-Dialogue: 1,0:02:45.82,0:02:47.85,Cap,,0,0,0,,{\fad(80,80)}{\kf6}But {\kf49}moving {\kf24}a {\kf36}shoulder {\kf58}is {\kf15}a
-Dialogue: 1,0:02:47.70,0:02:48.45,Cap,,0,0,0,,{\fad(80,80)}{\kf24}big {\kf36}job
-Dialogue: 1,0:02:48.30,0:02:50.40,Cap,,0,0,0,,{\fad(80,80)}{\kf26}that {\kf21}can {\kf30}cost {\kf38}close {\kf26}to {\kf53}$200
-Dialogue: 1,0:02:51.02,0:02:52.66,Cap,,0,0,0,,{\fad(80,80)}{\kf51}if {\kf19}it {\kf19}can {\kf17}be {\kf24}done {\kf19}at
-Dialogue: 1,0:02:52.51,0:02:52.94,Cap,,0,0,0,,{\fad(80,80)}{\kf28}all.
-Dialogue: 1,0:02:53.47,0:02:54.84,Cap,,0,0,0,,{\fad(80,80)}{\kf6}So {\kf15}if {\kf11}the {\kf36}shoulders {\kf28}are {\kf26}wrong
-Dialogue: 1,0:02:54.69,0:02:55.42,Cap,,0,0,0,,{\fad(80,80)}{\kf17}in {\kf13}the {\kf28}shop,
-Dialogue: 1,0:02:55.67,0:02:56.76,Cap,,0,0,0,,{\fad(80,80)}{\kf24}put {\kf15}the {\kf15}coat {\kf41}back.
-Dialogue: 1,0:02:57.88,0:02:59.48,Cap,,0,0,0,,{\fad(80,80)}{\kf17}However {\kf47}handsome {\kf34}it {\kf15}looks {\kf21}in {\kf11}the
-Dialogue: 1,0:02:59.33,0:02:59.76,Cap,,0,0,0,,{\fad(80,80)}{\kf28}mirror.
-Dialogue: 1,0:03:00.59,0:03:01.94,Cap,,0,0,0,,{\fad(80,80)}{\kf11}The {\kf26}third {\kf26}check {\kf26}is {\kf19}one {\kf13}of
-Dialogue: 1,0:03:01.79,0:03:02.49,Cap,,0,0,0,,{\fad(80,80)}{\kf11}my {\kf15}old {\kf30}master,
-Dialogue: 1,0:03:02.70,0:03:03.02,Cap,,0,0,0,,{\fad(80,80)}{\kf17}Mr.
-Dialogue: 1,0:03:03.05,0:03:04.07,Cap,,0,0,0,,{\fad(80,80)}{\kf34}Pettigrew {\kf15}would {\kf11}have {\kf28}loved
-Dialogue: 1,0:03:03.92,0:03:06.40,Cap,,0,0,0,,{\fad(80,80)}{\kf71}because {\kf21}it {\kf15}is {\kf41}nothing {\kf34}but {\kf51}moving
-Dialogue: 1,0:03:06.25,0:03:06.96,Cap,,0,0,0,,{\fad(80,80)}{\kf56}about,
-Dialogue: 1,0:03:07.53,0:03:08.47,Cap,,0,0,0,,{\fad(80,80)}{\kf26}button {\kf26}the {\kf28}coat,
-Dialogue: 1,0:03:08.84,0:03:11.29,Cap,,0,0,0,,{\fad(80,80)}{\kf43}lift {\kf45}both {\kf64}arms {\kf38}out {\kf19}in {\kf21}front
-Dialogue: 1,0:03:11.14,0:03:11.61,Cap,,0,0,0,,{\fad(80,80)}{\kf17}of {\kf15}you.
-Dialogue: 1,0:03:12.49,0:03:13.56,Cap,,0,0,0,,{\fad(80,80)}{\kf11}Then {\kf15}I'll {\kf17}pass {\kf24}if {\kf13}you {\kf13}are
-Dialogue: 1,0:03:13.41,0:03:14.75,Cap,,0,0,0,,{\fad(80,80)}{\kf28}reaching {\kf30}for {\kf13}the {\kf24}top {\kf26}shelf,
-Dialogue: 1,0:03:15.22,0:03:17.06,Cap,,0,0,0,,{\fad(80,80)}{\kf28}then {\kf30}fold {\kf24}them {\kf19}across {\kf38}your {\kf30}chest.
-Dialogue: 1,0:03:17.53,0:03:19.01,Cap,,0,0,0,,{\fad(80,80)}{\kf11}If {\kf13}the {\kf21}whole {\kf19}coat {\kf41}jumps {\kf28}up
-Dialogue: 1,0:03:18.86,0:03:19.58,Cap,,0,0,0,,{\fad(80,80)}{\kf17}to {\kf13}your {\kf28}belt
-Dialogue: 1,0:03:19.73,0:03:21.40,Cap,,0,0,0,,{\fad(80,80)}{\kf28}or {\kf11}the {\kf28}back {\kf26}poles {\kf28}tight {\kf32}across
-Dialogue: 1,0:03:21.25,0:03:22.36,Cap,,0,0,0,,{\fad(80,80)}{\kf32}your {\kf38}shoulder {\kf26}blades,
-Dialogue: 1,0:03:22.79,0:03:24.43,Cap,,0,0,0,,{\fad(80,80)}{\kf13}the {\kf21}coat {\kf24}is {\kf19}too {\kf41}small {\kf32}where
-Dialogue: 1,0:03:24.28,0:03:24.93,Cap,,0,0,0,,{\fad(80,80)}{\kf15}it {\kf34}counts.
-Dialogue: 1,0:03:26.01,0:03:27.55,Cap,,0,0,0,,{\fad(80,80)}{\kf9}And {\kf28}no {\kf24}amount {\kf26}of {\kf24}liking {\kf30}the
-Dialogue: 1,0:03:27.40,0:03:28.69,Cap,,0,0,0,,{\fad(80,80)}{\kf28}color {\kf24}will {\kf30}fix {\kf32}that.
-Dialogue: 1,0:03:29.26,0:03:30.87,Cap,,0,0,0,,{\fad(80,80)}{\kf17}The {\kf28}fourth {\kf32}check {\kf28}is {\kf13}the {\kf28}sleeves.
-Dialogue: 1,0:03:31.95,0:03:33.45,Cap,,0,0,0,,{\fad(80,80)}{\kf9}They {\kf19}should {\kf30}come {\kf36}down {\kf26}to {\kf15}the
-Dialogue: 1,0:03:33.30,0:03:34.50,Cap,,0,0,0,,{\fad(80,80)}{\kf28}hinge {\kf24}of {\kf17}your {\kf36}wrist
-Dialogue: 1,0:03:34.35,0:03:36.78,Cap,,0,0,0,,{\fad(80,80)}{\kf53}and {\kf32}touch {\kf47}past {\kf28}your {\kf34}jacket {\kf34}cup.
-Dialogue: 1,0:03:37.21,0:03:38.45,Cap,,0,0,0,,{\fad(80,80)}{\kf15}If {\kf9}a {\kf26}sleeve {\kf30}is {\kf13}a {\kf17}little
-Dialogue: 1,0:03:38.30,0:03:38.88,Cap,,0,0,0,,{\fad(80,80)}{\kf43}long,
-Dialogue: 1,0:03:39.26,0:03:40.44,Cap,,0,0,0,,{\fad(80,80)}{\kf15}that {\kf17}is {\kf15}an {\kf15}easy {\kf41}fix.
-Dialogue: 1,0:03:41.51,0:03:43.96,Cap,,0,0,0,,{\fad(80,80)}{\kf11}And {\kf13}it {\kf36}usually {\kf51}costs {\kf81}somewhere {\kf38}between
-Dialogue: 1,0:03:43.81,0:03:45.65,Cap,,0,0,0,,{\fad(80,80)}{\kf53}$35 {\kf43}and {\kf73}$65.
-Dialogue: 1,0:03:46.40,0:03:47.23,Cap,,0,0,0,,{\fad(80,80)}{\kf68}Mr.
-Dialogue: 1,0:03:47.17,0:03:49.37,Cap,,0,0,0,,{\fad(80,80)}{\kf43}Pettigrew's {\kf30}favorite {\kf96}line {\kf36}was,
-Dialogue: 1,0:03:49.67,0:03:51.25,Cap,,0,0,0,,{\fad(80,80)}{\kf45}measure {\kf34}it {\kf64}again.
-Dialogue: 1,0:03:52.36,0:03:54.80,Cap,,0,0,0,,{\fad(80,80)}{\kf21}Lad {\kf81}and {\kf17}he {\kf19}was {\kf28}right {\kf62}every
-Dialogue: 1,0:03:54.65,0:03:55.44,Cap,,0,0,0,,{\fad(80,80)}{\kf26}single {\kf38}time.
-Dialogue: 1,0:03:55.99,0:03:57.51,Cap,,0,0,0,,{\fad(80,80)}{\kf17}So {\kf77}pin {\kf17}the {\kf26}sleeve,
-Dialogue: 1,0:03:58.04,0:03:59.41,Cap,,0,0,0,,{\fad(80,80)}{\kf34}stand {\kf26}in {\kf11}front {\kf17}of {\kf11}the {\kf24}mirror
-Dialogue: 1,0:03:59.62,0:04:00.93,Cap,,0,0,0,,{\fad(80,80)}{\kf34}and {\kf36}measure {\kf24}it {\kf21}again.
-Dialogue: 1,0:04:02.02,0:04:05.12,Cap,,0,0,0,,{\fad(80,80)}{\kf41}Now {\kf77}the {\kf38}coats {\kf79}counting {\kf60}down.
-Dialogue: 1,0:04:05.76,0:04:07.72,Cap,,0,0,0,,{\fad(80,80)}{\kf19}Number {\kf51}five {\kf21}is {\kf15}the {\kf24}humble {\kf51}wool
-Dialogue: 1,0:04:07.57,0:04:08.64,Cap,,0,0,0,,{\fad(80,80)}{\kf49}car {\kf43}coat.
-Dialogue: 1,0:04:09.67,0:04:10.63,Cap,,0,0,0,,{\fad(80,80)}{\kf11}And {\kf13}I {\kf19}put {\kf13}it {\kf13}at {\kf13}the
-Dialogue: 1,0:04:10.48,0:04:12.32,Cap,,0,0,0,,{\fad(80,80)}{\kf34}bottom {\kf43}only {\kf36}because {\kf28}it {\kf13}is {\kf15}the
-Dialogue: 1,0:04:12.17,0:04:12.72,Cap,,0,0,0,,{\fad(80,80)}{\kf41}simplest,
-Dialogue: 1,0:04:13.17,0:04:15.05,Cap,,0,0,0,,{\fad(80,80)}{\kf34}not {\kf45}because {\kf34}it {\kf13}is {\kf15}the {\kf32}weakest.
-Dialogue: 1,0:04:15.69,0:04:17.29,Cap,,0,0,0,,{\fad(80,80)}{\kf15}A {\kf21}car {\kf34}coat {\kf26}is {\kf15}a {\kf34}single
-Dialogue: 1,0:04:17.14,0:04:18.08,Cap,,0,0,0,,{\fad(80,80)}{\kf47}-breasted {\kf32}coat
-Dialogue: 1,0:04:17.93,0:04:19.79,Cap,,0,0,0,,{\fad(80,80)}{\kf28}that {\kf32}stops {\kf38}about {\kf28}mid {\kf45}-thigh,
-Dialogue: 1,0:04:20.14,0:04:21.31,Cap,,0,0,0,,{\fad(80,80)}{\kf9}which {\kf21}means {\kf19}you {\kf13}can {\kf28}sit {\kf13}in
-Dialogue: 1,0:04:21.16,0:04:22.94,Cap,,0,0,0,,{\fad(80,80)}{\kf6}a {\kf24}car {\kf71}or {\kf30}on {\kf9}a {\kf24}bus
-Dialogue: 1,0:04:22.79,0:04:25.16,Cap,,0,0,0,,{\fad(80,80)}{\kf64}or {\kf15}at {\kf19}your {\kf53}daughter's {\kf17}kitchen {\kf53}table.
-Dialogue: 1,0:04:26.29,0:04:27.96,Cap,,0,0,0,,{\fad(80,80)}{\kf19}Without {\kf24}it {\kf47}bunching {\kf17}up {\kf24}under {\kf21}you
-Dialogue: 1,0:04:27.81,0:04:28.45,Cap,,0,0,0,,{\fad(80,80)}{\kf13}like {\kf13}a {\kf24}blanket.
-Dialogue: 1,0:04:29.09,0:04:30.50,Cap,,0,0,0,,{\fad(80,80)}{\kf6}My {\kf19}one {\kf32}rule {\kf26}for {\kf19}it {\kf24}is
-Dialogue: 1,0:04:30.35,0:04:31.78,Cap,,0,0,0,,{\fad(80,80)}{\kf19}that {\kf13}it {\kf19}must {\kf26}be {\kf26}long {\kf26}enough
-Dialogue: 1,0:04:31.63,0:04:32.89,Cap,,0,0,0,,{\fad(80,80)}{\kf30}to {\kf19}cover {\kf19}the {\kf19}seat {\kf15}of {\kf9}your
-Dialogue: 1,0:04:32.74,0:04:33.28,Cap,,0,0,0,,{\fad(80,80)}{\kf38}trousers.
-Dialogue: 1,0:04:34.45,0:04:35.67,Cap,,0,0,0,,{\fad(80,80)}{\kf2}And {\kf28}short {\kf19}enough {\kf30}that {\kf15}you {\kf13}can
-Dialogue: 1,0:04:35.52,0:04:37.29,Cap,,0,0,0,,{\fad(80,80)}{\kf28}bend {\kf38}down {\kf24}to {\kf26}tie {\kf21}your {\kf26}shoe
-Dialogue: 1,0:04:37.59,0:04:39.32,Cap,,0,0,0,,{\fad(80,80)}{\kf26}without {\kf38}feeling {\kf30}like {\kf15}you're {\kf32}tying {\kf17}it
-Dialogue: 1,0:04:39.17,0:04:39.88,Cap,,0,0,0,,{\fad(80,80)}{\kf19}through {\kf13}a {\kf24}tent.
-Dialogue: 1,0:04:40.39,0:04:41.44,Cap,,0,0,0,,{\fad(80,80)}{\kf13}Pick {\kf13}a {\kf30}quiet {\kf34}color,
-Dialogue: 1,0:04:41.61,0:04:43.62,Cap,,0,0,0,,{\fad(80,80)}{\kf26}navy {\kf30}or {\kf26}charcoal {\kf68}or {\kf11}a {\kf26}soft
-Dialogue: 1,0:04:43.47,0:04:43.90,Cap,,0,0,0,,{\fad(80,80)}{\kf28}brown
-Dialogue: 1,0:04:43.75,0:04:45.82,Cap,,0,0,0,,{\fad(80,80)}{\kf68}because {\kf45}you'll {\kf19}wear {\kf19}this {\kf17}one {\kf24}most
-Dialogue: 1,0:04:45.67,0:04:46.07,Cap,,0,0,0,,{\fad(80,80)}{\kf26}days
-Dialogue: 1,0:04:45.92,0:04:48.06,Cap,,0,0,0,,{\fad(80,80)}{\kf26}and {\kf13}a {\kf30}quiet {\kf43}color {\kf51}goes {\kf36}with
-Dialogue: 1,0:04:47.91,0:04:49.15,Cap,,0,0,0,,{\fad(80,80)}{\kf47}everything {\kf38}you {\kf24}own.
-Dialogue: 1,0:04:50.35,0:04:52.85,Cap,,0,0,0,,{\fad(80,80)}{\kf28}Number {\kf41}four {\kf47}will {\kf36}surprise {\kf45}you {\kf38}coming
-Dialogue: 1,0:04:52.70,0:04:53.75,Cap,,0,0,0,,{\fad(80,80)}{\kf36}from {\kf15}a {\kf38}tailor
-Dialogue: 1,0:04:53.60,0:04:55.54,Cap,,0,0,0,,{\fad(80,80)}{\kf68}because {\kf21}it {\kf11}is {\kf9}a {\kf30}padded {\kf41}coat,
-Dialogue: 1,0:04:55.90,0:04:57.19,Cap,,0,0,0,,{\fad(80,80)}{\kf17}the {\kf21}salt {\kf19}with {\kf13}a {\kf21}zip {\kf21}and
-Dialogue: 1,0:04:57.04,0:04:58.36,Cap,,0,0,0,,{\fad(80,80)}{\kf11}a {\kf17}hood {\kf17}and {\kf11}the {\kf32}stuffing {\kf30}inside.
-Dialogue: 1,0:04:59.00,0:05:00.33,Cap,,0,0,0,,{\fad(80,80)}{\kf9}I {\kf19}make {\kf28}jackets {\kf36}for {\kf9}a {\kf17}living
-Dialogue: 1,0:05:00.18,0:05:01.52,Cap,,0,0,0,,{\fad(80,80)}{\kf38}and {\kf13}I {\kf21}still {\kf21}own {\kf26}one.
-Dialogue: 1,0:05:02.44,0:05:03.27,Cap,,0,0,0,,{\fad(80,80)}{\kf4}And {\kf11}I'll {\kf19}tell {\kf11}you {\kf24}why.
-Dialogue: 1,0:05:03.77,0:05:05.20,Cap,,0,0,0,,{\fad(80,80)}{\kf1}When {\kf13}the {\kf17}weather {\kf36}turns {\kf24}truly {\kf38}bitter,
-Dialogue: 1,0:05:05.48,0:05:07.18,Cap,,0,0,0,,{\fad(80,80)}{\kf17}a {\kf19}good {\kf28}padded {\kf36}coat {\kf24}is {\kf32}warmer
-Dialogue: 1,0:05:07.03,0:05:07.83,Cap,,0,0,0,,{\fad(80,80)}{\kf41}and {\kf24}lighter
-Dialogue: 1,0:05:07.68,0:05:09.41,Cap,,0,0,0,,{\fad(80,80)}{\kf32}than {\kf28}any {\kf21}wool {\kf26}coat {\kf32}I {\kf19}could
-Dialogue: 1,0:05:09.26,0:05:09.96,Cap,,0,0,0,,{\fad(80,80)}{\kf24}make {\kf32}you.
-Dialogue: 1,0:05:10.94,0:05:13.06,Cap,,0,0,0,,{\fad(80,80)}{\kf9}And {\kf30}nobody {\kf51}ever {\kf43}looked {\kf34}sharp {\kf30}with
-Dialogue: 1,0:05:12.91,0:05:13.77,Cap,,0,0,0,,{\fad(80,80)}{\kf43}chattering {\kf28}teeth.
-Dialogue: 1,0:05:14.43,0:05:16.93,Cap,,0,0,0,,{\fad(80,80)}{\kf6}The {\kf38}mistake {\kf81}is {\kf68}the {\kf41}fit.
-Dialogue: 1,0:05:17.82,0:05:19.56,Cap,,0,0,0,,{\fad(80,80)}{\kf21}Men {\kf36}nearly {\kf47}always {\kf19}buy {\kf19}these {\kf15}a
-Dialogue: 1,0:05:19.41,0:05:20.58,Cap,,0,0,0,,{\fad(80,80)}{\kf17}full {\kf26}size {\kf28}too {\kf32}big
-Dialogue: 1,0:05:20.43,0:05:22.31,Cap,,0,0,0,,{\fad(80,80)}{\kf73}because {\kf19}the {\kf19}coat {\kf21}is {\kf41}puffy
-Dialogue: 1,0:05:22.16,0:05:23.81,Cap,,0,0,0,,{\fad(80,80)}{\kf53}and {\kf11}they {\kf21}think {\kf19}they {\kf19}need {\kf26}space
-Dialogue: 1,0:05:23.66,0:05:24.41,Cap,,0,0,0,,{\fad(80,80)}{\kf34}for {\kf26}layers.
-Dialogue: 1,0:05:25.03,0:05:26.76,Cap,,0,0,0,,{\fad(80,80)}{\kf9}And {\kf15}the {\kf30}result {\kf66}is {\kf15}a {\kf24}bag
-Dialogue: 1,0:05:26.61,0:05:28.51,Cap,,0,0,0,,{\fad(80,80)}{\kf38}with {\kf11}a {\kf26}man {\kf81}inside {\kf19}it.
-Dialogue: 1,0:05:29.30,0:05:30.94,Cap,,0,0,0,,{\fad(80,80)}{\kf6}A {\kf26}padded {\kf30}coat {\kf28}should {\kf21}sit {\kf38}close
-Dialogue: 1,0:05:31.29,0:05:32.91,Cap,,0,0,0,,{\fad(80,80)}{\kf26}with {\kf24}just {\kf28}room {\kf28}for {\kf15}a {\kf28}sweater
-Dialogue: 1,0:05:32.76,0:05:33.70,Cap,,0,0,0,,{\fad(80,80)}{\kf28}and {\kf17}no {\kf34}more.
-Dialogue: 1,0:05:34.34,0:05:35.77,Cap,,0,0,0,,{\fad(80,80)}{\kf6}And {\kf13}the {\kf28}sleeve {\kf26}should {\kf36}stop {\kf19}at
-Dialogue: 1,0:05:35.62,0:05:36.18,Cap,,0,0,0,,{\fad(80,80)}{\kf15}the {\kf26}wrist.
-Dialogue: 1,0:05:37.29,0:05:38.66,Cap,,0,0,0,,{\fad(80,80)}{\kf1}Do {\kf21}the {\kf15}arm {\kf21}lifting {\kf41}check {\kf24}I
-Dialogue: 1,0:05:38.51,0:05:39.41,Cap,,0,0,0,,{\fad(80,80)}{\kf21}just {\kf17}gave {\kf36}you.
-Dialogue: 1,0:05:39.92,0:05:41.01,Cap,,0,0,0,,{\fad(80,80)}{\kf4}And {\kf9}if {\kf15}the {\kf17}hem {\kf24}writes {\kf26}up,
-Dialogue: 1,0:05:41.14,0:05:42.85,Cap,,0,0,0,,{\fad(80,80)}{\kf58}go {\kf19}up {\kf13}a {\kf24}size {\kf21}in {\kf21}length
-Dialogue: 1,0:05:43.21,0:05:44.23,Cap,,0,0,0,,{\fad(80,80)}{\kf26}rather {\kf30}than {\kf11}in {\kf21}width.
-Dialogue: 1,0:05:45.34,0:05:46.01,Cap,,0,0,0,,{\fad(80,80)}{\kf51}Now,
-Dialogue: 1,0:05:46.14,0:05:47.93,Cap,,0,0,0,,{\fad(80,80)}{\kf38}before {\kf30}we {\kf21}go {\kf41}on {\kf13}a {\kf21}small
-Dialogue: 1,0:05:47.78,0:05:49.32,Cap,,0,0,0,,{\fad(80,80)}{\kf38}favor {\kf49}from {\kf13}an {\kf13}old {\kf26}man,
-Dialogue: 1,0:05:49.55,0:05:51.01,Cap,,0,0,0,,{\fad(80,80)}{\kf26}if {\kf21}this {\kf17}is {\kf26}already {\kf41}helping,
-Dialogue: 1,0:05:51.41,0:05:52.57,Cap,,0,0,0,,{\fad(80,80)}{\kf17}press {\kf30}the {\kf17}like {\kf36}button.
-Dialogue: 1,0:05:53.16,0:05:54.34,Cap,,0,0,0,,{\fad(80,80)}{\kf13}And {\kf13}if {\kf21}you'd {\kf15}like {\kf19}to {\kf21}know
-Dialogue: 1,0:05:54.19,0:05:55.67,Cap,,0,0,0,,{\fad(80,80)}{\kf30}when {\kf13}the {\kf19}next {\kf32}fitting {\kf38}is,
-Dialogue: 1,0:05:55.90,0:05:56.54,Cap,,0,0,0,,{\fad(80,80)}{\kf49}subscribe.
-Dialogue: 1,0:05:57.36,0:05:59.21,Cap,,0,0,0,,{\fad(80,80)}{\kf37}It {\kf30}costs {\kf41}you {\kf62}nothing.
-Dialogue: 1,0:05:59.81,0:06:02.22,Cap,,0,0,0,,{\fad(80,80)}{\kf13}It {\kf30}tells {\kf24}the {\kf38}people {\kf60}who {\kf62}run
-Dialogue: 1,0:06:02.07,0:06:03.02,Cap,,0,0,0,,{\fad(80,80)}{\kf34}these {\kf45}things
-Dialogue: 1,0:06:02.87,0:06:06.16,Cap,,0,0,0,,{\fad(80,80)}{\kf60}that {\kf13}a {\kf41}fellow {\kf66}my {\kf79}age {\kf56}might
-Dialogue: 1,0:06:06.01,0:06:08.68,Cap,,0,0,0,,{\fad(80,80)}{\kf41}have {\kf47}something {\kf47}useful {\kf81}to {\kf36}say
-Dialogue: 1,0:06:08.53,0:06:10.71,Cap,,0,0,0,,{\fad(80,80)}{\kf53}and {\kf49}Evelyn {\kf28}would {\kf13}have {\kf19}been {\kf41}chuffed
-Dialogue: 1,0:06:10.56,0:06:11.22,Cap,,0,0,0,,{\fad(80,80)}{\kf19}to {\kf32}bits,
-Dialogue: 1,0:06:11.67,0:06:13.63,Cap,,0,0,0,,{\fad(80,80)}{\kf45}taught {\kf43}back {\kf36}to {\kf24}the {\kf34}coats.
-Dialogue: 1,0:06:14.74,0:06:17.25,Cap,,0,0,0,,{\fad(80,80)}{\kf26}Number {\kf45}three {\kf47}is {\kf11}a {\kf34}cloth {\kf73}that
-Dialogue: 1,0:06:17.10,0:06:19.13,Cap,,0,0,0,,{\fad(80,80)}{\kf38}hides {\kf62}more {\kf88}sins
-Dialogue: 1,0:06:19.56,0:06:21.20,Cap,,0,0,0,,{\fad(80,80)}{\kf37}than {\kf49}any {\kf62}other.
-Dialogue: 1,0:06:21.69,0:06:23.01,Cap,,0,0,0,,{\fad(80,80)}{\kf36}It's {\kf9}the {\kf21}one {\kf15}I {\kf24}put {\kf13}on
-Dialogue: 1,0:06:22.86,0:06:24.10,Cap,,0,0,0,,{\fad(80,80)}{\kf32}myself {\kf38}on {\kf11}the {\kf28}days
-Dialogue: 1,0:06:23.95,0:06:25.26,Cap,,0,0,0,,{\fad(80,80)}{\kf30}I'm {\kf15}not {\kf30}seeing {\kf41}customers.
-Dialogue: 1,0:06:26.43,0:06:28.31,Cap,,0,0,0,,{\fad(80,80)}{\kf11}And {\kf15}the {\kf26}reason {\kf34}it {\kf30}works {\kf58}has
-Dialogue: 1,0:06:28.16,0:06:29.42,Cap,,0,0,0,,{\fad(80,80)}{\kf21}to {\kf17}do {\kf19}with {\kf15}what {\kf38}happens
-Dialogue: 1,0:06:29.27,0:06:31.37,Cap,,0,0,0,,{\fad(80,80)}{\kf24}to {\kf13}a {\kf19}coat {\kf60}after {\kf45}five {\kf34}winters.
-Dialogue: 1,0:06:33.08,0:06:34.59,Cap,,0,0,0,,{\fad(80,80)}{\kf9}The {\kf24}cloth {\kf19}I {\kf17}mean {\kf17}is {\kf51}Herringbone
-Dialogue: 1,0:06:34.44,0:06:34.92,Cap,,0,0,0,,{\fad(80,80)}{\kf32}wool,
-Dialogue: 1,0:06:35.26,0:06:36.67,Cap,,0,0,0,,{\fad(80,80)}{\kf11}the {\kf15}one {\kf15}with {\kf15}the {\kf19}little {\kf51}zigzag
-Dialogue: 1,0:06:36.52,0:06:37.80,Cap,,0,0,0,,{\fad(80,80)}{\kf43}pattern {\kf24}running {\kf32}through {\kf15}it
-Dialogue: 1,0:06:37.65,0:06:38.85,Cap,,0,0,0,,{\fad(80,80)}{\kf13}like {\kf15}the {\kf24}bones {\kf21}of {\kf6}a {\kf26}fish.
-Dialogue: 1,0:06:39.79,0:06:41.50,Cap,,0,0,0,,{\fad(80,80)}{\kf6}And {\kf11}the {\kf28}tailor {\kf56}loves {\kf30}it {\kf26}for
-Dialogue: 1,0:06:41.35,0:06:42.74,Cap,,0,0,0,,{\fad(80,80)}{\kf30}one {\kf36}simple {\kf58}reason.
-Dialogue: 1,0:06:43.27,0:06:45.73,Cap,,0,0,0,,{\fad(80,80)}{\kf51}Texture {\kf88}hides {\kf92}everything.
-Dialogue: 1,0:06:46.84,0:06:47.59,Cap,,0,0,0,,{\fad(80,80)}{\kf24}Rain {\kf36}spots,
-Dialogue: 1,0:06:47.95,0:06:48.50,Cap,,0,0,0,,{\fad(80,80)}{\kf41}lint,
-Dialogue: 1,0:06:48.82,0:06:50.15,Cap,,0,0,0,,{\fad(80,80)}{\kf11}the {\kf15}odd {\kf43}crease {\kf19}from {\kf11}a {\kf19}car
-Dialogue: 1,0:06:50.00,0:06:50.43,Cap,,0,0,0,,{\fad(80,80)}{\kf28}seat,
-Dialogue: 1,0:06:50.70,0:06:52.44,Cap,,0,0,0,,{\fad(80,80)}{\kf30}even {\kf19}the {\kf21}shine {\kf32}that {\kf28}creeps {\kf28}onto
-Dialogue: 1,0:06:52.29,0:06:54.06,Cap,,0,0,0,,{\fad(80,80)}{\kf24}a {\kf21}plain {\kf53}cloth {\kf21}at {\kf15}the {\kf28}elbows,
-Dialogue: 1,0:06:54.53,0:06:56.09,Cap,,0,0,0,,{\fad(80,80)}{\kf13}all {\kf17}of {\kf9}it {\kf41}disappears {\kf45}into {\kf17}a
-Dialogue: 1,0:06:55.94,0:06:56.69,Cap,,0,0,0,,{\fad(80,80)}{\kf17}busy {\kf43}weave.
-Dialogue: 1,0:06:57.33,0:06:58.42,Cap,,0,0,0,,{\fad(80,80)}{\kf13}So {\kf13}after {\kf36}five {\kf32}winters,
-Dialogue: 1,0:06:58.27,0:06:59.40,Cap,,0,0,0,,{\fad(80,80)}{\kf30}a {\kf43}Herringbone {\kf26}coat
-Dialogue: 1,0:06:59.25,0:07:00.73,Cap,,0,0,0,,{\fad(80,80)}{\kf28}looks {\kf24}like {\kf15}it {\kf13}has {\kf24}had {\kf30}to
-Dialogue: 1,0:07:00.58,0:07:02.86,Cap,,0,0,0,,{\fad(80,80)}{\kf56}and {\kf13}a {\kf36}soft {\kf32}close {\kf43}brush {\kf34}on
-Dialogue: 1,0:07:02.71,0:07:03.74,Cap,,0,0,0,,{\fad(80,80)}{\kf13}a {\kf24}Sunday {\kf51}evening
-Dialogue: 1,0:07:03.59,0:07:05.58,Cap,,0,0,0,,{\fad(80,80)}{\kf47}keeps {\kf30}it {\kf19}that {\kf24}way {\kf30}for {\kf34}years.
-Dialogue: 1,0:07:06.73,0:07:08.78,Cap,,0,0,0,,{\fad(80,80)}{\kf28}That's {\kf11}the {\kf41}answer {\kf60}to {\kf11}the {\kf41}question
-Dialogue: 1,0:07:08.63,0:07:10.98,Cap,,0,0,0,,{\fad(80,80)}{\kf38}I {\kf26}left {\kf47}hanging {\kf43}a {\kf26}minute {\kf41}ago.
-Dialogue: 1,0:07:11.43,0:07:13.35,Cap,,0,0,0,,{\fad(80,80)}{\kf28}Cut {\kf24}it {\kf17}as {\kf11}a {\kf41}single {\kf58}breasted
-Dialogue: 1,0:07:13.20,0:07:14.36,Cap,,0,0,0,,{\fad(80,80)}{\kf34}top {\kf24}coat {\kf43}falling
-Dialogue: 1,0:07:14.21,0:07:15.92,Cap,,0,0,0,,{\fad(80,80)}{\kf24}to {\kf34}just {\kf30}about {\kf38}your {\kf30}knee
-Dialogue: 1,0:07:16.11,0:07:17.95,Cap,,0,0,0,,{\fad(80,80)}{\kf32}and {\kf21}make {\kf26}sure {\kf19}the {\kf28}collar {\kf43}sits
-Dialogue: 1,0:07:17.80,0:07:18.42,Cap,,0,0,0,,{\fad(80,80)}{\kf47}flat
-Dialogue: 1,0:07:18.27,0:07:20.15,Cap,,0,0,0,,{\fad(80,80)}{\kf41}against {\kf28}the {\kf34}back {\kf21}of {\kf17}your {\kf32}neck
-Dialogue: 1,0:07:20.00,0:07:21.49,Cap,,0,0,0,,{\fad(80,80)}{\kf51}with {\kf43}no {\kf41}gap
-Dialogue: 1,0:07:21.88,0:07:23.46,Cap,,0,0,0,,{\fad(80,80)}{\kf32}because {\kf21}a {\kf34}gap {\kf30}there {\kf15}is {\kf11}a
-Dialogue: 1,0:07:23.31,0:07:23.76,Cap,,0,0,0,,{\fad(80,80)}{\kf30}draft
-Dialogue: 1,0:07:24.23,0:07:25.77,Cap,,0,0,0,,{\fad(80,80)}{\kf32}and {\kf13}a {\kf19}draft {\kf47}is {\kf11}a {\kf17}cold
-Dialogue: 1,0:07:25.62,0:07:27.07,Cap,,0,0,0,,{\fad(80,80)}{\kf41}neck {\kf47}all {\kf43}winter.
-Dialogue: 1,0:07:28.29,0:07:30.17,Cap,,0,0,0,,{\fad(80,80)}{\kf9}Choose {\kf21}a {\kf32}gray {\kf38}or {\kf41}brown {\kf32}mix
-Dialogue: 1,0:07:30.02,0:07:31.58,Cap,,0,0,0,,{\fad(80,80)}{\kf38}rather {\kf32}than {\kf13}a {\kf19}loud {\kf38}one
-Dialogue: 1,0:07:31.43,0:07:33.48,Cap,,0,0,0,,{\fad(80,80)}{\kf53}since {\kf24}the {\kf34}pattern {\kf30}does {\kf17}the {\kf32}talking
-Dialogue: 1,0:07:33.33,0:07:34.06,Cap,,0,0,0,,{\fad(80,80)}{\kf32}for {\kf26}you.
-Dialogue: 1,0:07:34.87,0:07:37.20,Cap,,0,0,0,,{\fad(80,80)}{\kf26}Number {\kf41}two {\kf43}is {\kf17}the {\kf24}navy {\kf68}duffel
-Dialogue: 1,0:07:37.05,0:07:37.41,Cap,,0,0,0,,{\fad(80,80)}{\kf21}coat,
-Dialogue: 1,0:07:37.97,0:07:39.68,Cap,,0,0,0,,{\fad(80,80)}{\kf11}the {\kf21}one {\kf26}with {\kf13}the {\kf21}wooden {\kf64}toggles
-Dialogue: 1,0:07:39.53,0:07:40.79,Cap,,0,0,0,,{\fad(80,80)}{\kf43}and {\kf15}the {\kf19}big {\kf34}hood
-Dialogue: 1,0:07:40.64,0:07:43.05,Cap,,0,0,0,,{\fad(80,80)}{\kf53}worn {\kf28}by {\kf36}sailors {\kf38}on {\kf26}freezing {\kf45}decks
-Dialogue: 1,0:07:42.90,0:07:44.85,Cap,,0,0,0,,{\fad(80,80)}{\kf49}long {\kf38}before {\kf19}it {\kf19}ever {\kf34}reached {\kf19}the
-Dialogue: 1,0:07:44.70,0:07:45.34,Cap,,0,0,0,,{\fad(80,80)}{\kf19}high {\kf30}street.
-Dialogue: 1,0:07:46.45,0:07:47.92,Cap,,0,0,0,,{\fad(80,80)}{\kf2}I {\kf24}love {\kf21}it {\kf24}for {\kf28}one {\kf34}reason,
-Dialogue: 1,0:07:48.20,0:07:48.86,Cap,,0,0,0,,{\fad(80,80)}{\kf6}above {\kf45}all,
-Dialogue: 1,0:07:49.12,0:07:50.64,Cap,,0,0,0,,{\fad(80,80)}{\kf24}and {\kf38}that's {\kf21}the {\kf53}toggles.
-Dialogue: 1,0:07:51.24,0:07:52.62,Cap,,0,0,0,,{\fad(80,80)}{\kf24}Though {\kf15}it's {\kf32}also {\kf24}warm {\kf30}enough
-Dialogue: 1,0:07:52.47,0:07:53.80,Cap,,0,0,0,,{\fad(80,80)}{\kf24}that {\kf21}I've {\kf19}stood {\kf26}on {\kf11}a {\kf17}winter
-Dialogue: 1,0:07:53.65,0:07:54.87,Cap,,0,0,0,,{\fad(80,80)}{\kf53}platform {\kf30}in {\kf24}one
-Dialogue: 1,0:07:55.10,0:07:56.79,Cap,,0,0,0,,{\fad(80,80)}{\kf26}and {\kf19}felt {\kf51}perfectly {\kf58}fine,
-Dialogue: 1,0:07:57.03,0:07:58.69,Cap,,0,0,0,,{\fad(80,80)}{\kf24}you {\kf15}can {\kf58}fasten {\kf17}them {\kf17}with {\kf21}gloves
-Dialogue: 1,0:07:58.54,0:07:59.12,Cap,,0,0,0,,{\fad(80,80)}{\kf43}on,
-Dialogue: 1,0:07:59.35,0:08:00.55,Cap,,0,0,0,,{\fad(80,80)}{\kf26}with {\kf26}cold {\kf53}fingers,
-Dialogue: 1,0:08:00.87,0:08:02.39,Cap,,0,0,0,,{\fad(80,80)}{\kf24}with {\kf13}a {\kf32}shopping {\kf30}bag {\kf26}in {\kf13}your
-Dialogue: 1,0:08:02.24,0:08:02.86,Cap,,0,0,0,,{\fad(80,80)}{\kf19}other {\kf28}hand
-Dialogue: 1,0:08:02.71,0:08:04.87,Cap,,0,0,0,,{\fad(80,80)}{\kf53}and {\kf38}nothing {\kf26}is {\kf19}more {\kf26}annoying {\kf38}than
-Dialogue: 1,0:08:04.72,0:08:05.19,Cap,,0,0,0,,{\fad(80,80)}{\kf9}a {\kf24}row
-Dialogue: 1,0:08:05.04,0:08:06.94,Cap,,0,0,0,,{\fad(80,80)}{\kf17}of {\kf30}small {\kf41}buttons {\kf38}when {\kf24}it's {\kf26}bitter
-Dialogue: 1,0:08:06.79,0:08:07.69,Cap,,0,0,0,,{\fad(80,80)}{\kf24}or {\kf51}outside.
-Dialogue: 1,0:08:08.71,0:08:10.23,Cap,,0,0,0,,{\fad(80,80)}{\kf11}The {\kf24}trouble {\kf32}is {\kf13}that {\kf45}duffel {\kf13}coats
-Dialogue: 1,0:08:10.08,0:08:11.19,Cap,,0,0,0,,{\fad(80,80)}{\kf30}are {\kf15}cut {\kf51}generously.
-Dialogue: 1,0:08:12.00,0:08:13.37,Cap,,0,0,0,,{\fad(80,80)}{\kf13}So {\kf24}this {\kf17}is {\kf17}the {\kf19}coat {\kf32}where
-Dialogue: 1,0:08:13.22,0:08:14.78,Cap,,0,0,0,,{\fad(80,80)}{\kf24}men {\kf26}go {\kf24}wrong {\kf32}most {\kf36}often.
-Dialogue: 1,0:08:15.85,0:08:17.26,Cap,,0,0,0,,{\fad(80,80)}{\kf11}The {\kf34}shoulders {\kf32}still {\kf19}have {\kf13}to {\kf17}sit
-Dialogue: 1,0:08:17.11,0:08:18.50,Cap,,0,0,0,,{\fad(80,80)}{\kf15}at {\kf13}the {\kf21}edge {\kf13}of {\kf13}your {\kf49}shoulders.
-Dialogue: 1,0:08:19.18,0:08:20.59,Cap,,0,0,0,,{\fad(80,80)}{\kf2}The {\kf24}sleeves {\kf45}still {\kf17}have {\kf13}to {\kf26}end
-Dialogue: 1,0:08:20.44,0:08:21.21,Cap,,0,0,0,,{\fad(80,80)}{\kf19}at {\kf15}the {\kf28}wrist
-Dialogue: 1,0:08:21.48,0:08:23.01,Cap,,0,0,0,,{\fad(80,80)}{\kf25}and {\kf13}if {\kf17}the {\kf19}hood {\kf28}hangs {\kf36}so
-Dialogue: 1,0:08:22.86,0:08:23.39,Cap,,0,0,0,,{\fad(80,80)}{\kf38}heavy
-Dialogue: 1,0:08:23.24,0:08:25.21,Cap,,0,0,0,,{\fad(80,80)}{\kf21}it {\kf34}drags {\kf17}the {\kf24}coat {\kf58}backward {\kf28}off
-Dialogue: 1,0:08:25.06,0:08:25.70,Cap,,0,0,0,,{\fad(80,80)}{\kf19}your {\kf30}neck,
-Dialogue: 1,0:08:26.15,0:08:26.55,Cap,,0,0,0,,{\fad(80,80)}{\kf13}eat {\kf13}it,
-Dialogue: 1,0:08:26.66,0:08:27.49,Cap,,0,0,0,,{\fad(80,80)}{\kf26}try {\kf24}it {\kf19}on,
-Dialogue: 1,0:08:28.03,0:08:29.50,Cap,,0,0,0,,{\fad(80,80)}{\kf4}do {\kf26}the {\kf21}arm {\kf41}lifting {\kf41}check
-Dialogue: 1,0:08:29.92,0:08:31.92,Cap,,0,0,0,,{\fad(80,80)}{\kf25}and {\kf32}you'll {\kf21}know {\kf30}in {\kf24}10 {\kf53}seconds.
-Dialogue: 1,0:08:33.01,0:08:35.83,Cap,,0,0,0,,{\fad(80,80)}{\kf24}Now {\kf77}I {\kf41}promised {\kf21}you {\kf43}something {\kf62}before
-Dialogue: 1,0:08:35.68,0:08:36.62,Cap,,0,0,0,,{\fad(80,80)}{\kf30}number {\kf49}one
-Dialogue: 1,0:08:37.07,0:08:38.24,Cap,,0,0,0,,{\fad(80,80)}{\kf24}and {\kf26}here {\kf17}it {\kf36}is.
-Dialogue: 1,0:08:38.69,0:08:40.87,Cap,,0,0,0,,{\fad(80,80)}{\kf41}Remember {\kf66}the {\kf17}extra {\kf43}room {\kf24}you {\kf13}were
-Dialogue: 1,0:08:40.72,0:08:41.55,Cap,,0,0,0,,{\fad(80,80)}{\kf28}told {\kf17}to {\kf24}buy
-Dialogue: 1,0:08:41.40,0:08:42.39,Cap,,0,0,0,,{\fad(80,80)}{\kf24}for {\kf13}your {\kf47}sweaters.
-Dialogue: 1,0:08:43.33,0:08:44.76,Cap,,0,0,0,,{\fad(80,80)}{\kf30}Most {\kf17}of {\kf13}what {\kf24}keeps {\kf19}you {\kf26}warm
-Dialogue: 1,0:08:44.61,0:08:45.25,Cap,,0,0,0,,{\fad(80,80)}{\kf19}in {\kf9}a {\kf21}coat
-Dialogue: 1,0:08:45.10,0:08:46.64,Cap,,0,0,0,,{\fad(80,80)}{\kf38}is {\kf21}not {\kf19}the {\kf28}thickness {\kf24}of {\kf9}the
-Dialogue: 1,0:08:46.49,0:08:47.28,Cap,,0,0,0,,{\fad(80,80)}{\kf26}cloth {\kf19}at {\kf19}all.
-Dialogue: 1,0:08:47.79,0:08:49.18,Cap,,0,0,0,,{\fad(80,80)}{\kf9}It {\kf11}is {\kf15}a {\kf28}thin {\kf41}layer {\kf21}of
-Dialogue: 1,0:08:49.03,0:08:50.63,Cap,,0,0,0,,{\fad(80,80)}{\kf28}warm {\kf30}air {\kf30}sitting {\kf58}still
-Dialogue: 1,0:08:50.48,0:08:52.04,Cap,,0,0,0,,{\fad(80,80)}{\kf53}between {\kf36}you {\kf15}and {\kf11}the {\kf26}cold.
-Dialogue: 1,0:08:53.07,0:08:55.55,Cap,,0,0,0,,{\fad(80,80)}{\kf15}A {\kf24}coat {\kf30}that {\kf28}fits {\kf43}properly {\kf94}holds
-Dialogue: 1,0:08:55.40,0:08:56.42,Cap,,0,0,0,,{\fad(80,80)}{\kf30}that {\kf19}air {\kf17}in {\kf21}place.
-Dialogue: 1,0:08:57.04,0:08:58.41,Cap,,0,0,0,,{\fad(80,80)}{\kf9}A {\kf24}coat {\kf21}a {\kf17}size {\kf30}two {\kf21}big
-Dialogue: 1,0:08:58.26,0:08:59.63,Cap,,0,0,0,,{\fad(80,80)}{\kf28}works {\kf28}like {\kf17}a {\kf49}bellows
-Dialogue: 1,0:08:59.48,0:09:01.15,Cap,,0,0,0,,{\fad(80,80)}{\kf53}and {\kf21}every {\kf24}time {\kf15}you {\kf19}swing {\kf19}an
-Dialogue: 1,0:09:01.00,0:09:02.36,Cap,,0,0,0,,{\fad(80,80)}{\kf26}arm {\kf17}or {\kf19}take {\kf15}a {\kf21}step {\kf24}it
-Dialogue: 1,0:09:02.21,0:09:02.62,Cap,,0,0,0,,{\fad(80,80)}{\kf26}pumps.
-Dialogue: 1,0:09:03.75,0:09:05.38,Cap,,0,0,0,,{\fad(80,80)}{\kf9}Your {\kf32}warm {\kf36}air {\kf32}out {\kf26}through {\kf13}the
-Dialogue: 1,0:09:05.23,0:09:05.61,Cap,,0,0,0,,{\fad(80,80)}{\kf24}collar
-Dialogue: 1,0:09:05.46,0:09:07.64,Cap,,0,0,0,,{\fad(80,80)}{\kf53}and {\kf15}the {\kf36}cuffs {\kf36}and {\kf24}draws {\kf38}cold
-Dialogue: 1,0:09:07.49,0:09:09.14,Cap,,0,0,0,,{\fad(80,80)}{\kf36}air {\kf41}in {\kf30}at {\kf19}the {\kf24}hem.
-Dialogue: 1,0:09:09.59,0:09:10.83,Cap,,0,0,0,,{\fad(80,80)}{\kf15}So {\kf15}you {\kf17}buy {\kf17}the {\kf19}big {\kf26}coat
-Dialogue: 1,0:09:10.68,0:09:11.53,Cap,,0,0,0,,{\fad(80,80)}{\kf21}to {\kf21}stay {\kf28}warm
-Dialogue: 1,0:09:11.38,0:09:13.48,Cap,,0,0,0,,{\fad(80,80)}{\kf60}and {\kf17}it's {\kf13}the {\kf28}very {\kf49}reason {\kf28}you're
-Dialogue: 1,0:09:13.33,0:09:14.69,Cap,,0,0,0,,{\fad(80,80)}{\kf32}shivering {\kf30}at {\kf11}the {\kf19}bus {\kf30}stop.
-Dialogue: 1,0:09:15.78,0:09:18.37,Cap,,0,0,0,,{\fad(80,80)}{\kf9}I {\kf26}know {\kf28}this {\kf64}because {\kf21}in {\kf96}1978
-Dialogue: 1,0:09:18.22,0:09:19.44,Cap,,0,0,0,,{\fad(80,80)}{\kf43}I {\kf17}bought {\kf47}myself
-Dialogue: 1,0:09:19.29,0:09:21.17,Cap,,0,0,0,,{\fad(80,80)}{\kf19}an {\kf56}overcoated {\kf26}size {\kf34}too {\kf38}large
-Dialogue: 1,0:09:21.02,0:09:22.85,Cap,,0,0,0,,{\fad(80,80)}{\kf64}because {\kf24}the {\kf21}man {\kf21}in {\kf13}the {\kf26}shop
-Dialogue: 1,0:09:22.70,0:09:24.46,Cap,,0,0,0,,{\fad(80,80)}{\kf45}told {\kf24}me {\kf21}I {\kf15}would {\kf21}grow {\kf34}into
-Dialogue: 1,0:09:24.31,0:09:24.69,Cap,,0,0,0,,{\fad(80,80)}{\kf24}it.
-Dialogue: 1,0:09:25.50,0:09:26.87,Cap,,0,0,0,,{\fad(80,80)}{\kf9}I {\kf9}was {\kf26}24 {\kf58}and {\kf11}I {\kf11}had
-Dialogue: 1,0:09:26.72,0:09:27.51,Cap,,0,0,0,,{\fad(80,80)}{\kf26}finished {\kf38}growing.
-Dialogue: 1,0:09:28.69,0:09:29.29,Cap,,0,0,0,,{\fad(80,80)}{\kf4}And {\kf41}Evelyn,
-Dialogue: 1,0:09:29.48,0:09:31.06,Cap,,0,0,0,,{\fad(80,80)}{\kf28}who {\kf11}was {\kf15}my {\kf28}girlfriend {\kf38}by {\kf24}then,
-Dialogue: 1,0:09:31.38,0:09:32.62,Cap,,0,0,0,,{\fad(80,80)}{\kf17}looked {\kf24}at {\kf19}me {\kf15}on {\kf13}the {\kf21}pavement
-Dialogue: 1,0:09:32.47,0:09:33.47,Cap,,0,0,0,,{\fad(80,80)}{\kf56}and {\kf30}said
-Dialogue: 1,0:09:33.32,0:09:35.18,Cap,,0,0,0,,{\fad(80,80)}{\kf53}I {\kf21}looked {\kf28}like {\kf17}a {\kf24}coat {\kf28}rack
-Dialogue: 1,0:09:35.03,0:09:36.40,Cap,,0,0,0,,{\fad(80,80)}{\kf24}that {\kf17}had {\kf24}gone {\kf21}out {\kf21}for {\kf15}a
-Dialogue: 1,0:09:36.25,0:09:36.70,Cap,,0,0,0,,{\fad(80,80)}{\kf30}walk.
-Dialogue: 1,0:09:37.22,0:09:39.54,Cap,,0,0,0,,{\fad(80,80)}{\kf27}She {\kf21}was {\kf30}right {\kf109}and {\kf13}I {\kf17}was
-Dialogue: 1,0:09:39.39,0:09:40.70,Cap,,0,0,0,,{\fad(80,80)}{\kf28}cold {\kf24}the {\kf19}entire {\kf45}winter.
-Dialogue: 1,0:09:41.83,0:09:43.37,Cap,,0,0,0,,{\fad(80,80)}{\kf11}So {\kf15}you {\kf15}need {\kf32}room {\kf34}for {\kf32}one
-Dialogue: 1,0:09:43.22,0:09:45.74,Cap,,0,0,0,,{\fad(80,80)}{\kf24}good {\kf34}sweater {\kf73}and {\kf26}not {\kf32}an {\kf49}inch
-Dialogue: 1,0:09:45.59,0:09:46.25,Cap,,0,0,0,,{\fad(80,80)}{\kf51}more.
-Dialogue: 1,0:09:46.74,0:09:48.17,Cap,,0,0,0,,{\fad(80,80)}{\kf19}If {\kf11}you {\kf15}can {\kf34}pinch {\kf21}a {\kf28}big
-Dialogue: 1,0:09:48.02,0:09:49.54,Cap,,0,0,0,,{\fad(80,80)}{\kf43}handful {\kf36}of {\kf21}loose {\kf36}cloth
-Dialogue: 1,0:09:49.39,0:09:50.97,Cap,,0,0,0,,{\fad(80,80)}{\kf34}at {\kf15}the {\kf26}middle {\kf24}of {\kf13}your {\kf32}chest,
-Dialogue: 1,0:09:51.23,0:09:52.49,Cap,,0,0,0,,{\fad(80,80)}{\kf9}the {\kf24}coat {\kf24}is {\kf24}too {\kf32}big
-Dialogue: 1,0:09:52.34,0:09:54.14,Cap,,0,0,0,,{\fad(80,80)}{\kf53}and {\kf15}you {\kf15}can {\kf34}pinch {\kf24}it {\kf24}right
-Dialogue: 1,0:09:53.99,0:09:55.95,Cap,,0,0,0,,{\fad(80,80)}{\kf30}now {\kf60}on {\kf17}the {\kf24}coat {\kf24}you're {\kf28}wearing
-Dialogue: 1,0:09:55.80,0:09:56.21,Cap,,0,0,0,,{\fad(80,80)}{\kf26}today.
-Dialogue: 1,0:09:57.23,0:09:58.90,Cap,,0,0,0,,{\fad(80,80)}{\kf17}Which {\kf24}brings {\kf32}me {\kf11}to {\kf19}number {\kf49}one.
-Dialogue: 1,0:09:59.58,0:10:01.87,Cap,,0,0,0,,{\fad(80,80)}{\kf9}The {\kf28}coat {\kf58}I {\kf19}would {\kf41}own {\kf60}if
-Dialogue: 1,0:10:01.72,0:10:03.13,Cap,,0,0,0,,{\fad(80,80)}{\kf15}I {\kf17}could {\kf15}only {\kf38}own {\kf41}one
-Dialogue: 1,0:10:03.29,0:10:05.57,Cap,,0,0,0,,{\fad(80,80)}{\kf27}and {\kf15}it {\kf24}is {\kf19}a {\kf56}single {\kf73}breasted
-Dialogue: 1,0:10:05.42,0:10:06.19,Cap,,0,0,0,,{\fad(80,80)}{\kf62}overcoat
-Dialogue: 1,0:10:06.04,0:10:07.49,Cap,,0,0,0,,{\fad(80,80)}{\kf34}in {\kf36}charcoal {\kf60}gray,
-Dialogue: 1,0:10:07.62,0:10:10.57,Cap,,0,0,0,,{\fad(80,80)}{\kf71}Wustad {\kf28}said {\kf62}Wustad {\kf56}is {\kf17}a {\kf47}smooth,
-Dialogue: 1,0:10:10.86,0:10:13.43,Cap,,0,0,0,,{\fad(80,80)}{\kf60}strong {\kf38}wool {\kf41}cloth {\kf38}made {\kf34}from {\kf30}long
-Dialogue: 1,0:10:13.28,0:10:14.92,Cap,,0,0,0,,{\fad(80,80)}{\kf56}fiber {\kf43}spun {\kf51}tight
-Dialogue: 1,0:10:14.77,0:10:16.44,Cap,,0,0,0,,{\fad(80,80)}{\kf51}and {\kf11}it {\kf19}wears {\kf32}for {\kf38}decades.
-Dialogue: 1,0:10:17.81,0:10:19.71,Cap,,0,0,0,,{\fad(80,80)}{\kf13}It's {\kf13}the {\kf36}cloth {\kf73}I {\kf28}grew {\kf13}up
-Dialogue: 1,0:10:19.56,0:10:20.74,Cap,,0,0,0,,{\fad(80,80)}{\kf28}around {\kf17}in {\kf13}the {\kf13}meal {\kf32}town
-Dialogue: 1,0:10:20.59,0:10:22.74,Cap,,0,0,0,,{\fad(80,80)}{\kf49}and {\kf13}I {\kf30}still {\kf41}trusted {\kf41}over {\kf28}anything
-Dialogue: 1,0:10:22.59,0:10:23.13,Cap,,0,0,0,,{\fad(80,80)}{\kf38}else.
-Dialogue: 1,0:10:23.64,0:10:24.22,Cap,,0,0,0,,{\fad(80,80)}{\kf43}Evelyn,
-Dialogue: 1,0:10:24.41,0:10:26.06,Cap,,0,0,0,,{\fad(80,80)}{\kf26}who {\kf13}was {\kf26}always {\kf28}right {\kf26}about {\kf32}color
-Dialogue: 1,0:10:25.91,0:10:27.62,Cap,,0,0,0,,{\fad(80,80)}{\kf24}and {\kf32}never {\kf32}let {\kf13}me {\kf36}forget {\kf19}it,
-Dialogue: 1,0:10:27.68,0:10:28.71,Cap,,0,0,0,,{\fad(80,80)}{\kf21}made {\kf28}me {\kf38}promise
-Dialogue: 1,0:10:28.56,0:10:30.76,Cap,,0,0,0,,{\fad(80,80)}{\kf66}never {\kf41}to {\kf30}sell {\kf30}a {\kf19}man {\kf19}a
-Dialogue: 1,0:10:30.61,0:10:31.68,Cap,,0,0,0,,{\fad(80,80)}{\kf21}black {\kf71}overcoat
-Dialogue: 1,0:10:31.53,0:10:33.06,Cap,,0,0,0,,{\fad(80,80)}{\kf26}before {\kf62}showing {\kf24}him {\kf28}charcoal.
-Dialogue: 1,0:10:34.24,0:10:35.63,Cap,,0,0,0,,{\fad(80,80)}{\kf19}And {\kf15}she {\kf13}was {\kf24}right {\kf19}as {\kf34}usual
-Dialogue: 1,0:10:35.48,0:10:38.11,Cap,,0,0,0,,{\fad(80,80)}{\kf71}because {\kf34}black {\kf45}goes {\kf38}flat {\kf32}in {\kf28}daylight
-Dialogue: 1,0:10:37.96,0:10:40.18,Cap,,0,0,0,,{\fad(80,80)}{\kf36}and {\kf64}shows {\kf32}every {\kf47}speck {\kf11}of {\kf17}linen
-Dialogue: 1,0:10:40.03,0:10:42.17,Cap,,0,0,0,,{\fad(80,80)}{\kf45}while {\kf34}charcoal {\kf51}has {\kf34}life {\kf24}in {\kf11}it
-Dialogue: 1,0:10:42.02,0:10:43.49,Cap,,0,0,0,,{\fad(80,80)}{\kf26}and {\kf21}sits {\kf36}well {\kf24}with {\kf26}navy,
-Dialogue: 1,0:10:44.11,0:10:45.50,Cap,,0,0,0,,{\fad(80,80)}{\kf1}brown {\kf47}and {\kf28}gray {\kf49}alike.
-Dialogue: 1,0:10:46.14,0:10:48.90,Cap,,0,0,0,,{\fad(80,80)}{\kf51}Here's {\kf58}how {\kf51}it {\kf32}should {\kf68}fit.
-Dialogue: 1,0:10:49.97,0:10:51.16,Cap,,0,0,0,,{\fad(80,80)}{\kf9}It {\kf28}falls {\kf24}to {\kf15}the {\kf15}knee {\kf15}or
-Dialogue: 1,0:10:51.01,0:10:51.74,Cap,,0,0,0,,{\fad(80,80)}{\kf9}a {\kf17}touch {\kf32}below.
-Dialogue: 1,0:10:52.44,0:10:53.75,Cap,,0,0,0,,{\fad(80,80)}{\kf4}The {\kf24}shoulders {\kf45}sit {\kf11}at {\kf13}the {\kf19}edge
-Dialogue: 1,0:10:53.60,0:10:54.15,Cap,,0,0,0,,{\fad(80,80)}{\kf13}of {\kf28}yours
-Dialogue: 1,0:10:54.00,0:10:55.69,Cap,,0,0,0,,{\fad(80,80)}{\kf60}and {\kf13}the {\kf19}sleeves {\kf34}are {\kf13}a {\kf15}little
-Dialogue: 1,0:10:55.54,0:10:57.14,Cap,,0,0,0,,{\fad(80,80)}{\kf41}longer {\kf26}than {\kf13}your {\kf32}jacket {\kf34}sleeves.
-Dialogue: 1,0:10:58.21,0:11:00.52,Cap,,0,0,0,,{\fad(80,80)}{\kf17}So {\kf17}your {\kf47}jacket {\kf32}cuff {\kf41}just {\kf62}disappears
-Dialogue: 1,0:11:00.37,0:11:00.93,Cap,,0,0,0,,{\fad(80,80)}{\kf41}underneath.
-Dialogue: 1,0:11:01.78,0:11:02.89,Cap,,0,0,0,,{\fad(80,80)}{\kf28}Look {\kf21}at {\kf15}the {\kf32}gorge.
-Dialogue: 1,0:11:04.11,0:11:05.84,Cap,,0,0,0,,{\fad(80,80)}{\kf6}The {\kf28}seam {\kf45}where {\kf15}the {\kf24}color {\kf41}meets
-Dialogue: 1,0:11:05.69,0:11:06.48,Cap,,0,0,0,,{\fad(80,80)}{\kf28}the {\kf36}lapel
-Dialogue: 1,0:11:06.87,0:11:08.51,Cap,,0,0,0,,{\fad(80,80)}{\kf28}and {\kf13}it {\kf15}should {\kf30}sit {\kf26}neat {\kf38}and
-Dialogue: 1,0:11:08.36,0:11:10.18,Cap,,0,0,0,,{\fad(80,80)}{\kf28}level {\kf32}with {\kf26}no {\kf32}gap {\kf28}and {\kf21}no
-Dialogue: 1,0:11:10.03,0:11:10.48,Cap,,0,0,0,,{\fad(80,80)}{\kf30}ripple.
-Dialogue: 1,0:11:10.33,0:11:13.21,Cap,,0,0,0,,{\fad(80,80)}{\kf137}Button {\kf19}it {\kf17}over {\kf26}your {\kf43}thickest {\kf32}sweater.
-Dialogue: 1,0:11:14.39,0:11:15.82,Cap,,0,0,0,,{\fad(80,80)}{\kf19}Do {\kf17}the {\kf19}arm {\kf28}lifting {\kf45}check
-Dialogue: 1,0:11:15.67,0:11:17.27,Cap,,0,0,0,,{\fad(80,80)}{\kf58}and {\kf13}if {\kf11}it {\kf15}all {\kf49}holds,
-Dialogue: 1,0:11:17.49,0:11:18.58,Cap,,0,0,0,,{\fad(80,80)}{\kf53}Bob's {\kf9}your {\kf32}uncle.
-Dialogue: 1,0:11:19.11,0:11:20.46,Cap,,0,0,0,,{\fad(80,80)}{\kf17}You {\kf13}have {\kf9}a {\kf28}coat {\kf34}that {\kf19}will
-Dialogue: 1,0:11:20.31,0:11:22.42,Cap,,0,0,0,,{\fad(80,80)}{\kf32}see {\kf30}you {\kf32}through {\kf60}20 {\kf43}winters
-Dialogue: 1,0:11:22.81,0:11:24.62,Cap,,0,0,0,,{\fad(80,80)}{\kf28}and {\kf21}none {\kf24}of {\kf17}this {\kf30}means {\kf47}throwing
-Dialogue: 1,0:11:24.47,0:11:26.20,Cap,,0,0,0,,{\fad(80,80)}{\kf34}out {\kf15}the {\kf24}coat {\kf21}you {\kf19}already {\kf45}own.
-Dialogue: 1,0:11:27.04,0:11:28.85,Cap,,0,0,0,,{\fad(80,80)}{\kf13}If {\kf19}yours {\kf58}passes {\kf38}these {\kf38}checks,
-Dialogue: 1,0:11:29.11,0:11:31.05,Cap,,0,0,0,,{\fad(80,80)}{\kf43}keep {\kf24}it {\kf30}and {\kf32}wear {\kf28}it {\kf24}with
-Dialogue: 1,0:11:30.90,0:11:31.42,Cap,,0,0,0,,{\fad(80,80)}{\kf36}pride.
-Dialogue: 1,0:11:32.06,0:11:33.70,Cap,,0,0,0,,{\fad(80,80)}{\kf13}And {\kf17}if {\kf11}it {\kf34}fails {\kf58}only {\kf17}on
-Dialogue: 1,0:11:33.55,0:11:34.04,Cap,,0,0,0,,{\fad(80,80)}{\kf13}the {\kf21}sleeves,
-Dialogue: 1,0:11:34.54,0:11:36.05,Cap,,0,0,0,,{\fad(80,80)}{\kf19}a {\kf28}small {\kf32}trip {\kf26}to {\kf11}the {\kf21}tailor
-Dialogue: 1,0:11:35.90,0:11:36.86,Cap,,0,0,0,,{\fad(80,80)}{\kf34}will {\kf21}sort {\kf26}it.
-Dialogue: 1,0:11:37.78,0:11:39.09,Cap,,0,0,0,,{\fad(80,80)}{\kf28}So {\kf73}that's {\kf15}it,
-Dialogue: 1,0:11:39.45,0:11:40.24,Cap,,0,0,0,,{\fad(80,80)}{\kf26}my {\kf38}friend.
-Dialogue: 1,0:11:40.86,0:11:42.29,Cap,,0,0,0,,{\fad(80,80)}{\kf19}Try {\kf21}it {\kf9}on {\kf15}over {\kf21}your {\kf43}thickest
-Dialogue: 1,0:11:42.14,0:11:42.51,Cap,,0,0,0,,{\fad(80,80)}{\kf21}layer,
-Dialogue: 1,0:11:42.87,0:11:43.77,Cap,,0,0,0,,{\fad(80,80)}{\kf15}check {\kf21}the {\kf38}shoulders,
-Dialogue: 1,0:11:44.02,0:11:44.88,Cap,,0,0,0,,{\fad(80,80)}{\kf24}lift {\kf21}your {\kf26}arms
-Dialogue: 1,0:11:44.73,0:11:46.14,Cap,,0,0,0,,{\fad(80,80)}{\kf21}and {\kf19}buy {\kf26}room {\kf21}for {\kf19}one {\kf19}good
-Dialogue: 1,0:11:45.99,0:11:47.25,Cap,,0,0,0,,{\fad(80,80)}{\kf24}sweater {\kf32}and {\kf19}no {\kf36}more.
-Dialogue: 1,0:11:48.04,0:11:48.79,Cap,,0,0,0,,{\fad(80,80)}{\kf28}Measure {\kf32}twice.
-Dialogue: 1,0:11:49.43,0:11:51.89,Cap,,0,0,0,,{\fad(80,80)}{\kf36}Buy {\kf51}once {\kf79}and {\kf15}a {\kf21}good {\kf28}coat
-Dialogue: 1,0:11:51.74,0:11:52.78,Cap,,0,0,0,,{\fad(80,80)}{\kf21}will {\kf21}look {\kf24}after {\kf24}you
-Dialogue: 1,0:11:52.63,0:11:54.58,Cap,,0,0,0,,{\fad(80,80)}{\kf19}for {\kf28}longer {\kf32}than {\kf17}almost {\kf51}anything {\kf32}else
-Dialogue: 1,0:11:54.43,0:11:55.05,Cap,,0,0,0,,{\fad(80,80)}{\kf21}you {\kf26}own.
-Dialogue: 1,0:11:55.97,0:11:56.39,Cap,,0,0,0,,{\fad(80,80)}{\kf28}Tonight,
-Dialogue: 1,0:11:56.35,0:11:59.58,Cap,,0,0,0,,{\fad(80,80)}{\kf85}try {\kf88}just {\kf60}one {\kf75}thing.
-Dialogue: 1,0:12:00.15,0:12:01.39,Cap,,0,0,0,,{\fad(80,80)}{\kf21}Put {\kf17}on {\kf13}the {\kf19}coat {\kf21}you {\kf17}wear
-Dialogue: 1,0:12:01.24,0:12:01.65,Cap,,0,0,0,,{\fad(80,80)}{\kf26}most,
-Dialogue: 1,0:12:01.93,0:12:03.25,Cap,,0,0,0,,{\fad(80,80)}{\kf32}stand {\kf26}in {\kf13}front {\kf15}of {\kf11}the {\kf21}mirror,
-Dialogue: 1,0:12:03.62,0:12:05.60,Cap,,0,0,0,,{\fad(80,80)}{\kf30}lift {\kf21}both {\kf34}arms {\kf49}and {\kf24}see {\kf26}where
-Dialogue: 1,0:12:05.45,0:12:06.50,Cap,,0,0,0,,{\fad(80,80)}{\kf15}the {\kf21}hem {\kf28}ends {\kf26}up.
-Dialogue: 1,0:12:07.40,0:12:08.87,Cap,,0,0,0,,{\fad(80,80)}{\kf19}Tell {\kf26}me {\kf21}what {\kf32}happened {\kf24}in {\kf11}the
-Dialogue: 1,0:12:08.72,0:12:09.19,Cap,,0,0,0,,{\fad(80,80)}{\kf32}comments
-Dialogue: 1,0:12:09.75,0:12:11.24,Cap,,0,0,0,,{\fad(80,80)}{\kf24}and {\kf24}tell {\kf17}me {\kf21}where {\kf15}you're {\kf34}watching
-Dialogue: 1,0:12:11.09,0:12:11.63,Cap,,0,0,0,,{\fad(80,80)}{\kf38}from
-Dialogue: 1,0:12:11.48,0:12:13.02,Cap,,0,0,0,,{\fad(80,80)}{\kf66}because {\kf24}I {\kf15}read {\kf34}everyone
-Dialogue: 1,0:12:13.38,0:12:15.28,Cap,,0,0,0,,{\fad(80,80)}{\kf24}and {\kf15}my {\kf45}granddaughter {\kf49}Poppy {\kf24}says {\kf19}I
-Dialogue: 1,0:12:15.13,0:12:16.37,Cap,,0,0,0,,{\fad(80,80)}{\kf17}read {\kf21}them {\kf21}far {\kf19}too {\kf30}carefully.
-Dialogue: 1,0:12:16.82,0:12:18.17,Cap,,0,0,0,,{\fad(80,80)}{\kf38}Poppy {\kf13}has {\kf13}been {\kf21}trying {\kf19}to {\kf15}get
-Dialogue: 1,0:12:18.02,0:12:19.17,Cap,,0,0,0,,{\fad(80,80)}{\kf15}me {\kf17}into {\kf9}a {\kf26}padded {\kf34}coat
-Dialogue: 1,0:12:19.02,0:12:21.20,Cap,,0,0,0,,{\fad(80,80)}{\kf49}and {\kf21}white {\kf43}sneaker {\kf28}since {\kf32}last {\kf30}winter.
-Dialogue: 1,0:12:22.20,0:12:23.57,Cap,,0,0,0,,{\fad(80,80)}{\kf1}And {\kf11}I'll {\kf28}admit {\kf28}the {\kf26}padded {\kf30}coat
-Dialogue: 1,0:12:23.42,0:12:24.58,Cap,,0,0,0,,{\fad(80,80)}{\kf19}made {\kf19}it {\kf13}onto {\kf30}my {\kf19}list,
-Dialogue: 1,0:12:24.87,0:12:27.20,Cap,,0,0,0,,{\fad(80,80)}{\kf26}but {\kf17}the {\kf26}sneakers {\kf73}are {\kf34}staying {\kf43}in
-Dialogue: 1,0:12:27.05,0:12:27.65,Cap,,0,0,0,,{\fad(80,80)}{\kf15}the {\kf30}shop.
-Dialogue: 1,0:12:28.12,0:12:29.58,Cap,,0,0,0,,{\fad(80,80)}{\kf15}Next {\kf30}time {\kf15}we'll {\kf21}talk {\kf24}about {\kf26}shirt
-Dialogue: 1,0:12:29.43,0:12:29.94,Cap,,0,0,0,,{\fad(80,80)}{\kf36}colors
-Dialogue: 1,0:12:29.79,0:12:31.65,Cap,,0,0,0,,{\fad(80,80)}{\kf58}and {\kf17}why {\kf28}yours {\kf32}gaps {\kf28}at {\kf9}the
-Dialogue: 1,0:12:31.50,0:12:31.88,Cap,,0,0,0,,{\fad(80,80)}{\kf24}back
-Dialogue: 1,0:12:31.73,0:12:33.49,Cap,,0,0,0,,{\fad(80,80)}{\kf34}even {\kf26}when {\kf19}it's {\kf30}exactly {\kf32}the {\kf19}right
-Dialogue: 1,0:12:33.34,0:12:33.87,Cap,,0,0,0,,{\fad(80,80)}{\kf38}size.
-Dialogue: 1,0:12:34.94,0:12:35.67,Cap,,0,0,0,,{\fad(80,80)}{\kf21}Stay {\kf36}sharp,
-Dialogue: 1,0:12:35.88,0:12:36.52,Cap,,0,0,0,,{\fad(80,80)}{\kf21}my {\kf28}friend.
-Dialogue: 1,0:12:37.20,0:12:38.46,Cap,,0,0,0,,{\fad(80,80)}{\kf4}And {\kf13}I'll {\kf21}see {\kf24}you {\kf36}at {\kf13}the
-Dialogue: 1,0:12:38.31,0:12:38.89,Cap,,0,0,0,,{\fad(80,80)}{\kf21}next {\kf21}meeting.
-Dialogue: 2,0:00:05.77,0:00:08.87,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Something is wrong... AGAIN
-Dialogue: 2,0:00:10.21,0:00:12.14,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Sleeves swallow your hands
-Dialogue: 2,0:00:12.88,0:00:14.81,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Shoulders slump down
-Dialogue: 2,0:00:17.65,0:00:20.96,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Rides up — lets the cold in
-Dialogue: 2,0:00:31.90,0:00:36.34,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}It's NOT you.
-Dialogue: 2,0:00:36.99,0:00:40.19,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Nobody taught you how a coat should fit
-Dialogue: 3,0:00:43.52,0:00:43.57,Big,,0,0,0,,{\an5\pos(960,460)}0 COATS
-Dialogue: 3,0:00:43.57,0:00:43.62,Big,,0,0,0,,{\an5\pos(960,460)}0 COATS
-Dialogue: 3,0:00:43.62,0:00:43.67,Big,,0,0,0,,{\an5\pos(960,460)}1 COATS
-Dialogue: 3,0:00:43.67,0:00:43.72,Big,,0,0,0,,{\an5\pos(960,460)}1 COATS
-Dialogue: 3,0:00:43.72,0:00:43.76,Big,,0,0,0,,{\an5\pos(960,460)}1 COATS
-Dialogue: 3,0:00:43.76,0:00:43.81,Big,,0,0,0,,{\an5\pos(960,460)}2 COATS
-Dialogue: 3,0:00:43.81,0:00:43.86,Big,,0,0,0,,{\an5\pos(960,460)}2 COATS
-Dialogue: 3,0:00:43.86,0:00:43.91,Big,,0,0,0,,{\an5\pos(960,460)}2 COATS
-Dialogue: 3,0:00:43.91,0:00:43.96,Big,,0,0,0,,{\an5\pos(960,460)}2 COATS
-Dialogue: 3,0:00:43.96,0:00:44.00,Big,,0,0,0,,{\an5\pos(960,460)}2 COATS
-Dialogue: 3,0:00:44.00,0:00:44.05,Big,,0,0,0,,{\an5\pos(960,460)}3 COATS
-Dialogue: 3,0:00:44.05,0:00:44.10,Big,,0,0,0,,{\an5\pos(960,460)}3 COATS
-Dialogue: 3,0:00:44.10,0:00:44.15,Big,,0,0,0,,{\an5\pos(960,460)}3 COATS
-Dialogue: 3,0:00:44.15,0:00:44.20,Big,,0,0,0,,{\an5\pos(960,460)}4 COATS
-Dialogue: 3,0:00:44.20,0:00:44.24,Big,,0,0,0,,{\an5\pos(960,460)}4 COATS
-Dialogue: 3,0:00:44.24,0:00:44.29,Big,,0,0,0,,{\an5\pos(960,460)}4 COATS
-Dialogue: 3,0:00:44.29,0:00:44.34,Big,,0,0,0,,{\an5\pos(960,460)}4 COATS
-Dialogue: 3,0:00:44.34,0:00:44.39,Big,,0,0,0,,{\an5\pos(960,460)}4 COATS
-Dialogue: 3,0:00:44.39,0:00:44.44,Big,,0,0,0,,{\an5\pos(960,460)}5 COATS
-Dialogue: 3,0:00:44.44,0:00:47.26,Big,,0,0,0,,{\an5\pos(960,460)}5 COATS
-Dialogue: 2,0:00:48.61,0:00:53.52,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}#1 = the ONE coat for life
-Dialogue: 2,0:00:54.27,0:01:00.62,Lower,,0,0,0,,{\fad(300,300)\move(40,910,90,910,0,300)}MALCOLM ASHBY  {\c&H33CCFF&}• Tailor, 72
-Dialogue: 3,0:01:05.55,0:01:05.62,Big,,0,0,0,,{\an5\pos(960,460)}2 YEARS
-Dialogue: 3,0:01:05.62,0:01:05.69,Big,,0,0,0,,{\an5\pos(960,460)}5 YEARS
-Dialogue: 3,0:01:05.69,0:01:05.76,Big,,0,0,0,,{\an5\pos(960,460)}8 YEARS
-Dialogue: 3,0:01:05.76,0:01:05.83,Big,,0,0,0,,{\an5\pos(960,460)}10 YEARS
-Dialogue: 3,0:01:05.83,0:01:05.90,Big,,0,0,0,,{\an5\pos(960,460)}12 YEARS
-Dialogue: 3,0:01:05.90,0:01:05.97,Big,,0,0,0,,{\an5\pos(960,460)}15 YEARS
-Dialogue: 3,0:01:05.97,0:01:06.04,Big,,0,0,0,,{\an5\pos(960,460)}18 YEARS
-Dialogue: 3,0:01:06.04,0:01:06.11,Big,,0,0,0,,{\an5\pos(960,460)}20 YEARS
-Dialogue: 3,0:01:06.11,0:01:06.18,Big,,0,0,0,,{\an5\pos(960,460)}22 YEARS
-Dialogue: 3,0:01:06.18,0:01:06.25,Big,,0,0,0,,{\an5\pos(960,460)}25 YEARS
-Dialogue: 3,0:01:06.25,0:01:06.32,Big,,0,0,0,,{\an5\pos(960,460)}28 YEARS
-Dialogue: 3,0:01:06.32,0:01:06.39,Big,,0,0,0,,{\an5\pos(960,460)}30 YEARS
-Dialogue: 3,0:01:06.39,0:01:06.45,Big,,0,0,0,,{\an5\pos(960,460)}32 YEARS
-Dialogue: 3,0:01:06.45,0:01:06.52,Big,,0,0,0,,{\an5\pos(960,460)}35 YEARS
-Dialogue: 3,0:01:06.52,0:01:06.59,Big,,0,0,0,,{\an5\pos(960,460)}38 YEARS
-Dialogue: 3,0:01:06.59,0:01:06.66,Big,,0,0,0,,{\an5\pos(960,460)}40 YEARS
-Dialogue: 3,0:01:06.66,0:01:06.73,Big,,0,0,0,,{\an5\pos(960,460)}42 YEARS
-Dialogue: 3,0:01:06.73,0:01:06.80,Big,,0,0,0,,{\an5\pos(960,460)}45 YEARS
-Dialogue: 3,0:01:06.80,0:01:06.87,Big,,0,0,0,,{\an5\pos(960,460)}48 YEARS
-Dialogue: 3,0:01:06.87,0:01:10.57,Big,,0,0,0,,{\an5\pos(960,460)}50 YEARS
-Dialogue: 2,0:01:11.32,0:01:14.53,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Bankers • Bus drivers • Grooms • Grandfathers
-Dialogue: 2,0:01:15.44,0:01:18.86,Lower,,0,0,0,,{\fad(300,300)\move(40,910,90,910,0,300)}A small shop in London
-Dialogue: 2,0:01:19.89,0:01:26.73,Lower,,0,0,0,,{\fad(300,300)\move(40,910,90,910,0,300)}Evelyn {\c&H33CCFF&}• kept the books
-Dialogue: 3,0:01:30.21,0:01:35.87,Quote,,0,0,0,,{\an5\pos(960,470)\fad(400,400)\blur1}Why "extra room"\Ncan make you {\c&H33CCFF&}COLDER
-Dialogue: 3,0:01:40.96,0:01:44.16,Big,,0,0,0,,{\an5\pos(960,470)\fscx40\fscy40\t(0,250,\fscx105\fscy105)\t(250,380,\fscx100\fscy100)\fad(0,300)}4 CHECKS
-Dialogue: 2,0:01:45.98,0:01:50.25,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Before you look at a single coat
-Dialogue: 3,0:01:51.11,0:01:55.96,Num,,0,0,0,,{\an5\pos(960,390)\fscx20\fscy20\t(0,260,\fscx118\fscy118)\t(260,420,\fscx100\fscy100)\fad(0,300)}1
-Dialogue: 3,0:01:51.48,0:01:55.96,Title,,0,0,0,,{\an5\pos(960,640)\fad(250,300)\move(960,710,960,640,0,320)}TRY IT OVER YOUR THICKEST LAYER
-Dialogue: 2,0:01:56.06,0:02:24.80,Badge,,0,0,0,,{\fad(300,300)}CHECK 1 • THICKEST LAYER
-Dialogue: 2,0:01:56.60,0:02:00.23,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Thin shirt in the shop...
-Dialogue: 2,0:02:07.69,0:02:13.88,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}...thick sweater in January = TOO TIGHT
-Dialogue: 2,0:02:15.12,0:02:23.26,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Shop wearing jacket + sweater
-Dialogue: 3,0:02:25.01,0:02:29.39,Num,,0,0,0,,{\an5\pos(960,390)\fscx20\fscy20\t(0,260,\fscx118\fscy118)\t(260,420,\fscx100\fscy100)\fad(0,300)}2
-Dialogue: 3,0:02:25.39,0:02:29.39,Title,,0,0,0,,{\an5\pos(960,640)\fad(250,300)\move(960,710,960,640,0,320)}THE SHOULDERS
-Dialogue: 2,0:02:29.61,0:03:00.40,Badge,,0,0,0,,{\fad(300,300)}CHECK 2 • SHOULDERS
-Dialogue: 3,0:02:30.57,0:02:33.24,Quote,,0,0,0,,{\an5\pos(960,470)\fad(400,400)\blur1}"The shoulders never lie."
-Dialogue: 2,0:02:34.27,0:02:40.68,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Seam at the EDGE of your shoulder
-Dialogue: 2,0:02:41.44,0:02:44.54,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Sleeves: easy fix
-Dialogue: 3,0:02:45.78,0:02:45.84,Big,,0,0,0,,{\an5\pos(960,460)}$10
-Dialogue: 3,0:02:45.84,0:02:45.89,Big,,0,0,0,,{\an5\pos(960,460)}$20
-Dialogue: 3,0:02:45.89,0:02:45.94,Big,,0,0,0,,{\an5\pos(960,460)}$30
-Dialogue: 3,0:02:45.94,0:02:46.00,Big,,0,0,0,,{\an5\pos(960,460)}$40
-Dialogue: 3,0:02:46.00,0:02:46.05,Big,,0,0,0,,{\an5\pos(960,460)}$50
-Dialogue: 3,0:02:46.05,0:02:46.10,Big,,0,0,0,,{\an5\pos(960,460)}$60
-Dialogue: 3,0:02:46.10,0:02:46.16,Big,,0,0,0,,{\an5\pos(960,460)}$70
-Dialogue: 3,0:02:46.16,0:02:46.21,Big,,0,0,0,,{\an5\pos(960,460)}$80
-Dialogue: 3,0:02:46.21,0:02:46.26,Big,,0,0,0,,{\an5\pos(960,460)}$90
-Dialogue: 3,0:02:46.26,0:02:46.32,Big,,0,0,0,,{\an5\pos(960,460)}$100
-Dialogue: 3,0:02:46.32,0:02:46.37,Big,,0,0,0,,{\an5\pos(960,460)}$110
-Dialogue: 3,0:02:46.37,0:02:46.42,Big,,0,0,0,,{\an5\pos(960,460)}$120
-Dialogue: 3,0:02:46.42,0:02:46.48,Big,,0,0,0,,{\an5\pos(960,460)}$130
-Dialogue: 3,0:02:46.48,0:02:46.53,Big,,0,0,0,,{\an5\pos(960,460)}$140
-Dialogue: 3,0:02:46.53,0:02:46.58,Big,,0,0,0,,{\an5\pos(960,460)}$150
-Dialogue: 3,0:02:46.58,0:02:46.64,Big,,0,0,0,,{\an5\pos(960,460)}$160
-Dialogue: 3,0:02:46.64,0:02:46.69,Big,,0,0,0,,{\an5\pos(960,460)}$170
-Dialogue: 3,0:02:46.69,0:02:46.74,Big,,0,0,0,,{\an5\pos(960,460)}$180
-Dialogue: 3,0:02:46.74,0:02:46.80,Big,,0,0,0,,{\an5\pos(960,460)}$190
-Dialogue: 3,0:02:46.80,0:02:52.83,Big,,0,0,0,,{\an5\pos(960,460)}$200
-Dialogue: 3,0:02:46.85,0:02:52.83,Title,,0,0,0,,{\an5\pos(960,650)\fad(250,250)}to move a shoulder
-Dialogue: 2,0:02:53.50,0:02:59.65,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Shoulders wrong? Put it BACK.
-Dialogue: 3,0:03:00.61,0:03:04.99,Num,,0,0,0,,{\an5\pos(960,390)\fscx20\fscy20\t(0,260,\fscx118\fscy118)\t(260,420,\fscx100\fscy100)\fad(0,300)}3
-Dialogue: 3,0:03:00.98,0:03:04.99,Title,,0,0,0,,{\an5\pos(960,640)\fad(250,300)\move(960,710,960,640,0,320)}MOVE IN IT
-Dialogue: 2,0:03:05.20,0:03:29.07,Badge,,0,0,0,,{\fad(300,300)}CHECK 3 • MOVE
-Dialogue: 2,0:03:07.66,0:03:11.51,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}① Arms out in front
-Dialogue: 2,0:03:12.53,0:03:14.56,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}② Reach for the top shelf
-Dialogue: 2,0:03:15.42,0:03:16.91,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}③ Fold across your chest
-Dialogue: 2,0:03:17.57,0:03:24.73,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Jumps to your belt? TOO SMALL
-Dialogue: 3,0:03:29.28,0:03:34.26,Num,,0,0,0,,{\an5\pos(960,390)\fscx20\fscy20\t(0,260,\fscx118\fscy118)\t(260,420,\fscx100\fscy100)\fad(0,300)}4
-Dialogue: 3,0:03:29.66,0:03:34.26,Title,,0,0,0,,{\an5\pos(960,640)\fad(250,300)\move(960,710,960,640,0,320)}THE SLEEVES
-Dialogue: 2,0:03:34.48,0:04:01.82,Badge,,0,0,0,,{\fad(300,300)}CHECK 4 • SLEEVES
-Dialogue: 2,0:03:31.91,0:03:36.61,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Hinge of the wrist — covers jacket cuff
-Dialogue: 3,0:03:41.51,0:03:41.54,Big,,0,0,0,,{\an5\pos(960,420)}$2
-Dialogue: 3,0:03:41.54,0:03:41.58,Big,,0,0,0,,{\an5\pos(960,420)}$4
-Dialogue: 3,0:03:41.58,0:03:41.62,Big,,0,0,0,,{\an5\pos(960,420)}$5
-Dialogue: 3,0:03:41.62,0:03:41.65,Big,,0,0,0,,{\an5\pos(960,420)}$7
-Dialogue: 3,0:03:41.65,0:03:41.69,Big,,0,0,0,,{\an5\pos(960,420)}$9
-Dialogue: 3,0:03:41.69,0:03:41.73,Big,,0,0,0,,{\an5\pos(960,420)}$10
-Dialogue: 3,0:03:41.73,0:03:41.77,Big,,0,0,0,,{\an5\pos(960,420)}$12
-Dialogue: 3,0:03:41.77,0:03:41.80,Big,,0,0,0,,{\an5\pos(960,420)}$14
-Dialogue: 3,0:03:41.80,0:03:41.84,Big,,0,0,0,,{\an5\pos(960,420)}$16
-Dialogue: 3,0:03:41.84,0:03:41.88,Big,,0,0,0,,{\an5\pos(960,420)}$18
-Dialogue: 3,0:03:41.88,0:03:41.92,Big,,0,0,0,,{\an5\pos(960,420)}$19
-Dialogue: 3,0:03:41.92,0:03:41.95,Big,,0,0,0,,{\an5\pos(960,420)}$21
-Dialogue: 3,0:03:41.95,0:03:41.99,Big,,0,0,0,,{\an5\pos(960,420)}$23
-Dialogue: 3,0:03:41.99,0:03:42.03,Big,,0,0,0,,{\an5\pos(960,420)}$24
-Dialogue: 3,0:03:42.03,0:03:42.07,Big,,0,0,0,,{\an5\pos(960,420)}$26
-Dialogue: 3,0:03:42.07,0:03:42.10,Big,,0,0,0,,{\an5\pos(960,420)}$28
-Dialogue: 3,0:03:42.10,0:03:42.14,Big,,0,0,0,,{\an5\pos(960,420)}$30
-Dialogue: 3,0:03:42.14,0:03:42.18,Big,,0,0,0,,{\an5\pos(960,420)}$32
-Dialogue: 3,0:03:42.18,0:03:42.22,Big,,0,0,0,,{\an5\pos(960,420)}$33
-Dialogue: 3,0:03:42.22,0:03:45.46,Big,,0,0,0,,{\an5\pos(960,420)}$35
-Dialogue: 3,0:03:42.36,0:03:45.46,Big,,0,0,0,,{\an5\pos(960,610)\fscx70\fscy70\c&H33CCFF&\fad(200,0)}to $65
-Dialogue: 3,0:03:46.42,0:03:52.15,Quote,,0,0,0,,{\an5\pos(960,470)\fad(400,400)\blur1}"Measure it again, lad."
-Dialogue: 2,0:03:56.01,0:04:00.82,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Pin it • Mirror • Measure again
-Dialogue: 3,0:04:02.04,0:04:05.59,Big,,0,0,0,,{\an5\pos(960,470)\fscx40\fscy40\t(0,250,\fscx105\fscy105)\t(250,380,\fscx100\fscy100)\fad(0,300)}THE COATS
-Dialogue: 3,0:04:05.80,0:04:10.78,Num,,0,0,0,,{\an5\pos(960,390)\fscx20\fscy20\t(0,260,\fscx118\fscy118)\t(260,420,\fscx100\fscy100)\fad(0,300)}#5
-Dialogue: 3,0:04:06.17,0:04:10.78,Title,,0,0,0,,{\an5\pos(960,640)\fad(250,300)\move(960,710,960,640,0,320)}THE WOOL CAR COAT
-Dialogue: 2,0:04:10.99,0:04:50.22,Badge,,0,0,0,,{\fad(300,300)}#5 • CAR COAT
-Dialogue: 2,0:04:15.71,0:04:19.67,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Single-breasted • Mid-thigh
-Dialogue: 2,0:04:20.09,0:04:28.28,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Sit in a car or bus — no bunching
-Dialogue: 2,0:04:29.05,0:04:33.11,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Covers the seat of your trousers
-Dialogue: 2,0:04:34.45,0:04:39.69,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Bend to tie your shoe — no tent
-Dialogue: 3,0:04:40.56,0:04:45.80,Badge,,0,0,0,,{\an7\pos(260,780)\3c&H5A2A12&\fad(200,0)\fscx40\fscy40\t(0,200,\fscx100\fscy100)}NAVY
-Dialogue: 3,0:04:41.52,0:04:45.80,Badge,,0,0,0,,{\an7\pos(740,780)\3c&H4A4A4A&\fad(200,0)\fscx40\fscy40\t(0,200,\fscx100\fscy100)}CHARCOAL
-Dialogue: 3,0:04:42.48,0:04:45.80,Badge,,0,0,0,,{\an7\pos(1220,780)\3c&H2A4A7A&\fad(200,0)\fscx40\fscy40\t(0,200,\fscx100\fscy100)}SOFT BROWN
-Dialogue: 3,0:04:50.43,0:04:54.71,Num,,0,0,0,,{\an5\pos(960,390)\fscx20\fscy20\t(0,260,\fscx118\fscy118)\t(260,420,\fscx100\fscy100)\fad(0,300)}#4
-Dialogue: 3,0:04:50.81,0:04:54.71,Title,,0,0,0,,{\an5\pos(960,640)\fad(250,300)\move(960,710,960,640,0,320)}THE PADDED COAT
-Dialogue: 2,0:04:54.92,0:05:45.15,Badge,,0,0,0,,{\fad(300,300)}#4 • PADDED COAT
-Dialogue: 2,0:05:03.79,0:05:09.77,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Warmer & lighter than wool
-Dialogue: 2,0:05:14.43,0:05:24.21,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Mistake: buying a size TOO BIG
-Dialogue: 3,0:05:25.07,0:05:28.38,Quote,,0,0,0,,{\an5\pos(960,470)\fad(400,400)\blur1}"A bag with a man inside it."
-Dialogue: 2,0:05:29.30,0:05:33.57,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Sit close — room for ONE sweater
-Dialogue: 2,0:05:39.88,0:05:44.04,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Hem rides up? Size up in LENGTH, not width
-Dialogue: 4,0:05:49.53,0:05:56.60,Red,,0,0,0,,{\an5\pos(780,560)\fscx30\fscy30\t(0,250,\fscx110\fscy110)\t(250,400,\fscx100\fscy100)\fad(0,300)}LIKE
-Dialogue: 4,0:05:53.19,0:05:59.10,Red,,0,0,0,,{\an5\pos(1150,560)\fscx30\fscy30\t(0,250,\fscx110\fscy110)\t(250,400,\fscx100\fscy100)\fad(0,300)}SUBSCRIBE
-Dialogue: 3,0:06:14.74,0:06:19.02,Num,,0,0,0,,{\an5\pos(960,390)\fscx20\fscy20\t(0,260,\fscx118\fscy118)\t(260,420,\fscx100\fscy100)\fad(0,300)}#3
-Dialogue: 3,0:06:15.12,0:06:19.02,Title,,0,0,0,,{\an5\pos(960,640)\fad(250,300)\move(960,710,960,640,0,320)}HERRINGBONE WOOL
-Dialogue: 2,0:06:19.23,0:07:33.97,Badge,,0,0,0,,{\fad(300,300)}#3 • HERRINGBONE
-Dialogue: 2,0:06:35.24,0:06:38.65,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Zig-zag weave — like fish bones
-Dialogue: 3,0:06:43.23,0:06:45.58,Quote,,0,0,0,,{\an5\pos(960,470)\fad(400,400)\blur1}Texture hides\N{\c&H33CCFF&}EVERYTHING
-Dialogue: 2,0:06:46.82,0:06:56.54,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Rain spots • Lint • Creases • Shine
-Dialogue: 3,0:06:57.31,0:06:57.34,Big,,0,0,0,,{\an5\pos(960,460)}0 WINTERS
-Dialogue: 3,0:06:57.34,0:06:57.38,Big,,0,0,0,,{\an5\pos(960,460)}0 WINTERS
-Dialogue: 3,0:06:57.38,0:06:57.42,Big,,0,0,0,,{\an5\pos(960,460)}1 WINTERS
-Dialogue: 3,0:06:57.42,0:06:57.46,Big,,0,0,0,,{\an5\pos(960,460)}1 WINTERS
-Dialogue: 3,0:06:57.46,0:06:57.49,Big,,0,0,0,,{\an5\pos(960,460)}1 WINTERS
-Dialogue: 3,0:06:57.49,0:06:57.53,Big,,0,0,0,,{\an5\pos(960,460)}2 WINTERS
-Dialogue: 3,0:06:57.53,0:06:57.57,Big,,0,0,0,,{\an5\pos(960,460)}2 WINTERS
-Dialogue: 3,0:06:57.57,0:06:57.61,Big,,0,0,0,,{\an5\pos(960,460)}2 WINTERS
-Dialogue: 3,0:06:57.61,0:06:57.64,Big,,0,0,0,,{\an5\pos(960,460)}2 WINTERS
-Dialogue: 3,0:06:57.64,0:06:57.68,Big,,0,0,0,,{\an5\pos(960,460)}2 WINTERS
-Dialogue: 3,0:06:57.68,0:06:57.72,Big,,0,0,0,,{\an5\pos(960,460)}3 WINTERS
-Dialogue: 3,0:06:57.72,0:06:57.76,Big,,0,0,0,,{\an5\pos(960,460)}3 WINTERS
-Dialogue: 3,0:06:57.76,0:06:57.79,Big,,0,0,0,,{\an5\pos(960,460)}3 WINTERS
-Dialogue: 3,0:06:57.79,0:06:57.83,Big,,0,0,0,,{\an5\pos(960,460)}4 WINTERS
-Dialogue: 3,0:06:57.83,0:06:57.87,Big,,0,0,0,,{\an5\pos(960,460)}4 WINTERS
-Dialogue: 3,0:06:57.87,0:06:57.91,Big,,0,0,0,,{\an5\pos(960,460)}4 WINTERS
-Dialogue: 3,0:06:57.91,0:06:57.94,Big,,0,0,0,,{\an5\pos(960,460)}4 WINTERS
-Dialogue: 3,0:06:57.94,0:06:57.98,Big,,0,0,0,,{\an5\pos(960,460)}4 WINTERS
-Dialogue: 3,0:06:57.98,0:06:58.02,Big,,0,0,0,,{\an5\pos(960,460)}5 WINTERS
-Dialogue: 3,0:06:58.02,0:07:00.62,Big,,0,0,0,,{\an5\pos(960,460)}5 WINTERS
-Dialogue: 2,0:07:00.62,0:07:05.43,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}A soft brush on Sunday evening
-Dialogue: 2,0:07:11.39,0:07:15.77,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Single-breasted • Knee length
-Dialogue: 2,0:07:16.41,0:07:21.32,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Collar flat — NO gap
-Dialogue: 2,0:07:21.96,0:07:26.88,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Gap = draught = cold neck
-Dialogue: 2,0:07:28.31,0:07:33.86,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Grey or brown mix — not loud
-Dialogue: 3,0:07:34.89,0:07:39.16,Num,,0,0,0,,{\an5\pos(960,390)\fscx20\fscy20\t(0,260,\fscx118\fscy118)\t(260,420,\fscx100\fscy100)\fad(0,300)}#2
-Dialogue: 3,0:07:35.26,0:07:39.16,Title,,0,0,0,,{\an5\pos(960,640)\fad(250,300)\move(960,710,960,640,0,320)}THE NAVY DUFFEL COAT
-Dialogue: 2,0:07:39.38,0:08:32.05,Badge,,0,0,0,,{\fad(300,300)}#2 • DUFFEL COAT
-Dialogue: 2,0:07:37.99,0:07:45.15,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Wooden toggles • Big hood
-Dialogue: 2,0:07:56.98,0:08:02.75,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Toggles work with GLOVES ON
-Dialogue: 2,0:08:08.69,0:08:14.67,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Cut generously — check the fit!
-Dialogue: 2,0:08:26.17,0:08:31.72,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Arm-lift check: 10 seconds
-Dialogue: 3,0:08:33.07,0:08:38.09,Quote,,0,0,0,,{\an5\pos(960,470)\fad(400,400)\blur1}The promise...
-Dialogue: 2,0:08:43.31,0:08:47.15,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Warmth ≠ thick cloth
-Dialogue: 2,0:08:47.81,0:08:51.87,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}A still layer of WARM AIR
-Dialogue: 2,0:08:57.07,0:09:02.51,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Too big = a bellows pumping heat out
-Dialogue: 3,0:09:15.80,0:09:15.86,Big,,0,0,0,,{\an5\pos(960,460)}1951
-Dialogue: 3,0:09:15.86,0:09:15.91,Big,,0,0,0,,{\an5\pos(960,460)}1953
-Dialogue: 3,0:09:15.91,0:09:15.96,Big,,0,0,0,,{\an5\pos(960,460)}1954
-Dialogue: 3,0:09:15.96,0:09:16.02,Big,,0,0,0,,{\an5\pos(960,460)}1956
-Dialogue: 3,0:09:16.02,0:09:16.07,Big,,0,0,0,,{\an5\pos(960,460)}1957
-Dialogue: 3,0:09:16.07,0:09:16.12,Big,,0,0,0,,{\an5\pos(960,460)}1958
-Dialogue: 3,0:09:16.12,0:09:16.18,Big,,0,0,0,,{\an5\pos(960,460)}1960
-Dialogue: 3,0:09:16.18,0:09:16.23,Big,,0,0,0,,{\an5\pos(960,460)}1961
-Dialogue: 3,0:09:16.23,0:09:16.28,Big,,0,0,0,,{\an5\pos(960,460)}1963
-Dialogue: 3,0:09:16.28,0:09:16.34,Big,,0,0,0,,{\an5\pos(960,460)}1964
-Dialogue: 3,0:09:16.34,0:09:16.39,Big,,0,0,0,,{\an5\pos(960,460)}1965
-Dialogue: 3,0:09:16.39,0:09:16.44,Big,,0,0,0,,{\an5\pos(960,460)}1967
-Dialogue: 3,0:09:16.44,0:09:16.50,Big,,0,0,0,,{\an5\pos(960,460)}1968
-Dialogue: 3,0:09:16.50,0:09:16.55,Big,,0,0,0,,{\an5\pos(960,460)}1970
-Dialogue: 3,0:09:16.55,0:09:16.60,Big,,0,0,0,,{\an5\pos(960,460)}1971
-Dialogue: 3,0:09:16.60,0:09:16.66,Big,,0,0,0,,{\an5\pos(960,460)}1972
-Dialogue: 3,0:09:16.66,0:09:16.71,Big,,0,0,0,,{\an5\pos(960,460)}1974
-Dialogue: 3,0:09:16.71,0:09:16.77,Big,,0,0,0,,{\an5\pos(960,460)}1975
-Dialogue: 3,0:09:16.77,0:09:16.82,Big,,0,0,0,,{\an5\pos(960,460)}1977
-Dialogue: 3,0:09:16.82,0:09:19.33,Big,,0,0,0,,{\an5\pos(960,460)}1978
-Dialogue: 3,0:09:33.35,0:09:36.55,Quote,,0,0,0,,{\an5\pos(960,470)\fad(400,400)\blur1}"A coat rack that went\Nout for a walk."
-Dialogue: 2,0:09:41.87,0:09:46.14,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Room for ONE good sweater. Not an inch more.
-Dialogue: 2,0:09:46.70,0:09:52.36,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Big handful at the chest = TOO BIG
-Dialogue: 3,0:09:57.23,0:10:02.25,Num,,0,0,0,,{\an5\pos(960,390)\fscx20\fscy20\t(0,260,\fscx118\fscy118)\t(260,420,\fscx100\fscy100)\fad(0,300)}#1
-Dialogue: 3,0:09:57.61,0:10:02.25,Title,,0,0,0,,{\an5\pos(960,640)\fad(250,300)\move(960,710,960,640,0,320)}CHARCOAL WORSTED OVERCOAT
-Dialogue: 2,0:10:02.36,0:11:37.61,Badge,,0,0,0,,{\fad(300,300)}#1 • CHARCOAL OVERCOAT
-Dialogue: 2,0:10:05.99,0:10:10.37,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Single-breasted • Charcoal grey
-Dialogue: 2,0:10:10.91,0:10:16.25,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Worsted: smooth, strong — wears for decades
-Dialogue: 2,0:10:23.68,0:10:28.60,Lower,,0,0,0,,{\fad(300,300)\move(40,910,90,910,0,300)}Evelyn's rule {\c&H33CCFF&}• charcoal before black
-Dialogue: 2,0:10:34.22,0:10:39.99,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Black goes flat & shows every speck
-Dialogue: 2,0:10:39.99,0:10:45.33,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Charcoal goes with navy, brown, grey
-Dialogue: 2,0:10:49.99,0:10:51.59,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Knee length or a touch below
-Dialogue: 2,0:10:53.96,0:11:00.76,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Sleeves cover the jacket cuff
-Dialogue: 2,0:11:01.82,0:11:10.31,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}The gorge: neat, level, no ripple
-Dialogue: 3,0:11:19.11,0:11:19.16,Big,,0,0,0,,{\an5\pos(960,460)}1 WINTERS
-Dialogue: 3,0:11:19.16,0:11:19.22,Big,,0,0,0,,{\an5\pos(960,460)}2 WINTERS
-Dialogue: 3,0:11:19.22,0:11:19.27,Big,,0,0,0,,{\an5\pos(960,460)}3 WINTERS
-Dialogue: 3,0:11:19.27,0:11:19.32,Big,,0,0,0,,{\an5\pos(960,460)}4 WINTERS
-Dialogue: 3,0:11:19.32,0:11:19.38,Big,,0,0,0,,{\an5\pos(960,460)}5 WINTERS
-Dialogue: 3,0:11:19.38,0:11:19.43,Big,,0,0,0,,{\an5\pos(960,460)}6 WINTERS
-Dialogue: 3,0:11:19.43,0:11:19.48,Big,,0,0,0,,{\an5\pos(960,460)}7 WINTERS
-Dialogue: 3,0:11:19.48,0:11:19.54,Big,,0,0,0,,{\an5\pos(960,460)}8 WINTERS
-Dialogue: 3,0:11:19.54,0:11:19.59,Big,,0,0,0,,{\an5\pos(960,460)}9 WINTERS
-Dialogue: 3,0:11:19.59,0:11:19.64,Big,,0,0,0,,{\an5\pos(960,460)}10 WINTERS
-Dialogue: 3,0:11:19.64,0:11:19.70,Big,,0,0,0,,{\an5\pos(960,460)}11 WINTERS
-Dialogue: 3,0:11:19.70,0:11:19.75,Big,,0,0,0,,{\an5\pos(960,460)}12 WINTERS
-Dialogue: 3,0:11:19.75,0:11:19.80,Big,,0,0,0,,{\an5\pos(960,460)}13 WINTERS
-Dialogue: 3,0:11:19.80,0:11:19.86,Big,,0,0,0,,{\an5\pos(960,460)}14 WINTERS
-Dialogue: 3,0:11:19.86,0:11:19.91,Big,,0,0,0,,{\an5\pos(960,460)}15 WINTERS
-Dialogue: 3,0:11:19.91,0:11:19.96,Big,,0,0,0,,{\an5\pos(960,460)}16 WINTERS
-Dialogue: 3,0:11:19.96,0:11:20.02,Big,,0,0,0,,{\an5\pos(960,460)}17 WINTERS
-Dialogue: 3,0:11:20.02,0:11:20.07,Big,,0,0,0,,{\an5\pos(960,460)}18 WINTERS
-Dialogue: 3,0:11:20.07,0:11:20.12,Big,,0,0,0,,{\an5\pos(960,460)}19 WINTERS
-Dialogue: 3,0:11:20.12,0:11:22.31,Big,,0,0,0,,{\an5\pos(960,460)}20 WINTERS
-Dialogue: 2,0:11:22.95,0:11:31.25,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Passes the checks? Keep it. Wear it proudly.
-Dialogue: 3,0:11:40.84,0:11:47.95,Badge,,0,0,0,,{\an7\pos(120,250)\fad(250,0)\move(60,250,120,250,0,250)}✔  Try it over your thickest layer
-Dialogue: 3,0:11:42.55,0:11:47.95,Badge,,0,0,0,,{\an7\pos(120,380)\fad(250,0)\move(60,380,120,380,0,250)}✔  Check the shoulders
-Dialogue: 3,0:11:44.26,0:11:47.95,Badge,,0,0,0,,{\an7\pos(120,510)\fad(250,0)\move(60,510,120,510,0,250)}✔  Lift your arms
-Dialogue: 3,0:11:45.97,0:11:47.95,Badge,,0,0,0,,{\an7\pos(120,640)\fad(250,0)\move(60,640,120,640,0,250)}✔  Room for ONE sweater
-Dialogue: 3,0:11:48.06,0:11:52.44,Quote,,0,0,0,,{\an5\pos(960,470)\fad(400,400)\blur1}Measure twice.\NBuy once.
-Dialogue: 2,0:11:55.92,0:12:06.31,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}TONIGHT: lift both arms in the mirror
-Dialogue: 2,0:12:07.44,0:12:12.89,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Tell me in the comments
-Dialogue: 2,0:12:28.17,0:12:33.72,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}NEXT: Shirt colours & collar gaps
-Dialogue: 3,0:12:34.96,0:12:38.72,Title,,0,0,0,,{\an5\pos(960,520)\fad(400,0)}Stay sharp, my friend.
+Dialogue: 1,0:00:00.00,0:00:01.51,Cap,,0,0,0,,{\fad(80,80)}{\kf8}You {\kf20}take {\kf24}your {\kf22}winter {\kf40}coat {\kf22}off
+Dialogue: 1,0:00:01.36,0:00:02.47,Cap,,0,0,0,,{\fad(80,80)}{\kf12}the {\kf16}hook {\kf26}by {\kf12}the {\kf30}door
+Dialogue: 1,0:00:02.70,0:00:04.83,Cap,,0,0,0,,{\fad(80,80)}{\kf24}on {\kf14}the {\kf30}first {\kf52}properly {\kf32}cold {\kf46}morning,
+Dialogue: 1,0:00:05.08,0:00:06.47,Cap,,0,0,0,,{\fad(80,80)}{\kf10}you {\kf28}slide {\kf28}your {\kf30}arms {\kf28}in,
+Dialogue: 1,0:00:06.76,0:00:08.49,Cap,,0,0,0,,{\fad(80,80)}{\kf16}and {\kf38}something {\kf28}is {\kf24}wrong {\kf52}again.
+Dialogue: 1,0:00:08.90,0:00:10.81,Cap,,0,0,0,,{\fad(80,80)}{\kf20}This {\kf16}leaves {\kf38}swallow {\kf48}half {\kf22}your {\kf32}hands.
+Dialogue: 1,0:00:11.28,0:00:13.29,Cap,,0,0,0,,{\fad(80,80)}{\kf6}The {\kf42}shoulders {\kf48}slump {\kf30}down {\kf18}your {\kf42}arms.
+Dialogue: 1,0:00:13.52,0:00:14.61,Cap,,0,0,0,,{\fad(80,80)}{\kf8}And {\kf14}when {\kf16}you {\kf20}reach {\kf22}for {\kf14}your
+Dialogue: 1,0:00:14.46,0:00:14.87,Cap,,0,0,0,,{\fad(80,80)}{\kf26}keys,
+Dialogue: 1,0:00:15.00,0:00:16.35,Cap,,0,0,0,,{\fad(80,80)}{\kf2}the {\kf16}whole {\kf28}coat {\kf32}rides {\kf28}up {\kf14}to
+Dialogue: 1,0:00:16.20,0:00:16.73,Cap,,0,0,0,,{\fad(80,80)}{\kf14}your {\kf24}belt
+Dialogue: 1,0:00:16.58,0:00:18.21,Cap,,0,0,0,,{\fad(80,80)}{\kf24}and {\kf14}lets {\kf22}the {\kf22}cold {\kf28}straight {\kf38}in.
+Dialogue: 1,0:00:18.42,0:00:19.99,Cap,,0,0,0,,{\fad(80,80)}{\kf20}So {\kf14}you {\kf18}tell {\kf34}yourself {\kf42}it {\kf14}is
+Dialogue: 1,0:00:19.84,0:00:20.75,Cap,,0,0,0,,{\fad(80,80)}{\kf18}just {\kf16}an {\kf16}old {\kf26}coat,
+Dialogue: 1,0:00:21.08,0:00:22.45,Cap,,0,0,0,,{\fad(80,80)}{\kf18}you {\kf24}promise {\kf28}to {\kf18}buy {\kf12}a {\kf22}better
+Dialogue: 1,0:00:22.30,0:00:23.13,Cap,,0,0,0,,{\fad(80,80)}{\kf24}one {\kf16}this {\kf28}year.
+Dialogue: 1,0:00:23.28,0:00:24.49,Cap,,0,0,0,,{\fad(80,80)}{\kf12}And {\kf14}then {\kf16}you {\kf22}stand {\kf30}in {\kf12}a
+Dialogue: 1,0:00:24.34,0:00:24.71,Cap,,0,0,0,,{\fad(80,80)}{\kf22}shop
+Dialogue: 1,0:00:24.56,0:00:26.17,Cap,,0,0,0,,{\fad(80,80)}{\kf32}with {\kf26}no {\kf40}idea {\kf26}what {\kf14}you {\kf8}are
+Dialogue: 1,0:00:26.02,0:00:26.73,Cap,,0,0,0,,{\fad(80,80)}{\kf24}looking {\kf32}at.
+Dialogue: 1,0:00:26.78,0:00:27.47,Cap,,0,0,0,,{\fad(80,80)}{\kf20}My {\kf34}friend,
+Dialogue: 1,0:00:27.68,0:00:28.75,Cap,,0,0,0,,{\fad(80,80)}{\kf24}it {\kf10}is {\kf22}not {\kf36}you.
+Dialogue: 1,0:00:28.60,0:00:30.51,Cap,,0,0,0,,{\fad(80,80)}{\kf58}And {\kf10}it {\kf12}was {\kf26}never {\kf30}your {\kf40}fault
+Dialogue: 1,0:00:30.84,0:00:32.67,Cap,,0,0,0,,{\fad(80,80)}{\kf24}because {\kf32}nobody {\kf42}ever {\kf30}taught {\kf24}you {\kf16}how
+Dialogue: 1,0:00:32.52,0:00:34.07,Cap,,0,0,0,,{\fad(80,80)}{\kf16}a {\kf22}coat {\kf30}is {\kf18}meant {\kf24}to {\kf30}fit.
+Dialogue: 1,0:00:34.32,0:00:36.37,Cap,,0,0,0,,{\fad(80,80)}{\kf44}Today {\kf60}I {\kf24}am {\kf20}going {\kf14}to {\kf28}teach
+Dialogue: 1,0:00:36.22,0:00:36.65,Cap,,0,0,0,,{\fad(80,80)}{\kf28}you
+Dialogue: 1,0:00:36.50,0:00:38.37,Cap,,0,0,0,,{\fad(80,80)}{\kf54}and {\kf12}I {\kf16}will {\kf24}show {\kf24}you {\kf42}five
+Dialogue: 1,0:00:38.22,0:00:39.97,Cap,,0,0,0,,{\fad(80,80)}{\kf30}coats {\kf38}I {\kf14}would {\kf26}trust {\kf32}on {\kf20}my
+Dialogue: 1,0:00:39.82,0:00:40.47,Cap,,0,0,0,,{\fad(80,80)}{\kf22}own {\kf28}back.
+Dialogue: 1,0:00:40.80,0:00:42.03,Cap,,0,0,0,,{\fad(80,80)}{\kf8}And {\kf12}the {\kf20}last {\kf36}one {\kf18}is {\kf14}the
+Dialogue: 1,0:00:41.88,0:00:42.95,Cap,,0,0,0,,{\fad(80,80)}{\kf20}coat {\kf34}I {\kf14}would {\kf24}buy
+Dialogue: 1,0:00:42.80,0:00:44.03,Cap,,0,0,0,,{\fad(80,80)}{\kf20}if {\kf10}I {\kf18}could {\kf12}only {\kf34}own {\kf14}a
+Dialogue: 1,0:00:43.88,0:00:45.27,Cap,,0,0,0,,{\fad(80,80)}{\kf20}single {\kf38}coat {\kf22}for {\kf10}the {\kf16}rest {\kf18}of
+Dialogue: 1,0:00:45.12,0:00:45.63,Cap,,0,0,0,,{\fad(80,80)}{\kf12}my {\kf24}life.
+Dialogue: 1,0:00:46.10,0:00:47.11,Cap,,0,0,0,,{\fad(80,80)}{\kf18}I'm {\kf18}Malcolm {\kf50}Ashby,
+Dialogue: 1,0:00:47.28,0:00:48.49,Cap,,0,0,0,,{\fad(80,80)}{\kf42}I'm {\kf64}72.
+Dialogue: 1,0:00:49.28,0:00:51.13,Cap,,0,0,0,,{\fad(80,80)}{\kf20}And {\kf8}I {\kf32}started {\kf28}at {\kf30}16 {\kf52}sweeping
+Dialogue: 1,0:00:50.98,0:00:51.93,Cap,,0,0,0,,{\fad(80,80)}{\kf24}scraps {\kf32}of {\kf24}cloth
+Dialogue: 1,0:00:52.16,0:00:53.69,Cap,,0,0,0,,{\fad(80,80)}{\kf24}off {\kf14}a {\kf18}cutting {\kf30}room {\kf24}floor {\kf28}in
+Dialogue: 1,0:00:53.54,0:00:54.59,Cap,,0,0,0,,{\fad(80,80)}{\kf8}a {\kf20}wool {\kf22}mill {\kf40}town
+Dialogue: 1,0:00:54.44,0:00:55.53,Cap,,0,0,0,,{\fad(80,80)}{\kf24}in {\kf10}the {\kf22}north {\kf20}of {\kf18}England.
+Dialogue: 1,0:00:55.78,0:00:56.63,Cap,,0,0,0,,{\fad(80,80)}{\kf26}Since {\kf44}then,
+Dialogue: 1,0:00:56.70,0:00:58.21,Cap,,0,0,0,,{\fad(80,80)}{\kf32}I've {\kf24}spent {\kf50}50 {\kf30}years
+Dialogue: 1,0:00:58.06,0:01:00.27,Cap,,0,0,0,,{\fad(80,80)}{\kf52}making {\kf26}and {\kf24}fitting {\kf42}coats {\kf30}and {\kf32}jackets
+Dialogue: 1,0:01:00.12,0:01:00.95,Cap,,0,0,0,,{\fad(80,80)}{\kf38}for {\kf30}bankers,
+Dialogue: 1,0:01:01.32,0:01:02.05,Cap,,0,0,0,,{\fad(80,80)}{\kf22}bus {\kf36}drivers,
+Dialogue: 1,0:01:02.48,0:01:03.15,Cap,,0,0,0,,{\fad(80,80)}{\kf52}grooms,
+Dialogue: 1,0:01:03.22,0:01:04.41,Cap,,0,0,0,,{\fad(80,80)}{\kf20}and {\kf84}grandfathers.
+Dialogue: 1,0:01:04.48,0:01:05.97,Cap,,0,0,0,,{\fad(80,80)}{\kf22}These {\kf30}days {\kf36}I {\kf12}have {\kf8}a {\kf26}small
+Dialogue: 1,0:01:05.82,0:01:06.63,Cap,,0,0,0,,{\fad(80,80)}{\kf28}shop {\kf20}in {\kf18}London
+Dialogue: 1,0:01:06.48,0:01:07.89,Cap,,0,0,0,,{\fad(80,80)}{\kf42}with {\kf12}a {\kf22}flat {\kf26}above {\kf24}it.
+Dialogue: 1,0:01:08.00,0:01:08.87,Cap,,0,0,0,,{\fad(80,80)}{\kf6}And {\kf14}my {\kf18}late {\kf34}wife,
+Dialogue: 1,0:01:09.16,0:01:09.73,Cap,,0,0,0,,{\fad(80,80)}{\kf42}Evelyn,
+Dialogue: 1,0:01:09.58,0:01:11.09,Cap,,0,0,0,,{\fad(80,80)}{\kf24}used {\kf18}to {\kf14}keep {\kf12}the {\kf14}books {\kf54}downstairs
+Dialogue: 1,0:01:11.26,0:01:13.07,Cap,,0,0,0,,{\fad(80,80)}{\kf26}and {\kf20}tell {\kf28}me {\kf56}quite {\kf36}honestly,
+Dialogue: 1,0:01:12.94,0:01:14.31,Cap,,0,0,0,,{\fad(80,80)}{\kf30}when {\kf10}a {\kf20}tie {\kf22}was {\kf18}too {\kf22}loud,
+Dialogue: 1,0:01:14.50,0:01:16.19,Cap,,0,0,0,,{\fad(80,80)}{\kf1}dot {\kf32}stay {\kf26}with {\kf28}me {\kf48}to {\kf20}the
+Dialogue: 1,0:01:16.04,0:01:16.39,Cap,,0,0,0,,{\fad(80,80)}{\kf20}end.
+Dialogue: 1,0:01:16.72,0:01:17.77,Cap,,0,0,0,,{\fad(80,80)}{\kf1}Because {\kf24}I'm {\kf14}going {\kf18}to {\kf20}tell {\kf14}you
+Dialogue: 1,0:01:17.62,0:01:18.79,Cap,,0,0,0,,{\fad(80,80)}{\kf22}why {\kf24}the {\kf20}extra {\kf36}room
+Dialogue: 1,0:01:18.64,0:01:19.85,Cap,,0,0,0,,{\fad(80,80)}{\kf18}you {\kf10}were {\kf18}told {\kf16}to {\kf16}buy {\kf28}for
+Dialogue: 1,0:01:19.70,0:01:20.41,Cap,,0,0,0,,{\fad(80,80)}{\kf12}your {\kf44}sweaters
+Dialogue: 1,0:01:20.26,0:01:22.03,Cap,,0,0,0,,{\fad(80,80)}{\kf46}is {\kf26}probably {\kf36}making {\kf26}you {\kf28}colder.
+Dialogue: 1,0:01:22.32,0:01:24.35,Cap,,0,0,0,,{\fad(80,80)}{\kf28}And {\kf50}almost {\kf34}every {\kf40}man {\kf20}has {\kf16}been
+Dialogue: 1,0:01:24.20,0:01:25.25,Cap,,0,0,0,,{\fad(80,80)}{\kf26}given {\kf26}that {\kf38}advice.
+Dialogue: 1,0:01:26.00,0:01:27.01,Cap,,0,0,0,,{\fad(80,80)}{\kf56}Right {\kf30}then,
+Dialogue: 1,0:01:27.32,0:01:28.53,Cap,,0,0,0,,{\fad(80,80)}{\kf28}before {\kf18}we {\kf16}look {\kf10}at {\kf8}a {\kf26}single
+Dialogue: 1,0:01:28.38,0:01:28.91,Cap,,0,0,0,,{\fad(80,80)}{\kf38}coat,
+Dialogue: 1,0:01:29.24,0:01:30.49,Cap,,0,0,0,,{\fad(80,80)}{\kf12}we {\kf22}need {\kf36}four {\kf40}checks,
+Dialogue: 1,0:01:30.72,0:01:32.31,Cap,,0,0,0,,{\fad(80,80)}{\kf36}because {\kf16}the {\kf36}finest {\kf28}coat {\kf16}in {\kf12}the
+Dialogue: 1,0:01:32.16,0:01:32.53,Cap,,0,0,0,,{\fad(80,80)}{\kf22}world
+Dialogue: 1,0:01:32.38,0:01:33.99,Cap,,0,0,0,,{\fad(80,80)}{\kf26}is {\kf28}wasted {\kf36}on {\kf10}a {\kf22}man {\kf24}who
+Dialogue: 1,0:01:33.84,0:01:34.87,Cap,,0,0,0,,{\fad(80,80)}{\kf44}doesn't {\kf22}know {\kf22}them.
+Dialogue: 1,0:01:35.36,0:01:36.81,Cap,,0,0,0,,{\fad(80,80)}{\kf14}The {\kf30}first {\kf28}check {\kf24}is {\kf8}a {\kf26}mistake.
+Dialogue: 1,0:01:37.32,0:01:39.29,Cap,,0,0,0,,{\fad(80,80)}{\kf4}I {\kf22}watch {\kf38}men {\kf40}make {\kf46}every {\kf32}November.
+Dialogue: 1,0:01:39.88,0:01:41.21,Cap,,0,0,0,,{\fad(80,80)}{\kf2}They {\kf22}walk {\kf30}into {\kf14}a {\kf22}shop {\kf28}wearing
+Dialogue: 1,0:01:41.06,0:01:42.03,Cap,,0,0,0,,{\fad(80,80)}{\kf20}a {\kf20}thin {\kf42}shirt,
+Dialogue: 1,0:01:42.48,0:01:43.45,Cap,,0,0,0,,{\fad(80,80)}{\kf8}they {\kf18}turn {\kf28}a {\kf28}coat,
+Dialogue: 1,0:01:43.92,0:01:45.75,Cap,,0,0,0,,{\fad(80,80)}{\kf22}they {\kf30}decide {\kf30}it {\kf22}feels {\kf52}roomy {\kf12}and
+Dialogue: 1,0:01:45.60,0:01:46.15,Cap,,0,0,0,,{\fad(80,80)}{\kf40}comfortable,
+Dialogue: 1,0:01:46.52,0:01:47.59,Cap,,0,0,0,,{\fad(80,80)}{\kf20}and {\kf16}they {\kf28}buy {\kf28}it.
+Dialogue: 1,0:01:47.82,0:01:49.07,Cap,,0,0,0,,{\fad(80,80)}{\kf16}Then {\kf28}January {\kf66}comes.
+Dialogue: 1,0:01:49.40,0:01:51.09,Cap,,0,0,0,,{\fad(80,80)}{\kf10}They {\kf18}put {\kf14}a {\kf40}flannel {\kf36}shirt {\kf36}and
+Dialogue: 1,0:01:50.94,0:01:51.83,Cap,,0,0,0,,{\fad(80,80)}{\kf14}a {\kf18}wool {\kf42}sweater
+Dialogue: 1,0:01:51.68,0:01:52.33,Cap,,0,0,0,,{\fad(80,80)}{\kf50}underneath,
+Dialogue: 1,0:01:52.64,0:01:54.41,Cap,,0,0,0,,{\fad(80,80)}{\kf8}and {\kf38}suddenly {\kf36}the {\kf22}coat {\kf28}is {\kf30}pulling
+Dialogue: 1,0:01:54.26,0:01:55.37,Cap,,0,0,0,,{\fad(80,80)}{\kf46}across {\kf22}the {\kf28}back.
+Dialogue: 1,0:01:55.74,0:01:57.63,Cap,,0,0,0,,{\fad(80,80)}{\kf16}So {\kf58}go {\kf100}shopping,
+Dialogue: 1,0:01:57.48,0:01:59.33,Cap,,0,0,0,,{\fad(80,80)}{\kf54}wearing {\kf46}the {\kf48}thickest {\kf22}thing
+Dialogue: 1,0:01:59.18,0:02:01.13,Cap,,0,0,0,,{\fad(80,80)}{\kf16}you {\kf16}will {\kf26}actually {\kf52}wear {\kf46}under {\kf24}the
+Dialogue: 1,0:02:00.98,0:02:01.45,Cap,,0,0,0,,{\fad(80,80)}{\kf32}coat.
+Dialogue: 1,0:02:01.76,0:02:03.27,Cap,,0,0,0,,{\fad(80,80)}{\kf40}Jacket {\kf32}and {\kf26}sweater {\kf38}included.
+Dialogue: 1,0:02:04.18,0:02:05.85,Cap,,0,0,0,,{\fad(80,80)}{\kf10}The {\kf38}second {\kf30}check {\kf30}is {\kf10}the {\kf34}shoulders.
+Dialogue: 1,0:02:06.42,0:02:07.51,Cap,,0,0,0,,{\fad(80,80)}{\kf12}And {\kf20}I'll {\kf20}say {\kf18}it {\kf8}the {\kf16}way
+Dialogue: 1,0:02:07.36,0:02:08.27,Cap,,0,0,0,,{\fad(80,80)}{\kf12}I {\kf18}always {\kf34}say {\kf12}it
+Dialogue: 1,0:02:08.12,0:02:09.07,Cap,,0,0,0,,{\fad(80,80)}{\kf6}at {\kf10}the {\kf16}cutting {\kf48}table,
+Dialogue: 1,0:02:09.34,0:02:11.73,Cap,,0,0,0,,{\fad(80,80)}{\kf18}the {\kf42}shoulders {\kf80}never {\kf84}lie.
+Dialogue: 1,0:02:12.10,0:02:13.53,Cap,,0,0,0,,{\fad(80,80)}{\kf10}The {\kf22}seam {\kf24}should {\kf24}sit {\kf32}right {\kf16}at
+Dialogue: 1,0:02:13.38,0:02:14.71,Cap,,0,0,0,,{\fad(80,80)}{\kf16}the {\kf20}edge {\kf12}of {\kf14}your {\kf18}own {\kf38}shoulder,
+Dialogue: 1,0:02:14.96,0:02:16.49,Cap,,0,0,0,,{\fad(80,80)}{\kf26}not {\kf34}hanging {\kf28}down {\kf20}your {\kf30}arm
+Dialogue: 1,0:02:16.34,0:02:17.99,Cap,,0,0,0,,{\fad(80,80)}{\kf18}and {\kf22}not {\kf32}climbing {\kf32}up {\kf28}toward {\kf18}your
+Dialogue: 1,0:02:17.84,0:02:18.21,Cap,,0,0,0,,{\fad(80,80)}{\kf22}neck.
+Dialogue: 1,0:02:18.56,0:02:19.73,Cap,,0,0,0,,{\fad(80,80)}{\kf2}If {\kf14}they {\kf20}look {\kf14}in {\kf52}shortness,
+Dialogue: 1,0:02:19.58,0:02:20.97,Cap,,0,0,0,,{\fad(80,80)}{\kf30}leave {\kf22}for {\kf12}the {\kf30}price {\kf20}of {\kf10}a
+Dialogue: 1,0:02:20.82,0:02:21.59,Cap,,0,0,0,,{\fad(80,80)}{\kf16}decent {\kf46}lunch.
+Dialogue: 1,0:02:21.94,0:02:23.85,Cap,,0,0,0,,{\fad(80,80)}{\kf6}But {\kf46}moving {\kf22}a {\kf34}shoulder {\kf54}is {\kf14}a
+Dialogue: 1,0:02:23.70,0:02:24.41,Cap,,0,0,0,,{\fad(80,80)}{\kf22}big {\kf34}job
+Dialogue: 1,0:02:24.26,0:02:26.23,Cap,,0,0,0,,{\fad(80,80)}{\kf24}that {\kf20}can {\kf28}cost {\kf36}close {\kf24}to {\kf50}$200
+Dialogue: 1,0:02:26.80,0:02:28.35,Cap,,0,0,0,,{\fad(80,80)}{\kf48}if {\kf18}it {\kf18}can {\kf16}be {\kf22}done {\kf18}at
+Dialogue: 1,0:02:28.20,0:02:28.61,Cap,,0,0,0,,{\fad(80,80)}{\kf26}all.
+Dialogue: 1,0:02:28.88,0:02:30.17,Cap,,0,0,0,,{\fad(80,80)}{\kf6}So {\kf14}if {\kf10}the {\kf34}shoulders {\kf26}are {\kf24}wrong
+Dialogue: 1,0:02:30.02,0:02:30.71,Cap,,0,0,0,,{\fad(80,80)}{\kf16}in {\kf12}the {\kf26}shop,
+Dialogue: 1,0:02:30.94,0:02:31.97,Cap,,0,0,0,,{\fad(80,80)}{\kf22}put {\kf14}the {\kf14}coat {\kf38}back.
+Dialogue: 1,0:02:32.34,0:02:33.85,Cap,,0,0,0,,{\fad(80,80)}{\kf16}However {\kf44}handsome {\kf32}it {\kf14}looks {\kf20}in {\kf10}the
+Dialogue: 1,0:02:33.70,0:02:34.11,Cap,,0,0,0,,{\fad(80,80)}{\kf26}mirror.
+Dialogue: 1,0:02:34.78,0:02:36.05,Cap,,0,0,0,,{\fad(80,80)}{\kf10}The {\kf24}third {\kf24}check {\kf24}is {\kf18}one {\kf12}of
+Dialogue: 1,0:02:35.90,0:02:36.57,Cap,,0,0,0,,{\fad(80,80)}{\kf10}my {\kf14}old {\kf28}master,
+Dialogue: 1,0:02:36.66,0:02:36.97,Cap,,0,0,0,,{\fad(80,80)}{\kf16}Mr.
+Dialogue: 1,0:02:36.98,0:02:37.95,Cap,,0,0,0,,{\fad(80,80)}{\kf32}Pettigrew {\kf14}would {\kf10}have {\kf26}loved
+Dialogue: 1,0:02:37.80,0:02:40.13,Cap,,0,0,0,,{\fad(80,80)}{\kf66}because {\kf20}it {\kf14}is {\kf38}nothing {\kf32}but {\kf48}moving
+Dialogue: 1,0:02:39.98,0:02:40.65,Cap,,0,0,0,,{\fad(80,80)}{\kf52}about,
+Dialogue: 1,0:02:41.18,0:02:42.07,Cap,,0,0,0,,{\fad(80,80)}{\kf24}button {\kf24}the {\kf26}coat,
+Dialogue: 1,0:02:42.40,0:02:44.71,Cap,,0,0,0,,{\fad(80,80)}{\kf40}lift {\kf42}both {\kf60}arms {\kf36}out {\kf18}in {\kf20}front
+Dialogue: 1,0:02:44.56,0:02:45.01,Cap,,0,0,0,,{\fad(80,80)}{\kf16}of {\kf14}you.
+Dialogue: 1,0:02:45.16,0:02:46.17,Cap,,0,0,0,,{\fad(80,80)}{\kf10}Then {\kf14}I'll {\kf16}pass {\kf22}if {\kf12}you {\kf12}are
+Dialogue: 1,0:02:46.02,0:02:47.29,Cap,,0,0,0,,{\fad(80,80)}{\kf26}reaching {\kf28}for {\kf12}the {\kf22}top {\kf24}shelf,
+Dialogue: 1,0:02:47.72,0:02:49.45,Cap,,0,0,0,,{\fad(80,80)}{\kf26}then {\kf28}fold {\kf22}them {\kf18}across {\kf36}your {\kf28}chest.
+Dialogue: 1,0:02:49.66,0:02:51.05,Cap,,0,0,0,,{\fad(80,80)}{\kf10}If {\kf12}the {\kf20}whole {\kf18}coat {\kf38}jumps {\kf26}up
+Dialogue: 1,0:02:50.90,0:02:51.59,Cap,,0,0,0,,{\fad(80,80)}{\kf16}to {\kf12}your {\kf26}belt
+Dialogue: 1,0:02:51.72,0:02:53.29,Cap,,0,0,0,,{\fad(80,80)}{\kf26}or {\kf10}the {\kf26}back {\kf24}poles {\kf26}tight {\kf30}across
+Dialogue: 1,0:02:53.14,0:02:54.19,Cap,,0,0,0,,{\fad(80,80)}{\kf30}your {\kf36}shoulder {\kf24}blades,
+Dialogue: 1,0:02:54.58,0:02:56.13,Cap,,0,0,0,,{\fad(80,80)}{\kf12}the {\kf20}coat {\kf22}is {\kf18}too {\kf38}small {\kf30}where
+Dialogue: 1,0:02:55.98,0:02:56.59,Cap,,0,0,0,,{\fad(80,80)}{\kf14}it {\kf32}counts.
+Dialogue: 1,0:02:57.06,0:02:58.51,Cap,,0,0,0,,{\fad(80,80)}{\kf8}And {\kf26}no {\kf22}amount {\kf24}of {\kf22}liking {\kf28}the
+Dialogue: 1,0:02:58.36,0:02:59.57,Cap,,0,0,0,,{\fad(80,80)}{\kf26}color {\kf22}will {\kf28}fix {\kf30}that.
+Dialogue: 1,0:02:59.88,0:03:01.39,Cap,,0,0,0,,{\fad(80,80)}{\kf16}The {\kf26}fourth {\kf30}check {\kf26}is {\kf12}the {\kf26}sleeves.
+Dialogue: 1,0:03:01.74,0:03:03.15,Cap,,0,0,0,,{\fad(80,80)}{\kf8}They {\kf18}should {\kf28}come {\kf34}down {\kf24}to {\kf14}the
+Dialogue: 1,0:03:03.00,0:03:04.13,Cap,,0,0,0,,{\fad(80,80)}{\kf26}hinge {\kf22}of {\kf16}your {\kf34}wrist
+Dialogue: 1,0:03:03.98,0:03:06.27,Cap,,0,0,0,,{\fad(80,80)}{\kf50}and {\kf30}touch {\kf44}past {\kf26}your {\kf32}jacket {\kf32}cup.
+Dialogue: 1,0:03:06.44,0:03:07.61,Cap,,0,0,0,,{\fad(80,80)}{\kf14}If {\kf8}a {\kf24}sleeve {\kf28}is {\kf12}a {\kf16}little
+Dialogue: 1,0:03:07.46,0:03:08.01,Cap,,0,0,0,,{\fad(80,80)}{\kf40}long,
+Dialogue: 1,0:03:08.36,0:03:09.47,Cap,,0,0,0,,{\fad(80,80)}{\kf14}that {\kf16}is {\kf14}an {\kf14}easy {\kf38}fix.
+Dialogue: 1,0:03:09.80,0:03:12.11,Cap,,0,0,0,,{\fad(80,80)}{\kf10}And {\kf12}it {\kf34}usually {\kf48}costs {\kf76}somewhere {\kf36}between
+Dialogue: 1,0:03:11.96,0:03:13.69,Cap,,0,0,0,,{\fad(80,80)}{\kf50}$35 {\kf40}and {\kf68}$65.
+Dialogue: 1,0:03:14.28,0:03:15.07,Cap,,0,0,0,,{\fad(80,80)}{\kf64}Mr.
+Dialogue: 1,0:03:15.00,0:03:17.07,Cap,,0,0,0,,{\fad(80,80)}{\kf40}Pettigrew's {\kf28}favorite {\kf90}line {\kf34}was,
+Dialogue: 1,0:03:17.34,0:03:18.83,Cap,,0,0,0,,{\fad(80,80)}{\kf42}measure {\kf32}it {\kf60}again.
+Dialogue: 1,0:03:19.20,0:03:21.49,Cap,,0,0,0,,{\fad(80,80)}{\kf20}Lad {\kf76}and {\kf16}he {\kf18}was {\kf26}right {\kf58}every
+Dialogue: 1,0:03:21.34,0:03:22.09,Cap,,0,0,0,,{\fad(80,80)}{\kf24}single {\kf36}time.
+Dialogue: 1,0:03:22.38,0:03:23.81,Cap,,0,0,0,,{\fad(80,80)}{\kf16}So {\kf72}pin {\kf16}the {\kf24}sleeve,
+Dialogue: 1,0:03:24.30,0:03:25.59,Cap,,0,0,0,,{\fad(80,80)}{\kf32}stand {\kf24}in {\kf10}front {\kf16}of {\kf10}the {\kf22}mirror
+Dialogue: 1,0:03:25.78,0:03:27.01,Cap,,0,0,0,,{\fad(80,80)}{\kf32}and {\kf34}measure {\kf22}it {\kf20}again.
+Dialogue: 1,0:03:27.48,0:03:30.39,Cap,,0,0,0,,{\fad(80,80)}{\kf38}Now {\kf72}the {\kf36}coats {\kf74}counting {\kf56}down.
+Dialogue: 1,0:03:30.76,0:03:32.61,Cap,,0,0,0,,{\fad(80,80)}{\kf18}Number {\kf48}five {\kf20}is {\kf14}the {\kf22}humble {\kf48}wool
+Dialogue: 1,0:03:32.46,0:03:33.47,Cap,,0,0,0,,{\fad(80,80)}{\kf46}car {\kf40}coat.
+Dialogue: 1,0:03:33.76,0:03:34.67,Cap,,0,0,0,,{\fad(80,80)}{\kf10}And {\kf12}I {\kf18}put {\kf12}it {\kf12}at {\kf12}the
+Dialogue: 1,0:03:34.52,0:03:36.25,Cap,,0,0,0,,{\fad(80,80)}{\kf32}bottom {\kf40}only {\kf34}because {\kf26}it {\kf12}is {\kf14}the
+Dialogue: 1,0:03:36.10,0:03:36.63,Cap,,0,0,0,,{\fad(80,80)}{\kf38}simplest,
+Dialogue: 1,0:03:37.04,0:03:38.81,Cap,,0,0,0,,{\fad(80,80)}{\kf32}not {\kf42}because {\kf32}it {\kf12}is {\kf14}the {\kf30}weakest.
+Dialogue: 1,0:03:39.18,0:03:40.69,Cap,,0,0,0,,{\fad(80,80)}{\kf14}A {\kf20}car {\kf32}coat {\kf24}is {\kf14}a {\kf32}single
+Dialogue: 1,0:03:40.54,0:03:41.43,Cap,,0,0,0,,{\fad(80,80)}{\kf44}-breasted {\kf30}coat
+Dialogue: 1,0:03:41.28,0:03:43.03,Cap,,0,0,0,,{\fad(80,80)}{\kf26}that {\kf30}stops {\kf36}about {\kf26}mid {\kf42}-thigh,
+Dialogue: 1,0:03:43.34,0:03:44.45,Cap,,0,0,0,,{\fad(80,80)}{\kf8}which {\kf20}means {\kf18}you {\kf12}can {\kf26}sit {\kf12}in
+Dialogue: 1,0:03:44.30,0:03:45.97,Cap,,0,0,0,,{\fad(80,80)}{\kf6}a {\kf22}car {\kf66}or {\kf28}on {\kf8}a {\kf22}bus
+Dialogue: 1,0:03:45.82,0:03:48.05,Cap,,0,0,0,,{\fad(80,80)}{\kf60}or {\kf14}at {\kf18}your {\kf50}daughter's {\kf16}kitchen {\kf50}table.
+Dialogue: 1,0:03:48.44,0:03:50.01,Cap,,0,0,0,,{\fad(80,80)}{\kf18}Without {\kf22}it {\kf44}bunching {\kf16}up {\kf22}under {\kf20}you
+Dialogue: 1,0:03:49.86,0:03:50.47,Cap,,0,0,0,,{\fad(80,80)}{\kf12}like {\kf12}a {\kf22}blanket.
+Dialogue: 1,0:03:50.84,0:03:52.17,Cap,,0,0,0,,{\fad(80,80)}{\kf6}My {\kf18}one {\kf30}rule {\kf24}for {\kf18}it {\kf22}is
+Dialogue: 1,0:03:52.02,0:03:53.37,Cap,,0,0,0,,{\fad(80,80)}{\kf18}that {\kf12}it {\kf18}must {\kf24}be {\kf24}long {\kf24}enough
+Dialogue: 1,0:03:53.22,0:03:54.41,Cap,,0,0,0,,{\fad(80,80)}{\kf28}to {\kf18}cover {\kf18}the {\kf18}seat {\kf14}of {\kf8}your
+Dialogue: 1,0:03:54.26,0:03:54.77,Cap,,0,0,0,,{\fad(80,80)}{\kf36}trousers.
+Dialogue: 1,0:03:55.20,0:03:56.35,Cap,,0,0,0,,{\fad(80,80)}{\kf2}And {\kf26}short {\kf18}enough {\kf28}that {\kf14}you {\kf12}can
+Dialogue: 1,0:03:56.20,0:03:57.87,Cap,,0,0,0,,{\fad(80,80)}{\kf26}bend {\kf36}down {\kf22}to {\kf24}tie {\kf20}your {\kf24}shoe
+Dialogue: 1,0:03:58.14,0:03:59.77,Cap,,0,0,0,,{\fad(80,80)}{\kf24}without {\kf36}feeling {\kf28}like {\kf14}you're {\kf30}tying {\kf16}it
+Dialogue: 1,0:03:59.62,0:04:00.29,Cap,,0,0,0,,{\fad(80,80)}{\kf18}through {\kf12}a {\kf22}tent.
+Dialogue: 1,0:04:00.54,0:04:01.53,Cap,,0,0,0,,{\fad(80,80)}{\kf12}Pick {\kf12}a {\kf28}quiet {\kf32}color,
+Dialogue: 1,0:04:01.68,0:04:03.57,Cap,,0,0,0,,{\fad(80,80)}{\kf24}navy {\kf28}or {\kf24}charcoal {\kf64}or {\kf10}a {\kf24}soft
+Dialogue: 1,0:04:03.42,0:04:03.83,Cap,,0,0,0,,{\fad(80,80)}{\kf26}brown
+Dialogue: 1,0:04:03.68,0:04:05.63,Cap,,0,0,0,,{\fad(80,80)}{\kf64}because {\kf42}you'll {\kf18}wear {\kf18}this {\kf16}one {\kf22}most
+Dialogue: 1,0:04:05.48,0:04:05.87,Cap,,0,0,0,,{\fad(80,80)}{\kf24}days
+Dialogue: 1,0:04:05.72,0:04:07.73,Cap,,0,0,0,,{\fad(80,80)}{\kf24}and {\kf12}a {\kf28}quiet {\kf40}color {\kf48}goes {\kf34}with
+Dialogue: 1,0:04:07.58,0:04:08.75,Cap,,0,0,0,,{\fad(80,80)}{\kf44}everything {\kf36}you {\kf22}own.
+Dialogue: 1,0:04:09.32,0:04:11.67,Cap,,0,0,0,,{\fad(80,80)}{\kf26}Number {\kf38}four {\kf44}will {\kf34}surprise {\kf42}you {\kf36}coming
+Dialogue: 1,0:04:11.52,0:04:12.51,Cap,,0,0,0,,{\fad(80,80)}{\kf34}from {\kf14}a {\kf36}tailor
+Dialogue: 1,0:04:12.36,0:04:14.19,Cap,,0,0,0,,{\fad(80,80)}{\kf64}because {\kf20}it {\kf10}is {\kf8}a {\kf28}padded {\kf38}coat,
+Dialogue: 1,0:04:14.52,0:04:15.73,Cap,,0,0,0,,{\fad(80,80)}{\kf16}the {\kf20}salt {\kf18}with {\kf12}a {\kf20}zip {\kf20}and
+Dialogue: 1,0:04:15.58,0:04:16.83,Cap,,0,0,0,,{\fad(80,80)}{\kf10}a {\kf16}hood {\kf16}and {\kf10}the {\kf30}stuffing {\kf28}inside.
+Dialogue: 1,0:04:17.20,0:04:18.45,Cap,,0,0,0,,{\fad(80,80)}{\kf8}I {\kf18}make {\kf26}jackets {\kf34}for {\kf8}a {\kf16}living
+Dialogue: 1,0:04:18.30,0:04:19.57,Cap,,0,0,0,,{\fad(80,80)}{\kf36}and {\kf12}I {\kf20}still {\kf20}own {\kf24}one.
+Dialogue: 1,0:04:19.76,0:04:20.55,Cap,,0,0,0,,{\fad(80,80)}{\kf4}And {\kf10}I'll {\kf18}tell {\kf10}you {\kf22}why.
+Dialogue: 1,0:04:20.78,0:04:22.13,Cap,,0,0,0,,{\fad(80,80)}{\kf1}When {\kf12}the {\kf16}weather {\kf34}turns {\kf22}truly {\kf36}bitter,
+Dialogue: 1,0:04:22.38,0:04:23.99,Cap,,0,0,0,,{\fad(80,80)}{\kf16}a {\kf18}good {\kf26}padded {\kf34}coat {\kf22}is {\kf30}warmer
+Dialogue: 1,0:04:23.84,0:04:24.59,Cap,,0,0,0,,{\fad(80,80)}{\kf38}and {\kf22}lighter
+Dialogue: 1,0:04:24.44,0:04:26.07,Cap,,0,0,0,,{\fad(80,80)}{\kf30}than {\kf26}any {\kf20}wool {\kf24}coat {\kf30}I {\kf18}could
+Dialogue: 1,0:04:25.92,0:04:26.59,Cap,,0,0,0,,{\fad(80,80)}{\kf22}make {\kf30}you.
+Dialogue: 1,0:04:26.84,0:04:28.83,Cap,,0,0,0,,{\fad(80,80)}{\kf8}And {\kf28}nobody {\kf48}ever {\kf40}looked {\kf32}sharp {\kf28}with
+Dialogue: 1,0:04:28.68,0:04:29.49,Cap,,0,0,0,,{\fad(80,80)}{\kf40}chattering {\kf26}teeth.
+Dialogue: 1,0:04:30.00,0:04:32.35,Cap,,0,0,0,,{\fad(80,80)}{\kf6}The {\kf36}mistake {\kf76}is {\kf64}the {\kf38}fit.
+Dialogue: 1,0:04:32.52,0:04:34.15,Cap,,0,0,0,,{\fad(80,80)}{\kf20}Men {\kf34}nearly {\kf44}always {\kf18}buy {\kf18}these {\kf14}a
+Dialogue: 1,0:04:34.00,0:04:35.11,Cap,,0,0,0,,{\fad(80,80)}{\kf16}full {\kf24}size {\kf26}too {\kf30}big
+Dialogue: 1,0:04:34.96,0:04:36.73,Cap,,0,0,0,,{\fad(80,80)}{\kf68}because {\kf18}the {\kf18}coat {\kf20}is {\kf38}puffy
+Dialogue: 1,0:04:36.58,0:04:38.13,Cap,,0,0,0,,{\fad(80,80)}{\kf50}and {\kf10}they {\kf20}think {\kf18}they {\kf18}need {\kf24}space
+Dialogue: 1,0:04:37.98,0:04:38.69,Cap,,0,0,0,,{\fad(80,80)}{\kf32}for {\kf24}layers.
+Dialogue: 1,0:04:39.16,0:04:40.79,Cap,,0,0,0,,{\fad(80,80)}{\kf8}And {\kf14}the {\kf28}result {\kf62}is {\kf14}a {\kf22}bag
+Dialogue: 1,0:04:40.64,0:04:42.43,Cap,,0,0,0,,{\fad(80,80)}{\kf36}with {\kf10}a {\kf24}man {\kf76}inside {\kf18}it.
+Dialogue: 1,0:04:42.50,0:04:44.05,Cap,,0,0,0,,{\fad(80,80)}{\kf6}A {\kf24}padded {\kf28}coat {\kf26}should {\kf20}sit {\kf36}close
+Dialogue: 1,0:04:44.36,0:04:45.89,Cap,,0,0,0,,{\fad(80,80)}{\kf24}with {\kf22}just {\kf26}room {\kf26}for {\kf14}a {\kf26}sweater
+Dialogue: 1,0:04:45.74,0:04:46.63,Cap,,0,0,0,,{\fad(80,80)}{\kf26}and {\kf16}no {\kf32}more.
+Dialogue: 1,0:04:47.00,0:04:48.35,Cap,,0,0,0,,{\fad(80,80)}{\kf6}And {\kf12}the {\kf26}sleeve {\kf24}should {\kf34}stop {\kf18}at
+Dialogue: 1,0:04:48.20,0:04:48.73,Cap,,0,0,0,,{\fad(80,80)}{\kf14}the {\kf24}wrist.
+Dialogue: 1,0:04:49.10,0:04:50.39,Cap,,0,0,0,,{\fad(80,80)}{\kf1}Do {\kf20}the {\kf14}arm {\kf20}lifting {\kf38}check {\kf22}I
+Dialogue: 1,0:04:50.24,0:04:51.09,Cap,,0,0,0,,{\fad(80,80)}{\kf20}just {\kf16}gave {\kf34}you.
+Dialogue: 1,0:04:51.34,0:04:52.37,Cap,,0,0,0,,{\fad(80,80)}{\kf4}And {\kf8}if {\kf14}the {\kf16}hem {\kf22}writes {\kf24}up,
+Dialogue: 1,0:04:52.48,0:04:54.09,Cap,,0,0,0,,{\fad(80,80)}{\kf54}go {\kf18}up {\kf12}a {\kf22}size {\kf20}in {\kf20}length
+Dialogue: 1,0:04:54.42,0:04:55.39,Cap,,0,0,0,,{\fad(80,80)}{\kf24}rather {\kf28}than {\kf10}in {\kf20}width.
+Dialogue: 1,0:04:55.88,0:04:56.51,Cap,,0,0,0,,{\fad(80,80)}{\kf48}Now,
+Dialogue: 1,0:04:56.62,0:04:58.31,Cap,,0,0,0,,{\fad(80,80)}{\kf36}before {\kf28}we {\kf20}go {\kf38}on {\kf12}a {\kf20}small
+Dialogue: 1,0:04:58.16,0:04:59.61,Cap,,0,0,0,,{\fad(80,80)}{\kf36}favor {\kf46}from {\kf12}an {\kf12}old {\kf24}man,
+Dialogue: 1,0:04:59.72,0:05:01.09,Cap,,0,0,0,,{\fad(80,80)}{\kf24}if {\kf20}this {\kf16}is {\kf24}already {\kf38}helping,
+Dialogue: 1,0:05:01.46,0:05:02.55,Cap,,0,0,0,,{\fad(80,80)}{\kf16}press {\kf28}the {\kf16}like {\kf34}button.
+Dialogue: 1,0:05:02.88,0:05:03.99,Cap,,0,0,0,,{\fad(80,80)}{\kf12}And {\kf12}if {\kf20}you'd {\kf14}like {\kf18}to {\kf20}know
+Dialogue: 1,0:05:03.84,0:05:05.23,Cap,,0,0,0,,{\fad(80,80)}{\kf28}when {\kf12}the {\kf18}next {\kf30}fitting {\kf36}is,
+Dialogue: 1,0:05:05.34,0:05:05.95,Cap,,0,0,0,,{\fad(80,80)}{\kf46}subscribe.
+Dialogue: 1,0:05:06.17,0:05:07.91,Cap,,0,0,0,,{\fad(80,80)}{\kf35}It {\kf28}costs {\kf38}you {\kf58}nothing.
+Dialogue: 1,0:05:08.36,0:05:10.63,Cap,,0,0,0,,{\fad(80,80)}{\kf12}It {\kf28}tells {\kf22}the {\kf36}people {\kf56}who {\kf58}run
+Dialogue: 1,0:05:10.48,0:05:11.37,Cap,,0,0,0,,{\fad(80,80)}{\kf32}these {\kf42}things
+Dialogue: 1,0:05:11.22,0:05:14.31,Cap,,0,0,0,,{\fad(80,80)}{\kf56}that {\kf12}a {\kf38}fellow {\kf62}my {\kf74}age {\kf52}might
+Dialogue: 1,0:05:14.16,0:05:16.67,Cap,,0,0,0,,{\fad(80,80)}{\kf38}have {\kf44}something {\kf44}useful {\kf76}to {\kf34}say
+Dialogue: 1,0:05:16.52,0:05:18.57,Cap,,0,0,0,,{\fad(80,80)}{\kf50}and {\kf46}Evelyn {\kf26}would {\kf12}have {\kf18}been {\kf38}chuffed
+Dialogue: 1,0:05:18.42,0:05:19.05,Cap,,0,0,0,,{\fad(80,80)}{\kf18}to {\kf30}bits,
+Dialogue: 1,0:05:19.46,0:05:21.31,Cap,,0,0,0,,{\fad(80,80)}{\kf42}taught {\kf40}back {\kf34}to {\kf22}the {\kf32}coats.
+Dialogue: 1,0:05:21.80,0:05:24.15,Cap,,0,0,0,,{\fad(80,80)}{\kf24}Number {\kf42}three {\kf44}is {\kf10}a {\kf32}cloth {\kf68}that
+Dialogue: 1,0:05:24.00,0:05:25.91,Cap,,0,0,0,,{\fad(80,80)}{\kf36}hides {\kf58}more {\kf82}sins
+Dialogue: 1,0:05:26.31,0:05:27.85,Cap,,0,0,0,,{\fad(80,80)}{\kf35}than {\kf46}any {\kf58}other.
+Dialogue: 1,0:05:28.08,0:05:29.33,Cap,,0,0,0,,{\fad(80,80)}{\kf34}It's {\kf8}the {\kf20}one {\kf14}I {\kf22}put {\kf12}on
+Dialogue: 1,0:05:29.18,0:05:30.35,Cap,,0,0,0,,{\fad(80,80)}{\kf30}myself {\kf36}on {\kf10}the {\kf26}days
+Dialogue: 1,0:05:30.20,0:05:31.43,Cap,,0,0,0,,{\fad(80,80)}{\kf28}I'm {\kf14}not {\kf28}seeing {\kf38}customers.
+Dialogue: 1,0:05:31.86,0:05:33.63,Cap,,0,0,0,,{\fad(80,80)}{\kf10}And {\kf14}the {\kf24}reason {\kf32}it {\kf28}works {\kf54}has
+Dialogue: 1,0:05:33.48,0:05:34.67,Cap,,0,0,0,,{\fad(80,80)}{\kf20}to {\kf16}do {\kf18}with {\kf14}what {\kf36}happens
+Dialogue: 1,0:05:34.52,0:05:36.49,Cap,,0,0,0,,{\fad(80,80)}{\kf22}to {\kf12}a {\kf18}coat {\kf56}after {\kf42}five {\kf32}winters.
+Dialogue: 1,0:05:37.98,0:05:39.41,Cap,,0,0,0,,{\fad(80,80)}{\kf8}The {\kf22}cloth {\kf18}I {\kf16}mean {\kf16}is {\kf48}Herringbone
+Dialogue: 1,0:05:39.26,0:05:39.71,Cap,,0,0,0,,{\fad(80,80)}{\kf30}wool,
+Dialogue: 1,0:05:40.02,0:05:41.35,Cap,,0,0,0,,{\fad(80,80)}{\kf10}the {\kf14}one {\kf14}with {\kf14}the {\kf18}little {\kf48}zigzag
+Dialogue: 1,0:05:41.20,0:05:42.41,Cap,,0,0,0,,{\fad(80,80)}{\kf40}pattern {\kf22}running {\kf30}through {\kf14}it
+Dialogue: 1,0:05:42.26,0:05:43.39,Cap,,0,0,0,,{\fad(80,80)}{\kf12}like {\kf14}the {\kf22}bones {\kf20}of {\kf6}a {\kf24}fish.
+Dialogue: 1,0:05:43.60,0:05:45.21,Cap,,0,0,0,,{\fad(80,80)}{\kf6}And {\kf10}the {\kf26}tailor {\kf52}loves {\kf28}it {\kf24}for
+Dialogue: 1,0:05:45.06,0:05:46.37,Cap,,0,0,0,,{\fad(80,80)}{\kf28}one {\kf34}simple {\kf54}reason.
+Dialogue: 1,0:05:46.64,0:05:48.95,Cap,,0,0,0,,{\fad(80,80)}{\kf48}Texture {\kf82}hides {\kf86}everything.
+Dialogue: 1,0:05:49.32,0:05:50.03,Cap,,0,0,0,,{\fad(80,80)}{\kf22}Rain {\kf34}spots,
+Dialogue: 1,0:05:50.36,0:05:50.89,Cap,,0,0,0,,{\fad(80,80)}{\kf38}lint,
+Dialogue: 1,0:05:51.18,0:05:52.43,Cap,,0,0,0,,{\fad(80,80)}{\kf10}the {\kf14}odd {\kf40}crease {\kf18}from {\kf10}a {\kf18}car
+Dialogue: 1,0:05:52.28,0:05:52.69,Cap,,0,0,0,,{\fad(80,80)}{\kf26}seat,
+Dialogue: 1,0:05:52.94,0:05:54.57,Cap,,0,0,0,,{\fad(80,80)}{\kf28}even {\kf18}the {\kf20}shine {\kf30}that {\kf26}creeps {\kf26}onto
+Dialogue: 1,0:05:54.42,0:05:56.09,Cap,,0,0,0,,{\fad(80,80)}{\kf22}a {\kf20}plain {\kf50}cloth {\kf20}at {\kf14}the {\kf26}elbows,
+Dialogue: 1,0:05:56.52,0:05:57.99,Cap,,0,0,0,,{\fad(80,80)}{\kf12}all {\kf16}of {\kf8}it {\kf38}disappears {\kf42}into {\kf16}a
+Dialogue: 1,0:05:57.84,0:05:58.55,Cap,,0,0,0,,{\fad(80,80)}{\kf16}busy {\kf40}weave.
+Dialogue: 1,0:05:58.92,0:05:59.95,Cap,,0,0,0,,{\fad(80,80)}{\kf12}So {\kf12}after {\kf34}five {\kf30}winters,
+Dialogue: 1,0:05:59.80,0:06:00.87,Cap,,0,0,0,,{\fad(80,80)}{\kf28}a {\kf40}Herringbone {\kf24}coat
+Dialogue: 1,0:06:00.72,0:06:02.11,Cap,,0,0,0,,{\fad(80,80)}{\kf26}looks {\kf22}like {\kf14}it {\kf12}has {\kf22}had {\kf28}to
+Dialogue: 1,0:06:01.96,0:06:04.11,Cap,,0,0,0,,{\fad(80,80)}{\kf52}and {\kf12}a {\kf34}soft {\kf30}close {\kf40}brush {\kf32}on
+Dialogue: 1,0:06:03.96,0:06:04.93,Cap,,0,0,0,,{\fad(80,80)}{\kf12}a {\kf22}Sunday {\kf48}evening
+Dialogue: 1,0:06:04.78,0:06:06.65,Cap,,0,0,0,,{\fad(80,80)}{\kf44}keeps {\kf28}it {\kf18}that {\kf22}way {\kf28}for {\kf32}years.
+Dialogue: 1,0:06:07.06,0:06:08.99,Cap,,0,0,0,,{\fad(80,80)}{\kf26}That's {\kf10}the {\kf38}answer {\kf56}to {\kf10}the {\kf38}question
+Dialogue: 1,0:06:08.84,0:06:11.05,Cap,,0,0,0,,{\fad(80,80)}{\kf36}I {\kf24}left {\kf44}hanging {\kf40}a {\kf24}minute {\kf38}ago.
+Dialogue: 1,0:06:11.24,0:06:13.05,Cap,,0,0,0,,{\fad(80,80)}{\kf26}Cut {\kf22}it {\kf16}as {\kf10}a {\kf38}single {\kf54}breasted
+Dialogue: 1,0:06:12.90,0:06:13.99,Cap,,0,0,0,,{\fad(80,80)}{\kf32}top {\kf22}coat {\kf40}falling
+Dialogue: 1,0:06:13.84,0:06:15.45,Cap,,0,0,0,,{\fad(80,80)}{\kf22}to {\kf32}just {\kf28}about {\kf36}your {\kf28}knee
+Dialogue: 1,0:06:15.62,0:06:17.35,Cap,,0,0,0,,{\fad(80,80)}{\kf30}and {\kf20}make {\kf24}sure {\kf18}the {\kf26}collar {\kf40}sits
+Dialogue: 1,0:06:17.20,0:06:17.79,Cap,,0,0,0,,{\fad(80,80)}{\kf44}flat
+Dialogue: 1,0:06:17.64,0:06:19.41,Cap,,0,0,0,,{\fad(80,80)}{\kf38}against {\kf26}the {\kf32}back {\kf20}of {\kf16}your {\kf30}neck
+Dialogue: 1,0:06:19.26,0:06:20.67,Cap,,0,0,0,,{\fad(80,80)}{\kf48}with {\kf40}no {\kf38}gap
+Dialogue: 1,0:06:21.02,0:06:22.51,Cap,,0,0,0,,{\fad(80,80)}{\kf30}because {\kf20}a {\kf32}gap {\kf28}there {\kf14}is {\kf10}a
+Dialogue: 1,0:06:22.36,0:06:22.79,Cap,,0,0,0,,{\fad(80,80)}{\kf28}draft
+Dialogue: 1,0:06:23.22,0:06:24.67,Cap,,0,0,0,,{\fad(80,80)}{\kf30}and {\kf12}a {\kf18}draft {\kf44}is {\kf10}a {\kf16}cold
+Dialogue: 1,0:06:24.52,0:06:25.89,Cap,,0,0,0,,{\fad(80,80)}{\kf38}neck {\kf44}all {\kf40}winter.
+Dialogue: 1,0:06:26.48,0:06:28.25,Cap,,0,0,0,,{\fad(80,80)}{\kf8}Choose {\kf20}a {\kf30}gray {\kf36}or {\kf38}brown {\kf30}mix
+Dialogue: 1,0:06:28.10,0:06:29.57,Cap,,0,0,0,,{\fad(80,80)}{\kf36}rather {\kf30}than {\kf12}a {\kf18}loud {\kf36}one
+Dialogue: 1,0:06:29.42,0:06:31.35,Cap,,0,0,0,,{\fad(80,80)}{\kf50}since {\kf22}the {\kf32}pattern {\kf28}does {\kf16}the {\kf30}talking
+Dialogue: 1,0:06:31.20,0:06:31.89,Cap,,0,0,0,,{\fad(80,80)}{\kf30}for {\kf24}you.
+Dialogue: 1,0:06:31.98,0:06:34.17,Cap,,0,0,0,,{\fad(80,80)}{\kf24}Number {\kf38}two {\kf40}is {\kf16}the {\kf22}navy {\kf64}duffel
+Dialogue: 1,0:06:34.02,0:06:34.37,Cap,,0,0,0,,{\fad(80,80)}{\kf20}coat,
+Dialogue: 1,0:06:34.88,0:06:36.49,Cap,,0,0,0,,{\fad(80,80)}{\kf10}the {\kf20}one {\kf24}with {\kf12}the {\kf20}wooden {\kf60}toggles
+Dialogue: 1,0:06:36.34,0:06:37.53,Cap,,0,0,0,,{\fad(80,80)}{\kf40}and {\kf14}the {\kf18}big {\kf32}hood
+Dialogue: 1,0:06:37.38,0:06:39.65,Cap,,0,0,0,,{\fad(80,80)}{\kf50}worn {\kf26}by {\kf34}sailors {\kf36}on {\kf24}freezing {\kf42}decks
+Dialogue: 1,0:06:39.50,0:06:41.33,Cap,,0,0,0,,{\fad(80,80)}{\kf46}long {\kf36}before {\kf18}it {\kf18}ever {\kf32}reached {\kf18}the
+Dialogue: 1,0:06:41.18,0:06:41.79,Cap,,0,0,0,,{\fad(80,80)}{\kf18}high {\kf28}street.
+Dialogue: 1,0:06:42.16,0:06:43.55,Cap,,0,0,0,,{\fad(80,80)}{\kf2}I {\kf22}love {\kf20}it {\kf22}for {\kf26}one {\kf32}reason,
+Dialogue: 1,0:06:43.80,0:06:44.43,Cap,,0,0,0,,{\fad(80,80)}{\kf6}above {\kf42}all,
+Dialogue: 1,0:06:44.56,0:06:45.99,Cap,,0,0,0,,{\fad(80,80)}{\kf22}and {\kf36}that's {\kf20}the {\kf50}toggles.
+Dialogue: 1,0:06:46.32,0:06:47.63,Cap,,0,0,0,,{\fad(80,80)}{\kf22}Though {\kf14}it's {\kf30}also {\kf22}warm {\kf28}enough
+Dialogue: 1,0:06:47.48,0:06:48.73,Cap,,0,0,0,,{\fad(80,80)}{\kf22}that {\kf20}I've {\kf18}stood {\kf24}on {\kf10}a {\kf16}winter
+Dialogue: 1,0:06:48.58,0:06:49.73,Cap,,0,0,0,,{\fad(80,80)}{\kf50}platform {\kf28}in {\kf22}one
+Dialogue: 1,0:06:49.94,0:06:51.53,Cap,,0,0,0,,{\fad(80,80)}{\kf24}and {\kf18}felt {\kf48}perfectly {\kf54}fine,
+Dialogue: 1,0:06:51.74,0:06:53.31,Cap,,0,0,0,,{\fad(80,80)}{\kf22}you {\kf14}can {\kf54}fasten {\kf16}them {\kf16}with {\kf20}gloves
+Dialogue: 1,0:06:53.16,0:06:53.71,Cap,,0,0,0,,{\fad(80,80)}{\kf40}on,
+Dialogue: 1,0:06:53.82,0:06:54.95,Cap,,0,0,0,,{\fad(80,80)}{\kf24}with {\kf24}cold {\kf50}fingers,
+Dialogue: 1,0:06:55.14,0:06:56.57,Cap,,0,0,0,,{\fad(80,80)}{\kf22}with {\kf12}a {\kf30}shopping {\kf28}bag {\kf24}in {\kf12}your
+Dialogue: 1,0:06:56.42,0:06:57.01,Cap,,0,0,0,,{\fad(80,80)}{\kf18}other {\kf26}hand
+Dialogue: 1,0:06:56.86,0:06:58.89,Cap,,0,0,0,,{\fad(80,80)}{\kf50}and {\kf36}nothing {\kf24}is {\kf18}more {\kf24}annoying {\kf36}than
+Dialogue: 1,0:06:58.74,0:06:59.19,Cap,,0,0,0,,{\fad(80,80)}{\kf8}a {\kf22}row
+Dialogue: 1,0:06:59.04,0:07:00.83,Cap,,0,0,0,,{\fad(80,80)}{\kf16}of {\kf28}small {\kf38}buttons {\kf36}when {\kf22}it's {\kf24}bitter
+Dialogue: 1,0:07:00.68,0:07:01.53,Cap,,0,0,0,,{\fad(80,80)}{\kf22}or {\kf48}outside.
+Dialogue: 1,0:07:01.82,0:07:03.25,Cap,,0,0,0,,{\fad(80,80)}{\kf10}The {\kf22}trouble {\kf30}is {\kf12}that {\kf42}duffel {\kf12}coats
+Dialogue: 1,0:07:03.10,0:07:04.15,Cap,,0,0,0,,{\fad(80,80)}{\kf28}are {\kf14}cut {\kf48}generously.
+Dialogue: 1,0:07:04.80,0:07:06.09,Cap,,0,0,0,,{\fad(80,80)}{\kf12}So {\kf22}this {\kf16}is {\kf16}the {\kf18}coat {\kf30}where
+Dialogue: 1,0:07:05.94,0:07:07.41,Cap,,0,0,0,,{\fad(80,80)}{\kf22}men {\kf24}go {\kf22}wrong {\kf30}most {\kf34}often.
+Dialogue: 1,0:07:07.74,0:07:09.07,Cap,,0,0,0,,{\fad(80,80)}{\kf10}The {\kf32}shoulders {\kf30}still {\kf18}have {\kf12}to {\kf16}sit
+Dialogue: 1,0:07:08.92,0:07:10.23,Cap,,0,0,0,,{\fad(80,80)}{\kf14}at {\kf12}the {\kf20}edge {\kf12}of {\kf12}your {\kf46}shoulders.
+Dialogue: 1,0:07:10.76,0:07:12.09,Cap,,0,0,0,,{\fad(80,80)}{\kf2}The {\kf22}sleeves {\kf42}still {\kf16}have {\kf12}to {\kf24}end
+Dialogue: 1,0:07:11.94,0:07:12.67,Cap,,0,0,0,,{\fad(80,80)}{\kf18}at {\kf14}the {\kf26}wrist
+Dialogue: 1,0:07:12.91,0:07:14.35,Cap,,0,0,0,,{\fad(80,80)}{\kf23}and {\kf12}if {\kf16}the {\kf18}hood {\kf26}hangs {\kf34}so
+Dialogue: 1,0:07:14.20,0:07:14.71,Cap,,0,0,0,,{\fad(80,80)}{\kf36}heavy
+Dialogue: 1,0:07:14.56,0:07:16.41,Cap,,0,0,0,,{\fad(80,80)}{\kf20}it {\kf32}drags {\kf16}the {\kf22}coat {\kf54}backward {\kf26}off
+Dialogue: 1,0:07:16.26,0:07:16.87,Cap,,0,0,0,,{\fad(80,80)}{\kf18}your {\kf28}neck,
+Dialogue: 1,0:07:17.28,0:07:17.67,Cap,,0,0,0,,{\fad(80,80)}{\kf12}eat {\kf12}it,
+Dialogue: 1,0:07:17.76,0:07:18.55,Cap,,0,0,0,,{\fad(80,80)}{\kf24}try {\kf22}it {\kf18}on,
+Dialogue: 1,0:07:19.04,0:07:20.43,Cap,,0,0,0,,{\fad(80,80)}{\kf4}do {\kf24}the {\kf20}arm {\kf38}lifting {\kf38}check
+Dialogue: 1,0:07:20.81,0:07:22.69,Cap,,0,0,0,,{\fad(80,80)}{\kf23}and {\kf30}you'll {\kf20}know {\kf28}in {\kf22}10 {\kf50}seconds.
+Dialogue: 1,0:07:23.04,0:07:25.69,Cap,,0,0,0,,{\fad(80,80)}{\kf22}Now {\kf72}I {\kf38}promised {\kf20}you {\kf40}something {\kf58}before
+Dialogue: 1,0:07:25.54,0:07:26.43,Cap,,0,0,0,,{\fad(80,80)}{\kf28}number {\kf46}one
+Dialogue: 1,0:07:26.84,0:07:27.95,Cap,,0,0,0,,{\fad(80,80)}{\kf22}and {\kf24}here {\kf16}it {\kf34}is.
+Dialogue: 1,0:07:28.14,0:07:30.19,Cap,,0,0,0,,{\fad(80,80)}{\kf38}Remember {\kf62}the {\kf16}extra {\kf40}room {\kf22}you {\kf12}were
+Dialogue: 1,0:07:30.04,0:07:30.83,Cap,,0,0,0,,{\fad(80,80)}{\kf26}told {\kf16}to {\kf22}buy
+Dialogue: 1,0:07:30.68,0:07:31.61,Cap,,0,0,0,,{\fad(80,80)}{\kf22}for {\kf12}your {\kf44}sweaters.
+Dialogue: 1,0:07:31.82,0:07:33.17,Cap,,0,0,0,,{\fad(80,80)}{\kf28}Most {\kf16}of {\kf12}what {\kf22}keeps {\kf18}you {\kf24}warm
+Dialogue: 1,0:07:33.02,0:07:33.63,Cap,,0,0,0,,{\fad(80,80)}{\kf18}in {\kf8}a {\kf20}coat
+Dialogue: 1,0:07:33.48,0:07:34.93,Cap,,0,0,0,,{\fad(80,80)}{\kf36}is {\kf20}not {\kf18}the {\kf26}thickness {\kf22}of {\kf8}the
+Dialogue: 1,0:07:34.78,0:07:35.53,Cap,,0,0,0,,{\fad(80,80)}{\kf24}cloth {\kf18}at {\kf18}all.
+Dialogue: 1,0:07:35.78,0:07:37.09,Cap,,0,0,0,,{\fad(80,80)}{\kf8}It {\kf10}is {\kf14}a {\kf26}thin {\kf38}layer {\kf20}of
+Dialogue: 1,0:07:36.94,0:07:38.45,Cap,,0,0,0,,{\fad(80,80)}{\kf26}warm {\kf28}air {\kf28}sitting {\kf54}still
+Dialogue: 1,0:07:38.30,0:07:39.77,Cap,,0,0,0,,{\fad(80,80)}{\kf50}between {\kf34}you {\kf14}and {\kf10}the {\kf24}cold.
+Dialogue: 1,0:07:40.06,0:07:42.39,Cap,,0,0,0,,{\fad(80,80)}{\kf14}A {\kf22}coat {\kf28}that {\kf26}fits {\kf40}properly {\kf88}holds
+Dialogue: 1,0:07:42.24,0:07:43.21,Cap,,0,0,0,,{\fad(80,80)}{\kf28}that {\kf18}air {\kf16}in {\kf20}place.
+Dialogue: 1,0:07:43.68,0:07:44.97,Cap,,0,0,0,,{\fad(80,80)}{\kf8}A {\kf22}coat {\kf20}a {\kf16}size {\kf28}two {\kf20}big
+Dialogue: 1,0:07:44.82,0:07:46.11,Cap,,0,0,0,,{\fad(80,80)}{\kf26}works {\kf26}like {\kf16}a {\kf46}bellows
+Dialogue: 1,0:07:45.96,0:07:47.53,Cap,,0,0,0,,{\fad(80,80)}{\kf50}and {\kf20}every {\kf22}time {\kf14}you {\kf18}swing {\kf18}an
+Dialogue: 1,0:07:47.38,0:07:48.67,Cap,,0,0,0,,{\fad(80,80)}{\kf24}arm {\kf16}or {\kf18}take {\kf14}a {\kf20}step {\kf22}it
+Dialogue: 1,0:07:48.52,0:07:48.91,Cap,,0,0,0,,{\fad(80,80)}{\kf24}pumps.
+Dialogue: 1,0:07:49.30,0:07:50.83,Cap,,0,0,0,,{\fad(80,80)}{\kf8}Your {\kf30}warm {\kf34}air {\kf30}out {\kf24}through {\kf12}the
+Dialogue: 1,0:07:50.68,0:07:51.05,Cap,,0,0,0,,{\fad(80,80)}{\kf22}collar
+Dialogue: 1,0:07:50.90,0:07:52.95,Cap,,0,0,0,,{\fad(80,80)}{\kf50}and {\kf14}the {\kf34}cuffs {\kf34}and {\kf22}draws {\kf36}cold
+Dialogue: 1,0:07:52.80,0:07:54.35,Cap,,0,0,0,,{\fad(80,80)}{\kf34}air {\kf38}in {\kf28}at {\kf18}the {\kf22}hem.
+Dialogue: 1,0:07:54.54,0:07:55.71,Cap,,0,0,0,,{\fad(80,80)}{\kf14}So {\kf14}you {\kf16}buy {\kf16}the {\kf18}big {\kf24}coat
+Dialogue: 1,0:07:55.56,0:07:56.37,Cap,,0,0,0,,{\fad(80,80)}{\kf20}to {\kf20}stay {\kf26}warm
+Dialogue: 1,0:07:56.22,0:07:58.19,Cap,,0,0,0,,{\fad(80,80)}{\kf56}and {\kf16}it's {\kf12}the {\kf26}very {\kf46}reason {\kf26}you're
+Dialogue: 1,0:07:58.04,0:07:59.33,Cap,,0,0,0,,{\fad(80,80)}{\kf30}shivering {\kf28}at {\kf10}the {\kf18}bus {\kf28}stop.
+Dialogue: 1,0:07:59.68,0:08:02.11,Cap,,0,0,0,,{\fad(80,80)}{\kf8}I {\kf24}know {\kf26}this {\kf60}because {\kf20}in {\kf90}1978
+Dialogue: 1,0:08:01.96,0:08:03.11,Cap,,0,0,0,,{\fad(80,80)}{\kf40}I {\kf16}bought {\kf44}myself
+Dialogue: 1,0:08:02.96,0:08:04.73,Cap,,0,0,0,,{\fad(80,80)}{\kf18}an {\kf52}overcoated {\kf24}size {\kf32}too {\kf36}large
+Dialogue: 1,0:08:04.58,0:08:06.31,Cap,,0,0,0,,{\fad(80,80)}{\kf60}because {\kf22}the {\kf20}man {\kf20}in {\kf12}the {\kf24}shop
+Dialogue: 1,0:08:06.16,0:08:07.81,Cap,,0,0,0,,{\fad(80,80)}{\kf42}told {\kf22}me {\kf20}I {\kf14}would {\kf20}grow {\kf32}into
+Dialogue: 1,0:08:07.66,0:08:08.03,Cap,,0,0,0,,{\fad(80,80)}{\kf22}it.
+Dialogue: 1,0:08:08.12,0:08:09.41,Cap,,0,0,0,,{\fad(80,80)}{\kf8}I {\kf8}was {\kf24}24 {\kf54}and {\kf10}I {\kf10}had
+Dialogue: 1,0:08:09.26,0:08:10.01,Cap,,0,0,0,,{\fad(80,80)}{\kf24}finished {\kf36}growing.
+Dialogue: 1,0:08:10.44,0:08:11.01,Cap,,0,0,0,,{\fad(80,80)}{\kf4}And {\kf38}Evelyn,
+Dialogue: 1,0:08:11.18,0:08:12.67,Cap,,0,0,0,,{\fad(80,80)}{\kf26}who {\kf10}was {\kf14}my {\kf26}girlfriend {\kf36}by {\kf22}then,
+Dialogue: 1,0:08:12.86,0:08:14.03,Cap,,0,0,0,,{\fad(80,80)}{\kf16}looked {\kf22}at {\kf18}me {\kf14}on {\kf12}the {\kf20}pavement
+Dialogue: 1,0:08:13.88,0:08:14.83,Cap,,0,0,0,,{\fad(80,80)}{\kf52}and {\kf28}said
+Dialogue: 1,0:08:14.68,0:08:16.43,Cap,,0,0,0,,{\fad(80,80)}{\kf50}I {\kf20}looked {\kf26}like {\kf16}a {\kf22}coat {\kf26}rack
+Dialogue: 1,0:08:16.28,0:08:17.57,Cap,,0,0,0,,{\fad(80,80)}{\kf22}that {\kf16}had {\kf22}gone {\kf20}out {\kf20}for {\kf14}a
+Dialogue: 1,0:08:17.42,0:08:17.85,Cap,,0,0,0,,{\fad(80,80)}{\kf28}walk.
+Dialogue: 1,0:08:18.11,0:08:20.29,Cap,,0,0,0,,{\fad(80,80)}{\kf25}She {\kf20}was {\kf28}right {\kf102}and {\kf12}I {\kf16}was
+Dialogue: 1,0:08:20.14,0:08:21.37,Cap,,0,0,0,,{\fad(80,80)}{\kf26}cold {\kf22}the {\kf18}entire {\kf42}winter.
+Dialogue: 1,0:08:21.76,0:08:23.21,Cap,,0,0,0,,{\fad(80,80)}{\kf10}So {\kf14}you {\kf14}need {\kf30}room {\kf32}for {\kf30}one
+Dialogue: 1,0:08:23.06,0:08:25.43,Cap,,0,0,0,,{\fad(80,80)}{\kf22}good {\kf32}sweater {\kf68}and {\kf24}not {\kf30}an {\kf46}inch
+Dialogue: 1,0:08:25.28,0:08:25.91,Cap,,0,0,0,,{\fad(80,80)}{\kf48}more.
+Dialogue: 1,0:08:26.14,0:08:27.49,Cap,,0,0,0,,{\fad(80,80)}{\kf18}If {\kf10}you {\kf14}can {\kf32}pinch {\kf20}a {\kf26}big
+Dialogue: 1,0:08:27.34,0:08:28.77,Cap,,0,0,0,,{\fad(80,80)}{\kf40}handful {\kf34}of {\kf20}loose {\kf34}cloth
+Dialogue: 1,0:08:28.62,0:08:30.11,Cap,,0,0,0,,{\fad(80,80)}{\kf32}at {\kf14}the {\kf24}middle {\kf22}of {\kf12}your {\kf30}chest,
+Dialogue: 1,0:08:30.34,0:08:31.53,Cap,,0,0,0,,{\fad(80,80)}{\kf8}the {\kf22}coat {\kf22}is {\kf22}too {\kf30}big
+Dialogue: 1,0:08:31.38,0:08:33.07,Cap,,0,0,0,,{\fad(80,80)}{\kf50}and {\kf14}you {\kf14}can {\kf32}pinch {\kf22}it {\kf22}right
+Dialogue: 1,0:08:32.92,0:08:34.77,Cap,,0,0,0,,{\fad(80,80)}{\kf28}now {\kf56}on {\kf16}the {\kf22}coat {\kf22}you're {\kf26}wearing
+Dialogue: 1,0:08:34.62,0:08:35.01,Cap,,0,0,0,,{\fad(80,80)}{\kf24}today.
+Dialogue: 1,0:08:35.30,0:08:36.87,Cap,,0,0,0,,{\fad(80,80)}{\kf16}Which {\kf22}brings {\kf30}me {\kf10}to {\kf18}number {\kf46}one.
+Dialogue: 1,0:08:37.40,0:08:39.55,Cap,,0,0,0,,{\fad(80,80)}{\kf8}The {\kf26}coat {\kf54}I {\kf18}would {\kf38}own {\kf56}if
+Dialogue: 1,0:08:39.40,0:08:40.73,Cap,,0,0,0,,{\fad(80,80)}{\kf14}I {\kf16}could {\kf14}only {\kf36}own {\kf38}one
+Dialogue: 1,0:08:40.87,0:08:43.01,Cap,,0,0,0,,{\fad(80,80)}{\kf25}and {\kf14}it {\kf22}is {\kf18}a {\kf52}single {\kf68}breasted
+Dialogue: 1,0:08:42.86,0:08:43.59,Cap,,0,0,0,,{\fad(80,80)}{\kf58}overcoat
+Dialogue: 1,0:08:43.44,0:08:44.81,Cap,,0,0,0,,{\fad(80,80)}{\kf32}in {\kf34}charcoal {\kf56}gray,
+Dialogue: 1,0:08:44.92,0:08:47.69,Cap,,0,0,0,,{\fad(80,80)}{\kf66}Wustad {\kf26}said {\kf58}Wustad {\kf52}is {\kf16}a {\kf44}smooth,
+Dialogue: 1,0:08:47.86,0:08:50.27,Cap,,0,0,0,,{\fad(80,80)}{\kf56}strong {\kf36}wool {\kf38}cloth {\kf36}made {\kf32}from {\kf28}long
+Dialogue: 1,0:08:50.12,0:08:51.67,Cap,,0,0,0,,{\fad(80,80)}{\kf52}fiber {\kf40}spun {\kf48}tight
+Dialogue: 1,0:08:51.52,0:08:53.09,Cap,,0,0,0,,{\fad(80,80)}{\kf48}and {\kf10}it {\kf18}wears {\kf30}for {\kf36}decades.
+Dialogue: 1,0:08:53.82,0:08:55.61,Cap,,0,0,0,,{\fad(80,80)}{\kf12}It's {\kf12}the {\kf34}cloth {\kf68}I {\kf26}grew {\kf12}up
+Dialogue: 1,0:08:55.46,0:08:56.57,Cap,,0,0,0,,{\fad(80,80)}{\kf26}around {\kf16}in {\kf12}the {\kf12}meal {\kf30}town
+Dialogue: 1,0:08:56.42,0:08:58.45,Cap,,0,0,0,,{\fad(80,80)}{\kf46}and {\kf12}I {\kf28}still {\kf38}trusted {\kf38}over {\kf26}anything
+Dialogue: 1,0:08:58.30,0:08:58.81,Cap,,0,0,0,,{\fad(80,80)}{\kf36}else.
+Dialogue: 1,0:08:59.06,0:08:59.61,Cap,,0,0,0,,{\fad(80,80)}{\kf40}Evelyn,
+Dialogue: 1,0:08:59.78,0:09:01.33,Cap,,0,0,0,,{\fad(80,80)}{\kf24}who {\kf12}was {\kf24}always {\kf26}right {\kf24}about {\kf30}color
+Dialogue: 1,0:09:01.18,0:09:02.79,Cap,,0,0,0,,{\fad(80,80)}{\kf22}and {\kf30}never {\kf30}let {\kf12}me {\kf34}forget {\kf18}it,
+Dialogue: 1,0:09:02.84,0:09:03.81,Cap,,0,0,0,,{\fad(80,80)}{\kf20}made {\kf26}me {\kf36}promise
+Dialogue: 1,0:09:03.66,0:09:05.73,Cap,,0,0,0,,{\fad(80,80)}{\kf62}never {\kf38}to {\kf28}sell {\kf28}a {\kf18}man {\kf18}a
+Dialogue: 1,0:09:05.58,0:09:06.59,Cap,,0,0,0,,{\fad(80,80)}{\kf20}black {\kf66}overcoat
+Dialogue: 1,0:09:06.44,0:09:07.89,Cap,,0,0,0,,{\fad(80,80)}{\kf24}before {\kf58}showing {\kf22}him {\kf26}charcoal.
+Dialogue: 1,0:09:08.32,0:09:09.63,Cap,,0,0,0,,{\fad(80,80)}{\kf18}And {\kf14}she {\kf12}was {\kf22}right {\kf18}as {\kf32}usual
+Dialogue: 1,0:09:09.48,0:09:11.95,Cap,,0,0,0,,{\fad(80,80)}{\kf66}because {\kf32}black {\kf42}goes {\kf36}flat {\kf30}in {\kf26}daylight
+Dialogue: 1,0:09:11.80,0:09:13.89,Cap,,0,0,0,,{\fad(80,80)}{\kf34}and {\kf60}shows {\kf30}every {\kf44}speck {\kf10}of {\kf16}linen
+Dialogue: 1,0:09:13.74,0:09:15.75,Cap,,0,0,0,,{\fad(80,80)}{\kf42}while {\kf32}charcoal {\kf48}has {\kf32}life {\kf22}in {\kf10}it
+Dialogue: 1,0:09:15.60,0:09:16.99,Cap,,0,0,0,,{\fad(80,80)}{\kf24}and {\kf20}sits {\kf34}well {\kf22}with {\kf24}navy,
+Dialogue: 1,0:09:17.56,0:09:18.87,Cap,,0,0,0,,{\fad(80,80)}{\kf1}brown {\kf44}and {\kf26}gray {\kf46}alike.
+Dialogue: 1,0:09:19.24,0:09:21.83,Cap,,0,0,0,,{\fad(80,80)}{\kf48}Here's {\kf54}how {\kf48}it {\kf30}should {\kf64}fit.
+Dialogue: 1,0:09:22.28,0:09:23.41,Cap,,0,0,0,,{\fad(80,80)}{\kf8}It {\kf26}falls {\kf22}to {\kf14}the {\kf14}knee {\kf14}or
+Dialogue: 1,0:09:23.26,0:09:23.95,Cap,,0,0,0,,{\fad(80,80)}{\kf8}a {\kf16}touch {\kf30}below.
+Dialogue: 1,0:09:24.38,0:09:25.61,Cap,,0,0,0,,{\fad(80,80)}{\kf4}The {\kf22}shoulders {\kf42}sit {\kf10}at {\kf12}the {\kf18}edge
+Dialogue: 1,0:09:25.46,0:09:25.99,Cap,,0,0,0,,{\fad(80,80)}{\kf12}of {\kf26}yours
+Dialogue: 1,0:09:25.84,0:09:27.43,Cap,,0,0,0,,{\fad(80,80)}{\kf56}and {\kf12}the {\kf18}sleeves {\kf32}are {\kf12}a {\kf14}little
+Dialogue: 1,0:09:27.28,0:09:28.79,Cap,,0,0,0,,{\fad(80,80)}{\kf38}longer {\kf24}than {\kf12}your {\kf30}jacket {\kf32}sleeves.
+Dialogue: 1,0:09:29.12,0:09:31.29,Cap,,0,0,0,,{\fad(80,80)}{\kf16}So {\kf16}your {\kf44}jacket {\kf30}cuff {\kf38}just {\kf58}disappears
+Dialogue: 1,0:09:31.14,0:09:31.67,Cap,,0,0,0,,{\fad(80,80)}{\kf38}underneath.
+Dialogue: 1,0:09:32.36,0:09:33.41,Cap,,0,0,0,,{\fad(80,80)}{\kf26}Look {\kf20}at {\kf14}the {\kf30}gorge.
+Dialogue: 1,0:09:34.00,0:09:35.63,Cap,,0,0,0,,{\fad(80,80)}{\kf6}The {\kf26}seam {\kf42}where {\kf14}the {\kf22}color {\kf38}meets
+Dialogue: 1,0:09:35.48,0:09:36.23,Cap,,0,0,0,,{\fad(80,80)}{\kf26}the {\kf34}lapel
+Dialogue: 1,0:09:36.58,0:09:38.13,Cap,,0,0,0,,{\fad(80,80)}{\kf26}and {\kf12}it {\kf14}should {\kf28}sit {\kf24}neat {\kf36}and
+Dialogue: 1,0:09:37.98,0:09:39.69,Cap,,0,0,0,,{\fad(80,80)}{\kf26}level {\kf30}with {\kf24}no {\kf30}gap {\kf26}and {\kf20}no
+Dialogue: 1,0:09:39.54,0:09:39.97,Cap,,0,0,0,,{\fad(80,80)}{\kf28}ripple.
+Dialogue: 1,0:09:39.82,0:09:41.87,Cap,,0,0,0,,{\fad(80,80)}{\kf62}Button {\kf18}it {\kf16}over {\kf24}your {\kf40}thickest {\kf30}sweater.
+Dialogue: 1,0:09:42.30,0:09:43.65,Cap,,0,0,0,,{\fad(80,80)}{\kf18}Do {\kf16}the {\kf18}arm {\kf26}lifting {\kf42}check
+Dialogue: 1,0:09:43.50,0:09:45.01,Cap,,0,0,0,,{\fad(80,80)}{\kf54}and {\kf12}if {\kf10}it {\kf14}all {\kf46}holds,
+Dialogue: 1,0:09:45.20,0:09:46.23,Cap,,0,0,0,,{\fad(80,80)}{\kf50}Bob's {\kf8}your {\kf30}uncle.
+Dialogue: 1,0:09:46.50,0:09:47.77,Cap,,0,0,0,,{\fad(80,80)}{\kf16}You {\kf12}have {\kf8}a {\kf26}coat {\kf32}that {\kf18}will
+Dialogue: 1,0:09:47.62,0:09:49.61,Cap,,0,0,0,,{\fad(80,80)}{\kf30}see {\kf28}you {\kf30}through {\kf56}20 {\kf40}winters
+Dialogue: 1,0:09:49.96,0:09:51.67,Cap,,0,0,0,,{\fad(80,80)}{\kf26}and {\kf20}none {\kf22}of {\kf16}this {\kf28}means {\kf44}throwing
+Dialogue: 1,0:09:51.52,0:09:53.15,Cap,,0,0,0,,{\fad(80,80)}{\kf32}out {\kf14}the {\kf22}coat {\kf20}you {\kf18}already {\kf42}own.
+Dialogue: 1,0:09:53.26,0:09:54.97,Cap,,0,0,0,,{\fad(80,80)}{\kf12}If {\kf18}yours {\kf54}passes {\kf36}these {\kf36}checks,
+Dialogue: 1,0:09:55.20,0:09:57.03,Cap,,0,0,0,,{\fad(80,80)}{\kf40}keep {\kf22}it {\kf28}and {\kf30}wear {\kf26}it {\kf22}with
+Dialogue: 1,0:09:56.88,0:09:57.37,Cap,,0,0,0,,{\fad(80,80)}{\kf34}pride.
+Dialogue: 1,0:09:57.86,0:09:59.41,Cap,,0,0,0,,{\fad(80,80)}{\kf12}And {\kf16}if {\kf10}it {\kf32}fails {\kf54}only {\kf16}on
+Dialogue: 1,0:09:59.26,0:09:59.73,Cap,,0,0,0,,{\fad(80,80)}{\kf12}the {\kf20}sleeves,
+Dialogue: 1,0:10:00.18,0:10:01.61,Cap,,0,0,0,,{\fad(80,80)}{\kf18}a {\kf26}small {\kf30}trip {\kf24}to {\kf10}the {\kf20}tailor
+Dialogue: 1,0:10:01.46,0:10:02.37,Cap,,0,0,0,,{\fad(80,80)}{\kf32}will {\kf20}sort {\kf24}it.
+Dialogue: 1,0:10:02.56,0:10:03.79,Cap,,0,0,0,,{\fad(80,80)}{\kf26}So {\kf68}that's {\kf14}it,
+Dialogue: 1,0:10:04.12,0:10:04.87,Cap,,0,0,0,,{\fad(80,80)}{\kf24}my {\kf36}friend.
+Dialogue: 1,0:10:05.22,0:10:06.57,Cap,,0,0,0,,{\fad(80,80)}{\kf18}Try {\kf20}it {\kf8}on {\kf14}over {\kf20}your {\kf40}thickest
+Dialogue: 1,0:10:06.42,0:10:06.77,Cap,,0,0,0,,{\fad(80,80)}{\kf20}layer,
+Dialogue: 1,0:10:07.10,0:10:07.95,Cap,,0,0,0,,{\fad(80,80)}{\kf14}check {\kf20}the {\kf36}shoulders,
+Dialogue: 1,0:10:08.18,0:10:08.99,Cap,,0,0,0,,{\fad(80,80)}{\kf22}lift {\kf20}your {\kf24}arms
+Dialogue: 1,0:10:08.84,0:10:10.17,Cap,,0,0,0,,{\fad(80,80)}{\kf20}and {\kf18}buy {\kf24}room {\kf20}for {\kf18}one {\kf18}good
+Dialogue: 1,0:10:10.02,0:10:11.21,Cap,,0,0,0,,{\fad(80,80)}{\kf22}sweater {\kf30}and {\kf18}no {\kf34}more.
+Dialogue: 1,0:10:11.28,0:10:11.99,Cap,,0,0,0,,{\fad(80,80)}{\kf26}Measure {\kf30}twice.
+Dialogue: 1,0:10:12.48,0:10:14.79,Cap,,0,0,0,,{\fad(80,80)}{\kf34}Buy {\kf48}once {\kf74}and {\kf14}a {\kf20}good {\kf26}coat
+Dialogue: 1,0:10:14.64,0:10:15.63,Cap,,0,0,0,,{\fad(80,80)}{\kf20}will {\kf20}look {\kf22}after {\kf22}you
+Dialogue: 1,0:10:15.48,0:10:17.31,Cap,,0,0,0,,{\fad(80,80)}{\kf18}for {\kf26}longer {\kf30}than {\kf16}almost {\kf48}anything {\kf30}else
+Dialogue: 1,0:10:17.16,0:10:17.75,Cap,,0,0,0,,{\fad(80,80)}{\kf20}you {\kf24}own.
+Dialogue: 1,0:10:17.94,0:10:18.35,Cap,,0,0,0,,{\fad(80,80)}{\kf26}Tonight,
+Dialogue: 1,0:10:18.30,0:10:21.33,Cap,,0,0,0,,{\fad(80,80)}{\kf80}try {\kf82}just {\kf56}one {\kf70}thing.
+Dialogue: 1,0:10:21.64,0:10:22.81,Cap,,0,0,0,,{\fad(80,80)}{\kf20}Put {\kf16}on {\kf12}the {\kf18}coat {\kf20}you {\kf16}wear
+Dialogue: 1,0:10:22.66,0:10:23.05,Cap,,0,0,0,,{\fad(80,80)}{\kf24}most,
+Dialogue: 1,0:10:23.30,0:10:24.55,Cap,,0,0,0,,{\fad(80,80)}{\kf30}stand {\kf24}in {\kf12}front {\kf14}of {\kf10}the {\kf20}mirror,
+Dialogue: 1,0:10:24.88,0:10:26.75,Cap,,0,0,0,,{\fad(80,80)}{\kf28}lift {\kf20}both {\kf32}arms {\kf46}and {\kf22}see {\kf24}where
+Dialogue: 1,0:10:26.60,0:10:27.59,Cap,,0,0,0,,{\fad(80,80)}{\kf14}the {\kf20}hem {\kf26}ends {\kf24}up.
+Dialogue: 1,0:10:27.76,0:10:29.15,Cap,,0,0,0,,{\fad(80,80)}{\kf18}Tell {\kf24}me {\kf20}what {\kf30}happened {\kf22}in {\kf10}the
+Dialogue: 1,0:10:29.00,0:10:29.45,Cap,,0,0,0,,{\fad(80,80)}{\kf30}comments
+Dialogue: 1,0:10:29.96,0:10:31.37,Cap,,0,0,0,,{\fad(80,80)}{\kf22}and {\kf22}tell {\kf16}me {\kf20}where {\kf14}you're {\kf32}watching
+Dialogue: 1,0:10:31.22,0:10:31.73,Cap,,0,0,0,,{\fad(80,80)}{\kf36}from
+Dialogue: 1,0:10:31.58,0:10:33.03,Cap,,0,0,0,,{\fad(80,80)}{\kf62}because {\kf22}I {\kf14}read {\kf32}everyone
+Dialogue: 1,0:10:33.36,0:10:35.15,Cap,,0,0,0,,{\fad(80,80)}{\kf22}and {\kf14}my {\kf42}granddaughter {\kf46}Poppy {\kf22}says {\kf18}I
+Dialogue: 1,0:10:35.00,0:10:36.17,Cap,,0,0,0,,{\fad(80,80)}{\kf16}read {\kf20}them {\kf20}far {\kf18}too {\kf28}carefully.
+Dialogue: 1,0:10:36.36,0:10:37.63,Cap,,0,0,0,,{\fad(80,80)}{\kf36}Poppy {\kf12}has {\kf12}been {\kf20}trying {\kf18}to {\kf14}get
+Dialogue: 1,0:10:37.48,0:10:38.57,Cap,,0,0,0,,{\fad(80,80)}{\kf14}me {\kf16}into {\kf8}a {\kf24}padded {\kf32}coat
+Dialogue: 1,0:10:38.42,0:10:40.47,Cap,,0,0,0,,{\fad(80,80)}{\kf46}and {\kf20}white {\kf40}sneaker {\kf26}since {\kf30}last {\kf28}winter.
+Dialogue: 1,0:10:40.74,0:10:42.03,Cap,,0,0,0,,{\fad(80,80)}{\kf1}And {\kf10}I'll {\kf26}admit {\kf26}the {\kf24}padded {\kf28}coat
+Dialogue: 1,0:10:41.88,0:10:42.97,Cap,,0,0,0,,{\fad(80,80)}{\kf18}made {\kf18}it {\kf12}onto {\kf28}my {\kf18}list,
+Dialogue: 1,0:10:43.14,0:10:45.33,Cap,,0,0,0,,{\fad(80,80)}{\kf24}but {\kf16}the {\kf24}sneakers {\kf68}are {\kf32}staying {\kf40}in
+Dialogue: 1,0:10:45.18,0:10:45.75,Cap,,0,0,0,,{\fad(80,80)}{\kf14}the {\kf28}shop.
+Dialogue: 1,0:10:45.96,0:10:47.33,Cap,,0,0,0,,{\fad(80,80)}{\kf14}Next {\kf28}time {\kf14}we'll {\kf20}talk {\kf22}about {\kf24}shirt
+Dialogue: 1,0:10:47.18,0:10:47.67,Cap,,0,0,0,,{\fad(80,80)}{\kf34}colors
+Dialogue: 1,0:10:47.52,0:10:49.27,Cap,,0,0,0,,{\fad(80,80)}{\kf54}and {\kf16}why {\kf26}yours {\kf30}gaps {\kf26}at {\kf8}the
+Dialogue: 1,0:10:49.12,0:10:49.49,Cap,,0,0,0,,{\fad(80,80)}{\kf22}back
+Dialogue: 1,0:10:49.34,0:10:50.99,Cap,,0,0,0,,{\fad(80,80)}{\kf32}even {\kf24}when {\kf18}it's {\kf28}exactly {\kf30}the {\kf18}right
+Dialogue: 1,0:10:50.84,0:10:51.35,Cap,,0,0,0,,{\fad(80,80)}{\kf36}size.
+Dialogue: 1,0:10:51.68,0:10:52.37,Cap,,0,0,0,,{\fad(80,80)}{\kf20}Stay {\kf34}sharp,
+Dialogue: 1,0:10:52.56,0:10:53.17,Cap,,0,0,0,,{\fad(80,80)}{\kf20}my {\kf26}friend.
+Dialogue: 1,0:10:53.58,0:10:54.77,Cap,,0,0,0,,{\fad(80,80)}{\kf4}And {\kf12}I'll {\kf20}see {\kf22}you {\kf34}at {\kf12}the
+Dialogue: 1,0:10:54.62,0:10:55.17,Cap,,0,0,0,,{\fad(80,80)}{\kf20}next {\kf20}meeting.
+Dialogue: 2,0:00:05.40,0:00:08.30,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Something is wrong... AGAIN
+Dialogue: 2,0:00:08.90,0:00:10.70,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Sleeves swallow your hands
+Dialogue: 2,0:00:11.30,0:00:13.10,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Shoulders slump down
+Dialogue: 2,0:00:15.00,0:00:18.10,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Rides up — lets the cold in
+Dialogue: 2,0:00:26.80,0:00:30.30,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}It's NOT you.
+Dialogue: 2,0:00:30.90,0:00:33.90,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Nobody taught you how a coat should fit
+Dialogue: 3,0:00:36.80,0:00:36.84,Big,,0,0,0,,{\an5\pos(960,460)}0 COATS
+Dialogue: 3,0:00:36.84,0:00:36.89,Big,,0,0,0,,{\an5\pos(960,460)}0 COATS
+Dialogue: 3,0:00:36.89,0:00:36.93,Big,,0,0,0,,{\an5\pos(960,460)}1 COATS
+Dialogue: 3,0:00:36.93,0:00:36.98,Big,,0,0,0,,{\an5\pos(960,460)}1 COATS
+Dialogue: 3,0:00:36.98,0:00:37.02,Big,,0,0,0,,{\an5\pos(960,460)}1 COATS
+Dialogue: 3,0:00:37.02,0:00:37.07,Big,,0,0,0,,{\an5\pos(960,460)}2 COATS
+Dialogue: 3,0:00:37.07,0:00:37.11,Big,,0,0,0,,{\an5\pos(960,460)}2 COATS
+Dialogue: 3,0:00:37.11,0:00:37.16,Big,,0,0,0,,{\an5\pos(960,460)}2 COATS
+Dialogue: 3,0:00:37.16,0:00:37.20,Big,,0,0,0,,{\an5\pos(960,460)}2 COATS
+Dialogue: 3,0:00:37.20,0:00:37.25,Big,,0,0,0,,{\an5\pos(960,460)}2 COATS
+Dialogue: 3,0:00:37.25,0:00:37.29,Big,,0,0,0,,{\an5\pos(960,460)}3 COATS
+Dialogue: 3,0:00:37.29,0:00:37.34,Big,,0,0,0,,{\an5\pos(960,460)}3 COATS
+Dialogue: 3,0:00:37.34,0:00:37.38,Big,,0,0,0,,{\an5\pos(960,460)}3 COATS
+Dialogue: 3,0:00:37.38,0:00:37.43,Big,,0,0,0,,{\an5\pos(960,460)}4 COATS
+Dialogue: 3,0:00:37.43,0:00:37.47,Big,,0,0,0,,{\an5\pos(960,460)}4 COATS
+Dialogue: 3,0:00:37.47,0:00:37.52,Big,,0,0,0,,{\an5\pos(960,460)}4 COATS
+Dialogue: 3,0:00:37.52,0:00:37.56,Big,,0,0,0,,{\an5\pos(960,460)}4 COATS
+Dialogue: 3,0:00:37.56,0:00:37.61,Big,,0,0,0,,{\an5\pos(960,460)}4 COATS
+Dialogue: 3,0:00:37.61,0:00:37.65,Big,,0,0,0,,{\an5\pos(960,460)}5 COATS
+Dialogue: 3,0:00:37.65,0:00:40.30,Big,,0,0,0,,{\an5\pos(960,460)}5 COATS
+Dialogue: 2,0:00:40.90,0:00:45.50,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}#1 = the ONE coat for life
+Dialogue: 2,0:00:46.10,0:00:51.50,Lower,,0,0,0,,{\fad(300,300)\move(40,910,90,910,0,300)}MALCOLM ASHBY  {\c&H33CCFF&}• Tailor, 72
+Dialogue: 3,0:00:55.90,0:00:55.96,Big,,0,0,0,,{\an5\pos(960,460)}2 YEARS
+Dialogue: 3,0:00:55.96,0:00:56.03,Big,,0,0,0,,{\an5\pos(960,460)}5 YEARS
+Dialogue: 3,0:00:56.03,0:00:56.09,Big,,0,0,0,,{\an5\pos(960,460)}8 YEARS
+Dialogue: 3,0:00:56.09,0:00:56.16,Big,,0,0,0,,{\an5\pos(960,460)}10 YEARS
+Dialogue: 3,0:00:56.16,0:00:56.23,Big,,0,0,0,,{\an5\pos(960,460)}12 YEARS
+Dialogue: 3,0:00:56.23,0:00:56.29,Big,,0,0,0,,{\an5\pos(960,460)}15 YEARS
+Dialogue: 3,0:00:56.29,0:00:56.35,Big,,0,0,0,,{\an5\pos(960,460)}18 YEARS
+Dialogue: 3,0:00:56.35,0:00:56.42,Big,,0,0,0,,{\an5\pos(960,460)}20 YEARS
+Dialogue: 3,0:00:56.42,0:00:56.48,Big,,0,0,0,,{\an5\pos(960,460)}22 YEARS
+Dialogue: 3,0:00:56.48,0:00:56.55,Big,,0,0,0,,{\an5\pos(960,460)}25 YEARS
+Dialogue: 3,0:00:56.55,0:00:56.62,Big,,0,0,0,,{\an5\pos(960,460)}28 YEARS
+Dialogue: 3,0:00:56.62,0:00:56.68,Big,,0,0,0,,{\an5\pos(960,460)}30 YEARS
+Dialogue: 3,0:00:56.68,0:00:56.74,Big,,0,0,0,,{\an5\pos(960,460)}32 YEARS
+Dialogue: 3,0:00:56.74,0:00:56.81,Big,,0,0,0,,{\an5\pos(960,460)}35 YEARS
+Dialogue: 3,0:00:56.81,0:00:56.88,Big,,0,0,0,,{\an5\pos(960,460)}38 YEARS
+Dialogue: 3,0:00:56.88,0:00:56.94,Big,,0,0,0,,{\an5\pos(960,460)}40 YEARS
+Dialogue: 3,0:00:56.94,0:00:57.00,Big,,0,0,0,,{\an5\pos(960,460)}42 YEARS
+Dialogue: 3,0:00:57.00,0:00:57.07,Big,,0,0,0,,{\an5\pos(960,460)}45 YEARS
+Dialogue: 3,0:00:57.07,0:00:57.13,Big,,0,0,0,,{\an5\pos(960,460)}48 YEARS
+Dialogue: 3,0:00:57.13,0:01:00.60,Big,,0,0,0,,{\an5\pos(960,460)}50 YEARS
+Dialogue: 2,0:01:01.30,0:01:04.30,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Bankers • Bus drivers • Grooms • Grandfathers
+Dialogue: 2,0:01:04.50,0:01:07.70,Lower,,0,0,0,,{\fad(300,300)\move(40,910,90,910,0,300)}A small shop in London
+Dialogue: 2,0:01:08.00,0:01:14.20,Lower,,0,0,0,,{\fad(300,300)\move(40,910,90,910,0,300)}Evelyn {\c&H33CCFF&}• kept the books
+Dialogue: 3,0:01:16.70,0:01:22.00,Quote,,0,0,0,,{\an5\pos(960,470)\fad(400,400)\blur1}Why "extra room"\Ncan make you {\c&H33CCFF&}COLDER
+Dialogue: 3,0:01:26.00,0:01:29.00,Big,,0,0,0,,{\an5\pos(960,470)\fscx40\fscy40\t(0,250,\fscx105\fscy105)\t(250,380,\fscx100\fscy100)\fad(0,300)}4 CHECKS
+Dialogue: 2,0:01:30.70,0:01:34.70,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Before you look at a single coat
+Dialogue: 3,0:01:35.40,0:01:39.40,Num,,0,0,0,,{\an5\pos(960,390)\fscx20\fscy20\t(0,260,\fscx118\fscy118)\t(260,420,\fscx100\fscy100)\fad(0,300)}1
+Dialogue: 3,0:01:35.75,0:01:39.40,Title,,0,0,0,,{\an5\pos(960,640)\fad(250,300)\move(960,710,960,640,0,320)}TRY IT OVER YOUR THICKEST LAYER
+Dialogue: 2,0:01:39.50,0:02:04.00,Badge,,0,0,0,,{\fad(300,300)}CHECK 1 • THICKEST LAYER
+Dialogue: 2,0:01:39.90,0:01:43.30,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Thin shirt in the shop...
+Dialogue: 2,0:01:49.40,0:01:55.20,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}...thick sweater in January = TOO TIGHT
+Dialogue: 2,0:01:55.70,0:02:03.10,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Shop wearing jacket + sweater
+Dialogue: 3,0:02:04.20,0:02:08.20,Num,,0,0,0,,{\an5\pos(960,390)\fscx20\fscy20\t(0,260,\fscx118\fscy118)\t(260,420,\fscx100\fscy100)\fad(0,300)}2
+Dialogue: 3,0:02:04.55,0:02:08.20,Title,,0,0,0,,{\an5\pos(960,640)\fad(250,300)\move(960,710,960,640,0,320)}THE SHOULDERS
+Dialogue: 2,0:02:08.40,0:02:34.60,Badge,,0,0,0,,{\fad(300,300)}CHECK 2 • SHOULDERS
+Dialogue: 3,0:02:09.30,0:02:11.80,Quote,,0,0,0,,{\an5\pos(960,470)\fad(400,400)\blur1}"The shoulders never lie."
+Dialogue: 2,0:02:12.10,0:02:18.10,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Seam at the EDGE of your shoulder
+Dialogue: 2,0:02:18.60,0:02:21.40,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Sleeves: easy fix
+Dialogue: 3,0:02:21.90,0:02:21.95,Big,,0,0,0,,{\an5\pos(960,460)}$10
+Dialogue: 3,0:02:21.95,0:02:22.00,Big,,0,0,0,,{\an5\pos(960,460)}$20
+Dialogue: 3,0:02:22.00,0:02:22.05,Big,,0,0,0,,{\an5\pos(960,460)}$30
+Dialogue: 3,0:02:22.05,0:02:22.10,Big,,0,0,0,,{\an5\pos(960,460)}$40
+Dialogue: 3,0:02:22.10,0:02:22.15,Big,,0,0,0,,{\an5\pos(960,460)}$50
+Dialogue: 3,0:02:22.15,0:02:22.20,Big,,0,0,0,,{\an5\pos(960,460)}$60
+Dialogue: 3,0:02:22.20,0:02:22.25,Big,,0,0,0,,{\an5\pos(960,460)}$70
+Dialogue: 3,0:02:22.25,0:02:22.30,Big,,0,0,0,,{\an5\pos(960,460)}$80
+Dialogue: 3,0:02:22.30,0:02:22.35,Big,,0,0,0,,{\an5\pos(960,460)}$90
+Dialogue: 3,0:02:22.35,0:02:22.40,Big,,0,0,0,,{\an5\pos(960,460)}$100
+Dialogue: 3,0:02:22.40,0:02:22.45,Big,,0,0,0,,{\an5\pos(960,460)}$110
+Dialogue: 3,0:02:22.45,0:02:22.50,Big,,0,0,0,,{\an5\pos(960,460)}$120
+Dialogue: 3,0:02:22.50,0:02:22.55,Big,,0,0,0,,{\an5\pos(960,460)}$130
+Dialogue: 3,0:02:22.55,0:02:22.60,Big,,0,0,0,,{\an5\pos(960,460)}$140
+Dialogue: 3,0:02:22.60,0:02:22.65,Big,,0,0,0,,{\an5\pos(960,460)}$150
+Dialogue: 3,0:02:22.65,0:02:22.70,Big,,0,0,0,,{\an5\pos(960,460)}$160
+Dialogue: 3,0:02:22.70,0:02:22.75,Big,,0,0,0,,{\an5\pos(960,460)}$170
+Dialogue: 3,0:02:22.75,0:02:22.80,Big,,0,0,0,,{\an5\pos(960,460)}$180
+Dialogue: 3,0:02:22.80,0:02:22.85,Big,,0,0,0,,{\an5\pos(960,460)}$190
+Dialogue: 3,0:02:22.85,0:02:28.50,Big,,0,0,0,,{\an5\pos(960,460)}$200
+Dialogue: 3,0:02:22.90,0:02:28.50,Title,,0,0,0,,{\an5\pos(960,650)\fad(250,250)}to move a shoulder
+Dialogue: 2,0:02:28.90,0:02:34.00,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Shoulders wrong? Put it BACK.
+Dialogue: 3,0:02:34.80,0:02:38.80,Num,,0,0,0,,{\an5\pos(960,390)\fscx20\fscy20\t(0,260,\fscx118\fscy118)\t(260,420,\fscx100\fscy100)\fad(0,300)}3
+Dialogue: 3,0:02:35.15,0:02:38.80,Title,,0,0,0,,{\an5\pos(960,640)\fad(250,300)\move(960,710,960,640,0,320)}MOVE IN IT
+Dialogue: 2,0:02:39.00,0:02:59.70,Badge,,0,0,0,,{\fad(300,300)}CHECK 3 • MOVE
+Dialogue: 2,0:02:41.30,0:02:44.90,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}① Arms out in front
+Dialogue: 2,0:02:45.20,0:02:47.10,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}② Reach for the top shelf
+Dialogue: 2,0:02:47.90,0:02:49.30,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}③ Fold across your chest
+Dialogue: 2,0:02:49.70,0:02:56.40,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Jumps to your belt? TOO SMALL
+Dialogue: 3,0:02:59.90,0:03:03.90,Num,,0,0,0,,{\an5\pos(960,390)\fscx20\fscy20\t(0,260,\fscx118\fscy118)\t(260,420,\fscx100\fscy100)\fad(0,300)}4
+Dialogue: 3,0:03:00.25,0:03:03.90,Title,,0,0,0,,{\an5\pos(960,640)\fad(250,300)\move(960,710,960,640,0,320)}THE SLEEVES
+Dialogue: 2,0:03:04.10,0:03:27.30,Badge,,0,0,0,,{\fad(300,300)}CHECK 4 • SLEEVES
+Dialogue: 2,0:03:01.70,0:03:06.10,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Hinge of the wrist — covers jacket cuff
+Dialogue: 3,0:03:09.80,0:03:09.84,Big,,0,0,0,,{\an5\pos(960,420)}$2
+Dialogue: 3,0:03:09.84,0:03:09.87,Big,,0,0,0,,{\an5\pos(960,420)}$4
+Dialogue: 3,0:03:09.87,0:03:09.91,Big,,0,0,0,,{\an5\pos(960,420)}$5
+Dialogue: 3,0:03:09.91,0:03:09.94,Big,,0,0,0,,{\an5\pos(960,420)}$7
+Dialogue: 3,0:03:09.94,0:03:09.98,Big,,0,0,0,,{\an5\pos(960,420)}$9
+Dialogue: 3,0:03:09.98,0:03:10.01,Big,,0,0,0,,{\an5\pos(960,420)}$10
+Dialogue: 3,0:03:10.01,0:03:10.05,Big,,0,0,0,,{\an5\pos(960,420)}$12
+Dialogue: 3,0:03:10.05,0:03:10.08,Big,,0,0,0,,{\an5\pos(960,420)}$14
+Dialogue: 3,0:03:10.08,0:03:10.12,Big,,0,0,0,,{\an5\pos(960,420)}$16
+Dialogue: 3,0:03:10.12,0:03:10.15,Big,,0,0,0,,{\an5\pos(960,420)}$18
+Dialogue: 3,0:03:10.15,0:03:10.19,Big,,0,0,0,,{\an5\pos(960,420)}$19
+Dialogue: 3,0:03:10.19,0:03:10.22,Big,,0,0,0,,{\an5\pos(960,420)}$21
+Dialogue: 3,0:03:10.22,0:03:10.26,Big,,0,0,0,,{\an5\pos(960,420)}$23
+Dialogue: 3,0:03:10.26,0:03:10.29,Big,,0,0,0,,{\an5\pos(960,420)}$24
+Dialogue: 3,0:03:10.29,0:03:10.33,Big,,0,0,0,,{\an5\pos(960,420)}$26
+Dialogue: 3,0:03:10.33,0:03:10.36,Big,,0,0,0,,{\an5\pos(960,420)}$28
+Dialogue: 3,0:03:10.36,0:03:10.40,Big,,0,0,0,,{\an5\pos(960,420)}$30
+Dialogue: 3,0:03:10.40,0:03:10.43,Big,,0,0,0,,{\an5\pos(960,420)}$32
+Dialogue: 3,0:03:10.43,0:03:10.47,Big,,0,0,0,,{\an5\pos(960,420)}$33
+Dialogue: 3,0:03:10.47,0:03:13.50,Big,,0,0,0,,{\an5\pos(960,420)}$35
+Dialogue: 3,0:03:10.60,0:03:13.50,Big,,0,0,0,,{\an5\pos(960,610)\fscx70\fscy70\c&H33CCFF&\fad(200,0)}to $65
+Dialogue: 3,0:03:14.30,0:03:19.00,Quote,,0,0,0,,{\an5\pos(960,470)\fad(400,400)\blur1}"Measure it again, lad."
+Dialogue: 2,0:03:22.40,0:03:26.90,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Pin it • Mirror • Measure again
+Dialogue: 3,0:03:27.50,0:03:30.60,Big,,0,0,0,,{\an5\pos(960,470)\fscx40\fscy40\t(0,250,\fscx105\fscy105)\t(250,380,\fscx100\fscy100)\fad(0,300)}THE COATS
+Dialogue: 3,0:03:30.80,0:03:34.80,Num,,0,0,0,,{\an5\pos(960,390)\fscx20\fscy20\t(0,260,\fscx118\fscy118)\t(260,420,\fscx100\fscy100)\fad(0,300)}#5
+Dialogue: 3,0:03:31.15,0:03:34.80,Title,,0,0,0,,{\an5\pos(960,640)\fad(250,300)\move(960,710,960,640,0,320)}THE WOOL CAR COAT
+Dialogue: 2,0:03:35.00,0:04:09.20,Badge,,0,0,0,,{\fad(300,300)}#5 • CAR COAT
+Dialogue: 2,0:03:39.20,0:03:42.90,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Single-breasted • Mid-thigh
+Dialogue: 2,0:03:43.30,0:03:50.30,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Sit in a car or bus — no bunching
+Dialogue: 2,0:03:50.80,0:03:54.60,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Covers the seat of your trousers
+Dialogue: 2,0:03:55.20,0:04:00.10,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Bend to tie your shoe — no tent
+Dialogue: 3,0:04:00.70,0:04:05.60,Badge,,0,0,0,,{\an7\pos(260,780)\3c&H5A2A12&\fad(200,0)\fscx40\fscy40\t(0,200,\fscx100\fscy100)}NAVY
+Dialogue: 3,0:04:01.60,0:04:05.60,Badge,,0,0,0,,{\an7\pos(740,780)\3c&H4A4A4A&\fad(200,0)\fscx40\fscy40\t(0,200,\fscx100\fscy100)}CHARCOAL
+Dialogue: 3,0:04:02.50,0:04:05.60,Badge,,0,0,0,,{\an7\pos(1220,780)\3c&H2A4A7A&\fad(200,0)\fscx40\fscy40\t(0,200,\fscx100\fscy100)}SOFT BROWN
+Dialogue: 3,0:04:09.40,0:04:13.40,Num,,0,0,0,,{\an5\pos(960,390)\fscx20\fscy20\t(0,260,\fscx118\fscy118)\t(260,420,\fscx100\fscy100)\fad(0,300)}#4
+Dialogue: 3,0:04:09.75,0:04:13.40,Title,,0,0,0,,{\an5\pos(960,640)\fad(250,300)\move(960,710,960,640,0,320)}THE PADDED COAT
+Dialogue: 2,0:04:13.60,0:04:55.70,Badge,,0,0,0,,{\fad(300,300)}#4 • PADDED COAT
+Dialogue: 2,0:04:20.80,0:04:26.40,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Warmer & lighter than wool
+Dialogue: 2,0:04:30.00,0:04:38.50,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Mistake: buying a size TOO BIG
+Dialogue: 3,0:04:39.20,0:04:42.30,Quote,,0,0,0,,{\an5\pos(960,470)\fad(400,400)\blur1}"A bag with a man inside it."
+Dialogue: 2,0:04:42.50,0:04:46.50,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Sit close — room for ONE sweater
+Dialogue: 2,0:04:51.30,0:04:55.20,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Hem rides up? Size up in LENGTH, not width
+Dialogue: 4,0:04:59.70,0:05:06.00,Red,,0,0,0,,{\an5\pos(780,560)\fscx30\fscy30\t(0,250,\fscx110\fscy110)\t(250,400,\fscx100\fscy100)\fad(0,300)}LIKE
+Dialogue: 4,0:05:02.90,0:05:07.80,Red,,0,0,0,,{\an5\pos(1150,560)\fscx30\fscy30\t(0,250,\fscx110\fscy110)\t(250,400,\fscx100\fscy100)\fad(0,300)}SUBSCRIBE
+Dialogue: 3,0:05:21.80,0:05:25.80,Num,,0,0,0,,{\an5\pos(960,390)\fscx20\fscy20\t(0,260,\fscx118\fscy118)\t(260,420,\fscx100\fscy100)\fad(0,300)}#3
+Dialogue: 3,0:05:22.15,0:05:25.80,Title,,0,0,0,,{\an5\pos(960,640)\fad(250,300)\move(960,710,960,640,0,320)}HERRINGBONE WOOL
+Dialogue: 2,0:05:26.00,0:06:31.80,Badge,,0,0,0,,{\fad(300,300)}#3 • HERRINGBONE
+Dialogue: 2,0:05:40.00,0:05:43.20,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Zig-zag weave — like fish bones
+Dialogue: 3,0:05:46.60,0:05:48.80,Quote,,0,0,0,,{\an5\pos(960,470)\fad(400,400)\blur1}Texture hides\N{\c&H33CCFF&}EVERYTHING
+Dialogue: 2,0:05:49.30,0:05:58.40,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Rain spots • Lint • Creases • Shine
+Dialogue: 3,0:05:58.90,0:05:58.94,Big,,0,0,0,,{\an5\pos(960,460)}0 WINTERS
+Dialogue: 3,0:05:58.94,0:05:58.97,Big,,0,0,0,,{\an5\pos(960,460)}0 WINTERS
+Dialogue: 3,0:05:58.97,0:05:59.00,Big,,0,0,0,,{\an5\pos(960,460)}1 WINTERS
+Dialogue: 3,0:05:59.00,0:05:59.04,Big,,0,0,0,,{\an5\pos(960,460)}1 WINTERS
+Dialogue: 3,0:05:59.04,0:05:59.07,Big,,0,0,0,,{\an5\pos(960,460)}1 WINTERS
+Dialogue: 3,0:05:59.07,0:05:59.11,Big,,0,0,0,,{\an5\pos(960,460)}2 WINTERS
+Dialogue: 3,0:05:59.11,0:05:59.14,Big,,0,0,0,,{\an5\pos(960,460)}2 WINTERS
+Dialogue: 3,0:05:59.14,0:05:59.18,Big,,0,0,0,,{\an5\pos(960,460)}2 WINTERS
+Dialogue: 3,0:05:59.18,0:05:59.21,Big,,0,0,0,,{\an5\pos(960,460)}2 WINTERS
+Dialogue: 3,0:05:59.21,0:05:59.25,Big,,0,0,0,,{\an5\pos(960,460)}2 WINTERS
+Dialogue: 3,0:05:59.25,0:05:59.28,Big,,0,0,0,,{\an5\pos(960,460)}3 WINTERS
+Dialogue: 3,0:05:59.28,0:05:59.32,Big,,0,0,0,,{\an5\pos(960,460)}3 WINTERS
+Dialogue: 3,0:05:59.32,0:05:59.35,Big,,0,0,0,,{\an5\pos(960,460)}3 WINTERS
+Dialogue: 3,0:05:59.35,0:05:59.39,Big,,0,0,0,,{\an5\pos(960,460)}4 WINTERS
+Dialogue: 3,0:05:59.39,0:05:59.42,Big,,0,0,0,,{\an5\pos(960,460)}4 WINTERS
+Dialogue: 3,0:05:59.42,0:05:59.46,Big,,0,0,0,,{\an5\pos(960,460)}4 WINTERS
+Dialogue: 3,0:05:59.46,0:05:59.50,Big,,0,0,0,,{\an5\pos(960,460)}4 WINTERS
+Dialogue: 3,0:05:59.50,0:05:59.53,Big,,0,0,0,,{\an5\pos(960,460)}4 WINTERS
+Dialogue: 3,0:05:59.53,0:05:59.56,Big,,0,0,0,,{\an5\pos(960,460)}5 WINTERS
+Dialogue: 3,0:05:59.56,0:06:02.00,Big,,0,0,0,,{\an5\pos(960,460)}5 WINTERS
+Dialogue: 2,0:06:02.00,0:06:06.50,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}A soft brush on Sunday evening
+Dialogue: 2,0:06:11.20,0:06:15.30,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Single-breasted • Knee length
+Dialogue: 2,0:06:15.90,0:06:20.50,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Collar flat — NO gap
+Dialogue: 2,0:06:21.10,0:06:25.70,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Gap = draught = cold neck
+Dialogue: 2,0:06:26.50,0:06:31.70,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Grey or brown mix — not loud
+Dialogue: 3,0:06:32.00,0:06:36.00,Num,,0,0,0,,{\an5\pos(960,390)\fscx20\fscy20\t(0,260,\fscx118\fscy118)\t(260,420,\fscx100\fscy100)\fad(0,300)}#2
+Dialogue: 3,0:06:32.35,0:06:36.00,Title,,0,0,0,,{\an5\pos(960,640)\fad(250,300)\move(960,710,960,640,0,320)}THE NAVY DUFFEL COAT
+Dialogue: 2,0:06:36.20,0:07:22.80,Badge,,0,0,0,,{\fad(300,300)}#2 • DUFFEL COAT
+Dialogue: 2,0:06:34.90,0:06:41.60,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Wooden toggles • Big hood
+Dialogue: 2,0:06:51.70,0:06:56.90,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Toggles work with GLOVES ON
+Dialogue: 2,0:07:01.80,0:07:07.30,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Cut generously — check the fit!
+Dialogue: 2,0:07:17.30,0:07:22.50,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Arm-lift check: 10 seconds
+Dialogue: 3,0:07:23.10,0:07:27.80,Quote,,0,0,0,,{\an5\pos(960,470)\fad(400,400)\blur1}The promise...
+Dialogue: 2,0:07:31.80,0:07:35.40,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Warmth ≠ thick cloth
+Dialogue: 2,0:07:35.80,0:07:39.60,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}A still layer of WARM AIR
+Dialogue: 2,0:07:43.70,0:07:48.80,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Too big = a bellows pumping heat out
+Dialogue: 3,0:07:59.70,0:07:59.75,Big,,0,0,0,,{\an5\pos(960,460)}1951
+Dialogue: 3,0:07:59.75,0:07:59.80,Big,,0,0,0,,{\an5\pos(960,460)}1953
+Dialogue: 3,0:07:59.80,0:07:59.85,Big,,0,0,0,,{\an5\pos(960,460)}1954
+Dialogue: 3,0:07:59.85,0:07:59.90,Big,,0,0,0,,{\an5\pos(960,460)}1956
+Dialogue: 3,0:07:59.90,0:07:59.95,Big,,0,0,0,,{\an5\pos(960,460)}1957
+Dialogue: 3,0:07:59.95,0:08:00.00,Big,,0,0,0,,{\an5\pos(960,460)}1958
+Dialogue: 3,0:08:00.00,0:08:00.05,Big,,0,0,0,,{\an5\pos(960,460)}1960
+Dialogue: 3,0:08:00.05,0:08:00.10,Big,,0,0,0,,{\an5\pos(960,460)}1961
+Dialogue: 3,0:08:00.10,0:08:00.15,Big,,0,0,0,,{\an5\pos(960,460)}1963
+Dialogue: 3,0:08:00.15,0:08:00.20,Big,,0,0,0,,{\an5\pos(960,460)}1964
+Dialogue: 3,0:08:00.20,0:08:00.25,Big,,0,0,0,,{\an5\pos(960,460)}1965
+Dialogue: 3,0:08:00.25,0:08:00.30,Big,,0,0,0,,{\an5\pos(960,460)}1967
+Dialogue: 3,0:08:00.30,0:08:00.35,Big,,0,0,0,,{\an5\pos(960,460)}1968
+Dialogue: 3,0:08:00.35,0:08:00.40,Big,,0,0,0,,{\an5\pos(960,460)}1970
+Dialogue: 3,0:08:00.40,0:08:00.45,Big,,0,0,0,,{\an5\pos(960,460)}1971
+Dialogue: 3,0:08:00.45,0:08:00.50,Big,,0,0,0,,{\an5\pos(960,460)}1972
+Dialogue: 3,0:08:00.50,0:08:00.55,Big,,0,0,0,,{\an5\pos(960,460)}1974
+Dialogue: 3,0:08:00.55,0:08:00.60,Big,,0,0,0,,{\an5\pos(960,460)}1975
+Dialogue: 3,0:08:00.60,0:08:00.65,Big,,0,0,0,,{\an5\pos(960,460)}1977
+Dialogue: 3,0:08:00.65,0:08:03.00,Big,,0,0,0,,{\an5\pos(960,460)}1978
+Dialogue: 3,0:08:14.70,0:08:17.70,Quote,,0,0,0,,{\an5\pos(960,470)\fad(400,400)\blur1}"A coat rack that went\Nout for a walk."
+Dialogue: 2,0:08:21.80,0:08:25.80,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Room for ONE good sweater. Not an inch more.
+Dialogue: 2,0:08:26.10,0:08:31.40,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Big handful at the chest = TOO BIG
+Dialogue: 3,0:08:35.30,0:08:39.90,Num,,0,0,0,,{\an5\pos(960,390)\fscx20\fscy20\t(0,260,\fscx118\fscy118)\t(260,420,\fscx100\fscy100)\fad(0,300)}#1
+Dialogue: 3,0:08:35.65,0:08:39.90,Title,,0,0,0,,{\an5\pos(960,640)\fad(250,300)\move(960,710,960,640,0,320)}CHARCOAL WORSTED OVERCOAT
+Dialogue: 2,0:08:40.00,0:10:02.40,Badge,,0,0,0,,{\fad(300,300)}#1 • CHARCOAL OVERCOAT
+Dialogue: 2,0:08:43.40,0:08:47.50,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Single-breasted • Charcoal grey
+Dialogue: 2,0:08:47.90,0:08:52.90,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Worsted: smooth, strong — wears for decades
+Dialogue: 2,0:08:59.10,0:09:03.70,Lower,,0,0,0,,{\fad(300,300)\move(40,910,90,910,0,300)}Evelyn's rule {\c&H33CCFF&}• charcoal before black
+Dialogue: 2,0:09:08.30,0:09:13.70,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Black goes flat & shows every speck
+Dialogue: 2,0:09:13.70,0:09:18.70,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Charcoal goes with navy, brown, grey
+Dialogue: 2,0:09:22.30,0:09:23.80,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Knee length or a touch below
+Dialogue: 2,0:09:25.80,0:09:31.50,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Sleeves cover the jacket cuff
+Dialogue: 2,0:09:32.40,0:09:39.80,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}The gorge: neat, level, no ripple
+Dialogue: 3,0:09:46.50,0:09:46.55,Big,,0,0,0,,{\an5\pos(960,460)}1 WINTERS
+Dialogue: 3,0:09:46.55,0:09:46.60,Big,,0,0,0,,{\an5\pos(960,460)}2 WINTERS
+Dialogue: 3,0:09:46.60,0:09:46.65,Big,,0,0,0,,{\an5\pos(960,460)}3 WINTERS
+Dialogue: 3,0:09:46.65,0:09:46.70,Big,,0,0,0,,{\an5\pos(960,460)}4 WINTERS
+Dialogue: 3,0:09:46.70,0:09:46.75,Big,,0,0,0,,{\an5\pos(960,460)}5 WINTERS
+Dialogue: 3,0:09:46.75,0:09:46.80,Big,,0,0,0,,{\an5\pos(960,460)}6 WINTERS
+Dialogue: 3,0:09:46.80,0:09:46.85,Big,,0,0,0,,{\an5\pos(960,460)}7 WINTERS
+Dialogue: 3,0:09:46.85,0:09:46.90,Big,,0,0,0,,{\an5\pos(960,460)}8 WINTERS
+Dialogue: 3,0:09:46.90,0:09:46.95,Big,,0,0,0,,{\an5\pos(960,460)}9 WINTERS
+Dialogue: 3,0:09:46.95,0:09:47.00,Big,,0,0,0,,{\an5\pos(960,460)}10 WINTERS
+Dialogue: 3,0:09:47.00,0:09:47.05,Big,,0,0,0,,{\an5\pos(960,460)}11 WINTERS
+Dialogue: 3,0:09:47.05,0:09:47.10,Big,,0,0,0,,{\an5\pos(960,460)}12 WINTERS
+Dialogue: 3,0:09:47.10,0:09:47.15,Big,,0,0,0,,{\an5\pos(960,460)}13 WINTERS
+Dialogue: 3,0:09:47.15,0:09:47.20,Big,,0,0,0,,{\an5\pos(960,460)}14 WINTERS
+Dialogue: 3,0:09:47.20,0:09:47.25,Big,,0,0,0,,{\an5\pos(960,460)}15 WINTERS
+Dialogue: 3,0:09:47.25,0:09:47.30,Big,,0,0,0,,{\an5\pos(960,460)}16 WINTERS
+Dialogue: 3,0:09:47.30,0:09:47.35,Big,,0,0,0,,{\an5\pos(960,460)}17 WINTERS
+Dialogue: 3,0:09:47.35,0:09:47.40,Big,,0,0,0,,{\an5\pos(960,460)}18 WINTERS
+Dialogue: 3,0:09:47.40,0:09:47.45,Big,,0,0,0,,{\an5\pos(960,460)}19 WINTERS
+Dialogue: 3,0:09:47.45,0:09:49.50,Big,,0,0,0,,{\an5\pos(960,460)}20 WINTERS
+Dialogue: 2,0:09:50.10,0:09:57.20,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Passes the checks? Keep it. Wear it proudly.
+Dialogue: 3,0:10:05.20,0:10:11.20,Badge,,0,0,0,,{\an7\pos(120,250)\fad(250,0)\move(60,250,120,250,0,250)}✔  Try it over your thickest layer
+Dialogue: 3,0:10:06.80,0:10:11.20,Badge,,0,0,0,,{\an7\pos(120,380)\fad(250,0)\move(60,380,120,380,0,250)}✔  Check the shoulders
+Dialogue: 3,0:10:08.40,0:10:11.20,Badge,,0,0,0,,{\an7\pos(120,510)\fad(250,0)\move(60,510,120,510,0,250)}✔  Lift your arms
+Dialogue: 3,0:10:10.00,0:10:11.20,Badge,,0,0,0,,{\an7\pos(120,640)\fad(250,0)\move(60,640,120,640,0,250)}✔  Room for ONE sweater
+Dialogue: 3,0:10:11.30,0:10:15.30,Quote,,0,0,0,,{\an5\pos(960,470)\fad(400,400)\blur1}Measure twice.\NBuy once.
+Dialogue: 2,0:10:17.90,0:10:27.40,Gold,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}TONIGHT: lift both arms in the mirror
+Dialogue: 2,0:10:27.80,0:10:32.90,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}Tell me in the comments
+Dialogue: 2,0:10:46.00,0:10:51.20,Box,,0,0,0,,{\fscx30\fscy30\t(0,220,\fscx112\fscy112)\t(220,380,\fscx100\fscy100)\fad(0,250)}NEXT: Shirt colours & collar gaps
+Dialogue: 3,0:10:51.70,0:10:55.00,Title,,0,0,0,,{\an5\pos(960,520)\fad(400,0)}Stay sharp, my friend.
