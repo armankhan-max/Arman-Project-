@@ -838,9 +838,11 @@ def s_advance(c, t):
     with xf(c, 300, 690, rot=lerp(-40, 40, lk)):
         line(c, 0, 0, 0, -150, "#d8cfbf", 14)
         c.drawCircle(0, -150, 24, P(RED))
-    k = ease_out(at(t, 396.0, 3.0))
     pose, bob, lean, sp = walk(t, 0.9)
-    person(c, lerp(500, 1500, k), 530 + bob, "leo", pose, "focus", t, 0.95, lean=lean)
+    wx = min(1500, 500 + max(0.0, t - 396.0) * sp * 0.95)
+    if wx >= 1500:
+        pose, bob = "sitdesk", 0
+    person(c, wx, 530 + bob, "leo", pose, "focus", t, 0.95, lean=lean if wx < 1500 else 0, chair=False)
     with xf(c, 420, 330):
         dtext(c, "MOTIVATION", 0, -40, 40, "#d8cfbf", "bebas", track=0.14)
         rrect(c, -200, -10, 400, 30, 15, "#2a2f3a")
@@ -989,7 +991,7 @@ def s_finishline(c, t):
     if t > 452.4:
         # the road appears; he takes the first step with the walker
         k = clamp((t - 452.6) / 1.4)
-        walker_frame(c, 1126, 681, 0.85, 247)
+        walker_frame(c, 1135, 647, 0.85, 287)
         pose = mix_pose("walker", dict(fa=(55, 15), ba=(50, 15), fl=(14, -10), bl=(-14, -5)), k)
         person(c, 980, 740, "hari", pose, "focus", t, 0.85, lean=6, rim="#ffcf99")
     kword(c, t, 449.16, "A BEAUTIFUL PICTURE", 960, 140, 66, GOLD, style="rise", track=0.1, end=451.8)

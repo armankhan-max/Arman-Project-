@@ -209,7 +209,7 @@ def s_reality(c, t):
     pose = mix_pose("walker", dict(fa=(55, 15), ba=(50, 15), fl=(8, -10), bl=(-14, -5)),
                     0.5 + 0.5 * math.sin(ph * 6.28))
     hx = 760 + (t - 14.3) * 12
-    walker_frame(c, hx + 172, 528, 1.0, 250)
+    walker_frame(c, hx + 183, 486, 1.0, 292)
     person(c, hx, 600, "hari", pose, "worried", t, 1.05, look=(0.4, 0.5), lean=0)
     # therapist with clipboard
     marks = clamp((t - 20.0) / 1.2)
@@ -622,8 +622,7 @@ def s_crush(c, t):
     # Maya walks across the room and out
     if t > 97.4:
         mt = t - 97.4
-        mx = 1500 - mt * walk(t, 0.9)[3] * 1.1 * -1
-        walker_person(c, 1350 + mt * 280, 560, "maya", t, 1.1, face=1, freq=0.9, expr="neutral")
+        walker_person(c, 1350 + mt * walk(t, 0.9)[3] * 1.1, 560, "maya", t, 1.1, face=1, freq=0.9, expr="sad")
     else:
         person(c, 1350, 560, "maya", "stand", "neutral", t, 1.1, face=-1)
     if t > 98.0:

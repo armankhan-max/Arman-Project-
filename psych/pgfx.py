@@ -234,7 +234,8 @@ def mix_pose(p1, p2, k):
     return out
 
 
-LEG1, LEG2 = 88, 82
+LEG1, LEG2 = 104, 98
+LEG_SHIFT = (104 + 98) - (88 + 82)
 
 
 def walk(t, freq=0.9, run=False):
@@ -252,7 +253,7 @@ def walk(t, freq=0.9, run=False):
     pose["fa"] = (-Ar * math.sin(p) + lean, El + (20 if run else 0))
     pose["ba"] = (-Ar * math.sin(p + math.pi) + lean, El + (20 if run else 0))
     bob = -bobA * abs(math.cos(p))
-    L = LEG1 + LEG2 * 0.9
+    L = (LEG1 + LEG2) * 0.92
     speed = 4 * L * math.sin(math.radians(A)) * freq * (1.25 if run else 1.0)
     return pose, bob, lean, speed
 
@@ -804,10 +805,14 @@ def _figure(c, who, pose, expr, t, look, face, talk, tilt=0.0, lean=0.0, hold=No
     p = POSES[pose] if isinstance(pose, str) else pose
     hf, hb = HANDS.get(pname, HANDS.get(pname.replace("sit_", ""), ("relax", "relax")))
     sgn = 1 if face >= 0 else -1
-    tl, hw = 160, 48
-    al1, al2 = 75, 70
-    aw, lw = 25, 29
-    hr = 58
+    tl, hw = 174, 46
+    al1, al2 = 82, 76
+    aw, lw = 24, 28
+    hr = 54
+    # idle life: breathing + a slow natural head sway, different per character
+    ph = sum(map(ord, who)) * 0.37
+    tl += 1.6 * math.sin(t * 1.7 + ph)
+    tilt = tilt + 1.6 * math.sin(t * 0.9 + ph)
     kind = o.get("kind")
     skin = o["skin"]
     legc = o["legs"]
@@ -866,12 +871,13 @@ def person(c, x, y, who="leo", pose="stand", expr="neutral", t=0.0, s=1.0, look=
         rim = RIM_DEFAULT
     pname = pose if isinstance(pose, str) else pose.get("_name", "")
     if chair and pname.startswith("sit") and abs(rot) < 20:
-        draw_chair(c, x, y, s, 1 if face >= 0 else -1, alpha)
+        draw_chair(c, x, y - LEG_SHIFT * s * 0.55, s, 1 if face >= 0 else -1, alpha)
     if shadow and abs(rot) < 30:
         c.drawOval(skia.Rect(x - 90 * s, y + 158 * s, x + 90 * s, y + 184 * s), P("#000000", a=0.3 * alpha))
     bounds = skia.Rect(x - 700 * s, y - 1100 * s, x + 700 * s, y + 900 * s)
     if alpha < 0.999:
         c.saveLayerAlpha(bounds, int(clamp(alpha) * 255))
+    y = y - LEG_SHIFT * s * (1.0 if not pname.startswith("sit") else 0.55)
     group = tint_a > 0 or bool(rim)
     if group:
         c.saveLayer(bounds, None)
