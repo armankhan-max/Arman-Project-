@@ -12,7 +12,18 @@ TR = json.load(open(D + "/transcript.json"))
 SEGSTARTS = [s["s"] for s in TR]
 
 _imgs = {}
+VD = D + "/../stock/clips/"
+VLEN = {}
+def vk(sh, t):
+    k = sh["k"]
+    if not k.startswith("V:"): return k
+    c = k[2:]
+    if c not in VLEN: VLEN[c] = len(os.listdir(VD + c))
+    n = VLEN[c]; i = int(max(0, t - sh["s"]) * FPS); per = 2 * n - 2
+    i = i % per; i = i if i < n else per - i
+    return f"V:{c}/{i + 1:04d}"
 def IMG(k):
+    if k.startswith("V:"): return Image.open(VD + k[2:] + ".jpg").convert("RGB")
     if k not in _imgs:
         _imgs[k] = Image.open(f"{D}/img/{k}.jpg").convert("RGB")
     return _imgs[k]
@@ -28,19 +39,19 @@ R = [  # start, pool, steam
  (0,    ["e115b136","0904ebe5","54d411da","f597a17f","04b91edb"], 0),
  (25,   ["dae0d14e","35a2aeac","fc1069f6","0904ebe5"], 1),
  (39.8, ["10b2ffd8","e9cf60b1","834f097e","ea2e6c8b"], 0),
- (54,   ["5c22916c","ebc885b7","53159461","037a1aa1"], 0),
- (73,   ["02f8d8fa","e86ea8bd","dae0d14e","65a9ab2a","56393b8b"], 1),
- (88,   ["56393b8b","02f8d8fa","c079b40a","037a1aa1"], 1),
- (110,  ["53159461","5c22916c","2dde5428","dfbc66d6"], 0),
+ (54,   ["5c22916c","V:A1","ebc885b7","V:H1","53159461","037a1aa1"], 0),
+ (73,   ["02f8d8fa","V:A3","e86ea8bd","V:A4","dae0d14e","65a9ab2a","56393b8b"], 1),
+ (88,   ["56393b8b","V:A7","02f8d8fa","V:A5","c079b40a","037a1aa1"], 1),
+ (110,  ["53159461","V:A9","5c22916c","V:H6","2dde5428","dfbc66d6"], 0),
  (128,  ["d8ac389c","2dde5428"], 0),
  (143,  ["e9cf60b1","10b2ffd8"], 0),
  (159,  ["f597a17f","e115b136"], 0),
  (172,  ["fd11570c","436811a2","ea2e6c8b"], 1),
  (183,  ["10b2ffd8","e9cf60b1"], 0),
- (198,  ["e86ea8bd","65a9ab2a","c079b40a"], 1),
+ (198,  ["e86ea8bd","V:A5","65a9ab2a","c079b40a"], 1),
  (226,  ["5e4f424e","e86ea8bd","02f8d8fa"], 1),
  (245,  ["dfbc66d6","65a9ab2a","e9cf60b1"], 1),
- (261,  ["7fb7353c","2dde5428","dfbc66d6"], 0),
+ (261,  ["7fb7353c","V:A8","2dde5428","dfbc66d6"], 0),
  (284,  ["0904ebe5","54d411da","fc1069f6","7fb7353c"], 0),
  (343,  ["e115b136","f597a17f","04b91edb","35a2aeac"], 0),
  (412,  ["04b91edb","f597a17f","0904ebe5"], 0),
@@ -55,8 +66,8 @@ R = [  # start, pool, steam
  (674,  ["614e8345","4252c9d9","e115b136","31dcc152"], 0),
  (702,  ["037a1aa1","ee043a31","e9cf60b1"], 0),
  (724,  ["834f097e","f597a17f","ea2e6c8b"], 0),
- (737,  ["fd11570c","436811a2","ea2e6c8b","5e4f424e"], 1),
- (769,  ["834f097e","ea2e6c8b","fd11570c"], 0),
+ (737,  ["fd11570c","V:A10","436811a2","ea2e6c8b","5e4f424e"], 1),
+ (769,  ["834f097e","V:A11","ea2e6c8b","fd11570c"], 0),
  (783,  ["ee043a31","037a1aa1","614e8345"], 0),
  (807,  ["4497f331","436811a2","5e4f424e","f5ba18ec"], 1),
  (838,  ["ea2e6c8b","834f097e","4497f331"], 0),
@@ -64,7 +75,7 @@ R = [  # start, pool, steam
  (872,  ["ea2e6c8b","5e4f424e","4497f331"], 1),
  (891,  ["c8dd9e68","4097dda3","5e4f424e","fc1069f6"], 1),
  (926,  ["27b006cb","ee043a31","0904ebe5"], 0),
- (933,  ["d8ac389c","2dde5428","7fb7353c"], 0),
+ (933,  ["d8ac389c","V:A5","2dde5428","7fb7353c"], 0),
  (967,  ["2dde5428","ee043a31","568091e2"], 0),
  (993,  ["568091e2","7fb7353c","0904ebe5"], 1),
  (1006, ["394b9374","27b006cb","2fabc34f"], 0),
@@ -73,13 +84,13 @@ R = [  # start, pool, steam
  (1063, ["2fabc34f","bc816ed9","568091e2"], 0),
  (1077, ["53159461","feaeb64f"], 0),
  (1082, ["feaeb64f"], 0),
- (1094, ["5c22916c","ebc885b7","feaeb64f"], 0),
+ (1094, ["5c22916c","V:H7","ebc885b7","V:A1","feaeb64f"], 0),
  (1110, ["ec1dd03d","5c22916c"], 1),
- (1143, ["53159461","5e4f424e","fd11570c","c8dd9e68"], 1),
+ (1143, ["53159461","V:A9","5e4f424e","fd11570c","c8dd9e68"], 1),
  (1167, ["834f097e","ea2e6c8b","ec1dd03d"], 0),
- (1198, ["ebc885b7","5c22916c","037a1aa1","53159461"], 0),
- (1233, ["e9cf60b1","dfbc66d6","10b2ffd8"], 0),
- (1258, ["037a1aa1","e86ea8bd","dfbc66d6"], 0),
+ (1198, ["ebc885b7","V:H4","5c22916c","V:A3","037a1aa1","53159461"], 0),
+ (1233, ["e9cf60b1","V:H3","dfbc66d6","10b2ffd8"], 0),
+ (1258, ["037a1aa1","V:A8","e86ea8bd","V:A4","dfbc66d6"], 0),
  (1295, ["dfbc66d6","65a9ab2a","7fb7353c"], 1),
  (1320, ["65a9ab2a","c8dd9e68","fc1069f6"], 1),
  (1365, ["0904ebe5","54d411da","04b91edb"], 0),
@@ -88,19 +99,19 @@ R = [  # start, pool, steam
  (1478, ["04b91edb","2fabc34f","35a2aeac"], 0),
  (1507, ["27b006cb","bc816ed9","2fabc34f"], 0),
  (1538, ["bc816ed9","27b006cb","e9cf60b1"], 0),
- (1557, ["e9cf60b1","037a1aa1","c079b40a","53159461"], 0),
+ (1557, ["e9cf60b1","V:A7","037a1aa1","c079b40a","53159461"], 0),
  (1578, ["dfbc66d6","c079b40a","e86ea8bd"], 1),
  (1592, ["10b2ffd8","834f097e"], 0),
- (1604, ["5c22916c","bc816ed9","834f097e"], 0),
- (1636, ["d8ac389c","e9cf60b1","f597a17f","fd11570c","e86ea8bd","10b2ffd8"], 0),
+ (1604, ["5c22916c","V:H2","bc816ed9","V:H1","834f097e"], 0),
+ (1636, ["d8ac389c","V:A3","e9cf60b1","f597a17f","fd11570c","e86ea8bd","10b2ffd8"], 0),
  (1675, ["04b91edb","31dcc152","27b006cb","35a2aeac","4097dda3","4252c9d9"], 0),
- (1706, ["614e8345","037a1aa1","834f097e","e9cf60b1","ea2e6c8b","436811a2"], 0),
+ (1706, ["614e8345","V:A1","037a1aa1","834f097e","e9cf60b1","ea2e6c8b","436811a2"], 0),
  (1762, ["dfbc66d6","65a9ab2a","0904ebe5","2fabc34f"], 0),
  (1796, ["e115b136","4097dda3","f5ba18ec","5e4f424e","27b006cb","bc816ed9"], 0),
  (1842, ["394b9374","2fabc34f","8cb01cb3","f5ba18ec","feaeb64f"], 0),
  (1889, ["0904ebe5","27b006cb","54d411da","bc816ed9"], 0),
  (1933, ["31dcc152","04b91edb","0904ebe5"], 0),
- (1963, ["5c22916c","ebc885b7","53159461"], 0),
+ (1963, ["5c22916c","V:H7","ebc885b7","V:H6","53159461"], 0),
  (1977, ["ee043a31","dfbc66d6","568091e2"], 0),
  (2029, ["2fabc34f","0904ebe5","27b006cb","54d411da","7fb7353c"], 0),
  (2057, ["10b2ffd8","834f097e","e9cf60b1","ea2e6c8b","dfbc66d6"], 0),
@@ -208,7 +219,8 @@ def build_shots():
             k = pool[j % len(pool)]
             n = use.get(k, 0); use[k] = n + 1
             mv = rng.choice(["in", "out", "pl", "pr", "in", "out"])
-            if n == 0: z0, fx, fy = 1.0, 0.5, 0.5
+            if k.startswith("V:"): z0, fx, fy = 1.0, 0.5, 0.5
+            elif n == 0: z0, fx, fy = 1.0, 0.5, 0.5
             else: z0 = 1.12 + min(n, 5) * 0.05; fx, fy = rng.uniform(.3, .7), rng.uniform(.3, .65)
             shots.append(dict(s=cuts[j], e=cuts[j + 1], k=k, mv=mv, z=z0, fx=fx, fy=fy, steam=steam))
     return shots
@@ -238,7 +250,7 @@ GRAIN = []
 for i in range(24):
     g = rs.normal(0, 1, (H // 2, W // 2)).astype(np.float32)
     g = np.asarray(Image.fromarray((g * 30 + 128).clip(0, 255).astype(np.uint8)).resize((W, H), Image.BILINEAR)).astype(np.float32) - 128
-    GRAIN.append(g * 0.55)
+    GRAIN.append(g * 0.30)
 def make_smoke():
     acc = np.zeros((H * 2, W), np.float32)
     for sc, wt in [(8, 1.0), (16, .6), (32, .35), (64, .2)]:
@@ -538,15 +550,15 @@ def frame(fi):
         p = t - g[0]
         if p < 0.4:  # fade from shot
             i = shot_at(g[0] - 0.01); sh = SHOTS[i]
-            prev = render_img(sh["k"], crop_rect(sh, g[0]), jx, jy)
+            prev = render_img(vk(sh, g[0]), crop_rect(sh, g[0]), jx, jy)
             fr = prev * (1 - p / 0.4) + fr * (p / 0.4)
     else:
         i = shot_at(t); sh = SHOTS[i]
-        fr = render_img(sh["k"], crop_rect(sh, t), jx, jy)
+        fr = render_img(vk(sh, t), crop_rect(sh, t), jx, jy)
         if i > 0 and t - sh["s"] < XF:
             pv = SHOTS[i - 1]
             pg = next((g for g in GFX if g[0] <= sh["s"] - 0.01 < g[1]), None)
-            prev = gfx_frame(pg, sh["s"] - 0.01) if pg else render_img(pv["k"], crop_rect(pv, t), jx, jy)
+            prev = gfx_frame(pg, sh["s"] - 0.01) if pg else render_img(vk(pv, t), crop_rect(pv, t), jx, jy)
             a = (t - sh["s"]) / XF; a = a * a * (3 - 2 * a)
             fr = prev * (1 - a) + fr * a
         if sh["steam"]:
@@ -560,9 +572,9 @@ def frame(fi):
     # flicker + vignette + grain
     fl = 1 + 0.035 * math.sin(fi * 1.7) * rng.random() + rng.normal(0, 0.012)
     fr = fr * fl * VIG + GRAIN[(fi * 7) % 24][..., None]
-    if rng.random() < 0.04:  # occasional scratch
+    if rng.random() < 0.02:  # occasional scratch
         x = rng.integers(0, W); fr[:, x:x + 1] += rng.uniform(-25, 30)
-    if rng.random() < 0.15:
+    if rng.random() < 0.06:
         for _ in range(rng.integers(1, 4)):
             x, y = rng.integers(10, W - 10), rng.integers(10, H - 10); r = rng.integers(1, 4)
             fr[y - r:y + r, x - r:x + r] = rng.choice([15, 220])
@@ -576,7 +588,7 @@ if __name__ == "__main__":
     else:
         a, b, out = int(sys.argv[2]), int(sys.argv[3]), sys.argv[4]
         p = subprocess.Popen(["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-",
-                              "-c:v", "libx264", "-preset", "veryfast", "-crf", "22", "-pix_fmt", "yuv420p", out], stdin=subprocess.PIPE)
+                              "-c:v", "libx264", "-preset", "veryfast", "-b:v", "1200k", "-maxrate", "2200k", "-bufsize", "4000k", "-pix_fmt", "yuv420p", out], stdin=subprocess.PIPE)
         for fi in range(a, b):
             p.stdin.write(frame(fi).tobytes())
             if fi % 1200 == 0: print(out, fi, flush=True)

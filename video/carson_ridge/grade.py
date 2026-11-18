@@ -34,9 +34,9 @@ def proc(f):
     # baked static grain (clumpy)
     g=rng.normal(0,1,(H//2,W//2)).astype(np.float32)
     g=np.asarray(Image.fromarray(((g*40)+128).clip(0,255).astype(np.uint8)).resize((W,H),Image.BICUBIC)).astype(np.float32)/255-0.5
-    L=L+g*0.10
+    L=L+g*0.045
     # dust specks & hairline scratches
-    for _ in range(rng.integers(25,60)):
+    for _ in range(rng.integers(8,20)):
         x,y=rng.integers(0,W),rng.integers(0,H); r=rng.integers(1,3); v=rng.choice([-0.35,0.3])
         L[max(0,y-r):y+r,max(0,x-r):x+r]+=v
     for _ in range(rng.integers(0,3)):
