@@ -128,8 +128,6 @@ def build_sfx(dur, cuts):
     def ev(at_, fn, g=1.0, pan=0.0):
         E.append((at_, fn, g, pan))
 
-    for ct in cuts:
-        ev(ct - 0.25, lambda: whoosh(0.45, True, 0.14))
     # HOOK: hospital
     for k in np.arange(0.2, 6.5, 0.86):
         ev(k, lambda: beep(1250, 0.1, 0.12), pan=0.5)
@@ -137,7 +135,6 @@ def build_sfx(dur, cuts):
     ev(6.9, lambda: freeze_chime(0.25))
     for k in np.arange(7.0, 11.6, 0.56):
         ev(k, lambda: kick(0.12, 140, 70, 0.12))
-    ev(10.82, lambda: whoosh(0.5, True, 0.35))
     ev(10.95, lambda: pop(500, 0.3))
     ev(11.66, lambda: pop(700, 0.3))
     ev(12.86, lambda: chime_sparkle(0.4))
@@ -157,11 +154,9 @@ def build_sfx(dur, cuts):
     ev(31.0, lambda: sub_boom(0.5))
     ev(31.8, lambda: coin_sfx(0.35))
     # CHAPTER 1
-    ev(33.9, lambda: whoosh(0.4, True, 0.2))
     ev(35.5, lambda: pop(600, 0.22))
     ev(36.7, lambda: pop(650, 0.22))
     ev(39.2, lambda: ticks(0.7, 20, 0.18))
-    ev(41.6, lambda: whoosh(0.9, True, 0.3))
     ev(44.32, lambda: pop(500, 0.25), pan=-0.5)
     ev(45.28, lambda: chime_sparkle(0.25), pan=0.5)
     ev(48.0, lambda: pop(600, 0.2))
@@ -170,13 +165,11 @@ def build_sfx(dur, cuts):
     ev(54.56, lambda: shutter(0.4))
     ev(54.6, lambda: hit(0.3))
     ev(56.2, lambda: chime_sparkle(0.15))
-    ev(61.6, lambda: whoosh(0.6, False, 0.2))
     ev(62.7, lambda: water(1.1, 0.12))
     ev(63.8, lambda: rumble(1.1, 0.15))
     ev(64.9, lambda: rumble(2.5, 0.05, 120))
     ev(67.4, lambda: chime_sparkle(0.3))
     ev(68.2, lambda: pop(500, 0.25))
-    ev(70.2, lambda: whoosh(0.8, True, 0.3))
     ev(70.9, lambda: ding(1568, 0.3))
     ev(72.3, lambda: downsweep(0.2, 0.8))
     ev(74.32, lambda: typing(1.0, 0.15))
@@ -195,7 +188,6 @@ def build_sfx(dur, cuts):
     ev(106.42, lambda: pop(600, 0.2))
     ev(108.32, lambda: stamp_sfx(0.4))
     ev(108.4, lambda: ding(1318.5, 0.3))
-    ev(109.4, lambda: whoosh(0.7, True, 0.3))
     ev(110.3, lambda: chime_sparkle(0.2))
     ev(113.72, lambda: ticks(0.6, 15, 0.2))
     ev(115.4, lambda: bloop(0.2))
@@ -209,7 +201,6 @@ def build_sfx(dur, cuts):
     ev(132.6, lambda: crunch(0.15))
     ev(133.12, lambda: buzzer(0.15))
     ev(134.0, lambda: growl(0.25))
-    ev(137.2, lambda: whoosh(0.5, True, 0.25))
     ev(137.3, lambda: ding(880, 0.2))
     # BLOOD PRESSURE
     for k in np.arange(140.4, 142.2, 0.45):
@@ -233,16 +224,13 @@ def build_sfx(dur, cuts):
     # JOB SEEKER / LOVESICK
     ev(187.6, lambda: thud(0.25))
     ev(188.6, lambda: thud(0.3))
-    ev(191.6, lambda: whoosh(0.4, True, 0.15))
     # MIND MOVES IN EARLY
-    ev(196.3, lambda: whoosh(1.4, True, 0.35))
     ev(197.9, lambda: chime_sparkle(0.35))
     ev(200.0, lambda: pad(fz(["F3", "A3", "C4"]), 2.5, 0.5, 1.5, 0.4) * 0.3)
     ev(203.7, lambda: bloop(0.15))
     # SALARY
     for k in (210.56, 211.62, 212.7):
         ev(k - 0.2, lambda: pop(650, 0.22))
-    ev(213.0, lambda: whoosh(0.8, False, 0.3))
     ev(213.6, lambda: cash(0.35))
     ev(215.52, lambda: stamp_sfx(0.4))
     ev(218.0, lambda: ding(1318.5, 0.3))
@@ -258,7 +246,6 @@ def build_sfx(dur, cuts):
     ev(233.08, lambda: ticks(0.7, 20, 0.18))
     for i in range(4):
         ev(236.16 + i * 0.12, lambda: page_flip(0.2))
-    ev(239.8, lambda: whoosh(0.5, True, 0.2))
     ev(240.1, lambda: bloop(0.2))
     ev(246.36, lambda: chime_sparkle(0.25))
     for i in range(4):
@@ -295,7 +282,6 @@ def build_sfx(dur, cuts):
     ev(300.44, lambda: heartbeat(0.5))
     ev(301.76, lambda: hit(0.4))
     # SIROIS & PYCHYL
-    ev(303.4, lambda: whoosh(0.4, True, 0.2))
     ev(308.44, lambda: ticks(1.0, 4, 0.25))
     ev(309.34, lambda: buzzer(0.15))
     ev(310.2, lambda: ding(1318.5, 0.3))
@@ -315,7 +301,6 @@ def build_sfx(dur, cuts):
     ev(338.6, lambda: hit(0.25))
     ev(341.96, lambda: beep(440, 0.15, 0.08))
     ev(343.96, lambda: pad(fz(["D3", "F#3", "A3", "D4"]), 2.0, 0.1, 1.5, 0.5) * 0.35)
-    ev(346.12, lambda: whoosh(0.8, False, 0.3))
     ev(346.9, lambda: thud(0.3))
     ev(348.1, lambda: typing(0.8, 0.12))
     ev(354.68, lambda: water(2.0, 0.08))
@@ -330,9 +315,7 @@ def build_sfx(dur, cuts):
     ev(368.1, lambda: scribble(0.35, 0.3))
     ev(370.26, lambda: stamp_sfx(0.5))
     ev(370.3, lambda: chime_sparkle(0.3))
-    ev(372.18, lambda: whoosh(0.5, True, 0.2))
     ev(374.34, lambda: chime_sparkle(0.3))
-    ev(376.6, lambda: whoosh(0.6, False, 0.4))
     ev(376.6, lambda: hit(0.4))
     for k in (381.26, 383.18, 384.7):
         ev(k, lambda: pop(500, 0.25))
@@ -357,13 +340,11 @@ def build_sfx(dur, cuts):
     ev(420.5, lambda: downsweep(0.2, 1.6))
     ev(432.04, lambda: pop(500, 0.3))
     ev(433.58, lambda: coin_sfx(0.35))
-    ev(434.5, lambda: whoosh(0.8, True, 0.3))
     ev(435.3, lambda: thud(0.4))
     ev(435.3, lambda: ding(1568, 0.25))
     # BACK TO THE PATIENT
     for k in np.arange(437.2, 447.4, 0.86):
         ev(k, lambda: beep(1250, 0.1, 0.1), pan=0.5)
-    ev(451.8, lambda: whoosh(1.0, True, 0.3))
     ev(452.6, lambda: freeze_chime(0.2))
     for k in np.arange(452.9, 453.9, 0.5):
         ev(k, lambda: thud(0.12))

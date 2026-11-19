@@ -82,6 +82,8 @@ def host_shot(c, t, a, poses=("sittalk", "sit", "sittalk", "sitthink"), side=1, 
     person(c, x, 760, "host", pose, expr, t, s=1.55, face=face, talk=(op, rnd), look=(-0.5 * side, 0),
            tilt=nod, rim="#ffcf99", rim_off=(-6 if side > 0 else 6, -5), chair=False)
     grade(c, "dream", 0.25)
+    tx = 470 if side > 0 else 1450
+    soft(c, tx, 480, 420, "#0a0604", 0.55, 160)
 
 
 def tag2(c, t, start, s, x, y, color=GOLD, size=40, end=None, fg="#14100c"):
@@ -250,7 +252,7 @@ def s_notebook(c, t):
         cam(c, push(t, t0, 27.1, 1.0, 1.08), 960, 600, t)
         bg(c, "bedroom", 8)
         flip = ((t - 24.9) * 1.6) % 1.0 if 24.9 < t < 26.8 else 0.0
-        items = ["GYM", "WRITE BOOK", "GUITAR", "SIDE BUSINESS", "SPANISH", "YOUTUBE"]
+        items = ["GYM", "WRITE BOOK", "GUITAR", "BUSINESS", "SPANISH", "YOUTUBE"]
         page = int(max(0, t - 24.9) * 1.6) % 3
         its = [items[(i + page * 2) % 6] for i in range(6)]
         notebook(c, 960, 520, 1.25, t, flip, its, dust=clamp((t - 25.9) * 2))
@@ -284,7 +286,7 @@ def s_lazy(c, t):
             k = at(t, 30.18, 0.3)
             with xf(c, 520, 320, alpha=clamp(k * 3)):
                 dtext(c, "LAZY", 0, 50, 170, "#f2ead6", "bebas", track=0.08, shadow=0.5)
-            strike(c, t, 30.4, 520, 0, 380, RED, 18)
+            strike(c, t, 30.4, 520, 318, 380, RED, 18)
 
 
 def s_title(c, t):
@@ -507,7 +509,7 @@ def s_noeffort(c, t):
         v = 0.25 * (1 - ease_out(at(t, 72.3, 0.6)))
         if v > 0.01:
             rrect(c, -160, 20, 320 * v, 34, 17, RED)
-        dtext(c, f"{int(v * 100)}%", 0, 140, 90, "#ffffff", "bebas")
+        dtext(c, f"{int(v * 100)}%", 0, 180, 90, "#ffffff", "bebas")
     bokeh(c, t, "#ffffff", 16, seed=8, a=0.25)
     grade(c, "dream", 0.8)
 
@@ -519,7 +521,10 @@ def s_tracked(c, t):
     for i, (lab, col, y) in enumerate((("EXPECTATIONS", COOL, 420), ("FANTASIES", GOLD, 660))):
         k = ease_out(at(t, 74.3 + i * 0.2, 1.2))
         icon_circle(c, 330, y, 70, col)
-        dtext(c, "?" if i == 0 else "✨", 330, y + 24, 70, col, "bebas")
+        if i == 0:
+            dtext(c, "?", 330, y + 24, 70, col, "bebas")
+        else:
+            sparkle(c, 330, y, 34, col)
         line(c, 430, y, 430 + 1200 * k, y, col, 8)
         for j in range(5):
             if k * 1200 > j * 240 + 60:
@@ -724,8 +729,8 @@ def s_needs(c, t):
     bg(c, "living", 8)
     hungry = t > 127.2
     achieve = t > 128.2
+    couch(c, 960, 625, 1.0)
     person(c, 960, 640, "leo", "sitthink" if t < 127.2 else "sitslump", "dreamy" if t < 126 else "tired", t, 1.15, chair=False)
-    rrect(c, 650, 760, 620, 140, 40, "#3a3f5a")
     if hungry:
         for i in range(3):
             p = skia.Path()
@@ -807,10 +812,10 @@ def s_kappes(c, t):
     if t > 143.9:
         for i in range(4):
             k = back_out(at(t, 143.98 + i * 0.15, 0.35))
-            with xf(c, 660 + i * 200, 330, max(0.001, k)):
+            with xf(c, 260 + i * 150, 300, max(0.001, k)):
                 rrect(c, -70, -60, 140, 120, 14, "#f2efe6")
                 dtext(c, str(i + 1), 0, 30, 90, "#1a2230", "bebas")
-        kword(c, t, 144.3, "FOUR EXPERIMENTS", 960, 470, 50, "#f2ead6", style="rise", track=0.12, end=147.0)
+        kword(c, t, 144.3, "FOUR EXPERIMENTS", 485, 420, 50, "#f2ead6", style="rise", track=0.12, end=147.0)
 
 
 def s_assigned(c, t):

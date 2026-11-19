@@ -669,7 +669,8 @@ def hosp_bed(c, x, y, s=1.0, front=False):
         else:
             p = skia.Path()
             p.moveTo(-250, 10)
-            p.quadTo(-120, -110, 120, -95)
+            p.quadTo(-120, -110, 40, -112)
+            p.quadTo(110, -165, 190, -118)
             p.quadTo(330, -90, 450, -40)
             p.lineTo(470, 60)
             p.lineTo(-250, 60)
@@ -1135,3 +1136,14 @@ def info_board(c, t, top="#14100c", bottom="#070504"):
         x = rnd.uniform(0, W)
         y = (rnd.uniform(0, H) - t * rnd.uniform(6, 18)) % H
         c.drawCircle(x, y, rnd.uniform(1, 2.4), P("#ffd9a0", a=0.25))
+
+
+def couch(c, x, y, s=1.0, col="#4a5170"):
+    """Sofa whose seat top sits at y (a seated character's hip goes just above it)."""
+    with xf(c, x, y, s):
+        box(c, -330, -190, 660, 200, shade(col, 0.15), 40, 5)
+        box(c, -360, -10, 720, 110, col, 30, 5, 0.25)
+        box(c, -400, -90, 90, 200, shade(col, 0.05), 34, 5)
+        box(c, 310, -90, 90, 200, shade(col, 0.05), 34, 5)
+        for xx in (-330, 300):
+            box(c, xx, 100, 30, 40, "#2a2018", 6, 4)

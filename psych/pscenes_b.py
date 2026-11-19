@@ -17,8 +17,7 @@ def s_jobseeker(c, t):
     for i in range(2):
         with xf(c, 1560 + i * 70, 870):
             rrect(c, -30, -16, 70, 30, 12, "#3a2c22")
-    rrect(c, 500, 640, 760, 160, 50, "#4a5170")
-    rrect(c, 520, 520, 720, 160, 50, "#3e4562")
+    couch(c, 880, 690, 1.0)
     # tries to get up, flops back
     up = max(0.0, math.sin(clamp((t - 187.6) / 1.4) * math.pi))
     person(c, 860, 700 - up * 70, "job", mix_pose("sitslump", "reach", up * 0.7), "dreamy" if t < 187.4 else "tired",
@@ -146,9 +145,9 @@ def s_salary(c, t):
         for i in range(10):
             ct = (t - 213.6 - i * 0.18)
             if ct > 0:
-                cy = 200 + ct * 700
-                if cy < 760:
-                    coin(c, 860 + (i * 47) % 200, cy, 26)
+                # fall with gravity, then land in a little pile on the desk
+                cy = min(200 + 900 * ct * ct, 690 - (i % 4) * 14)
+                coin(c, 860 + (i * 47) % 200, cy, 26)
         kword(c, t, 214.18, "A SALARY OF SATISFACTION", 960, 160, 70, GOLD, style="rise", track=0.08)
         kword(c, t, 215.52, "IN ADVANCE", 960, 960, 80, "#f2ead6", style="slam", track=0.12)
 
@@ -277,8 +276,9 @@ def s_noticed(c, t):
         pz = mix_pose("sittalk", "shake", clap if t > 252.2 else 0)
         pz["fl"], pz["bl"] = (85, -85), (80, -80)
         pz["_name"] = "sit_shake"
-        person(c, 1150, 700, "sam", ps, "happy", t, 1.05, face=-1)
-        person(c, 1420, 700, "zed", pz, "smile", t, 1.0, face=-1)
+        person(c, 1150, 700, "sam", gesture(t, a, ["sittalk", "sit"], 0.5, sit=True) if t > 252.3 else "sit", "happy",
+               t, 1.05, face=-1)
+        person(c, 1420, 700, "zed", "sittalk", "smile", t, 1.0, face=-1)
         if t > 252.26:
             for i in range(6):
                 kk = ((t - 252.26) * 0.9 + i * 0.17) % 1.0
@@ -417,7 +417,7 @@ def s_gap(c, t):
             heart(c, 960 + math.sin(i * 3) * 120, 200 + ct * 500, 26, "#ff6a8a")
     kword(c, t, 276.8, "ATTENTION FILLED THE GAP", 960, 200, 70, "#ff8a9a", style="rise", track=0.08)
     kword(c, t, 278.54, "ONLY EFFORT SHOULD FILL", 960, 300, 60, GREEN, style="rise", track=0.08)
-    person(c, 400, 470, "leo", "shrug", "worried", t, 0.75)
+    person(c, 400, 528, "leo", "shrug", "worried", t, 0.75)
 
 
 def s_host4(c, t):
@@ -802,7 +802,7 @@ def s_ifthen(c, t):
         tint(c, "#000000", 0.35)
         person(c, 1250, 560, "gol", "present", "smile", t, 1.1, face=-1)
         lower(c, t, 386.0, "PETER GOLLWITZER", "Implementation intentions", GOLD, dur=3.4)
-        kword(c, t, 388.02, "IF", 500, 450, 220, GOLD, style="slam")
+        kword(c, t, 388.02, "IF", 400, 450, 220, GOLD, style="slam")
         kword(c, t, 388.4, "THEN", 760, 450, 220, GREEN, style="slam")
         kword(c, t, 388.74, "PLAN", 630, 620, 110, "#f2ead6", style="rise", track=0.2)
     else:
@@ -831,18 +831,18 @@ def s_advance(c, t):
     info_board(c, t, "#0f1117", "#06070a")
     # a lever thrown in advance, a rail that carries the action
     kword(c, t, 394.56, "DECIDED IN ADVANCE", 960, 160, 80, GOLD, style="rise", track=0.1)
-    line(c, 200, 700, 1720, 700, "#d8cfbf", 8)
+    line(c, 200, 850, 1720, 850, "#d8cfbf", 8)
     for i in range(16):
-        line(c, 230 + i * 95, 690, 230 + i * 95, 720, "#8a8f9a", 6)
+        line(c, 230 + i * 95, 840, 230 + i * 95, 870, "#8a8f9a", 6)
     lk = ease_out(at(t, 395.0, 0.4))
-    with xf(c, 300, 690, rot=lerp(-40, 40, lk)):
+    with xf(c, 300, 840, rot=lerp(-40, 40, lk)):
         line(c, 0, 0, 0, -150, "#d8cfbf", 14)
         c.drawCircle(0, -150, 24, P(RED))
     pose, bob, lean, sp = walk(t, 0.9)
-    wx = min(1500, 500 + max(0.0, t - 396.0) * sp * 0.95)
+    wx = min(1500, 560 + max(0.0, t - 396.0) * sp * 0.95)
     if wx >= 1500:
-        pose, bob = "sitdesk", 0
-    person(c, wx, 530 + bob, "leo", pose, "focus", t, 0.95, lean=lean if wx < 1500 else 0, chair=False)
+        pose, bob, lean = "stand", 0, 0
+    person(c, wx, 711 + bob * 0.95, "leo", pose, "focus" if wx < 1500 else "proud", t, 0.95, lean=lean)
     with xf(c, 420, 330):
         dtext(c, "MOTIVATION", 0, -40, 40, "#d8cfbf", "bebas", track=0.14)
         rrect(c, -200, -10, 400, 30, 15, "#2a2f3a")
@@ -1062,7 +1062,7 @@ def s_end(c, t):
         k = ease_out(at(t, 467.7, 0.9))
         out = clamp((472.4 - t) / 0.8)
         with xf(c, 0, 0, alpha=out):
-            dtext(c, "DREAM FIRST.", W / 2, 470 + (1 - k) * 20, 120, GOLD, "bebas", a=clamp(k * 2), track=0.12)
+            dtext(c, "DREAM.", W / 2, 470 + (1 - k) * 20, 120, GOLD, "bebas", a=clamp(k * 2), track=0.12)
             k2 = ease_out(at(t, 468.5, 0.9))
             dtext(c, "THEN PLAN THE ROAD.", W / 2, 620 + (1 - k2) * 20, 120, "#f6efe2", "bebas", a=clamp(k2 * 2),
                   track=0.12)
