@@ -19,7 +19,7 @@ from fda.storage.store import scratch_dir
 from . import blender as blender_agent
 from .common import STOP, keywords, style
 
-FALLBACK = {"stock_video": ["stock_image", "archive", "ai_image"], "stock_image": ["archive", "ai_image", "stock_video"],
+FALLBACK = {"stock_video": ["stock_image", "archive", "ai_image"], "motion_graphic": [], "stock_image": ["archive", "ai_image", "stock_video"],
             "archive": ["stock_image", "ai_image"], "ai_image": ["stock_image", "archive", "stock_video"], "ai_video": ["stock_video", "ai_image"],
             "blender": ["ai_image", "stock_video"], "avatar": ["ai_image"], "user": ["stock_video", "ai_image"]}
 SEARCH_CAP = {"stock_video": ("stock_video", "video"), "stock_image": ("stock_image", "image"), "archive": ("archive_image", "image")}
@@ -316,7 +316,7 @@ def run(ctx):
         if cur and cur.meta.get("source_id"):
             used.add(cur.meta["source_id"])
     requested = scene.visual_type
-    chain = [requested] + [t for t in FALLBACK.get(requested, []) if (st.get("sources") or {}).get(t, True) or t == "ai_image"]
+    chain = [requested] + [t for t in FALLBACK.get(requested, []) if (st.get("sources") or {}).get(t, t != "ai_image")]
     scene.asset_status = "generating"
     db.commit()
     errors = []

@@ -64,7 +64,7 @@ def allowed_types(db, project, st):
         ok.append("stock_image")
     if src.get("archive", True) and registry.for_cap(db, "archive_image"):
         ok.append("archive")
-    if src.get("ai_image", True) and registry.for_cap(db, "text_to_image"):
+    if src.get("ai_image", False) and registry.for_cap(db, "text_to_image"):
         ok.append("ai_image")
     if src.get("ai_video") and (registry.for_cap(db, "image_to_video") or registry.for_cap(db, "text_to_video")):
         ok.append("ai_video")
@@ -78,7 +78,7 @@ def allowed_types(db, project, st):
 
 def heuristic(n, text, allowed, rnd, prefer):
     kw = keywords(text)
-    vt = next((t for t in prefer if t in allowed and t not in ("motion_graphic", "avatar", "blender")), "ai_image")
+    vt = next((t for t in prefer if t in allowed and t not in ("motion_graphic", "avatar", "blender")), "stock_video")
     if any(ch.isdigit() for ch in text) and "motion_graphic" in allowed and rnd.random() < 0.5:
         return ScenePlan(n=n, purpose="Show the key number", visual_type="motion_graphic", description="Animated keyword card", subject=" ".join(kw[:2]),
                          environment="graphic", shot="medium", angle="eye level", movement="static", lens="", lighting="", color="", prompt=text,
@@ -169,7 +169,7 @@ def run(ctx):
             else:
                 run_b += 1
                 if pl.visual_type not in ("motion_graphic",) or not any(ch.isdigit() for ch in s_["text"]):
-                    pl.visual_type, pl.motion_graphic = "ai_image", None
+                    pl.visual_type, pl.motion_graphic = next((t for t in ("stock_video", "stock_image", "archive", "ai_image") if t in allowed), "stock_video"), None
             pl.transition = "cut"
     # keep graphics from crowding out pictures: at most ~30% motion graphics unless the mode is graphics-led
     if p.mode not in ("motion_graphics", "educational"):

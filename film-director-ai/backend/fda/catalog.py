@@ -18,7 +18,7 @@ MODES = {
     "realistic": dict(name="Realistic cinematic", look="earth", music="cinematic", captions="clean", pace=5.0,
                       prefer=["ai_video", "stock_video", "ai_image"]),
     "avatar": dict(name="AI avatar host", look="home", music="warm", captions="highlight", pace=4.5,
-                   prefer=["avatar", "ai_image", "motion_graphic"]),
+                   prefer=["avatar", "stock_video", "stock_image", "motion_graphic"]),
     "anim2d": dict(name="2D animation", look="midnight", music="curious", captions="pop", pace=4.0, prefer=["ai_image", "motion_graphic"]),
     "blender3d": dict(name="Blender 3D animation", look="neon", music="ambient", captions="clean", pace=5.0, prefer=["blender", "motion_graphic"]),
     "motion_graphics": dict(name="2D motion graphics", look="clean", music="upbeat", captions="highlight", pace=3.5, prefer=["motion_graphic", "ai_image"]),
@@ -45,5 +45,5 @@ def default_style(mode, language="en"):
     md = MODES.get(mode) or MODES["documentary"]
     return {"look": md["look"], "music": md["music"], "music_volume": 0.5, "sfx": True, "sfx_volume": 0.7, "captions": md["captions"], "pace": md["pace"],
             "voice": DEFAULT_VOICES.get(language, DEFAULT_VOICES["en"]), "voice_rate": -4, "voice_pitch": -2, "voice_enhance": True,
-            "sources": {"stock_video": True, "stock_image": True, "archive": True, "ai_image": True, "ai_video": False, "blender": True, "avatar": mode == "avatar"},
+            "sources": {"stock_video": True, "stock_image": True, "archive": True, "ai_image": False, "ai_video": False, "blender": True, "avatar": mode == "avatar"},
             "blocklist": "", "aspect": "9:16" if mode == "short" else "16:9", "avatar_image_asset": None}
