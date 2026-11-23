@@ -10,7 +10,7 @@ from g6fx import (W, H, C, P, xf, rrect, poly, line, linear, radial, fill_shader
                   stamp, marker_text, caption_serif, polaroid, corner_tag, palm, palm_green, car, baby_bundle, cash,
                   money_bag, bars, phone_prop, speedlines, burst, heart, blit, cached, MARKER, SERIF, SCRIPT, LUCKY,
                   BANG, BRUSH, OUT, LOOKS, sparkle)
-from g6fx import marker_circle  # noqa: E402
+from g6fx import marker_circle, screen_space, poi, REC, SCREEN  # noqa: E402
 from sets import bg
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -136,6 +136,11 @@ def arrow(c, x1, y1, x2, y2, col="#e8282e", w=10, prog=1.0, dashed=False, head_=
 
 
 def checklist(c, x, y, items, t, times, size=52, col="#f2f2f2", check_col="#3ccf6a", cross=False, fam=LUCKY):
+    with screen_space(c):
+        _checklist(c, x, y, items, t, times, size, col, check_col, cross, fam)
+
+
+def _checklist(c, x, y, items, t, times, size, col, check_col, cross, fam):
     for i, (label, tm) in enumerate(zip(items, times)):
         k = fade(t, tm, 0.3)
         if k <= 0:
@@ -158,6 +163,11 @@ def checklist(c, x, y, items, t, times, size=52, col="#f2f2f2", check_col="#3ccf
 
 
 def big_title(c, s, x, y, size, t, start, col="#ffffff", fam=LUCKY, outline="#141414", ow=12, rot=-3.0):
+    with screen_space(c):
+        _big_title(c, s, x, y, size, t, start, col, rot)
+
+
+def _big_title(c, s, x, y, size, t, start, col, rot):
     """Reference-style headline: hand-written marker that writes itself on, with a red underline swipe."""
     k = clamp((t - start) / max(0.25, 0.05 * len(s)))
     if k <= 0:

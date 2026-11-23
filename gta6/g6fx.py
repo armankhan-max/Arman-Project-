@@ -162,6 +162,38 @@ def hsh(s):
     return sum(ord(ch) * (i + 1) for i, ch in enumerate(s))
 
 
+# ---------------------------------------------------------------- subject recorder (for the director camera)
+REC = []
+SCREEN = [None]   # identity matrix used for screen-space overlays
+DIRINV = [None]   # inverse of the director matrix (so recorded points are in world/frame space)
+
+
+def poi(c, x, y, r, kind="obj"):
+    """Record a point of interest in device space so the director camera can frame / follow it."""
+    m = c.getTotalMatrix()
+    if DIRINV[0] is not None:
+        m = skia.Matrix.Concat(DIRINV[0], m)
+    p = m.mapXY(x, y)
+    sc = abs(m.getScaleX()) or 1.0
+    REC.append((kind, p.x(), p.y(), r * sc))
+
+
+def screen_space(c):
+    """Context: draw in screen space (ignores the director camera)."""
+    from contextlib import contextmanager
+
+    @contextmanager
+    def _cm():
+        c.save()
+        if SCREEN[0] is not None:
+            c.setMatrix(SCREEN[0])
+        try:
+            yield
+        finally:
+            c.restore()
+    return _cm()
+
+
 # ---------------------------------------------------------------- characters
 SKIN = {"raul": "#c48e64", "abe": "#e0b48e", "valentina": "#d8a27c", "cordell": "#6e442b", "mendes": "#c08a60",
         "giorgio": "#e9c4a2", "camila": "#d6a07a", "danica": "#f0cdb0", "vinny": "#e2b08a", "liz": "#f0c8a8",
@@ -564,6 +596,9 @@ def person(c, x, y, who="lucia", look_key=None, pose="stand", expr="neutral", t=
         if lk == "lucia_teen":
             s *= 0.93
         person_adult(c, x, y, who, lk, L, skin, ps, pose, expr, t, s, look, talk, walk, flip, bob, a, prop)
+        if a > 0.5:
+            hy = y + (-418 * 1.08 + (95 if ps.get("sit") else 0)) * s
+            poi(c, x, hy, 42 * s, "head")
         if label:
             tag(c, x, y - 470 * s - 40, label, a=label_a * a)
         return
@@ -573,6 +608,8 @@ def person(c, x, y, who="lucia", look_key=None, pose="stand", expr="neutral", t=
         s *= 0.8
     ps = POSES.get(pose, POSES["stand"])
     sit = ps.get("sit")
+    if a > 0.5:
+        poi(c, x, y - 262 * s, 82 * s, "head")
     with xf(c, x, y, s=s, alpha=a, sx=-s if flip else None, sy=s if flip else None):
         breathe = math.sin(t * 2.4 + hsh(who)) * 2.5 if bob else 0
         wk = math.sin(walk * 9.0) if walk else 0
@@ -780,12 +817,17 @@ def marker_circle(c, x, y, rx, ry, prog=1.0, color="#e8282e", w=7, rot=-6):
 
 
 def caption_serif(c, s, x, y, size=40, color="#f3e3c3", a=1.0):
-    T(c, s, x, y, size, color, SERIF, a=a, shadow=0.5)
+    if a <= 0:
+        return
+    with screen_space(c):
+        T(c, s, x, y, size, color, SERIF, a=a, shadow=0.5)
 
 
 def polaroid(c, x, y, w, h, draw_inner, label="", a=1.0, rot=0.0, s=1.0, pin=True, label_col="#1d1d1d"):
     if a <= 0:
         return
+    if a > 0.5 and s > 0.3:
+        poi(c, x, y, max(w, h) * 0.5 * s, "photo")
     with xf(c, x, y, s=s, rot=rot, alpha=a):
         pad = 22
         rrect(c, -w / 2 + 10, -h / 2 + 14, w, h, 6, "#000000", 0.35)
@@ -870,6 +912,8 @@ def palm_green(c, x, y, s=1.0, t=0.0):
 def car(c, x, y, s=1.0, body="#d8262e", t=0.0, moving=0.0, kind="conv", flip=False, people=None, lights=0.0,
         a=1.0):
     """Side-view car, wheels on y. kind: conv (convertible), cop, sedan, van."""
+    if a > 0.5 and kind != "cop":
+        poi(c, x, y - 120 * s, 150 * s, "car")
     with xf(c, x, y, s=s, alpha=a, sx=-s if flip else None, sy=s if flip else None):
         bounce = math.sin(t * 22) * 2 * moving
         c.drawOval(skia.Rect(-270, -14, 270, 14), P("#000000", a=0.28))

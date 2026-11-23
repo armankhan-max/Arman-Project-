@@ -52,7 +52,7 @@ def s_boobie_raul(c, t, lt, d):
     with xf(c):
         cam(c, lt, d, 1.0, 1.05, t=t)
         draw_bg(c, "cork")
-        mug(c, 600, 520, "boobie", label="BOOBIE", expr="smirk", rot=-5, s=pop(t, wt("nightclub", 298.0) - 0.2), t=t,
+        mug(c, 600, 520, "boobie", label="BOOBIE", expr="smirk", rot=-5, s=pop(t, 296.1), t=t,
             bgcol="#e8b0d0")
         mug(c, 1320, 520, "raul", label="RAUL", expr="smirk", rot=5, s=pop(t, wt("raul", 300.0) - 0.2), t=t,
             bgcol="#d0c0a0")
