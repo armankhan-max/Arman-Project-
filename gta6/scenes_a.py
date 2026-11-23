@@ -1,22 +1,24 @@
 """Part 1 of the timeline: birth -> prison -> Jason -> the setup -> road to Vice City (0:00-4:43)."""
 from common import *  # noqa: F401,F403
-from common import shot, wt
+from common import shot, wt, marker_circle
 import math
 
 
 # ======================================================================= HOOK
 @shot(0.0, 5.1, "GTA VI · LEONIDA")
 def s_hook(c, t, lt, d):
+    p = wt("punch", 3.3)
     with xf(c):
-        cam(c, lt, d, 1.0, 1.1, t=t)
+        cam(c, lt, d, 1.0, 1.08, cx=900, t=t, shake=0.35 * window(t, p, p + 0.3, 0.05))
         draw_bg(c, "vice_sunset")
-        p = wt("punch", 3.3)
-        pose = "punch" if t > p - 0.1 else "hips"
-        person(c, 960, 1120, "lucia", "lucia", pose, "determined" if t > p else "smirk", t, s=2.2)
+        car(c, 420, 930, 0.9, "#d8262e", t, kind="conv")
+        pose = "punch" if t > p - 0.1 else "stand"
+        person(c, 1180, 1560, "lucia", "lucia", pose, "determined" if t > p else "neutral", t, s=2.95,
+               look=(-2, 0))
         if t > p:
-            burst(c, 1330, 640, 110 * pop(t, p, 0.25), "#ffd23f", t * 0.5)
-            T(c, "POW!", 1330, 665, 70 * pop(t, p, 0.25), "#d8262e", BANG, outline="#141414", ow=8)
-    tag(c, 960, 130, "LUCIA CAMINOS", 46, a=fade(t, 0.8), s=pop(t, 0.8))
+            burst(c, 1700, 610, 110 * pop(t, p, 0.25), "#ffd23f", t * 0.5)
+            T(c, "POW!", 1700, 635, 70 * pop(t, p, 0.25), "#d8262e", BANG, outline="#141414", ow=8)
+    tag(c, 700, 200, "LUCIA CAMINOS", 46, a=fade(t, 0.8), s=pop(t, 0.8))
     r = wt("read", 4.5)
     if t > r - 0.2:
         with xf(c, 520, 700 + (t - r) * 900, rot=(t - r) * 200):
@@ -373,6 +375,7 @@ def s_coffee(c, t, lt, d):
             with xf(c, 0, -80):
                 head(c, "tommy", "tommy", 36, "worried", t)
         tag(c, 1300, 600, "TOMMY", 32, a=fade(t, 79.5))
+        marker_circle(c, 1300, 730, 150, 110, at(t, 79.6, 0.7))
         run = wt("run", 82.4)
         if t > run - 0.3:
             x = lerp(-200, 700, smooth(at(t, run - 0.3, 1.5)))
@@ -432,7 +435,7 @@ def s_cell(c, t, lt, d):
     with xf(c):
         cam(c, lt, d, 1.0, 1.12, cx=760, cy=600, t=t)
         draw_bg(c, "cell")
-        person(c, 600, 1000, "lucia", "lucia_p", "sit", "sad", t, s=1.25, look=(4, -1))
+        person(c, 470, 745, "lucia", "lucia_p", "sit", "sad", t, s=1.25, look=(4, -1))
     k = fade(t, wt("orange", 95.4))
     if k > 0:
         tag(c, 600, 380, "ORANGE JUMPSUIT", 34, a=k, s=pop(t, wt("orange", 95.4)))
@@ -506,6 +509,7 @@ def s_keys(c, t, lt, d):
                    prop=lambda c2: box(c2, -60, -170, 120, 90, "#b98a58", r=4, ow=4))
         person(c, 380, 770, "brian", "brian", "point", "smirk", t, s=1.0)
     tag(c, 1250, 300, "JASON", 34, a=fade(t, 122.5))
+    marker_circle(c, 1250, 560, 120, 200, at(t, 122.6, 0.8))
     tag(c, 380, 340, "BRIAN HEDER", 34, a=fade(t, wt("brian", 125.1)))
     tag(c, 960, 140, "SMUGGLING JOBS", 46, a=fade(t, wt("smuggling", 123.5)), bg="#ffd23f")
     for i, (lab, tm) in enumerate((("NOT RICH", wt("rich", 127.0)), ("NOT SAFE", wt("safe", 128.4)))):
@@ -819,7 +823,11 @@ def s_worth_it(c, t, lt, d):
         box(c, 1080, 860, 640, 40, "#7a5a3a", ow=4)
         with xf(c, 1180, 740):
             head(c, "jason", "jason", 70, "sad", t)
-        person(c, 640, 1010, "lucia", "lucia", "sit", "worried", t, s=1.2, look=(3, 0))
+        box(c, 540, 760, 200, 30, "#6a4a32", r=6)
+        box(c, 550, 790, 20, 220, "#4a3222", ow=4)
+        box(c, 710, 790, 20, 220, "#4a3222", ow=4)
+        box(c, 700, 560, 30, 220, "#6a4a32", r=6)
+        person(c, 640, 900, "lucia", "lucia", "sit", "worried", t, s=1.2, look=(3, 0))
     k = fade(t, wt("dead", 231.6) - 0.1)
     if k > 0 and t < 233.5:
         stamp(c, 960, 200, "SOMEONE DEAD", 70, a=k, rot=-4, color="#ff4a4a")
@@ -919,6 +927,8 @@ def s_bag(c, t, lt, d):
             c.drawPath(pth, P("#3a3a42", 14))
             line(c, -200, -40, 200, -40, "#55555f", 5)
             oval(c, 0, -40, 14, 10, "#e8c25a", ow=3)
+    marker_circle(c, 960, 620, 420, 260, at(t, wt("bag", 267.6), 0.8))
+    marker_text(c, "THE BAG", 1380, 330, 80, a=at(t, wt("bag", 267.6) + 0.3, 0.6), rot=-6)
     k = pop(t, wt("don't", 268.5), 0.4)
     if k > 0:
         T(c, "?", 960, 300, 200 * k, "#ffd23f", LUCKY, outline="#141414", ow=14)

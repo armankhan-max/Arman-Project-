@@ -175,10 +175,10 @@ SKIN = {"raul": "#c48e64", "abe": "#e0b48e", "valentina": "#d8a27c", "cordell": 
 
 LOOKS = {
     # who: hair style, hair color, top, top2, bottom, shoes, extras
-    "lucia":   dict(fem=True, hair="pony", hc="#2b1a14", top="#f4efe6", bottom="#3c6fb4", shoes="#f2f2f2", ear="hoop"),
+    "lucia":   dict(fem=True, tank=True, hair="pony", hc="#2b1a14", top="#f4efe6", bottom="#3c6fb4", shoes="#f2f2f2", ear="hoop"),
     "lucia_p": dict(fem=True, hair="pony", hc="#2b1a14", top="#f08a2c", bottom="#f08a2c", shoes="#e9e9e9", ear=None,
                     jump=True),
-    "lucia_box": dict(fem=True, hair="pony", hc="#2b1a14", top="#d9383a", bottom="#1f1f2b", shoes="#e8e8e8", ear=None,
+    "lucia_box": dict(fem=True, tank=True, hair="pony", hc="#2b1a14", top="#d9383a", bottom="#1f1f2b", shoes="#e8e8e8", ear=None,
                       wraps=True),
     "lucia_kid": dict(fem=True, hair="puffs", hc="#2b1a14", top="#f6c544", bottom="#4b7fc4", shoes="#ffffff", ear=None,
                       small=True),
@@ -192,38 +192,38 @@ LOOKS = {
     "jason":   dict(hair="jason", hc="#5b3a24", top="#8a8f96", bottom="#3d4f6d", shoes="#6b4a33", stubble=True),
     "tommy":   dict(hair="babycurl", hc="#2b1a14", top="#8fc6ef", bottom="#8fc6ef", shoes="#8fc6ef", baby=True),
     "tommy_kid": dict(hair="short", hc="#2b1a14", top="#e84b3c", bottom="#4b7fc4", shoes="#ffffff", small=True),
-    "guard":   dict(hair="cap", hc="#1d2a44", top="#3a4f78", bottom="#25324d", shoes="#151515", badge=True),
-    "cop":     dict(hair="cap", hc="#141a2a", top="#24324f", bottom="#1a2236", shoes="#111111", badge=True),
-    "cop2":    dict(hair="cap", hc="#141a2a", top="#24324f", bottom="#1a2236", shoes="#111111", badge=True),
+    "guard":   dict(long=True, hair="cap", hc="#1d2a44", top="#3a4f78", bottom="#25324d", shoes="#151515", badge=True),
+    "cop":     dict(long=True, hair="cap", hc="#141a2a", top="#24324f", bottom="#1a2236", shoes="#111111", badge=True),
+    "cop2":    dict(long=True, hair="cap", hc="#141a2a", top="#24324f", bottom="#1a2236", shoes="#111111", badge=True),
     "inmate":  dict(hair="buzz", hc="#1d130e", top="#f08a2c", bottom="#f08a2c", shoes="#e9e9e9", jump=True),
     "coach":   dict(hair="bald", hc="#1d130e", top="#2b2b33", bottom="#55555f", shoes="#e9e9e9", mustache=True,
                     whistle=True),
-    "boss":    dict(hair="slick", hc="#14100e", top="#202024", bottom="#202024", shoes="#0d0d0d", suit=True,
+    "boss":    dict(long=True, hair="slick", hc="#14100e", top="#202024", bottom="#202024", shoes="#0d0d0d", suit=True,
                     shades=True),
-    "judge":   dict(fem=True, hair="gray", hc="#d8d4cc", top="#15151a", bottom="#15151a", shoes="#0d0d0d", dress=True),
-    "lawyer":  dict(hair="short", hc="#3a2a1e", top="#3b4256", bottom="#3b4256", shoes="#1a1a1a", suit=True),
+    "judge":   dict(long=True, fem=True, hair="gray", hc="#d8d4cc", top="#15151a", bottom="#15151a", shoes="#0d0d0d", dress=True),
+    "lawyer":  dict(long=True, hair="short", hc="#3a2a1e", top="#3b4256", bottom="#3b4256", shoes="#1a1a1a", suit=True),
     "man":     dict(hair="short", hc="#1d130e", top="#c9603f", bottom="#38404f", shoes="#2a2a2a"),
     "woman":   dict(fem=True, hair="long", hc="#c58b3c", top="#e05d8c", bottom="#2f3b55", shoes="#f2f2f2"),
     "friend":  dict(hair="braids", hc="#1d130e", top="#9b59b6", bottom="#2f3b55", shoes="#ffffff", ear="hoop"),
-    "dealer":  dict(hair="slick", hc="#2a1d14", top="#f2f2f2", bottom="#c9c2b0", shoes="#c9a27a", suit=True,
+    "dealer":  dict(long=True, hair="slick", hc="#2a1d14", top="#f2f2f2", bottom="#c9c2b0", shoes="#c9a27a", suit=True,
                     shades=True),
     "cal":     dict(hair="cal", hc="#8a6b4a", top="#6d7d5b", bottom="#4a4f5c", shoes="#3b2a22", glasses=True),
     "boobie":  dict(hair="bald", hc="#1d130e", top="#f2f2f2", bottom="#20242e", shoes="#111111", chain=True,
                     shades=False),
     "dre":     dict(hair="buzz", hc="#1d130e", top="#121216", bottom="#121216", shoes="#d8d8d8", chain=True),
     "brian":   dict(hair="gray", hc="#e3ddd3", top="#c9ad79", bottom="#4b5563", shoes="#3b2a22", mustache=True),
-"raul":    dict(hair="slick", hc="#2a1d14", top="#5a3d2b", bottom="#2a2a30", shoes="#1a1a1a", stubble=True),
-    "abe":     dict(hair="gray", hc="#bfb8ae", top="#56607a", bottom="#56607a", shoes="#1a1a1a", suit=True,
+"raul":    dict(long=True, hair="slick", hc="#2a1d14", top="#5a3d2b", bottom="#2a2a30", shoes="#1a1a1a", stubble=True),
+    "abe":     dict(long=True, hair="gray", hc="#bfb8ae", top="#56607a", bottom="#56607a", shoes="#1a1a1a", suit=True,
                     glasses=True),
-    "valentina": dict(fem=True, hair="long", hc="#1a1210", top="#8e1f3c", bottom="#1a1a22", shoes="#1a1a1a",
+    "valentina": dict(long=True, fem=True, hair="long", hc="#1a1210", top="#8e1f3c", bottom="#1a1a22", shoes="#1a1a1a",
                       ear="hoop"),
     "cordell": dict(hair="buzz", hc="#1d130e", top="#2c7a4b", bottom="#2a2a30", shoes="#ffffff", chain=True),
-    "mendes":  dict(hair="slick", hc="#1d130e", top="#3a3226", bottom="#2a2a30", shoes="#1a1a1a", badge=True,
+    "mendes":  dict(long=True, hair="slick", hc="#1d130e", top="#3a3226", bottom="#2a2a30", shoes="#1a1a1a", badge=True,
                     mustache=True),
-    "giorgio": dict(hair="gray", hc="#9a948a", top="#f2efe6", bottom="#f2efe6", shoes="#c9a27a", suit=True),
-    "camila":  dict(fem=True, hair="long", hc="#4a2e1c", top="#2f4c8a", bottom="#2f4c8a", shoes="#1a1a1a",
+    "giorgio": dict(long=True, hair="gray", hc="#9a948a", top="#f2efe6", bottom="#f2efe6", shoes="#c9a27a", suit=True),
+    "camila":  dict(long=True, fem=True, hair="long", hc="#4a2e1c", top="#2f4c8a", bottom="#2f4c8a", shoes="#1a1a1a",
                     suit=True),
-    "danica":  dict(fem=True, hair="long", hc="#e0c07a", top="#3c3f48", bottom="#3c3f48", shoes="#1a1a1a",
+    "danica":  dict(long=True, fem=True, hair="long", hc="#e0c07a", top="#3c3f48", bottom="#3c3f48", shoes="#1a1a1a",
                     suit=True, glasses=True),
     "vinny":   dict(hair="short", hc="#2a1d14", top="#e6c34a", bottom="#38404f", shoes="#2a2a2a"),
     "liz":     dict(fem=True, hair="long", hc="#d8573c", top="#34a3a0", bottom="#2f3b55", shoes="#f2f2f2"),
@@ -232,9 +232,9 @@ LOOKS = {
     "arnold":  dict(hair="short", hc="#7a5a3a", top="#9aa86a", bottom="#5a4a3a", shoes="#3b2a22", stubble=True),
     "aunt":    dict(fem=True, hair="curly", hc="#2a1a14", top="#e3893a", bottom="#e3893a", shoes="#6b3a2a",
                     dress=True, ear="hoop"),
-    "counselor": dict(fem=True, hair="long", hc="#3a2a1e", top="#c8d2dc", bottom="#3b4256", shoes="#1a1a1a",
+    "counselor": dict(long=True, fem=True, hair="long", hc="#3a2a1e", top="#c8d2dc", bottom="#3b4256", shoes="#1a1a1a",
                       glasses=True),
-    "masked":  dict(hair="mask", hc="#151518", top="#1d1d22", bottom="#1d1d22", shoes="#111111"),
+    "masked":  dict(long=True, hair="mask", hc="#151518", top="#1d1d22", bottom="#1d1d22", shoes="#111111"),
 }
 
 # arm poses: (upper_angle, lower_angle) in degrees, 0 = straight down, + = outward, 180 = straight up
@@ -489,6 +489,10 @@ def _mouth(c, r, expr, talk, t):
 
 def head(c, who, look_key, r, expr="neutral", t=0.0, look=(0, 0), talk=0.0, blink_ok=True):
     L = LOOKS[look_key]
+    if is_adult(look_key):
+        from adult import a_head
+        a_head(c, who, look_key, L, SKIN.get(who, "#c98a5e"), expr, t, look, talk, blink_ok, scale=r / 34)
+        return
     skin = SKIN.get(who, SKIN.get(look_key.split("_")[0], "#c98a5e"))
     hc = L["hair"]
     _hair_back(c, hc, L["hc"], r, t)
@@ -542,12 +546,27 @@ def head(c, who, look_key, r, expr="neutral", t=0.0, look=(0, 0), talk=0.0, blin
         c.drawPath(pth, P("#ffffff", 5, 0.22))
 
 
+def is_adult(lk):
+    L = LOOKS[lk]
+    return not (L.get("baby") or L.get("small"))
+
+
 def person(c, x, y, who="lucia", look_key=None, pose="stand", expr="neutral", t=0.0, s=1.0, look=(0, 0),
            talk=0.0, walk=0.0, flip=False, bob=True, a=1.0, label=None, label_a=1.0, prop=None):
-    """Chibi character standing with feet at (x, y). Height at s=1 is about 360 px."""
+    """Character with feet at (x, y). Kids/babies are chibi (~360 px at s=1); adults are realistic (~465 px)."""
     lk = look_key or who
     L = LOOKS[lk]
     skin = SKIN.get(who, "#c98a5e")
+    if is_adult(lk):
+        from adult import person_adult
+        ps = POSES.get(pose, POSES["stand"])
+        s *= 0.82
+        if lk == "lucia_teen":
+            s *= 0.93
+        person_adult(c, x, y, who, lk, L, skin, ps, pose, expr, t, s, look, talk, walk, flip, bob, a, prop)
+        if label:
+            tag(c, x, y - 470 * s - 40, label, a=label_a * a)
+        return
     if L.get("baby"):
         s *= 0.55
     elif L.get("small"):
@@ -688,6 +707,7 @@ def tag(c, x, y, label, size=30, a=1.0, s=1.0, rot=0.0, bg="#ffffff", fg="#1a1a1
         return
     w = tw(label, size) + 34
     h = size * 1.45
+    rot = rot + (1.0 - clamp(a)) * -16 + (s - 1.0) * 30
     with xf(c, x, y, s=s, rot=rot, alpha=a):
         box(c, -w / 2 + 4, -h / 2 + 5, w, h, "#000000", r=10, a=0.25, ow=0)
         box(c, -w / 2, -h / 2, w, h, bg, r=10, ow=4, oc="#141414")
@@ -727,7 +747,36 @@ def stamp(c, x, y, label, size=70, a=1.0, s=1.0, rot=-10, color="#d8262e"):
 
 
 def marker_text(c, s, x, y, size=60, color="#e8282e", a=1.0, rot=-4, fam=MARKER, align="center"):
-    T(c, s, x, y, size, color, fam, align=align, a=a, rot=rot, shadow=0.0)
+    """Hand-written marker text that writes on from left to right as `a` goes 0 -> 1."""
+    if a <= 0:
+        return
+    w = tw(s, size, fam)
+    x0 = x - w / 2 if align == "center" else (x - w if align == "right" else x)
+    c.save()
+    c.translate(x, y)
+    c.rotate(rot)
+    c.clipRect(skia.Rect(x0 - x - 10, -size * 1.4, x0 - x + (w + 20) * clamp(a * 1.15), size * 0.6))
+    c.drawString(s, x0 - x + size * 0.03, size * 0.05, F(fam, size), P("#000000", a=0.35))
+    c.drawString(s, x0 - x, 0, F(fam, size), P(color))
+    c.restore()
+
+
+def marker_circle(c, x, y, rx, ry, prog=1.0, color="#e8282e", w=7, rot=-6):
+    """Hand-drawn red marker ellipse that draws itself (overshoots its start like a real pen)."""
+    if prog <= 0:
+        return
+    pth = skia.Path()
+    n = 60
+    end = int(n * 1.12 * clamp(prog)) + 1
+    for i in range(end):
+        a = -2.2 + i / n * math.tau
+        wob = 1 + 0.04 * math.sin(i * 0.7) + 0.06 * (i / n)
+        px = x + math.cos(a) * rx * wob
+        py = y + math.sin(a) * ry * wob
+        pth.lineTo(px, py) if i else pth.moveTo(px, py)
+    with xf(c, x, y, rot=rot):
+        c.translate(-x, -y)
+        c.drawPath(pth, P(color, w))
 
 
 def caption_serif(c, s, x, y, size=40, color="#f3e3c3", a=1.0):
@@ -828,9 +877,12 @@ def car(c, x, y, s=1.0, body="#d8262e", t=0.0, moving=0.0, kind="conv", flip=Fal
         if kind == "cop":
             body2 = "#f4f4f4"
         if people and kind == "conv":
+            c.save()
+            c.clipRect(skia.Rect(-400, -400, 400, -60))
             for px, who, lk, ex in people:
                 with xf(c, px, -168):
                     head(c, who, lk, 52, ex, t)
+            c.restore()
         pth = skia.Path()
         if kind == "conv":
             pth.moveTo(-260, -40)

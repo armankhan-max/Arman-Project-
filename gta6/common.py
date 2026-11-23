@@ -10,6 +10,7 @@ from g6fx import (W, H, C, P, xf, rrect, poly, line, linear, radial, fill_shader
                   stamp, marker_text, caption_serif, polaroid, corner_tag, palm, palm_green, car, baby_bundle, cash,
                   money_bag, bars, phone_prop, speedlines, burst, heart, blit, cached, MARKER, SERIF, SCRIPT, LUCKY,
                   BANG, BRUSH, OUT, LOOKS, sparkle)
+from g6fx import marker_circle  # noqa: E402
 from sets import bg
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -80,10 +81,14 @@ def mug(c, x, y, who, lk=None, label="", expr="neutral", rot=0.0, a=1.0, s=1.0, 
         grad_rect(cc, 0, 0, iw, ih, [bgcol, mixhex(bgcol, "#000000", 0.25)])
         for k in range(5):
             line(cc, 0, 40 + k * 50, iw, 40 + k * 50, "#000000", 2, 0.08)
-        sc = iw / 190
         L = LOOKS[lk]
-        eff = sc * (0.55 if L.get("baby") else 0.8 if L.get("small") else 1.0)
-        person(cc, iw / 2, ih * 0.5 + 262 * eff, who, lk, pose, expr, t, s=sc)
+        if not (L.get("baby") or L.get("small")):
+            sa = iw / 185
+            person(cc, iw / 2, ih * 0.42 + 418 * sa * 1.08, who, lk, pose, expr, t, s=sa / 0.82)
+        else:
+            sc = iw / 190
+            eff = sc * (0.55 if L.get("baby") else 0.8)
+            person(cc, iw / 2, ih * 0.5 + 262 * eff, who, lk, pose, expr, t, s=sc)
 
     polaroid(c, x, y, w, h, inner, label, a=a, rot=rot, s=s, pin=pin)
     if xmark > 0:
@@ -152,12 +157,18 @@ def checklist(c, x, y, items, t, times, size=52, col="#f2f2f2", check_col="#3ccf
             T(c, label, size + 26, 0, size, col, fam, align="left", outline="#141414", ow=8)
 
 
-def big_title(c, s, x, y, size, t, start, col="#ffffff", fam=LUCKY, outline="#141414", ow=12, rot=0.0):
-    k = pop(t, start, 0.4)
+def big_title(c, s, x, y, size, t, start, col="#ffffff", fam=LUCKY, outline="#141414", ow=12, rot=-3.0):
+    """Reference-style headline: hand-written marker that writes itself on, with a red underline swipe."""
+    k = clamp((t - start) / max(0.25, 0.05 * len(s)))
     if k <= 0:
         return
-    with xf(c, x, y, s=k, rot=rot):
-        T(c, s, 0, size * 0.35, size, col, fam, outline=outline, ow=ow, shadow=0.4)
+    colr = "#e8282e" if col in ("#ff4a4a", "#d8262e") else ("#f4f0e6" if col == "#ffffff" else col)
+    marker_text(c, s, x, y + size * 0.3, size * 0.92, colr, a=k, rot=rot)
+    u = clamp((t - start - 0.25) / 0.35)
+    if u > 0:
+        w = tw(s, size * 0.92, MARKER)
+        with xf(c, x, y + size * 0.55, rot=rot):
+            c.drawLine(-w / 2, 0, -w / 2 + w * u, 4, P("#e8282e", 6))
 
 
 def note(c, x, y, s=1.0, col="#ffd36b", a=1.0):

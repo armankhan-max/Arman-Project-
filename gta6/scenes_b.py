@@ -1,6 +1,6 @@
 """Part 2 of the timeline: Vice City -> Giorgio -> the bridge -> the endings -> outro (4:43-12:41)."""
 from common import *  # noqa: F401,F403
-from common import shot, wt
+from common import shot, wt, marker_circle
 import math
 import skia
 from sets import neon
@@ -189,11 +189,6 @@ def s_listening(c, t, lt, d):
         lift = abs(math.sin(t * 2.2)) if t > wt("lift", 344.6) else 0
         person(c, 760, 1010, "lucia", "lucia_box", "raise" if lift > 0.5 else "hold", "neutral", t, s=1.5,
                look=(5, 0))
-        if t > wt("lift", 344.6):
-            hy = lerp(-330, -560, lift) * 1.5
-            line(c, 760 - 260, 1010 + hy * 0.95, 760 + 260, 1010 + hy * 0.95, "#5a5f66", 18)
-            for sx in (-1, 1):
-                oval(c, 760 + sx * 250, 1010 + hy * 0.95, 34, 80, "#202024")
         person(c, 1400, 1010, "cordell", "cordell", "point", "smirk", t, s=1.3, talk=0.8)
         person(c, 1650, 1010, "man", "man", "cross", "neutral", t, s=1.2, talk=0.4)
     for i, (lab, tm) in enumerate((("YOU SMILE", wt("smile", 343.7)), ("YOU LIFT", wt("lift", 344.6)),
@@ -310,8 +305,8 @@ def s_together(c, t, lt, d):
         cam(c, lt, d, 1.0, 1.08, t=t)
         draw_bg(c, "living_night")
         sep = smooth(at(t, wt("stay", 393.7), 2.0))
-        person(c, 600 - sep * 80, 1000, "lucia", "lucia", "sit", "sad", t, s=1.2, look=(3, 0))
-        person(c, 1000 + sep * 80, 1000, "jason", "jason", "sit", "sad", t, s=1.2, look=(-3, 0))
+        person(c, 600 - sep * 80, 875, "lucia", "lucia", "sit", "sad", t, s=1.2, look=(3, 0))
+        person(c, 1000 + sep * 80, 875, "jason", "jason", "sit", "sad", t, s=1.2, look=(-3, 0))
     caption_serif(c, "Should you even stay together?", 960, 260, 56, a=fade(t, wt("should", 393.3)))
     k = fade(t, wt("loving", 395.6))
     if k > 0:
@@ -344,6 +339,7 @@ def s_giorgio(c, t, lt, d):
         draw_bg(c, "penthouse")
         person(c, 960, 1010, "giorgio", "giorgio", "hips", "smirk", t, s=1.45)
     tag(c, 960, 360, "GIORGIO GALLO", 44, a=fade(t, gg))
+    marker_circle(c, 960, 700, 220, 360, at(t, gg + 0.1, 0.8))
     for i, (lab, tm) in enumerate((("CALM", wt("calm", 407.4)), ("POLITE", wt("polite", 407.8)),
                                    ("TERRIFYING", wt("terrifying", 408.2)))):
         tag(c, 360 + i * 600, 900, lab, 40, a=fade(t, tm - 0.1), s=pop(t, tm - 0.1),
@@ -361,6 +357,7 @@ def s_drive_senator(c, t, lt, d):
             oval(c, 0, 0, 40, 40, "#8a8a9a")
             box(c, 80, 30, 40, 18, "#7dff8a", r=4, ow=2)
             T(c, "HARD DRIVE", 0, 160, 32, "#ffffff", LUCKY)
+        marker_circle(c, 620, 560, 300, 200, at(t, 409.8, 0.8))
         mug(c, 1360, 520, "camila", label="SEN. CAMILA FUENTES", expr="worried", rot=5, t=t, bgcol="#c8d0e8",
             s=pop(t, wt("senator", 413.0) - 0.2), w=360, h=420)
         arrow(c, 860, 540, 1150, 540, "#d8262e", 10, prog=ease_out(at(t, wt("blackmail", 412.4), 0.8)))
@@ -460,10 +457,10 @@ def s_leash(c, t, lt, d):
         hx, hy = 1500, 200
         for x in (700, 960):
             pth = skia.Path()
-            pth.moveTo(x + 20, 772)
-            pth.quadTo((x + hx) / 2, 560, hx, hy + 30)
+            pth.moveTo(x + 14, 628)
+            pth.quadTo((x + hx) / 2, 480, hx, hy + 30)
             c.drawPath(pth, P("#d8262e", 7))
-            c.drawOval(skia.Rect(x - 40, 755, x + 40, 785), P("#d8262e", 9))
+            c.drawOval(skia.Rect(x - 20, 612, x + 20, 632), P("#d8262e", 7))
         with xf(c, hx + 30, hy):
             for k in range(4):
                 oval(c, -70 + k * 42, 60, 22, 34, "#e9c4a2", ow=4)
@@ -650,7 +647,7 @@ def s_visit(c, t, lt, d):
     with xf(c):
         cam(c, lt, d, 1.0, 1.06, t=t)
         draw_bg(c, "visit")
-        person(c, 780, 900, "jason", "inmate", "phone", "smile", t, s=1.1)
+        person(c, 780, 1030, "jason", "inmate", "phone", "smile", t, s=1.5)
         box(c, 0, 680, W, 50, "#8a8a80", ow=5)
         box(c, 0, 730, W, 300, "#6a6a62", ow=5)
         person(c, 1180, 1050, "lucia", "lucia", "stand", "smile", t, s=1.2)
@@ -951,7 +948,7 @@ def s_end_a2(c, t, lt, d):
         cam(c, lt, d, 1.0, 1.05, t=t)
         if t < wt("raise", 643.0) - 0.4:
             draw_bg(c, "visit")
-            person(c, 760, 900, "jason", "inmate", "phone", "sad", t, s=1.1)
+            person(c, 760, 1030, "jason", "inmate", "phone", "sad", t, s=1.5)
             box(c, 0, 680, W, 50, "#8a8a80", ow=5)
             box(c, 0, 730, W, 300, "#6a6a62", ow=5)
             person(c, 1260, 1050, "tommy", "tommy_kid", "wave", "sad", t, s=1.2)
@@ -980,13 +977,26 @@ def s_end_b(c, t, lt, d):
 @shot(652.0, 662.3)
 def s_call_abe(c, t, lt, d):
     if t < wt("prison", 661.0) - 1.6:
-        with xf(c):
-            cam(c, lt, 7, 1.0, 1.05, t=t)
+        k = ease_out(at(t, 652.1, 0.6))
+        c.save()
+        left = poly([(0, 0), (1010, 0), (910, H), (0, H)])
+        c.clipPath(left, skia.ClipOp.kIntersect, True)
+        with xf(c, -300 * (1 - k)):
+            cam(c, lt, 7, 1.08, 1.14, cx=700, t=t)
+            draw_bg(c, "living_night")
+            person(c, 640, 1150, "lucia", "lucia", "phone", "determined", t, s=2.0, talk=0.5)
+        c.restore()
+        c.save()
+        right = poly([(1010, 0), (W, 0), (W, H), (910, H)])
+        c.clipPath(right, skia.ClipOp.kIntersect, True)
+        with xf(c, 300 * (1 - k)):
+            cam(c, lt, 7, 1.08, 1.14, cx=1320, t=t)
             draw_bg(c, "lawyer")
-            person(c, 600, 1010, "lucia", "lucia", "phone", "determined", t, s=1.3, talk=0.5)
-            person(c, 1320, 860, "abe", "abe", "phone", "smirk", t, s=1.1)
-            box(c, 360, 760, 1200, 70, "#6a4428", r=6)
-        tag(c, 1320, 380, "ABE", 40, a=fade(t, 652.1))
+            person(c, 1400, 1150, "abe", "abe", "phone", "smirk", t, s=2.0, flip=True)
+        c.restore()
+        line(c, 1010, 0, 910, H, "#141414", 14)
+        line(c, 1010, 0, 910, H, "#f2f2f2", 6)
+        tag(c, 1450, 200, "ABE", 40, a=fade(t, 652.3))
         caption_serif(c, "this time, you use him to bring Jason home", 960, 1010, 44, a=fade(t, wt("this", 655.0)))
         k = pop(t, wt("cash", 658.3), 0.4)
         if k > 0:
@@ -1215,7 +1225,7 @@ def s_final(c, t, lt, d):
         bridge_scene(c, t, lt, d)
         tint_c(c, "#000000", 0.45)
     doors(c, t, 756.2, ["JUMP", "NEVER SURRENDER"])
-    big_title(c, "WHICH DOOR WOULD YOU CHOOSE?", 960, 160, 72, t, wt("which", 758.6) - 0.2, "#ffd23f")
+    big_title(c, "WHICH DOOR WOULD YOU CHOOSE?", 960, 160, 60, t, wt("which", 758.6) - 0.2, "#ffd23f")
     k = fade(t, 759.5)
     if k > 0:
         with xf(c, 960, 1000, alpha=k):
