@@ -91,31 +91,33 @@ def _snap(x, lo, hi):
 
 
 def _plan(i):
+    """Coverage like the reference: an establishing wide, then clean cuts between a composed close shot of
+    a character and the wide, every ~2-3 s, each cut landing on a word."""
     if i in _plans:
         return _plans[i]
     a, b, fn, _ = SHOTS[i]
     rnd = random.Random(i * 7919 + 3)
     segs = []
-    t0 = a
-    kinds = []
-    while t0 < b - 0.05:
-        L = rnd.uniform(1.6, 2.5)
-        t1 = t0 + L
-        if b - t1 < 1.1:
-            t1 = b
-        else:
-            t1 = _snap(t1, t0 + 1.2, b - 1.0)
-        if not segs:
-            k = rnd.choice(["W", "P", "M", "W"])
-        else:
-            opts = ["C", "M", "W", "F", "C", "P", "M"]
-            opts = [o for o in opts if o != kinds[-1]]
-            k = rnd.choice(opts)
-        kinds.append(k)
-        segs.append((t0, t1, k, rnd.randint(0, 99), rnd.uniform(-1, 1)))
-        t0 = t1
+    if b - a < 3.6:
+        segs.append((a, b, "W", 0))
+    else:
+        t0 = a
+        n = 0
+        while t0 < b - 0.05:
+            L = rnd.uniform(2.0, 3.0) if n == 0 else rnd.uniform(1.8, 2.8)
+            t1 = t0 + L
+            if b - t1 < 1.4:
+                t1 = b
+            else:
+                t1 = _snap(t1, t0 + 1.5, b - 1.2)
+            segs.append((t0, t1, "W" if n % 2 == 0 else "C", n // 2))
+            t0 = t1
+            n += 1
     _plans[i] = segs
     return segs
+
+
+_anchor = {}
 
 
 def _clampc(cx, cy, z):
@@ -123,61 +125,43 @@ def _clampc(cx, cy, z):
     return min(max(cx, hw), W - hw), min(max(cy, hh), H - hh)
 
 
-def _frame(kind, subj, seed, jit, k):
-    heads = [s for s in subj if s[0] == "head" and 8 < s[3] < 260 and -100 < s[1] < W + 100 and -100 < s[2] < H]
-    objs = [s for s in subj if s[0] in ("car", "photo") and -100 < s[1] < W + 100]
-    pool = heads or objs
-    if kind == "W" or (not pool and kind in ("C", "F")):
-        z = 1.0 + 0.05 * k
-        return W / 2 + jit * 20, H / 2, z
-    if not pool:
-        z = 1.18 + 0.06 * k
-        return W / 2 + jit * 160, H / 2 + jit * 60, z
-    if kind == "M":
-        xs = [s[1] for s in pool]
-        ys = [s[2] for s in pool]
-        span = max(xs) - min(xs)
-        z = min(max(W * 0.75 / (span + 420), 1.15), 1.5)
-        return sum(xs) / len(xs), sum(ys) / len(ys) + H * 0.2 / z, z * (1 + 0.04 * k)
-    if kind == "C":
-        s0 = pool[seed % len(pool)]
-        if s0[0] == "head":
-            z = min(max(165 / s0[3], 1.25), 2.1)
-            return s0[1], s0[2] + H * 0.2 / z, z * (1 + 0.04 * k)
-        z = min(max(330 / s0[3], 1.2), 1.8)
-        return s0[1], s0[2], z * (1 + 0.04 * k)
-    if kind == "P":
-        s0 = pool[seed % len(pool)]
-        kk = smooth(k)
-        z = lerp(1.0, 1.4, kk)
-        return lerp(W / 2, s0[1], kk), lerp(H / 2, s0[2] + H * 0.15, kk), z
-    if kind == "F":
-        A = pool[seed % len(pool)]
-        B = pool[(seed + 1) % len(pool)] if len(pool) > 1 else A
-        kk = smooth(clamp((k - 0.35) / 0.35))
-        z = 1.4 if A[0] == "head" else 1.3
-        return lerp(A[1], B[1], kk), lerp(A[2], B[2], kk) + H * 0.18 / z, z
-    return W / 2, H / 2, 1.0
-
-
 def _director(i, t, subj):
     a, b, fn, _ = SHOTS[i]
     if fn.__name__ in NO_DIRECT:
         return skia.Matrix()
-    for t0, t1, kind, seed, jit in _plan(i):
+    for si, (t0, t1, kind, n) in enumerate(_plan(i)):
         if t0 <= t < t1:
-            k = (t - t0) / max(0.01, t1 - t0)
-            cx, cy, z = _frame(kind, subj, seed, jit, k)
-            if kind != "F" and t0 > a:
-                z *= 1 + 0.05 * (1 - ease_out(clamp((t - t0) / 0.35)))
-            z = max(1.0, z)
-            cx, cy = _clampc(cx, cy, z)
-            m = skia.Matrix()
-            m.setTranslate(W / 2, H / 2)
-            m.preScale(z, z)
-            m.preTranslate(-cx, -cy)
-            return m
-    return skia.Matrix()
+            break
+    else:
+        return skia.Matrix()
+    photos = [s for s in subj if s[0] == "photo"]
+    ui = [s for s in subj if s[0] in ("ui", "photo", "car")]
+    heads = [s for s in subj if s[0] == "head" and 14 < s[3] < 120 and 80 < s[1] < W - 80 and 60 < s[2] < H - 200
+             and not any(math.dist((s[1], s[2]), (p[1], p[2])) < p[3] for p in photos)]
+    if kind == "W" or not heads:
+        return skia.Matrix()
+    heads.sort(key=lambda s: s[1])
+    h = heads[n % len(heads)]
+    key = (i, si)
+    anc = _anchor.get(key)
+    if anc is None or math.dist(anc[:2], (h[1], h[2])) > 70:
+        anc = (h[1], h[2], h[3])
+        _anchor[key] = anc
+    z = min(max(120.0 / anc[2], 1.45), 1.85)
+    cx = anc[0]
+    cy = anc[1] + (0.5 - 0.3) * H / z
+    cx, cy = _clampc(cx, cy, z)
+    hw, hh = W / (2 * z), H / (2 * z)
+    for u in ui:
+        if -50 < u[1] < W + 50 and -50 < u[2] < H + 50:
+            mg = u[3] * 0.7
+            if not (cx - hw + mg < u[1] < cx + hw - mg and cy - hh + mg * 0.5 < u[2] < cy + hh - mg * 0.5):
+                return skia.Matrix()   # never crop out something the viewer should be seeing
+    m = skia.Matrix()
+    m.setTranslate(W / 2, H / 2)
+    m.preScale(z, z)
+    m.preTranslate(-cx, -cy)
+    return m
 
 
 def _subjects(i, t):

@@ -742,6 +742,7 @@ def tag(c, x, y, label, size=30, a=1.0, s=1.0, rot=0.0, bg="#ffffff", fg="#1a1a1
     """White name tag with dark outline (like the reference)."""
     if a <= 0:
         return
+    poi(c, x, y, size * 2, "ui")
     w = tw(label, size) + 34
     h = size * 1.45
     rot = rot + (1.0 - clamp(a)) * -16 + (s - 1.0) * 30
@@ -756,6 +757,7 @@ def speech(c, x, y, lines, size=30, a=1.0, s=1.0, tail=(-60, 90), bg="#ffffff", 
         return
     if isinstance(lines, str):
         lines = [lines]
+    poi(c, x, y, size * 3, "ui")
     w = max(tw(l, size) for l in lines) + 60
     h = size * 1.25 * len(lines) + 40
     with xf(c, x, y, s=s, alpha=a):
@@ -775,6 +777,7 @@ def speech(c, x, y, lines, size=30, a=1.0, s=1.0, tail=(-60, 90), bg="#ffffff", 
 def stamp(c, x, y, label, size=70, a=1.0, s=1.0, rot=-10, color="#d8262e"):
     if a <= 0:
         return
+    poi(c, x, y, size * 2, "ui")
     w = tw(label, size, LUCKY) + 50
     h = size * 1.35
     with xf(c, x, y, s=s, rot=rot, alpha=a * 0.92):
@@ -788,6 +791,7 @@ def marker_text(c, s, x, y, size=60, color="#e8282e", a=1.0, rot=-4, fam=MARKER,
     if a <= 0:
         return
     w = tw(s, size, fam)
+    poi(c, x, y, w * 0.5, "ui")
     x0 = x - w / 2 if align == "center" else (x - w if align == "right" else x)
     c.save()
     c.translate(x, y)
@@ -802,6 +806,7 @@ def marker_circle(c, x, y, rx, ry, prog=1.0, color="#e8282e", w=7, rot=-6):
     """Hand-drawn red marker ellipse that draws itself (overshoots its start like a real pen)."""
     if prog <= 0:
         return
+    poi(c, x, y, max(rx, ry), "ui")
     pth = skia.Path()
     n = 60
     end = int(n * 1.12 * clamp(prog)) + 1
@@ -1008,6 +1013,7 @@ def cash(c, x, y, s=1.0, rot=0.0):
 
 
 def money_bag(c, x, y, s=1.0):
+    poi(c, x, y, 60 * s, "ui")
     with xf(c, x, y, s=s):
         pth = skia.Path()
         pth.moveTo(-18, -70)
@@ -1049,6 +1055,7 @@ def speedlines(c, t, a=0.4, col="#ffffff"):
 
 
 def burst(c, x, y, r, col="#ffd23f", t=0.0, a=1.0, n=14):
+    poi(c, x, y, r, "ui")
     pts = []
     for i in range(n * 2):
         ang = i / (n * 2) * math.tau + t
@@ -1058,6 +1065,7 @@ def burst(c, x, y, r, col="#ffd23f", t=0.0, a=1.0, n=14):
 
 
 def heart(c, x, y, s, col="#e8283a", a=1.0):
+    poi(c, x, y, 40 * s, "ui")
     with xf(c, x, y, s=s, alpha=a):
         pth = skia.Path()
         pth.moveTo(0, 30)

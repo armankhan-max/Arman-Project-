@@ -55,15 +55,14 @@ def draw_bg(c, name, blur=0.0, a=1.0):
 
 
 def cam(c, lt, d, z0=1.0, z1=1.07, cx=960, cy=540, dx=0, dy=0, shake=0.0, t=0.0):
-    k = smooth(lt / max(d, 0.01))
-    z = lerp(z0, z1, k)
-    zm = min(z0, z1)
-    if zm >= 1.0:
-        hw, hh = W / (2 * zm), H / (2 * zm)
-        cx = min(max(cx, hw), W - hw)
-        cy = min(max(cy, hh), H - hh)
-    hx = math.sin(t * 0.7) * 4 + math.sin(t * 1.9) * 2
-    hy = math.cos(t * 0.6) * 3
+    # Reference style: the camera holds still inside a shot (no drift, no creeping zoom).
+    k = 0.0
+    z = max(1.0, min(z0, z1))
+    zm = z
+    hw, hh = W / (2 * zm), H / (2 * zm)
+    cx = min(max(cx, hw), W - hw)
+    cy = min(max(cy, hh), H - hh)
+    hx = hy = 0.0
     if shake:
         hx += math.sin(t * 61) * 14 * shake
         hy += math.cos(t * 53) * 10 * shake
@@ -199,6 +198,7 @@ def flash(c, t, start, dur=0.25, col="#ffffff"):
 
 
 def thought(c, x, y, w, h, a=1.0, s=1.0):
+    poi(c, x, y, max(w, h) * 0.5 * s, "ui")
     with xf(c, x, y, s=s, alpha=a):
         for k in range(10):
             ang = k / 10 * math.tau
@@ -209,6 +209,7 @@ def thought(c, x, y, w, h, a=1.0, s=1.0):
 
 
 def dream_house(c, x, y, s=1.0, t=0.0, lock=0.0):
+    poi(c, x, y - 120 * s, 150 * s, "ui")
     with xf(c, x, y, s=s):
         pth = poly([(-170, -150), (0, -270), (170, -150)])
         shape(c, pth, "#c0392b")
@@ -230,6 +231,7 @@ def dream_house(c, x, y, s=1.0, t=0.0, lock=0.0):
 
 
 def phone_screen(c, x, y, s, draw, rot=0.0, a=1.0):
+    poi(c, x, y, 300 * s, "ui")
     with xf(c, x, y, s=s, rot=rot, alpha=a):
         box(c, -170, -330, 340, 660, "#141418", r=44, ow=6)
         c.save()

@@ -161,8 +161,75 @@ def cue_synth(tr, a, b, bpm=104, gain=1.0, minor=True):
         i += 1
 
 
-# ------------------------------------------------------------------ score
+# ------------------------------------------------------------------ score (licensed tracks)
+# Music: Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 4.0.
+MUSIC_DIR = os.environ.get("MUSIC_DIR", os.path.join(HERE, "music"))
+CUES = [  # (start, end, track, offset_in_track, gain)
+    (0.0, 34.7, "Investigations", 0.0, 1.0),
+    (34.7, 69.7, "Sneaky_Snitch", 0.0, 0.9),
+    (69.7, 94.3, "Volatile_Reaction", 0.0, 1.0),
+    (94.3, 136.4, "Dark_Fog", 0.0, 1.1),
+    (136.4, 158.1, "Night_on_the_Docks_-_Sax", 0.0, 1.0),
+    (158.1, 191.6, "Hitman", 0.0, 0.9),
+    (191.6, 212.4, "Volatile_Reaction", 60.0, 1.0),
+    (212.4, 252.9, "Mining_by_Moonlight", 0.0, 1.0),
+    (252.9, 283.3, "Crypto", 0.0, 1.0),
+    (283.3, 314.3, "Funkorama", 0.0, 0.9),
+    (314.3, 350.9, "Rollin_at_5", 0.0, 0.9),
+    (350.9, 372.3, "Crypto", 70.0, 1.0),
+    (372.3, 402.4, "Sad_Trio", 0.0, 1.1),
+    (402.4, 437.8, "Hitman", 70.0, 0.9),
+    (437.8, 479.6, "Volatile_Reaction", 100.0, 1.0),
+    (479.6, 501.9, "Heartwarming", 0.0, 1.1),
+    (501.9, 521.5, "Sad_Trio", 80.0, 1.1),
+    (521.5, 572.4, "Investigations", 20.0, 1.0),
+    (572.4, 613.6, "Bass_Walker", 0.0, 0.9),
+    (613.6, 645.2, "Lightless_Dawn", 0.0, 1.2),
+    (645.2, 666.9, "Heartwarming", 10.0, 1.1),
+    (666.9, 709.5, "Lightless_Dawn", 120.0, 1.2),
+    (709.5, 734.6, "Funkorama", 60.0, 0.9),
+    (734.6, 761.0, "Night_on_the_Docks_-_Sax", 40.0, 1.0),
+]
+_trk = {}
+
+
+def track(name):
+    if name not in _trk:
+        path = os.path.join(MUSIC_DIR, name + ".mp3")
+        raw = A.subprocess.run(["ffmpeg", "-v", "quiet", "-i", path, "-f", "f32le", "-ac", "2", "-ar", str(SR), "-"],
+                               capture_output=True, check=True).stdout
+        x = np.frombuffer(raw, np.float32).astype(np.float64).reshape(-1, 2)
+        _trk[name] = x / (np.sqrt(np.mean(x ** 2)) + 1e-9) * 0.2     # loudness-match every track
+    return _trk[name]
+
+
 def build_music(dur):
+    n = int(dur * SR) + SR
+    out = np.zeros((n, 2))
+    fade = 1.2
+    for a, b, name, off, g in CUES:
+        x = track(name)
+        need = int((b - a + fade) * SR)
+        i0 = int(off * SR)
+        seg = x[i0:i0 + need]
+        while len(seg) < need:   # loop if the cue is longer than the track
+            seg = np.concatenate([seg, x[:need - len(seg)]])
+        L = len(seg)
+        env = np.ones(L)
+        fi = int((0.6 if a > 0 else 0.05) * SR)
+        fo = int(fade * SR)
+        env[:fi] = np.linspace(0, 1, fi)
+        env[-fo:] = np.linspace(1, 0, fo)
+        i = int(a * SR)
+        j = min(n, i + L)
+        out[i:j] += seg[: j - i] * env[: j - i, None] * g
+    out = out[: int(dur * SR)]
+    for a, b in ((384.2, 385.6), (700.6, 703.0), (276.6, 279.4)):
+        out = fade_region(out, a, b, 0.25)
+    return out
+
+
+def build_music_synth(dur):
     m = Track(dur)
     cue_tension(m, 0.0, 13.4, bpm=96, gain=0.9)
     cue_warm(m, 13.4, 34.7, bpm=84)
@@ -217,22 +284,15 @@ def sfx(at, fn, gain=1.0, pan=0.0):
 
 def build_sfx(dur, cuts, wt):
     s = Track(dur)
-    for k, ct in enumerate(cuts):
-        if ct > 0.5:
-            sfx(ct - 0.15, lambda: whoosh(0.45, up=bool(k % 2), gain=0.35), 0.45, pan=-0.3 if k % 2 else 0.3)
     # hook
     sfx(wt("punch", 3.3), lambda: hit(0.7), 1.0)
     sfx(wt("punch", 3.3), lambda: pop(300, 0.5), 0.8)
-    sfx(wt("read", 4.5), lambda: whoosh(0.4, False, 0.3), 0.6)
     sfx(5.2, lambda: metal_slam(0.8), 0.9)
     sfx(wt("trust", 8.0), shutter, 0.6)
     sfx(wt("way", 11.4), lambda: pop(700, 0.5), 0.6)
     sfx(wt("end", 12.4), lambda: pop(500, 0.5), 0.6)
-    sfx(13.5, lambda: whoosh(0.6, True, 0.4), 0.6)
     sfx(wt("wants", 16.0), lambda: coin(0.3), 0.8)
-    sfx(wt("liberty", 19.7), lambda: whoosh(0.8, True, 0.4), 0.5)
     sfx(wt("dream", 22.0), chime_sparkle, 0.6)
-    sfx(24.6, lambda: riser(0.8, 0.25), 0.6)
     for w_, n_ in (("money", 26.7), ("safety", 27.5), ("door", 28.9)):
         sfx(wt(w_, n_) + 0.1, lambda: ding(1318.5, 0.4), 0.7)
     sfx(wt("locks", 29.9), click, 1.0)
@@ -264,13 +324,11 @@ def build_sfx(dur, cuts, wt):
     sfx(84.4, lambda: siren(4.0, 0.12), 0.6)
     sfx(wt("handcuffs", 89.4), click, 1.0)
     sfx(wt("handcuffs", 89.4) + 0.15, click, 1.0)
-    sfx(wt("taken", 91.3), lambda: whoosh(0.8, False, 0.3), 0.5)
     sfx(94.4, lambda: metal_slam(0.8), 1.0)
     sfx(wt("orange", 95.4), lambda: pop(600, 0.4), 0.6)
     sfx(103.8, lambda: pop(500, 0.4), 0.6)
     sfx(104.4, lambda: pop(700, 0.4), 0.6)
     sfx(wt("early", 108.8), lambda: pop(700, 0.4), 0.6)
-    sfx(wt("name", 114.4), lambda: riser(1.6, 0.3), 0.7)
     sfx(117.0, shutter, 0.8)
     sfx(117.05, lambda: hit(0.6), 0.6)
     sfx(wt("partner", 119.0), lambda: pop(800, 0.4), 0.6)
@@ -290,7 +348,7 @@ def build_sfx(dur, cuts, wt):
         sfx(158.2 + k * 0.33, lambda: tick(0.3), 0.6)
     sfx(wt("money", 160.6), lambda: coin(0.4), 0.8)
     sfx(wt("costs", 163.6), lambda: pop(500, 0.4), 0.6)
-    sfx(167.5, lambda: car_drive(6.5), 0.9)
+    
     sfx(wt("natural", 172.9), lambda: hit(0.5), 0.6)
     sfx(wt("pays", 177.9), lambda: coin(0.4), 0.7)
     sfx(wt("trap", 179.9), lambda: pop(400, 0.4), 0.6)
@@ -301,7 +359,6 @@ def build_sfx(dur, cuts, wt):
     sfx(191.7, lambda: siren(5.0, 0.2), 0.8)
     sfx(wt("burn", 200.2) - 0.3, lambda: boom(0.7), 0.8)
     sfx(wt("burn", 200.2), lambda: fire_crackle(3.5, 0.35), 0.8)
-    sfx(204.5, lambda: whoosh(1.2, True, 0.3), 0.5)
     for w_, n_ in (("money", 213.9), ("friends", 214.6), ("plan", 215.4)):
         sfx(wt(w_, n_) + 0.1, lambda: buzzer(0.2), 0.5)
     for w_, n_ in (("supplies", 222.0), ("painkillers", 223.4), ("local", 224.4)):
@@ -313,13 +370,11 @@ def build_sfx(dur, cuts, wt):
         sfx(wt("small", 240.6) + k * 0.7, lambda: ding(1760, 0.35), 0.6)
     sfx(wt("scarily", 244.5), lambda: hit(0.5), 0.6)
     sfx(wt("huge", 251.6), lambda: hit(0.7), 0.8)
-    sfx(wt("vice", 257.0) - 0.4, lambda: riser(0.6, 0.25), 0.6)
     sfx(wt("vice", 257.0), chime_sparkle, 0.8)
     sfx(wt("hunters", 258.4), lambda: hit(0.7), 0.8)
     sfx(wt("bag", 267.6), lambda: hit(0.5), 0.6)
-    sfx(270.5, lambda: car_drive(6.0), 0.8)
+    
     sfx(wt("close", 273.5), lambda: hit(0.6), 0.8)
-    sfx(wt("part", 280.0), lambda: riser(1.0, 0.25), 0.6)
     for w_, n_ in (("bank", 281.2), ("betrayal", 281.8), ("bridge", 282.7)):
         sfx(wt(w_, n_), lambda: hit(0.5), 0.6)
     sfx(wt("slap", 283.6), lambda: clap(0.9), 1.0)
@@ -337,14 +392,11 @@ def build_sfx(dur, cuts, wt):
     sfx(wt("almost", 321.0), lambda: hit(0.8), 1.0)
     sfx(wt("fake", 328.0), shutter, 0.6)
     sfx(wt("fake", 328.0) + 0.4, shutter, 0.6)
-    sfx(wt("always", 346.6), lambda: riser(0.8, 0.2), 0.5)
     sfx(wt("double", 350.6), lambda: hit(0.7), 0.9)
     sfx(wt("sells", 358.6), lambda: coin(0.4), 0.7)
     sfx(wt("blood", 363.0), lambda: hit(0.6), 0.7)
     sfx(wt("price", 371.2), lambda: pop(500, 0.4), 0.6)
-    sfx(wt("offer", 373.0), lambda: whoosh(0.5, True, 0.3), 0.6)
     sfx(wt("no", 384.3), lambda: hit(0.9), 1.1)
-    sfx(wt("no", 384.3) + 0.1, lambda: whoosh(0.5, False, 0.4), 0.7)
     sfx(402.6, lambda: ding(1975, 0.35), 0.7)
     sfx(403.2, lambda: ding(1975, 0.35), 0.7)
     sfx(wt("giorgio", 406.0), lambda: hit(0.6), 0.7)
@@ -364,8 +416,6 @@ def build_sfx(dur, cuts, wt):
     sfx(wt("drive", 458.6), chime_sparkle, 0.7)
     sfx(460.6, lambda: siren(4.5, 0.2), 0.8)
     sfx(wt("refuse", 472.6) + 0.1, lambda: hit(0.7), 0.8)
-    sfx(wt("jump", 481.7), lambda: whoosh(1.4, False, 0.5), 0.8)
-    sfx(wt("go", 487.5), lambda: whoosh(0.8, True, 0.3), 0.6)
     sfx(wt("water", 489.3), splash, 1.0)
     sfx(wt("water", 489.3) + 0.2, lambda: bubbles(2.5, 0.25), 0.7)
     sfx(wt("escape", 490.4), lambda: ding(1318, 0.35), 0.6)
@@ -390,7 +440,6 @@ def build_sfx(dur, cuts, wt):
     sfx(607.6, lambda: coin(0.45), 0.8)
     sfx(613.7, lambda: siren(4.0, 0.15), 0.6)
     sfx(wt("two", 617.6), lambda: hit(0.5), 0.6)
-    sfx(wt("we", 630.3), lambda: whoosh(1.2, False, 0.4), 0.6)
     sfx(wt("talks", 649.3), lambda: coin(0.45), 0.8)
     sfx(wt("cash", 658.3), lambda: coin(0.4), 0.7)
     sfx(wt("opens", 661.6), lambda: metal_slam(0.5), 0.6)
@@ -411,7 +460,6 @@ def build_sfx(dur, cuts, wt):
     for tm in (735.0, wt("mother", 740.0), wt("robbery", 741.0), wt("prison", 741.7), wt("son", 743.0)):
         sfx(tm - 0.2, shutter, 0.6)
     sfx(756.2, lambda: hit(0.6), 0.7)
-    sfx(wt("which", 758.6), lambda: riser(1.0, 0.2), 0.5)
     for at_, fn, g, pn in SFX:
         x = fn()
         s.add(x, at_, g, pn)
@@ -420,17 +468,12 @@ def build_sfx(dur, cuts, wt):
 
 def build_ambience(dur):
     a = Track(dur)
-    for k, (s0, s1) in enumerate([(122.3, 129.4), (158.1, 167.4), (174.4, 197.0), (600.4, 613.6)]):
-        a.add(waves(s1 - s0, 1.0, seed=k), s0, 0.5)
     for s0, s1 in [(147.4, 152.4), (212.4, 240.2), (258.4, 265.0)]:
         cr = crickets(s1 - s0)
         a.add(cr * A.edge_env(len(cr), 0.5), s0, 0.6)
     for s0, s1 in [(143.0, 147.4), (283.3, 290.5)]:
         x = crowd(s1 - s0)
         a.add(x * A.edge_env(len(x), 0.5), s0, 1.0)
-    for s0, s1 in [(252.9, 258.4), (270.4, 276.6), (290.5, 296.0), (365.0, 372.3), (717.7, 728.2), (744.9, 756.0)]:
-        w = lp(wind(s1 - s0, 1.0, seed=int(s0)), 600)
-        a.add(w * A.edge_env(len(w), 0.6), s0, 0.4)
     return a.stereo(int(dur * SR))
 
 
@@ -460,10 +503,10 @@ def main():
     music = norm(music, 1.0)
     env = envelope(voice)
     env = env / (np.percentile(env, 95) + 1e-9)
-    duck = 1.0 - 0.55 * np.clip(env, 0, 1)
+    duck = 1.0 - 0.5 * np.clip(env, 0, 1)
     duck = lp(duck, 6, 1)
-    music *= (0.30 * duck)[:, None]
-    fx = norm(fx, 0.5)
+    music *= (0.42 * duck)[:, None]
+    fx = norm(fx, 0.4)
     amb = norm(amb, 0.18)
     v = voice / (np.max(np.abs(voice)) or 1.0) * 0.92
     mix = np.stack([v, v], axis=1) + music + fx + amb
