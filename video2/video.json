@@ -1,0 +1,239 @@
+{
+ "_comment": "Per-video text. phrase = words spoken (lowercase) where the card appears.",
+ "chapters": [
+  [
+   "what if the stock market",
+   "",
+   "MARKET CRASH  -50%",
+   "4 stocks worth watching",
+   0.0,
+   4.2
+  ],
+  [
+   "number one, microsoft",
+   "01",
+   "MICROSOFT",
+   "Cloud • Software • AI",
+   null,
+   4.2
+  ],
+  [
+   "second company worth watching",
+   "02",
+   "AMAZON",
+   "E-commerce • AWS • Ads",
+   null,
+   4.2
+  ],
+  [
+   "third company on our list",
+   "03",
+   "ALPHABET",
+   "Google • YouTube • Cloud",
+   null,
+   4.2
+  ],
+  [
+   "number four, berkshire hathaway",
+   "04",
+   "BERKSHIRE HATHAWAY",
+   "Insurance • Rail • Energy",
+   null,
+   4.2
+  ],
+  [
+   "bring all four companies together",
+   "",
+   "THE BIG PICTURE",
+   "All 4 companies together",
+   null,
+   3.8
+  ],
+  [
+   "one final thought",
+   "",
+   "FINAL THOUGHT",
+   "",
+   null,
+   3.2
+  ]
+ ],
+ "titles": [
+  [
+   "50% market crash does not",
+   "CRASH ≠ BARGAIN",
+   "Some stocks fall for good reasons",
+   4.5
+  ],
+  [
+   "business fundamentals",
+   "STUDY THE FUNDAMENTALS",
+   "Revenue • Profit • Debt • Cash flow",
+   4.5
+  ],
+  [
+   "another important factor is valuation",
+   "VALUATION MATTERS",
+   "Great company ≠ great price",
+   4.0
+  ],
+  [
+   "buying gradually",
+   "BUY GRADUALLY",
+   "Nobody knows the bottom",
+   4.0
+  ],
+  [
+   "emergency",
+   "KEEP EMERGENCY SAVINGS",
+   "Never invest money you need soon",
+   4.0
+  ],
+  [
+   "azure",
+   "AZURE CLOUD",
+   "Microsoft's growth engine",
+   4.0
+  ],
+  [
+   "another major opportunity is artificial intelligence",
+   "AI OPPORTUNITY",
+   "Copilot • AI infrastructure",
+   4.0
+  ],
+  [
+   "famous brand",
+   "FAMOUS ≠ RISK-FREE",
+   "Even giants can stumble",
+   4.0
+  ],
+  [
+   "commonly known as aws",
+   "AWS",
+   "Amazon Web Services",
+   4.0
+  ],
+  [
+   "free cash flow",
+   "WATCH FREE CASH FLOW",
+   "Not just revenue growth",
+   4.0
+  ],
+  [
+   "advertising business",
+   "ADVERTISING ENGINE",
+   "Millions of shoppers every day",
+   4.0
+  ],
+  [
+   "alphabet owns youtube",
+   "GOOGLE • YOUTUBE • ANDROID",
+   "Billions of users",
+   4.5
+  ],
+  [
+   "regulatory scrutiny",
+   "RISKS: AI & REGULATION",
+   "",
+   4.0
+  ],
+  [
+   "warren buffett",
+   "WARREN BUFFETT",
+   "Led Berkshire for decades",
+   4.0
+  ],
+  [
+   "financial flexibility",
+   "CASH = FLEXIBILITY",
+   "Buy when others must sell",
+   4.0
+  ],
+  [
+   "costly mistake",
+   "THE COSTLY MISTAKE",
+   "Price fall ≠ value",
+   4.0
+  ],
+  [
+   "dollar cost averaging",
+   "DOLLAR-COST AVERAGING",
+   "Invest gradually over time",
+   4.5
+  ],
+  [
+   "psychological challenge",
+   "EMOTIONS vs EVIDENCE",
+   "Don't sell in panic",
+   4.0
+  ],
+  [
+   "concentration risk",
+   "CONCENTRATION RISK",
+   "Don't bet everything on 4 stocks",
+   4.0
+  ],
+  [
+   "actually do first",
+   "WHAT TO DO FIRST?",
+   "Understand the cause of the crash",
+   4.5
+  ],
+  [
+   "importance of cash",
+   "THE POWER OF CASH",
+   "Liquidity protects you",
+   4.0
+  ],
+  [
+   "famous investor's strategy",
+   "DON'T COPY BLINDLY",
+   "Your situation is unique",
+   4.0
+  ],
+  [
+   "biggest lesson",
+   "THE BIGGEST LESSON",
+   "Price changes faster than business",
+   4.5
+  ],
+  [
+   "crystal ball",
+   "PREPARE, DON'T PREDICT",
+   "",
+   4.0
+  ],
+  [
+   "found this breakdown useful",
+   "LIKE • SHARE • SUBSCRIBE",
+   "For more investing breakdowns",
+   4.5
+  ]
+ ],
+ "pops": [
+  [
+   "can still fall another",
+   "-30%"
+  ],
+  [
+   "a 50% market",
+   "-50%"
+  ],
+  [
+   "trading at $200",
+   "$200 → $100"
+  ],
+  [
+   "after a 50%",
+   "-50%"
+  ]
+ ],
+ "caption_fixes": {
+  "crack": "crash",
+  "crack.": "crash.",
+  "crack?": "crash?",
+  "Old": "AWS",
+  "Org": "AWS"
+ },
+ "extra_concepts": []
+}
