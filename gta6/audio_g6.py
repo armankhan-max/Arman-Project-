@@ -164,31 +164,49 @@ def cue_synth(tr, a, b, bpm=104, gain=1.0, minor=True):
 # ------------------------------------------------------------------ score (licensed tracks)
 # Music: Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 4.0.
 MUSIC_DIR = os.environ.get("MUSIC_DIR", os.path.join(HERE, "music"))
-CUES = [  # (start, end, track, offset_in_track, gain)
-    (0.0, 34.7, "Investigations", 0.0, 1.0),
-    (34.7, 69.7, "Sneaky_Snitch", 0.0, 0.9),
-    (69.7, 94.3, "Volatile_Reaction", 0.0, 1.0),
-    (94.3, 136.4, "Dark_Fog", 0.0, 1.1),
-    (136.4, 158.1, "Night_on_the_Docks_-_Sax", 0.0, 1.0),
-    (158.1, 191.6, "Hitman", 0.0, 0.9),
-    (191.6, 212.4, "Volatile_Reaction", 60.0, 1.0),
-    (212.4, 252.9, "Mining_by_Moonlight", 0.0, 1.0),
-    (252.9, 283.3, "Crypto", 0.0, 1.0),
-    (283.3, 314.3, "Funkorama", 0.0, 0.9),
-    (314.3, 350.9, "Rollin_at_5", 0.0, 0.9),
-    (350.9, 372.3, "Crypto", 70.0, 1.0),
-    (372.3, 402.4, "Sad_Trio", 0.0, 1.1),
-    (402.4, 437.8, "Hitman", 70.0, 0.9),
-    (437.8, 479.6, "Volatile_Reaction", 100.0, 1.0),
-    (479.6, 501.9, "Heartwarming", 0.0, 1.1),
-    (501.9, 521.5, "Sad_Trio", 80.0, 1.1),
-    (521.5, 572.4, "Investigations", 20.0, 1.0),
-    (572.4, 613.6, "Bass_Walker", 0.0, 0.9),
-    (613.6, 645.2, "Lightless_Dawn", 0.0, 1.2),
-    (645.2, 666.9, "Heartwarming", 10.0, 1.1),
-    (666.9, 709.5, "Lightless_Dawn", 120.0, 1.2),
-    (709.5, 734.6, "Funkorama", 60.0, 0.9),
-    (734.6, 761.0, "Night_on_the_Docks_-_Sax", 40.0, 1.0),
+CUES = [  # (start, end, track, offset_in_track, gain)  gain: fun/hype ~1.3, normal ~1.0, serious ~0.7
+    (0.0, 13.4, "Crypto", 0.0, 1.15),                     # hook: dramatic teaser
+    (13.4, 34.7, "Bossa_Antigua", 0.0, 0.95),             # baby, mom's dream: warm
+    (34.7, 46.8, "Sneaky_Snitch", 0.0, 1.3),              # dad teaches you to fight: fun
+    (46.8, 57.2, "Dark_Fog", 0.0, 0.75),                  # the game is rigged: serious
+    (57.2, 64.6, "Investigations", 0.0, 1.15),            # sharp, stubborn, loyal
+    (64.6, 69.7, "Heartwarming", 0.0, 1.0),               # Tommy is born
+    (69.7, 84.3, "Volatile_Reaction", 0.0, 1.3),          # robbery + chase: hype
+    (84.3, 94.3, "Sad_Trio", 0.0, 0.8),                   # Tommy taken
+    (94.3, 117.0, "Dark_Fog", 30.0, 0.7),                 # prison
+    (117.0, 136.4, "Night_on_the_Docks_-_Sax", 0.0, 1.05),  # Jason, the Keys
+    (136.4, 147.4, "Funkorama", 0.0, 1.25),               # released, Rusty Anchor
+    (147.4, 152.4, "Heartwarming", 20.0, 0.9),            # one quiet night
+    (152.4, 158.1, "Scheming_Weasel_faster", 0.0, 1.3),   # subscribe break: playful
+    (158.1, 174.4, "Hitman", 0.0, 1.2),                   # smuggling runs
+    (174.4, 191.6, "Investigations", 30.0, 1.0),          # Mattia's offer
+    (191.6, 212.4, "Volatile_Reaction", 60.0, 1.3),       # the setup, the fire
+    (212.4, 240.2, "Mining_by_Moonlight", 0.0, 0.8),      # Port Gellhorn: grim
+    (240.2, 252.9, "Sneaky_Snitch", 40.0, 1.3),           # robbery spree: fun montage
+    (252.9, 276.6, "Crypto", 40.0, 1.15),                 # Vice City reveal, hunters
+    (279.4, 283.3, "Hitman", 0.0, 1.2),                   # part 2 title
+    (283.3, 314.3, "Funkorama", 30.0, 1.35),              # Vice City nightlife + bank heist: hype
+    (314.3, 324.6, "Bossa_Antigua", 60.0, 1.0),           # rich... almost
+    (324.6, 350.9, "Rollin_at_5", 0.0, 1.2),              # fake IDs, the gym
+    (350.9, 372.3, "Crypto", 90.0, 1.1),                  # double cross
+    (372.3, 402.4, "Sad_Trio", 30.0, 0.8),                # the offer, "no", stay together?
+    (402.4, 421.4, "Hitman", 60.0, 1.1),                  # Giorgio
+    (421.4, 431.8, "Volatile_Reaction", 20.0, 1.3),       # jobs montage
+    (431.8, 459.4, "Lightless_Dawn", 0.0, 0.95),          # betrayed, custody, fight out
+    (459.4, 479.6, "Lightless_Dawn", 60.0, 1.0),          # the bridge
+    (479.6, 501.9, "Heartwarming", 0.0, 0.95),            # ending 1
+    (501.9, 521.5, "Sad_Trio", 90.0, 0.8),                # ending 2
+    (521.5, 538.7, "Lightless_Dawn", 120.0, 0.9),         # recap + the choice
+    (538.7, 572.4, "Investigations", 0.0, 1.15),          # hidden stats: curious
+    (572.4, 600.4, "Bass_Walker", 0.0, 1.2),              # savings app, aunt
+    (600.4, 613.6, "Bossa_Antigua", 120.0, 1.0),          # Arnold's kindness
+    (613.6, 645.2, "Lightless_Dawn", 180.0, 0.85),        # two doors, ending A
+    (645.2, 666.9, "Heartwarming", 10.0, 1.1),            # ending B: happiest
+    (666.9, 682.9, "Dark_Fog", 90.0, 0.75),               # ending C
+    (682.9, 709.5, "Lightless_Dawn", 240.0, 0.85),        # the darkest door
+    (709.5, 717.7, "Night_on_the_Docks_-_Sax", 60.0, 1.0),  # four endings
+    (717.7, 734.6, "Funkorama", 90.0, 1.25),              # back in Vice City: "not yet"
+    (734.6, 761.0, "Heartwarming", 30.0, 1.0),            # outro
 ]
 _trk = {}
 
@@ -216,7 +234,7 @@ def build_music(dur):
             seg = np.concatenate([seg, x[:need - len(seg)]])
         L = len(seg)
         env = np.ones(L)
-        fi = int((0.6 if a > 0 else 0.05) * SR)
+        fi = int((0.45 if a > 0 else 0.05) * SR)
         fo = int(fade * SR)
         env[:fi] = np.linspace(0, 1, fi)
         env[-fo:] = np.linspace(1, 0, fo)

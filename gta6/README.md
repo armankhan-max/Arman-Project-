@@ -36,4 +36,4 @@ ffmpeg -i video_voice.mp4 -i mix.wav -map 0:v -map 1:a -c:v copy \
 Music by Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 4.0
 (http://creativecommons.org/licenses/by/4.0/). Tracks: Investigations, Sneaky Snitch, Volatile Reaction,
 Dark Fog, Night on the Docks - Sax, Hitman, Mining by Moonlight, Crypto, Funkorama, Rollin at 5, Sad Trio,
-Heartwarming, Bass Walker, Lightless Dawn. Put the mp3s in `gta6/music/` to rebuild the mix.
+Heartwarming, Bass Walker, Lightless Dawn, Bossa Antigua, Scheming Weasel (faster version). Put the mp3s in `gta6/music/` to rebuild the mix.
