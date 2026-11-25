@@ -785,6 +785,33 @@ function levelCard(li, t, s) {
     }
   });
   ctx.restore();
+  readySetGo(t, s, R, ex);
+}
+
+// ready - set - go lights over the preview window (beats 4, 5, 6 of the card), no text
+function readySetGo(t, s, R, ex) {
+  const cols = ['#ff3b30', '#ffcc00', '#2bd67b'];
+  const t4 = s.t0 + 4 * BEAT;
+  if (t < t4 - 0.2) return;
+  const a = clamp((t - t4 + 0.2) / 0.2) * (1 - ex);
+  if (a <= 0) return;
+  const cx = R.x + R.w / 2, cy = R.y + R.h / 2;
+  ctx.save(); ctx.globalAlpha = a;
+  rr(cx - 230, cy - 90, 460, 180, 90); ctx.fillStyle = 'rgba(12,14,20,0.82)'; ctx.fill();
+  ctx.lineWidth = 6; ctx.strokeStyle = '#ffffff'; ctx.stroke();
+  for (let i = 0; i < 3; i++) {
+    const ti = t4 + i * BEAT;
+    const on = t >= ti;
+    const go = i === 2 && on;
+    const p = on ? Math.exp(-(t - ti) * 6) : 0;
+    const x = cx + (i - 1) * 145;
+    ctx.beginPath(); ctx.arc(x, cy, 56 + p * 10, 0, 7);
+    ctx.fillStyle = on ? cols[i] : 'rgba(255,255,255,0.12)';
+    if (on) { ctx.shadowColor = cols[i]; ctx.shadowBlur = 50; }
+    ctx.fill(); ctx.shadowBlur = 0;
+    if (go) { ctx.lineWidth = 8 * p; ctx.strokeStyle = cols[2]; ctx.beginPath(); ctx.arc(x, cy, 70 + (1 - p) * 120, 0, 7); ctx.stroke(); }
+  }
+  ctx.restore();
 }
 
 // ---------------- intro

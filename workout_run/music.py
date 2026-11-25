@@ -671,6 +671,17 @@ for s in SECS:
         for a, z in segs[(0 if s.get("cooldown") else 1):]:
             place_sfx(bell(1318), (a + z) / 2, 0.5, rev=0.5)
 
+def beep(f, d=0.22):
+    t = tt(d)
+    return (np.sin(2 * np.pi * f * t) + 0.25 * np.sin(4 * np.pi * f * t)) * adsr(len(t), 0.004, 0.05, 0.8, 0.06) * 0.45
+
+
+for s in SECS:
+    if s["kind"] == "card":  # ready - set - go
+        place_sfx(beep(880), s["t0"] + 4 * BEAT, 0.8)
+        place_sfx(beep(880), s["t0"] + 5 * BEAT, 0.8)
+        place_sfx(beep(1760, 0.45), s["t0"] + 6 * BEAT, 0.9)
+
 place_sfx(cheer(5.0), TL["finish_cross"], 0.8, rev=0.3)
 for i, tf in enumerate(TL["fireworks"]):
     place_sfx(whoosh(0.55, 500, 5000), tf - 0.55, 0.35, (i % 3 - 1) * 0.5)
