@@ -1,3 +1,6 @@
 __pycache__/
 *_parts/
 *_FULL.mp4
+sheikh/stock/*.mp4
+still_*.jpg
+sheikh/audio/*.wav
