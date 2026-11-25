@@ -969,6 +969,121 @@ function renderFrame(f) {
   for (const nm of ['card1', 'card2', 'card3', 'card4', 'card5', 'outro']) flash(t, SEC[nm].t0, 9);
 }
 
+// ---------------- big move cues (overlay pass): larger badge + clearer mimic figure
+const OV = { x: 660, y: 0, w: 600, h: 520 };
+const easeOutElastic = (u) => { u = clamp(u); if (u === 0 || u === 1) return u; return 2 ** (-10 * u) * Math.sin((u * 10 - 0.75) * (2 * Math.PI / 3)) + 1; };
+
+function bigFigure(move, t, te, x, y, sc) {
+  const P = 2 * BEAT;
+  const fr = (v) => ((v % 1) + 1) % 1;
+  let pose;
+  if (move === 'jump' || move === 'jump2') pose = F.jumpPose(fr((t - te) / P + 0.25));
+  else if (move === 'duck') pose = F.duckPose(fr((t - te) / P));
+  else if (move === 'sprint') pose = F.runPose(Math.PI * 2 * t / BEAT, 1);
+  else if (move === 'run') pose = F.runPose(Math.PI * t / BEAT);
+  else pose = F.sideStepPose(fr((t - te) / P), (move === 'left' || move === 'turnL') ? -1 : 1);
+  F.drawFigure(ctx, pose, x, y, sc, '#ffffff', { shadow: false, gap: 'rgba(16,18,26,1)', farColor: '#dfe6f2' });
+}
+
+function bigCues(li, t) {
+  const L = TL.levels[li];
+  const lead = li === 4 ? 3 : 4;
+  let drew = false;
+  for (const e of L.events) {
+    const te = e.t_abs, ta = te - lead * BEAT;
+    const tEnd = e.move === 'sprint' ? e.t_end_abs : te + 0.6;
+    if (t < ta || t > tEnd + 0.3) continue;
+    drew = true;
+    const c = MOVE_COL[e.move];
+    const a = t - ta;
+    const go = t >= te;
+    let sc = easeOutElastic(a / 0.55);
+    let alpha = 1;
+    if (t > tEnd) { const u = (t - tEnd) / 0.3; alpha = 1 - u; sc *= 1 + u * 0.35; }
+    if (go) sc *= 1 + 0.22 * Math.exp(-(t - te) * 6);
+    else sc *= 1 + 0.05 * beatPulse(t);
+    const rot = 0.22 * (1 - clamp(a / 0.55)) * Math.sin(a * 22);
+    const cx = 960, cy = 205, r = 142;
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.translate(cx, cy); ctx.rotate(rot); ctx.scale(sc, sc);
+    // soft colour glow
+    const g = ctx.createRadialGradient(0, 0, r * 0.7, 0, 0, r * 1.55);
+    g.addColorStop(0, c + 'aa'); g.addColorStop(1, c + '00');
+    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(0, 0, r * 1.55, 0, 7); ctx.fill();
+    // disc
+    const dg = ctx.createRadialGradient(-r * 0.3, -r * 0.35, r * 0.1, 0, 0, r);
+    dg.addColorStop(0, '#2a2f3d'); dg.addColorStop(1, '#10121a');
+    ctx.fillStyle = dg; ctx.beginPath(); ctx.arc(0, 0, r, 0, 7); ctx.fill();
+    ctx.lineWidth = r * 0.12; ctx.strokeStyle = c; ctx.beginPath(); ctx.arc(0, 0, r - r * 0.06, 0, 7); ctx.stroke();
+    // countdown arc
+    if (!go) {
+      const prog = 1 - clamp((t - ta) / (te - ta));
+      ctx.lineWidth = r * 0.1; ctx.strokeStyle = '#ffffff'; ctx.lineCap = 'round';
+      ctx.beginPath(); ctx.arc(0, 0, r * 1.16, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * prog); ctx.stroke();
+    } else {
+      const u = t - te;
+      ctx.fillStyle = `rgba(255,255,255,${0.55 * Math.exp(-u * 8)})`; ctx.beginPath(); ctx.arc(0, 0, r, 0, 7); ctx.fill();
+    }
+    // figure + direction marks
+    ctx.save(); ctx.beginPath(); ctx.arc(0, 0, r * 0.9, 0, 7); ctx.clip();
+    if (e.move === 'sprint') flame(0, r * 0.12, r * 0.6, t, 0.95);
+    const lat = e.move === 'left' || e.move === 'turnL' ? -1 : e.move === 'right' || e.move === 'turnR' ? 1 : 0;
+    bigFigure(e.move, t, te, -lat * r * 0.12, r * 0.64, r * 0.34);
+    if (e.move === 'left' || e.move === 'right') {
+      const k = ((t / BEAT) % 1);
+      for (let i = 0; i < 2; i++) chevron(lat * (r * 0.5 + i * r * 0.17 + k * r * 0.05), -r * 0.02, r * 0.22, e.move, c, r * 0.075);
+    }
+    if (e.move === 'turnL' || e.move === 'turnR') curvedArrow(lat * r * 0.42, -r * 0.3, r * 0.42, lat, c, r * 0.085, t);
+    if (e.move === 'jump' || e.move === 'jump2') {
+      const n = e.move === 'jump2' ? 2 : 1;
+      for (let i = 0; i < n; i++) chevron(r * 0.55, -r * 0.1 - i * r * 0.2 - ((t / BEAT) % 1) * r * 0.06, r * 0.2, 'up', c, r * 0.075);
+    }
+    if (e.move === 'duck') for (let i = 0; i < 2; i++) chevron(r * 0.55, -r * 0.25 + i * r * 0.2 + ((t / BEAT) % 1) * r * 0.06, r * 0.2, 'down', c, r * 0.075);
+    ctx.restore();
+    ctx.restore();
+    // beat pips under the badge
+    if (!go) {
+      const nP = lead - 1;
+      for (let k = 0; k < nP; k++) {
+        const tk = te - (nP - k) * BEAT;
+        const on = t >= tk;
+        const pk = on ? Math.exp(-(t - tk) * 7) : 0;
+        const px = cx + (k - (nP - 1) / 2) * 50, py = cy + r + 52;
+        ctx.save(); ctx.globalAlpha = alpha * clamp(a / 0.3);
+        ctx.beginPath(); ctx.arc(px, py, 15 + pk * 8, 0, 7);
+        ctx.fillStyle = on ? c : 'rgba(16,18,26,0.85)'; ctx.fill();
+        ctx.lineWidth = 4; ctx.strokeStyle = '#fff'; ctx.stroke();
+        ctx.restore();
+      }
+    }
+    // GO burst rings (kept inside the overlay window)
+    const hits = e.move === 'jump2' ? [te, te + 2 * BEAT] : [te];
+    for (const th of hits) {
+      const u = t - th;
+      if (u < 0 || u > 0.5) continue;
+      ctx.save(); ctx.globalAlpha = (1 - u / 0.5) * alpha;
+      ctx.lineWidth = 14 * (1 - u / 0.5) + 2; ctx.strokeStyle = c;
+      ctx.beginPath(); ctx.arc(cx, cy, Math.min(r + 20 + u * 240, 196), 0, 7); ctx.stroke();
+      ctx.restore();
+    }
+  }
+  return drew;
+}
+
+window.renderOverlay = (f) => {
+  const t = f / FPS;
+  const s = sectionAt(t);
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.clearRect(0, 0, OV.w, OV.h);
+  if (s.kind !== 'level') return null;
+  ctx.translate(-OV.x, -OV.y);
+  const drew = bigCues(s.world, t);
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  return drew ? ctx.canvas.toDataURL('image/png') : null;
+};
+if (Q.get('overlay') === '1') { ctx.canvas.width = OV.w; ctx.canvas.height = OV.h; }
+
 window.renderFrame = (f) => { renderFrame(f); return true; };
 window.TL = TL;
 window.ready = true;
