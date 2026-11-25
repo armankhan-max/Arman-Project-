@@ -1,0 +1,53 @@
+fishboats|fishing boats harbor
+fishboats2|fishing fleet
+fishermen|fishermen
+fishermen2|fishermen hauling nets
+fishermen3|fisherman portrait
+fishermen4|fishermen mending nets
+village|fishing village
+harbor|harbor fishing boats wharf
+quay|wharf fishermen
+lighthouse|lighthouse
+lighthouse2|lighthouse keeper
+lighthouse3|lighthouse lens
+chapel|chapel
+church|church interior
+congregation|congregation church
+priest|priest
+lobster|lobster pots
+lobster2|lobsterman
+nets|fishing nets
+anchor|anchor
+bell|ship's bell
+rope|rope coil boat
+oars|rowboat oars
+rowboat|rowboat
+skiff|dory
+upturned|boat upside down beach
+storm|storm sea waves
+waves|waves rocks
+rocks|rocky shore
+gulls|sea gulls
+trawler|trawler
+dawnsea|sunrise sea
+moonsea|moonlight sea
+logbook|log book
+ledger|ledger
+notebook|man writing notebook
+office|office clerk desk
+binoculars|binoculars
+lantern|lantern
+cottage|cottage
+graveyard|cemetery
+gravestones|gravestones
+oldwoman|old woman portrait
+widow|fisherman's wife
+man_glasses|young man glasses
+harbormaster|harbor master
+skipper|captain fishing boat
+smokehouse|smokehouse fish
+seaboots|boots fisherman
+trunk|trunk
+eastcape|South Africa coast
+capetown|Cape Town
+beach|beach

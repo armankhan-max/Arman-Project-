@@ -1,0 +1,707 @@
+# start(original voice sec) | pool | narration cue
+0.0|sea_dawn|Before sunrise 14 Sept 1951
+3.2|boats_sea|14 fishing boats working a reef
+6.5|capecoast|Cape coast of South Africa
+8.6|giant_far|skippers saw a man wading through the sea
+11.9|giant_close|He was 30 feet tall
+13.8|reef|water on that reef is 21 feet deep
+16.6|giant_chest|came up to his chest
+19.5|boats_home|every boat turned for home
+24.6|sea_empty|not one went back out
+29.5|skipper_portrait|skipper wrote it all down
+32.0|logbook|in his logbook in his own hand
+35.3|sea_chest|book sat in a sea chest 70 years
+38.5|logbook|stories built out of logbooks
+41.5|ledger|harbour registers
+44.3|fishermen_faces|men who could not say what they saw
+48.0|harbour|where you are watching from
+51.5|cottage_interior|get comfortable grab something to eat
+54.5|boat_out|let's go out to the reef
+56.3|village|Hoekbaai South Africa 1951
+59.7|village|fishing village of 300 people
+62.5|capecoast|30 miles of wind scoured coast
+65.6|harbour|one harbour wall
+67.8|chapel|one chapel
+69.0|smokehouse|smokehouse that stank
+72.2|dogs|dogs would not go near it
+73.8|reef|reef 400 yards off the point
+77.7|fishermen_old|old fishermen called it the Skerry
+80.3|reef|long low spine of black rock
+84.0|waves_rocks|hid itself at high water
+87.0|fish_catch|snoek and kabeljou
+93.1|boats_dawn|every boat worked it at first light
+96.5|fishermen_work|30 years nobody lost a man
+100.5|fishermen_old|knew the Skerry like inside of mouth
+104.6|logbook|four people left records
+109.3|papers|not one compared notes
+111.8|skipper_portrait|first was skipper Peter Visser
+115.0|boat_lead|lead boat
+118.0|skipper_portrait|broad sunburned man missing finger
+120.5|logbook|log book in pencil
+123.4|calendar|back of a seed calendar
+126.0|fisherman_young|fished since he was 12
+128.8|fisherwife|according to his wife
+132.0|logbook|never written a line he could not swear to
+135.0|magistrate|before a magistrate
+136.4|harbourmaster|harbour master Rudolf Brink
+139.5|harbourmaster|heavy careful man
+142.5|ledger|ledger as long as a coffin
+147.3|ledger|wrote something never recorded before
+151.6|lighthouse|keeper of the lighthouse on the point
+155.7|keeper_woman|widow named Annatjie Kloete
+159.0|keeper_log|kept a night log
+162.0|lighthouse_lens|every light every squall
+165.6|dawn|every dawn
+168.0|officer|young fisheries officer from the city
+173.0|officer|spectacles and government notebook
+176.8|fishcount|came to count fish
+181.6|quay|accident of timing
+186.0|boats_return|standing on the quay when boats came home
+187.8|logbook|start with the skipper's log
+189.6|logbook_close|small soft grease stained book
+196.3|logbook|entry for the 14th
+200.0|boats_night|boats cast off 4:30
+205.4|boats_dark|14 boats cast off all to the Skerry
+212.1|logbook_close|a line that comes after
+216.0|dawn|light grey in the east
+219.3|sea_flat|sea flat hauling first lines
+222.5|fishermen_work|hauling lines 5:41
+225.6|sea_flat|dead calm of a kind not seen
+227.8|gulls_sitting|birds went quiet
+229.4|fishermen_still|every man stopped working
+231.2|fisherwife|what he told his wife that night
+235.5|sea_flat|sound went out of the world
+237.8|boat_engine|engines running could not hear them
+240.4|gulls_flying|gulls wheeling in hundreds
+244.0|gulls_sitting|all dropped onto water silent
+248.4|storm_coming|the way birds sit before a storm
+251.2|skipper_portrait|Peter Visser looked up
+253.5|fisherman_young|youngest man boy of 17 Danny
+256.4|boy_pointing|took hold of sleeve pointing north
+262.1|boats_sea|400 yards beyond the bow of the Sea Martin
+264.5|sea_dawn|grey light
+266.6|giant_far|something moving through the water
+270.3|whale|first thought a whale
+275.6|sea_swell|whales do not walk
+278.9|logbook_close|letters so large they run off the page
+286.5|giant_close|It is a man
+288.0|giant_wading|walking along the Skerry
+291.9|giant_chest|water came up to his chest
+296.2|sea_swell|sea parted in front of him in a long smooth swell
+300.2|boats_swell|lifted them one by one
+307.6|giant_shoulders|shoulders and head above surface
+311.9|skipper_portrait|skipper who spent 40 years judging distance
+316.7|giant_far|30 feet from crown to heel
+321.7|giant_chest|line of the water on his ribs
+327.5|giant_wading|He did not hurry
+329.1|giant_bend|stopped bent from the waist
+333.0|giant_hand|open hand flat against the bottom
+337.5|sea_calm|feel it breathe
+339.7|giant_wading|straightened took another step
+344.9|watch|by the skipper's watch 5:49
+346.6|giant_far|stopped in middle of reef
+350.3|giant_head|slowly turned his head
+353.5|giant_looks|looked at the boats
+356.0|logbook_close|pencil gone dull pressed through page
+361.4|fishermen_faces|knew he was not being looked at as prey
+368.4|giant_looks|looked at as a stranger
+371.9|farm_gate|parked a cart across his gate
+374.0|black|
+377.2|village|Hoekbaai 14 Sept 1951
+382.6|boats_dawn|14 boats at first light
+386.6|giant_far|man 30 feet tall
+390.3|skipper_portrait|lead skipper Peter Visser
+395.4|giant_looks|man looked at the fleet
+399.0|farm_gate|stranger parked cart across gate
+403.0|logbook|this is what the man did next
+406.8|ledger|register of harbour master
+411.1|harbourmaster|heavy careful man
+415.3|logbook_close|skipper's pencil pressed through page
+419.0|logbook|steadies again 5:50
+422.2|giant_far|he did not come toward us
+425.9|giant_bend|bent and put hand on bottom
+429.9|giant_hand_anchor|lifted something out of the water
+431.3|reef|I thought it was a rock
+433.2|anchor|old admiralty pattern anchor
+437.9|chain|weed eaten chain
+439.9|giant_hand_anchor|turned it over once
+443.5|tools_field|tool found in neighbour's field
+447.1|giant_wading|carried it without hurry
+450.6|reef|part of the Skerry above water
+452.5|anchor_rock|set it down on bare black rock
+455.6|anchor_rock|set it down gently
+458.0|logbook_close|skipper underlined that word
+460.0|giant_wading|went back for another
+464.9|dawn_pink|light came up pink over hills
+469.8|boats_still|14 boats silent on flat sea
+474.3|giant_far|watched a giant clear the Skerry
+476.2|lobster|lobster traps wicker rotted
+480.1|nets|nets fouled on reef
+483.1|storm|winter storms
+485.9|rope|coils of rope
+487.5|oar|a broken oar
+488.6|bell|ship's bell colour of seaweed
+492.0|gaff|rusted gaff splintered shaft
+495.5|gear_row|everything lost on that reef
+499.3|reef|in 30 years or 300
+501.5|giant_wading|found without searching
+505.6|gear_row|carried to rock in neat row
+510.1|fisherman_young|Danny Pretorius boy of 17
+514.1|yard|man tidying a yard
+517.4|fishermen_still|nobody fired a shot
+519.8|fishermen_faces|nobody shouted
+521.1|boat_engine|nobody started an engine
+523.0|caps_off|every man taken off his cap
+526.2|watch|6:14 by his watch
+528.0|gear_row|looked at row of gear
+531.3|giant_looks|looked directly at the Sea Martin
+537.6|giant_palm|raised one hand
+539.8|giant_palm|not a wave not a threat
+541.6|giant_palm|open palm shoulder height
+545.2|farm_gate|field closed for the season
+549.8|giant_away|turned and walked out along reef
+553.0|sea_deep|into deeper water
+554.6|giant_away|sea rose to his shoulders
+559.4|sea_close|water closed over top of him
+563.0|sea_swell|swell rolled back once
+566.2|boats_swell|rocked every boat
+569.9|boats_swell|like a hand patting
+573.4|children_sleep|row of sleeping children
+575.7|harbour|all 14 boats back by seven
+579.2|harbourmaster|Rudolph Brink on the quay oilskin
+583.0|ledger|ledger under arm
+585.9|boats_moored|boat by boat
+590.1|ledger|31 years keeping ledger
+594.6|ledger|did not fit the columns
+598.3|empty_boat|not one had a catch
+601.5|boat_engine|fuel tank used
+604.9|nets_cut|cut its lines
+606.5|ledger|wrote it in margin bold capitals
+613.5|gear_row|14 boats cut lines left gear
+617.6|fishermen_faces|no man injured no man will say why
+620.9|office_door|called skippers into office
+624.2|skippers_group|known each for 20 years
+627.2|skippers_group|hard practical men
+631.4|caps_hands|caps in their hands said nothing
+635.4|skipper_portrait|Peter Visser oldest low voice
+639.1|skipper_portrait|give it a day
+641.6|harbourmaster|Brink asked
+643.7|skipper_portrait|not go out to the Skerry tomorrow
+649.5|harbourmaster|Brink asked why
+651.5|giant_bend|because he was putting things back
+654.4|ledger|wrote sentence in ledger
+657.3|ledger|underlined it twice
+661.3|harbourmaster|next morning
+665.0|tide|low water on the 15th
+667.0|point_walk|walked out along the point
+669.9|binoculars|binoculars and flask of coffee
+672.2|rocks_point|end of the last rock
+674.5|reef|400 yards of flat water
+678.0|reef_empty|every piece of gear gone
+684.3|harbour|in the harbour that morning
+687.9|officer|fisheries officer spectacles
+691.3|officer_notebook|government notebook count fish
+695.5|village_people|trying for two hours
+699.1|chapel|found one in the chapel
+703.2|priest|priest old Dutchman van der Merwe
+706.0|chapel_door|unlocked door at dawn
+708.2|chapel_step|found something on the step
+711.4|officer_notebook|small nervous hand
+715.8|chapel_gear|rope ship's bell lobster trap anchor
+720.0|chapel_gear|laid in a row on flagstones
+724.0|chapel_door|in front of chapel door wet from sea
+727.6|chapel_gear|every piece washed
+731.2|stone_mark|small flat round grey stone
+736.5|stone_mark|size of loaf of bread
+740.0|stone_mark|single mark scratched deep
+743.3|register|seen it in baptismal register
+747.7|chapel_int|of the same chapel
+749.5|black|
+752.9|village|Hoekbaai September 1951
+758.1|giant_far|30 foot man walked the Skerry
+761.8|giant_chest|chest
+763.6|gear_row|lifted every piece of lost gear
+767.4|giant_away|walked away into deep water
+770.6|sea_close|sea close over his head
+774.4|reef_empty|gear gone from the rock
+777.4|chapel_gear|lying on chapel step
+779.5|stone_mark|grey stone one scratched mark
+785.2|logbook|four people left records
+789.9|lighthouse|part from the lighthouse
+793.5|officer_notebook|notebook of the officer
+796.3|officer|spectacled 26 year old
+800.4|chapel_ext|stood on chapel step 7 o'clock
+804.2|stone_mark|looked at the mark a full minute
+808.0|officer|why it frightened him
+810.1|stone_mark|plain circle with one short vertical line
+816.1|register|old burial register in the vestry
+819.6|vestry|where he had gone
+821.5|storm|how many men the Skerry had killed
+824.6|register|register went back to 1790
+827.8|register_marks|beside names in the margin
+832.0|register_marks|same small mark circle with line
+836.1|priest|old Dutchman priest 40 years
+844.6|priest|asked what it meant
+846.4|sea_dark|mark for a man lost at sea not recovered
+850.2|register|priests used it since first book
+853.8|chapel_int|never shown anyone outside chapel
+858.7|gravestones|never carved on a stone
+860.5|boats_moored|never painted on a boat
+862.0|village|never spoken aloud in village
+865.6|priest_pray|priest to remember who was still out there
+869.2|sea_dark|still out there
+870.6|officer_notebook|wrote it all down
+873.5|officer_notebook|note in margin capitals
+877.8|stone_mark|how does he know the mark
+880.6|officer|government man with a puzzle
+884.7|lighthouse|went to find the lighthouse keeper
+887.3|keeper_woman|widow of 60 lean severe
+891.3|lighthouse|kept light on the point 11 years
+893.8|storm|husband lost on a trawler
+896.9|trawler_storm|in a south-easter
+900.1|keeper_log|night log as exact
+902.2|lighthouse_lens|every light every squall
+906.9|keeper_log|black ink
+911.0|keeper_log|dullest reading in the Cape
+914.6|lighthouse_night|wind light sea flat nothing
+922.5|lantern_far|set 15 3:45 light at the Skerry
+927.0|lantern_far|not a boat low steady moving
+931.8|lantern_far|no engine sound
+936.0|keeper_log|entry for 16th
+938.6|lantern_far|light again closer
+943.2|binoculars|I took the glass
+945.0|giant_lantern|lantern at height of a man's knee
+949.5|giant_lantern|the hand that carries it
+952.1|giant_hand|size of a table
+955.6|keeper_log|nothing for several lines
+959.5|keeper_log|sentence to edge of page
+962.0|giant_lantern|he is searching the bottom
+964.3|giant_bend|man searches for something dropped
+967.3|lighthouse_night|five nights in a row
+968.7|keeper_woman|stood on gallery 3 in morning
+971.4|lighthouse_night|gallery of lighthouse
+974.0|lantern_far|lantern move along the Skerry in dark
+979.4|giant_lantern|lifted something from the water
+984.2|dawn|light went out at dawn
+987.4|lantern_far|6th night 20 Sept lantern left the reef
+990.5|lantern_far|came in toward shore
+993.0|cliff_night|foot of the cliff below lighthouse
+997.1|cliff_night|black rock straight into deep water
+999.7|giant_cliff|could see water move around legs
+1006.2|giant_cliff|shoulders dark against the sea
+1008.5|giant_cliff|carrying something against chest
+1014.5|giant_cliff|wrapped in cloth like sleeping child
+1017.4|lighthouse_night|did not look up at the lighthouse
+1020.2|giant_cliff|stood there about a minute
+1025.6|bundle|set bundle on ledge above tide line
+1027.6|bundle|gently as a baby in a cradle
+1030.2|sea_dark|stepped back into the sea
+1032.7|keeper_woman|I did not move
+1035.3|keeper_log|did not call anyone
+1038.1|keeper_woman|God forgive me
+1040.9|bundle|would not be one to touch it
+1043.0|dawn|first light on the 21st
+1046.5|skipper_portrait|Peter Visser walked out along point
+1048.9|point_walk|20 days unable to sleep
+1052.0|bundle|found what the keeper had watched
+1056.3|bundle|laid on the ledge bundle of old canvas
+1058.8|canvas|grey with salt tied with twine
+1065.4|bundle|young man's bones
+1068.2|relics|sea boot sole worn through
+1070.6|relics|gold ring crooked setting
+1073.1|relics|knife initials H.V.
+1078.0|young_fisherman|Hendrik Visser 19 years old
+1082.4|young_fisherman|skipper's only son
+1084.9|storm|great south-easter May 1948
+1087.3|small_boat_storm|small boat with two other men
+1093.3|storm|none ever found
+1095.0|logbook|written boy's name in his log
+1099.3|register_marks|little circle with line
+1105.2|chapel_int|old habit of the chapel
+1107.4|logbook|three years unable to write anything else
+1111.9|logbook_close|next line almost illegible
+1114.8|bundle|found Hendrik at foot of point
+1118.5|relics|wearing his ring
+1120.4|logbook|line that follows steady
+1122.6|fisherwife|skipper's wife beside him
+1126.9|logbook|wrote slowly like signing a paper
+1129.6|logbook_close|I do not know what he is
+1132.7|skipper_portrait|he brought my boy home
+1135.2|village|afternoon of the 21st village
+1140.6|harbourmaster|harbour master Brink wrote
+1143.7|ledger|plain facts
+1146.9|storm|three men lost 1948
+1148.7|doorstep_stone|three bundles of bones
+1152.9|doorstep|each laid on different doorstep
+1154.7|canvas|same grey sailcloth
+1157.3|stone_mark|small stone circle with line
+1160.2|sea_dark|not one found by any search
+1164.4|lantern_far|gone out on five nights
+1167.1|bundle|found all three
+1170.1|officer|not the end of it
+1171.9|officer_doors|door to door with notebook
+1174.1|officer_notebook|counted the stones
+1176.5|doorstep_stone|found 19 in the village
+1179.3|cottages|19 doorsteps 19 families
+1185.7|gravestones|lost someone in past 90 years
+1188.7|sea_dark|bones lain in dark longer
+1191.0|village_old|than any living person could remember
+1193.6|doorstep_stone|19 households 19 stones
+1199.0|dusk_harbour|evening of the 21st
+1201.4|stone_wall|20th sitting by itself on flat rock
+1205.8|harbour_wall|corner of harbour wall
+1208.4|stone_house|small stone house harbour master lived
+1210.7|stone_house|with his wife
+1213.2|village|never lost a soul to the sea
+1217.6|harbourmaster|Rudolph Brink picked it up at dusk
+1220.2|stone_house|carried it inside
+1223.0|lamp_table|sat down at his table
+1225.4|window_night|officer watched through window
+1227.4|lamp_table|turned it over in big careful hands
+1229.2|ledger|in the ledger that night
+1232.4|ledger|heading 21st September
+1237.3|ledger|letters smaller than any before
+1240.2|ledger|only one sentence
+1240.9|lamp_table|I have not told one living soul about Willem
+1245.6|black|
+1247.6|village|Hoekbaai September 1951
+1249.0|giant_far|30 foot man walked the Skerry
+1254.3|gear_row|lifted every piece of lost gear
+1259.3|lantern_far|over six nights
+1261.3|bundle|carried bones of three drowned
+1266.0|doorstep_stone|each wrapped left with stone
+1271.2|stone_mark|circle with line
+1273.6|doorstep_stone|19 stones 19 doorsteps
+1277.0|harbour_wall|20th on harbour wall
+1282.8|harbourmaster|house of harbour master
+1284.5|ledger|wrote in his ledger
+1287.8|lamp_table|never told about Willem
+1294.0|ledger_page|this is who Willem was
+1296.4|ledger_page|one page Brink tore out and kept
+1300.6|young_man|Willem Brink younger brother
+1302.9|young_man|cheerful careless boy of 20
+1305.3|sea_bright|loved the sea
+1308.0|young_man|could not be told anything
+1310.9|first_mate|March 1919 Rudolph 28 first mate
+1314.3|coaster|coaster that served village
+1318.8|brothers_argue|quarrelled on the harbour wall
+1320.4|brothers_argue|over money father had left
+1322.2|brothers_argue|ended with Rudolph saying something
+1326.0|harbour_wall|could not unsay
+1328.3|brothers_argue|never make a seaman
+1330.1|storm|sea would take him in a week
+1334.3|brothers_argue|family better off if it did
+1336.3|skiff_dusk|Willem laughed took little skiff
+1339.9|skiff_dusk|went out alone to the Skerry
+1342.3|dusk_sea|in the failing light
+1344.6|skiff_dusk|to prove his brother wrong
+1347.2|storm_night|south-east came up at 10 that night
+1349.8|upturned|skiff found on beach upside down
+1351.6|upturned|Willem's cap wedged under thwart
+1354.5|sea_dark|body never found
+1357.3|ledger|wrote in harbour register
+1360.2|ledger|flat correct hand
+1364.8|ledger|lost at sea misadventure
+1369.4|village_people|told village
+1371.5|storm|taken in a squall
+1373.5|village_people|nobody asked further
+1376.3|gravestones|Skerry took men every few years
+1379.9|harbourmaster|became harbour master 1927
+1382.6|point_night|never walked on point at night
+1385.9|harbourmaster|never told anyone
+1388.6|harbour_wall|what he said on the wall
+1391.7|ledger_page|torn page of ledger
+1394.0|ledger_page|wife found after he died
+1396.8|stone_wall|stone was warm when picked up
+1401.2|lamp_table|sat at his table with it until dawn
+1405.7|dawn|at first light
+1407.9|chapel_walk|walked to the chapel
+1410.0|chapel_door|knocked on priest's door
+1413.0|priest|voice the old Dutchman did not recognize
+1415.6|harbourmaster|I want to tell the village something
+1420.7|chapel_ext|noon on 22 September
+1423.6|congregation|whole of Hoekbaai 300 people
+1427.4|congregation|gathered in chapel
+1429.7|officer|fisheries officer
+1433.7|officer|invited to stand at back
+1436.1|officer_notebook|wrote down every word
+1438.6|chapel_confess|Brink stood at front hat in hands
+1441.7|harbour_wall|told about the wall and Willem
+1446.4|chapel_confess|flat plain voice
+1449.6|chapel_confess|without excusing himself
+1451.8|congregation|nobody spoke for long time
+1454.8|skipper_portrait|then the skipper Peter Visser
+1457.1|bundle|whose son came home on the ledge
+1462.4|chapel_int|rose from front bench
+1465.1|chapel_floor|walked across stone floor
+1467.4|hand_shoulder|put hand on harbour master's shoulder
+1469.9|hand_shoulder|did not say anything
+1472.5|congregation|half the village weeping
+1475.0|priest|priest old van der Merwe
+1477.9|priest_stone|lifted the small grey stone
+1481.3|altar|from the altar rail
+1483.9|priest_stone|read the mark aloud
+1486.7|register|first time in history of the parish
+1488.5|stone_mark|mark for a man lost not recovered
+1493.3|priest|knew the old habit of this chapel
+1498.0|congregation|did not leave it to accuse
+1500.5|gravestones|nobody had been forgotten
+1502.9|vestry|that afternoon in the vestry
+1506.1|stones_table|stones laid out on table long row
+1508.6|skippers_group|fleet made its decision
+1511.1|skippers_group|no vote
+1514.3|skippers_group|every skipper same thought
+1515.8|skipper_portrait|Peter Visser said it
+1518.0|reef|Skerry was not a fishing ground
+1522.0|boats_dawn|90 years village dropped lines
+1525.2|seabed_graves|place where the dead were tended
+1527.0|giant_far|man who tended them waited patient
+1533.1|boats_sea|until fleet came to understand
+1535.7|gear_row|cleared the gear off the bottom
+1538.4|giant_palm|raised open hand in dawn
+1540.4|farm_gate|closes a gate
+1543.1|bundle|returned the lost one by one
+1546.7|priest|care no priest or magistrate shown
+1548.9|skippers_group|skippers agreed in vestry
+1551.5|boats_moored|no boat would work the Skerry again
+1554.5|officer_notebook|notebook records one dissent
+1556.7|kous|34 year old skipper Kous Marais
+1559.9|trawler|owned trawler Hendrika
+1562.9|bank|owed bank 400 pounds
+1565.1|kous|stood up at the back
+1568.7|reef|only place within 30 miles to earn
+1570.6|fishermen_work|earn a living
+1573.2|children|story about a ghost won't feed children
+1575.5|kous|out at first light 3 October
+1580.5|skipper_portrait|nobody tried to stop him Peter Visser
+1583.7|lantern|Kous take a lantern
+1586.3|trawler_dawn|Marais went out at 5:20
+1589.4|trawler|alone with crew of two
+1592.1|keeper_woman|lighthouse keeper not slept three nights
+1597.5|binoculars|watched from gallery with the glass
+1599.7|keeper_log|entry for that morning short
+1602.1|trawler|5:31 Hendrika cast at the Skerry
+1604.5|gulls_sitting|sea very flat no birds
+1607.2|trawler_still|5:44 engine stopped
+1610.3|trawler_still|Hendrika dead in water
+1613.4|sea_flat|no wind no current
+1616.6|trawler_still|boat not drifting sits like a thing held
+1619.2|dawn|light enough to see the men
+1621.9|trawler_men|standing absolutely still
+1623.6|trawler_men|all three looking over the side
+1628.9|trawler_dawn|6:20 engine turned over
+1632.0|trawler_home|came home at dead slow speed
+1634.2|harbour|tied up at harbour wall
+1637.1|quay|walked up the quay
+1639.3|office_door|harbour master's office
+1642.0|harbourmaster|sat across from Brink cap on
+1643.6|kous|did not tell anyone until spring
+1648.4|kous|told it to Brink low dry voice
+1651.3|kous|eyes on the floor
+1654.2|clear_water|water had gone clear as glass
+1657.3|trawler_men|looked over the side
+1660.1|clear_water|bottom 21 feet down
+1665.0|reef|seabed every fisherman dragged 90 years
+1667.7|seabed_graves|not a reef at all laid out in rows
+1674.0|seabed_graves|long even rows of small low mounds
+1678.1|seabed_graves|each covered with a flat grey stone
+1681.5|seabed_graves|as far as he could see hundreds
+1684.2|graveyard_rows|a field of them
+1687.2|graveyard_rows|lines straight as in chapel yard
+1690.2|seabed_old|stones furred with weed
+1694.5|seabed_old|smaller than a man's fist
+1696.9|seabed_grave_empty|end of the newest row
+1699.5|seabed_graves|stones still bright and clean
+1702.5|seabed_grave_empty|empty space border of stones
+1705.2|seabed_grave_empty|shape of a grave
+1708.2|kous|stared a long time
+1712.3|seabed_grave_empty|what was strange about it
+1714.5|seabed_grave_empty|cut to the length of a man
+1717.2|giant_far|dug for someone taller
+1721.7|black|
+1725.5|village|Hoekbaai September 1951
+1731.0|giant_far|man 30 feet tall walked Skerry
+1733.9|gear_row|cleared lost gear
+1736.9|bundle|carried bones back
+1741.3|doorstep_stone|doorsteps one by one
+1744.0|stone_mark|19 families held stone
+1749.9|kous|Kous Marais would not believe
+1754.7|trawler|took trawler out 3 October
+1757.2|seabed_graves|field of graves on seabed
+1762.6|seabed_grave_empty|new one marked out at end
+1765.1|giant_far|taller than any man
+1768.0|papers|this is how story ends
+1770.1|papers|four records never meant to be read together
+1774.3|officer|start with fisheries officer
+1778.3|officer_notebook|spectacles government notebook
+1780.5|fishcount|came to count fish
+1783.7|officer|stayed three weeks
+1785.8|skippers_group|interviewed every skipper
+1788.5|fisherwife|every wife
+1790.0|priest|the priest
+1791.2|harbourmaster|harbour master
+1792.6|keeper_woman|lighthouse keeper
+1794.4|fisherman_young|boy Danny Pretorius 17
+1798.0|boat_bow|seen from the bow
+1799.8|officer_notebook|notes run to 91 pages
+1803.1|officer_notebook|small careful hand
+1807.5|officer_notebook|last page wrote a sentence
+1811.7|officer|trained to recognize a hoax
+1814.7|officer|this is not one
+1817.7|village_people|these people want to be left alone
+1821.0|village|left alone
+1823.3|city_office|official report in the city November
+1825.0|typewriter|four paragraphs long
+1828.1|boats_moored|fishing in decline
+1831.0|reef|Skerry closed on grounds of safety
+1836.8|officer|said nothing about the man
+1839.6|city_office|superior asked why
+1842.4|officer|laughed out of the service
+1846.8|city_office|by Christmas
+1849.1|village|village did not deserve to be laughed at
+1851.1|tin_trunk|kept notebook in tin trunk
+1853.8|tin_trunk|68 years surfaced 2019
+1857.3|house_clearance|house clearance in Pretoria
+1859.3|tin_trunk|note pinned inside cover
+1862.0|officer_notebook|read this when I'm dead be kind to them
+1865.4|keeper_log|second record lighthouse night log
+1869.2|lighthouse|kept the gallery 16 more years
+1871.8|keeper_log|every light she saw
+1875.1|lantern_far|came on 14 September each year
+1881.1|lantern_far|single lantern moving along reef
+1886.5|lighthouse_night|3 in the morning
+1888.5|keeper_woman|watched 20 minutes went to bed
+1890.8|keeper_log|1957 six years after
+1896.5|keeper_log|entry for 14th different
+1899.0|giant_sitting|lantern did not move
+1901.2|giant_sitting|sitting on the Skerry with lamp
+1906.4|giant_sitting|there an hour looking at village
+1909.4|village_night|looking at the village
+1912.5|giant_sitting|not waiting for anyone
+1914.3|giant_sitting|I think he is tired
+1918.1|keeper_log|1959 new line
+1920.0|lantern_rock|lantern on Skerry not carrying it
+1925.0|lantern_rock|lying on the rock
+1928.3|lighthouse_night|cannot see him
+1930.8|keeper_woman|never before unable to see him
+1933.3|keeper_log|14 Sept 1962 last one
+1937.5|keeper_log|underlined in red
+1942.5|keeper_log|only time coloured ink
+1945.4|sea_dark|no lantern
+1948.7|lighthouse_night|stayed on gallery until dawn
+1950.4|dawn|low water 5:52
+1954.3|binoculars|took the big glass
+1956.2|seabed_grave_empty|end of last row border of stones
+1958.4|seabed_filled|it is filled in
+1961.6|seabed_filled|stone larger than any
+1964.2|seabed_filled|he has finished the row
+1966.7|ledger|third record harbour master's ledger
+1968.9|ledger|as large as a coffin
+1971.6|ledger|last entry about Skerry 15 Sept 1962
+1977.7|harbourmaster|flat careful hand
+1979.0|boats_moored|14 boats in the harbour
+1983.3|reef|no man gone to reef since 1951
+1986.6|ledger|closed by notice to Cape authorities
+1991.3|village|cost a quarter of income
+1993.1|harbourmaster|I will not reopen it
+1996.9|village_people|whole village understands why
+1999.3|giant_bend|man who has put things back
+2001.3|gear_row|does not need to be paid
+2003.4|ledger|final line smaller writing
+2006.5|harbour_wall|32 years with what I said to Willem
+2011.7|harbourmaster|live with it until I die
+2014.7|stone_wall|never lived easier since stone came
+2018.6|stone_house|Brink died spring 1961 age 70
+2025.2|stone_house|little stone house by harbour
+2027.4|stone_sill|stone on window sill by bed
+2029.4|logbook|fourth record skipper's log
+2032.0|logbook|the shortest
+2033.9|skipper_old|went on writing until 80
+2039.5|logbook_close|last line 15 Sept 1962
+2046.7|lantern_far|the lantern did not come
+2050.2|bundle|Hendrik I think he is at rest now
+2052.6|skipper_old|honest man
+2055.8|magistrate|swear before a magistrate
+2060.5|logbook_close|one more sentence in pencil
+2063.4|logbook_close|hand begun to shake
+2066.0|giant_far|I have always known what he was
+2069.1|seabed_graves|a man who keeps a place for the dead
+2071.7|giant_sitting|nobody keeps a place for
+2074.1|papers|lay the four records side by side
+2077.1|officer|officer says
+2079.5|village_people|wanted only to be left alone
+2081.8|keeper_woman|lighthouse keeper says
+2084.0|lantern_far|lantern came and went 11 years
+2086.7|giant_lantern|searching
+2089.0|gear_row|restoring
+2090.5|giant_sitting|sitting
+2092.1|sea_dark|not coming
+2094.8|harbourmaster|harbour master says
+2096.5|giant_bend|put things back
+2099.3|skipper_old|skipper says
+2101.7|seabed_graves|kept a place for the dead
+2104.3|sea_dawn|the sea says the rest
+2106.6|seabed_graves|every one of those graves
+2109.0|seabed_graves|hundreds in rows
+2112.0|giant_hand|dug by one pair of hands
+2115.0|seabed_old|old ones furred with weed
+2117.2|reef|before the village
+2119.7|seabed_graves|new ones bright and clean
+2121.9|fishermen_old|men and boys
+2124.1|sea_dark|strangers the Skerry had taken
+2126.3|seabed_graves|laid carefully in the dark
+2128.4|stone_mark|stone circle and line
+2132.3|reef|reef was not a fishing ground
+2134.8|graveyard_rows|it was a churchyard
+2136.8|giant_far|he was the sexton
+2139.4|seabed_grave_empty|last grave in last row
+2141.9|seabed_grave_empty|left empty for 10 years
+2144.1|giant_close|30 feet tall
+2147.6|giant_away|for the one who dug the rest
+2149.9|sea_dark|think about what that means
+2152.2|cliff_night|no one to carry him to the ledge
+2154.4|canvas|no one to wrap him in sailcloth
+2156.2|stone_mark|lay a small stone on his chest
+2158.4|seabed_old|90 years or 300 or a thousand
+2163.5|giant_wading|done that for others
+2166.0|giant_sitting|done it alone
+2168.8|seabed_filled|dug last grave for himself
+2171.4|keeper_woman|when Annatjie Kloete saw
+2173.8|lighthouse|did something nobody can explain
+2177.9|lighthouse_stairs|went down from the lighthouse
+2179.7|dawn|grey dawn 15 Sept 1962
+2181.5|old_man_wall|found Peter Visser on harbour wall
+2185.3|old_man_wall|lantern at his feet
+2190.0|old_couple|two old people same thought
+2192.6|keeper_woman|shall we
+2194.9|old_couple_boat|together keeper and skipper
+2200.9|skipper_old|not on water in 11 years
+2203.7|rowing|took old skiff from slip
+2206.2|rowing|rowed out to edge of Skerry
+2207.9|reef|at low tide
+2210.4|nets|did not lower a line or net
+2213.0|lantern_float|set lantern on the water in wooden float
+2215.2|lantern_float|let it drift
+2217.9|lantern_float|over end of the last row
+2220.3|old_couple_boat|sat in silent boat
+2223.7|lantern_float|until it burned out
+2225.5|dawn|next September and the next
+2228.0|village|village does it still
+2230.8|lantern_float|14 September every year before dawn
+2234.1|rowing|someone rows out to edge of Skerry
+2236.3|lantern_float|lantern on a float
+2238.6|village_people|nobody will say who
+2240.3|reef|no boat has fished that reef since 1951
+2242.9|logbook|if this story stayed with you
+2246.4|ledger|more log books
+2249.0|sea_chest|more sea chests
+2251.5|tin_trunk|more notebooks in more tin trunks
+2254.2|papers|swore not to open
+2257.0|seabed_grave_empty|why did he dig last grave for himself
+2262.6|giant_sitting|who will lay him in it
+2264.8|old_couple_boat|skipper and keeper right thing
+2269.1|lantern_float|rowing out with lantern all those years
+2272.5|village|where you are watching from
+2274.7|cottage_interior|what you are eating
+2276.3|lantern_float|see you in the next one
+2279.0|END|

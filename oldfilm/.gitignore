@@ -1,0 +1,10 @@
+stock/
+ai/
+comp/
+sheets/
+render_parts/
+*.wav
+voice.mp3
+*_FULL.mp4
+dl.log
+*.log

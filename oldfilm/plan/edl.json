@@ -1,0 +1,6348 @@
+[
+{
+"start": 0.0,
+"end": 3.2,
+"pool": "sea_dawn",
+"note": "Before sunrise 14 Sept 1951",
+"src": {
+"img": "ai/g12_1.png"
+},
+"fade_in": 20,
+"cut": true
+},
+{
+"start": 3.2,
+"end": 6.5,
+"pool": "boats_sea",
+"note": "14 fishing boats working a reef",
+"src": {
+"img": "stock/fsa_c/nets_08.jpg"
+}
+},
+{
+"start": 6.5,
+"end": 8.6,
+"pool": "capecoast",
+"note": "Cape coast of South Africa",
+"src": {
+"vid": "stock/films/0600_Vista_Stock_Shots_Ocean-Oriented_Footage.mp4",
+"t": 280.55,
+"t1": 290
+}
+},
+{
+"start": 8.6,
+"end": 11.9,
+"pool": "giant_far",
+"note": "skippers saw a man wading through the sea",
+"src": {
+"img": "comp/giant_far_2.png"
+}
+},
+{
+"start": 11.9,
+"end": 13.8,
+"pool": "giant_close",
+"note": "He was 30 feet tall",
+"src": {
+"img": "comp/giant_chest_2.png"
+}
+},
+{
+"start": 13.8,
+"end": 16.6,
+"pool": "reef",
+"note": "water on that reef is 21 feet deep",
+"src": {
+"vid": "stock/films/200325_The_Open_Sea.mp4",
+"t": 341.86,
+"t1": 348
+}
+},
+{
+"start": 16.6,
+"end": 19.5,
+"pool": "giant_chest",
+"note": "came up to his chest",
+"src": {
+"img": "comp/giant_chest_3.png"
+}
+},
+{
+"start": 19.5,
+"end": 24.6,
+"pool": "boats_home",
+"note": "every boat turned for home",
+"src": {
+"img": "stock/fsa_c/nets_09.jpg"
+}
+},
+{
+"start": 24.6,
+"end": 29.5,
+"pool": "sea_empty",
+"note": "not one went back out",
+"src": {
+"img": "stock/fsa_c/nets_13.jpg"
+}
+},
+{
+"start": 29.5,
+"end": 32.0,
+"pool": "skipper_portrait",
+"note": "skipper wrote it all down",
+"src": {
+"img": "ai/skipper_0.png"
+}
+},
+{
+"start": 32.0,
+"end": 35.3,
+"pool": "logbook",
+"note": "in his logbook in his own hand",
+"src": {
+"img": "ai/logbook2_1.png"
+}
+},
+{
+"start": 35.3,
+"end": 38.5,
+"pool": "sea_chest",
+"note": "book sat in a sea chest 70 years",
+"src": {
+"img": "ai/sea_chest_1.png"
+}
+},
+{
+"start": 38.5,
+"end": 41.5,
+"pool": "logbook",
+"note": "stories built out of logbooks",
+"src": {
+"img": "ai/g39_0.png"
+}
+},
+{
+"start": 41.5,
+"end": 44.3,
+"pool": "ledger",
+"note": "harbour registers",
+"src": {
+"img": "ai/ledger2_0.png"
+}
+},
+{
+"start": 44.3,
+"end": 48.0,
+"pool": "fishermen_faces",
+"note": "men who could not say what they saw",
+"src": {
+"img": "stock/fsa_c/gloucester_boats_16.jpg"
+}
+},
+{
+"start": 48.0,
+"end": 51.5,
+"pool": "harbour",
+"note": "where you are watching from",
+"src": {
+"img": "stock/fsa_c/gloucester_boats_03.jpg"
+}
+},
+{
+"start": 51.5,
+"end": 54.5,
+"pool": "cottage_interior",
+"note": "get comfortable grab something to eat",
+"src": {
+"img": "ai/g23_2.png"
+}
+},
+{
+"start": 54.5,
+"end": 56.3,
+"pool": "boat_out",
+"note": "let's go out to the reef",
+"src": {
+"img": "stock/fsa_c/nets_14.jpg"
+}
+},
+{
+"start": 56.3,
+"end": 59.7,
+"pool": "village",
+"note": "Hoekbaai South Africa 1951",
+"src": {
+"img": "ai/village_sa_0.png"
+}
+},
+{
+"start": 59.7,
+"end": 62.5,
+"pool": "village",
+"note": "fishing village of 300 people",
+"src": {
+"img": "stock/fsa_c/village_09.jpg"
+}
+},
+{
+"start": 62.5,
+"end": 65.6,
+"pool": "capecoast",
+"note": "30 miles of wind scoured coast",
+"src": {
+"img": "stock/fsa_c/village_03.jpg"
+}
+},
+{
+"start": 65.6,
+"end": 69.0,
+"pool": "harbour",
+"note": "one harbour wall",
+"src": {
+"img": "stock/fsa_c/harbor_00.jpg"
+}
+},
+{
+"start": 69.0,
+"end": 73.8,
+"pool": "smokehouse",
+"note": "smokehouse that stank",
+"src": {
+"img": "stock/fsa_c/smokehouse_00.jpg"
+}
+},
+{
+"start": 73.8,
+"end": 77.7,
+"pool": "reef",
+"note": "reef 400 yards off the point",
+"src": {
+"img": "stock/fsa_c/sea_12.jpg"
+}
+},
+{
+"start": 77.7,
+"end": 80.3,
+"pool": "fishermen_old",
+"note": "old fishermen called it the Skerry",
+"src": {
+"vid": "stock/films/201297_Beside_The_Zuider_Zee.mp4",
+"t": 477.33,
+"t1": 480
+}
+},
+{
+"start": 80.3,
+"end": 84.0,
+"pool": "reef",
+"note": "long low spine of black rock",
+"src": {
+"img": "ai/g45_0.png"
+}
+},
+{
+"start": 84.0,
+"end": 87.0,
+"pool": "waves_rocks",
+"note": "hid itself at high water",
+"src": {
+"img": "stock/loc_c/waves_11.jpg"
+}
+},
+{
+"start": 87.0,
+"end": 93.1,
+"pool": "fish_catch",
+"note": "snoek and kabeljou",
+"src": {
+"img": "stock/fsa_c/nets_10.jpg"
+}
+},
+{
+"start": 93.1,
+"end": 96.5,
+"pool": "boats_dawn",
+"note": "every boat worked it at first light",
+"src": {
+"img": "ai/g12_2.png"
+}
+},
+{
+"start": 96.5,
+"end": 100.5,
+"pool": "fishermen_work",
+"note": "30 years nobody lost a man",
+"src": {
+"img": "stock/fsa_c/fishermen_boat_10.jpg"
+}
+},
+{
+"start": 100.5,
+"end": 104.6,
+"pool": "fishermen_old",
+"note": "knew the Skerry like inside of mouth",
+"src": {
+"img": "stock/fsa_c/fisherman_portrait_04.jpg"
+}
+},
+{
+"start": 104.6,
+"end": 109.3,
+"pool": "logbook",
+"note": "four people left records",
+"src": {
+"img": "ai/logbook2_0.png"
+}
+},
+{
+"start": 109.3,
+"end": 111.8,
+"pool": "papers",
+"note": "not one compared notes",
+"src": {
+"img": "ai/ledger2_2.png"
+}
+},
+{
+"start": 111.8,
+"end": 115.0,
+"pool": "skipper_portrait",
+"note": "first was skipper Peter Visser",
+"src": {
+"img": "stock/fsa_c/fisherman_portrait_25.jpg"
+}
+},
+{
+"start": 115.0,
+"end": 118.0,
+"pool": "boat_lead",
+"note": "lead boat",
+"src": {
+"img": "ai/bg_fromboat_1.png"
+}
+},
+{
+"start": 118.0,
+"end": 120.5,
+"pool": "skipper_portrait",
+"note": "broad sunburned man missing finger",
+"src": {
+"img": "stock/fsa_c/gloucester_boats_17.jpg"
+}
+},
+{
+"start": 120.5,
+"end": 123.4,
+"pool": "logbook",
+"note": "log book in pencil",
+"src": {
+"img": "ai/logbook3_2.png"
+}
+},
+{
+"start": 123.4,
+"end": 126.0,
+"pool": "calendar",
+"note": "back of a seed calendar",
+"src": {
+"img": "ai/logbook2_1.png"
+}
+},
+{
+"start": 126.0,
+"end": 128.8,
+"pool": "fisherman_young",
+"note": "fished since he was 12",
+"src": {
+"img": "ai/boy17_0.png"
+}
+},
+{
+"start": 128.8,
+"end": 132.0,
+"pool": "fisherwife",
+"note": "according to his wife",
+"src": {
+"img": "stock/fsa_c/wife_01.jpg"
+}
+},
+{
+"start": 132.0,
+"end": 136.4,
+"pool": "logbook",
+"note": "never written a line he could not swear to",
+"src": {
+"img": "ai/g39_1.png"
+}
+},
+{
+"start": 136.4,
+"end": 139.5,
+"pool": "harbourmaster",
+"note": "harbour master Rudolf Brink",
+"src": {
+"img": "ai/ledger3_0.png"
+}
+},
+{
+"start": 139.5,
+"end": 142.5,
+"pool": "harbourmaster",
+"note": "heavy careful man",
+"src": {
+"img": "ai/harbourmaster_1.png"
+}
+},
+{
+"start": 142.5,
+"end": 147.3,
+"pool": "ledger",
+"note": "ledger as long as a coffin",
+"src": {
+"img": "ai/ledger3_2.png"
+}
+},
+{
+"start": 147.3,
+"end": 151.6,
+"pool": "ledger",
+"note": "wrote something never recorded before",
+"src": {
+"img": "ai/ledger2_1.png"
+}
+},
+{
+"start": 151.6,
+"end": 155.7,
+"pool": "lighthouse",
+"note": "keeper of the lighthouse on the point",
+"src": {
+"img": "stock/fsa_c/lighthouse_03.jpg"
+}
+},
+{
+"start": 155.7,
+"end": 159.0,
+"pool": "keeper_woman",
+"note": "widow named Annatjie Kloete",
+"src": {
+"img": "ai/telescope_2.png"
+}
+},
+{
+"start": 159.0,
+"end": 162.0,
+"pool": "keeper_log",
+"note": "kept a night log",
+"src": {
+"img": "ai/g41_2.png"
+}
+},
+{
+"start": 162.0,
+"end": 165.6,
+"pool": "lighthouse_lens",
+"note": "every light every squall",
+"src": {
+"vid": "stock/films/0993_Safety_at_Sea_01_28_18_08.mp4",
+"t": 56.78,
+"t1": 61
+}
+},
+{
+"start": 165.6,
+"end": 168.0,
+"pool": "dawn",
+"note": "every dawn",
+"src": {
+"img": "stock/fsa_c/nets_13.jpg"
+}
+},
+{
+"start": 168.0,
+"end": 173.0,
+"pool": "officer",
+"note": "young fisheries officer from the city",
+"src": {
+"img": "ai/g42_0.png"
+}
+},
+{
+"start": 173.0,
+"end": 176.8,
+"pool": "officer",
+"note": "spectacles and government notebook",
+"src": {
+"img": "ai/officer2_1.png"
+}
+},
+{
+"start": 176.8,
+"end": 181.6,
+"pool": "fishcount",
+"note": "came to count fish",
+"src": {
+"vid": "stock/films/201297_Beside_The_Zuider_Zee.mp4",
+"t": 327.62,
+"t1": 336
+}
+},
+{
+"start": 181.6,
+"end": 186.0,
+"pool": "quay",
+"note": "accident of timing",
+"src": {
+"vid": "stock/films/201297_Beside_The_Zuider_Zee.mp4",
+"t": 337.51,
+"t1": 342
+}
+},
+{
+"start": 186.0,
+"end": 187.8,
+"pool": "boats_return",
+"note": "standing on the quay when boats came home",
+"src": {
+"img": "stock/fsa_c/harbor_00.jpg"
+}
+},
+{
+"start": 187.8,
+"end": 189.6,
+"pool": "logbook",
+"note": "start with the skipper's log",
+"src": {
+"img": "ai/logbook3_0.png"
+}
+},
+{
+"start": 189.6,
+"end": 196.3,
+"pool": "logbook_close",
+"note": "small soft grease stained book",
+"src": {
+"img": "ai/g39_1.png"
+}
+},
+{
+"start": 196.3,
+"end": 200.0,
+"pool": "logbook",
+"note": "entry for the 14th",
+"src": {
+"img": "ai/logbook3_1.png"
+}
+},
+{
+"start": 200.0,
+"end": 205.4,
+"pool": "boats_night",
+"note": "boats cast off 4:30",
+"src": {
+"img": "stock/fsa_c/nets_20.jpg"
+}
+},
+{
+"start": 205.4,
+"end": 212.1,
+"pool": "boats_dark",
+"note": "14 boats cast off all to the Skerry",
+"src": {
+"img": "stock/fsa_c/nets_11.jpg"
+}
+},
+{
+"start": 212.1,
+"end": 216.0,
+"pool": "logbook_close",
+"note": "a line that comes after",
+"src": {
+"img": "ai/logbook2_2.png"
+},
+"cut": true
+},
+{
+"start": 216.0,
+"end": 219.3,
+"pool": "dawn",
+"note": "light grey in the east",
+"src": {
+"img": "ai/g12_2.png"
+}
+},
+{
+"start": 219.3,
+"end": 222.5,
+"pool": "sea_flat",
+"note": "sea flat hauling first lines",
+"src": {
+"img": "stock/fsa_c/gloucester_boats_26.jpg"
+}
+},
+{
+"start": 222.5,
+"end": 225.6,
+"pool": "fishermen_work",
+"note": "hauling lines 5:41",
+"src": {
+"img": "stock/fsa_c/gloucester_02.jpg"
+}
+},
+{
+"start": 225.6,
+"end": 229.4,
+"pool": "sea_flat",
+"note": "dead calm of a kind not seen",
+"src": {
+"img": "stock/fsa_c/cove_08.jpg"
+}
+},
+{
+"start": 229.4,
+"end": 231.2,
+"pool": "fishermen_still",
+"note": "every man stopped working",
+"src": {
+"img": "stock/fsa_c/gloucester_boats_14.jpg"
+}
+},
+{
+"start": 231.2,
+"end": 235.5,
+"pool": "fisherwife",
+"note": "what he told his wife that night",
+"src": {
+"img": "stock/fsa_c/wife_21.jpg"
+}
+},
+{
+"start": 235.5,
+"end": 237.8,
+"pool": "sea_flat",
+"note": "sound went out of the world",
+"src": {
+"img": "stock/fsa_c/cove_07.jpg"
+}
+},
+{
+"start": 237.8,
+"end": 240.4,
+"pool": "boat_engine",
+"note": "engines running could not hear them",
+"src": {
+"img": "stock/fsa_c/fishermen_boat_20.jpg"
+}
+},
+{
+"start": 240.4,
+"end": 244.0,
+"pool": "gulls_flying",
+"note": "gulls wheeling in hundreds",
+"src": {
+"img": "stock/fsa_c/sea_16.jpg"
+}
+},
+{
+"start": 244.0,
+"end": 248.4,
+"pool": "gulls_sitting",
+"note": "all dropped onto water silent",
+"src": {
+"img": "ai/g46_0.png"
+}
+},
+{
+"start": 248.4,
+"end": 251.2,
+"pool": "storm_coming",
+"note": "the way birds sit before a storm",
+"src": {
+"vid": "stock/films/0993_Safety_at_Sea_01_28_18_08.mp4",
+"t": 555.18,
+"t1": 560
+}
+},
+{
+"start": 251.2,
+"end": 253.5,
+"pool": "skipper_portrait",
+"note": "Peter Visser looked up",
+"src": {
+"img": "ai/skipper_1.png"
+}
+},
+{
+"start": 253.5,
+"end": 256.4,
+"pool": "fisherman_young",
+"note": "youngest man boy of 17 Danny",
+"src": {
+"img": "stock/fsa_c/fishermen_18.jpg"
+}
+},
+{
+"start": 256.4,
+"end": 262.1,
+"pool": "boy_pointing",
+"note": "took hold of sleeve pointing north",
+"src": {
+"img": "ai/g04_1.png"
+}
+},
+{
+"start": 262.1,
+"end": 264.5,
+"pool": "boats_sea",
+"note": "400 yards beyond the bow of the Sea Martin",
+"src": {
+"img": "stock/fsa_c/cove_10.jpg"
+}
+},
+{
+"start": 264.5,
+"end": 266.6,
+"pool": "sea_dawn",
+"note": "grey light",
+"src": {
+"img": "stock/fsa_c/gloucester_boats_25.jpg"
+}
+},
+{
+"start": 266.6,
+"end": 270.3,
+"pool": "giant_far",
+"note": "something moving through the water",
+"src": {
+"img": "comp/giant_wade_1.png"
+}
+},
+{
+"start": 270.3,
+"end": 275.6,
+"pool": "whale",
+"note": "first thought a whale",
+"src": {
+"img": "ai/whale_0.png"
+}
+},
+{
+"start": 275.6,
+"end": 278.9,
+"pool": "sea_swell",
+"note": "whales do not walk",
+"src": {
+"vid": "stock/films/0351_Fishing_Vagabonds_05_17_31_00.mp4",
+"t": 252.77,
+"t1": 262
+}
+},
+{
+"start": 278.9,
+"end": 288.0,
+"pool": "logbook_close",
+"note": "letters so large they run off the page",
+"src": {
+"img": "ai/logbook2_0.png"
+}
+},
+{
+"start": 288.0,
+"end": 291.9,
+"pool": "giant_wading",
+"note": "walking along the Skerry",
+"src": {
+"img": "comp/giant_far_1.png"
+}
+},
+{
+"start": 291.9,
+"end": 296.2,
+"pool": "giant_chest",
+"note": "water came up to his chest",
+"src": {
+"img": "comp/giant_chest_1.png"
+}
+},
+{
+"start": 296.2,
+"end": 300.2,
+"pool": "sea_swell",
+"note": "sea parted in front of him in a long smooth swell",
+"src": {
+"vid": "stock/films/0600_Vista_Stock_Shots_Ocean-Oriented_Footage.mp4",
+"t": 1676.83,
+"t1": 1688
+}
+},
+{
+"start": 300.2,
+"end": 307.6,
+"pool": "boats_swell",
+"note": "lifted them one by one",
+"src": {
+"img": "stock/fsa_c/fishermen_boat_18.jpg"
+}
+},
+{
+"start": 307.6,
+"end": 311.9,
+"pool": "giant_shoulders",
+"note": "shoulders and head above surface",
+"src": {
+"img": "comp/giant_shoulders_1.png"
+}
+},
+{
+"start": 311.9,
+"end": 316.7,
+"pool": "skipper_portrait",
+"note": "skipper who spent 40 years judging distance",
+"src": {
+"img": "ai/skipper_old_2.png"
+}
+},
+{
+"start": 316.7,
+"end": 321.7,
+"pool": "giant_far",
+"note": "30 feet from crown to heel",
+"src": {
+"img": "comp/giant_wade_4.png"
+}
+},
+{
+"start": 321.7,
+"end": 329.1,
+"pool": "giant_chest",
+"note": "line of the water on his ribs",
+"src": {
+"img": "comp/giant_chest_2.png"
+}
+},
+{
+"start": 329.1,
+"end": 333.0,
+"pool": "giant_bend",
+"note": "stopped bent from the waist",
+"src": {
+"img": "comp/giant_bend_1.png"
+}
+},
+{
+"start": 333.0,
+"end": 337.5,
+"pool": "giant_hand",
+"note": "open hand flat against the bottom",
+"src": {
+"img": "comp/giant_bend_2.png"
+}
+},
+{
+"start": 337.5,
+"end": 339.7,
+"pool": "sea_calm",
+"note": "feel it breathe",
+"src": {
+"img": "ai/g12_2.png"
+}
+},
+{
+"start": 339.7,
+"end": 344.9,
+"pool": "giant_wading",
+"note": "straightened took another step",
+"src": {
+"img": "comp/giant_far_3.png"
+}
+},
+{
+"start": 344.9,
+"end": 346.6,
+"pool": "watch",
+"note": "by the skipper's watch 5:49",
+"src": {
+"img": "ai/watch_2.png"
+}
+},
+{
+"start": 346.6,
+"end": 350.3,
+"pool": "giant_far",
+"note": "stopped in middle of reef",
+"src": {
+"img": "comp/giant_far_5.png"
+}
+},
+{
+"start": 350.3,
+"end": 353.5,
+"pool": "giant_head",
+"note": "slowly turned his head",
+"src": {
+"img": "comp/giant_close_1.png"
+}
+},
+{
+"start": 353.5,
+"end": 356.0,
+"pool": "giant_looks",
+"note": "looked at the boats",
+"src": {
+"img": "comp/giant_chest_3.png"
+}
+},
+{
+"start": 356.0,
+"end": 361.4,
+"pool": "logbook_close",
+"note": "pencil gone dull pressed through page",
+"src": {
+"img": "ai/g39_0.png"
+}
+},
+{
+"start": 361.4,
+"end": 368.4,
+"pool": "fishermen_faces",
+"note": "knew he was not being looked at as prey",
+"src": {
+"img": "stock/fsa_c/gloucester_boats_18.jpg"
+}
+},
+{
+"start": 368.4,
+"end": 371.9,
+"pool": "giant_looks",
+"note": "looked at as a stranger",
+"src": {
+"img": "comp/giant_looks_2.png"
+}
+},
+{
+"start": 371.9,
+"end": 374.0,
+"pool": "farm_gate",
+"note": "parked a cart across his gate",
+"src": {
+"img": "ai/farm_gate_1.png"
+},
+"fade_out": 12
+},
+{
+"start": 374.0,
+"end": 374.97,
+"pool": "black",
+"note": "",
+"src": {
+"color": 0.0
+},
+"cut": true
+},
+{
+"start": 374.97,
+"end": 380.37000000000006,
+"pool": "village",
+"note": "Hoekbaai 14 Sept 1951",
+"src": {
+"img": "stock/fsa_c/village_12.jpg"
+},
+"cut": true,
+"fade_in": 15
+},
+{
+"start": 380.37000000000006,
+"end": 384.37000000000006,
+"pool": "boats_dawn",
+"note": "14 boats at first light",
+"src": {
+"img": "stock/loc_c/dawnsea_22.jpg"
+}
+},
+{
+"start": 384.37000000000006,
+"end": 388.07000000000005,
+"pool": "giant_far",
+"note": "man 30 feet tall",
+"src": {
+"img": "comp/giant_wade_2.png"
+}
+},
+{
+"start": 388.07000000000005,
+"end": 393.17,
+"pool": "skipper_portrait",
+"note": "lead skipper Peter Visser",
+"src": {
+"img": "stock/fsa_c/fisherman_portrait_16.jpg"
+}
+},
+{
+"start": 393.17,
+"end": 396.77000000000004,
+"pool": "giant_looks",
+"note": "man looked at the fleet",
+"src": {
+"img": "comp/giant_looks_3.png"
+}
+},
+{
+"start": 396.77000000000004,
+"end": 400.77000000000004,
+"pool": "farm_gate",
+"note": "stranger parked cart across gate",
+"src": {
+"img": "ai/farm_gate_0.png"
+}
+},
+{
+"start": 400.77000000000004,
+"end": 404.57000000000005,
+"pool": "logbook",
+"note": "this is what the man did next",
+"src": {
+"img": "ai/g39_2.png"
+}
+},
+{
+"start": 404.57000000000005,
+"end": 408.87000000000006,
+"pool": "ledger",
+"note": "register of harbour master",
+"src": {
+"img": "ai/g40_1.png"
+}
+},
+{
+"start": 408.87000000000006,
+"end": 413.07000000000005,
+"pool": "harbourmaster",
+"note": "heavy careful man",
+"src": {
+"img": "ai/harbourmaster_2.png"
+}
+},
+{
+"start": 413.07000000000005,
+"end": 416.77000000000004,
+"pool": "logbook_close",
+"note": "skipper's pencil pressed through page",
+"src": {
+"img": "ai/logbook2_1.png"
+}
+},
+{
+"start": 416.77000000000004,
+"end": 419.97,
+"pool": "logbook",
+"note": "steadies again 5:50",
+"src": {
+"img": "ai/logbook2_2.png"
+}
+},
+{
+"start": 419.97,
+"end": 423.67,
+"pool": "giant_far",
+"note": "he did not come toward us",
+"src": {
+"img": "comp/giant_far_4.png"
+}
+},
+{
+"start": 423.67,
+"end": 429.07000000000005,
+"pool": "giant_bend",
+"note": "bent and put hand on bottom",
+"src": {
+"img": "comp/giant_bend_2.png"
+}
+},
+{
+"start": 429.07000000000005,
+"end": 430.97,
+"pool": "reef",
+"note": "I thought it was a rock",
+"src": {
+"vid": "stock/films/0600_Vista_Stock_Shots_Ocean-Oriented_Footage.mp4",
+"t": 1186.1,
+"t1": 1190
+}
+},
+{
+"start": 430.97,
+"end": 435.67,
+"pool": "anchor",
+"note": "old admiralty pattern anchor",
+"src": {
+"img": "ai/g06_2.png"
+}
+},
+{
+"start": 435.67,
+"end": 437.67,
+"pool": "chain",
+"note": "weed eaten chain",
+"src": {
+"img": "ai/g06_1.png"
+}
+},
+{
+"start": 437.67,
+"end": 441.27000000000004,
+"pool": "giant_hand_anchor",
+"note": "turned it over once",
+"src": {
+"img": "ai/g06_0.png"
+}
+},
+{
+"start": 441.27000000000004,
+"end": 444.87000000000006,
+"pool": "tools_field",
+"note": "tool found in neighbour's field",
+"src": {
+"img": "ai/g06_1.png"
+}
+},
+{
+"start": 444.87000000000006,
+"end": 448.37000000000006,
+"pool": "giant_wading",
+"note": "carried it without hurry",
+"src": {
+"img": "comp/giant_far_6.png"
+}
+},
+{
+"start": 448.37000000000006,
+"end": 450.27000000000004,
+"pool": "reef",
+"note": "part of the Skerry above water",
+"src": {
+"vid": "stock/films/0600_Vista_Stock_Shots_Ocean-Oriented_Footage.mp4",
+"t": 603.11,
+"t1": 618
+}
+},
+{
+"start": 450.27000000000004,
+"end": 453.37000000000006,
+"pool": "anchor_rock",
+"note": "set it down on bare black rock",
+"src": {
+"img": "ai/g07_0.png"
+}
+},
+{
+"start": 453.37000000000006,
+"end": 455.77000000000004,
+"pool": "anchor_rock",
+"note": "set it down gently",
+"src": {
+"img": "ai/g07_1.png"
+}
+},
+{
+"start": 455.77000000000004,
+"end": 457.77000000000004,
+"pool": "logbook_close",
+"note": "skipper underlined that word",
+"src": {
+"img": "ai/g39_2.png"
+}
+},
+{
+"start": 457.77000000000004,
+"end": 462.67,
+"pool": "giant_wading",
+"note": "went back for another",
+"src": {
+"img": "comp/giant_far_2.png"
+}
+},
+{
+"start": 462.67,
+"end": 467.57000000000005,
+"pool": "dawn_pink",
+"note": "light came up pink over hills",
+"src": {
+"img": "stock/fsa_c/gloucester_boats_25.jpg"
+}
+},
+{
+"start": 467.57000000000005,
+"end": 472.07000000000005,
+"pool": "boats_still",
+"note": "14 boats silent on flat sea",
+"src": {
+"img": "stock/fsa_c/captain_18.jpg"
+}
+},
+{
+"start": 472.07000000000005,
+"end": 473.97,
+"pool": "giant_far",
+"note": "watched a giant clear the Skerry",
+"src": {
+"img": "comp/giant_far_3.png"
+}
+},
+{
+"start": 473.97,
+"end": 477.87000000000006,
+"pool": "lobster",
+"note": "lobster traps wicker rotted",
+"src": {
+"img": "ai/gearrow2_1.png"
+}
+},
+{
+"start": 477.87000000000006,
+"end": 480.87000000000006,
+"pool": "nets",
+"note": "nets fouled on reef",
+"src": {
+"img": "stock/fsa_c/nets_24.jpg"
+},
+"cut": true
+},
+{
+"start": 480.87000000000006,
+"end": 486.37000000000006,
+"pool": "storm",
+"note": "winter storms",
+"src": {
+"img": "stock/loc_c/waves_02.jpg"
+}
+},
+{
+"start": 486.37000000000006,
+"end": 489.77000000000004,
+"pool": "bell",
+"note": "ship's bell colour of seaweed",
+"src": {
+"img": "ai/g13_2.png"
+}
+},
+{
+"start": 489.77000000000004,
+"end": 493.27000000000004,
+"pool": "gaff",
+"note": "rusted gaff splintered shaft",
+"src": {
+"img": "ai/g08_0.png"
+}
+},
+{
+"start": 493.27000000000004,
+"end": 497.07000000000005,
+"pool": "gear_row",
+"note": "everything lost on that reef",
+"src": {
+"img": "ai/gearrow2_0.png"
+}
+},
+{
+"start": 497.07000000000005,
+"end": 499.27000000000004,
+"pool": "reef",
+"note": "in 30 years or 300",
+"src": {
+"img": "ai/g45_2.png"
+}
+},
+{
+"start": 499.27000000000004,
+"end": 503.37000000000006,
+"pool": "giant_wading",
+"note": "found without searching",
+"src": {
+"img": "comp/giant_far_4.png"
+}
+},
+{
+"start": 503.37000000000006,
+"end": 507.87000000000006,
+"pool": "gear_row",
+"note": "carried to rock in neat row",
+"src": {
+"img": "ai/gearrow2_2.png"
+}
+},
+{
+"start": 507.87000000000006,
+"end": 511.87000000000006,
+"pool": "fisherman_young",
+"note": "Danny Pretorius boy of 17",
+"src": {
+"img": "ai/boy17_1.png"
+}
+},
+{
+"start": 511.87000000000006,
+"end": 515.1700000000001,
+"pool": "yard",
+"note": "man tidying a yard",
+"src": {
+"img": "ai/gearrow2_2.png"
+}
+},
+{
+"start": 515.1700000000001,
+"end": 518.8700000000001,
+"pool": "fishermen_still",
+"note": "nobody fired a shot",
+"src": {
+"img": "stock/fsa_c/captain_22.jpg"
+}
+},
+{
+"start": 518.8700000000001,
+"end": 520.77,
+"pool": "boat_engine",
+"note": "nobody started an engine",
+"src": {
+"img": "stock/fsa_c/gloucester_boats_22.jpg"
+}
+},
+{
+"start": 520.77,
+"end": 523.97,
+"pool": "caps_off",
+"note": "every man taken off his cap",
+"src": {
+"img": "ai/g09_2.png"
+}
+},
+{
+"start": 523.97,
+"end": 525.77,
+"pool": "watch",
+"note": "6:14 by his watch",
+"src": {
+"img": "ai/watch_1.png"
+}
+},
+{
+"start": 525.77,
+"end": 529.0699999999999,
+"pool": "gear_row",
+"note": "looked at row of gear",
+"src": {
+"img": "ai/g08_1.png"
+}
+},
+{
+"start": 529.0699999999999,
+"end": 535.3700000000001,
+"pool": "giant_looks",
+"note": "looked directly at the Sea Martin",
+"src": {
+"img": "comp/giant_close_2.png"
+}
+},
+{
+"start": 535.3700000000001,
+"end": 537.5699999999999,
+"pool": "giant_palm",
+"note": "raised one hand",
+"src": {
+"img": "comp/giant_palm_1.png"
+}
+},
+{
+"start": 537.5699999999999,
+"end": 539.3700000000001,
+"pool": "giant_palm",
+"note": "not a wave not a threat",
+"src": {
+"img": "comp/giant_palm_2.png"
+}
+},
+{
+"start": 539.3700000000001,
+"end": 542.97,
+"pool": "giant_palm",
+"note": "open palm shoulder height",
+"src": {
+"img": "ai/g10_2.png"
+}
+},
+{
+"start": 542.97,
+"end": 547.5699999999999,
+"pool": "farm_gate",
+"note": "field closed for the season",
+"src": {
+"img": "ai/farm_gate_2.png"
+}
+},
+{
+"start": 547.5699999999999,
+"end": 552.3700000000001,
+"pool": "giant_away",
+"note": "turned and walked out along reef",
+"src": {
+"img": "ai/g11_0.png"
+}
+},
+{
+"start": 552.3700000000001,
+"end": 557.1700000000001,
+"pool": "giant_away",
+"note": "sea rose to his shoulders",
+"src": {
+"img": "ai/g11_2.png"
+}
+},
+{
+"start": 557.1700000000001,
+"end": 560.77,
+"pool": "sea_close",
+"note": "water closed over top of him",
+"src": {
+"img": "ai/g11_1.png"
+}
+},
+{
+"start": 560.77,
+"end": 563.97,
+"pool": "sea_swell",
+"note": "swell rolled back once",
+"src": {
+"img": "ai/g12_1.png"
+}
+},
+{
+"start": 563.97,
+"end": 567.6700000000001,
+"pool": "boats_swell",
+"note": "rocked every boat",
+"src": {
+"img": "ai/g12_0.png"
+}
+},
+{
+"start": 567.6700000000001,
+"end": 571.1700000000001,
+"pool": "boats_swell",
+"note": "like a hand patting",
+"src": {
+"vid": "stock/films/fc-fc-490.mp4",
+"t": 96.01,
+"t1": 104,
+"crop": [
+0.0,
+0.05,
+1.0,
+0.8
+]
+}
+},
+{
+"start": 571.1700000000001,
+"end": 573.47,
+"pool": "children_sleep",
+"note": "row of sleeping children",
+"src": {
+"img": "ai/children_0.png"
+}
+},
+{
+"start": 573.47,
+"end": 576.97,
+"pool": "harbour",
+"note": "all 14 boats back by seven",
+"src": {
+"img": "stock/fsa_c/harbor_03.jpg"
+}
+},
+{
+"start": 576.97,
+"end": 580.77,
+"pool": "harbourmaster",
+"note": "Rudolph Brink on the quay oilskin",
+"src": {
+"img": "stock/fsa_c/dory_00.jpg"
+}
+},
+{
+"start": 580.77,
+"end": 583.6700000000001,
+"pool": "ledger",
+"note": "ledger under arm",
+"src": {
+"img": "ai/g40_2.png"
+}
+},
+{
+"start": 583.6700000000001,
+"end": 587.8700000000001,
+"pool": "boats_moored",
+"note": "boat by boat",
+"src": {
+"img": "stock/fsa_c/harbor_00.jpg"
+}
+},
+{
+"start": 587.8700000000001,
+"end": 592.3700000000001,
+"pool": "ledger",
+"note": "31 years keeping ledger",
+"src": {
+"img": "stock/fsa_c/clerk_19.jpg"
+}
+},
+{
+"start": 592.3700000000001,
+"end": 596.0699999999999,
+"pool": "ledger",
+"note": "did not fit the columns",
+"src": {
+"img": "stock/fsa_c/ledger_01.jpg"
+}
+},
+{
+"start": 596.0699999999999,
+"end": 599.27,
+"pool": "empty_boat",
+"note": "not one had a catch",
+"src": {
+"img": "stock/fsa_c/fishermen_boat_18.jpg"
+}
+},
+{
+"start": 599.27,
+"end": 604.27,
+"pool": "boat_engine",
+"note": "fuel tank used",
+"src": {
+"img": "stock/fsa_c/fishermen_boat_19.jpg"
+}
+},
+{
+"start": 604.27,
+"end": 611.27,
+"pool": "ledger",
+"note": "wrote it in margin bold capitals",
+"src": {
+"img": "stock/fsa_c/clerk_03.jpg"
+}
+},
+{
+"start": 611.27,
+"end": 615.3700000000001,
+"pool": "gear_row",
+"note": "14 boats cut lines left gear",
+"src": {
+"img": "ai/g08_2.png"
+}
+},
+{
+"start": 615.3700000000001,
+"end": 618.6700000000001,
+"pool": "fishermen_faces",
+"note": "no man injured no man will say why",
+"src": {
+"img": "stock/fsa_c/fishermen_05.jpg"
+}
+},
+{
+"start": 618.6700000000001,
+"end": 621.97,
+"pool": "office_door",
+"note": "called skippers into office",
+"src": {
+"img": "ai/city_office_0.png"
+}
+},
+{
+"start": 621.97,
+"end": 624.97,
+"pool": "skippers_group",
+"note": "known each for 20 years",
+"src": {
+"img": "stock/fsa_c/dory_14.jpg"
+}
+},
+{
+"start": 624.97,
+"end": 629.1700000000001,
+"pool": "skippers_group",
+"note": "hard practical men",
+"src": {
+"img": "stock/fsa_c/wharf_14.jpg"
+}
+},
+{
+"start": 629.1700000000001,
+"end": 633.1700000000001,
+"pool": "caps_hands",
+"note": "caps in their hands said nothing",
+"src": {
+"img": "ai/capsoff2_0.png"
+}
+},
+{
+"start": 633.1700000000001,
+"end": 636.8700000000001,
+"pool": "skipper_portrait",
+"note": "Peter Visser oldest low voice",
+"src": {
+"img": "stock/fsa_c/fisherman_portrait_10.jpg"
+}
+},
+{
+"start": 636.8700000000001,
+"end": 639.3700000000001,
+"pool": "skipper_portrait",
+"note": "give it a day",
+"src": {
+"img": "ai/skipper_old_1.png"
+}
+},
+{
+"start": 639.3700000000001,
+"end": 641.47,
+"pool": "harbourmaster",
+"note": "Brink asked",
+"src": {
+"img": "stock/fsa_c/dory_20.jpg"
+}
+},
+{
+"start": 641.47,
+"end": 647.27,
+"pool": "skipper_portrait",
+"note": "not go out to the Skerry tomorrow",
+"src": {
+"img": "stock/fsa_c/gloucester_boats_07.jpg"
+}
+},
+{
+"start": 647.27,
+"end": 649.27,
+"pool": "harbourmaster",
+"note": "Brink asked why",
+"src": {
+"img": "ai/ledger3_1.png"
+}
+},
+{
+"start": 649.27,
+"end": 652.1700000000001,
+"pool": "giant_bend",
+"note": "because he was putting things back",
+"src": {
+"img": "comp/giant_bend_1.png"
+}
+},
+{
+"start": 652.1700000000001,
+"end": 655.0699999999999,
+"pool": "ledger",
+"note": "wrote sentence in ledger",
+"src": {
+"img": "ai/ledger2_2.png"
+}
+},
+{
+"start": 655.0699999999999,
+"end": 659.0699999999999,
+"pool": "ledger",
+"note": "underlined it twice",
+"src": {
+"img": "ai/g40_0.png"
+}
+},
+{
+"start": 659.0699999999999,
+"end": 662.77,
+"pool": "harbourmaster",
+"note": "next morning",
+"src": {
+"img": "ai/ledger3_2.png"
+}
+},
+{
+"start": 662.77,
+"end": 664.77,
+"pool": "tide",
+"note": "low water on the 15th",
+"src": {
+"img": "ai/g45_0.png"
+}
+},
+{
+"start": 664.77,
+"end": 667.6700000000001,
+"pool": "point_walk",
+"note": "walked out along the point",
+"src": {
+"img": "ai/pointwalk_1.png"
+}
+},
+{
+"start": 667.6700000000001,
+"end": 669.97,
+"pool": "binoculars",
+"note": "binoculars and flask of coffee",
+"src": {
+"img": "ai/telescope_1.png"
+}
+},
+{
+"start": 669.97,
+"end": 672.27,
+"pool": "rocks_point",
+"note": "end of the last rock",
+"src": {
+"img": "stock/fsa_c/coast_00.jpg"
+}
+},
+{
+"start": 672.27,
+"end": 675.77,
+"pool": "reef",
+"note": "400 yards of flat water",
+"src": {
+"img": "stock/fsa_c/sea_18.jpg"
+}
+},
+{
+"start": 675.77,
+"end": 682.0699999999999,
+"pool": "reef_empty",
+"note": "every piece of gear gone",
+"src": {
+"img": "ai/g45_1.png"
+}
+},
+{
+"start": 682.0699999999999,
+"end": 685.6700000000001,
+"pool": "harbour",
+"note": "in the harbour that morning",
+"src": {
+"img": "ai/harbourwall_2.png"
+}
+},
+{
+"start": 685.6700000000001,
+"end": 689.0699999999999,
+"pool": "officer",
+"note": "fisheries officer spectacles",
+"src": {
+"img": "ai/officer_0.png"
+}
+},
+{
+"start": 689.0699999999999,
+"end": 693.27,
+"pool": "officer_notebook",
+"note": "government notebook count fish",
+"src": {
+"img": "ai/officer_2.png"
+}
+},
+{
+"start": 693.27,
+"end": 696.8700000000001,
+"pool": "village_people",
+"note": "trying for two hours",
+"src": {
+"img": "stock/fsa_c/village_22.jpg"
+}
+},
+{
+"start": 696.8700000000001,
+"end": 700.97,
+"pool": "chapel",
+"note": "found one in the chapel",
+"src": {
+"img": "stock/fsa_c/church_19.jpg"
+}
+},
+{
+"start": 700.97,
+"end": 703.77,
+"pool": "priest",
+"note": "priest old Dutchman van der Merwe",
+"src": {
+"img": "ai/priest_0.png"
+}
+},
+{
+"start": 703.77,
+"end": 705.97,
+"pool": "chapel_door",
+"note": "unlocked door at dawn",
+"src": {
+"img": "ai/g13_0.png"
+}
+},
+{
+"start": 705.97,
+"end": 709.1700000000001,
+"pool": "chapel_step",
+"note": "found something on the step",
+"src": {
+"img": "ai/g13_1.png"
+}
+},
+{
+"start": 709.1700000000001,
+"end": 713.5699999999999,
+"pool": "officer_notebook",
+"note": "small nervous hand",
+"src": {
+"img": "ai/g42_0.png"
+}
+},
+{
+"start": 713.5699999999999,
+"end": 717.77,
+"pool": "chapel_gear",
+"note": "rope ship's bell lobster trap anchor",
+"src": {
+"img": "ai/g13_2.png"
+}
+},
+{
+"start": 717.77,
+"end": 721.77,
+"pool": "chapel_gear",
+"note": "laid in a row on flagstones",
+"src": {
+"img": "ai/g13_1.png"
+}
+},
+{
+"start": 721.77,
+"end": 725.3700000000001,
+"pool": "chapel_door",
+"note": "in front of chapel door wet from sea",
+"src": {
+"img": "stock/fsa_c/church_ext_09.jpg"
+}
+},
+{
+"start": 725.3700000000001,
+"end": 728.97,
+"pool": "chapel_gear",
+"note": "every piece washed",
+"src": {
+"img": "ai/g13_0.png"
+}
+},
+{
+"start": 728.97,
+"end": 734.27,
+"pool": "stone_mark",
+"note": "small flat round grey stone",
+"src": {
+"img": "comp/stone_mark_a.png",
+"crop": [
+0.3,
+0.2,
+0.85,
+0.8
+],
+"move": "in"
+},
+"cut": true
+},
+{
+"start": 734.27,
+"end": 737.77,
+"pool": "stone_mark",
+"note": "size of loaf of bread",
+"src": {
+"img": "comp/stone_mark_b.png",
+"crop": [
+0.25,
+0.15,
+0.75,
+0.85
+],
+"move": "in"
+}
+},
+{
+"start": 737.77,
+"end": 741.0699999999999,
+"pool": "stone_mark",
+"note": "single mark scratched deep",
+"src": {
+"img": "comp/stone_mark_b.png",
+"crop": [
+0.3,
+0.25,
+0.68,
+0.75
+],
+"move": "out"
+}
+},
+{
+"start": 741.0699999999999,
+"end": 745.47,
+"pool": "register",
+"note": "seen it in baptismal register",
+"src": {
+"img": "stock/reg/reg_b_00.jpg",
+"crop": [
+0.0,
+0.07,
+1.0,
+0.5
+]
+}
+},
+{
+"start": 745.47,
+"end": 747.27,
+"pool": "chapel_int",
+"note": "of the same chapel",
+"src": {
+"img": "ai/chapel_int_1.png"
+},
+"fade_out": 12
+},
+{
+"start": 747.27,
+"end": 748.3699999999999,
+"pool": "black",
+"note": "",
+"src": {
+"color": 0.0
+},
+"cut": true
+},
+{
+"start": 748.3699999999999,
+"end": 753.5699999999999,
+"pool": "village",
+"note": "Hoekbaai September 1951",
+"src": {
+"img": "ai/g47_2.png"
+},
+"cut": true,
+"fade_in": 15
+},
+{
+"start": 753.5699999999999,
+"end": 757.27,
+"pool": "giant_far",
+"note": "30 foot man walked the Skerry",
+"src": {
+"img": "comp/giant_far_1.png"
+}
+},
+{
+"start": 757.27,
+"end": 759.0699999999999,
+"pool": "giant_chest",
+"note": "chest",
+"src": {
+"img": "comp/giant_chest_3.png"
+}
+},
+{
+"start": 759.0699999999999,
+"end": 762.8699999999999,
+"pool": "gear_row",
+"note": "lifted every piece of lost gear",
+"src": {
+"img": "ai/gearrow2_1.png"
+}
+},
+{
+"start": 762.8699999999999,
+"end": 766.0699999999999,
+"pool": "giant_away",
+"note": "walked away into deep water",
+"src": {
+"img": "comp/giant_away_2.png"
+}
+},
+{
+"start": 766.0699999999999,
+"end": 769.8699999999999,
+"pool": "sea_close",
+"note": "sea close over his head",
+"src": {
+"vid": "stock/films/0351_Fishing_Vagabonds_05_17_31_00.mp4",
+"t": 456.9,
+"t1": 462
+}
+},
+{
+"start": 769.8699999999999,
+"end": 772.8699999999999,
+"pool": "reef_empty",
+"note": "gear gone from the rock",
+"src": {
+"img": "ai/g45_2.png"
+}
+},
+{
+"start": 772.8699999999999,
+"end": 774.97,
+"pool": "chapel_gear",
+"note": "lying on chapel step",
+"src": {
+"img": "ai/g13_2.png"
+}
+},
+{
+"start": 774.97,
+"end": 780.6700000000001,
+"pool": "stone_mark",
+"note": "grey stone one scratched mark",
+"src": {
+"img": "comp/stone_mark_b.png",
+"move": "in"
+}
+},
+{
+"start": 780.6700000000001,
+"end": 785.3699999999999,
+"pool": "logbook",
+"note": "four people left records",
+"src": {
+"img": "ai/logbook2_1.png"
+}
+},
+{
+"start": 785.3699999999999,
+"end": 788.97,
+"pool": "lighthouse",
+"note": "part from the lighthouse",
+"src": {
+"img": "stock/fsa_c/lighthouse_01.jpg"
+}
+},
+{
+"start": 788.97,
+"end": 791.77,
+"pool": "officer_notebook",
+"note": "notebook of the officer",
+"src": {
+"img": "ai/g42_2.png"
+}
+},
+{
+"start": 791.77,
+"end": 795.8699999999999,
+"pool": "officer",
+"note": "spectacled 26 year old",
+"src": {
+"img": "ai/officer_2.png"
+}
+},
+{
+"start": 795.8699999999999,
+"end": 799.6700000000001,
+"pool": "chapel_ext",
+"note": "stood on chapel step 7 o'clock",
+"src": {
+"img": "ai/chapel_sa_2.png"
+}
+},
+{
+"start": 799.6700000000001,
+"end": 803.47,
+"pool": "stone_mark",
+"note": "looked at the mark a full minute",
+"src": {
+"img": "comp/stone_mark_a.png",
+"crop": [
+0.3,
+0.2,
+0.85,
+0.8
+],
+"move": "in"
+}
+},
+{
+"start": 803.47,
+"end": 805.5699999999999,
+"pool": "officer",
+"note": "why it frightened him",
+"src": {
+"img": "ai/officer2_0.png"
+}
+},
+{
+"start": 805.5699999999999,
+"end": 811.5699999999999,
+"pool": "stone_mark",
+"note": "plain circle with one short vertical line",
+"src": {
+"img": "comp/stone_mark_b.png",
+"crop": [
+0.25,
+0.15,
+0.75,
+0.85
+],
+"move": "in"
+}
+},
+{
+"start": 811.5699999999999,
+"end": 815.0699999999999,
+"pool": "register",
+"note": "old burial register in the vestry",
+"src": {
+"img": "ai/ledger2_0.png"
+}
+},
+{
+"start": 815.0699999999999,
+"end": 816.97,
+"pool": "vestry",
+"note": "where he had gone",
+"src": {
+"img": "stock/fsa_c/church_12.jpg"
+}
+},
+{
+"start": 816.97,
+"end": 820.0699999999999,
+"pool": "storm",
+"note": "how many men the Skerry had killed",
+"src": {
+"vid": "stock/films/0993_Safety_at_Sea_01_28_18_08.mp4",
+"t": 1029.27,
+"t1": 1040
+}
+},
+{
+"start": 820.0699999999999,
+"end": 823.27,
+"pool": "register",
+"note": "register went back to 1790",
+"src": {
+"img": "stock/reg/reg_c_00.jpg",
+"crop": [
+0.05,
+0.12,
+0.95,
+0.6
+]
+}
+},
+{
+"start": 823.27,
+"end": 827.47,
+"pool": "register_marks",
+"note": "beside names in the margin",
+"src": {
+"img": "comp/register_real_marks.png",
+"crop": [
+0.45,
+0.15,
+1.0,
+0.55
+]
+}
+},
+{
+"start": 827.47,
+"end": 831.5699999999999,
+"pool": "register_marks",
+"note": "same small mark circle with line",
+"src": {
+"img": "comp/register_real_marks.png",
+"crop": [
+0.5,
+0.35,
+1.0,
+0.75
+]
+}
+},
+{
+"start": 831.5699999999999,
+"end": 840.0699999999999,
+"pool": "priest",
+"note": "old Dutchman priest 40 years",
+"src": {
+"img": "ai/g43_2.png"
+}
+},
+{
+"start": 840.0699999999999,
+"end": 841.8699999999999,
+"pool": "priest",
+"note": "asked what it meant",
+"src": {
+"img": "ai/priest_2.png"
+}
+},
+{
+"start": 841.8699999999999,
+"end": 845.6700000000001,
+"pool": "sea_dark",
+"note": "mark for a man lost at sea not recovered",
+"src": {
+"vid": "stock/films/0600_Vista_Stock_Shots_Ocean-Oriented_Footage.mp4",
+"t": 1804.82,
+"t1": 1812
+}
+},
+{
+"start": 845.6700000000001,
+"end": 849.27,
+"pool": "register",
+"note": "priests used it since first book",
+"src": {
+"img": "stock/reg/reg_b_00.jpg",
+"crop": [
+0.0,
+0.3,
+0.8,
+0.75
+]
+}
+},
+{
+"start": 849.27,
+"end": 854.1700000000001,
+"pool": "chapel_int",
+"note": "never shown anyone outside chapel",
+"src": {
+"img": "stock/fsa_c/church_15.jpg"
+}
+},
+{
+"start": 854.1700000000001,
+"end": 857.47,
+"pool": "gravestones",
+"note": "never carved on a stone",
+"src": {
+"img": "stock/fsa_c/cemetery_22.jpg"
+}
+},
+{
+"start": 857.47,
+"end": 861.0699999999999,
+"pool": "village",
+"note": "never spoken aloud in village",
+"src": {
+"img": "ai/g47_1.png"
+}
+},
+{
+"start": 861.0699999999999,
+"end": 866.0699999999999,
+"pool": "priest_pray",
+"note": "priest to remember who was still out there",
+"src": {
+"img": "stock/fsa_c/church_04.jpg"
+}
+},
+{
+"start": 866.0699999999999,
+"end": 868.97,
+"pool": "officer_notebook",
+"note": "wrote it all down",
+"src": {
+"img": "ai/officer_1.png"
+}
+},
+{
+"start": 868.97,
+"end": 873.27,
+"pool": "officer_notebook",
+"note": "note in margin capitals",
+"src": {
+"img": "stock/fsa_c/writing_13.jpg"
+}
+},
+{
+"start": 873.27,
+"end": 876.0699999999999,
+"pool": "stone_mark",
+"note": "how does he know the mark",
+"src": {
+"img": "comp/stone_mark_b.png",
+"crop": [
+0.3,
+0.25,
+0.68,
+0.75
+],
+"move": "out"
+}
+},
+{
+"start": 876.0699999999999,
+"end": 880.1700000000001,
+"pool": "officer",
+"note": "government man with a puzzle",
+"src": {
+"img": "ai/officer2_2.png"
+}
+},
+{
+"start": 880.1700000000001,
+"end": 882.77,
+"pool": "lighthouse",
+"note": "went to find the lighthouse keeper",
+"src": {
+"img": "ai/g16_2.png"
+}
+},
+{
+"start": 882.77,
+"end": 886.77,
+"pool": "keeper_woman",
+"note": "widow of 60 lean severe",
+"src": {
+"img": "ai/g41_2.png"
+}
+},
+{
+"start": 886.77,
+"end": 889.27,
+"pool": "lighthouse",
+"note": "kept light on the point 11 years",
+"src": {
+"vid": "stock/films/0993_Safety_at_Sea_01_28_18_08.mp4",
+"t": 63.13,
+"t1": 78
+}
+},
+{
+"start": 889.27,
+"end": 892.3699999999999,
+"pool": "storm",
+"note": "husband lost on a trawler",
+"src": {
+"vid": "stock/films/200325_The_Open_Sea.mp4",
+"t": 340.96,
+"t1": 348
+}
+},
+{
+"start": 892.3699999999999,
+"end": 895.5699999999999,
+"pool": "trawler_storm",
+"note": "in a south-easter",
+"src": {
+"vid": "stock/films/0993_Safety_at_Sea_01_28_18_08.mp4",
+"t": 621.6,
+"t1": 632
+}
+},
+{
+"start": 895.5699999999999,
+"end": 897.6700000000001,
+"pool": "keeper_log",
+"note": "night log as exact",
+"src": {
+"img": "ai/keeper_log2_0.png"
+}
+},
+{
+"start": 897.6700000000001,
+"end": 902.3699999999999,
+"pool": "lighthouse_lens",
+"note": "every light every squall",
+"src": {
+"vid": "stock/films/0993_Safety_at_Sea_01_28_18_08.mp4",
+"t": 52.38,
+"t1": 61
+}
+},
+{
+"start": 902.3699999999999,
+"end": 906.47,
+"pool": "keeper_log",
+"note": "black ink",
+"src": {
+"img": "ai/g41_0.png"
+}
+},
+{
+"start": 906.47,
+"end": 910.0699999999999,
+"pool": "keeper_log",
+"note": "dullest reading in the Cape",
+"src": {
+"img": "ai/ledger2_1.png"
+}
+},
+{
+"start": 910.0699999999999,
+"end": 917.97,
+"pool": "lighthouse_night",
+"note": "wind light sea flat nothing",
+"src": {
+"vid": "stock/films/0315_New_England_Yesterday_and_Today_16_00_54_25.mp4",
+"t": 445.42,
+"t1": 462
+}
+},
+{
+"start": 917.97,
+"end": 922.47,
+"pool": "lantern_far",
+"note": "set 15 3:45 light at the Skerry",
+"src": {
+"img": "ai/bg_reef_night_1.png"
+}
+},
+{
+"start": 922.47,
+"end": 927.27,
+"pool": "lantern_far",
+"note": "not a boat low steady moving",
+"src": {
+"img": "ai/g17_0.png"
+}
+},
+{
+"start": 927.27,
+"end": 931.47,
+"pool": "lantern_far",
+"note": "no engine sound",
+"src": {
+"img": "ai/g17_1.png"
+}
+},
+{
+"start": 931.47,
+"end": 934.0699999999999,
+"pool": "keeper_log",
+"note": "entry for 16th",
+"src": {
+"img": "ai/ledger2_2.png"
+}
+},
+{
+"start": 934.0699999999999,
+"end": 938.6700000000001,
+"pool": "lantern_far",
+"note": "light again closer",
+"src": {
+"img": "ai/bg_reef_night_2.png"
+}
+},
+{
+"start": 938.6700000000001,
+"end": 940.47,
+"pool": "binoculars",
+"note": "I took the glass",
+"src": {
+"img": "ai/telescope_1.png"
+}
+},
+{
+"start": 940.47,
+"end": 944.97,
+"pool": "giant_lantern",
+"note": "lantern at height of a man's knee",
+"src": {
+"img": "ai/g18_1.png"
+}
+},
+{
+"start": 944.97,
+"end": 947.5699999999999,
+"pool": "giant_lantern",
+"note": "the hand that carries it",
+"src": {
+"img": "ai/g18_2.png"
+}
+},
+{
+"start": 947.5699999999999,
+"end": 951.0699999999999,
+"pool": "giant_hand",
+"note": "size of a table",
+"src": {
+"img": "comp/giant_bend_1.png"
+}
+},
+{
+"start": 951.0699999999999,
+"end": 954.97,
+"pool": "keeper_log",
+"note": "nothing for several lines",
+"src": {
+"img": "ai/keeper_log2_1.png"
+}
+},
+{
+"start": 954.97,
+"end": 957.47,
+"pool": "keeper_log",
+"note": "sentence to edge of page",
+"src": {
+"img": "ai/keeper_log2_2.png"
+}
+},
+{
+"start": 957.47,
+"end": 959.77,
+"pool": "giant_lantern",
+"note": "he is searching the bottom",
+"src": {
+"img": "ai/g18_0.png"
+}
+},
+{
+"start": 959.77,
+"end": 964.1700000000001,
+"pool": "giant_bend",
+"note": "man searches for something dropped",
+"src": {
+"img": "comp/giant_bend_2.png"
+}
+},
+{
+"start": 964.1700000000001,
+"end": 966.8699999999999,
+"pool": "keeper_woman",
+"note": "stood on gallery 3 in morning",
+"src": {
+"img": "stock/fsa_c/oldwoman_03.jpg"
+}
+},
+{
+"start": 966.8699999999999,
+"end": 969.47,
+"pool": "lighthouse_night",
+"note": "gallery of lighthouse",
+"src": {
+"img": "ai/g17_2.png"
+}
+},
+{
+"start": 969.47,
+"end": 974.8699999999999,
+"pool": "lantern_far",
+"note": "lantern move along the Skerry in dark",
+"src": {
+"img": "ai/bg_reef_night_0.png"
+}
+},
+{
+"start": 974.8699999999999,
+"end": 979.6700000000001,
+"pool": "giant_lantern",
+"note": "lifted something from the water",
+"src": {
+"img": "comp/giant_lantern_1.png"
+}
+},
+{
+"start": 979.6700000000001,
+"end": 982.8699999999999,
+"pool": "dawn",
+"note": "light went out at dawn",
+"src": {
+"vid": "stock/films/0600_Vista_Stock_Shots_Ocean-Oriented_Footage.mp4",
+"t": 1166.8,
+"t1": 1170
+}
+},
+{
+"start": 982.8699999999999,
+"end": 985.97,
+"pool": "lantern_far",
+"note": "6th night 20 Sept lantern left the reef",
+"src": {
+"img": "ai/bg_reef_night_1.png"
+}
+},
+{
+"start": 985.97,
+"end": 988.47,
+"pool": "lantern_far",
+"note": "came in toward shore",
+"src": {
+"img": "ai/g17_0.png"
+},
+"cut": true
+},
+{
+"start": 988.47,
+"end": 992.5699999999999,
+"pool": "cliff_night",
+"note": "foot of the cliff below lighthouse",
+"src": {
+"img": "ai/bg_cliff_night_2.png"
+}
+},
+{
+"start": 992.5699999999999,
+"end": 995.1700000000001,
+"pool": "cliff_night",
+"note": "black rock straight into deep water",
+"src": {
+"vid": "stock/films/0993_Safety_at_Sea_01_28_18_08.mp4",
+"t": 1043.44,
+"t1": 1047
+}
+},
+{
+"start": 995.1700000000001,
+"end": 1001.6700000000001,
+"pool": "giant_cliff",
+"note": "could see water move around legs",
+"src": {
+"img": "ai/g19_1.png"
+}
+},
+{
+"start": 1001.6700000000001,
+"end": 1003.97,
+"pool": "giant_cliff",
+"note": "shoulders dark against the sea",
+"src": {
+"img": "ai/g19_0.png"
+}
+},
+{
+"start": 1003.97,
+"end": 1009.97,
+"pool": "giant_cliff",
+"note": "carrying something against chest",
+"src": {
+"img": "ai/g19_2.png"
+}
+},
+{
+"start": 1009.97,
+"end": 1012.8699999999999,
+"pool": "giant_cliff",
+"note": "wrapped in cloth like sleeping child",
+"src": {
+"img": "comp/giant_cliff_2.png"
+}
+},
+{
+"start": 1012.8699999999999,
+"end": 1015.6700000000001,
+"pool": "lighthouse_night",
+"note": "did not look up at the lighthouse",
+"src": {
+"img": "ai/g16_2.png"
+}
+},
+{
+"start": 1015.6700000000001,
+"end": 1021.0699999999999,
+"pool": "giant_cliff",
+"note": "stood there about a minute",
+"src": {
+"img": "comp/giant_cliff_1.png"
+}
+},
+{
+"start": 1021.0699999999999,
+"end": 1023.0699999999999,
+"pool": "bundle",
+"note": "set bundle on ledge above tide line",
+"src": {
+"img": "ai/g20_1.png"
+}
+},
+{
+"start": 1023.0699999999999,
+"end": 1025.67,
+"pool": "bundle",
+"note": "gently as a baby in a cradle",
+"src": {
+"img": "ai/bundle2_2.png"
+}
+},
+{
+"start": 1025.67,
+"end": 1028.17,
+"pool": "sea_dark",
+"note": "stepped back into the sea",
+"src": {
+"vid": "stock/films/0993_Safety_at_Sea_01_28_18_08.mp4",
+"t": 1028.39,
+"t1": 1038
+}
+},
+{
+"start": 1028.17,
+"end": 1030.77,
+"pool": "keeper_woman",
+"note": "I did not move",
+"src": {
+"img": "ai/keeper_log2_1.png"
+}
+},
+{
+"start": 1030.77,
+"end": 1033.57,
+"pool": "keeper_log",
+"note": "did not call anyone",
+"src": {
+"img": "ai/ledger2_0.png"
+}
+},
+{
+"start": 1033.57,
+"end": 1036.3700000000001,
+"pool": "keeper_woman",
+"note": "God forgive me",
+"src": {
+"img": "stock/fsa_c/widow_13.jpg"
+}
+},
+{
+"start": 1036.3700000000001,
+"end": 1038.47,
+"pool": "bundle",
+"note": "would not be one to touch it",
+"src": {
+"img": "ai/bundle2_0.png"
+}
+},
+{
+"start": 1038.47,
+"end": 1041.97,
+"pool": "dawn",
+"note": "first light on the 21st",
+"src": {
+"img": "ai/g12_0.png"
+}
+},
+{
+"start": 1041.97,
+"end": 1044.3700000000001,
+"pool": "skipper_portrait",
+"note": "Peter Visser walked out along point",
+"src": {
+"img": "stock/fsa_c/gloucester_boats_05.jpg"
+}
+},
+{
+"start": 1044.3700000000001,
+"end": 1047.47,
+"pool": "point_walk",
+"note": "20 days unable to sleep",
+"src": {
+"img": "ai/pointwalk_0.png"
+}
+},
+{
+"start": 1047.47,
+"end": 1051.77,
+"pool": "bundle",
+"note": "found what the keeper had watched",
+"src": {
+"img": "ai/bundle2_1.png"
+}
+},
+{
+"start": 1051.77,
+"end": 1054.27,
+"pool": "bundle",
+"note": "laid on the ledge bundle of old canvas",
+"src": {
+"img": "ai/g20_2.png"
+}
+},
+{
+"start": 1054.27,
+"end": 1060.8700000000001,
+"pool": "canvas",
+"note": "grey with salt tied with twine",
+"src": {
+"img": "ai/g20_1.png"
+}
+},
+{
+"start": 1060.8700000000001,
+"end": 1063.67,
+"pool": "bundle",
+"note": "young man's bones",
+"src": {
+"img": "ai/bundle2_2.png"
+}
+},
+{
+"start": 1063.67,
+"end": 1066.07,
+"pool": "relics",
+"note": "sea boot sole worn through",
+"src": {
+"img": "ai/ring_2.png"
+}
+},
+{
+"start": 1066.07,
+"end": 1068.57,
+"pool": "relics",
+"note": "gold ring crooked setting",
+"src": {
+"img": "ai/g21_2.png"
+}
+},
+{
+"start": 1068.57,
+"end": 1073.47,
+"pool": "relics",
+"note": "knife initials H.V.",
+"src": {
+"img": "ai/ring_0.png"
+}
+},
+{
+"start": 1073.47,
+"end": 1077.8700000000001,
+"pool": "young_fisherman",
+"note": "Hendrik Visser 19 years old",
+"src": {
+"img": "stock/fsa_c/gloucester_boats_13.jpg"
+}
+},
+{
+"start": 1077.8700000000001,
+"end": 1080.3700000000001,
+"pool": "young_fisherman",
+"note": "skipper's only son",
+"src": {
+"img": "stock/fsa_c/fisherman_portrait_06.jpg"
+}
+},
+{
+"start": 1080.3700000000001,
+"end": 1082.77,
+"pool": "storm",
+"note": "great south-easter May 1948",
+"src": {
+"img": "stock/loc_c/waves_07.jpg"
+}
+},
+{
+"start": 1082.77,
+"end": 1088.77,
+"pool": "small_boat_storm",
+"note": "small boat with two other men",
+"src": {
+"vid": "stock/films/0993_Safety_at_Sea_01_28_18_08.mp4",
+"t": 622.38,
+"t1": 632
+}
+},
+{
+"start": 1088.77,
+"end": 1090.47,
+"pool": "storm",
+"note": "none ever found",
+"src": {
+"vid": "stock/films/0993_Safety_at_Sea_01_28_18_08.mp4",
+"t": 607.93,
+"t1": 612
+}
+},
+{
+"start": 1090.47,
+"end": 1094.77,
+"pool": "logbook",
+"note": "written boy's name in his log",
+"src": {
+"img": "ai/g39_0.png"
+}
+},
+{
+"start": 1094.77,
+"end": 1100.67,
+"pool": "register_marks",
+"note": "little circle with line",
+"src": {
+"img": "comp/register_real_marks.png",
+"crop": [
+0.35,
+0.2,
+0.95,
+0.6
+]
+}
+},
+{
+"start": 1100.67,
+"end": 1102.8700000000001,
+"pool": "chapel_int",
+"note": "old habit of the chapel",
+"src": {
+"img": "stock/fsa_c/church_02.jpg"
+}
+},
+{
+"start": 1102.8700000000001,
+"end": 1107.3700000000001,
+"pool": "logbook",
+"note": "three years unable to write anything else",
+"src": {
+"img": "ai/logbook2_0.png"
+}
+},
+{
+"start": 1107.3700000000001,
+"end": 1110.27,
+"pool": "logbook_close",
+"note": "next line almost illegible",
+"src": {
+"img": "ai/g39_1.png"
+}
+},
+{
+"start": 1110.27,
+"end": 1113.97,
+"pool": "bundle",
+"note": "found Hendrik at foot of point",
+"src": {
+"img": "ai/bundle2_0.png"
+}
+},
+{
+"start": 1113.97,
+"end": 1115.8700000000001,
+"pool": "relics",
+"note": "wearing his ring",
+"src": {
+"img": "ai/seaboot_0.png"
+}
+},
+{
+"start": 1115.8700000000001,
+"end": 1118.07,
+"pool": "logbook",
+"note": "line that follows steady",
+"src": {
+"img": "ai/logbook3_2.png"
+}
+},
+{
+"start": 1118.07,
+"end": 1122.3700000000001,
+"pool": "fisherwife",
+"note": "skipper's wife beside him",
+"src": {
+"img": "ai/fisherwife_2.png"
+}
+},
+{
+"start": 1122.3700000000001,
+"end": 1125.07,
+"pool": "logbook",
+"note": "wrote slowly like signing a paper",
+"src": {
+"img": "ai/logbook3_0.png"
+}
+},
+{
+"start": 1125.07,
+"end": 1128.17,
+"pool": "logbook_close",
+"note": "I do not know what he is",
+"src": {
+"img": "ai/logbook2_2.png"
+}
+},
+{
+"start": 1128.17,
+"end": 1130.67,
+"pool": "skipper_portrait",
+"note": "he brought my boy home",
+"src": {
+"img": "ai/skipper_2.png"
+}
+},
+{
+"start": 1130.67,
+"end": 1136.07,
+"pool": "village",
+"note": "afternoon of the 21st village",
+"src": {
+"img": "stock/fsa_c/village_25.jpg"
+}
+},
+{
+"start": 1136.07,
+"end": 1139.17,
+"pool": "harbourmaster",
+"note": "harbour master Brink wrote",
+"src": {
+"img": "stock/fsa_c/clerk_19.jpg"
+}
+},
+{
+"start": 1139.17,
+"end": 1142.3700000000001,
+"pool": "ledger",
+"note": "plain facts",
+"src": {
+"img": "ai/ledger3_1.png"
+}
+},
+{
+"start": 1142.3700000000001,
+"end": 1144.17,
+"pool": "storm",
+"note": "three men lost 1948",
+"src": {
+"vid": "stock/films/0600_Vista_Stock_Shots_Ocean-Oriented_Footage.mp4",
+"t": 326.93,
+"t1": 340
+}
+},
+{
+"start": 1144.17,
+"end": 1148.3700000000001,
+"pool": "doorstep_stone",
+"note": "three bundles of bones",
+"src": {
+"img": "ai/g22_0.png"
+}
+},
+{
+"start": 1148.3700000000001,
+"end": 1150.17,
+"pool": "doorstep",
+"note": "each laid on different doorstep",
+"src": {
+"img": "ai/g22_1.png"
+}
+},
+{
+"start": 1150.17,
+"end": 1152.77,
+"pool": "canvas",
+"note": "same grey sailcloth",
+"src": {
+"img": "ai/bundle2_2.png"
+}
+},
+{
+"start": 1152.77,
+"end": 1155.67,
+"pool": "stone_mark",
+"note": "small stone circle with line",
+"src": {
+"img": "comp/stone_mark_b.png",
+"move": "in"
+}
+},
+{
+"start": 1155.67,
+"end": 1159.8700000000001,
+"pool": "sea_dark",
+"note": "not one found by any search",
+"src": {
+"vid": "stock/films/0351_Fishing_Vagabonds_05_17_31_00.mp4",
+"t": 408.62,
+"t1": 414
+}
+},
+{
+"start": 1159.8700000000001,
+"end": 1162.57,
+"pool": "lantern_far",
+"note": "gone out on five nights",
+"src": {
+"img": "ai/g17_1.png"
+}
+},
+{
+"start": 1162.57,
+"end": 1165.57,
+"pool": "bundle",
+"note": "found all three",
+"src": {
+"img": "ai/bundle2_1.png"
+}
+},
+{
+"start": 1165.57,
+"end": 1167.3700000000001,
+"pool": "officer",
+"note": "not the end of it",
+"src": {
+"img": "stock/fsa_c/minister_00.jpg"
+}
+},
+{
+"start": 1167.3700000000001,
+"end": 1169.57,
+"pool": "officer_doors",
+"note": "door to door with notebook",
+"src": {
+"img": "ai/g22_2.png"
+}
+},
+{
+"start": 1169.57,
+"end": 1171.97,
+"pool": "officer_notebook",
+"note": "counted the stones",
+"src": {
+"img": "stock/fsa_c/writing_16.jpg"
+}
+},
+{
+"start": 1171.97,
+"end": 1174.77,
+"pool": "doorstep_stone",
+"note": "found 19 in the village",
+"src": {
+"img": "ai/doorstep2_2.png"
+}
+},
+{
+"start": 1174.77,
+"end": 1181.17,
+"pool": "cottages",
+"note": "19 doorsteps 19 families",
+"src": {
+"img": "ai/village_sa_2.png"
+}
+},
+{
+"start": 1181.17,
+"end": 1184.17,
+"pool": "gravestones",
+"note": "lost someone in past 90 years",
+"src": {
+"img": "stock/fsa_c/cemetery_07.jpg"
+}
+},
+{
+"start": 1184.17,
+"end": 1186.47,
+"pool": "sea_dark",
+"note": "bones lain in dark longer",
+"src": {
+"vid": "stock/films/0351_Fishing_Vagabonds_05_17_31_00.mp4",
+"t": 457.6,
+"t1": 462
+}
+},
+{
+"start": 1186.47,
+"end": 1189.07,
+"pool": "village_old",
+"note": "than any living person could remember",
+"src": {
+"img": "stock/fsa_c/village_09.jpg"
+}
+},
+{
+"start": 1189.07,
+"end": 1194.47,
+"pool": "doorstep_stone",
+"note": "19 households 19 stones",
+"src": {
+"img": "ai/doorstep2_0.png"
+}
+},
+{
+"start": 1194.47,
+"end": 1196.8700000000001,
+"pool": "dusk_harbour",
+"note": "evening of the 21st",
+"src": {
+"img": "ai/stonehouse_0.png"
+}
+},
+{
+"start": 1196.8700000000001,
+"end": 1201.27,
+"pool": "stone_wall",
+"note": "20th sitting by itself on flat rock",
+"src": {
+"img": "ai/stonehouse_1.png"
+}
+},
+{
+"start": 1201.27,
+"end": 1203.8700000000001,
+"pool": "harbour_wall",
+"note": "corner of harbour wall",
+"src": {
+"img": "ai/harbourwall_0.png"
+}
+},
+{
+"start": 1203.8700000000001,
+"end": 1206.17,
+"pool": "stone_house",
+"note": "small stone house harbour master lived",
+"src": {
+"img": "ai/stonehouse_2.png"
+}
+},
+{
+"start": 1206.17,
+"end": 1208.67,
+"pool": "stone_house",
+"note": "with his wife",
+"src": {
+"img": "ai/stonehouse_0.png"
+}
+},
+{
+"start": 1208.67,
+"end": 1213.07,
+"pool": "village",
+"note": "never lost a soul to the sea",
+"src": {
+"img": "ai/g47_0.png"
+}
+},
+{
+"start": 1213.07,
+"end": 1215.67,
+"pool": "harbourmaster",
+"note": "Rudolph Brink picked it up at dusk",
+"src": {
+"img": "ai/harbourmaster_0.png"
+}
+},
+{
+"start": 1215.67,
+"end": 1218.47,
+"pool": "stone_house",
+"note": "carried it inside",
+"src": {
+"img": "ai/stonehouse_1.png"
+},
+"cut": true
+},
+{
+"start": 1218.47,
+"end": 1220.8700000000001,
+"pool": "lamp_table",
+"note": "sat down at his table",
+"src": {
+"img": "ai/g23_0.png"
+}
+},
+{
+"start": 1220.8700000000001,
+"end": 1222.8700000000001,
+"pool": "window_night",
+"note": "officer watched through window",
+"src": {
+"img": "ai/g23_2.png"
+}
+},
+{
+"start": 1222.8700000000001,
+"end": 1224.67,
+"pool": "lamp_table",
+"note": "turned it over in big careful hands",
+"src": {
+"img": "ai/g23_1.png"
+}
+},
+{
+"start": 1224.67,
+"end": 1227.8700000000001,
+"pool": "ledger",
+"note": "in the ledger that night",
+"src": {
+"img": "stock/fsa_c/clerk_12.jpg"
+}
+},
+{
+"start": 1227.8700000000001,
+"end": 1232.77,
+"pool": "ledger",
+"note": "heading 21st September",
+"src": {
+"img": "ai/ledger2_0.png"
+}
+},
+{
+"start": 1232.77,
+"end": 1236.3700000000001,
+"pool": "ledger",
+"note": "letters smaller than any before",
+"src": {
+"img": "ai/ledger3_0.png"
+}
+},
+{
+"start": 1236.3700000000001,
+"end": 1241.07,
+"pool": "lamp_table",
+"note": "I have not told one living soul about Willem",
+"src": {
+"img": "ai/g23_0.png"
+},
+"fade_out": 12
+},
+{
+"start": 1241.07,
+"end": 1241.22,
+"pool": "black",
+"note": "",
+"src": {
+"color": 0.0
+},
+"cut": true
+},
+{
+"start": 1241.22,
+"end": 1243.08,
+"pool": "village",
+"note": "Hoekbaai September 1951",
+"src": {
+"img": "ai/village_sa_1.png"
+},
+"cut": true,
+"fade_in": 15
+},
+{
+"start": 1243.08,
+"end": 1248.3799999999999,
+"pool": "giant_far",
+"note": "30 foot man walked the Skerry",
+"src": {
+"img": "comp/giant_far_2.png"
+}
+},
+{
+"start": 1248.3799999999999,
+"end": 1253.3799999999999,
+"pool": "gear_row",
+"note": "lifted every piece of lost gear",
+"src": {
+"img": "ai/g08_0.png"
+}
+},
+{
+"start": 1253.3799999999999,
+"end": 1255.3799999999999,
+"pool": "lantern_far",
+"note": "over six nights",
+"src": {
+"img": "ai/bg_reef_night_2.png"
+}
+},
+{
+"start": 1255.3799999999999,
+"end": 1260.08,
+"pool": "bundle",
+"note": "carried bones of three drowned",
+"src": {
+"img": "ai/g20_2.png"
+}
+},
+{
+"start": 1260.08,
+"end": 1265.28,
+"pool": "doorstep_stone",
+"note": "each wrapped left with stone",
+"src": {
+"img": "ai/doorstep2_1.png"
+}
+},
+{
+"start": 1265.28,
+"end": 1267.6799999999998,
+"pool": "stone_mark",
+"note": "circle with line",
+"src": {
+"img": "comp/stone_mark_a.png",
+"crop": [
+0.3,
+0.2,
+0.85,
+0.8
+],
+"move": "in"
+}
+},
+{
+"start": 1267.6799999999998,
+"end": 1271.08,
+"pool": "doorstep_stone",
+"note": "19 stones 19 doorsteps",
+"src": {
+"img": "ai/g22_2.png"
+}
+},
+{
+"start": 1271.08,
+"end": 1276.8799999999999,
+"pool": "harbour_wall",
+"note": "20th on harbour wall",
+"src": {
+"img": "ai/g48_1.png"
+}
+},
+{
+"start": 1276.8799999999999,
+"end": 1278.58,
+"pool": "harbourmaster",
+"note": "house of harbour master",
+"src": {
+"img": "ai/g40_1.png"
+}
+},
+{
+"start": 1278.58,
+"end": 1281.8799999999999,
+"pool": "ledger",
+"note": "wrote in his ledger",
+"src": {
+"img": "ai/ledger3_2.png"
+}
+},
+{
+"start": 1281.8799999999999,
+"end": 1288.08,
+"pool": "lamp_table",
+"note": "never told about Willem",
+"src": {
+"img": "ai/g23_2.png"
+}
+},
+{
+"start": 1288.08,
+"end": 1290.48,
+"pool": "ledger_page",
+"note": "this is who Willem was",
+"src": {
+"img": "ai/ledger2_0.png"
+}
+},
+{
+"start": 1290.48,
+"end": 1294.6799999999998,
+"pool": "ledger_page",
+"note": "one page Brink tore out and kept",
+"src": {
+"img": "ai/ledger2_1.png"
+}
+},
+{
+"start": 1294.6799999999998,
+"end": 1296.98,
+"pool": "young_man",
+"note": "Willem Brink younger brother",
+"src": {
+"img": "ai/willem_1.png"
+}
+},
+{
+"start": 1296.98,
+"end": 1299.3799999999999,
+"pool": "young_man",
+"note": "cheerful careless boy of 20",
+"src": {
+"img": "stock/fsa_c/fisherman_portrait_09.jpg"
+}
+},
+{
+"start": 1299.3799999999999,
+"end": 1302.08,
+"pool": "sea_bright",
+"note": "loved the sea",
+"src": {
+"img": "stock/fsa_c/nets_13.jpg"
+}
+},
+{
+"start": 1302.08,
+"end": 1304.98,
+"pool": "young_man",
+"note": "could not be told anything",
+"src": {
+"img": "ai/willem_2.png"
+}
+},
+{
+"start": 1304.98,
+"end": 1308.3799999999999,
+"pool": "first_mate",
+"note": "March 1919 Rudolph 28 first mate",
+"src": {
+"img": "stock/fsa_c/gloucester_boats_07.jpg"
+}
+},
+{
+"start": 1308.3799999999999,
+"end": 1314.48,
+"pool": "coaster",
+"note": "coaster that served village",
+"src": {
+"vid": "stock/films/0315_New_England_Yesterday_and_Today_16_00_54_25.mp4",
+"t": 235.29,
+"t1": 246
+}
+},
+{
+"start": 1314.48,
+"end": 1316.28,
+"pool": "brothers_argue",
+"note": "over money father had left",
+"src": {
+"img": "ai/g24_0.png"
+}
+},
+{
+"start": 1316.28,
+"end": 1320.08,
+"pool": "brothers_argue",
+"note": "ended with Rudolph saying something",
+"src": {
+"img": "ai/g24_1.png"
+}
+},
+{
+"start": 1320.08,
+"end": 1322.3799999999999,
+"pool": "harbour_wall",
+"note": "could not unsay",
+"src": {
+"img": "stock/fsa_c/wharf_12.jpg"
+}
+},
+{
+"start": 1322.3799999999999,
+"end": 1324.1799999999998,
+"pool": "brothers_argue",
+"note": "never make a seaman",
+"src": {
+"img": "ai/g24_2.png"
+}
+},
+{
+"start": 1324.1799999999998,
+"end": 1328.3799999999999,
+"pool": "storm",
+"note": "sea would take him in a week",
+"src": {
+"vid": "stock/films/0993_Safety_at_Sea_01_28_18_08.mp4",
+"t": 553.7,
+"t1": 560
+}
+},
+{
+"start": 1328.3799999999999,
+"end": 1330.3799999999999,
+"pool": "brothers_argue",
+"note": "family better off if it did",
+"src": {
+"img": "ai/g24_0.png"
+}
+},
+{
+"start": 1330.3799999999999,
+"end": 1333.98,
+"pool": "skiff_dusk",
+"note": "Willem laughed took little skiff",
+"src": {
+"img": "ai/g25_2.png"
+}
+},
+{
+"start": 1333.98,
+"end": 1336.3799999999999,
+"pool": "skiff_dusk",
+"note": "went out alone to the Skerry",
+"src": {
+"img": "ai/g25_1.png"
+}
+},
+{
+"start": 1336.3799999999999,
+"end": 1338.6799999999998,
+"pool": "dusk_sea",
+"note": "in the failing light",
+"src": {
+"vid": "stock/films/0600_Vista_Stock_Shots_Ocean-Oriented_Footage.mp4",
+"t": 1801.58,
+"t1": 1812
+}
+},
+{
+"start": 1338.6799999999998,
+"end": 1341.28,
+"pool": "skiff_dusk",
+"note": "to prove his brother wrong",
+"src": {
+"img": "stock/fsa_c/fishermen_04.jpg"
+}
+},
+{
+"start": 1341.28,
+"end": 1343.8799999999999,
+"pool": "storm_night",
+"note": "south-east came up at 10 that night",
+"src": {
+"vid": "stock/films/0993_Safety_at_Sea_01_28_18_08.mp4",
+"t": 1028.55,
+"t1": 1040
+}
+},
+{
+"start": 1343.8799999999999,
+"end": 1345.6799999999998,
+"pool": "upturned",
+"note": "skiff found on beach upside down",
+"src": {
+"img": "ai/g26_0.png"
+}
+},
+{
+"start": 1345.6799999999998,
+"end": 1348.58,
+"pool": "upturned",
+"note": "Willem's cap wedged under thwart",
+"src": {
+"img": "ai/g26_1.png"
+}
+},
+{
+"start": 1348.58,
+"end": 1351.3799999999999,
+"pool": "sea_dark",
+"note": "body never found",
+"src": {
+"img": "ai/g17_0.png"
+}
+},
+{
+"start": 1351.3799999999999,
+"end": 1354.28,
+"pool": "ledger",
+"note": "wrote in harbour register",
+"src": {
+"img": "ai/ledger2_1.png"
+}
+},
+{
+"start": 1354.28,
+"end": 1358.8799999999999,
+"pool": "ledger",
+"note": "flat correct hand",
+"src": {
+"img": "ai/g40_1.png"
+}
+},
+{
+"start": 1358.8799999999999,
+"end": 1363.48,
+"pool": "ledger",
+"note": "lost at sea misadventure",
+"src": {
+"img": "ai/g40_2.png"
+}
+},
+{
+"start": 1363.48,
+"end": 1365.58,
+"pool": "village_people",
+"note": "told village",
+"src": {
+"img": "stock/fsa_c/fishermen_11.jpg"
+}
+},
+{
+"start": 1365.58,
+"end": 1367.58,
+"pool": "storm",
+"note": "taken in a squall",
+"src": {
+"vid": "stock/films/200325_The_Open_Sea.mp4",
+"t": 27.52,
+"t1": 36
+}
+},
+{
+"start": 1367.58,
+"end": 1370.3799999999999,
+"pool": "village_people",
+"note": "nobody asked further",
+"src": {
+"img": "stock/fsa_c/congregation_14.jpg"
+}
+},
+{
+"start": 1370.3799999999999,
+"end": 1373.98,
+"pool": "gravestones",
+"note": "Skerry took men every few years",
+"src": {
+"img": "stock/fsa_c/cemetery_11.jpg"
+}
+},
+{
+"start": 1373.98,
+"end": 1376.6799999999998,
+"pool": "harbourmaster",
+"note": "became harbour master 1927",
+"src": {
+"img": "stock/fsa_c/desk_22.jpg"
+}
+},
+{
+"start": 1376.6799999999998,
+"end": 1379.98,
+"pool": "point_night",
+"note": "never walked on point at night",
+"src": {
+"img": "ai/g17_2.png"
+}
+},
+{
+"start": 1379.98,
+"end": 1382.6799999999998,
+"pool": "harbourmaster",
+"note": "never told anyone",
+"src": {
+"vid": "stock/films/201297_Beside_The_Zuider_Zee.mp4",
+"t": 343.58,
+"t1": 348
+}
+},
+{
+"start": 1382.6799999999998,
+"end": 1385.78,
+"pool": "harbour_wall",
+"note": "what he said on the wall",
+"src": {
+"img": "ai/g48_2.png"
+}
+},
+{
+"start": 1385.78,
+"end": 1388.08,
+"pool": "ledger_page",
+"note": "torn page of ledger",
+"src": {
+"img": "stock/fsa_c/ledger_01.jpg"
+}
+},
+{
+"start": 1388.08,
+"end": 1390.8799999999999,
+"pool": "ledger_page",
+"note": "wife found after he died",
+"src": {
+"img": "ai/ledger2_2.png"
+}
+},
+{
+"start": 1390.8799999999999,
+"end": 1395.28,
+"pool": "stone_wall",
+"note": "stone was warm when picked up",
+"src": {
+"img": "ai/doorstep2_0.png"
+}
+},
+{
+"start": 1395.28,
+"end": 1399.78,
+"pool": "lamp_table",
+"note": "sat at his table with it until dawn",
+"src": {
+"img": "ai/g23_1.png"
+}
+},
+{
+"start": 1399.78,
+"end": 1401.98,
+"pool": "dawn",
+"note": "at first light",
+"src": {
+"img": "stock/fsa_c/gloucester_boats_25.jpg"
+}
+},
+{
+"start": 1401.98,
+"end": 1404.08,
+"pool": "chapel_walk",
+"note": "walked to the chapel",
+"src": {
+"img": "ai/chapel_sa_0.png"
+}
+},
+{
+"start": 1404.08,
+"end": 1407.08,
+"pool": "chapel_door",
+"note": "knocked on priest's door",
+"src": {
+"img": "stock/fsa_c/door_06.jpg"
+}
+},
+{
+"start": 1407.08,
+"end": 1409.6799999999998,
+"pool": "priest",
+"note": "voice the old Dutchman did not recognize",
+"src": {
+"img": "ai/priest_1.png"
+}
+},
+{
+"start": 1409.6799999999998,
+"end": 1414.78,
+"pool": "harbourmaster",
+"note": "I want to tell the village something",
+"src": {
+"img": "stock/fsa_c/desk_06.jpg"
+}
+},
+{
+"start": 1414.78,
+"end": 1417.6799999999998,
+"pool": "chapel_ext",
+"note": "noon on 22 September",
+"src": {
+"img": "ai/chapel_sa_1.png"
+}
+},
+{
+"start": 1417.6799999999998,
+"end": 1421.48,
+"pool": "congregation",
+"note": "whole of Hoekbaai 300 people",
+"src": {
+"img": "stock/fsa_c/church_ext_15.jpg"
+}
+},
+{
+"start": 1421.48,
+"end": 1423.78,
+"pool": "congregation",
+"note": "gathered in chapel",
+"src": {
+"img": "ai/g27_2.png"
+}
+},
+{
+"start": 1423.78,
+"end": 1427.78,
+"pool": "officer",
+"note": "fisheries officer",
+"src": {
+"img": "ai/g42_1.png"
+}
+},
+{
+"start": 1427.78,
+"end": 1430.1799999999998,
+"pool": "officer",
+"note": "invited to stand at back",
+"src": {
+"img": "stock/fsa_c/minister_24.jpg"
+}
+},
+{
+"start": 1430.1799999999998,
+"end": 1432.6799999999998,
+"pool": "officer_notebook",
+"note": "wrote down every word",
+"src": {
+"img": "ai/logbook2_2.png"
+}
+},
+{
+"start": 1432.6799999999998,
+"end": 1435.78,
+"pool": "chapel_confess",
+"note": "Brink stood at front hat in hands",
+"src": {
+"img": "ai/g27_1.png"
+}
+},
+{
+"start": 1435.78,
+"end": 1440.48,
+"pool": "harbour_wall",
+"note": "told about the wall and Willem",
+"src": {
+"img": "stock/fsa_c/wharf_13.jpg"
+},
+"cut": true
+},
+{
+"start": 1440.48,
+"end": 1443.6799999999998,
+"pool": "chapel_confess",
+"note": "flat plain voice",
+"src": {
+"img": "stock/fsa_c/congregation_02.jpg"
+}
+},
+{
+"start": 1443.6799999999998,
+"end": 1445.8799999999999,
+"pool": "chapel_confess",
+"note": "without excusing himself",
+"src": {
+"img": "ai/g27_0.png"
+}
+},
+{
+"start": 1445.8799999999999,
+"end": 1448.8799999999999,
+"pool": "congregation",
+"note": "nobody spoke for long time",
+"src": {
+"img": "stock/fsa_c/congregation_00.jpg"
+}
+},
+{
+"start": 1448.8799999999999,
+"end": 1451.1799999999998,
+"pool": "skipper_portrait",
+"note": "then the skipper Peter Visser",
+"src": {
+"img": "stock/fsa_c/fisherman_portrait_12.jpg"
+}
+},
+{
+"start": 1451.1799999999998,
+"end": 1456.48,
+"pool": "bundle",
+"note": "whose son came home on the ledge",
+"src": {
+"img": "ai/g20_1.png"
+}
+},
+{
+"start": 1456.48,
+"end": 1459.1799999999998,
+"pool": "chapel_int",
+"note": "rose from front bench",
+"src": {
+"img": "stock/fsa_c/church_13.jpg"
+}
+},
+{
+"start": 1459.1799999999998,
+"end": 1461.48,
+"pool": "chapel_floor",
+"note": "walked across stone floor",
+"src": {
+"img": "stock/fsa_c/church_09.jpg"
+}
+},
+{
+"start": 1461.48,
+"end": 1463.98,
+"pool": "hand_shoulder",
+"note": "put hand on harbour master's shoulder",
+"src": {
+"img": "ai/g28_1.png"
+}
+},
+{
+"start": 1463.98,
+"end": 1466.58,
+"pool": "hand_shoulder",
+"note": "did not say anything",
+"src": {
+"img": "ai/g28_0.png"
+}
+},
+{
+"start": 1466.58,
+"end": 1469.08,
+"pool": "congregation",
+"note": "half the village weeping",
+"src": {
+"img": "stock/fsa_c/congregation_13.jpg"
+}
+},
+{
+"start": 1469.08,
+"end": 1471.98,
+"pool": "priest",
+"note": "priest old van der Merwe",
+"src": {
+"img": "ai/g43_0.png"
+}
+},
+{
+"start": 1471.98,
+"end": 1475.3799999999999,
+"pool": "priest_stone",
+"note": "lifted the small grey stone",
+"src": {
+"img": "ai/g43_1.png"
+}
+},
+{
+"start": 1475.3799999999999,
+"end": 1477.98,
+"pool": "altar",
+"note": "from the altar rail",
+"src": {
+"img": "stock/fsa_c/church_04.jpg"
+}
+},
+{
+"start": 1477.98,
+"end": 1480.78,
+"pool": "priest_stone",
+"note": "read the mark aloud",
+"src": {
+"img": "comp/stone_mark_b.png",
+"crop": [
+0.25,
+0.15,
+0.75,
+0.85
+]
+}
+},
+{
+"start": 1480.78,
+"end": 1482.58,
+"pool": "register",
+"note": "first time in history of the parish",
+"src": {
+"img": "ai/ledger2_2.png"
+}
+},
+{
+"start": 1482.58,
+"end": 1487.3799999999999,
+"pool": "stone_mark",
+"note": "mark for a man lost not recovered",
+"src": {
+"img": "comp/stone_mark_b.png",
+"crop": [
+0.25,
+0.15,
+0.75,
+0.85
+],
+"move": "in"
+}
+},
+{
+"start": 1487.3799999999999,
+"end": 1492.08,
+"pool": "priest",
+"note": "knew the old habit of this chapel",
+"src": {
+"img": "stock/fsa_c/minister_08.jpg"
+}
+},
+{
+"start": 1492.08,
+"end": 1494.58,
+"pool": "congregation",
+"note": "did not leave it to accuse",
+"src": {
+"img": "stock/fsa_c/church_ext_16.jpg"
+}
+},
+{
+"start": 1494.58,
+"end": 1496.98,
+"pool": "gravestones",
+"note": "nobody had been forgotten",
+"src": {
+"img": "stock/fsa_c/cemetery_06.jpg"
+}
+},
+{
+"start": 1496.98,
+"end": 1500.1799999999998,
+"pool": "vestry",
+"note": "that afternoon in the vestry",
+"src": {
+"img": "ai/stonesrow_2.png"
+}
+},
+{
+"start": 1500.1799999999998,
+"end": 1502.6799999999998,
+"pool": "stones_table",
+"note": "stones laid out on table long row",
+"src": {
+"img": "ai/stonesrow_1.png"
+}
+},
+{
+"start": 1502.6799999999998,
+"end": 1505.1799999999998,
+"pool": "skippers_group",
+"note": "fleet made its decision",
+"src": {
+"img": "stock/fsa_c/gloucester_00.jpg"
+}
+},
+{
+"start": 1505.1799999999998,
+"end": 1509.8799999999999,
+"pool": "skippers_group",
+"note": "no vote",
+"src": {
+"img": "stock/fsa_c/gloucester_20.jpg"
+}
+},
+{
+"start": 1509.8799999999999,
+"end": 1512.08,
+"pool": "skipper_portrait",
+"note": "Peter Visser said it",
+"src": {
+"img": "stock/fsa_c/fisherman_portrait_13.jpg"
+}
+},
+{
+"start": 1512.08,
+"end": 1516.08,
+"pool": "reef",
+"note": "Skerry was not a fishing ground",
+"src": {
+"vid": "stock/films/0600_Vista_Stock_Shots_Ocean-Oriented_Footage.mp4",
+"t": 741.74,
+"t1": 750
+}
+},
+{
+"start": 1516.08,
+"end": 1519.28,
+"pool": "boats_dawn",
+"note": "90 years village dropped lines",
+"src": {
+"img": "stock/fsa_c/fishermen_04.jpg"
+}
+},
+{
+"start": 1519.28,
+"end": 1521.08,
+"pool": "seabed_graves",
+"note": "place where the dead were tended",
+"src": {
+"img": "ai/seabed4_0.png"
+}
+},
+{
+"start": 1521.08,
+"end": 1527.1799999999998,
+"pool": "giant_far",
+"note": "man who tended them waited patient",
+"src": {
+"img": "comp/giant_wade_1.png"
+}
+},
+{
+"start": 1527.1799999999998,
+"end": 1529.78,
+"pool": "boats_sea",
+"note": "until fleet came to understand",
+"src": {
+"img": "stock/fsa_c/nets_14.jpg"
+}
+},
+{
+"start": 1529.78,
+"end": 1532.48,
+"pool": "gear_row",
+"note": "cleared the gear off the bottom",
+"src": {
+"img": "ai/gearrow2_0.png"
+}
+},
+{
+"start": 1532.48,
+"end": 1534.48,
+"pool": "giant_palm",
+"note": "raised open hand in dawn",
+"src": {
+"img": "comp/giant_palm_3.png"
+}
+},
+{
+"start": 1534.48,
+"end": 1537.1799999999998,
+"pool": "farm_gate",
+"note": "closes a gate",
+"src": {
+"img": "ai/farm_gate_1.png"
+}
+},
+{
+"start": 1537.1799999999998,
+"end": 1540.78,
+"pool": "bundle",
+"note": "returned the lost one by one",
+"src": {
+"img": "ai/bundle2_2.png"
+}
+},
+{
+"start": 1540.78,
+"end": 1542.98,
+"pool": "priest",
+"note": "care no priest or magistrate shown",
+"src": {
+"img": "stock/fsa_c/minister_15.jpg"
+}
+},
+{
+"start": 1542.98,
+"end": 1545.58,
+"pool": "skippers_group",
+"note": "skippers agreed in vestry",
+"src": {
+"img": "stock/fsa_c/fishermen_boat_08.jpg"
+}
+},
+{
+"start": 1545.58,
+"end": 1548.58,
+"pool": "boats_moored",
+"note": "no boat would work the Skerry again",
+"src": {
+"img": "stock/fsa_c/wharf_23.jpg"
+}
+},
+{
+"start": 1548.58,
+"end": 1550.78,
+"pool": "officer_notebook",
+"note": "notebook records one dissent",
+"src": {
+"img": "ai/officer2_1.png"
+}
+},
+{
+"start": 1550.78,
+"end": 1553.98,
+"pool": "kous",
+"note": "34 year old skipper Kous Marais",
+"src": {
+"img": "ai/kous_2.png"
+}
+},
+{
+"start": 1553.98,
+"end": 1556.98,
+"pool": "trawler",
+"note": "owned trawler Hendrika",
+"src": {
+"img": "stock/fsa_c/gloucester_boats_21.jpg"
+}
+},
+{
+"start": 1556.98,
+"end": 1559.1799999999998,
+"pool": "bank",
+"note": "owed bank 400 pounds",
+"src": {
+"img": "ai/city_office_0.png"
+}
+},
+{
+"start": 1559.1799999999998,
+"end": 1562.78,
+"pool": "kous",
+"note": "stood up at the back",
+"src": {
+"img": "stock/fsa_c/fisherman_portrait_13.jpg"
+}
+},
+{
+"start": 1562.78,
+"end": 1564.6799999999998,
+"pool": "reef",
+"note": "only place within 30 miles to earn",
+"src": {
+"img": "stock/fsa_c/coast_02.jpg"
+}
+},
+{
+"start": 1564.6799999999998,
+"end": 1567.28,
+"pool": "fishermen_work",
+"note": "earn a living",
+"src": {
+"img": "stock/fsa_c/seine_01.jpg"
+}
+},
+{
+"start": 1567.28,
+"end": 1569.58,
+"pool": "children",
+"note": "story about a ghost won't feed children",
+"src": {
+"img": "stock/fsa_c/children_08.jpg"
+}
+},
+{
+"start": 1569.58,
+"end": 1574.58,
+"pool": "kous",
+"note": "out at first light 3 October",
+"src": {
+"img": "ai/kous_1.png"
+}
+},
+{
+"start": 1574.58,
+"end": 1577.78,
+"pool": "skipper_portrait",
+"note": "nobody tried to stop him Peter Visser",
+"src": {
+"img": "ai/skipper_old_0.png"
+}
+},
+{
+"start": 1577.78,
+"end": 1580.3799999999999,
+"pool": "lantern",
+"note": "Kous take a lantern",
+"src": {
+"img": "ai/g34_1.png"
+}
+},
+{
+"start": 1580.3799999999999,
+"end": 1583.48,
+"pool": "trawler_dawn",
+"note": "Marais went out at 5:20",
+"src": {
+"img": "stock/fsa_c/trawler_21.jpg"
+}
+},
+{
+"start": 1583.48,
+"end": 1586.1799999999998,
+"pool": "trawler",
+"note": "alone with crew of two",
+"src": {
+"img": "stock/fsa_c/trawler_00.jpg"
+}
+},
+{
+"start": 1586.1799999999998,
+"end": 1591.58,
+"pool": "keeper_woman",
+"note": "lighthouse keeper not slept three nights",
+"src": {
+"img": "stock/fsa_c/dory_08.jpg"
+}
+},
+{
+"start": 1591.58,
+"end": 1593.78,
+"pool": "binoculars",
+"note": "watched from gallery with the glass",
+"src": {
+"img": "ai/telescope_2.png"
+}
+},
+{
+"start": 1593.78,
+"end": 1596.1799999999998,
+"pool": "keeper_log",
+"note": "entry for that morning short",
+"src": {
+"img": "ai/g41_1.png"
+}
+},
+{
+"start": 1596.1799999999998,
+"end": 1598.58,
+"pool": "trawler",
+"note": "5:31 Hendrika cast at the Skerry",
+"src": {
+"img": "stock/fsa_c/trawler_01.jpg"
+}
+},
+{
+"start": 1598.58,
+"end": 1601.28,
+"pool": "gulls_sitting",
+"note": "sea very flat no birds",
+"src": {
+"img": "ai/g46_2.png"
+}
+},
+{
+"start": 1601.28,
+"end": 1604.3799999999999,
+"pool": "trawler_still",
+"note": "5:44 engine stopped",
+"src": {
+"img": "ai/g30_1.png"
+}
+},
+{
+"start": 1604.3799999999999,
+"end": 1607.48,
+"pool": "trawler_still",
+"note": "Hendrika dead in water",
+"src": {
+"img": "stock/fsa_c/trawler_20.jpg"
+}
+},
+{
+"start": 1607.48,
+"end": 1610.6799999999998,
+"pool": "sea_flat",
+"note": "no wind no current",
+"src": {
+"img": "stock/fsa_c/gloucester_boats_27.jpg"
+}
+},
+{
+"start": 1610.6799999999998,
+"end": 1613.28,
+"pool": "trawler_still",
+"note": "boat not drifting sits like a thing held",
+"src": {
+"img": "ai/g30_0.png"
+}
+},
+{
+"start": 1613.28,
+"end": 1617.6799999999998,
+"pool": "dawn",
+"note": "light enough to see the men",
+"src": {
+"img": "ai/g12_1.png"
+}
+},
+{
+"start": 1617.6799999999998,
+"end": 1622.98,
+"pool": "trawler_men",
+"note": "all three looking over the side",
+"src": {
+"img": "ai/trawlermen_1.png"
+}
+},
+{
+"start": 1622.98,
+"end": 1626.08,
+"pool": "trawler_dawn",
+"note": "6:20 engine turned over",
+"src": {
+"img": "ai/trawler_2.png"
+}
+},
+{
+"start": 1626.08,
+"end": 1628.28,
+"pool": "trawler_home",
+"note": "came home at dead slow speed",
+"src": {
+"img": "stock/fsa_c/trawler_16.jpg"
+}
+},
+{
+"start": 1628.28,
+"end": 1631.1799999999998,
+"pool": "harbour",
+"note": "tied up at harbour wall",
+"src": {
+"img": "stock/fsa_c/gloucester_boats_00.jpg"
+}
+},
+{
+"start": 1631.1799999999998,
+"end": 1633.3799999999999,
+"pool": "quay",
+"note": "walked up the quay",
+"src": {
+"img": "stock/fsa_c/gloucester_04.jpg"
+}
+},
+{
+"start": 1633.3799999999999,
+"end": 1637.6799999999998,
+"pool": "office_door",
+"note": "harbour master's office",
+"src": {
+"img": "stock/fsa_c/clerk_13.jpg"
+}
+},
+{
+"start": 1637.6799999999998,
+"end": 1642.48,
+"pool": "kous",
+"note": "did not tell anyone until spring",
+"src": {
+"img": "stock/fsa_c/fisherman_portrait_25.jpg"
+}
+},
+{
+"start": 1642.48,
+"end": 1645.3799999999999,
+"pool": "kous",
+"note": "told it to Brink low dry voice",
+"src": {
+"img": "stock/fsa_c/gloucester_boats_17.jpg"
+}
+},
+{
+"start": 1645.3799999999999,
+"end": 1648.28,
+"pool": "kous",
+"note": "eyes on the floor",
+"src": {
+"img": "ai/kous_0.png"
+}
+},
+{
+"start": 1648.28,
+"end": 1651.3799999999999,
+"pool": "clear_water",
+"note": "water had gone clear as glass",
+"src": {
+"img": "ai/clearwater_1.png"
+}
+},
+{
+"start": 1651.3799999999999,
+"end": 1654.1799999999998,
+"pool": "trawler_men",
+"note": "looked over the side",
+"src": {
+"img": "ai/g30_1.png"
+},
+"cut": true
+},
+{
+"start": 1654.1799999999998,
+"end": 1659.08,
+"pool": "clear_water",
+"note": "bottom 21 feet down",
+"src": {
+"img": "ai/clearwater_0.png"
+}
+},
+{
+"start": 1659.08,
+"end": 1661.78,
+"pool": "reef",
+"note": "seabed every fisherman dragged 90 years",
+"src": {
+"vid": "stock/films/0600_Vista_Stock_Shots_Ocean-Oriented_Footage.mp4",
+"t": 1133.32,
+"t1": 1140
+}
+},
+{
+"start": 1661.78,
+"end": 1668.08,
+"pool": "seabed_graves",
+"note": "not a reef at all laid out in rows",
+"src": {
+"img": "ai/seabed3_2.png"
+}
+},
+{
+"start": 1668.08,
+"end": 1672.1799999999998,
+"pool": "seabed_graves",
+"note": "long even rows of small low mounds",
+"src": {
+"img": "ai/seabed3_1.png"
+}
+},
+{
+"start": 1672.1799999999998,
+"end": 1675.58,
+"pool": "seabed_graves",
+"note": "each covered with a flat grey stone",
+"src": {
+"img": "ai/g31_0.png"
+}
+},
+{
+"start": 1675.58,
+"end": 1678.28,
+"pool": "seabed_graves",
+"note": "as far as he could see hundreds",
+"src": {
+"img": "ai/g31_1.png"
+}
+},
+{
+"start": 1678.28,
+"end": 1681.28,
+"pool": "graveyard_rows",
+"note": "a field of them",
+"src": {
+"img": "stock/fsa_c/cemetery_12.jpg"
+}
+},
+{
+"start": 1681.28,
+"end": 1684.28,
+"pool": "graveyard_rows",
+"note": "lines straight as in chapel yard",
+"src": {
+"img": "ai/seabed4_2.png"
+}
+},
+{
+"start": 1684.28,
+"end": 1688.58,
+"pool": "seabed_old",
+"note": "stones furred with weed",
+"src": {
+"img": "ai/seabed5_1.png"
+}
+},
+{
+"start": 1688.58,
+"end": 1690.98,
+"pool": "seabed_old",
+"note": "smaller than a man's fist",
+"src": {
+"img": "ai/seabed3_0.png"
+}
+},
+{
+"start": 1690.98,
+"end": 1693.58,
+"pool": "seabed_grave_empty",
+"note": "end of the newest row",
+"src": {
+"img": "ai/g32_1.png"
+}
+},
+{
+"start": 1693.58,
+"end": 1696.58,
+"pool": "seabed_graves",
+"note": "stones still bright and clean",
+"src": {
+"img": "ai/g31_2.png"
+}
+},
+{
+"start": 1696.58,
+"end": 1699.28,
+"pool": "seabed_grave_empty",
+"note": "empty space border of stones",
+"src": {
+"img": "ai/g32_2.png"
+}
+},
+{
+"start": 1699.28,
+"end": 1702.28,
+"pool": "seabed_grave_empty",
+"note": "shape of a grave",
+"src": {
+"img": "ai/g32_0.png"
+}
+},
+{
+"start": 1702.28,
+"end": 1706.3799999999999,
+"pool": "kous",
+"note": "stared a long time",
+"src": {
+"img": "ai/kous_2.png"
+}
+},
+{
+"start": 1706.3799999999999,
+"end": 1708.58,
+"pool": "seabed_grave_empty",
+"note": "what was strange about it",
+"src": {
+"img": "ai/gravefilled_0.png"
+}
+},
+{
+"start": 1708.58,
+"end": 1711.28,
+"pool": "seabed_grave_empty",
+"note": "cut to the length of a man",
+"src": {
+"img": "ai/g32_1.png"
+}
+},
+{
+"start": 1711.28,
+"end": 1715.78,
+"pool": "giant_far",
+"note": "dug for someone taller",
+"src": {
+"img": "comp/giant_wade_4.png"
+},
+"fade_out": 12
+},
+{
+"start": 1715.78,
+"end": 1717.6799999999998,
+"pool": "black",
+"note": "",
+"src": {
+"color": 0.0
+},
+"cut": true
+},
+{
+"start": 1717.6799999999998,
+"end": 1722.9299999999998,
+"pool": "village",
+"note": "Hoekbaai September 1951",
+"src": {
+"img": "stock/fsa_c/village_03.jpg"
+},
+"cut": true,
+"fade_in": 15
+},
+{
+"start": 1722.9299999999998,
+"end": 1725.83,
+"pool": "giant_far",
+"note": "man 30 feet tall walked Skerry",
+"src": {
+"img": "comp/giant_far_5.png"
+}
+},
+{
+"start": 1725.83,
+"end": 1728.83,
+"pool": "gear_row",
+"note": "cleared lost gear",
+"src": {
+"img": "ai/gearrow2_2.png"
+}
+},
+{
+"start": 1728.83,
+"end": 1733.2299999999998,
+"pool": "bundle",
+"note": "carried bones back",
+"src": {
+"img": "ai/bundle2_0.png"
+}
+},
+{
+"start": 1733.2299999999998,
+"end": 1735.9299999999998,
+"pool": "doorstep_stone",
+"note": "doorsteps one by one",
+"src": {
+"img": "ai/g22_0.png"
+}
+},
+{
+"start": 1735.9299999999998,
+"end": 1741.83,
+"pool": "stone_mark",
+"note": "19 families held stone",
+"src": {
+"img": "comp/stone_mark_b.png",
+"crop": [
+0.3,
+0.25,
+0.68,
+0.75
+],
+"move": "out"
+}
+},
+{
+"start": 1741.83,
+"end": 1746.6299999999999,
+"pool": "kous",
+"note": "Kous Marais would not believe",
+"src": {
+"img": "stock/fsa_c/fisherman_portrait_13.jpg"
+}
+},
+{
+"start": 1746.6299999999999,
+"end": 1749.1299999999999,
+"pool": "trawler",
+"note": "took trawler out 3 October",
+"src": {
+"img": "stock/fsa_c/dragger_01.jpg"
+}
+},
+{
+"start": 1749.1299999999999,
+"end": 1754.5299999999997,
+"pool": "seabed_graves",
+"note": "field of graves on seabed",
+"src": {
+"img": "ai/seabed3_0.png"
+}
+},
+{
+"start": 1754.5299999999997,
+"end": 1757.0299999999997,
+"pool": "seabed_grave_empty",
+"note": "new one marked out at end",
+"src": {
+"img": "ai/g32_2.png"
+}
+},
+{
+"start": 1757.0299999999997,
+"end": 1759.9299999999998,
+"pool": "giant_far",
+"note": "taller than any man",
+"src": {
+"img": "comp/giant_wade_2.png"
+}
+},
+{
+"start": 1759.9299999999998,
+"end": 1762.0299999999997,
+"pool": "papers",
+"note": "this is how story ends",
+"src": {
+"img": "ai/logbook2_0.png"
+}
+},
+{
+"start": 1762.0299999999997,
+"end": 1766.2299999999998,
+"pool": "papers",
+"note": "four records never meant to be read together",
+"src": {
+"img": "ai/logbook2_1.png"
+}
+},
+{
+"start": 1766.2299999999998,
+"end": 1770.2299999999998,
+"pool": "officer",
+"note": "start with fisheries officer",
+"src": {
+"img": "ai/g42_0.png"
+}
+},
+{
+"start": 1770.2299999999998,
+"end": 1772.4299999999998,
+"pool": "officer_notebook",
+"note": "spectacles government notebook",
+"src": {
+"img": "ai/officer_0.png"
+}
+},
+{
+"start": 1772.4299999999998,
+"end": 1775.6299999999999,
+"pool": "fishcount",
+"note": "came to count fish",
+"src": {
+"img": "ai/fishcount_1.png"
+}
+},
+{
+"start": 1775.6299999999999,
+"end": 1777.7299999999998,
+"pool": "officer",
+"note": "stayed three weeks",
+"src": {
+"img": "ai/officer2_1.png"
+}
+},
+{
+"start": 1777.7299999999998,
+"end": 1784.5299999999997,
+"pool": "skippers_group",
+"note": "interviewed every skipper",
+"src": {
+"img": "stock/fsa_c/fishermen_19.jpg"
+}
+},
+{
+"start": 1784.5299999999997,
+"end": 1786.33,
+"pool": "keeper_woman",
+"note": "lighthouse keeper",
+"src": {
+"img": "ai/keeper_0.png"
+}
+},
+{
+"start": 1786.33,
+"end": 1789.9299999999998,
+"pool": "fisherman_young",
+"note": "boy Danny Pretorius 17",
+"src": {
+"img": "stock/fsa_c/fisherman_portrait_09.jpg"
+}
+},
+{
+"start": 1789.9299999999998,
+"end": 1791.7299999999998,
+"pool": "boat_bow",
+"note": "seen from the bow",
+"src": {
+"img": "stock/fsa_c/gloucester_boats_22.jpg"
+}
+},
+{
+"start": 1791.7299999999998,
+"end": 1795.0299999999997,
+"pool": "officer_notebook",
+"note": "notes run to 91 pages",
+"src": {
+"img": "ai/officer2_2.png"
+}
+},
+{
+"start": 1795.0299999999997,
+"end": 1799.4299999999998,
+"pool": "officer_notebook",
+"note": "small careful hand",
+"src": {
+"img": "ai/g42_1.png"
+}
+},
+{
+"start": 1799.4299999999998,
+"end": 1803.6299999999999,
+"pool": "officer_notebook",
+"note": "last page wrote a sentence",
+"src": {
+"img": "ai/officer2_0.png"
+}
+},
+{
+"start": 1803.6299999999999,
+"end": 1806.6299999999999,
+"pool": "officer",
+"note": "trained to recognize a hoax",
+"src": {
+"img": "ai/g42_2.png"
+}
+},
+{
+"start": 1806.6299999999999,
+"end": 1809.6299999999999,
+"pool": "officer",
+"note": "this is not one",
+"src": {
+"img": "ai/officer_2.png"
+}
+},
+{
+"start": 1809.6299999999999,
+"end": 1812.9299999999998,
+"pool": "village_people",
+"note": "these people want to be left alone",
+"src": {
+"img": "stock/fsa_c/dory_06.jpg"
+}
+},
+{
+"start": 1812.9299999999998,
+"end": 1815.2299999999998,
+"pool": "village",
+"note": "left alone",
+"src": {
+"vid": "stock/films/201297_Beside_The_Zuider_Zee.mp4",
+"t": 384.15,
+"t1": 392
+}
+},
+{
+"start": 1815.2299999999998,
+"end": 1816.9299999999998,
+"pool": "city_office",
+"note": "official report in the city November",
+"src": {
+"img": "stock/fsa_c/minister_17.jpg"
+}
+},
+{
+"start": 1816.9299999999998,
+"end": 1820.0299999999997,
+"pool": "typewriter",
+"note": "four paragraphs long",
+"src": {
+"img": "ai/city_office_0.png"
+}
+},
+{
+"start": 1820.0299999999997,
+"end": 1822.9299999999998,
+"pool": "boats_moored",
+"note": "fishing in decline",
+"src": {
+"img": "stock/fsa_c/harbor_18.jpg"
+}
+},
+{
+"start": 1822.9299999999998,
+"end": 1828.7299999999998,
+"pool": "reef",
+"note": "Skerry closed on grounds of safety",
+"src": {
+"img": "ai/g45_1.png"
+}
+},
+{
+"start": 1828.7299999999998,
+"end": 1831.5299999999997,
+"pool": "officer",
+"note": "said nothing about the man",
+"src": {
+"img": "ai/officer_1.png"
+}
+},
+{
+"start": 1831.5299999999997,
+"end": 1834.33,
+"pool": "city_office",
+"note": "superior asked why",
+"src": {
+"img": "stock/fsa_c/desk_13.jpg"
+}
+},
+{
+"start": 1834.33,
+"end": 1838.7299999999998,
+"pool": "officer",
+"note": "laughed out of the service",
+"src": {
+"img": "ai/officer2_2.png"
+}
+},
+{
+"start": 1838.7299999999998,
+"end": 1841.0299999999997,
+"pool": "city_office",
+"note": "by Christmas",
+"src": {
+"img": "ai/city_office_2.png"
+}
+},
+{
+"start": 1841.0299999999997,
+"end": 1843.0299999999997,
+"pool": "village",
+"note": "village did not deserve to be laughed at",
+"src": {
+"img": "stock/fsa_c/village_13.jpg"
+}
+},
+{
+"start": 1843.0299999999997,
+"end": 1845.7299999999998,
+"pool": "tin_trunk",
+"note": "kept notebook in tin trunk",
+"src": {
+"img": "ai/g38_2.png"
+}
+},
+{
+"start": 1845.7299999999998,
+"end": 1849.2299999999998,
+"pool": "tin_trunk",
+"note": "68 years surfaced 2019",
+"src": {
+"img": "ai/g38_1.png"
+}
+},
+{
+"start": 1849.2299999999998,
+"end": 1851.2299999999998,
+"pool": "house_clearance",
+"note": "house clearance in Pretoria",
+"src": {
+"img": "ai/sea_chest_1.png"
+}
+},
+{
+"start": 1851.2299999999998,
+"end": 1853.9299999999998,
+"pool": "tin_trunk",
+"note": "note pinned inside cover",
+"src": {
+"img": "ai/g38_0.png"
+}
+},
+{
+"start": 1853.9299999999998,
+"end": 1857.33,
+"pool": "officer_notebook",
+"note": "read this when I'm dead be kind to them",
+"src": {
+"img": "stock/fsa_c/minister_17.jpg"
+}
+},
+{
+"start": 1857.33,
+"end": 1861.1299999999999,
+"pool": "keeper_log",
+"note": "second record lighthouse night log",
+"src": {
+"img": "ai/g41_2.png"
+}
+},
+{
+"start": 1861.1299999999999,
+"end": 1863.7299999999998,
+"pool": "lighthouse",
+"note": "kept the gallery 16 more years",
+"src": {
+"img": "stock/fsa_c/lighthouse_00.jpg"
+}
+},
+{
+"start": 1863.7299999999998,
+"end": 1867.0299999999997,
+"pool": "keeper_log",
+"note": "every light she saw",
+"src": {
+"img": "ai/keeper_log2_0.png"
+}
+},
+{
+"start": 1867.0299999999997,
+"end": 1873.0299999999997,
+"pool": "lantern_far",
+"note": "came on 14 September each year",
+"src": {
+"img": "ai/g17_2.png"
+}
+},
+{
+"start": 1873.0299999999997,
+"end": 1878.4299999999998,
+"pool": "lantern_far",
+"note": "single lantern moving along reef",
+"src": {
+"img": "ai/bg_reef_night_0.png"
+}
+},
+{
+"start": 1878.4299999999998,
+"end": 1880.4299999999998,
+"pool": "lighthouse_night",
+"note": "3 in the morning",
+"src": {
+"img": "ai/g16_0.png"
+}
+},
+{
+"start": 1880.4299999999998,
+"end": 1882.7299999999998,
+"pool": "keeper_woman",
+"note": "watched 20 minutes went to bed",
+"src": {
+"img": "ai/g16_2.png"
+}
+},
+{
+"start": 1882.7299999999998,
+"end": 1888.4299999999998,
+"pool": "keeper_log",
+"note": "1957 six years after",
+"src": {
+"img": "ai/g41_0.png"
+}
+},
+{
+"start": 1888.4299999999998,
+"end": 1890.9299999999998,
+"pool": "keeper_log",
+"note": "entry for 14th different",
+"src": {
+"img": "ai/ledger2_1.png"
+},
+"cut": true
+},
+{
+"start": 1890.9299999999998,
+"end": 1893.1299999999999,
+"pool": "giant_sitting",
+"note": "lantern did not move",
+"src": {
+"img": "comp/giant_sit_0.png"
+}
+},
+{
+"start": 1893.1299999999999,
+"end": 1898.33,
+"pool": "giant_sitting",
+"note": "sitting on the Skerry with lamp",
+"src": {
+"img": "ai/g33_2.png"
+}
+},
+{
+"start": 1898.33,
+"end": 1901.33,
+"pool": "giant_sitting",
+"note": "there an hour looking at village",
+"src": {
+"img": "ai/g33_1.png"
+}
+},
+{
+"start": 1901.33,
+"end": 1904.4299999999998,
+"pool": "village_night",
+"note": "looking at the village",
+"src": {
+"img": "ai/bg_reef_night_2.png"
+}
+},
+{
+"start": 1904.4299999999998,
+"end": 1906.2299999999998,
+"pool": "giant_sitting",
+"note": "not waiting for anyone",
+"src": {
+"img": "ai/g33_0.png"
+}
+},
+{
+"start": 1906.2299999999998,
+"end": 1910.0299999999997,
+"pool": "giant_sitting",
+"note": "I think he is tired",
+"src": {
+"img": "comp/giant_sit_2.png"
+}
+},
+{
+"start": 1910.0299999999997,
+"end": 1911.9299999999998,
+"pool": "keeper_log",
+"note": "1959 new line",
+"src": {
+"img": "ai/ledger2_2.png"
+}
+},
+{
+"start": 1911.9299999999998,
+"end": 1916.9299999999998,
+"pool": "lantern_rock",
+"note": "lantern on Skerry not carrying it",
+"src": {
+"img": "ai/g34_1.png"
+}
+},
+{
+"start": 1916.9299999999998,
+"end": 1920.2299999999998,
+"pool": "lantern_rock",
+"note": "lying on the rock",
+"src": {
+"img": "ai/g34_0.png"
+}
+},
+{
+"start": 1920.2299999999998,
+"end": 1922.7299999999998,
+"pool": "lighthouse_night",
+"note": "cannot see him",
+"src": {
+"img": "ai/g16_1.png"
+}
+},
+{
+"start": 1922.7299999999998,
+"end": 1925.2299999999998,
+"pool": "keeper_woman",
+"note": "never before unable to see him",
+"src": {
+"img": "ai/keeper_log2_0.png"
+}
+},
+{
+"start": 1925.2299999999998,
+"end": 1929.4299999999998,
+"pool": "keeper_log",
+"note": "14 Sept 1962 last one",
+"src": {
+"img": "ai/keeper_log2_1.png"
+}
+},
+{
+"start": 1929.4299999999998,
+"end": 1934.4299999999998,
+"pool": "keeper_log",
+"note": "underlined in red",
+"src": {
+"img": "ai/keeper_log2_2.png"
+}
+},
+{
+"start": 1934.4299999999998,
+"end": 1937.33,
+"pool": "keeper_log",
+"note": "only time coloured ink",
+"src": {
+"img": "ai/ledger2_0.png"
+}
+},
+{
+"start": 1937.33,
+"end": 1940.6299999999999,
+"pool": "sea_dark",
+"note": "no lantern",
+"src": {
+"vid": "stock/films/0600_Vista_Stock_Shots_Ocean-Oriented_Footage.mp4",
+"t": 1802.87,
+"t1": 1812
+}
+},
+{
+"start": 1940.6299999999999,
+"end": 1942.33,
+"pool": "lighthouse_night",
+"note": "stayed on gallery until dawn",
+"src": {
+"vid": "stock/films/0315_New_England_Yesterday_and_Today_16_00_54_25.mp4",
+"t": 447.07,
+"t1": 462
+}
+},
+{
+"start": 1942.33,
+"end": 1946.2299999999998,
+"pool": "dawn",
+"note": "low water 5:52",
+"src": {
+"img": "stock/fsa_c/nets_13.jpg"
+}
+},
+{
+"start": 1946.2299999999998,
+"end": 1948.1299999999999,
+"pool": "binoculars",
+"note": "took the big glass",
+"src": {
+"vid": "stock/films/0993_Safety_at_Sea_01_28_18_08.mp4",
+"t": 343.97,
+"t1": 350
+}
+},
+{
+"start": 1948.1299999999999,
+"end": 1950.33,
+"pool": "seabed_grave_empty",
+"note": "end of last row border of stones",
+"src": {
+"img": "ai/g32_0.png"
+}
+},
+{
+"start": 1950.33,
+"end": 1953.5299999999997,
+"pool": "seabed_filled",
+"note": "it is filled in",
+"src": {
+"img": "ai/gravefilled_2.png"
+}
+},
+{
+"start": 1953.5299999999997,
+"end": 1956.1299999999999,
+"pool": "seabed_filled",
+"note": "stone larger than any",
+"src": {
+"img": "ai/g35_1.png"
+}
+},
+{
+"start": 1956.1299999999999,
+"end": 1958.6299999999999,
+"pool": "seabed_filled",
+"note": "he has finished the row",
+"src": {
+"img": "ai/g35_2.png"
+}
+},
+{
+"start": 1958.6299999999999,
+"end": 1960.83,
+"pool": "ledger",
+"note": "third record harbour master's ledger",
+"src": {
+"img": "stock/fsa_c/clerk_19.jpg"
+}
+},
+{
+"start": 1960.83,
+"end": 1963.5299999999997,
+"pool": "ledger",
+"note": "as large as a coffin",
+"src": {
+"img": "stock/fsa_c/ledger_01.jpg"
+}
+},
+{
+"start": 1963.5299999999997,
+"end": 1970.9299999999998,
+"pool": "ledger",
+"note": "last entry about Skerry 15 Sept 1962",
+"src": {
+"img": "stock/fsa_c/clerk_03.jpg"
+}
+},
+{
+"start": 1970.9299999999998,
+"end": 1975.2299999999998,
+"pool": "boats_moored",
+"note": "14 boats in the harbour",
+"src": {
+"img": "stock/fsa_c/wharf_09.jpg"
+}
+},
+{
+"start": 1975.2299999999998,
+"end": 1978.5299999999997,
+"pool": "reef",
+"note": "no man gone to reef since 1951",
+"src": {
+"vid": "stock/films/200325_The_Open_Sea.mp4",
+"t": 340.77,
+"t1": 348
+}
+},
+{
+"start": 1978.5299999999997,
+"end": 1983.2299999999998,
+"pool": "ledger",
+"note": "closed by notice to Cape authorities",
+"src": {
+"img": "ai/ledger2_2.png"
+}
+},
+{
+"start": 1983.2299999999998,
+"end": 1985.0299999999997,
+"pool": "village",
+"note": "cost a quarter of income",
+"src": {
+"img": "ai/village_sa_2.png"
+}
+},
+{
+"start": 1985.0299999999997,
+"end": 1988.83,
+"pool": "harbourmaster",
+"note": "I will not reopen it",
+"src": {
+"img": "stock/fsa_c/fisherman_portrait_00.jpg"
+}
+},
+{
+"start": 1988.83,
+"end": 1991.2299999999998,
+"pool": "village_people",
+"note": "whole village understands why",
+"src": {
+"img": "stock/fsa_c/dory_14.jpg"
+}
+},
+{
+"start": 1991.2299999999998,
+"end": 1993.2299999999998,
+"pool": "giant_bend",
+"note": "man who has put things back",
+"src": {
+"img": "comp/giant_bend_1.png"
+}
+},
+{
+"start": 1993.2299999999998,
+"end": 1995.33,
+"pool": "gear_row",
+"note": "does not need to be paid",
+"src": {
+"img": "ai/g08_1.png"
+}
+},
+{
+"start": 1995.33,
+"end": 1998.4299999999998,
+"pool": "ledger",
+"note": "final line smaller writing",
+"src": {
+"img": "ai/g40_0.png"
+}
+},
+{
+"start": 1998.4299999999998,
+"end": 2003.6299999999999,
+"pool": "harbour_wall",
+"note": "32 years with what I said to Willem",
+"src": {
+"img": "ai/g48_0.png"
+}
+},
+{
+"start": 2003.6299999999999,
+"end": 2006.6299999999999,
+"pool": "harbourmaster",
+"note": "live with it until I die",
+"src": {
+"img": "ai/g40_2.png"
+}
+},
+{
+"start": 2006.6299999999999,
+"end": 2010.5299999999997,
+"pool": "stone_wall",
+"note": "never lived easier since stone came",
+"src": {
+"img": "ai/doorstep2_1.png"
+}
+},
+{
+"start": 2010.5299999999997,
+"end": 2017.1299999999999,
+"pool": "stone_house",
+"note": "Brink died spring 1961 age 70",
+"src": {
+"img": "ai/stonehouse_2.png"
+}
+},
+{
+"start": 2017.1299999999999,
+"end": 2019.33,
+"pool": "stone_house",
+"note": "little stone house by harbour",
+"src": {
+"img": "ai/stonehouse_0.png"
+}
+},
+{
+"start": 2019.33,
+"end": 2021.33,
+"pool": "stone_sill",
+"note": "stone on window sill by bed",
+"src": {
+"img": "ai/stonehouse_1.png"
+}
+},
+{
+"start": 2021.33,
+"end": 2023.9299999999998,
+"pool": "logbook",
+"note": "fourth record skipper's log",
+"src": {
+"img": "ai/logbook3_1.png"
+}
+},
+{
+"start": 2023.9299999999998,
+"end": 2025.83,
+"pool": "logbook",
+"note": "the shortest",
+"src": {
+"img": "ai/g39_2.png"
+}
+},
+{
+"start": 2025.83,
+"end": 2031.4299999999998,
+"pool": "skipper_old",
+"note": "went on writing until 80",
+"src": {
+"img": "ai/skipper_old_1.png"
+}
+},
+{
+"start": 2031.4299999999998,
+"end": 2038.6299999999999,
+"pool": "logbook_close",
+"note": "last line 15 Sept 1962",
+"src": {
+"img": "ai/logbook2_0.png"
+}
+},
+{
+"start": 2038.6299999999999,
+"end": 2042.1299999999997,
+"pool": "lantern_far",
+"note": "the lantern did not come",
+"src": {
+"img": "ai/bg_reef_night_1.png"
+}
+},
+{
+"start": 2042.1299999999997,
+"end": 2044.5299999999997,
+"pool": "bundle",
+"note": "Hendrik I think he is at rest now",
+"src": {
+"img": "ai/bundle2_1.png"
+}
+},
+{
+"start": 2044.5299999999997,
+"end": 2047.73,
+"pool": "skipper_old",
+"note": "honest man",
+"src": {
+"img": "ai/skipper_old_2.png"
+}
+},
+{
+"start": 2047.73,
+"end": 2052.43,
+"pool": "magistrate",
+"note": "swear before a magistrate",
+"src": {
+"img": "ai/magistrate_0.png"
+}
+},
+{
+"start": 2052.43,
+"end": 2055.33,
+"pool": "logbook_close",
+"note": "one more sentence in pencil",
+"src": {
+"img": "ai/g39_0.png"
+}
+},
+{
+"start": 2055.33,
+"end": 2057.93,
+"pool": "logbook_close",
+"note": "hand begun to shake",
+"src": {
+"img": "ai/logbook2_1.png"
+}
+},
+{
+"start": 2057.93,
+"end": 2061.0299999999997,
+"pool": "giant_far",
+"note": "I have always known what he was",
+"src": {
+"img": "comp/giant_far_4.png"
+}
+},
+{
+"start": 2061.0299999999997,
+"end": 2063.6299999999997,
+"pool": "seabed_graves",
+"note": "a man who keeps a place for the dead",
+"src": {
+"img": "ai/seabed4_2.png"
+}
+},
+{
+"start": 2063.6299999999997,
+"end": 2066.0299999999997,
+"pool": "giant_sitting",
+"note": "nobody keeps a place for",
+"src": {
+"img": "comp/giant_sit_1.png"
+}
+},
+{
+"start": 2066.0299999999997,
+"end": 2069.0299999999997,
+"pool": "papers",
+"note": "lay the four records side by side",
+"src": {
+"img": "ai/sea_chest_0.png"
+}
+},
+{
+"start": 2069.0299999999997,
+"end": 2071.43,
+"pool": "officer",
+"note": "officer says",
+"src": {
+"img": "stock/fsa_c/minister_00.jpg"
+}
+},
+{
+"start": 2071.43,
+"end": 2073.73,
+"pool": "village_people",
+"note": "wanted only to be left alone",
+"src": {
+"img": "stock/fsa_c/congregation_16.jpg"
+}
+},
+{
+"start": 2073.73,
+"end": 2075.93,
+"pool": "keeper_woman",
+"note": "lighthouse keeper says",
+"src": {
+"img": "ai/g16_1.png"
+}
+},
+{
+"start": 2075.93,
+"end": 2078.6299999999997,
+"pool": "lantern_far",
+"note": "lantern came and went 11 years",
+"src": {
+"img": "ai/g17_0.png"
+}
+},
+{
+"start": 2078.6299999999997,
+"end": 2084.0299999999997,
+"pool": "giant_lantern",
+"note": "searching",
+"src": {
+"img": "ai/g18_1.png"
+}
+},
+{
+"start": 2084.0299999999997,
+"end": 2088.43,
+"pool": "sea_dark",
+"note": "not coming",
+"src": {
+"vid": "stock/films/0993_Safety_at_Sea_01_28_18_08.mp4",
+"t": 1032.22,
+"t1": 1038
+}
+},
+{
+"start": 2088.43,
+"end": 2091.23,
+"pool": "giant_bend",
+"note": "put things back",
+"src": {
+"img": "comp/giant_bend_2.png"
+}
+},
+{
+"start": 2091.23,
+"end": 2093.6299999999997,
+"pool": "skipper_old",
+"note": "skipper says",
+"src": {
+"img": "ai/skipper_old_0.png"
+}
+},
+{
+"start": 2093.6299999999997,
+"end": 2096.23,
+"pool": "seabed_graves",
+"note": "kept a place for the dead",
+"src": {
+"img": "ai/seabed4_1.png"
+}
+},
+{
+"start": 2096.23,
+"end": 2098.5299999999997,
+"pool": "sea_dawn",
+"note": "the sea says the rest",
+"src": {
+"img": "stock/fsa_c/nets_13.jpg"
+}
+},
+{
+"start": 2098.5299999999997,
+"end": 2100.93,
+"pool": "seabed_graves",
+"note": "every one of those graves",
+"src": {
+"img": "ai/seabed4_0.png"
+}
+},
+{
+"start": 2100.93,
+"end": 2103.93,
+"pool": "seabed_graves",
+"note": "hundreds in rows",
+"src": {
+"img": "ai/seabed3_2.png"
+}
+},
+{
+"start": 2103.93,
+"end": 2106.93,
+"pool": "giant_hand",
+"note": "dug by one pair of hands",
+"src": {
+"img": "comp/giant_bend_1.png"
+}
+},
+{
+"start": 2106.93,
+"end": 2109.1299999999997,
+"pool": "seabed_old",
+"note": "old ones furred with weed",
+"src": {
+"img": "ai/g31_2.png"
+}
+},
+{
+"start": 2109.1299999999997,
+"end": 2111.6299999999997,
+"pool": "reef",
+"note": "before the village",
+"src": {
+"img": "stock/fsa_c/sea_12.jpg"
+}
+},
+{
+"start": 2111.6299999999997,
+"end": 2113.83,
+"pool": "seabed_graves",
+"note": "new ones bright and clean",
+"src": {
+"img": "ai/seabed3_1.png"
+},
+"cut": true
+},
+{
+"start": 2113.83,
+"end": 2116.0299999999997,
+"pool": "fishermen_old",
+"note": "men and boys",
+"src": {
+"img": "stock/fsa_c/fisherman_portrait_05.jpg"
+}
+},
+{
+"start": 2116.0299999999997,
+"end": 2118.23,
+"pool": "sea_dark",
+"note": "strangers the Skerry had taken",
+"src": {
+"vid": "stock/films/0351_Fishing_Vagabonds_05_17_31_00.mp4",
+"t": 409.84,
+"t1": 414
+}
+},
+{
+"start": 2118.23,
+"end": 2120.33,
+"pool": "seabed_graves",
+"note": "laid carefully in the dark",
+"src": {
+"img": "ai/g31_0.png"
+}
+},
+{
+"start": 2120.33,
+"end": 2124.23,
+"pool": "stone_mark",
+"note": "stone circle and line",
+"src": {
+"img": "comp/stone_mark_b.png",
+"move": "in"
+}
+},
+{
+"start": 2124.23,
+"end": 2126.73,
+"pool": "reef",
+"note": "reef was not a fishing ground",
+"src": {
+"img": "ai/g45_0.png"
+}
+},
+{
+"start": 2126.73,
+"end": 2128.73,
+"pool": "graveyard_rows",
+"note": "it was a churchyard",
+"src": {
+"img": "stock/fsa_c/cemetery_09.jpg"
+}
+},
+{
+"start": 2128.73,
+"end": 2131.33,
+"pool": "giant_far",
+"note": "he was the sexton",
+"src": {
+"img": "comp/giant_far_6.png"
+}
+},
+{
+"start": 2131.33,
+"end": 2133.83,
+"pool": "seabed_grave_empty",
+"note": "last grave in last row",
+"src": {
+"img": "ai/gravefilled_0.png"
+}
+},
+{
+"start": 2133.83,
+"end": 2136.0299999999997,
+"pool": "seabed_grave_empty",
+"note": "left empty for 10 years",
+"src": {
+"img": "ai/g32_1.png"
+}
+},
+{
+"start": 2136.0299999999997,
+"end": 2139.5299999999997,
+"pool": "giant_close",
+"note": "30 feet tall",
+"src": {
+"img": "comp/giant_close_1.png"
+}
+},
+{
+"start": 2139.5299999999997,
+"end": 2141.83,
+"pool": "giant_away",
+"note": "for the one who dug the rest",
+"src": {
+"img": "comp/giant_away_1.png"
+}
+},
+{
+"start": 2141.83,
+"end": 2144.1299999999997,
+"pool": "sea_dark",
+"note": "think about what that means",
+"src": {
+"vid": "stock/films/0351_Fishing_Vagabonds_05_17_31_00.mp4",
+"t": 456.11,
+"t1": 462
+}
+},
+{
+"start": 2144.1299999999997,
+"end": 2146.33,
+"pool": "cliff_night",
+"note": "no one to carry him to the ledge",
+"src": {
+"img": "ai/g17_2.png"
+}
+},
+{
+"start": 2146.33,
+"end": 2148.1299999999997,
+"pool": "canvas",
+"note": "no one to wrap him in sailcloth",
+"src": {
+"img": "ai/bundle2_0.png"
+}
+},
+{
+"start": 2148.1299999999997,
+"end": 2150.33,
+"pool": "stone_mark",
+"note": "lay a small stone on his chest",
+"src": {
+"img": "comp/stone_mark_a.png",
+"crop": [
+0.3,
+0.2,
+0.85,
+0.8
+],
+"move": "in"
+}
+},
+{
+"start": 2150.33,
+"end": 2155.43,
+"pool": "seabed_old",
+"note": "90 years or 300 or a thousand",
+"src": {
+"img": "ai/seabed5_2.png"
+}
+},
+{
+"start": 2155.43,
+"end": 2157.93,
+"pool": "giant_wading",
+"note": "done that for others",
+"src": {
+"img": "comp/giant_far_5.png"
+}
+},
+{
+"start": 2157.93,
+"end": 2160.73,
+"pool": "giant_sitting",
+"note": "done it alone",
+"src": {
+"img": "comp/giant_sit_0.png"
+}
+},
+{
+"start": 2160.73,
+"end": 2163.33,
+"pool": "seabed_filled",
+"note": "dug last grave for himself",
+"src": {
+"img": "ai/g35_0.png"
+}
+},
+{
+"start": 2163.33,
+"end": 2165.73,
+"pool": "keeper_woman",
+"note": "when Annatjie Kloete saw",
+"src": {
+"img": "stock/fsa_c/widow_15.jpg"
+}
+},
+{
+"start": 2165.73,
+"end": 2169.83,
+"pool": "lighthouse",
+"note": "did something nobody can explain",
+"src": {
+"img": "ai/g16_1.png"
+}
+},
+{
+"start": 2169.83,
+"end": 2171.6299999999997,
+"pool": "lighthouse_stairs",
+"note": "went down from the lighthouse",
+"src": {
+"vid": "stock/films/0315_New_England_Yesterday_and_Today_16_00_54_25.mp4",
+"t": 446.97,
+"t1": 462
+}
+},
+{
+"start": 2171.6299999999997,
+"end": 2173.43,
+"pool": "dawn",
+"note": "grey dawn 15 Sept 1962",
+"src": {
+"img": "ai/g12_2.png"
+}
+},
+{
+"start": 2173.43,
+"end": 2177.23,
+"pool": "old_man_wall",
+"note": "found Peter Visser on harbour wall",
+"src": {
+"img": "ai/oldwall2_1.png"
+}
+},
+{
+"start": 2177.23,
+"end": 2181.93,
+"pool": "old_man_wall",
+"note": "lantern at his feet",
+"src": {
+"img": "ai/oldwall2_2.png"
+}
+},
+{
+"start": 2181.93,
+"end": 2184.5299999999997,
+"pool": "old_couple",
+"note": "two old people same thought",
+"src": {
+"img": "ai/g36_2.png"
+}
+},
+{
+"start": 2184.5299999999997,
+"end": 2186.83,
+"pool": "keeper_woman",
+"note": "shall we",
+"src": {
+"img": "ai/keeper_1.png"
+}
+},
+{
+"start": 2186.83,
+"end": 2192.83,
+"pool": "old_couple_boat",
+"note": "together keeper and skipper",
+"src": {
+"img": "ai/g36_1.png"
+}
+},
+{
+"start": 2192.83,
+"end": 2195.6299999999997,
+"pool": "skipper_old",
+"note": "not on water in 11 years",
+"src": {
+"img": "stock/fsa_c/fisherman_portrait_02.jpg"
+}
+},
+{
+"start": 2195.6299999999997,
+"end": 2198.1299999999997,
+"pool": "rowing",
+"note": "took old skiff from slip",
+"src": {
+"img": "ai/rowing2_2.png"
+}
+},
+{
+"start": 2198.1299999999997,
+"end": 2199.83,
+"pool": "rowing",
+"note": "rowed out to edge of Skerry",
+"src": {
+"img": "ai/rowing2_0.png"
+}
+},
+{
+"start": 2199.83,
+"end": 2202.33,
+"pool": "reef",
+"note": "at low tide",
+"src": {
+"vid": "stock/films/0600_Vista_Stock_Shots_Ocean-Oriented_Footage.mp4",
+"t": 1180.41,
+"t1": 1190
+}
+},
+{
+"start": 2202.33,
+"end": 2204.93,
+"pool": "nets",
+"note": "did not lower a line or net",
+"src": {
+"vid": "stock/films/fc-fc-490.mp4",
+"t": 140.98,
+"t1": 144,
+"crop": [
+0.0,
+0.05,
+1.0,
+0.8
+]
+}
+},
+{
+"start": 2204.93,
+"end": 2207.1299999999997,
+"pool": "lantern_float",
+"note": "set lantern on the water in wooden float",
+"src": {
+"img": "ai/lanternfloat2_2.png"
+}
+},
+{
+"start": 2207.1299999999997,
+"end": 2209.83,
+"pool": "lantern_float",
+"note": "let it drift",
+"src": {
+"img": "ai/lanternfloat2_1.png"
+}
+},
+{
+"start": 2209.83,
+"end": 2212.23,
+"pool": "lantern_float",
+"note": "over end of the last row",
+"src": {
+"img": "ai/g37_1.png"
+}
+},
+{
+"start": 2212.23,
+"end": 2215.6299999999997,
+"pool": "old_couple_boat",
+"note": "sat in silent boat",
+"src": {
+"img": "ai/vigil_2.png"
+}
+},
+{
+"start": 2215.6299999999997,
+"end": 2217.43,
+"pool": "lantern_float",
+"note": "until it burned out",
+"src": {
+"img": "ai/lanternfloat2_0.png"
+}
+},
+{
+"start": 2217.43,
+"end": 2219.93,
+"pool": "dawn",
+"note": "next September and the next",
+"src": {
+"vid": "stock/films/0600_Vista_Stock_Shots_Ocean-Oriented_Footage.mp4",
+"t": 1166.15,
+"t1": 1170
+}
+},
+{
+"start": 2219.93,
+"end": 2222.73,
+"pool": "village",
+"note": "village does it still",
+"src": {
+"img": "ai/village_sa_0.png"
+}
+},
+{
+"start": 2222.73,
+"end": 2226.0299999999997,
+"pool": "lantern_float",
+"note": "14 September every year before dawn",
+"src": {
+"img": "ai/vigil_1.png"
+}
+},
+{
+"start": 2226.0299999999997,
+"end": 2228.23,
+"pool": "rowing",
+"note": "someone rows out to edge of Skerry",
+"src": {
+"img": "stock/fsa_c/fishermen_04.jpg"
+}
+},
+{
+"start": 2228.23,
+"end": 2230.5299999999997,
+"pool": "lantern_float",
+"note": "lantern on a float",
+"src": {
+"img": "ai/g37_0.png"
+}
+},
+{
+"start": 2230.5299999999997,
+"end": 2232.23,
+"pool": "village_people",
+"note": "nobody will say who",
+"src": {
+"img": "stock/fsa_c/village_22.jpg"
+}
+},
+{
+"start": 2232.23,
+"end": 2234.83,
+"pool": "reef",
+"note": "no boat has fished that reef since 1951",
+"src": {
+"vid": "stock/films/0600_Vista_Stock_Shots_Ocean-Oriented_Footage.mp4",
+"t": 601.49,
+"t1": 618
+}
+},
+{
+"start": 2234.83,
+"end": 2238.33,
+"pool": "logbook",
+"note": "if this story stayed with you",
+"src": {
+"img": "ai/logbook2_2.png"
+}
+},
+{
+"start": 2238.33,
+"end": 2240.93,
+"pool": "ledger",
+"note": "more log books",
+"src": {
+"img": "ai/ledger3_1.png"
+}
+},
+{
+"start": 2240.93,
+"end": 2243.43,
+"pool": "sea_chest",
+"note": "more sea chests",
+"src": {
+"img": "ai/sea_chest_0.png"
+}
+},
+{
+"start": 2243.43,
+"end": 2246.1299999999997,
+"pool": "tin_trunk",
+"note": "more notebooks in more tin trunks",
+"src": {
+"img": "ai/g38_2.png"
+}
+},
+{
+"start": 2246.1299999999997,
+"end": 2248.93,
+"pool": "papers",
+"note": "swore not to open",
+"src": {
+"img": "ai/ledger2_1.png"
+}
+},
+{
+"start": 2248.93,
+"end": 2254.5299999999997,
+"pool": "seabed_grave_empty",
+"note": "why did he dig last grave for himself",
+"src": {
+"img": "ai/g32_2.png"
+}
+},
+{
+"start": 2254.5299999999997,
+"end": 2256.73,
+"pool": "giant_sitting",
+"note": "who will lay him in it",
+"src": {
+"img": "ai/g33_2.png"
+}
+},
+{
+"start": 2256.73,
+"end": 2261.0299999999997,
+"pool": "old_couple_boat",
+"note": "skipper and keeper right thing",
+"src": {
+"img": "ai/g36_0.png"
+}
+},
+{
+"start": 2261.0299999999997,
+"end": 2264.43,
+"pool": "lantern_float",
+"note": "rowing out with lantern all those years",
+"src": {
+"img": "ai/vigil_0.png"
+}
+},
+{
+"start": 2264.43,
+"end": 2268.23,
+"pool": "village",
+"note": "where you are watching from",
+"src": {
+"img": "stock/fsa_c/village_09.jpg"
+}
+},
+{
+"start": 2268.23,
+"end": 2270.305479,
+"pool": "lantern_float",
+"note": "see you in the next one",
+"src": {
+"img": "ai/g37_2.png"
+},
+"fade_out": 40
+}
+]

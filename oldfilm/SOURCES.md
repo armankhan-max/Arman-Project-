@@ -1,0 +1,153 @@
+# Sources used in 'The Giant of the Skerry' video
+
+All archive material is public domain. AI images were generated locally (SDXL-Turbo).
+Music and ambience were synthesized for this video.
+
+## Archive films (Internet Archive)
+- New England: Yesterday and Today - https://archive.org/details/0315_New_England_Yesterday_and_Today_16_00_54_25 - Prelinger Archives / US National Archives, public domain
+- Fishing Vagabonds - https://archive.org/details/0351_Fishing_Vagabonds_05_17_31_00 - Prelinger Archives / US National Archives, public domain
+- Vista Stock Shots: Ocean-Oriented Footage - https://archive.org/details/0600_Vista_Stock_Shots_Ocean-Oriented_Footage - Prelinger Archives / US National Archives, public domain
+- Safety at Sea - https://archive.org/details/0993_Safety_at_Sea_01_28_18_08 - Prelinger Archives / US National Archives, public domain
+- The Open Sea - https://archive.org/details/200325_The_Open_Sea - Prelinger Archives / US National Archives, public domain
+- Beside The Zuider Zee - https://archive.org/details/201297_Beside_The_Zuider_Zee - Prelinger Archives / US National Archives, public domain
+- SALMON FISHING - https://archive.org/details/fc-fc-490 - Prelinger Archives / US National Archives, public domain
+
+## Photographs (Library of Congress)
+- [Untitled photo, possibly related to: Captain Stein, oysterman, Rock Point, Maryland] - https://www.loc.gov/item/2017745191/
+- [Untitled photo, possibly related to: Captain Stein, oysterman, Rock Point, Maryland] - https://www.loc.gov/item/2017745196/
+- Cemetery. Dover, Delaware - https://www.loc.gov/item/2017762522/
+- Cemetery in Pennsylvania countryside - https://www.loc.gov/item/2017764455/
+- National cemetery. Cairo, Illinois - https://www.loc.gov/item/2017810403/
+- General view of Mexican cemetery. Raymondville, Texas - https://www.loc.gov/item/2017782196/
+- New Mexican graves in cemetery. Raymondville, Texas - https://www.loc.gov/item/2017782223/
+- Fort Kent, Maine. Cemetery - https://www.loc.gov/item/2017823510/
+- Mother, father, and five children sleep in this one room of an abandoned house on property of fruit grower. Berrien County, Michigan - https://www.loc.gov/item/2017810554/
+- Interior of Negro church of the Mississippi Delta - https://www.loc.gov/item/2017770207/
+- Interior of small church near Cedar Grove, North Carolina - https://www.loc.gov/item/2017790924/
+- Interior of old church also used for school. Flint River Farms, Georgia - https://www.loc.gov/item/2017800810/
+- [Untitled photo, possibly related to: Interior of small church near Cedar Grove, North Carolina] - https://www.loc.gov/item/2017790923/
+- [Untitled photo, possibly related to: Interior of small church near Cedar Grove, North Carolina] - https://www.loc.gov/item/2017790959/
+- [Untitled photo, possibly related to: Interior of old church also used for school. Flint River Farms, Georgia] - https://www.loc.gov/item/2017800811/
+- This is the Russian Orthodox church at Attu Village. It ministered to the spiritual needs of the two score natives living on Attu Island at the time of the Japanese invasion. Some of the Island's wealth of flowers can be seen coming into bloom beside the church. Visitors to the Aleutians have expressed surprise at finding within easy reach masses of Alpine flowers which, in this country, and in Europe, mountain climbers scale the highest peaks just to see - https://www.loc.gov/item/2017872307/
+- Negro church. South Carolina - https://www.loc.gov/item/2017762236/
+- Woodville, Greene County, Georgia. Church service in the Negro church - https://www.loc.gov/item/2017796560/
+- Woodville, Greene County, Georgia. Church service in the Negro church - https://www.loc.gov/item/2017796561/
+- Stenographer in county clerk's office. San Augustine, Texas - https://www.loc.gov/item/2017782972/
+- Clerk at horse auction, Eldorado, Texas - https://www.loc.gov/item/2017741507/
+- Hotel clerk at desk. Dover, Delaware - https://www.loc.gov/item/2017762504/
+- Chief clerk at gold mine. Mogollon, New Mexico - https://www.loc.gov/item/2017787103/
+- Gloucester, Massachusetts. New England coast, lined with great masses of rocks - https://www.loc.gov/item/2017856560/
+- Gloucester, Massachusetts. The New England coast, lined with great masses of rocks - https://www.loc.gov/item/2017856550/
+- Congregation at church. San Augustine, Texas - https://www.loc.gov/item/2017783023/
+- Minister preaching to his congregation. San Augustine, Texas - https://www.loc.gov/item/2017783024/
+- Congregation attending Sunday church services. Sarasota trailer park, Sarasota, Florida - https://www.loc.gov/item/2017806307/
+- Congregation coming out of church on Sunday in Linwood, Kentucky - https://www.loc.gov/item/2017804868/
+- New Bedford, Massachusetts. Congregation coming out of the Portuguese Catholic church - https://www.loc.gov/item/2017829943/
+- Spring pulpwood drive on the Brown Company timber holdings in Maine. The safety boom is anchored in a cove where it will not be in the way while the steamer is picking up the full boom - https://www.loc.gov/item/2017855995/
+- [Untitled photo, possibly related to: Spring pulpwood drive on the Brown Company timber holdings in Maine. The safety boom is anchored in a cove where it will not be in the way while the steamer is picking up the full boom] - https://www.loc.gov/item/2017855996/
+- Spring pulpwood drive on the Brown Company timber holdings in Maine. The lake steamer's motor boat tows the safety boom to a cove on the shore so it will not be in the way when the steamer picks up the full boom. Later it will be put around the full boom as extra protection for the haul down the lake - https://www.loc.gov/item/2017855992/
+- Joseph La Blanc at the desk in his office, reading morning mail, near Crowley, Louisiana - https://www.loc.gov/item/2017738070/
+- Department store owner at desk. San Augustine, Texas - https://www.loc.gov/item/2017782907/
+- [Untitled photo, possibly related to: Joseph La Blanc at the desk in his office, reading morning mail, near Crowley, Louisiana] - https://www.loc.gov/item/2017738069/
+- Penasco, New Mexico. Spanish-American colonial doorway - https://www.loc.gov/item/2017846052/
+- Provincetown, Massachusetts. Portuguese dory fisherman - https://www.loc.gov/item/2017830522/
+- Provincetown, Massachusetts. Family of a Portuguese dory fisherman - https://www.loc.gov/item/2017830598/
+- Provincetown, Massachusetts. Wife of a Portuguese dory fisherman - https://www.loc.gov/item/2017830602/
+- Provincetown, Massachusetts. Portuguese dory fishermen gossiping in the sun - https://www.loc.gov/item/2017830567/
+- [Untitled photo, possibly related to: New Bedford, Massachusetts. Dory fisherman] - https://www.loc.gov/item/2017830705/
+- Cape Cod Bay, Massachusetts. Drag trawler - https://www.loc.gov/item/2017830713/
+- Fisherman wearing characteristic fisherman's hat. Provincetown, Massachusetts - https://www.loc.gov/item/2017764673/
+- Fisherman, Astoria, Oregon - https://www.loc.gov/item/2017744251/
+- Deal Island fisherman - https://www.loc.gov/item/2017790797/
+- Deal Island fisherman - https://www.loc.gov/item/2017790799/
+- Gloucester, Massachusetts. Fisherman's son - https://www.loc.gov/item/2017855778/
+- Gloucester, Massachusetts. A fisherman - https://www.loc.gov/item/2017865435/
+- Gloucester, Massachusetts. A fisherman - https://www.loc.gov/item/2017865437/
+- Provincetown, Massachusetts. Portuguese dory fisherman - https://www.loc.gov/item/2017830522/
+- Provincetown, Massachusetts. Portuguese crab fisherman - https://www.loc.gov/item/2017830526/
+- Provincetown, Massachusetts. Portuguese dory fisherman - https://www.loc.gov/item/2017830673/
+- New York, New York. New England fisherman - https://www.loc.gov/item/2017851587/
+- [Galilee fishermen] - https://www.loc.gov/item/2019705164/
+- [Galilee fishermen] - https://www.loc.gov/item/2019705148/
+- Fishermen of Nice, France - https://www.loc.gov/item/2019641907/
+- Fishermen, Key West, Florida - https://www.loc.gov/item/2017723178/
+- Fishermen, Key West, Florida - https://www.loc.gov/item/2017723197/
+- New York, New York. Gloucester fishermen resting on their boat at the Fulton fish market - https://www.loc.gov/item/2017851594/
+- On board the fishing boat Alden, out of Gloucester, Massachusetts. Fishermen chasing a school of mackerel - https://www.loc.gov/item/2017856672/
+- Aboard a trap fishing boat. Fishermen in the dory which is towed out behind the motor driven boat disengage net supports in preparation for pulling the net into the boat. Provincetown, Massachusetts - https://www.loc.gov/item/2017729090/
+- [Untitled photo, possibly related to: On board the fishing boat Alden, out of Glocester, Massachusetts. Fishermen cleaning mackerel] - https://www.loc.gov/item/2017856683/
+- [Untitled photo, possibly related to: On board the fishing boat Alden, out of Glocester, Massachusetts. Fishermen cleaning mackerel] - https://www.loc.gov/item/2017856708/
+- Fishermen playing cards, Gloucester, Massachusetts - https://www.loc.gov/item/2017722838/
+- Gloucester, Massachusetts. Two Gloucester fishermen on a fishing boat - https://www.loc.gov/item/2017865407/
+- [Untitled photo, possibly related to: Fishermen playing cards, Gloucester, Massachusetts] - https://www.loc.gov/item/2017722840/
+- On board the fishing boat Alden out of Gloucester, Massachusetts. Fishermen on the boat - https://www.loc.gov/item/2017856679/
+- Fishing boats. Gloucester, Massachusetts - https://www.loc.gov/item/2017776272/
+- Gloucester, Massachusetts. The deck of a fishing boat. - https://www.loc.gov/item/2017865457/
+- On board the fishing boat Alden out of Gloucester, Massachusetts. Vito Gioclone. Gloucester, Massachusetts - https://www.loc.gov/item/2017856648/
+- On board the fishing boat Alden out of Gloucester, Massachusetts. Vito Gioclone, fisherman of Gloucester - https://www.loc.gov/item/2017856649/
+- On board the fishing boat Alden out of Gloucester, Massachusetts. Pasquale Maniscaleo, engineer - https://www.loc.gov/item/2017856664/
+- On board the fishing boat Alden out of Gloucester, Massachusetts. Vito Coppola, cook - https://www.loc.gov/item/2017856636/
+- On board the fishing boat Alden out of Gloucester, Massachusetts. Vito Coppola, cook - https://www.loc.gov/item/2017856631/
+- On board the fishing boat Alden out of Gloucester, Massachusetts. Antonio Tiano, Italian fisherman - https://www.loc.gov/item/2017856662/
+- Frank Mineo, owner and skipper of the New England fishing boat Alden. Gloucester, Massachusetts - https://www.loc.gov/item/2017856634/
+- Gloucester, Massachusetts. The deck of a fishing boat drawn up alongside a weighing deck - https://www.loc.gov/item/2017865456/
+- On board the fishing boat Alden, out of Gloucester, Massachusetts. Putting out to sea - https://www.loc.gov/item/2017856589/
+- On board the fishing boat Alden, out of Gloucester, Massachusetts. Fishing schooner towing a dory off the New England coast - https://www.loc.gov/item/2017856671/
+- On board the fishing boat Alden, out of Gloucester, Massachusetts. Late evening scene at sea - https://www.loc.gov/item/2017856669/
+- On board the fishing boat Alden, out of Gloucester, Massachusetts. Late evening scene at sea - https://www.loc.gov/item/2017856707/
+- Fishing boats in harbor, Newport News, Virginia - https://www.loc.gov/item/2017734742/
+- Palermo (vicinity), Sicily. Fishing boats in the harbor - https://www.loc.gov/item/2017863765/
+- [Untitled] - https://www.loc.gov/item/2017830621/
+- The ledger of Mr. and Mrs. Ralph Reitz, members of the Tri-County Farmers Co-op Market in Du Bois, Pennsylvania, showing income from market and wages from Daogherty's mines for period of January 13th to June 23rd - https://www.loc.gov/item/2017791697/
+- Port Isabel, Texas. Abandoned lighthouse - https://www.loc.gov/item/2017774487/
+- Lighthouse on Buzzard's Bay, Mattapoisett, Massachusetts - https://www.loc.gov/item/2017745112/
+- [Untitled photo, possibly related to: Lighthouse on Buzzard's Bay, Mattapoisett, Massachusetts] - https://www.loc.gov/item/2017745111/
+- [Syrian minister Nazem Al-Koudsi] - https://www.loc.gov/item/2017869738/
+- Prime Minister Winston Churchill of Great Britain - https://www.loc.gov/item/2017871963/
+- [Untitled photo, possibly related to: Lutheran minister, Monona County, Iowa] - https://www.loc.gov/item/2017719410/
+- Washington, D.C. The Netherlands Legation. Minister Louden at his desk - https://www.loc.gov/item/2017838642/
+- Oswego, New York. Reverend Charles E. Mathews, minister of the Presbyterian church - https://www.loc.gov/item/2017856850/
+- On board the fishing boat Alden, out of Gloucestr, Massachusetts. The crew beginning to pull in their nets after trapping a school of mackerel. The nets drop fifteen fathoms deep, but a smart school of mackerel sometimes swim beneath them - https://www.loc.gov/item/2017856580/
+- On board the fishing boat Alden, out of Gloucester, Massachusetts. The crew beginning to pull in their nets after trapping a school of mackerel. The nets drop fifteen fathoms deep, but a smart school of mackerel sometimes swims beneath them - https://www.loc.gov/item/2017856594/
+- [Untitled photo, possibly related to: On board the fishing boat Alden, out of Gloucester, Massachusetts. Large dip net transferring mackerel from nets to the deck] - https://www.loc.gov/item/2017856652/
+- On board the fishing boat Alden, out of Gloucester, Massachusetts. Fishermen pulling in the nets at night. They often work from sunrise to sunset without stopping - https://www.loc.gov/item/2017856576/
+- [Untitled photo, possibly related to: On board the fishing boat Alden, out of Gloucestr, Massachusetts. The crew beginning to pull in their nets after trapping a school of mackerel. The nets drop fifteen fathoms deep, but a smart school of mackerel sometimes swim beneath them] - https://www.loc.gov/item/2017856622/
+- [Untitled photo, possibly related to: On board the fishing boat Alden, out of Gloucestr, Massachusetts. The crew beginning to pull in their nets after trapping a school of mackerel. The nets drop fifteen fathoms deep, but a smart school of mackerel sometimes swim beneath them] - https://www.loc.gov/item/2017856624/
+- [Untitled photo, possibly related to: On board the fishing boat Alden, out of Gloucester, Massachusetts. Fishermen pulling in the nets at night. They often work from sunrise to sunset without stopping] - https://www.loc.gov/item/2017856597/
+- [Untitled photo, possibly related to: Provincetown, Massachusetts. Aboard the Frances and Marion, a Portuguese drag trawler, fishing off Cape Cod. Homeward bound from the banks, the drag nets are hoisted aloft to dry] - https://www.loc.gov/item/2017830632/
+- Old woman of Spanish extraction. Concho, Arizona - https://www.loc.gov/item/2017788010/
+- Sea foam left from incoming tides of gulf near Pensacola, Florida - https://www.loc.gov/item/2017806418/
+- On board the fishing boat Alden out of Gloucester, Massachusetts. Sea gulls following the Alden at mealtime to pick up food thrown into the sea by the fishermen - https://www.loc.gov/item/2017856714/
+- Sea foam left from incoming tides of the Gulf. Near Pensacola, Florida - https://www.loc.gov/item/2017806398/
+- [Untitled photo, possibly related to: On board the fleshing boat Alden, out of Gloucester, Massachusetts. Part of the seining crew adjusting the seining nets to the seining boat on the first morning out. Franasco Parisi checking the small motor. This operation is performed at ten knots per hour] - https://www.loc.gov/item/2017856611/
+- Smokehouse on old plantation. Greene County, Georgia - https://www.loc.gov/item/2017800471/
+- [Men at sea in trawler] - https://www.loc.gov/item/2010717394/
+- [Men at sea in trawler] - https://www.loc.gov/item/2010717395/
+- New Bedford, Massachusetts. Trawlers tied up at a fish wharf - https://www.loc.gov/item/2017829963/
+- Provincetown, Massachusetts. Getting breakfast aboard the Portuguese trawler Frances and Marion - https://www.loc.gov/item/2017830731/
+- Provincetown, Massachusetts. Getting breakfast aboard the Portuguese trawler, Frances and Marion - https://www.loc.gov/item/2017830712/
+- Little Creek, Delaware. A fishing village - https://www.loc.gov/item/2017762502/
+- The belle of the fishing village. Philippine Islands - https://www.loc.gov/item/2021640652/
+- Seated Ainu man working on fishing nets - https://www.loc.gov/item/2018720017/
+- Bayou La Batre, Alabama, is a fishing village with a seafood-processing harbor for fishing boats and shrimp boats - https://www.loc.gov/item/2010637895/
+- Bayou La Batre, Alabama, is a fishing village with a seafood-processing harbor for fishing boats and shrimp boats - https://www.loc.gov/item/2010637916/
+- Bayou La Batre, Alabama, is a fishing village with a seafood-processing harbor for fishing boats and shrimp boats - https://www.loc.gov/item/2010637909/
+- Gloucester, Massachusetts. A dragger alongside a wharf - https://www.loc.gov/item/2017865368/
+- Gloucester, Massachusetts. Fishing wharfs in the late evening - https://www.loc.gov/item/2017857014/
+- Gloucester fishing wharfs in the late evening. Gloucester, Massachusetts - https://www.loc.gov/item/2017857007/
+- Italian fishermen gathered on "Fisherman's Wharf." San Francisco, California - https://www.loc.gov/item/2017821620/
+- New Bedford, Massachusetts. Trawlers tied up at a fish wharf - https://www.loc.gov/item/2017829963/
+- Mrs. Sophie Rudd, a widow who lives by herself on forty acres of land near Black River Falls, Wisconsin - https://www.loc.gov/item/2017735522/
+- Mrs. Sophie Rudd, a widow who lives by herself on forty acres of land near Black River Falls, Wisconsin - https://www.loc.gov/item/2017735524/
+- Provincetown, Massachusetts. Wife of a Portuguese dory fisherman - https://www.loc.gov/item/2017830602/
+- Tourist house, Truro. Portuguese woman from the Cape Verde Islands, wife of the disabled fisherman and railroad worker, now rents rooms to and boards tourists. Truro, Massachusetts - https://www.loc.gov/item/2017764697/
+- [Untitled photo, possibly related to: Writing cards home to the "folks." Mohawk Trail, Massachusetts] - https://www.loc.gov/item/2017821209/
+- Migratory worker on the Norfolk-Cape Charles Ferry, writing a postcard home to his parents - https://www.loc.gov/item/2017791139/
+- Sunrise scene with sailing-boat on the lake [Sea of Galilee] - https://www.loc.gov/item/2019709677/
+- Battle of rocks and waves, Cape Elizabeth, Me. - https://www.loc.gov/item/2024688252/
+- Along the Maine coast - https://www.loc.gov/item/92514883/
+- Blue Mediterranean breaking on the rocks. The leave men never tire of watching the wash of blue green waves in the sunshine, or the weird gleam of the phosphorous about the rocks at night. This is part of the leave area for the American Red Cross Personnel - https://www.loc.gov/item/2017680384/
+
+## Wikimedia Commons
+- File:The Crazy Monday - church register from Os parish.jpg (Public domain, Unknown authorUnknown author) - https://commons.wikimedia.org/wiki/File:The_Crazy_Monday_-_church_register_from_Os_parish.jpg
+- File:Newtown Parish Register for burials in the Parish of Newtown for the year 1858, with an entry for the burial of Robert Owen of New Lanark, buried November 22nd (1294543).jpg (CC0, Percy Benzie Abery) - https://commons.wikimedia.org/wiki/File:Newtown_Parish_Register_for_burials_in_the_Parish_of_Newtown_for_the_year_1858,_with_an_entry_for_the_burial_of_Robert_Owen_of_New_Lanark,_buried_November_22nd_(1294543).jpg

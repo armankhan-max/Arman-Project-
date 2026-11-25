@@ -1,0 +1,54 @@
+boats|fishing boats 1950
+boatsnl|vissersschepen haven
+boatscollins|Tudor Collins fishing boat
+fishermen|vissers 1951
+fishermen2|Anefo vissers
+fishermen3|Urk vissers
+fishermen4|Tudor Collins fishermen
+fishportrait|oude visser portret
+village|vissersdorp 1950
+village2|fishing village 1950
+harbour|haven vissers 1950
+chapel|kapel 1950
+church_int|kerk interieur 1950
+congregation|kerkdienst 1950
+priest|pastoor 1950
+dominee|dominee 1950
+lighthouse|lighthouse 1950
+vuurtoren|vuurtoren 1950
+lantern|lighthouse lantern lens
+logbook|ship log book
+ledger|ledger handwriting
+register|doopregister
+anchor|anchor admiralty
+lobster|lobster pots
+nets|netten boeten
+bell|ship bell
+rope|coiled rope
+gulls|meeuwen zee
+gulls2|seagulls 1950
+storm|storm zee 1953
+waves|golven zee
+rocks|rocky coast black and white
+reef|rocks low tide
+skiff|roeiboot 1950
+upturned|upturned boat beach
+trawler|trawler 1950
+trawler2|kotter 1950
+binoculars|verrekijker 1950
+officer|ambtenaar 1950 bril
+office|kantoor 1950
+woman|oude vrouw 1950
+widow|weduwe vissersvrouw
+seaboot|zeelaarzen
+graveyard|kerkhof 1950
+stones|grafstenen kerkhof
+dawn|zonsopgang zee
+calm|kalme zee
+rowing|roeien boot 1950
+lamp|stormlantaarn
+quay|kade vissers 1950
+capetown|Cape Town 1950
+southafrica|South Africa fishermen
+sailcloth|zeildoek
+smokehouse|rokerij vis

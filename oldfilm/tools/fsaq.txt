@@ -1,0 +1,60 @@
+fishermen|fishermen
+fishermen_boat|fishermen boat
+fisherman_portrait|fisherman
+gloucester|Gloucester fishermen
+gloucester_boats|Gloucester fishing boats
+lobster|lobster
+lobsterman|lobsterman Maine
+nets|fishing nets
+mending|mending nets
+seine|seine
+dory|dory
+rowboat|rowboat
+harbor|harbor fishing
+wharf|wharf
+pier|fishing pier
+village|fishing village
+cove|cove
+lighthouse|lighthouse
+church|church interior
+church_ext|church
+congregation|congregation
+minister|minister
+funeral|funeral
+cemetery|cemetery
+oldwoman|old woman
+widow|widow
+oldman|old man
+pipe|old man pipe
+wife|fisherman wife
+boy|boy fishing
+clerk|clerk office
+desk|office desk
+writing|writing
+ledger|ledger
+book|book
+typewriter|typewriter
+lantern|lantern
+kerosene|kerosene lamp
+kitchen|kitchen table lamp
+window|window
+door|doorway
+stone|stone wall
+anchor|anchor
+rope|rope
+oars|oars
+storm|storm
+waves|waves
+sea|sea
+coast|coast rocks
+beach|beach boat
+smokehouse|smokehouse
+fishhouse|fish house
+oilskin|oilskins
+captain|captain
+trawler|trawler
+dragger|dragger
+cottage|cottage
+dogs|dogs street
+cart|wagon gate
+children|children sleeping
