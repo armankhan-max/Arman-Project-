@@ -20,6 +20,20 @@ export default function Editor({ projectId, cat, onApplied, busyRun }: { project
   const { busy, run } = useBusy();
   const load = async () => { setTl(await api(`/projects/${projectId}/timeline`)); setProj(await api(`/projects/${projectId}`)); };
   useEffect(() => { load().catch((e) => toast(e.message, "bad")); }, [projectId]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const tag = (e.target as HTMLElement)?.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+      const v = video.current;
+      if (!v) return;
+      if (e.code === "Space") { e.preventDefault(); v.paused ? v.play() : v.pause(); }
+      else if (e.key === "ArrowRight") v.currentTime = Math.min(v.duration || 1e9, v.currentTime + (e.shiftKey ? 1 : 5));
+      else if (e.key === "ArrowLeft") v.currentTime = Math.max(0, v.currentTime - (e.shiftKey ? 1 : 5));
+      else if (e.key === "Escape") setSel(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
   const render = proj?.renders?.find((r: any) => r.status === "succeeded" && r.asset);
   const tracks = useMemo(() => {
     if (!tl) return null;
@@ -51,13 +65,13 @@ export default function Editor({ projectId, cat, onApplied, busyRun }: { project
           {render ? <video ref={video} src={render.asset.url} controls className="aspect-video w-full rounded bg-black" onTimeUpdate={(e) => setT(e.currentTarget.currentTime)} />
             : <div className="grid aspect-video place-items-center rounded bg-black text-sm text-dim">Render once to preview here</div>}
           <div className="flex items-center justify-between px-1 pt-2 text-xs text-dim">
-            <span className="tabnum">{fmtT(t)} / {fmtT(tl.duration)} · timeline v{tl.version}{render ? ` · preview shows render v${render.project_version}` : ""}</span>
+            <span className="tabnum">{fmtT(t)} / {fmtT(tl.duration)} · Space play/pause, ←/→ seek · timeline v{tl.version}{render ? ` · preview shows render v${render.project_version}` : ""}</span>
             <span>{dirty || dirtyAudio ? <b className="text-warn">Unapplied changes</b> : "Up to date"}</span>
           </div>
         </div>
         <div className="card flex max-h-[520px] flex-col gap-3 overflow-auto text-sm">
           {!sel && <div className="text-dim">Select a clip on the timeline to edit it. Main-track clips stay locked to the narration timing; overlays and text move freely.</div>}
-          {sel && sel._track === "V1" && <ClipInspector it={sel} proj={proj} patch={(b: any) => patchItem(sel, b).then(() => setSel(null))} regenerate={() => run("r", async () => {
+          {sel && sel._track === "V1" && <ClipInspector it={sel} proj={proj} picked={() => { setDirty(true); setSel(null); load(); }} patch={(b: any) => patchItem(sel, b).then(() => setSel(null))} regenerate={() => run("r", async () => {
             const sc = proj.scenes.find((s: any) => s.idx === sel.scene_idx); await api(`/scenes/${sc.id}/regenerate`, { method: "POST" }); toast(`Regenerating scene ${sel.scene_idx}`); onApplied();
           })} />}
           {sel && sel._track !== "V1" && <OverlayInspector it={sel} cat={cat} patch={(b: any) => patchItem(sel, b)} remove={() => run("d", async () => { await api(`/timeline/${sel.id}`, { method: "DELETE" }); setSel(null); setDirty(true); load(); })} />}
@@ -105,7 +119,30 @@ export default function Editor({ projectId, cat, onApplied, busyRun }: { project
   );
 }
 
-function ClipInspector({ it, proj, patch, regenerate }: { it: any; proj: any; patch: (b: any) => void; regenerate: () => void }) {
+function StockPicker({ sceneId, query, picked }: { sceneId: string; query: string; picked: () => void }) {
+  const [q, setQ] = useState(query);
+  const [kind, setKind] = useState("video");
+  const [res, setRes] = useState<any>(null);
+  const { busy, run } = useBusy();
+  const search = () => run("s", async () => setRes(await api(`/media/search?kind=${kind}&q=${encodeURIComponent(q)}`)));
+  return (
+    <div className="flex flex-col gap-2 rounded-lg border border-line p-2">
+      <b className="text-xs">Find stock footage for this scene</b>
+      <div className="flex gap-1"><select className="input w-24 py-1 text-xs" value={kind} onChange={(e) => setKind(e.target.value)}><option value="video">Video</option><option value="image">Photo</option><option value="archive">Archive</option></select>
+        <input className="input py-1 text-xs" value={q} onChange={(e) => setQ(e.target.value)} onKeyDown={(e) => e.key === "Enter" && search()} /><button className="btn btn-sm" disabled={!!busy || !q.trim()} onClick={search}>{busy === "s" ? "…" : "Search"}</button></div>
+      {res && (res.results.length === 0 ? <div className="text-xs text-dim">No results{res.add_keys_for_more?.length ? `. Add free keys for ${res.add_keys_for_more.join(", ")} in Settings for many more.` : "."}</div> : (
+        <div className="grid max-h-72 grid-cols-2 gap-1.5 overflow-auto">{res.results.map((r: any) => (
+          <button key={r.key} title={`${r.title} · ${r.provider} · ${r.license}`} disabled={!!busy} className="group relative aspect-video overflow-hidden rounded bg-panel2 text-left"
+            onClick={() => run("u" + r.key, async () => { await api(`/scenes/${sceneId}/use-stock`, { body: { key: r.key } }); toast("Placed in the scene. Press Apply & render."); picked(); })}>
+            {r.thumb && <img src={r.thumb} alt="" className="h-full w-full object-cover" loading="lazy" />}
+            <span className="absolute bottom-0 left-0 right-0 truncate bg-black/70 px-1 text-[9px] text-white">{r.kind === "video" ? "▶ " : ""}{r.provider}{r.duration ? ` · ${Math.round(r.duration)}s` : ""}</span>
+            {busy === "u" + r.key && <span className="absolute inset-0 grid place-items-center bg-black/60 text-xs text-white">Downloading…</span>}
+          </button>))}</div>))}
+    </div>
+  );
+}
+
+function ClipInspector({ it, proj, patch, regenerate, picked }: { it: any; proj: any; patch: (b: any) => void; regenerate: () => void; picked: () => void }) {
   const [p, setP] = useState<any>({ ...it.props });
   const [inS, setIn] = useState(it.in_s || 0);
   const [asset, setAsset] = useState("");
@@ -127,6 +164,7 @@ function ClipInspector({ it, proj, patch, regenerate }: { it: any; proj: any; pa
           <label className="label">Speed<select className="input py-1" value={p.speed} onChange={(e) => setP({ ...p, speed: +e.target.value })}>{[0.5, 0.75, 1, 1.25, 1.5, 2].map((x) => <option key={x}>{x}</option>)}</select></label></>}
       </div>
       <label className="label">Replace visual with an existing asset<select className="input py-1" value={asset} onChange={(e) => setAsset(e.target.value)}><option value="">— keep —</option>{pool.map((a: any) => <option key={a.id} value={a.id}>{a.kind}: {a.filename}</option>)}</select></label>
+      {scene && <StockPicker sceneId={scene.id} query={scene.plan?.search_query || scene.plan?.subject || ""} picked={picked} />}
       <div className="flex gap-2">
         <button className="btn btn-pri btn-sm" onClick={() => patch({ props: p, in_s: inS, ...(asset ? { asset_id: asset } : {}) })}>Save clip</button>
         <button className="btn btn-sm" onClick={regenerate}>Regenerate scene</button>

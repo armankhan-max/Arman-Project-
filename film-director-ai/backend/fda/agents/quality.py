@@ -21,12 +21,14 @@ def render_run(ctx):
     ps = db.query(m.ProjectSettings).filter_by(project_id=p.id).one()
     exp = ctx.params.get("export") or {}
     r = m.Render(project_id=p.id, project_version=p.current_version, kind=kind, status="running",
-                 settings={"width": exp.get("width", ps.width), "height": exp.get("height", ps.height), "fps": exp.get("fps", ps.fps), "crf": exp.get("crf")})
+                 settings={"width": exp.get("width", ps.width), "height": exp.get("height", ps.height), "fps": exp.get("fps", ps.fps), "crf": exp.get("crf"),
+                           "aspect": ctx.params.get("aspect"), "max_seconds": ctx.params.get("max_seconds")})
     db.add(r)
     db.commit()
     try:
         a, probe, desc = renderer.render(db, p, kind, r.settings["width"], r.settings["height"], r.settings["fps"], r.settings.get("crf"),
-                                         progress=lambda f, msg: ctx.progress(f, msg), cancelled=lambda: (db.refresh(ctx.run, ["cancel_requested"]) or ctx.run.cancel_requested))
+                                         progress=lambda f, msg: ctx.progress(f, msg), cancelled=lambda: (db.refresh(ctx.run, ["cancel_requested"]) or ctx.run.cancel_requested),
+                                         aspect=ctx.params.get("aspect"), max_seconds=ctx.params.get("max_seconds"), captions=ctx.params.get("captions"))
     except Exception as e:
         r.status, r.error = "failed", str(e)[:2000]
         db.commit()

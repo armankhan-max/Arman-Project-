@@ -3,10 +3,24 @@ import base64
 import re
 import time
 import urllib.parse
+from concurrent.futures import ThreadPoolExecutor
 
 from .base import CredField, Provider, ProviderError, download, http
 
 from .base import UA_DEFAULT
+
+
+def _pmap(fn, items, workers=6):
+    """Run per-item lookups (file lists, metadata) in parallel, keeping order; a failed lookup gives None."""
+    def safe(x):
+        try:
+            return fn(x)
+        except (ProviderError, ValueError, KeyError, TypeError):
+            return None
+    if not items:
+        return []
+    with ThreadPoolExecutor(max_workers=max(1, min(workers, len(items)))) as ex:
+        return list(ex.map(safe, items))
 UA = {"User-Agent": UA_DEFAULT}
 
 
@@ -368,14 +382,11 @@ class NASAVideo(Provider):
             return []
         j = http("GET", "https://images-api.nasa.gov/search", params={"q": q, "media_type": "video"}, timeout=30, retries=1).json()
         out = []
-        for it in (j.get("collection") or {}).get("items", [])[:n * 2]:
+        items = [it for it in (j.get("collection") or {}).get("items", [])[:n * 2] if ((it.get("data") or [{}])[0]).get("nasa_id") and it.get("href")]
+        for it, files in zip(items, _pmap(lambda it: http("GET", it["href"], timeout=20, retries=0).json(), items)):
             d = (it.get("data") or [{}])[0]
             nid = d.get("nasa_id")
-            if not nid:
-                continue
-            try:
-                files = http("GET", it["href"], timeout=20, retries=0).json()
-            except (ProviderError, ValueError, KeyError):
+            if not isinstance(files, list):
                 continue
             mp4 = [f for f in files if f.endswith(".mp4")]
             pick = next((f for f in mp4 if "~medium" in f), None) or next((f for f in mp4 if "~orig" in f), None) or next(iter(mp4), None)
@@ -410,14 +421,13 @@ class InternetArchive(Provider):
         j = http("GET", "https://archive.org/advancedsearch.php", headers=UA, timeout=30, retries=1,
                  params={"q": query, "fl[]": ["identifier", "title", "licenseurl", "subject", "year"], "rows": n * 2, "sort[]": "downloads desc", "output": "json"}).json()
         out = []
-        for d in (j.get("response") or {}).get("docs", []):
+        # only public domain (licence URL, or the public-domain Prelinger / Universal Newsreels / FedFlix collections)
+        docs = [d for d in (j.get("response") or {}).get("docs", []) if d.get("identifier") and not ((d.get("licenseurl") or "") and "publicdomain" not in d.get("licenseurl"))]
+        metas = _pmap(lambda d: http("GET", "https://archive.org/metadata/%s" % d["identifier"], headers=UA, timeout=20, retries=0).json(), docs)
+        for d, meta in zip(docs, metas):
             ident = d.get("identifier")
             lic = d.get("licenseurl") or ""
-            if not ident or (lic and "publicdomain" not in lic):
-                continue  # only public domain (licence URL, or the public-domain Prelinger / Universal Newsreels / FedFlix collections)
-            try:
-                meta = http("GET", "https://archive.org/metadata/%s" % ident, headers=UA, timeout=20, retries=0).json()
-            except (ProviderError, ValueError):
+            if not isinstance(meta, dict):
                 continue
             vids = [f for f in meta.get("files", []) if (f.get("name", "").lower().endswith(".mp4")) and int(f.get("size") or 0) < 220 * (1 << 20)]
             if not vids:

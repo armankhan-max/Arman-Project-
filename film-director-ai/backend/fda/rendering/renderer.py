@@ -8,6 +8,7 @@ import os
 import shutil
 import subprocess
 import sys
+import threading
 import time
 
 import numpy as np
@@ -22,7 +23,7 @@ from .engine import sound
 KIND_TO_ENGINE = {"video": "visual", "image": "visual", "blender": "visual", "motion_graphic": "mg", "avatar": "avatar", "placeholder": "mg"}
 
 
-def describe(db, project, width, height, fps):
+def describe(db, project, width, height, fps, aspect=None, captions=None):
     ps = db.query(m.ProjectSettings).filter_by(project_id=project.id).one()
     from fda import catalog
     st = catalog.default_style(project.mode, project.language)
@@ -58,11 +59,22 @@ def describe(db, project, width, height, fps):
         info = av.detect(avatar_img)
     return {"title": project.title, "seed": project.id.int % 10 ** 6, "shots": shots, "overlays": overlays, "captions": caps, "duration": dur,
             "avatar": {"image": avatar_img, "info": info} if avatar_img else {},
-            "settings": {"aspect": st.get("aspect", "16:9"), "width": width, "height": height, "theme": st.get("look", "abyss"),
-                         "captions": st.get("captions", "clean"), "avatar_pip": bool(st.get("avatar_pip"))}}
+            "settings": {"aspect": aspect or st.get("aspect", "16:9"), "width": width, "height": height, "theme": st.get("look", "abyss"),
+                         "captions": captions or st.get("captions", "clean"), "avatar_pip": bool(st.get("avatar_pip"))}}
 
 
-def render(db, project, kind="final", width=None, height=None, fps=None, crf=None, progress=lambda f, msg: None, cancelled=lambda: False):
+_render_gate = threading.BoundedSemaphore(max(1, int(os.environ.get("FDA_MAX_PARALLEL_RENDERS") or 1)))
+
+
+def render(db, project, kind="final", width=None, height=None, fps=None, crf=None, progress=lambda f, msg: None, cancelled=lambda: False,
+           aspect=None, max_seconds=None, captions=None):
+    """One render at a time per process (each render already uses every core); others wait their turn."""
+    progress(0.0, "Waiting for the renderer")
+    with _render_gate:
+        return _render(db, project, kind, width, height, fps, crf, progress, cancelled, aspect, max_seconds, captions)
+
+
+def _render(db, project, kind, width, height, fps, crf, progress, cancelled, aspect, max_seconds, captions):
     s = get_settings()
     ps = db.query(m.ProjectSettings).filter_by(project_id=project.id).one()
     width, height, fps = int(width or ps.width), int(height or ps.height), int(fps or ps.fps)
@@ -73,7 +85,9 @@ def render(db, project, kind="final", width=None, height=None, fps=None, crf=Non
     if not mix or not mix.asset_id:
         raise RuntimeError("No final audio mix; run the Audio Agent first")
     work = scratch_dir(project.id, "render", "%s_%d" % (kind, int(time.time())))
-    desc = describe(db, project, width, height, fps)
+    desc = describe(db, project, width, height, fps, aspect, captions)
+    if max_seconds:
+        desc["duration"] = round(min(desc["duration"], float(max_seconds)), 3)
     desc["dir"] = work
     voice = db.query(m.AudioTrack).filter_by(project_id=project.id, role="voice").one_or_none()
     if voice and voice.asset_id:
@@ -119,8 +133,9 @@ def render(db, project, kind="final", width=None, height=None, fps=None, crf=Non
     media.run([s.ffmpeg_bin, "-y", "-v", "error", "-f", "concat", "-safe", "0", "-i", lst, "-i", assets.local(db.get(m.Asset, mix.asset_id)), "-map", "0:v", "-map", "1:a",
                "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-t", "%.3f" % desc["duration"], "-movflags", "+faststart", out], timeout=3600)
     pr = verify(out, width, height, fps, desc["duration"])
-    a = assets.register(db, out, project.id, "render", "renders", "%s_v%d.mp4" % ("preview" if kind == "preview" else "final", project.current_version), origin="procedural",
-                        provider="fda-renderer", settings={"width": width, "height": height, "fps": fps, "kind": kind}, license="Rendered project output", commercial_use="unknown")
+    a = assets.register(db, out, project.id, "render", "renders", "%s_v%d.mp4" % (kind if kind in ("preview", "short") else "final", project.current_version), origin="procedural",
+                        provider="fda-renderer", settings={"width": width, "height": height, "fps": fps, "kind": kind, "aspect": desc["settings"]["aspect"]},
+                        license="Rendered project output", commercial_use="unknown")
     shutil.rmtree(work, ignore_errors=True)
     return a, pr, desc
 

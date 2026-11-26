@@ -9,7 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from sqlalchemy import text
 
-from fda.api import auth_routes, other, projects
+from fda.api import auth_routes, features, other, projects
 from fda.auth.security import CSRF_HEADER, hash_password
 from fda.config import get_settings
 from fda.database import models as m
@@ -35,7 +35,7 @@ async def security(request: Request, call_next):
     return resp
 
 
-for r in (auth_routes.router, projects.router, other.router):
+for r in (auth_routes.router, features.router, projects.router, other.router):
     app.include_router(r, prefix="/api/v1")
 
 

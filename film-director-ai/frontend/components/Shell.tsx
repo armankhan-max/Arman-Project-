@@ -9,10 +9,14 @@ const NAV = [
   ["/chat", "AI Director"],
   ["/projects", "Projects"],
   ["/characters", "Characters"],
+  ["/tools", "Creator tools"],
+  ["/stock", "Stock library"],
+  ["/jobs", "Job queue"],
   ["/youtube", "YouTube Intelligence"],
   ["/knowledge", "Knowledge"],
   ["/memory", "Memory & Preferences"],
   ["/settings", "Settings"],
+  ["/guide", "How to use"],
 ];
 
 export default function Shell({ children }: { children: React.ReactNode }) {

@@ -26,7 +26,8 @@ function Workspace() {
   if (error) return <div className="p-6"><ErrorBox e={error} /></div>;
   if (!p) return <div className="p-6 text-dim">Loading…</div>;
   const active = p.runs.find((r: any) => ["pending", "running"].includes(r.status));
-  const final = p.renders.find((r: any) => r.status === "succeeded" && r.asset);
+  const final = p.renders.find((r: any) => r.status === "succeeded" && r.asset && r.kind === "final") || p.renders.find((r: any) => r.status === "succeeded" && r.asset && r.kind !== "short");
+  const short = p.renders.find((r: any) => r.status === "succeeded" && r.asset && r.kind === "short");
   return (
     <div className="flex min-h-screen flex-col">
       <header className="flex flex-wrap items-center gap-3 border-b border-line bg-[#0e1014] px-4 py-3 md:px-6">
@@ -36,6 +37,10 @@ function Workspace() {
         </div>
         <Status s={p.status} />
         {!active && <button className="btn btn-pri" disabled={!!busy} onClick={() => run("p", async () => { await api(`/projects/${id}/produce`, { method: "POST" }); reload(); })}>{p.scenes.length ? "Re-run production" : "Produce video"}</button>}
+        <select className="input w-44" value="" disabled={!!busy} onChange={(e) => { const lang = e.target.value; if (lang) run("tr", async () => { const r = await api(`/projects/${id}/translate`, { body: { language: lang } }); toast("Translated copy created and producing"); location.href = `/project/?id=${r.project.id}`; }); }}>
+          <option value="">Make a version in…</option>{Object.entries(cat?.languages || {}).filter(([k]) => k !== p.language).map(([k, v]: any) => <option key={k} value={k}>{v}</option>)}
+        </select>
+        <button className="btn" disabled={!!busy} onClick={() => run("dup", async () => { const d = await api(`/projects/${id}/duplicate`, { body: {} }); toast("Duplicated"); location.href = `/project/?id=${d.id}`; })}>Duplicate</button>
         <a className="btn" href={`/api/v1/projects/${id}/export`}>Export project</a>
       </header>
       <div className="px-4 md:px-6"><Tabs tabs={TABS} value={tab} onChange={setTab} /></div>
@@ -48,6 +53,7 @@ function Workspace() {
                 <div className="card p-2"><video key={final.asset.id} src={final.asset.url} controls className="aspect-video w-full rounded-lg bg-black" />
                   <div className="flex items-center justify-between px-2 pt-2 text-xs text-dim"><span>Render v{final.project_version} · {final.kind} · {ago(final.created_at)} · verified {final.verified ? "✓" : "✗"}</span><a className="text-acc" href={final.asset.url + "?download=1"}>Download MP4</a></div></div>
               ) : <Empty>No render yet. Press “Produce video” or ask the Director.</Empty>}
+              {short && <div className="card flex items-center gap-3 p-2"><video src={short.asset.url} controls className="h-56 rounded-lg bg-black" /><div className="text-sm"><b>Vertical Short</b><div className="text-xs text-dim">{short.settings?.width}×{short.settings?.height} · {ago(short.created_at)}</div><a className="btn btn-sm mt-2" href={short.asset.url + "?download=1"}>Download Short</a></div></div>}
               {p.quality && <QC q={p.quality} />}
             </div>
             <div className="card h-[640px]"><Chat projectId={id} onAction={reload} /></div>
@@ -88,6 +94,7 @@ function QC({ q }: { q: any }) {
 
 function ScriptTab({ p, reload }: { p: any; reload: () => void }) {
   const [text, setText] = useState(p.script?.text || "");
+  const [how, setHow] = useState("");
   const { busy, run } = useBusy();
   const vo = p.voiceover;
   return (
@@ -96,7 +103,20 @@ function ScriptTab({ p, reload }: { p: any; reload: () => void }) {
         <div className="flex items-center justify-between"><b>Script</b><span className="text-xs text-dim">{p.script ? `${p.script.origin} · version ${p.script.version} of ${p.script.versions} · ${text.split(/\s+/).filter(Boolean).length} words` : "none yet"}</span></div>
         <textarea className="input min-h-[420px] font-[inherit] leading-relaxed" value={text} onChange={(e) => setText(e.target.value)} placeholder="Paste or write the narration script…" />
         <div className="flex justify-end gap-2"><button className="btn" disabled={!!busy} onClick={() => run("s", async () => { await api(`/projects/${p.id}/script`, { method: "PUT", body: { text } }); toast("Script saved as a new version"); reload(); })}>Save script</button></div>
-        {p.voiceover && <p className="text-xs text-mute">Narration already exists. Saving a new script does not change it; re-run production with a new voice upload or delete narration to re-voice.</p>}
+        <div className="flex flex-col gap-2 rounded-lg border border-line p-3">
+          <b className="text-sm">AI script tools</b>
+          <div className="flex flex-wrap gap-1.5">{["Make the hook stronger", "Make it shorter", "Make it longer and more detailed", "Make it funnier and warmer", "Make it more dramatic and suspenseful", "Simplify for a general audience", "Rewrite in Hinglish", "Rewrite in Hindi"].map((x) => (
+            <button key={x} className="btn btn-sm" disabled={!!busy} onClick={() => run("rw", async () => { const r = await api(`/projects/${p.id}/script/rewrite`, { body: { instruction: x } }); setText(r.text); toast(`Rewritten (${r.words} words), saved as a new version`); reload(); })}>{x}</button>))}</div>
+          <div className="flex gap-2"><input className="input" placeholder="Or type your own instruction, e.g. add a twist about the 1969 landing" value={how} onChange={(e) => setHow(e.target.value)} />
+            <button className="btn" disabled={!!busy || !how.trim()} onClick={() => run("rw2", async () => { const r = await api(`/projects/${p.id}/script/rewrite`, { body: { instruction: how } }); setText(r.text); setHow(""); toast("Rewritten and saved"); reload(); })}>{busy === "rw2" ? "Writing…" : "Rewrite"}</button></div>
+          <div className="flex flex-wrap items-center gap-2 border-t border-line pt-2">
+            <button className="btn btn-pri btn-sm" disabled={!!busy || !p.script} onClick={() => run("rb", async () => { await api(`/projects/${p.id}/rebuild`, { method: "POST" }); toast("Rebuilding the whole video from this script"); reload(); })}>Rebuild video from this script</button>
+            <a className="btn btn-sm" href={`/api/v1/projects/${p.id}/script.txt`}>Download script</a>
+            <a className="btn btn-sm" href={`/api/v1/projects/${p.id}/captions.srt`}>Captions .srt</a>
+            <a className="btn btn-sm" href={`/api/v1/projects/${p.id}/captions.vtt`}>Captions .vtt</a>
+          </div>
+          <p className="text-xs text-mute">“Rebuild” re-records the narration and redoes storyboard, visuals, sound, edit and render. Videos made from your own uploaded narration keep it untouched.</p>
+        </div>
       </div>
       <div className="flex flex-col gap-4">
         <div className="card text-sm">
@@ -227,6 +247,8 @@ function AssetGrid({ items }: { items: any[] }) {
 
 function Renders({ p, cat, reload }: { p: any; cat: any; reload: () => void }) {
   const { busy, run } = useBusy();
+  const [shortSecs, setShortSecs] = useState(59);
+  const [shortCap, setShortCap] = useState("pop");
   const [exp, setExp] = useState({ width: p.settings.width, height: p.settings.height, fps: p.settings.fps, crf: 19 });
   return (
     <div className="flex flex-col gap-4">
@@ -237,7 +259,13 @@ function Renders({ p, cat, reload }: { p: any; cat: any; reload: () => void }) {
         <label className="label">Quality (CRF, lower = better)<input className="input w-24" type="number" min={14} max={30} value={exp.crf} onChange={(e) => setExp({ ...exp, crf: +e.target.value })} /></label>
         <button className="btn btn-pri" disabled={!!busy || !p.scenes.length} onClick={() => run("r", async () => { await api(`/projects/${p.id}/apply`, { body: { kind: "final", rebuild: false, ...exp } }); toast("Render started"); reload(); })}>Render</button>
         <button className="btn" disabled={!!busy || !p.scenes.length} onClick={() => run("pv", async () => { await api(`/projects/${p.id}/apply`, { body: { kind: "preview", rebuild: false } }); reload(); })}>Fast preview</button>
-        <p className="w-full text-xs text-mute">Changing aspect ratio needs a new storyboard (Project settings). Output is H.264/AAC MP4 and is verified with ffprobe before it is recorded.</p>
+        <p className="w-full text-xs text-mute">Output is H.264/AAC MP4 and is verified with ffprobe before it is recorded.</p>
+      </div>
+      <div className="card flex flex-wrap items-end gap-3">
+        <div className="w-full"><b className="text-sm">Vertical Short (9:16)</b><p className="text-xs text-dim">Re-frames the same edit for YouTube Shorts, Reels and TikTok with big pop captions.</p></div>
+        <label className="label">Length<select className="input" value={shortSecs} onChange={(e) => setShortSecs(+e.target.value)}>{[15, 30, 45, 59, 90, 120].map((x) => <option key={x} value={x}>{x} s</option>)}</select></label>
+        <label className="label">Captions<select className="input" value={shortCap} onChange={(e) => setShortCap(e.target.value)}>{["pop", "highlight", "box", "clean", "none"].map((x) => <option key={x}>{x}</option>)}</select></label>
+        <button className="btn btn-pri" disabled={!!busy || !p.scenes.length} onClick={() => run("sh", async () => { await api(`/projects/${p.id}/short`, { body: { seconds: shortSecs, captions: shortCap } }); toast("Short is rendering"); reload(); })}>Make Short</button>
       </div>
       {p.quality && <QC q={p.quality} />}
       {p.renders.length === 0 && <Empty>No renders.</Empty>}

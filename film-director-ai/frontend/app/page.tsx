@@ -7,6 +7,7 @@ import { Empty, ErrorBox, Status, useInterval } from "@/components/ui";
 
 export default function Dashboard() {
   const { data, error, reload } = useApi<any>("/dashboard");
+  const { data: stats } = useApi<any>("/stats");
   useInterval(reload, 8000);
   if (error) return <ErrorBox e={error} />;
   if (!data) return <div className="text-dim">Loading…</div>;
@@ -23,6 +24,14 @@ export default function Dashboard() {
         <div className="card"><div className="text-xs text-dim">Spent today / limit</div><div className="text-2xl font-bold tabnum">{usd(b.daily.spent)} <span className="text-sm text-dim">/ {b.daily.limit == null ? "no limit set" : usd(b.daily.limit)}</span></div></div>
         <div className="card"><div className="text-xs text-dim">This month</div><div className="text-2xl font-bold tabnum">{usd(b.monthly.spent)} <span className="text-sm text-dim">/ {b.monthly.limit == null ? "—" : usd(b.monthly.limit)}</span></div></div>
         <div className="card"><div className="text-xs text-dim">YouTube channel</div><div className="mt-1"><Status s={data.youtube.connected ? "connected" : "unconfigured"} /></div><div className="mt-1 text-xs text-mute">Workers: {data.workers.celery ? "Celery" : "in-process"}</div></div>
+      </div>
+      {stats && <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-6">
+        {[["Projects", stats.projects], ["Renders", stats.renders], ["Shorts", stats.shorts], ["Minutes made", stats.minutes_rendered], ["Scenes", stats.scenes], ["Characters", stats.characters]].map(([l, v]) => (
+          <div key={l as string} className="rounded-xl border border-line bg-panel px-3 py-2"><div className="text-[11px] text-dim">{l}</div><div className="tabnum text-lg font-bold">{v}</div></div>))}
+      </div>}
+      <div className="flex flex-wrap gap-2">
+        <Link className="btn btn-sm" href="/projects/?new=1">+ One video</Link><Link className="btn btn-sm" href="/projects/">Bulk create</Link><Link className="btn btn-sm" href="/tools">Title & idea lab</Link>
+        <Link className="btn btn-sm" href="/stock">Stock library</Link><Link className="btn btn-sm" href="/characters">Characters</Link><Link className="btn btn-sm" href="/jobs">Job queue</Link><Link className="btn btn-sm" href="/guide">How to use</Link>
       </div>
       <section>
         <h2 className="h2 mb-2">Active production</h2>

@@ -44,6 +44,17 @@ Anthropic / OpenAI / Groq (stronger reasoning), Pexels and Pixabay (stock video,
 D-ID, Tavily, YouTube Data API key, Google OAuth client. Set a daily or monthly budget and per-provider cost
 estimates before paid providers will run.
 
+## Added 2026-11-26
+- **Bulk create**: up to 50 titles at once, each a full production (Projects → Bulk create). Templates on the New project form.
+- **Duplicate** a project; **make a version in another language** (English / Hindi / Hinglish) from the project header.
+- **AI script tools**: rewrite the whole script (stronger hook, shorter, longer, funnier, more dramatic, simpler, Hinglish, Hindi or a custom instruction), then **Rebuild video from this script**.
+- **Captions & script download**: .srt, .vtt and .txt (Script tab).
+- **Vertical Shorts**: 9:16 cut of the finished video, chosen length and caption style (Renders tab). Renders take turns through a queue (`FDA_MAX_PARALLEL_RENDERS`, default 1).
+- **Stock footage library** page and **Find stock footage** in the Editor clip inspector: searches every connected source in parallel (Pexels, Pixabay, Wikimedia, NASA, Openverse, Internet Archive), shows licence and attribution, swaps a scene's picture in one click. Archive and NASA lookups run in parallel (search ~5 s instead of ~22 s), results cached 10 minutes.
+- **Creator tools**: Title lab (scored titles from proven formulas) and Idea lab (10 ranked video ideas for a channel), each with "Make this video".
+- **Job queue** page across all projects with cancel / resume; **studio totals** on the Dashboard; **voice preview** on Characters; **How to use** guide; Editor keyboard shortcuts (Space, ← →, Shift for 1 s, Esc); project search, status filter and MP4 download in the list.
+- Tests: `tests/integration/test_features.py` (bulk, duplicate, captions, runs, stats, Shorts guard, rebuild, stock search + use). Full suite 38 passed.
+
 ## Added 2026-11-14
 
 - Internet visual research per scene (Openverse, NASA video, Internet Archive public-domain film, Wikimedia) with relevance ranking; verified in a live run.
