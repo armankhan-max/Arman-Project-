@@ -75,9 +75,9 @@ def a_hair_back(c, style, hc, t, fem):
         p = skia.Path()
         p.moveTo(-31, -20)
         p.cubicTo(-38, -64, 38, -64, 31, -20)
-        p.cubicTo(40, 30, 42, 70, 36, 95)
-        p.lineTo(-36, 95)
-        p.cubicTo(-42, 70, -40, 30, -31, -20)
+        p.cubicTo(40, 20, 42, 45, 36, 58)
+        p.lineTo(-36, 58)
+        p.cubicTo(-42, 45, -40, 20, -31, -20)
         p.close()
         shp(c, p, hc)
     elif style == "curly":
@@ -385,6 +385,19 @@ def person_adult(c, x, y, who, lk, L, skin, ps, pose, expr, t, s, look, talk, wa
             p.cubicTo(-waist - 2, -300, -sh_w, -320, -sh_w + 2, sh_y)
         p.close()
         shp(c, p, top)
+        if L.get("hawaii"):
+            c.save()
+            c.clipPath(p, skia.ClipOp.kIntersect, True)
+            for yy in range(-370, -230, 34):
+                for xx in range(-60, 70, 34):
+                    ox = 17 if (yy // 34) % 2 else 0
+                    fx, fy = xx + ox, yy
+                    for k in range(5):
+                        a_ = k * math.tau / 5
+                        c.drawCircle(fx + math.cos(a_) * 5, fy + math.sin(a_) * 5, 4.2, P("#fbe7a8", a=0.9))
+                    c.drawCircle(fx, fy, 3, P("#e8735a"))
+            c.restore()
+            c.drawPath(p, P(AO, AW))
         shade_clip(c, p, "#000000", a=0.12)
         if not L.get("dress") and not L.get("jump"):
             hips = skia.Path()

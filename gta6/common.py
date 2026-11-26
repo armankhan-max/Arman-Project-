@@ -14,7 +14,7 @@ from g6fx import marker_circle, screen_space, poi, REC, SCREEN  # noqa: E402
 from sets import bg
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-_tr = json.load(open(os.path.join(HERE, "transcript.json")))
+_tr = json.load(open(os.environ.get("TRANSCRIPT", os.path.join(HERE, "transcript.json"))))
 WORDS = [(w["w"].strip().strip(",.?!").lower(), w["s"], w["e"]) for s in _tr for w in s["words"]]
 
 
