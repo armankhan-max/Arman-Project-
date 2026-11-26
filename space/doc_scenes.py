@@ -7,14 +7,6 @@ import skia
 from cosmos import *  # noqa: F401,F403
 import cosmos
 
-# ---- no on-screen text anywhere (titles, facts, labels)
-def _no_text(*_a, **_k):
-    return 0
-
-
-text = fact = doc_title = _no_text
-cosmos.text = _no_text
-
 # ---- presenter only where he adds meaning (reaction / human scale / interaction)
 GUIDE_WINDOWS = [(74.6, 77.4), (93.3, 98.1), (190.0, 198.5), (215.2, 219.2), (317.4, 321.0), (331.7, 335.5),
                  (484.9, 487.6), (641.1, 1e9)]
