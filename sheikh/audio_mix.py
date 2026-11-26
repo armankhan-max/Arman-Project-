@@ -21,21 +21,21 @@ for k, (name, st) in enumerate(BED):
                 f"atrim=0:{dur:.2f},afade=t=in:d={XF if k else 1.5},afade=t=out:st={fo:.2f}:d={XF},"
                 f"adelay={int(st * 1000)}|{int(st * 1000)}[m{k}]")
 nb = len(BED)
-filt.append("".join(f"[m{k}]" for k in range(nb)) + f"amix=inputs={nb}:normalize=0,volume=-19dB,atrim=0:{END:.2f}[bed]")
+filt.append("".join(f"[m{k}]" for k in range(nb)) + f"amix=inputs={nb}:normalize=0,volume=-25dB,atrim=0:{END:.2f}[bed]")
 filt.append("[0:a]aresample=44100,aformat=channel_layouts=stereo,highpass=f=70,"
-            "acompressor=threshold=-20dB:ratio=2.5:attack=8:release=120,asplit=2[v][vsc]")
-filt.append("[bed][vsc]sidechaincompress=threshold=0.04:ratio=5:attack=30:release=650[duck]")
+            "acompressor=threshold=-20dB:ratio=2.5:attack=8:release=120,volume=3dB,asplit=2[v][vsc]")
+filt.append("[bed][vsc]sidechaincompress=threshold=0.03:ratio=8:attack=30:release=650[duck]")
 # whooshes on habit titles and quotes
 hits = [o["s"] - 0.35 for o in TL.OVERLAYS if o["k"] in ("title", "quote")]
 si = 1 + nb
 inputs += ["-i", os.path.join(A, "sfx", "w1490.mp3")]
-filt.append(f"[{si}:a]aresample=44100,aformat=channel_layouts=stereo,volume=-17dB,asplit={len(hits)}" +
+filt.append(f"[{si}:a]aresample=44100,aformat=channel_layouts=stereo,volume=-28dB,asplit={len(hits)}" +
             "".join(f"[s{k}]" for k in range(len(hits))))
 for k, h in enumerate(hits):
     filt.append(f"[s{k}]adelay={int(max(h, 0) * 1000)}|{int(max(h, 0) * 1000)}[d{k}]")
 filt.append("[v][duck]" + "".join(f"[d{k}]" for k in range(len(hits))) +
             f"amix=inputs={2 + len(hits)}:normalize=0,afade=t=out:st={END - 2:.2f}:d=2,"
-            f"loudnorm=I=-14:TP=-1.5:LRA=11,aresample=48000,apad[out]")
+            f"loudnorm=I=-13:TP=-1.2:LRA=11,aresample=48000,apad[out]")
 out = os.path.join(A, "mix.wav")
 cmd = ["ffmpeg", "-v", "error", "-y"] + inputs + ["-filter_complex", ";".join(filt), "-map", "[out]",
                                                   "-t", f"{END:.2f}", "-c:a", "pcm_s16le", out]
