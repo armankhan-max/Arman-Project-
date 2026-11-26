@@ -8,3 +8,4 @@ frontend/next-env.d.ts
 frontend/tsconfig.tsbuildinfo
 .pytest_cache/
 frontend/out/
+run-local/owner-login.txt

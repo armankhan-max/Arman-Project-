@@ -17,7 +17,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY --chown=1000 backend/ .
 COPY --from=web --chown=1000 /w/out /app/web
 COPY --chown=1000 infra/docker/start.sh /start.sh
-RUN chmod +x /start.sh && mkdir -p /data && chown -R 1000 /data /app
+RUN sed -i "s/\r$//" /start.sh && chmod +x /start.sh && mkdir -p /data && chown -R 1000 /data /app
 USER 1000
 ENV PYTHONUNBUFFERED=1 PORT=7860 HOME=/home/user FDA_ENV=production FDA_USE_CELERY=false FDA_STORAGE_BACKEND=db \
     FDA_STORAGE_DIR=/data/storage FDA_PG_DIR=/data/pg FDA_PG_SOCK=/data/pgsock FDA_RENDER_WORKERS=2
