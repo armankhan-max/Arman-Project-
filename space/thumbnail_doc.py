@@ -1,137 +1,162 @@
-"""Thumbnail in black & white engraved style: giant planet vs tiny Jupiter.
+"""Thumbnail in black & white scratchboard-engraving style: giant planet vs tiny Jupiter.
+The planets are rendered as real line engravings: a shaded, turbulent planet is computed per pixel
+(numpy), then turned into flowing ink lines whose thickness follows the brightness.
 Usage: python thumbnail_doc.py OUTDIR"""
 import math
 import os
-import random
 import sys
 
+import numpy as np
 import skia
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from cosmos import W, H, P, C, font  # noqa: E402
+from cosmos import W, H, P, font  # noqa: E402
 
-L = (-0.72, -0.5, 0.48)  # light dir (upper-left, toward viewer)
-_n = math.sqrt(sum(v * v for v in L))
-L = tuple(v / _n for v in L)
+rng = np.random.default_rng(5)
 
 
-def engraved_planet(c, cx, cy, r, seed=1, step=5.0, bands=True, storm=None, wscale=1.0):
-    rnd = random.Random(seed)
-    c.save()
-    clip = skia.Path()
-    clip.addCircle(cx, cy, r)
-    c.clipPath(clip, skia.ClipOp.kIntersect, True)
-    c.drawCircle(cx, cy, r, P("#000000"))
-    band_ph = [rnd.uniform(0, 6.28) for _ in range(6)]
-
-    def bright(u, v):
-        z2 = 1 - u * u - v * v
-        if z2 <= 0:
-            return 0.0, 0.0
-        z = math.sqrt(z2)
-        lam = max(0.0, u * L[0] + v * L[1] + z * L[2])
-        b = 0.04 + 1.05 * lam ** 1.35
-        if bands:
-            b *= 0.62 + 0.38 * (0.5 + 0.5 * math.sin(v * 13 + band_ph[0] + 0.6 * math.sin(v * 31 + band_ph[1])))
-        if storm:
-            su, sv, sr = storm
-            d = math.hypot((u - su) / 1.7, v - sv) / sr
-            if d < 1:
-                b *= 0.55 + 0.45 * abs(math.sin(d * 14))
-        return min(1.0, b), z
-
-    y = -r
-    while y < r:
-        v = y / r
-        pts = []
-        nseg = max(12, int(2 * r * math.sqrt(max(0, 1 - v * v)) / 7))
-        half = math.sqrt(max(0.0, 1 - v * v))
-        for k in range(nseg + 1):
-            u = -half + 2 * half * k / nseg
-            wav = 0.012 * math.sin(u * 9 + band_ph[2] + v * 20) + 0.006 * math.sin(u * 23 + band_ph[3])
-            pts.append((u, v + wav))
-        for k in range(nseg):
-            (u1, v1), (u2, v2) = pts[k], pts[k + 1]
-            b, z = bright((u1 + u2) / 2, v)
-            if b < 0.06:
-                continue
-            w = (0.35 + 2.6 * b) * wscale
-            c.drawLine(cx + u1 * r, cy + v1 * r, cx + u2 * r, cy + v2 * r, P("#ffffff", w, 0.35 + 0.6 * b))
-        y += step
-    # stipple + pits
-    for i in range(int(r * r / 90)):
-        u, v = rnd.uniform(-1, 1), rnd.uniform(-1, 1)
-        b, z = bright(u, v)
-        if z <= 0:
-            continue
-        if rnd.random() < b * 0.8:
-            c.drawCircle(cx + u * r, cy + v * r, rnd.uniform(0.6, 1.6) * wscale, P("#ffffff", a=0.7))
-        elif rnd.random() < 0.25:
-            c.drawCircle(cx + u * r, cy + v * r, rnd.uniform(0.8, 2.2) * wscale, P("#000000", a=0.9))
-    if storm:
-        su, sv, sr = storm
-        for k in range(1, 8):
-            rx, ry = r * sr * 1.7 * k / 7, r * sr * k / 7
-            c.drawOval(skia.Rect(cx + su * r - rx, cy + sv * r - ry, cx + su * r + rx, cy + sv * r + ry),
-                       P("#000000" if k % 2 else "#ffffff", 2.2 * wscale, 0.55))
-    c.restore()
-    c.drawCircle(cx, cy, r, P("#ffffff", 2.5 * wscale, 0.5))
+def value_noise(shape, scale, seed):
+    r = np.random.default_rng(seed)
+    gh, gw = int(shape[0] / scale) + 3, int(shape[1] / scale) + 3
+    g = r.random((gh, gw))
+    y = np.arange(shape[0]) / scale
+    x = np.arange(shape[1]) / scale
+    y0, x0 = y.astype(int), x.astype(int)
+    fy, fx = y - y0, x - x0
+    fy, fx = fy * fy * (3 - 2 * fy), fx * fx * (3 - 2 * fx)
+    a = g[y0][:, x0]
+    b = g[y0][:, x0 + 1]
+    c = g[y0 + 1][:, x0]
+    d = g[y0 + 1][:, x0 + 1]
+    top = a + (b - a) * fx[None, :]
+    bot = c + (d - c) * fx[None, :]
+    return top + (bot - top) * fy[:, None]
 
 
-def stars(c):
-    rnd = random.Random(3)
-    for _ in range(700):
-        c.drawCircle(rnd.uniform(0, W), rnd.uniform(0, H), rnd.uniform(0.5, 1.8), P("#ffffff", a=rnd.uniform(0.2, 0.8)))
+def fbm(shape, scale, seed, oct=5):
+    out = np.zeros(shape)
+    amp, tot = 1.0, 0.0
+    for o in range(oct):
+        out += amp * value_noise(shape, max(2, scale / 2 ** o), seed + o)
+        tot += amp
+        amp *= 0.5
+    return out / tot
 
 
-def bold(c, s, x, y, size, color):
-    f = font(size, "Black")
-    c.drawString(s, x + 5, y + 7, f, P("#000000", a=0.8))
-    c.drawString(s, x, y, f, P(color))
-    return f.measureText(s)
+def engrave_planet(img, cx, cy, r, seed, line_px, storms, band_freq=11.0, light=(-0.8, -0.5, 0.35)):
+    """Adds an engraved planet (white ink on black) into img (float HxW, 0..1)."""
+    HH, WW = img.shape
+    x0, x1 = max(0, int(cx - r - 2)), min(WW, int(cx + r + 2))
+    y0, y1 = max(0, int(cy - r - 2)), min(HH, int(cy + r + 2))
+    if x1 <= x0 or y1 <= y0:
+        return
+    ys, xs = np.mgrid[y0:y1, x0:x1].astype(float)
+    u, v = (xs - cx) / r, (ys - cy) / r
+    rr = u * u + v * v
+    inside = rr < 1
+    z = np.sqrt(np.clip(1 - rr, 0, 1))
+    lx, ly, lz = light
+    n = math.sqrt(lx * lx + ly * ly + lz * lz)
+    lam = np.clip((u * lx + v * ly + z * lz) / n, 0, 1)
+    shp = u.shape
+    sc = max(8.0, r / 6)
+    turb = fbm(shp, sc, seed) - 0.5
+    turb2 = fbm(shp, sc / 3, seed + 20) - 0.5
+    # latitude with turbulence; storms swirl it
+    lat = v + 0.06 * turb + 0.02 * turb2
+    lon = u / np.maximum(z, 0.15)
+    storm_dark = np.zeros(shp)
+    for (su, sv, srad, spin) in storms:
+        du, dv = (u - su) / 1.6, v - sv
+        d = np.sqrt(du * du + dv * dv) / srad
+        w = np.exp(-d * d * 1.6)
+        ang = spin * w * 5.0
+        lat = lat + w * (np.sin(np.arctan2(dv, du) + ang) * d * srad * 0.9 - dv * 0.9)
+        storm_dark += w * (0.5 + 0.5 * np.sin(d * 18))
+    bands = 0.5 + 0.5 * np.sin(lat * band_freq * math.pi + 1.3 * np.sin(lat * 23 + 1.0))
+    bands = 0.55 + 0.45 * bands + 0.15 * turb2
+    bright = (0.0 + 1.15 * lam ** 1.7) * bands * (1 - 0.35 * np.clip(storm_dark, 0, 1))
+    bright = np.clip(bright, 0, 1)
+    # engraving: lines follow the warped latitude; thickness ~ brightness
+    phase = (lat * r / line_px + 0.8 * turb2) % 1.0
+    tri = np.abs(phase - 0.5) * 2  # 0 at line centre .. 1 between lines
+    ink = (tri < bright * 0.95).astype(float)
+    # soften + fine stipple grain
+    grain = rng.random(shp)
+    ink = np.where(grain < 0.04 * bright, 1.0, ink)
+    ink = np.where(grain > 1 - 0.05 * (1 - bright), 0.0, ink)
+    ink *= np.clip(0.35 + 0.8 * bright, 0, 1)
+    # rim highlight
+    rim = np.clip((rr - 0.985) / 0.015, 0, 1) * (rr < 1) * np.clip(lam * 2 + 0.2, 0, 1)
+    out = np.where(inside, np.maximum(ink, rim * 0.8), 0)
+    reg = img[y0:y1, x0:x1]
+    img[y0:y1, x0:x1] = np.where(inside, out, reg)
 
 
-def thumb(c):
-    c.clear(C("#000000"))
-    stars(c)
-    # giant planet on the right
-    engraved_planet(c, 1560, 720, 660, seed=7, step=4.6, storm=(-0.35, 0.28, 0.13))
-    # sound-wave-like rings between them
-    for k in range(6):
-        R = 230 + k * 55
+SS = 2
+
+
+def build_art():
+    img = np.zeros((H * SS, W * SS))
+    # stars
+    for _ in range(900):
+        x, y = rng.integers(2, W * SS - 4), rng.integers(2, H * SS - 4)
+        sz = 2 if rng.random() < 0.85 else 4
+        img[y:y + sz, x:x + sz] = rng.uniform(0.4, 1.0)
+    # giant planet (right), tiny Jupiter (left)
+    engrave_planet(img, 1600 * SS, 790 * SS, 700 * SS, seed=3, line_px=4.0 * SS,
+                   storms=[(-0.42, 0.22, 0.16, 1.0), (-0.1, -0.25, 0.07, -1.0), (-0.55, 0.55, 0.06, 1.0)],
+                   band_freq=9.0)
+    engrave_planet(img, 300 * SS, 770 * SS, 64 * SS, seed=9, line_px=1.9 * SS, storms=[(0.25, 0.32, 0.2, 1.0)],
+                   band_freq=6.0)
+    return img
+
+
+def thumb(path_png):
+    art = build_art()
+    rgb = (np.clip(art, 0, 1) * 255).astype(np.uint8)
+    rgba = np.dstack([rgb, rgb, rgb, np.full_like(rgb, 255)])
+    s = skia.Surface(W, H)
+    c = s.getCanvas()
+    c.drawImageRect(skia.Image.fromarray(rgba, colorType=skia.kRGBA_8888_ColorType), skia.Rect(0, 0, W, H),
+                    skia.SamplingOptions(skia.CubicResampler.Mitchell()))
+    # concentric arcs radiating from the giant toward tiny Jupiter
+    for k in range(7):
+        R = 120 + k * 62
         pth = skia.Path()
-        pth.addArc(skia.Rect(900 - R, 720 - R, 900 + R, 720 + R), 150, 60)
-        p = P("#ffffff", 3.0 - k * 0.35, 0.75 - k * 0.1)
-        if k >= 4:
-            p.setPathEffect(skia.DashPathEffect.Make([6, 8], 0))
+        pth.addArc(skia.Rect(900 - R, 770 - R, 900 + R, 770 + R), 145, 70)
+        p = P("#ffffff", max(1.2, 3.4 - k * 0.35), 0.85 - k * 0.09)
+        if k >= 5:
+            p.setPathEffect(skia.DashPathEffect.Make([5, 9], 0))
         c.drawPath(pth, p)
-    # tiny Jupiter on the left
-    engraved_planet(c, 300, 760, 58, seed=2, step=2.6, storm=(0.2, 0.3, 0.16), wscale=0.55)
-    # red hand-drawn arrow toward tiny Jupiter
+    # red hand-drawn arrow
     pth = skia.Path()
-    pth.moveTo(640, 250)
-    pth.cubicTo(520, 330, 340, 450, 315, 640)
-    c.drawPath(pth, P("#ff1a1a", 15))
-    ang = math.atan2(640 - 450, 315 - 340)
-    hx, hy = 313, 675
+    pth.moveTo(660, 270)
+    pth.cubicTo(520, 360, 360, 470, 318, 640)
+    c.drawPath(pth, P("#ff1414", 15))
+    ang = math.atan2(640 - 470, 318 - 360)
+    hx, hy = 312, 684
     head = skia.Path()
-    for i, (dx, dy) in enumerate(((0, 0), (-math.cos(ang - 0.5) * 70, -math.sin(ang - 0.5) * 70),
-                                  (-math.cos(ang + 0.5) * 70, -math.sin(ang + 0.5) * 70))):
-        (head.moveTo if i == 0 else head.lineTo)(hx + dx, hy + dy)
+    head.moveTo(hx, hy)
+    head.lineTo(hx - math.cos(ang - 0.45) * 72, hy - math.sin(ang - 0.45) * 72)
+    head.lineTo(hx - math.cos(ang + 0.45) * 72, hy - math.sin(ang + 0.45) * 72)
     head.close()
-    c.drawPath(head, P("#ff1a1a"))
+    c.drawPath(head, P("#ff1414"))
     # headline
-    x = 50
-    w = bold(c, "JUPITER IS ", x, 190, 160, "#ffffff")
-    bold(c, "TINY..", x + w, 190, 160, "#ff1a1a")
+    f = font(175, "Black")
+    x, y = 46, 205
+    for s_, col in (("THIS IS ", "#ffffff"), ("JUPITER..", "#ff1414")):
+        c.drawString(s_, x + 5, y + 8, f, P("#000000", a=0.9))
+        c.drawString(s_, x, y, f, P(col))
+        x += f.measureText(s_)
+    img = s.makeImageSnapshot()
+    return img
 
 
 if __name__ == "__main__":
     out = sys.argv[1] if len(sys.argv) > 1 else "."
     os.makedirs(out, exist_ok=True)
-    s = skia.Surface(W, H)
-    thumb(s.getCanvas())
-    img = s.makeImageSnapshot()
+    img = thumb(None)
     img.save(os.path.join(out, "thumbnail_1920x1080.png"), skia.kPNG)
     img.resize(1280, 720, skia.SamplingOptions(skia.CubicResampler.Mitchell())).save(
         os.path.join(out, "thumbnail_1280x720.png"), skia.kPNG)
