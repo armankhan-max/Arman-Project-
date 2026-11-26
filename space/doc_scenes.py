@@ -5,6 +5,25 @@ import random
 import skia
 
 from cosmos import *  # noqa: F401,F403
+import cosmos
+
+# ---- no on-screen text anywhere (titles, facts, labels)
+def _no_text(*_a, **_k):
+    return 0
+
+
+text = fact = doc_title = _no_text
+cosmos.text = _no_text
+
+# ---- presenter only where he adds meaning (reaction / human scale / interaction)
+GUIDE_WINDOWS = [(74.6, 77.4), (93.3, 98.1), (190.0, 198.5), (215.2, 219.2), (317.4, 321.0), (331.7, 335.5),
+                 (484.9, 487.6), (641.1, 1e9)]
+_guide = guide
+
+
+def guide(c, x, y, t, *args, **kw):
+    if any(w0 <= t < w1 for w0, w1 in GUIDE_WINDOWS):
+        _guide(c, x, y, t, *args, **kw)
 
 
 # ======================================================================= shared helpers
@@ -1703,22 +1722,46 @@ INNER_CUTS = [5.0, 13.2, 24.6, 28.2, 50.0, 54.3, 74.6, 77.4, 89.4, 93.3, 98.1, 1
 CUTS = [s for s, _, _ in SCENES[1:]] + INNER_CUTS
 
 
-def render_frame(c, t):
-    c.clear(C("#000000"))
+CUTS = sorted(set(CUTS + [190.0, 484.9, 487.6]))
+XFADE = 0.55
+
+
+def _scene(t):
     for start, end, fn in SCENES:
         if start <= t < end:
-            c.save()
-            fn(c, t)
-            c.restoreToCount(1)
-            break
+            return fn
+    return SCENES[-1][2]
+
+
+def _draw(c, t):
+    n = c.getSaveCount()
+    c.save()
+    _scene(t)(c, t)
+    c.restoreToCount(n)
+
+
+def render_frame(c, t):
+    """Every cut is a soft cross-dissolve with a gentle settle-in zoom (no hard black dips)."""
+    c.clear(C("#000000"))
+    cut = None
+    for ct in CUTS:
+        if 0 <= t - ct < XFADE:
+            cut = ct
+    if cut is None:
+        _draw(c, t)
+    else:
+        k = smooth((t - cut) / XFADE)
+        _draw(c, cut - 0.001)
+        c.saveLayerAlpha(None, int(255 * k))
+        z = 1.035 - 0.035 * ease_out((t - cut) / XFADE)
+        c.translate(W / 2, H / 2)
+        c.scale(z, z)
+        c.translate(-W / 2, -H / 2)
+        _draw(c, t)
+        c.restore()
     vignette(c, 0.4)
     grain(c, t, 0.04)
-    dip = 0.0
-    for ct in CUTS:
-        d = abs(t - ct)
-        if d < 0.16:
-            dip = max(dip, 1 - d / 0.16)
-    if t < 0.6:
-        dip = max(dip, 1 - t / 0.6)
-    if dip:
-        tint(c, "#000000", dip * 0.9)
+    if t < 0.8:
+        tint(c, "#000000", 1 - smooth(t / 0.8))
+    if t > 644.5:
+        tint(c, "#000000", smooth((t - 644.5) / 2.0))
