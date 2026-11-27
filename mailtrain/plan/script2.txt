@@ -1,0 +1,63 @@
+well_rig | Emmett Hale did not know any of that history on the morning of the twelfth of July. What he knew was that he had hit a wooden structure sixty one feet underground, and he did not like it.
+driller_portrait | He was a methodical man. He moved the rig twenty feet north and drilled a second hole.
+depth_chart | At sixty three feet he hit wood again. | depth:63
+well_rig | He moved twenty feet south and drilled a third.
+depth_chart | Sixty two feet. Wood. And under the wood, at sixty six, iron. | depth:66
+logbook_close | In the log he drew a little map of the three holes, and a long rectangle joining them, and wrote beside it. Car. Lying east and west. Maybe more than one.
+drillers | Ray Hale was the one who thought of the old railroad. His grandfather had told him stories about the great flood of eighty nine, and the night train that went into the Saline Fork and was never found.
+drillers | But the Saline Fork, as far as anyone knew, was four miles east. Nobody could explain how a train could end up sixty feet under a wheat field, four miles from the creek it fell into.
+geologist | The explanation came three weeks later, from a geologist at the state university who drove out in a borrowed Ford after reading a paragraph about the holes in the county paper.
+gypsum_cave | The bedrock under that part of Kansas is full of salt and gypsum. Water dissolves it. Over thousands of years the ground underneath hollows out like a sponge, and every so often the roof of one of those hollows gives way, and the surface drops into it.
+sinkhole | Kansas has hundreds of them. Sinkholes. Some are small. Some have swallowed whole ponds, roads, and houses.
+old_map | The geologist walked the field for two days with a surveyor's level. And he found what the farmers had never noticed. A long shallow dip in the ground running north and south through the Lindqvist place, a few feet deep and half a mile wide. | tag:Old channel/1889
+old_map | The Saline Fork, he said, had not always run where it ran in 1934. In 1889 it ran here. Under this field. Under the trestle.
+sinkhole | His theory, which he wrote up in a short report that was never published, was this.
+flood | When the flood of 1889 poured eleven days of rain into the ground, it opened a hollow under the creek bed. The night train came onto the trestle in the dark. The trestle and the ground beneath it gave way together.
+sinkhole | And the whole train went straight down, into a pit of water and mud that closed over it within hours.
+river | Then the creek did what creeks do on the plains. It moved. It cut a new channel four miles to the east, and the old bed silted up, and the grass grew over it.
+wheat | And forty five years later a widow planted wheat on top of it.
+black |
+farmwife | Clara Lindqvist's first question had been about water. Her second, once she understood what was under her field, was about the men.
+farmwife | She went to town and found the old station agent's daughter, who was seventy by then, and asked her how many had been on that train.
+farmwife | Four, the old woman told her. And they were never buried.
+farmwife | Clara came home and told Emmett Hale she wanted them out.
+driller_portrait | He told her it was sixty feet down, through sand and water, and that a hole big enough to bring a railway car to the surface would cost more than her farm was worth.
+farmwife | She told him she did not need the car. She needed the men. And she asked him how big a hole that would take.
+logbook | His answer is in the log. Shaft. Ten by twelve. Crib it with timber all the way. Pump. Six weeks if the sand holds.
+excavation | The sand did not hold. It took eleven.
+black |
+smalltown | Word got out the way it always does in a small town. The county paper, the Ashby Clarion, ran two inches on the holes in July. By August it was running a column every week.
+newspaper | The Clarion's editor, a sharp eyed little man named Lyman Pratt, saved every clipping and every note he made, and they are one of the four records this story is built from.
+crowd | People drove out on Sundays to look. They parked their cars along the section road and walked out across the dead wheat and stood around the shaft with their hats in their hands.
+excavation | And slowly, almost without anyone deciding it, the town began to help.
+digging | A bank that had foreclosed on half the county lent a gasoline pump. The county road crew brought a small steam shovel on a flatbed truck. Farmers who had nothing else to do that summer, because nothing was growing, came out with shovels.
+digging | They dug in shifts, from first light to dark. The women brought dinner out to the field in baskets.
+excavation | They built the shaft the way a mine is built. Dig down a few feet. Set a square frame of heavy timbers. Pack the gaps with boards. Dig under the frame. Set another. Down and down, a wooden box sinking into the earth.
+dust_storm | Twice in August a dust storm came through and buried the work in grit, and they spent two days digging out what they had already dug.
+pump | At forty feet they hit the old river sand and the water came in so fast the pump could not keep up. For nine days they could do nothing but pump.
+logbook_close | Emmett Hale's entries in that stretch are short and tired. Pumping. Pumping. Sand caving north wall. Reset cribbing. Pumping.
+logbook_close | And then, on the fourth of September. Water holding. Going down.
+shaft | At fifty eight feet they hit the first timbers of the old trestle, lying flat and broken in the mud, black as coal and soft as cheese.
+depth_chart | At sixty, under the trestle, a shovel struck the curved roof of a railway car. | depth:60
+black |
+shaft | It was Ray Hale who uncovered it. He was at the bottom of the shaft that afternoon with Joe Whitcomb, working by the light of two lanterns, because by then the shaft was so deep that the sun only reached the bottom for an hour at noon.
+mailcar_buried | He scraped the mud off with his hands. The paint was still there. Dull red, flaking, but there. And above a row of small barred windows, in faded yellow letters that he could just make out, two words.
+mailcar_buried | Railway Post Office. | tag:Railway Post Office/Train No. 9
+drillers | He shouted up the shaft for his uncle. And Emmett Hale, who had not been down a ladder in ten years because of his knees, climbed sixty feet to the bottom in his work boots to see it for himself.
+logbook_close | That night he wrote one line in the log, in letters larger than any other on the page. Found the mail car.
+newspaper | The Clarion printed the story the following Thursday under a headline that took up half the front page. Lost Mail Train Found Under Lindqvist Wheat.
+newspaper | The Associated Press picked it up two days later. By the middle of September, reporters were driving in from Wichita and Kansas City.
+inspector | And a man from the United States Post Office Department was on the train from Washington.
+black |
+postmaster | The postmaster at Ashby in 1934 was a widow named Harriet Bell. She was sixty three. She had run the post office out of the front room of the general store for twenty two years.
+postoffice | She was not, by her own account, an important person. She sorted the mail, she sold stamps, she kept a register of every registered letter that passed through her hands, and she knew every family in that end of the county by name.
+postmaster | Her register is the third of the four records. And it is the one that turns this from a story about a buried train into something else.
+postmaster | Because when Harriet Bell read in the Clarion that the lost mail car had been found, she did something nobody else in the county thought to do.
+ledger_hand | She went into the back room of the store, took down the old Ashby post office books from 1889, which her predecessor had left behind, and looked up what mail had been due to arrive on train number nine.
+ledger_old | Ashby had been one of the stops. The night train dropped a sack there every morning at five.
+ledger_old | On the twenty third of April 1889, the sack never came. And the old postmaster had written a note in the margin. Number nine lost in flood. Mail for this office not received. Advised Washington.
+postmaster | Harriet Bell read that note and understood something that the reporters and the railroad men and the curious crowds had not yet thought about.
+letters_stack | Somewhere in that car, sixty feet down, was mail addressed to Ashby. To people who had lived in her town. To families she knew.
+postmaster | And mail, in her understanding of the world, was a promise. Once a letter had been accepted by the post office, the post office owed it to the person whose name was on the front.
+postmaster | She did not care that it was forty five years late. In her register that night she wrote a line that would cause her a great deal of trouble. Mail of 23 April 1889 located. This office will deliver.
+black |

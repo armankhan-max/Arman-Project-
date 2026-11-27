@@ -1,0 +1,60 @@
+inspector | The man from Washington was a postal inspector named Lyle Garrison. He arrived in Ashby on the eighteenth of September in a grey suit, with a briefcase and a letter of authority, and he went straight out to the farm.
+inspector | Postal inspectors were the oldest federal law enforcement officers in the country. They chased mail robbers, forgers and crooked postmasters. Garrison had spent fifteen years doing it, and he was not a sentimental man.
+inspector | His instructions were clear. The contents of the car were the property of the United States Post Office Department. Nobody was to enter it, touch it or remove anything from it without him present.
+inspector | And everything recovered would be shipped, sealed, to the Dead Letter Office in Washington, where it would be opened, inventoried, and in all likelihood destroyed.
+postmaster | Harriet Bell drove out to the farm the next morning in her late husband's Model T and told him he was wrong.
+postmaster | Their first conversation was recorded by Lyman Pratt of the Clarion, who happened to be standing next to the shaft with his notebook out.
+postmaster | She told the inspector that the mail had been accepted for delivery, that it was addressed, and that the addressees or their families were, in many cases, still living within twenty miles of where he was standing.
+inspector | Garrison told her that the regulations on undeliverable mail were perfectly clear.
+postmaster | Harriet Bell told him that this mail was not undeliverable. It was late. And she asked him whether there was a regulation that said the post office could stop owing a man his letter because it had taken too long to bring it.
+newspaper | Pratt wrote that the inspector looked at her for a long moment and then said he would have to wire Washington.
+telegraph | He wired Washington that afternoon. The answer came back four days later, and it was not the answer anyone expected.
+telegraph | The Post Office Department would allow mail recovered from the car to be delivered by the Ashby office, under the inspector's supervision, to any addressee or heir who could be identified and could prove their identity. Everything else would go to Washington. | tag:Washington/Deliver if found
+black |
+shaft | They opened the car on the twenty sixth of September, 1934.
+shaft | By then the shaft had been widened at the bottom into a small chamber, braced with timbers, so that men could stand beside the car. Joe Whitcomb had rigged electric lights off a car battery.
+mailcar_door | The side door of the mail car was still closed. Across the latch hung a heavy lead seal, the kind the post office clamped on every mail car before it left a station, stamped with the date and the number of the route.
+seal | The seal was dull grey and furred with white, but you could still read it. April 22, 1889. | tag:Lead seal/April 22, 1889
+inspector | Garrison cut it himself, with a pair of pliers, in front of witnesses. Emmett Hale, Ray Hale, Joe Whitcomb, Harriet Bell, Lyman Pratt, and a county deputy.
+logbook_close | Emmett Hale wrote down the time. Eleven twenty in the morning.
+mailcar_door | The door would not slide. The runners had rusted solid. Joe Whitcomb worked at it with a crowbar for twenty minutes, and when it finally gave, it went all at once, with a groan that Ray Hale said he could feel through his boots.
+car_interior | What they saw inside was not what any of them had braced themselves for.
+car_interior | The car was dry.
+car_interior | The water had come in. You could see the line of it on the walls, a dark tide mark about two feet off the floor. But the car had settled nose up on the slope of the sinkhole, and the mud had sealed the doors and windows before the water rose above the sorting cases.
+mail_sacks | The upper half of the car was exactly as it had been at three o'clock in the morning on the twenty third of April, 1889.
+rpo_interior | The pigeonhole cases along the walls were still full of letters, sorted, bundled with string, waiting for their stations.
+mail_sacks | The canvas sacks hung on their racks, locked with brass padlocks, tagged for the towns down the line. Pruitt. Dunmore. Ashby. Carlow. Wells.
+lantern | A brass lamp hung from the ceiling, its glass still unbroken.
+car_interior | And at the far end of the car, at the clerk's desk, they found Thomas Avery.
+black |
+car_interior | I am going to tell this part the way the people who were there told it, because they were careful about it, and I want to be careful too.
+car_interior | Thomas Avery had not drowned. The coroner who came out the next day was certain of that. He had been in the dry end of the car, above the water line, and the car had been sealed in the dark.
+tripbook | He was sitting at his desk, his head down on his folded arms, the way a man sits when he is waiting for something and has run out of strength to wait.
+tripbook | His uniform cap was on the desk beside him. His revolver was in its holster. His watch had stopped at nineteen minutes past six.
+tripbook | And under his arms, open, was his trip book.
+tripbook | Every railway mail clerk kept a trip book. It was an official record of the run. Time of departure, stations worked, sacks received and dispatched, anything unusual.
+tripbook_close | Thomas Avery's trip book for the twenty second of April begins the way every one of his trip books began, in a neat clerk's hand. Left Pruitt 3:10. Heavy rain. Worked Pruitt mail. All in order.
+tripbook_close | Then, a few lines later, the hand changes.
+tripbook_close | 3:52. Struck something. Car went down. Very dark. Water coming in at the floor.
+tripbook_close | 4:15. Car has stopped. We are under ground, I believe. Cannot open door. Called out. No answer from the engine.
+tripbook_close | 4:40. Water has stopped rising. Have moved all sacks and registered pouches to upper racks. Mail is dry.
+inspector | Lyle Garrison read that line out loud, standing in the mud at the bottom of the shaft. Pratt wrote in his notebook that the inspector's voice broke on the word dry.
+tripbook_close | There are four more entries. The handwriting gets slower and larger, and the lines begin to run downhill across the page.
+tripbook_close | 5:30. Air is bad. Lamp burning low. Have checked registered pouches against the bill. All correct.
+tripbook_close | 6:00. To my wife Ellen. Do not let them say I left the mail. Tell Rose her father thought of her.
+tripbook_close | And the last line, at 6:15, three words in a hand that is almost too faint to read. Mail is safe.
+black |
+crowd | They brought Thomas Avery up first, on the twenty seventh of September, wrapped in a canvas mail sack because it was the cleanest thing they had.
+crowd | Half the county was standing around the shaft when the rope came up. The men took off their hats. Nobody said a word.
+church | He was buried three days later in the Pruitt cemetery, next to the empty grave his wife had put up for him in 1889.
+oldwoman | His wife had been dead for nine years. But his daughter, Rose, was alive. She was forty six years old, a schoolteacher in Wichita, and she had been eleven months old the night her father went to work and did not come home.
+oldwoman | She came to the funeral. She read the trip book. And afterward she said one thing to the reporter from Wichita that he printed without comment.
+oldwoman | She said, my mother always told me he would never have left the mail. I used to think that was something she said to make me feel better.
+black |
+locomotive_buried | The locomotive was found two weeks later, nose down in the sand fifty feet east of the mail car, at seventy three feet. The engineer and the fireman were still in the cab. | depth:73
+cemetery | The express messenger, Harlan Pike, was never found. The baggage car had broken open in the fall and filled with mud. They dug as far as they dared and then stopped.
+cemetery | Walter Cass and Michael Dunne were buried beside Thomas Avery, in a single service, with a band from the railroad shops in Pruitt.
+railroad_1880s | The Kansas Western, which by then had been swallowed by a bigger railroad, sent a vice president, who made a speech, and a wreath.
+farmwife | Clara Lindqvist did not go to the speech. She stayed on her farm. She had told Emmett Hale she wanted the men out, and the men were out.
+farmwife | But she had a reason to stay home that day that she did not tell anyone about for almost a year.
+black |

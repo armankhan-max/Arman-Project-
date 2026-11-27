@@ -1,0 +1,77 @@
+mail_sacks | The mail came up out of the shaft on the first of October, 1934, in a wooden crate lowered on a rope, one sack at a time.
+inspector | Lyle Garrison checked every sack against the clerk's bill before it left the bottom of the shaft. Every count matched Thomas Avery's figures to the letter.
+postoffice | Then the sacks went into the back room of the Ashby general store, behind a locked door, and Harriet Bell and the inspector began to sort them.
+letters_table | It took them nine days just to count. Two thousand three hundred and eleven letters. Forty one registered pieces. Two hundred and six newspapers and parcels. | tag:2,311 letters/41 registered
+envelope_old | The envelopes had gone the color of weak tea, and the stamps had curled at the corners. But the addresses were readable, almost every one, in brown ink and pencil and careful copperplate.
+ledger_hand | Harriet Bell entered every single one in a new register. Addressee. Town. And a column she ruled herself, with a heading in capitals. Found.
+postmaster | Then she started looking.
+black |
+postmaster | It is hard to explain now how much work that was. In 1934 there were no records you could search. There was the memory of old people, and church books, and county land records, and the post office itself.
+oldman | Harriet Bell wrote letters. Hundreds of them. To county clerks, to pastors, to postmasters in towns across Kansas and Nebraska and Colorado, asking whether a family by such a name had ever lived there, and where they had gone.
+newspaper | Lyman Pratt printed a list in the Clarion every week, a column of names under a plain heading. Mail held at Ashby for. Other papers across the state copied it.
+crowd | And people came. Some drove a hundred miles. Some wrote from California and Oregon, where the dust had blown them. They came into the store and stood at the counter with their hats in their hands and gave their names, and Harriet Bell looked them up in her register.
+ledger_hand | When she found a match, she asked them questions about their families that only the family would know. And then she went into the back room and came out with an envelope forty five years old, and put it in their hands.
+postmaster | She never opened a single one. That was the rule. The letter belonged to the person on the front.
+black |
+oldwoman | Some of what was in those letters, we know, because the people who received them told Lyman Pratt, or told their children, and some of those children told theirs.
+oldwoman | There was a woman named Ada Whitley, sixty four years old, who had been a schoolteacher in Ashby in 1889.
+letter_reading | Her letter was from a cowboy named Sam Leary, who had worked on a ranch south of Dunmore. It was four pages long, and on the last page he asked her to marry him, and said that if she would, she should write back by return of post, and if she did not write, he would know her answer and trouble her no more.
+oldwoman | She never wrote. She never knew he had asked. Sam Leary left the county that summer and was never heard from again.
+oldwoman | Ada Whitley had married a hardware merchant in 1892 and raised five children. She read the letter at the counter of the store, and Harriet Bell said she laughed until she cried, and then just cried.
+oldwoman | Then she folded it up and put it in her purse and said, well, I suppose it is a little late to write back.
+black |
+farmer | There was a farmer named Otto Brenner, whose father had been waiting in April of 1889 for a letter from a brother in Missouri.
+envelope_old | The letter held two twenty dollar gold certificates, a loan, to make the payment on the family's quarter section.
+farmhouse | It never came. The Brenners lost that land to the bank in the summer of 1889 and spent the next twenty years as tenant farmers on other men's ground.
+farmer | Otto Brenner was sixty when he held those two notes in his hands. They were still good. The post office honored them.
+farmer | He told Pratt it was not enough to buy back an acre. He said he wanted them anyway, so his grandchildren would know the family had not been careless. Only unlucky.
+black |
+children | There were letters from children to grandparents, written in pencil on lined school paper, with drawings of horses in the margins. There were bills. Seed catalogues. A notice of a church social that had taken place forty five years before.
+letters_stack | There was a registered letter containing a man's pardon from the governor of Missouri, which arrived thirty eight years after he had died in the state prison waiting for it.
+postmaster | And there were letters to people who had simply vanished. Moved on, died, gone west, gone east, left no trace at all. For those, Harriet Bell kept looking for two years.
+ledger_hand | Her register shows how far she got. By the autumn of 1936, six hundred and thirty eight letters had been put into the hands of the people they were written to, or their children. | tag:Delivered/638
+ledger_old | The rest, sixteen hundred and seventy three, went to Washington, as the inspector had promised. What happened to them there, nobody in Ashby ever found out.
+black |
+farmwife | Which brings us back to Clara Lindqvist, and the reason she stayed home on the day of the funeral.
+farmwife | Clara had been six years old in the spring of 1889. Her family had come over from Sweden two years before and were living in a sod house on rented land south of Ashby.
+farm_family | Her father, Nils Berg, was not with them that spring. He had gone west to work on a railroad grading crew in Colorado to earn enough for a farm of their own.
+farmwife | He had written to her mother every two weeks. Clara remembered the letters coming, and her mother reading them out loud by the lamp.
+farmwife | And she remembered that in the spring of 1889 a letter did not come. Her mother waited for it all summer.
+cemetery | Her father came home in the autumn, sick with a fever he had caught in the camps, and died before Christmas. Her mother never spoke of the missing letter again.
+farmwife | On the ninth of October 1934, Harriet Bell drove out to the farm and handed Clara Lindqvist an envelope addressed in her father's handwriting to Mrs. Nils Berg, Ashby, Kansas.
+farmwife | Her mother had been dead three years. Clara was her only living child. And the letter had spent forty five years sixty feet under the ground, two hundred yards from Clara's kitchen door.
+letter_reading | It was in Swedish. Clara read it at the kitchen table, alone. She did not show it to anyone for almost a year.
+letter_reading | When she finally did, it was to Emmett Hale, and he copied part of it, in English, into the back of his log. That copy is how we know what it said.
+letter_reading | Her father had written that he had saved two hundred dollars. That he had walked the country south of Ashby on his way west and found a quarter section of open land on high ground above a creek, where the grass was greener than anywhere he had seen.
+seeds | And he had put something in the envelope. A twist of brown paper with a handful of seed wheat in it, hard red winter wheat that he had traded for from a family of Mennonite farmers in the camp, who had brought it from the Crimea.
+seeds | He wrote. This is the best seed in the world. Plant it on the high ground by the creek. That is where we will build our house.
+wheat_dry | The high ground by the creek. Above the old Saline Fork.
+farmhouse | Clara Lindqvist had bought that land in 1907 with her husband, without knowing any of it. She had chosen it, she said, because the grass was greener there in a wet year.
+black |
+seeds | The seed was still in the envelope. Forty five years in the dark, in a sealed car under sixty feet of earth.
+farmwife | Clara did not know whether it would grow. Neither did anyone else. But in the second week of October, which is when you plant winter wheat in Kansas, she took the seeds out to the field behind the house.
+well_rig | Emmett Hale had finished her well by then. He had moved the rig a quarter mile north, away from the train, and hit good water at a hundred and forty feet. | depth:140
+farmwife | She planted the seeds in a single short row, by hand, on the low swell of ground where the shaft had been filled back in. And she carried water out to them in a bucket.
+sprouts | Most of them did not come up. Eleven did.
+sprouts | Eleven thin green shoots, in a field of dust, in the worst drought anyone in Kansas had ever seen.
+farmwife | She kept them alive through the winter with that bucket. She saved every seed they made the next summer, and planted those, and saved those.
+wheat | By 1941, when the rains had finally come back to the plains, the whole of the north field on the Lindqvist place was in wheat grown from that one handful of seed.
+black |
+ledger | Lay the four records side by side and look at what they say together.
+logbook | The driller's log says that a careful man refused to drill through something he did not understand, and that because he stopped, four men came home.
+newspaper | The editor's notebook says that a whole county, in the worst year of its life, with nothing growing and no money, went out into a dead field and dug for eleven weeks for strangers who had died before most of them were born.
+tripbook | The clerk's trip book says that a man sealed in the dark, knowing he would not get out, spent the last two hours of his life making sure the letters stayed dry.
+postmaster | And the postmistress's register says that a promise made by the post office in 1889 was kept, six hundred and thirty eight times, by a sixty three year old widow who would not accept that it was too late.
+letters_stack | Thomas Avery wrote that the mail was safe. He was right. It just took forty five years to arrive.
+black |
+cemetery | Harriet Bell kept the Ashby post office until 1946. When she retired, the last thing she did was close the register of the train nine mail and write one line under the final entry.
+ledger_hand | All mail entrusted to this office has been accounted for.
+cemetery | Emmett Hale's eyes failed completely in 1940. Ray Hale took over the rig and drilled water wells across western Kansas until 1975. He kept his uncle's log in a cigar box and gave it to his granddaughter before he died.
+cemetery | Lyle Garrison retired from the Post Office Department in 1951. In his last report he listed the Ashby recovery as the case he was proudest of. He wrote, we did not catch anyone. We delivered the mail.
+farmwife | Clara Lindqvist lived on her farm until 1963. She never told the newspapers about the seed. The story only came out after her death, when her granddaughter found her father's letter folded inside her Swedish Bible, with Emmett Hale's translation pinned to it.
+wheat | The farm is still there. Somebody else farms it now. The shaft was filled in the winter of 1934, and the mail car and the locomotive are still down there, under seventy feet of Kansas, with the wheat growing over them every summer.
+wheat | And on the high ground above the old creek, if you know where to look, the wheat in the north field still comes up a little greener than anywhere else.
+black |
+kitchen_lamp | If this story stayed with you, subscribe, because there are more drillers' logs and more registers and more letters that waited much too long to be read, and I want to tell you all of them.
+kitchen_lamp | Tell me in the comments. If you had found a letter addressed to your family forty five years late, would you have opened it? And tell me where you are watching from, and what you are eating while you watch.
+plains_dawn | See you in the next one.

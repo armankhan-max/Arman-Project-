@@ -1,0 +1,52 @@
+wheat|wheat field Kansas
+wheat2|wheat harvest
+wheat3|threshing wheat
+combine|combine harvester
+farmer|Kansas farmer
+farmer2|farmer portrait
+farmwife|farm woman
+farmhouse|farmhouse Kansas
+dust|dust storm
+plains|great plains
+well|well drilling
+well2|drilling rig
+windmill|windmill farm
+digging|men digging
+shovel|shovel workers
+excavation|excavation
+steamshovel|steam shovel
+crane|crane
+railroad|railroad
+locomotive|locomotive
+freight|freight train
+boxcar|boxcar
+mailcar|mail car
+caboose|caboose
+depot|railroad station
+tracks|railroad tracks
+trestle|railroad bridge
+postoffice|post office
+postmaster|postmaster
+mail|mail sacks
+letters|letters
+mailman|rural mail carrier
+mainstreet|main street Kansas
+smalltown|small town
+grainelevator|grain elevator
+church|church Kansas
+courthouse|courthouse
+sheriff|sheriff
+newspaper|newspaper office
+crowd|crowd watching
+oldman|old man Kansas
+oldwoman|old woman Kansas
+children|farm children
+lantern|lantern
+kitchen|farm kitchen
+river|river flood
+flood|flood
+creek|creek
+cemetery|cemetery Kansas
+telegraph|telegraph
+clock|clock
+night|night town

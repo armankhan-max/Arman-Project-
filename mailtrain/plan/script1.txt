@@ -1,0 +1,83 @@
+# pool | narration | overlay (optional: tag:Line1/Line2  or depth:N)
+plains_dawn | In the summer of 1934, on a wheat farm in western Kansas, three well drillers pulled their bit up out of the ground and found it wrapped in splinters of red painted wood.
+drillbit | Not roots. Not stone. Boards. Painted the dull brick red that every railroad in America used on its freight cars.
+depth_chart | They were sixty one feet down. | depth:61
+wheat_dry | There was no railroad within four miles of that field. There had not been one for forty five years.
+drillers | By the end of that summer, half the county was standing around a hole in the middle of a dead wheat field, looking down at the roof of a railway mail car.
+mailcar_buried | Its doors were still sealed. The lead seals the post office had clamped on in 1889 had never been broken.
+mail_sacks | And inside it, stacked in canvas sacks exactly the way a clerk had left them, were two thousand three hundred and eleven letters that had never been delivered. | tag:Railway mail car/2,311 letters
+letters_stack | Every one of them was still sealed.
+ledger | Four people kept records of what came out of that hole, and almost none of it was ever printed.
+logbook | A driller who wrote everything down in a pocket book because his eyes were going and he did not trust his memory.
+postmaster | A small town postmistress who decided, against the advice of everyone around her, that the mail would be delivered.
+tripbook | A dead railway mail clerk who left the last entry in his trip book at a quarter past four in the morning, forty five years before anyone read it.
+farmwife | And a widow named Clara Lindqvist, whose field it was, and who found a letter in that car addressed to a woman she had buried.
+kitchen_lamp | If you like stories pieced together from logbooks, ledgers and letters that were never meant to be read side by side, subscribe, and tell me in the comments where you are watching from.
+kitchen_lamp | Get something to eat, get comfortable, and let's go back to Kansas in the summer of 1934.
+black |
+dust_storm | By the summer of 1934, western Kansas had not had a proper rain in almost three years.
+dust_storm | The dust came in walls. People called them black blizzards, and when one rolled in at noon the streetlights came on in town and stayed on until night.
+farmhouse | Women hung wet sheets over the windows to catch the dirt. Children walked to school with handkerchiefs tied over their mouths.
+wheat_dry | And the wheat, the hard red winter wheat that had made that whole country rich twenty years before, came up thin and pale and lay down in the wind.
+farm_family | The farm in this story sat eleven miles south of a town I am going to call Ashby, on the high flat ground between two creeks that had both gone dry.
+farmwife | It belonged to Clara Lindqvist. She was fifty one that summer, a tall square shouldered woman who had come over from Sweden as a girl, married a Swede, and buried him in the spring of 1932.
+farmwife | She had two sons, both grown, both gone to California with the wave of families who had given up on the plains.
+farmhouse | She stayed. She told her neighbors that she had not crossed an ocean to be beaten by a little weather.
+windmill | Her well was the problem. The old windmill well behind the house had been pumping sand since April, and by June it was pumping nothing at all.
+wheat_dry | Without water she would lose the last of her stock, and without stock she would lose the farm to the bank by winter.
+well_rig | So she did what people did that year when they still had a little money put away. She hired a driller.
+driller_portrait | His name was Emmett Hale. He was forty eight, a big slow careful man from the next county who had drilled water wells across western Kansas for twenty years.
+drillers | He worked with his nephew, Ray, who was nineteen, and a hired man named Joe Whitcomb who had come out of the Oklahoma oil fields and could fix anything with a hammer and a length of wire.
+well_rig | They brought a cable tool rig on a wagon, a tall wooden derrick with a steam boiler at the base that lifted a heavy iron bit and dropped it, over and over, all day long, pounding its way down through the ground.
+logbook | And Emmett Hale kept a log.
+logbook_close | It still exists. It is a small black pocket book, the kind farmers bought at the feed store, and on every page in a slow square hand he wrote the depth, the time, and what came up in the bailer.
+logbook_close | His eyes had started to fail him that year. He told his nephew he wrote everything down because he no longer trusted himself to remember it right.
+logbook | That habit is the reason we know exactly what happened in that field, foot by foot.
+well_rig | They spudded in on the morning of the ninth of July, about two hundred yards west of the house, on a low swell of ground where Emmett said the old grass grew greener in a wet year.
+depth_chart | The first twenty feet were topsoil and yellow clay. | depth:20
+depth_chart | Then sand and gravel. Then a layer of grey silt, fine as flour, that he noted with a single word. River. | depth:38
+logbook_close | That word matters. There was no river within four miles of that farm. But the ground remembered one.
+well_rig | On the afternoon of the eleventh, at fifty nine feet, the bit started to ring differently.
+drillers | Joe Whitcomb heard it first. He said it sounded like hitting a barn floor.
+drillbit | At sixty one feet the bit went through something with a crack they could hear over the boiler, and dropped two feet into nothing.
+depth_chart | When they bailed the hole, the bailer came up full of grey water and splinters of wood. | depth:61
+splinters | Emmett laid the splinters out on a feed sack to dry in the sun. They were oak, an inch and a half thick, and on one face they were painted.
+splinters | Ray Hale said afterward that his uncle stood over those boards for a long time without saying a word.
+boxcar_red | Then Emmett Hale said, that is boxcar red.
+logbook_close | In the log, under the eleventh of July, he wrote. Sixty one feet. Struck plank. Painted. Railroad. And then a line that he crossed out so hard the pencil tore the page.
+logbook | Under it he wrote something else instead. Do not tell Mrs. Lindqvist until we know.
+farmwife | They told her the next morning anyway. You cannot hide a thing like that from the woman whose kitchen window looks out on your rig.
+farmwife | She walked out to the derrick in her apron and looked at the splinters and asked Emmett Hale a very practical question. Would there still be water.
+driller_portrait | He told her he did not know what was down there. And he told her he would not drill through it until he did.
+black |
+old_map | To understand what was down there you have to go back forty five years, to the spring of 1889.
+railroad_1880s | In 1889 that country was still new. The railroads had come through in the seventies and eighties, and the towns had come with them, strung out along the tracks every ten or twelve miles like beads on a string.
+railroad_1880s | One of those lines was a small road I will call the Kansas Western, a branch that ran south and west from the main line across the high plains to the cattle towns near the Colorado border.
+old_map | It crossed the land that would one day be the Lindqvist farm. In 1889 there was no farm there. There was open grass, and a creek called the Saline Fork, and a wooden trestle over it. | tag:Saline Fork trestle/1889
+trestle | The creek was nothing most of the year. A dry bed of sand you could walk across in your boots.
+flood | But in the spring of 1889 it rained on the high plains for eleven days.
+flood | Old timers who were there talked about that spring for the rest of their lives. Creeks that had been dry for years ran bank to bank. The Saline Fork came up twelve feet in one night.
+locomotive | And at ten minutes past three on the morning of the twenty third of April, train number nine of the Kansas Western left the station at a town called Pruitt, eleven miles north, heading south toward the trestle. | tag:Train No. 9/3:10 a.m.
+locomotive | Train number nine was a night run. A locomotive, a baggage and express car, one coach that was empty that night, and a railway post office car.
+rpo_clerk | The railway post office was one of the great quiet wonders of that age. A rolling post office, a car fitted with pigeonhole cases and sack racks, where clerks sorted the mail by lamplight while the train was moving.
+rpo_clerk | They were the elite of the postal service. They had to memorize every town, every route, every connection in their territory, and they were examined on it every year.
+rpo_clerk | They worked alone or in pairs, through the night, and they were armed, because the mail car carried registered letters and money.
+clerk_portrait | The clerk on train number nine that night was a man named Thomas Avery. He was thirty one. He had a wife and a baby daughter in a rented house in Pruitt, and he had been on that run for four years.
+crew | There were three crew on the locomotive and the baggage car. The engineer, the fireman and an express messenger.
+storm_night | It was raining so hard that night that the station agent at Pruitt wrote in his book that he could not see the water tank from the platform.
+telegraph | At three forty, the agent at the next station south, a place called Dunmore, wired Pruitt to say that the Saline Fork was over its banks and asked whether number nine had left.
+telegraph | Pruitt wired back that it had.
+telegraph | Dunmore waited. Number nine never arrived.
+black |
+flood | When the water went down four days later, a section crew walked the line south from Pruitt.
+trestle_wreck | They found the trestle over the Saline Fork gone. Not broken. Gone. The pilings were snapped off level with the mud.
+flood | And they found nothing else. No locomotive. No cars. Not a wheel, not a coupling pin, not a body.
+newspaper | The newspapers said the train had gone into the flood and been carried down the creek. Search parties walked the Saline Fork for thirty miles. They dragged every pool.
+river | They found a sack of express parcels in a cottonwood tree nine miles downstream. They found a man's boot. That was all.
+crowd | Four men were lost. The engineer, Walter Cass. The fireman, a young Irishman named Michael Dunne. The express messenger, Harlan Pike. And the mail clerk, Thomas Avery.
+cemetery | Their families held funerals over empty coffins. The railroad paid each widow two hundred dollars.
+railroad_1880s | The Kansas Western never rebuilt that trestle. It rerouted the line two miles to the east, onto higher ground, and the old grade was abandoned.
+plains | Within ten years the rails had been pulled up and sold for scrap. Within twenty the grade had been plowed under for wheat.
+postoffice | And the mail on train number nine, three sacks of letters, two pouches of registered mail and a sack of newspapers, was written off by the post office department as lost by flood.
+ledger | A clerk in Washington stamped the file closed. It was never opened again until the summer of 1934.
+black |

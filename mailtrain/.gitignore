@@ -1,0 +1,11 @@
+stock/
+ai/
+comp/
+sheets/
+tts/
+fonts/
+render_parts/
+*.wav
+*.log
+mail_train_FULL.mp4
+mail_train_720p.mp4

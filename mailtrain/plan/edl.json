@@ -1,0 +1,5089 @@
+[
+{
+"start": 0.0,
+"end": 6.374479166666666,
+"pool": "plains_dawn",
+"row": 0,
+"src": {
+"vid": "stock/films/0884_Plow_that_Broke_the_Plains_The_16_30_36_10.mp4",
+"t": 218.94,
+"t1": 226
+},
+"cut": true,
+"fade_in": 20
+},
+{
+"start": 6.374479166666666,
+"end": 12.748958333333333,
+"pool": "plains_dawn",
+"row": 0,
+"src": {
+"img": "stock/fsa_c/plains_00.jpg"
+}
+},
+{
+"start": 12.748958333333333,
+"end": 17.49608333333333,
+"pool": "drillbit",
+"row": 1,
+"src": {
+"img": "ai/rig_bit_1.png"
+}
+},
+{
+"start": 17.49608333333333,
+"end": 22.24320833333333,
+"pool": "drillbit",
+"row": 1,
+"src": {
+"img": "ai/rig_bit_2.png"
+}
+},
+{
+"start": 22.24320833333333,
+"end": 24.449416666666664,
+"pool": "depth_chart",
+"row": 2,
+"ovs": [
+{
+"kind": "depth",
+"n": 61,
+"a": "Boxcar red",
+"t0": 22.74320833333333,
+"t1": 28.74320833333333
+}
+],
+"src": {
+"img": "ai/rig2_2.png"
+}
+},
+{
+"start": 24.449416666666664,
+"end": 31.401624999999996,
+"pool": "wheat_dry",
+"row": 3,
+"src": {
+"img": "stock/fsa_c/plains_12.jpg"
+}
+},
+{
+"start": 31.401624999999996,
+"end": 36.473458333333326,
+"pool": "drillers",
+"row": 4,
+"src": {
+"img": "ai/rig_bit_0.png"
+}
+},
+{
+"start": 36.473458333333326,
+"end": 41.545291666666664,
+"pool": "drillers",
+"row": 4,
+"src": {
+"img": "ai/rig_0.png"
+}
+},
+{
+"start": 41.545291666666664,
+"end": 46.37914583333333,
+"pool": "mailcar_buried",
+"row": 5,
+"src": {
+"img": "ai/mailcar_buried_2.png"
+}
+},
+{
+"start": 46.37914583333333,
+"end": 51.213,
+"pool": "mailcar_buried",
+"row": 5,
+"src": {
+"img": "ai/thumb_2.png"
+}
+},
+{
+"start": 51.213,
+"end": 56.482479166666664,
+"pool": "mail_sacks",
+"row": 6,
+"ovs": [
+{
+"kind": "tag",
+"a": "Railway mail car",
+"b": "2,311 letters",
+"t0": 51.713,
+"t1": 57.713
+}
+],
+"src": {
+"vid": "stock/films/6108_Mail_A_Story_of_the_United_States_Postal_Service_The_01_17_13_00.mp4",
+"t": 410.94,
+"t1": 418
+}
+},
+{
+"start": 56.482479166666664,
+"end": 61.751958333333334,
+"pool": "mail_sacks",
+"row": 6,
+"src": {
+"img": "ai/mail_sacks_0.png"
+}
+},
+{
+"start": 61.751958333333334,
+"end": 64.02295833333334,
+"pool": "letters_stack",
+"row": 7,
+"src": {
+"img": "ai/envelope_1.png"
+}
+},
+{
+"start": 64.02295833333334,
+"end": 70.43783333333334,
+"pool": "ledger",
+"row": 8,
+"src": {
+"img": "ai/ledger_old_0.png"
+}
+},
+{
+"start": 70.43783333333334,
+"end": 74.37883333333335,
+"pool": "logbook",
+"row": 9,
+"src": {
+"img": "stock/fsa_c/letters_22.jpg"
+}
+},
+{
+"start": 74.37883333333335,
+"end": 78.31983333333335,
+"pool": "logbook",
+"row": 9,
+"src": {
+"img": "ai/tripbook_1.png"
+}
+},
+{
+"start": 78.31983333333335,
+"end": 82.44512500000002,
+"pool": "postmaster",
+"row": 10,
+"src": {
+"img": "ai/postmaster_0.png"
+}
+},
+{
+"start": 82.44512500000002,
+"end": 86.57041666666669,
+"pool": "postmaster",
+"row": 10,
+"src": {
+"img": "stock/fsa_c/postmaster_07.jpg"
+}
+},
+{
+"start": 86.57041666666669,
+"end": 91.48493750000003,
+"pool": "tripbook",
+"row": 11,
+"src": {
+"img": "ai/tripbook_2.png"
+}
+},
+{
+"start": 91.48493750000003,
+"end": 96.39945833333336,
+"pool": "tripbook",
+"row": 11,
+"src": {
+"img": "ai/tripbook_0.png"
+}
+},
+{
+"start": 96.39945833333336,
+"end": 100.72316666666669,
+"pool": "farmwife",
+"row": 12,
+"src": {
+"img": "ai/clara_field_0.png"
+}
+},
+{
+"start": 100.72316666666669,
+"end": 105.04687500000003,
+"pool": "farmwife",
+"row": 12,
+"src": {
+"img": "stock/fsa_c/farmwife_02.jpg"
+}
+},
+{
+"start": 105.04687500000003,
+"end": 111.2857291666667,
+"pool": "kitchen_lamp",
+"row": 13,
+"src": {
+"img": "ai/kitchen_lamp_0.png"
+}
+},
+{
+"start": 111.2857291666667,
+"end": 117.52458333333337,
+"pool": "kitchen_lamp",
+"row": 13,
+"src": {
+"img": "ai/kitchen_lamp_1.png"
+}
+},
+{
+"start": 117.52458333333337,
+"end": 124.78537500000003,
+"pool": "kitchen_lamp",
+"row": 14,
+"src": {
+"vid": "stock/films/0234_Wheat_Farmer_The_05_58_43_00.mp4",
+"t": 196,
+"t1": 202
+},
+"fade_out": 12
+},
+{
+"start": 124.78537500000003,
+"end": 126.08537500000003,
+"pool": "black",
+"cut": true,
+"src": {
+"color": 0.0
+}
+},
+{
+"start": 126.08537500000003,
+"end": 133.77029166666668,
+"pool": "dust_storm",
+"row": 16,
+"src": {
+"img": "stock/fsa_c/dust_08.jpg"
+},
+"cut": true,
+"fade_in": 15
+},
+{
+"start": 133.77029166666668,
+"end": 138.84929166666666,
+"pool": "dust_storm",
+"row": 17,
+"src": {
+"img": "stock/fsa_c/dust_26.jpg"
+}
+},
+{
+"start": 138.84929166666666,
+"end": 143.92829166666667,
+"pool": "dust_storm",
+"row": 17,
+"src": {
+"img": "stock/fsa_c/dust_27.jpg"
+}
+},
+{
+"start": 143.92829166666667,
+"end": 148.10502083333333,
+"pool": "farmhouse",
+"row": 18,
+"src": {
+"img": "stock/fsa_c/farmhouse_00.jpg"
+}
+},
+{
+"start": 148.10502083333333,
+"end": 152.28175,
+"pool": "farmhouse",
+"row": 18,
+"src": {
+"img": "stock/fsa_c/farmhouse_01.jpg"
+}
+},
+{
+"start": 152.28175,
+"end": 157.39797916666663,
+"pool": "wheat_dry",
+"row": 19,
+"src": {
+"img": "stock/fsa_c/dust_21.jpg"
+}
+},
+{
+"start": 157.39797916666663,
+"end": 162.5142083333333,
+"pool": "wheat_dry",
+"row": 19,
+"src": {
+"img": "stock/fsa_c/dust_24.jpg"
+}
+},
+{
+"start": 162.5142083333333,
+"end": 167.9423333333333,
+"pool": "farm_family",
+"row": 20,
+"src": {
+"img": "stock/fsa_c/farmer2_13.jpg"
+}
+},
+{
+"start": 167.9423333333333,
+"end": 173.3704583333333,
+"pool": "farm_family",
+"row": 20,
+"src": {
+"img": "stock/fsa_c/farmwife_05.jpg"
+}
+},
+{
+"start": 173.3704583333333,
+"end": 178.3033055555555,
+"pool": "farmwife",
+"row": 21,
+"src": {
+"img": "ai/clara_2.png"
+}
+},
+{
+"start": 178.3033055555555,
+"end": 183.23615277777773,
+"pool": "farmwife",
+"row": 21,
+"src": {
+"img": "ai/clara_letter_2.png"
+}
+},
+{
+"start": 183.23615277777773,
+"end": 188.16899999999995,
+"pool": "farmwife",
+"row": 21,
+"src": {
+"img": "ai/clara_0.png"
+}
+},
+{
+"start": 188.16899999999995,
+"end": 192.31341666666663,
+"pool": "farmwife",
+"row": 22,
+"src": {
+"img": "ai/clara_letter_0.png"
+}
+},
+{
+"start": 192.31341666666663,
+"end": 196.45783333333327,
+"pool": "farmwife",
+"row": 22,
+"src": {
+"img": "ai/clara_field_2.png"
+}
+},
+{
+"start": 196.45783333333327,
+"end": 202.80312499999994,
+"pool": "farmhouse",
+"row": 23,
+"src": {
+"vid": "stock/films/0884_Plow_that_Broke_the_Plains_The_16_30_36_10.mp4",
+"t": 1289.08,
+"t1": 1296
+}
+},
+{
+"start": 202.80312499999994,
+"end": 207.70787499999994,
+"pool": "windmill",
+"row": 24,
+"src": {
+"img": "stock/fsa_c/windmill_12.jpg"
+}
+},
+{
+"start": 207.70787499999994,
+"end": 212.61262499999992,
+"pool": "windmill",
+"row": 24,
+"src": {
+"img": "stock/fsa_c/windmill_13.jpg"
+}
+},
+{
+"start": 212.61262499999992,
+"end": 220.17491666666658,
+"pool": "wheat_dry",
+"row": 25,
+"src": {
+"vid": "stock/films/0884_Plow_that_Broke_the_Plains_The_16_30_36_10.mp4",
+"t": 1364.94,
+"t1": 1378
+}
+},
+{
+"start": 220.17491666666658,
+"end": 226.59333333333322,
+"pool": "well_rig",
+"row": 26,
+"src": {
+"img": "ai/rig_bit_0.png"
+}
+},
+{
+"start": 226.59333333333322,
+"end": 232.41568749999988,
+"pool": "driller_portrait",
+"row": 27,
+"src": {
+"img": "stock/fsa_c/farmer2_14.jpg"
+}
+},
+{
+"start": 232.41568749999988,
+"end": 238.23804166666653,
+"pool": "driller_portrait",
+"row": 27,
+"src": {
+"img": "ai/driller_1.png"
+}
+},
+{
+"start": 238.23804166666653,
+"end": 242.79698611111098,
+"pool": "drillers",
+"row": 28,
+"src": {
+"img": "ai/nephew_1.png"
+}
+},
+{
+"start": 242.79698611111098,
+"end": 247.3559305555554,
+"pool": "drillers",
+"row": 28,
+"src": {
+"img": "ai/rig_bit_1.png"
+}
+},
+{
+"start": 247.3559305555554,
+"end": 251.91487499999985,
+"pool": "drillers",
+"row": 28,
+"src": {
+"img": "ai/rig_bit_2.png"
+}
+},
+{
+"start": 251.91487499999985,
+"end": 256.8467777777776,
+"pool": "well_rig",
+"row": 29,
+"src": {
+"img": "ai/rig2_1.png"
+}
+},
+{
+"start": 256.8467777777776,
+"end": 261.7786805555554,
+"pool": "well_rig",
+"row": 29,
+"src": {
+"img": "ai/rig_1.png"
+}
+},
+{
+"start": 261.7786805555554,
+"end": 266.71058333333315,
+"pool": "well_rig",
+"row": 29,
+"src": {
+"img": "ai/rig_0.png"
+}
+},
+{
+"start": 266.71058333333315,
+"end": 268.9167916666665,
+"pool": "logbook",
+"row": 30,
+"src": {
+"img": "stock/fsa_c/letters_14.jpg"
+}
+},
+{
+"start": 268.9167916666665,
+"end": 273.6419444444443,
+"pool": "logbook_close",
+"row": 31,
+"src": {
+"img": "ai/tripbook2_1.png"
+}
+},
+{
+"start": 273.6419444444443,
+"end": 278.367097222222,
+"pool": "logbook_close",
+"row": 31,
+"src": {
+"img": "ai/tripbook2_2.png"
+}
+},
+{
+"start": 278.367097222222,
+"end": 283.0922499999998,
+"pool": "logbook_close",
+"row": 31,
+"src": {
+"img": "ai/tripbook2_0.png"
+}
+},
+{
+"start": 283.0922499999998,
+"end": 287.99722916666644,
+"pool": "logbook_close",
+"row": 32,
+"src": {
+"img": "ai/tripbook2_1.png"
+}
+},
+{
+"start": 287.99722916666644,
+"end": 292.90220833333314,
+"pool": "logbook_close",
+"row": 32,
+"src": {
+"img": "ai/tripbook2_2.png"
+}
+},
+{
+"start": 292.90220833333314,
+"end": 298.69495833333315,
+"pool": "logbook",
+"row": 33,
+"src": {
+"img": "ai/tripbook_0.png"
+}
+},
+{
+"start": 298.69495833333315,
+"end": 304.7407916666665,
+"pool": "well_rig",
+"row": 34,
+"src": {
+"img": "ai/rig2_0.png"
+},
+"cut": true
+},
+{
+"start": 304.7407916666665,
+"end": 310.7866249999998,
+"pool": "well_rig",
+"row": 34,
+"src": {
+"img": "stock/fsa_c/well_24.jpg"
+}
+},
+{
+"start": 310.7866249999998,
+"end": 314.25254166666645,
+"pool": "depth_chart",
+"row": 35,
+"ovs": [
+{
+"kind": "depth",
+"n": 20,
+"a": "Depth",
+"t0": 311.2866249999998,
+"t1": 317.2866249999998
+}
+],
+"src": {
+"img": "ai/rig_2.png"
+}
+},
+{
+"start": 314.25254166666645,
+"end": 318.4227708333331,
+"pool": "depth_chart",
+"row": 36,
+"ovs": [
+{
+"kind": "depth",
+"n": 38,
+"a": "Depth",
+"t0": 314.75254166666645,
+"t1": 320.75254166666645
+}
+],
+"src": {
+"img": "ai/shaft_top_0.png"
+}
+},
+{
+"start": 318.4227708333331,
+"end": 322.5929999999998,
+"pool": "depth_chart",
+"row": 36,
+"src": {
+"img": "ai/rig_bit_1.png"
+}
+},
+{
+"start": 322.5929999999998,
+"end": 329.52341666666644,
+"pool": "logbook_close",
+"row": 37,
+"src": {
+"img": "ai/tripbook2_0.png"
+}
+},
+{
+"start": 329.52341666666644,
+"end": 335.61037499999975,
+"pool": "well_rig",
+"row": 38,
+"src": {
+"img": "stock/fsa_c/well_26.jpg"
+}
+},
+{
+"start": 335.61037499999975,
+"end": 340.90091666666643,
+"pool": "drillers",
+"row": 39,
+"src": {
+"img": "ai/rig_1.png"
+}
+},
+{
+"start": 340.90091666666643,
+"end": 344.91149999999976,
+"pool": "drillbit",
+"row": 40,
+"src": {
+"img": "ai/rig_bit_0.png"
+}
+},
+{
+"start": 344.91149999999976,
+"end": 348.9220833333331,
+"pool": "drillbit",
+"row": 40,
+"src": {
+"img": "ai/rig_bit_2.png"
+}
+},
+{
+"start": 348.9220833333331,
+"end": 354.49412499999977,
+"pool": "depth_chart",
+"row": 41,
+"ovs": [
+{
+"kind": "depth",
+"n": 61,
+"a": "Boxcar red",
+"t0": 349.4220833333331,
+"t1": 355.4220833333331
+}
+],
+"src": {
+"img": "ai/rig_0.png"
+}
+},
+{
+"start": 354.49412499999977,
+"end": 359.21070833333306,
+"pool": "splinters",
+"row": 42,
+"src": {
+"img": "ai/splinters_1.png"
+}
+},
+{
+"start": 359.21070833333306,
+"end": 363.9272916666664,
+"pool": "splinters",
+"row": 42,
+"src": {
+"img": "ai/splinters_2.png"
+}
+},
+{
+"start": 363.9272916666664,
+"end": 371.19712499999974,
+"pool": "splinters",
+"row": 43,
+"src": {
+"img": "ai/splinters_0.png"
+}
+},
+{
+"start": 371.19712499999974,
+"end": 374.58299999999974,
+"pool": "boxcar_red",
+"row": 44,
+"src": {
+"img": "stock/fsa_c/freight_16.jpg"
+}
+},
+{
+"start": 374.58299999999974,
+"end": 380.9365624999997,
+"pool": "logbook_close",
+"row": 45,
+"src": {
+"img": "ai/tripbook2_1.png"
+}
+},
+{
+"start": 380.9365624999997,
+"end": 387.2901249999997,
+"pool": "logbook_close",
+"row": 45,
+"src": {
+"img": "ai/tripbook2_2.png"
+}
+},
+{
+"start": 387.2901249999997,
+"end": 393.4647916666664,
+"pool": "logbook",
+"row": 46,
+"src": {
+"img": "ai/tripbook_2.png"
+}
+},
+{
+"start": 393.4647916666664,
+"end": 397.45941666666636,
+"pool": "farmwife",
+"row": 47,
+"src": {
+"img": "stock/fsa_c/farmwife_16.jpg"
+}
+},
+{
+"start": 397.45941666666636,
+"end": 401.45404166666634,
+"pool": "farmwife",
+"row": 47,
+"src": {
+"img": "ai/clara_field_1.png"
+}
+},
+{
+"start": 401.45404166666634,
+"end": 406.244895833333,
+"pool": "farmwife",
+"row": 48,
+"src": {
+"img": "stock/fsa_c/farmwife_18.jpg"
+}
+},
+{
+"start": 406.244895833333,
+"end": 411.03574999999967,
+"pool": "farmwife",
+"row": 48,
+"src": {
+"img": "ai/clara_1.png"
+}
+},
+{
+"start": 411.03574999999967,
+"end": 417.877333333333,
+"pool": "driller_portrait",
+"row": 49,
+"src": {
+"img": "ai/driller_2.png"
+},
+"fade_out": 12
+},
+{
+"start": 417.877333333333,
+"end": 419.177333333333,
+"pool": "black",
+"cut": true,
+"src": {
+"color": 0.0
+}
+},
+{
+"start": 419.177333333333,
+"end": 423.59212499999967,
+"pool": "old_map",
+"row": 51,
+"src": {
+"img": "ai/old_map_1.png"
+},
+"cut": true,
+"fade_in": 15
+},
+{
+"start": 423.59212499999967,
+"end": 428.00691666666637,
+"pool": "old_map",
+"row": 51,
+"src": {
+"img": "ai/old_map_2.png"
+}
+},
+{
+"start": 428.00691666666637,
+"end": 433.3839861111108,
+"pool": "railroad_1880s",
+"row": 52,
+"src": {
+"vid": "stock/films/6136_One_Hundred_Years_of_Railroad_Development_01_33_49_15.mp4",
+"t": 377.88,
+"t1": 384,
+"crop": [
+0.0,
+0.25,
+1.0,
+1.0
+]
+}
+},
+{
+"start": 433.3839861111108,
+"end": 438.7610555555553,
+"pool": "railroad_1880s",
+"row": 52,
+"src": {
+"vid": "stock/films/6136_One_Hundred_Years_of_Railroad_Development_01_33_49_15.mp4",
+"t": 411.58,
+"t1": 418,
+"crop": [
+0.0,
+0.25,
+1.0,
+1.0
+]
+}
+},
+{
+"start": 438.7610555555553,
+"end": 444.1381249999997,
+"pool": "railroad_1880s",
+"row": 52,
+"src": {
+"img": "stock/fsa_c/railroad_08.jpg"
+}
+},
+{
+"start": 444.1381249999997,
+"end": 448.8063749999997,
+"pool": "railroad_1880s",
+"row": 53,
+"src": {
+"img": "ai/crew_0.png"
+}
+},
+{
+"start": 448.8063749999997,
+"end": 453.4746249999997,
+"pool": "railroad_1880s",
+"row": 53,
+"src": {
+"img": "ai/crew_1.png"
+}
+},
+{
+"start": 453.4746249999997,
+"end": 458.1428749999997,
+"pool": "railroad_1880s",
+"row": 53,
+"src": {
+"img": "stock/fsa_c/locomotive_10.jpg"
+}
+},
+{
+"start": 458.1428749999997,
+"end": 462.9675138888886,
+"pool": "old_map",
+"row": 54,
+"ovs": [
+{
+"kind": "tag",
+"a": "Saline Fork trestle",
+"b": "1889",
+"t0": 458.6428749999997,
+"t1": 464.6428749999997
+}
+],
+"src": {
+"img": "ai/old_map_0.png"
+}
+},
+{
+"start": 462.9675138888886,
+"end": 467.79215277777746,
+"pool": "old_map",
+"row": 54,
+"src": {
+"img": "ai/old_map_1.png"
+}
+},
+{
+"start": 467.79215277777746,
+"end": 472.61679166666636,
+"pool": "old_map",
+"row": 54,
+"src": {
+"img": "ai/old_map_2.png"
+}
+},
+{
+"start": 472.61679166666636,
+"end": 478.899958333333,
+"pool": "trestle",
+"row": 55,
+"src": {
+"img": "ai/trestle_flood_0.png"
+}
+},
+{
+"start": 478.899958333333,
+"end": 486.04254166666635,
+"pool": "flood",
+"row": 56,
+"src": {
+"img": "stock/fsa_c/flood_04.jpg"
+}
+},
+{
+"start": 486.04254166666635,
+"end": 492.16216666666634,
+"pool": "flood",
+"row": 57,
+"src": {
+"img": "stock/fsa_c/flood_01.jpg"
+}
+},
+{
+"start": 492.16216666666634,
+"end": 498.2817916666663,
+"pool": "flood",
+"row": 57,
+"src": {
+"img": "stock/fsa_c/flood_15.jpg"
+}
+},
+{
+"start": 498.2817916666663,
+"end": 503.0100138888885,
+"pool": "locomotive",
+"row": 58,
+"ovs": [
+{
+"kind": "tag",
+"a": "Train No. 9",
+"b": "3:10 a.m.",
+"t0": 498.7817916666663,
+"t1": 504.7817916666663
+}
+],
+"src": {
+"img": "stock/fsa_c/locomotive_18.jpg"
+}
+},
+{
+"start": 503.0100138888885,
+"end": 507.7382361111108,
+"pool": "locomotive",
+"row": 58,
+"src": {
+"img": "ai/locomotive1889_0.png"
+}
+},
+{
+"start": 507.7382361111108,
+"end": 512.466458333333,
+"pool": "locomotive",
+"row": 58,
+"src": {
+"img": "ai/night_train_0.png"
+}
+},
+{
+"start": 512.466458333333,
+"end": 517.817145833333,
+"pool": "locomotive",
+"row": 59,
+"src": {
+"img": "stock/fsa_c/locomotive_09.jpg"
+}
+},
+{
+"start": 517.817145833333,
+"end": 523.1678333333331,
+"pool": "locomotive",
+"row": 59,
+"src": {
+"img": "ai/locomotive1889_2.png"
+}
+},
+{
+"start": 523.1678333333331,
+"end": 528.2010277777775,
+"pool": "rpo_clerk",
+"row": 60,
+"src": {
+"vid": "stock/films/6108_Mail_A_Story_of_the_United_States_Postal_Service_The_01_17_13_00.mp4",
+"t": 408.23,
+"t1": 418
+}
+},
+{
+"start": 528.2010277777775,
+"end": 533.234222222222,
+"pool": "rpo_clerk",
+"row": 60,
+"src": {
+"img": "ai/rpo_work_1.png"
+}
+},
+{
+"start": 533.234222222222,
+"end": 538.2674166666665,
+"pool": "rpo_clerk",
+"row": 60,
+"src": {
+"img": "stock/fsa_c/mailcar_02.jpg"
+}
+},
+{
+"start": 538.2674166666665,
+"end": 544.0414374999998,
+"pool": "rpo_clerk",
+"row": 61,
+"src": {
+"img": "ai/rpo_work_0.png"
+}
+},
+{
+"start": 544.0414374999998,
+"end": 549.8154583333331,
+"pool": "rpo_clerk",
+"row": 61,
+"src": {
+"img": "ai/rpo_work_2.png"
+}
+},
+{
+"start": 549.8154583333331,
+"end": 554.1406666666664,
+"pool": "rpo_clerk",
+"row": 62,
+"src": {
+"img": "stock/fsa_c/mailcar_04.jpg"
+}
+},
+{
+"start": 554.1406666666664,
+"end": 558.4658749999999,
+"pool": "rpo_clerk",
+"row": 62,
+"src": {
+"img": "stock/fsa_c/mailcar_01.jpg"
+}
+},
+{
+"start": 558.4658749999999,
+"end": 563.0479722222221,
+"pool": "clerk_portrait",
+"row": 63,
+"src": {
+"img": "ai/clerk_2.png"
+}
+},
+{
+"start": 563.0479722222221,
+"end": 567.6300694444443,
+"pool": "clerk_portrait",
+"row": 63,
+"src": {
+"img": "ai/clerk_1.png"
+}
+},
+{
+"start": 567.6300694444443,
+"end": 572.2121666666666,
+"pool": "clerk_portrait",
+"row": 63,
+"src": {
+"img": "ai/clerk_0.png"
+}
+},
+{
+"start": 572.2121666666666,
+"end": 579.9219583333332,
+"pool": "crew",
+"row": 64,
+"src": {
+"img": "ai/crew_0.png"
+}
+},
+{
+"start": 579.9219583333332,
+"end": 584.3915625,
+"pool": "storm_night",
+"row": 65,
+"src": {
+"img": "ai/night_train_2.png"
+}
+},
+{
+"start": 584.3915625,
+"end": 588.8611666666666,
+"pool": "storm_night",
+"row": 65,
+"src": {
+"img": "ai/night_train_1.png"
+}
+},
+{
+"start": 588.8611666666666,
+"end": 595.1860833333333,
+"pool": "telegraph",
+"row": 66,
+"src": {
+"img": "ai/telegraph_2.png"
+}
+},
+{
+"start": 595.1860833333333,
+"end": 601.511,
+"pool": "telegraph",
+"row": 66,
+"src": {
+"img": "ai/telegraph_1.png"
+}
+},
+{
+"start": 601.511,
+"end": 603.70675,
+"pool": "telegraph",
+"row": 67,
+"src": {
+"img": "ai/telegraph_0.png"
+}
+},
+{
+"start": 603.70675,
+"end": 606.9352083333334,
+"pool": "telegraph",
+"row": 68,
+"src": {
+"vid": "stock/films/0234_Wheat_Farmer_The_05_58_43_00.mp4",
+"t": 285.79,
+"t1": 296
+},
+"fade_out": 12
+},
+{
+"start": 606.9352083333334,
+"end": 608.2352083333334,
+"pool": "black",
+"cut": true,
+"src": {
+"color": 0.0
+}
+},
+{
+"start": 608.2352083333334,
+"end": 614.2199583333335,
+"pool": "flood",
+"row": 70,
+"src": {
+"img": "stock/fsa_c/flood_05.jpg"
+},
+"cut": true,
+"fade_in": 15
+},
+{
+"start": 614.2199583333335,
+"end": 618.5055208333335,
+"pool": "trestle_wreck",
+"row": 71,
+"src": {
+"img": "ai/trestle_gone_1.png"
+}
+},
+{
+"start": 618.5055208333335,
+"end": 622.7910833333335,
+"pool": "trestle_wreck",
+"row": 71,
+"src": {
+"img": "ai/trestle_gone_0.png"
+}
+},
+{
+"start": 622.7910833333335,
+"end": 630.2162916666668,
+"pool": "flood",
+"row": 72,
+"src": {
+"img": "ai/trestle_flood_1.png"
+}
+},
+{
+"start": 630.2162916666668,
+"end": 635.9074166666669,
+"pool": "newspaper",
+"row": 73,
+"src": {
+"img": "ai/newspaper_office_2.png"
+}
+},
+{
+"start": 635.9074166666669,
+"end": 641.5985416666668,
+"pool": "newspaper",
+"row": 73,
+"src": {
+"img": "ai/editor_1.png"
+}
+},
+{
+"start": 641.5985416666668,
+"end": 645.996916666667,
+"pool": "river",
+"row": 74,
+"src": {
+"img": "stock/fsa_c/river_27.jpg"
+}
+},
+{
+"start": 645.996916666667,
+"end": 650.3952916666669,
+"pool": "river",
+"row": 74,
+"src": {
+"img": "stock/fsa_c/river_03.jpg"
+}
+},
+{
+"start": 650.3952916666669,
+"end": 656.8336875000002,
+"pool": "crowd",
+"row": 75,
+"src": {
+"img": "ai/shaft_top_0.png"
+},
+"cut": true
+},
+{
+"start": 656.8336875000002,
+"end": 663.2720833333336,
+"pool": "crowd",
+"row": 75,
+"src": {
+"img": "stock/fsa_c/crowd_17.jpg"
+}
+},
+{
+"start": 663.2720833333336,
+"end": 670.443166666667,
+"pool": "cemetery",
+"row": 76,
+"src": {
+"img": "ai/funeral_2.png"
+}
+},
+{
+"start": 670.443166666667,
+"end": 675.6843958333337,
+"pool": "railroad_1880s",
+"row": 77,
+"src": {
+"img": "stock/fsa_c/locomotive_09.jpg"
+}
+},
+{
+"start": 675.6843958333337,
+"end": 680.9256250000004,
+"pool": "railroad_1880s",
+"row": 77,
+"src": {
+"img": "stock/fsa_c/locomotive_19.jpg"
+}
+},
+{
+"start": 680.9256250000004,
+"end": 685.0120416666671,
+"pool": "plains",
+"row": 78,
+"src": {
+"img": "stock/fsa_c/plains_11.jpg"
+}
+},
+{
+"start": 685.0120416666671,
+"end": 689.0984583333338,
+"pool": "plains",
+"row": 78,
+"src": {
+"vid": "stock/films/0884_Plow_that_Broke_the_Plains_The_16_30_36_10.mp4",
+"t": 242.44,
+"t1": 250
+}
+},
+{
+"start": 689.0984583333338,
+"end": 693.4350277777783,
+"pool": "postoffice",
+"row": 79,
+"src": {
+"img": "ai/postoffice_1.png"
+}
+},
+{
+"start": 693.4350277777783,
+"end": 697.7715972222228,
+"pool": "postoffice",
+"row": 79,
+"src": {
+"img": "stock/fsa_c/postoffice_20.jpg"
+}
+},
+{
+"start": 697.7715972222228,
+"end": 702.1081666666672,
+"pool": "postoffice",
+"row": 79,
+"src": {
+"img": "stock/fsa_c/postoffice_11.jpg"
+}
+},
+{
+"start": 702.1081666666672,
+"end": 706.3421875000006,
+"pool": "ledger",
+"row": 80,
+"src": {
+"img": "ai/ledger_old_1.png"
+}
+},
+{
+"start": 706.3421875000006,
+"end": 710.576208333334,
+"pool": "ledger",
+"row": 80,
+"src": {
+"img": "stock/fsa_c/letters_12.jpg"
+},
+"fade_out": 12
+},
+{
+"start": 710.576208333334,
+"end": 711.8762083333339,
+"pool": "black",
+"cut": true,
+"src": {
+"color": 0.0
+}
+},
+{
+"start": 711.8762083333339,
+"end": 718.0568541666673,
+"pool": "well_rig",
+"row": 82,
+"src": {
+"img": "stock/fsa_c/well_23.jpg"
+},
+"cut": true,
+"fade_in": 15
+},
+{
+"start": 718.0568541666673,
+"end": 724.2375000000006,
+"pool": "well_rig",
+"row": 82,
+"src": {
+"img": "ai/rig_bit_2.png"
+}
+},
+{
+"start": 724.2375000000006,
+"end": 730.0942500000007,
+"pool": "driller_portrait",
+"row": 83,
+"src": {
+"img": "stock/fsa_c/farmer2_19.jpg"
+}
+},
+{
+"start": 730.0942500000007,
+"end": 732.7930416666674,
+"pool": "depth_chart",
+"row": 84,
+"ovs": [
+{
+"kind": "depth",
+"n": 63,
+"a": "Depth",
+"t0": 730.5942500000007,
+"t1": 736.5942500000007
+}
+],
+"src": {
+"img": "ai/rig_bit_0.png"
+}
+},
+{
+"start": 732.7930416666674,
+"end": 735.8386666666675,
+"pool": "well_rig",
+"row": 85,
+"src": {
+"img": "ai/rig2_2.png"
+}
+},
+{
+"start": 735.8386666666675,
+"end": 740.8990416666675,
+"pool": "depth_chart",
+"row": 86,
+"ovs": [
+{
+"kind": "depth",
+"n": 66,
+"a": "Depth",
+"t0": 736.3386666666675,
+"t1": 742.3386666666675
+}
+],
+"src": {
+"img": "ai/shaft_top_2.png"
+}
+},
+{
+"start": 740.8990416666675,
+"end": 746.4498750000008,
+"pool": "logbook_close",
+"row": 87,
+"src": {
+"img": "ai/tripbook2_0.png"
+}
+},
+{
+"start": 746.4498750000008,
+"end": 752.0007083333342,
+"pool": "logbook_close",
+"row": 87,
+"src": {
+"img": "ai/tripbook2_1.png"
+}
+},
+{
+"start": 752.0007083333342,
+"end": 756.5126944444453,
+"pool": "drillers",
+"row": 88,
+"src": {
+"img": "stock/fsa_c/well_25.jpg"
+}
+},
+{
+"start": 756.5126944444453,
+"end": 761.0246805555564,
+"pool": "drillers",
+"row": 88,
+"src": {
+"img": "stock/fsa_c/well_27.jpg"
+}
+},
+{
+"start": 761.0246805555564,
+"end": 765.5366666666675,
+"pool": "drillers",
+"row": 88,
+"src": {
+"img": "ai/nephew_0.png"
+}
+},
+{
+"start": 765.5366666666675,
+"end": 769.9702500000009,
+"pool": "drillers",
+"row": 89,
+"src": {
+"img": "ai/rig_bit_1.png"
+}
+},
+{
+"start": 769.9702500000009,
+"end": 774.4038333333342,
+"pool": "drillers",
+"row": 89,
+"src": {
+"img": "ai/rig_2.png"
+}
+},
+{
+"start": 774.4038333333342,
+"end": 778.8374166666675,
+"pool": "drillers",
+"row": 89,
+"src": {
+"img": "ai/nephew_2.png"
+}
+},
+{
+"start": 778.8374166666675,
+"end": 785.0226666666675,
+"pool": "geologist",
+"row": 90,
+"src": {
+"img": "ai/geologist_1.png"
+}
+},
+{
+"start": 785.0226666666675,
+"end": 791.2079166666675,
+"pool": "geologist",
+"row": 90,
+"src": {
+"img": "ai/geologist_2.png"
+}
+},
+{
+"start": 791.2079166666675,
+"end": 797.1467638888897,
+"pool": "gypsum_cave",
+"row": 91,
+"src": {
+"img": "ai/gypsum_cave_2.png"
+}
+},
+{
+"start": 797.1467638888897,
+"end": 803.085611111112,
+"pool": "gypsum_cave",
+"row": 91,
+"src": {
+"img": "ai/gypsum_cave_1.png"
+}
+},
+{
+"start": 803.085611111112,
+"end": 809.0244583333342,
+"pool": "gypsum_cave",
+"row": 91,
+"src": {
+"img": "ai/gypsum_cave_0.png"
+}
+},
+{
+"start": 809.0244583333342,
+"end": 813.1657083333342,
+"pool": "sinkhole",
+"row": 92,
+"src": {
+"img": "ai/sinkhole_1.png"
+}
+},
+{
+"start": 813.1657083333342,
+"end": 817.3069583333343,
+"pool": "sinkhole",
+"row": 92,
+"src": {
+"img": "ai/sinkhole_0.png"
+}
+},
+{
+"start": 817.3069583333343,
+"end": 822.7046666666675,
+"pool": "old_map",
+"row": 93,
+"ovs": [
+{
+"kind": "tag",
+"a": "Old channel",
+"b": "1889",
+"t0": 817.8069583333343,
+"t1": 823.8069583333343
+}
+],
+"src": {
+"img": "ai/old_map_0.png"
+}
+},
+{
+"start": 822.7046666666675,
+"end": 828.102375000001,
+"pool": "old_map",
+"row": 93,
+"src": {
+"img": "ai/old_map_1.png"
+}
+},
+{
+"start": 828.102375000001,
+"end": 833.5000833333343,
+"pool": "old_map",
+"row": 93,
+"src": {
+"img": "ai/old_map_2.png"
+}
+},
+{
+"start": 833.5000833333343,
+"end": 837.9318888888898,
+"pool": "old_map",
+"row": 94,
+"src": {
+"img": "ai/old_map_0.png"
+}
+},
+{
+"start": 837.9318888888898,
+"end": 842.3636944444454,
+"pool": "old_map",
+"row": 94,
+"src": {
+"img": "ai/old_map_1.png"
+}
+},
+{
+"start": 842.3636944444454,
+"end": 846.795500000001,
+"pool": "old_map",
+"row": 94,
+"src": {
+"img": "ai/old_map_2.png"
+}
+},
+{
+"start": 846.795500000001,
+"end": 852.4090833333344,
+"pool": "sinkhole",
+"row": 95,
+"src": {
+"img": "ai/sinkhole_2.png"
+}
+},
+{
+"start": 852.4090833333344,
+"end": 857.9194027777788,
+"pool": "flood",
+"row": 96,
+"src": {
+"img": "stock/fsa_c/flood_02.jpg"
+}
+},
+{
+"start": 857.9194027777788,
+"end": 863.4297222222233,
+"pool": "flood",
+"row": 96,
+"src": {
+"img": "ai/flood_1.png"
+}
+},
+{
+"start": 863.4297222222233,
+"end": 868.9400416666678,
+"pool": "flood",
+"row": 96,
+"src": {
+"img": "ai/trestle_flood_2.png"
+}
+},
+{
+"start": 868.9400416666678,
+"end": 876.1325000000012,
+"pool": "sinkhole",
+"row": 97,
+"src": {
+"img": "ai/sinkhole_1.png"
+}
+},
+{
+"start": 876.1325000000012,
+"end": 881.7251250000012,
+"pool": "river",
+"row": 98,
+"src": {
+"img": "stock/fsa_c/river_05.jpg"
+}
+},
+{
+"start": 881.7251250000012,
+"end": 887.3177500000012,
+"pool": "river",
+"row": 98,
+"src": {
+"img": "stock/fsa_c/river_26.jpg"
+}
+},
+{
+"start": 887.3177500000012,
+"end": 891.5507500000012,
+"pool": "wheat",
+"row": 99,
+"src": {
+"img": "stock/fsa_c/wheat2_02.jpg"
+},
+"fade_out": 12
+},
+{
+"start": 891.5507500000012,
+"end": 892.8507500000012,
+"pool": "black",
+"cut": true,
+"src": {
+"color": 0.0
+}
+},
+{
+"start": 892.8507500000012,
+"end": 897.2533750000011,
+"pool": "farmwife",
+"row": 101,
+"src": {
+"img": "stock/fsa_c/farmwife_03.jpg"
+},
+"cut": true,
+"fade_in": 15
+},
+{
+"start": 897.2533750000011,
+"end": 901.6560000000012,
+"pool": "farmwife",
+"row": 101,
+"src": {
+"img": "stock/fsa_c/farmwife_09.jpg"
+}
+},
+{
+"start": 901.6560000000012,
+"end": 906.0258541666678,
+"pool": "farmwife",
+"row": 102,
+"src": {
+"img": "ai/clara_letter_1.png"
+}
+},
+{
+"start": 906.0258541666678,
+"end": 910.3957083333346,
+"pool": "farmwife",
+"row": 102,
+"src": {
+"img": "ai/clara_field_0.png"
+}
+},
+{
+"start": 910.3957083333346,
+"end": 914.287041666668,
+"pool": "farmwife",
+"row": 103,
+"src": {
+"img": "ai/clara_field_2.png"
+}
+},
+{
+"start": 914.287041666668,
+"end": 918.721541666668,
+"pool": "farmwife",
+"row": 104,
+"src": {
+"vid": "stock/films/0884_Plow_that_Broke_the_Plains_The_16_30_36_10.mp4",
+"t": 588.51,
+"t1": 594
+}
+},
+{
+"start": 918.721541666668,
+"end": 924.6255625000014,
+"pool": "driller_portrait",
+"row": 105,
+"src": {
+"img": "ai/driller_0.png"
+}
+},
+{
+"start": 924.6255625000014,
+"end": 930.5295833333347,
+"pool": "driller_portrait",
+"row": 105,
+"src": {
+"img": "stock/fsa_c/farmer_14.jpg"
+}
+},
+{
+"start": 930.5295833333347,
+"end": 937.9625833333347,
+"pool": "farmwife",
+"row": 106,
+"src": {
+"img": "ai/clara_field_1.png"
+}
+},
+{
+"start": 937.9625833333347,
+"end": 942.5838750000014,
+"pool": "logbook",
+"row": 107,
+"src": {
+"img": "stock/fsa_c/letters_22.jpg"
+}
+},
+{
+"start": 942.5838750000014,
+"end": 947.2051666666681,
+"pool": "logbook",
+"row": 107,
+"src": {
+"img": "ai/tripbook_1.png"
+}
+},
+{
+"start": 947.2051666666681,
+"end": 950.0975000000014,
+"pool": "excavation",
+"row": 108,
+"src": {
+"img": "ai/shaft_top_2.png"
+},
+"fade_out": 12
+},
+{
+"start": 950.0975000000014,
+"end": 951.3975000000014,
+"pool": "black",
+"cut": true,
+"src": {
+"color": 0.0
+}
+},
+{
+"start": 951.3975000000014,
+"end": 955.9154444444458,
+"pool": "smalltown",
+"row": 110,
+"src": {
+"img": "stock/fsa_c/smalltown_05.jpg"
+},
+"cut": true,
+"fade_in": 15
+},
+{
+"start": 955.9154444444458,
+"end": 960.4333888888904,
+"pool": "smalltown",
+"row": 110,
+"src": {
+"img": "stock/fsa_c/grainelevator_16.jpg"
+}
+},
+{
+"start": 960.4333888888904,
+"end": 964.9513333333348,
+"pool": "smalltown",
+"row": 110,
+"src": {
+"img": "stock/fsa_c/smalltown_24.jpg"
+}
+},
+{
+"start": 964.9513333333348,
+"end": 971.0311250000015,
+"pool": "newspaper",
+"row": 111,
+"src": {
+"img": "ai/newspaper_office_0.png"
+}
+},
+{
+"start": 971.0311250000015,
+"end": 977.1109166666681,
+"pool": "newspaper",
+"row": 111,
+"src": {
+"img": "stock/fsa_c/newspaper_11.jpg"
+}
+},
+{
+"start": 977.1109166666681,
+"end": 982.8107500000015,
+"pool": "crowd",
+"row": 112,
+"src": {
+"img": "stock/fsa_c/crowd_26.jpg"
+}
+},
+{
+"start": 982.8107500000015,
+"end": 988.5105833333348,
+"pool": "crowd",
+"row": 112,
+"src": {
+"img": "stock/fsa_c/crowd_09.jpg"
+}
+},
+{
+"start": 988.5105833333348,
+"end": 994.0127083333349,
+"pool": "excavation",
+"row": 113,
+"src": {
+"img": "ai/shaft_top_0.png"
+}
+},
+{
+"start": 994.0127083333349,
+"end": 999.5691805555572,
+"pool": "digging",
+"row": 114,
+"src": {
+"img": "stock/fsa_c/wheat2_14.jpg"
+},
+"cut": true
+},
+{
+"start": 999.5691805555572,
+"end": 1005.1256527777794,
+"pool": "digging",
+"row": 114,
+"src": {
+"img": "stock/fsa_c/shovel_02.jpg"
+}
+},
+{
+"start": 1005.1256527777794,
+"end": 1010.6821250000016,
+"pool": "digging",
+"row": 114,
+"src": {
+"img": "ai/digging_0.png"
+}
+},
+{
+"start": 1010.6821250000016,
+"end": 1017.6161250000017,
+"pool": "digging",
+"row": 115,
+"src": {
+"img": "stock/fsa_c/steamshovel_06.jpg"
+}
+},
+{
+"start": 1017.6161250000017,
+"end": 1022.9051666666684,
+"pool": "excavation",
+"row": 116,
+"src": {
+"img": "ai/thumb_2.png"
+}
+},
+{
+"start": 1022.9051666666684,
+"end": 1028.1942083333352,
+"pool": "excavation",
+"row": 116,
+"src": {
+"img": "ai/digging_2.png"
+}
+},
+{
+"start": 1028.1942083333352,
+"end": 1033.4832500000018,
+"pool": "excavation",
+"row": 116,
+"src": {
+"img": "stock/fsa_c/excavation_03.jpg"
+}
+},
+{
+"start": 1033.4832500000018,
+"end": 1038.1028541666685,
+"pool": "dust_storm",
+"row": 117,
+"src": {
+"img": "stock/fsa_c/dust_15.jpg"
+}
+},
+{
+"start": 1038.1028541666685,
+"end": 1042.7224583333352,
+"pool": "dust_storm",
+"row": 117,
+"src": {
+"img": "stock/fsa_c/dust_11.jpg"
+}
+},
+{
+"start": 1042.7224583333352,
+"end": 1047.897812500002,
+"pool": "pump",
+"row": 118,
+"src": {
+"img": "ai/pump_2.png"
+}
+},
+{
+"start": 1047.897812500002,
+"end": 1053.0731666666686,
+"pool": "pump",
+"row": 118,
+"src": {
+"img": "ai/pump_0.png"
+}
+},
+{
+"start": 1053.0731666666686,
+"end": 1057.744500000002,
+"pool": "logbook_close",
+"row": 119,
+"src": {
+"img": "ai/tripbook2_2.png"
+}
+},
+{
+"start": 1057.744500000002,
+"end": 1062.4158333333353,
+"pool": "logbook_close",
+"row": 119,
+"src": {
+"img": "ai/tripbook2_0.png"
+}
+},
+{
+"start": 1062.4158333333353,
+"end": 1066.9450833333353,
+"pool": "logbook_close",
+"row": 120,
+"src": {
+"img": "ai/tripbook2_1.png"
+}
+},
+{
+"start": 1066.9450833333353,
+"end": 1071.7456666666687,
+"pool": "shaft",
+"row": 121,
+"src": {
+"img": "ai/shaft_top_0.png"
+}
+},
+{
+"start": 1071.7456666666687,
+"end": 1076.5462500000021,
+"pool": "shaft",
+"row": 121,
+"src": {
+"img": "ai/shaft_top_1.png"
+}
+},
+{
+"start": 1076.5462500000021,
+"end": 1081.990041666669,
+"pool": "depth_chart",
+"row": 122,
+"ovs": [
+{
+"kind": "depth",
+"n": 60,
+"a": "Depth",
+"t0": 1077.0462500000021,
+"t1": 1081.690041666669
+}
+],
+"src": {
+"img": "ai/rig2_0.png"
+},
+"fade_out": 12
+},
+{
+"start": 1081.990041666669,
+"end": 1083.290041666669,
+"pool": "black",
+"cut": true,
+"src": {
+"color": 0.0
+}
+},
+{
+"start": 1083.290041666669,
+"end": 1088.8178472222244,
+"pool": "shaft",
+"row": 124,
+"src": {
+"img": "ai/shaft_1.png"
+},
+"cut": true,
+"fade_in": 15
+},
+{
+"start": 1088.8178472222244,
+"end": 1094.34565277778,
+"pool": "shaft",
+"row": 124,
+"src": {
+"img": "ai/shaft_0.png"
+}
+},
+{
+"start": 1094.34565277778,
+"end": 1099.8734583333355,
+"pool": "shaft",
+"row": 124,
+"src": {
+"img": "ai/shaft_2.png"
+}
+},
+{
+"start": 1099.8734583333355,
+"end": 1104.57702777778,
+"pool": "mailcar_buried",
+"row": 125,
+"src": {
+"img": "ai/thumb_3.png"
+}
+},
+{
+"start": 1104.57702777778,
+"end": 1109.2805972222245,
+"pool": "mailcar_buried",
+"row": 125,
+"src": {
+"img": "ai/thumb2_3.png"
+}
+},
+{
+"start": 1109.2805972222245,
+"end": 1113.984166666669,
+"pool": "mailcar_buried",
+"row": 125,
+"src": {
+"img": "ai/thumb2_2.png"
+}
+},
+{
+"start": 1113.984166666669,
+"end": 1115.9413750000024,
+"pool": "mailcar_buried",
+"row": 126,
+"ovs": [
+{
+"kind": "tag",
+"a": "Railway Post Office",
+"b": "Train No. 9",
+"t0": 1114.484166666669,
+"t1": 1120.484166666669
+}
+],
+"src": {
+"img": "ai/thumb_0.png"
+}
+},
+{
+"start": 1115.9413750000024,
+"end": 1122.391729166669,
+"pool": "drillers",
+"row": 127,
+"src": {
+"img": "ai/rig_bit_0.png"
+}
+},
+{
+"start": 1122.391729166669,
+"end": 1128.8420833333357,
+"pool": "drillers",
+"row": 127,
+"src": {
+"img": "ai/rig_bit_2.png"
+}
+},
+{
+"start": 1128.8420833333357,
+"end": 1136.2935000000025,
+"pool": "logbook_close",
+"row": 128,
+"src": {
+"img": "ai/tripbook2_2.png"
+}
+},
+{
+"start": 1136.2935000000025,
+"end": 1141.5388125000027,
+"pool": "newspaper",
+"row": 129,
+"src": {
+"img": "stock/fsa_c/newspaper_26.jpg"
+}
+},
+{
+"start": 1141.5388125000027,
+"end": 1146.7841250000026,
+"pool": "newspaper",
+"row": 129,
+"src": {
+"img": "stock/fsa_c/newspaper_23.jpg"
+}
+},
+{
+"start": 1146.7841250000026,
+"end": 1151.3966250000026,
+"pool": "newspaper",
+"row": 130,
+"src": {
+"img": "ai/editor_0.png"
+}
+},
+{
+"start": 1151.3966250000026,
+"end": 1156.0091250000028,
+"pool": "newspaper",
+"row": 130,
+"src": {
+"img": "stock/fsa_c/newspaper_22.jpg"
+}
+},
+{
+"start": 1156.0091250000028,
+"end": 1161.8933333333362,
+"pool": "inspector",
+"row": 131,
+"src": {
+"img": "stock/fsa_c/courthouse_08.jpg"
+},
+"fade_out": 12
+},
+{
+"start": 1161.8933333333362,
+"end": 1163.193333333336,
+"pool": "black",
+"cut": true,
+"src": {
+"color": 0.0
+}
+},
+{
+"start": 1163.193333333336,
+"end": 1167.8122361111139,
+"pool": "postmaster",
+"row": 133,
+"src": {
+"img": "stock/fsa_c/postmaster_06.jpg"
+},
+"cut": true,
+"fade_in": 15
+},
+{
+"start": 1167.8122361111139,
+"end": 1172.4311388888918,
+"pool": "postmaster",
+"row": 133,
+"src": {
+"img": "stock/fsa_c/postmaster_26.jpg"
+}
+},
+{
+"start": 1172.4311388888918,
+"end": 1177.0500416666696,
+"pool": "postmaster",
+"row": 133,
+"src": {
+"img": "ai/postmaster_2.png"
+}
+},
+{
+"start": 1177.0500416666696,
+"end": 1182.3434444444474,
+"pool": "postoffice",
+"row": 134,
+"src": {
+"img": "stock/fsa_c/postoffice_07.jpg"
+}
+},
+{
+"start": 1182.3434444444474,
+"end": 1187.6368472222252,
+"pool": "postoffice",
+"row": 134,
+"src": {
+"img": "ai/postoffice_0.png"
+}
+},
+{
+"start": 1187.6368472222252,
+"end": 1192.930250000003,
+"pool": "postoffice",
+"row": 134,
+"src": {
+"img": "stock/fsa_c/postoffice_08.jpg"
+}
+},
+{
+"start": 1192.930250000003,
+"end": 1197.4884166666698,
+"pool": "postmaster",
+"row": 135,
+"src": {
+"img": "ai/postmaster_1.png"
+}
+},
+{
+"start": 1197.4884166666698,
+"end": 1202.0465833333365,
+"pool": "postmaster",
+"row": 135,
+"src": {
+"img": "ai/postmaster_0.png"
+}
+},
+{
+"start": 1202.0465833333365,
+"end": 1206.7546041666697,
+"pool": "postmaster",
+"row": 136,
+"src": {
+"img": "stock/fsa_c/postmaster_07.jpg"
+}
+},
+{
+"start": 1206.7546041666697,
+"end": 1211.462625000003,
+"pool": "postmaster",
+"row": 136,
+"src": {
+"img": "stock/fsa_c/postmaster_06.jpg"
+}
+},
+{
+"start": 1211.462625000003,
+"end": 1216.6281666666698,
+"pool": "ledger_hand",
+"row": 137,
+"src": {
+"img": "ai/ledger_hand_0.png"
+}
+},
+{
+"start": 1216.6281666666698,
+"end": 1221.7937083333363,
+"pool": "ledger_hand",
+"row": 137,
+"src": {
+"img": "ai/ledger_hand_1.png"
+}
+},
+{
+"start": 1221.7937083333363,
+"end": 1226.959250000003,
+"pool": "ledger_hand",
+"row": 137,
+"src": {
+"img": "ai/ledger_hand_2.png"
+}
+},
+{
+"start": 1226.959250000003,
+"end": 1232.9514583333364,
+"pool": "ledger_old",
+"row": 138,
+"src": {
+"img": "ai/ledger_old_1.png"
+}
+},
+{
+"start": 1232.9514583333364,
+"end": 1238.6848611111143,
+"pool": "ledger_old",
+"row": 139,
+"src": {
+"img": "ai/ledger_old_0.png"
+}
+},
+{
+"start": 1238.6848611111143,
+"end": 1244.418263888892,
+"pool": "ledger_old",
+"row": 139,
+"src": {
+"img": "ai/ledger_old_2.png"
+}
+},
+{
+"start": 1244.418263888892,
+"end": 1250.1516666666698,
+"pool": "ledger_old",
+"row": 139,
+"src": {
+"img": "ai/ledger_old_1.png"
+}
+},
+{
+"start": 1250.1516666666698,
+"end": 1254.9467083333366,
+"pool": "postmaster",
+"row": 140,
+"src": {
+"img": "stock/fsa_c/postmaster_26.jpg"
+}
+},
+{
+"start": 1254.9467083333366,
+"end": 1259.741750000003,
+"pool": "postmaster",
+"row": 140,
+"src": {
+"img": "ai/postmaster_2.png"
+}
+},
+{
+"start": 1259.741750000003,
+"end": 1264.2522708333363,
+"pool": "letters_stack",
+"row": 141,
+"src": {
+"vid": "stock/films/6108_Mail_A_Story_of_the_United_States_Postal_Service_The_01_17_13_00.mp4",
+"t": 340.17,
+"t1": 346
+}
+},
+{
+"start": 1264.2522708333363,
+"end": 1268.7627916666697,
+"pool": "letters_stack",
+"row": 141,
+"src": {
+"img": "ai/envelope_0.png"
+}
+},
+{
+"start": 1268.7627916666697,
+"end": 1274.9356458333364,
+"pool": "postmaster",
+"row": 142,
+"src": {
+"img": "ai/postmaster_1.png"
+}
+},
+{
+"start": 1274.9356458333364,
+"end": 1281.108500000003,
+"pool": "postmaster",
+"row": 142,
+"src": {
+"img": "ai/postmaster_0.png"
+}
+},
+{
+"start": 1281.108500000003,
+"end": 1286.542625000003,
+"pool": "postmaster",
+"row": 143,
+"src": {
+"img": "stock/fsa_c/postmaster_07.jpg"
+}
+},
+{
+"start": 1286.542625000003,
+"end": 1291.976750000003,
+"pool": "postmaster",
+"row": 143,
+"src": {
+"img": "stock/fsa_c/postmaster_06.jpg"
+}
+},
+{
+"start": 1291.976750000003,
+"end": 1297.410875000003,
+"pool": "postmaster",
+"row": 143,
+"src": {
+"img": "stock/fsa_c/postmaster_26.jpg"
+},
+"fade_out": 12
+},
+{
+"start": 1297.410875000003,
+"end": 1298.710875000003,
+"pool": "black",
+"cut": true,
+"src": {
+"color": 0.0
+}
+},
+{
+"start": 1298.710875000003,
+"end": 1303.6094722222251,
+"pool": "inspector",
+"row": 145,
+"src": {
+"img": "ai/inspector_2.png"
+},
+"cut": true,
+"fade_in": 15
+},
+{
+"start": 1303.6094722222251,
+"end": 1308.5080694444475,
+"pool": "inspector",
+"row": 145,
+"src": {
+"img": "ai/inspector_1.png"
+}
+},
+{
+"start": 1308.5080694444475,
+"end": 1313.4066666666697,
+"pool": "inspector",
+"row": 145,
+"src": {
+"img": "ai/inspector_0.png"
+}
+},
+{
+"start": 1313.4066666666697,
+"end": 1318.721125000003,
+"pool": "inspector",
+"row": 146,
+"src": {
+"img": "stock/fsa_c/courthouse_00.jpg"
+}
+},
+{
+"start": 1318.721125000003,
+"end": 1324.0355833333365,
+"pool": "inspector",
+"row": 146,
+"src": {
+"img": "stock/fsa_c/courthouse_08.jpg"
+}
+},
+{
+"start": 1324.0355833333365,
+"end": 1329.3500416666698,
+"pool": "inspector",
+"row": 146,
+"src": {
+"img": "ai/inspector_2.png"
+}
+},
+{
+"start": 1329.3500416666698,
+"end": 1333.9256805555588,
+"pool": "inspector",
+"row": 147,
+"src": {
+"img": "ai/inspector_1.png"
+}
+},
+{
+"start": 1333.9256805555588,
+"end": 1338.5013194444475,
+"pool": "inspector",
+"row": 147,
+"src": {
+"img": "ai/inspector_0.png"
+}
+},
+{
+"start": 1338.5013194444475,
+"end": 1343.0769583333365,
+"pool": "inspector",
+"row": 147,
+"src": {
+"img": "stock/fsa_c/courthouse_00.jpg"
+}
+},
+{
+"start": 1343.0769583333365,
+"end": 1348.5914583333365,
+"pool": "inspector",
+"row": 148,
+"src": {
+"img": "stock/fsa_c/courthouse_08.jpg"
+},
+"cut": true
+},
+{
+"start": 1348.5914583333365,
+"end": 1354.1059583333365,
+"pool": "inspector",
+"row": 148,
+"src": {
+"img": "ai/inspector_2.png"
+}
+},
+{
+"start": 1354.1059583333365,
+"end": 1361.2835416666699,
+"pool": "postmaster",
+"row": 149,
+"src": {
+"img": "ai/postmaster_2.png"
+}
+},
+{
+"start": 1361.2835416666699,
+"end": 1365.6491666666698,
+"pool": "postmaster",
+"row": 150,
+"src": {
+"img": "ai/postmaster_1.png"
+}
+},
+{
+"start": 1365.6491666666698,
+"end": 1370.01479166667,
+"pool": "postmaster",
+"row": 150,
+"src": {
+"img": "ai/postmaster_0.png"
+}
+},
+{
+"start": 1370.01479166667,
+"end": 1374.658763888892,
+"pool": "postmaster",
+"row": 151,
+"src": {
+"img": "stock/fsa_c/postmaster_07.jpg"
+}
+},
+{
+"start": 1374.658763888892,
+"end": 1379.3027361111144,
+"pool": "postmaster",
+"row": 151,
+"src": {
+"img": "stock/fsa_c/postmaster_06.jpg"
+}
+},
+{
+"start": 1379.3027361111144,
+"end": 1383.9467083333366,
+"pool": "postmaster",
+"row": 151,
+"src": {
+"img": "stock/fsa_c/postmaster_26.jpg"
+}
+},
+{
+"start": 1383.9467083333366,
+"end": 1390.2358333333366,
+"pool": "inspector",
+"row": 152,
+"src": {
+"img": "ai/inspector_1.png"
+}
+},
+{
+"start": 1390.2358333333366,
+"end": 1395.0620833333367,
+"pool": "postmaster",
+"row": 153,
+"src": {
+"img": "ai/postmaster_2.png"
+}
+},
+{
+"start": 1395.0620833333367,
+"end": 1399.8883333333365,
+"pool": "postmaster",
+"row": 153,
+"src": {
+"img": "ai/postmaster_1.png"
+}
+},
+{
+"start": 1399.8883333333365,
+"end": 1404.7145833333366,
+"pool": "postmaster",
+"row": 153,
+"src": {
+"img": "ai/postmaster_0.png"
+}
+},
+{
+"start": 1404.7145833333366,
+"end": 1411.6609583333366,
+"pool": "newspaper",
+"row": 154,
+"src": {
+"img": "ai/newspaper_office_1.png"
+}
+},
+{
+"start": 1411.6609583333366,
+"end": 1415.9672500000033,
+"pool": "telegraph",
+"row": 155,
+"src": {
+"img": "ai/telegraph_2.png"
+}
+},
+{
+"start": 1415.9672500000033,
+"end": 1420.2735416666699,
+"pool": "telegraph",
+"row": 155,
+"src": {
+"img": "ai/telegraph_1.png"
+}
+},
+{
+"start": 1420.2735416666699,
+"end": 1426.0890972222255,
+"pool": "telegraph",
+"row": 156,
+"ovs": [
+{
+"kind": "tag",
+"a": "Washington",
+"b": "Deliver if found",
+"t0": 1420.7735416666699,
+"t1": 1426.7735416666699
+}
+],
+"src": {
+"img": "ai/telegraph_0.png"
+}
+},
+{
+"start": 1426.0890972222255,
+"end": 1431.904652777781,
+"pool": "telegraph",
+"row": 156,
+"src": {
+"vid": "stock/films/0234_Wheat_Farmer_The_05_58_43_00.mp4",
+"t": 289.68,
+"t1": 296
+}
+},
+{
+"start": 1431.904652777781,
+"end": 1437.7202083333366,
+"pool": "telegraph",
+"row": 156,
+"src": {
+"img": "ai/telegraph_2.png"
+},
+"fade_out": 12
+},
+{
+"start": 1437.7202083333366,
+"end": 1439.0202083333365,
+"pool": "black",
+"cut": true,
+"src": {
+"color": 0.0
+}
+},
+{
+"start": 1439.0202083333365,
+"end": 1444.4930000000033,
+"pool": "shaft",
+"row": 158,
+"src": {
+"img": "ai/shaft_top_2.png"
+},
+"cut": true,
+"fade_in": 15
+},
+{
+"start": 1444.4930000000033,
+"end": 1448.9390000000033,
+"pool": "shaft",
+"row": 159,
+"src": {
+"img": "ai/shaft_top_0.png"
+}
+},
+{
+"start": 1448.9390000000033,
+"end": 1453.3850000000034,
+"pool": "shaft",
+"row": 159,
+"src": {
+"img": "ai/shaft_top_1.png"
+}
+},
+{
+"start": 1453.3850000000034,
+"end": 1457.8310000000033,
+"pool": "shaft",
+"row": 159,
+"src": {
+"img": "ai/shaft_1.png"
+}
+},
+{
+"start": 1457.8310000000033,
+"end": 1462.7875277777812,
+"pool": "mailcar_door",
+"row": 160,
+"src": {
+"img": "ai/mailcar_door_1.png"
+}
+},
+{
+"start": 1462.7875277777812,
+"end": 1467.7440555555588,
+"pool": "mailcar_door",
+"row": 160,
+"src": {
+"img": "ai/mailcar_door_2.png"
+}
+},
+{
+"start": 1467.7440555555588,
+"end": 1472.7005833333367,
+"pool": "mailcar_door",
+"row": 160,
+"src": {
+"img": "ai/mailcar_door_0.png"
+}
+},
+{
+"start": 1472.7005833333367,
+"end": 1477.25385416667,
+"pool": "seal",
+"row": 161,
+"ovs": [
+{
+"kind": "tag",
+"a": "Lead seal",
+"b": "April 22, 1889",
+"t0": 1473.2005833333367,
+"t1": 1479.2005833333367
+}
+],
+"src": {
+"img": "ai/seal_2.png"
+}
+},
+{
+"start": 1477.25385416667,
+"end": 1481.8071250000035,
+"pool": "seal",
+"row": 161,
+"src": {
+"img": "ai/seal_1.png"
+}
+},
+{
+"start": 1481.8071250000035,
+"end": 1487.5170625000035,
+"pool": "inspector",
+"row": 162,
+"src": {
+"img": "ai/inspector_0.png"
+}
+},
+{
+"start": 1487.5170625000035,
+"end": 1493.2270000000035,
+"pool": "inspector",
+"row": 162,
+"src": {
+"img": "stock/fsa_c/courthouse_00.jpg"
+}
+},
+{
+"start": 1493.2270000000035,
+"end": 1497.630583333337,
+"pool": "logbook_close",
+"row": 163,
+"src": {
+"img": "ai/tripbook2_0.png"
+}
+},
+{
+"start": 1497.630583333337,
+"end": 1502.9180555555592,
+"pool": "mailcar_door",
+"row": 164,
+"src": {
+"img": "ai/mailcar_door_1.png"
+}
+},
+{
+"start": 1502.9180555555592,
+"end": 1508.2055277777813,
+"pool": "mailcar_door",
+"row": 164,
+"src": {
+"img": "ai/mailcar_door_2.png"
+}
+},
+{
+"start": 1508.2055277777813,
+"end": 1513.4930000000036,
+"pool": "mailcar_door",
+"row": 164,
+"src": {
+"img": "ai/mailcar_door_0.png"
+}
+},
+{
+"start": 1513.4930000000036,
+"end": 1518.6112916666702,
+"pool": "car_interior",
+"row": 165,
+"src": {
+"img": "ai/car_interior2_2.png"
+}
+},
+{
+"start": 1518.6112916666702,
+"end": 1520.390708333337,
+"pool": "car_interior",
+"row": 166,
+"src": {
+"img": "ai/car_interior2_1.png"
+}
+},
+{
+"start": 1520.390708333337,
+"end": 1524.975583333337,
+"pool": "car_interior",
+"row": 167,
+"src": {
+"img": "ai/car_interior2_0.png"
+}
+},
+{
+"start": 1524.975583333337,
+"end": 1529.560458333337,
+"pool": "car_interior",
+"row": 167,
+"src": {
+"img": "ai/car_interior_1.png"
+}
+},
+{
+"start": 1529.560458333337,
+"end": 1534.145333333337,
+"pool": "car_interior",
+"row": 167,
+"src": {
+"img": "ai/car_interior_0.png"
+}
+},
+{
+"start": 1534.145333333337,
+"end": 1538.730208333337,
+"pool": "car_interior",
+"row": 167,
+"src": {
+"img": "ai/car_interior_2.png"
+}
+},
+{
+"start": 1538.730208333337,
+"end": 1543.5912500000036,
+"pool": "mail_sacks",
+"row": 168,
+"src": {
+"img": "ai/mail_sacks_1.png"
+}
+},
+{
+"start": 1543.5912500000036,
+"end": 1548.4522916666704,
+"pool": "mail_sacks",
+"row": 168,
+"src": {
+"img": "ai/mail_sacks_2.png"
+}
+},
+{
+"start": 1548.4522916666704,
+"end": 1552.7872500000037,
+"pool": "rpo_interior",
+"row": 169,
+"src": {
+"img": "ai/rpo_work_2.png"
+}
+},
+{
+"start": 1552.7872500000037,
+"end": 1557.122208333337,
+"pool": "rpo_interior",
+"row": 169,
+"src": {
+"img": "stock/fsa_c/mailcar_04.jpg"
+}
+},
+{
+"start": 1557.122208333337,
+"end": 1562.2740416666704,
+"pool": "mail_sacks",
+"row": 170,
+"src": {
+"vid": "stock/films/6108_Mail_A_Story_of_the_United_States_Postal_Service_The_01_17_13_00.mp4",
+"t": 297.33,
+"t1": 316
+}
+},
+{
+"start": 1562.2740416666704,
+"end": 1567.4258750000038,
+"pool": "mail_sacks",
+"row": 170,
+"src": {
+"img": "stock/fsa_c/mailcar_06.jpg"
+}
+},
+{
+"start": 1567.4258750000038,
+"end": 1571.9832500000039,
+"pool": "lantern",
+"row": 171,
+"src": {
+"img": "ai/car_interior2_1.png"
+}
+},
+{
+"start": 1571.9832500000039,
+"end": 1576.6392916666705,
+"pool": "car_interior",
+"row": 172,
+"src": {
+"img": "ai/car_interior2_2.png"
+},
+"fade_out": 12
+},
+{
+"start": 1576.6392916666705,
+"end": 1577.9392916666704,
+"pool": "black",
+"cut": true,
+"src": {
+"color": 0.0
+}
+},
+{
+"start": 1577.9392916666704,
+"end": 1582.2428541666704,
+"pool": "car_interior",
+"row": 174,
+"src": {
+"img": "ai/car_interior2_1.png"
+},
+"cut": true,
+"fade_in": 15
+},
+{
+"start": 1582.2428541666704,
+"end": 1586.5464166666704,
+"pool": "car_interior",
+"row": 174,
+"src": {
+"img": "ai/car_interior2_0.png"
+}
+},
+{
+"start": 1586.5464166666704,
+"end": 1590.8873888888927,
+"pool": "car_interior",
+"row": 175,
+"src": {
+"img": "ai/car_interior_1.png"
+}
+},
+{
+"start": 1590.8873888888927,
+"end": 1595.228361111115,
+"pool": "car_interior",
+"row": 175,
+"src": {
+"img": "ai/car_interior_0.png"
+}
+},
+{
+"start": 1595.228361111115,
+"end": 1599.5693333333372,
+"pool": "car_interior",
+"row": 175,
+"src": {
+"img": "ai/car_interior_2.png"
+}
+},
+{
+"start": 1599.5693333333372,
+"end": 1604.650000000004,
+"pool": "tripbook",
+"row": 176,
+"src": {
+"img": "ai/tripbook_1.png"
+}
+},
+{
+"start": 1604.650000000004,
+"end": 1609.7306666666707,
+"pool": "tripbook",
+"row": 176,
+"src": {
+"img": "ai/tripbook_2.png"
+}
+},
+{
+"start": 1609.7306666666707,
+"end": 1614.591500000004,
+"pool": "tripbook",
+"row": 177,
+"src": {
+"img": "ai/tripbook_0.png"
+}
+},
+{
+"start": 1614.591500000004,
+"end": 1619.4523333333375,
+"pool": "tripbook",
+"row": 177,
+"src": {
+"img": "ai/tripbook_1.png"
+}
+},
+{
+"start": 1619.4523333333375,
+"end": 1622.7256250000041,
+"pool": "tripbook",
+"row": 178,
+"src": {
+"img": "ai/tripbook_2.png"
+}
+},
+{
+"start": 1622.7256250000041,
+"end": 1628.8484791666708,
+"pool": "tripbook",
+"row": 179,
+"src": {
+"img": "ai/tripbook_0.png"
+}
+},
+{
+"start": 1628.8484791666708,
+"end": 1634.9713333333375,
+"pool": "tripbook",
+"row": 179,
+"src": {
+"img": "ai/tripbook_1.png"
+}
+},
+{
+"start": 1634.9713333333375,
+"end": 1639.6274444444487,
+"pool": "tripbook_close",
+"row": 180,
+"src": {
+"img": "ai/tripbook2_1.png"
+}
+},
+{
+"start": 1639.6274444444487,
+"end": 1644.2835555555598,
+"pool": "tripbook_close",
+"row": 180,
+"src": {
+"img": "ai/tripbook2_2.png"
+}
+},
+{
+"start": 1644.2835555555598,
+"end": 1648.939666666671,
+"pool": "tripbook_close",
+"row": 180,
+"src": {
+"img": "ai/tripbook2_0.png"
+}
+},
+{
+"start": 1648.939666666671,
+"end": 1652.2298750000043,
+"pool": "tripbook_close",
+"row": 181,
+"src": {
+"img": "ai/tripbook_0.png"
+}
+},
+{
+"start": 1652.2298750000043,
+"end": 1658.730791666671,
+"pool": "tripbook_close",
+"row": 182,
+"src": {
+"img": "ai/tripbook2_1.png"
+}
+},
+{
+"start": 1658.730791666671,
+"end": 1663.0669375000043,
+"pool": "tripbook_close",
+"row": 183,
+"src": {
+"img": "ai/tripbook_2.png"
+}
+},
+{
+"start": 1663.0669375000043,
+"end": 1667.4030833333377,
+"pool": "tripbook_close",
+"row": 183,
+"src": {
+"img": "ai/tripbook_1.png"
+}
+},
+{
+"start": 1667.4030833333377,
+"end": 1671.8789375000042,
+"pool": "tripbook_close",
+"row": 184,
+"src": {
+"img": "ai/tripbook2_2.png"
+}
+},
+{
+"start": 1671.8789375000042,
+"end": 1676.354791666671,
+"pool": "tripbook_close",
+"row": 184,
+"src": {
+"img": "ai/tripbook2_0.png"
+}
+},
+{
+"start": 1676.354791666671,
+"end": 1681.9658333333377,
+"pool": "inspector",
+"row": 185,
+"src": {
+"img": "stock/fsa_c/courthouse_08.jpg"
+},
+"cut": true
+},
+{
+"start": 1681.9658333333377,
+"end": 1687.5768750000043,
+"pool": "inspector",
+"row": 185,
+"src": {
+"img": "ai/inspector_2.png"
+}
+},
+{
+"start": 1687.5768750000043,
+"end": 1691.8795000000043,
+"pool": "tripbook_close",
+"row": 186,
+"src": {
+"img": "ai/tripbook_0.png"
+}
+},
+{
+"start": 1691.8795000000043,
+"end": 1696.1821250000044,
+"pool": "tripbook_close",
+"row": 186,
+"src": {
+"img": "ai/tripbook2_1.png"
+}
+},
+{
+"start": 1696.1821250000044,
+"end": 1700.2044375000044,
+"pool": "tripbook_close",
+"row": 187,
+"src": {
+"img": "ai/tripbook_2.png"
+}
+},
+{
+"start": 1700.2044375000044,
+"end": 1704.2267500000044,
+"pool": "tripbook_close",
+"row": 187,
+"src": {
+"img": "ai/tripbook_1.png"
+}
+},
+{
+"start": 1704.2267500000044,
+"end": 1711.9537083333378,
+"pool": "tripbook_close",
+"row": 188,
+"src": {
+"img": "ai/tripbook2_2.png"
+}
+},
+{
+"start": 1711.9537083333378,
+"end": 1719.3553750000044,
+"pool": "tripbook_close",
+"row": 189,
+"src": {
+"img": "ai/tripbook2_0.png"
+},
+"fade_out": 12
+},
+{
+"start": 1719.3553750000044,
+"end": 1720.6553750000044,
+"pool": "black",
+"cut": true,
+"src": {
+"color": 0.0
+}
+},
+{
+"start": 1720.6553750000044,
+"end": 1725.5420208333376,
+"pool": "crowd",
+"row": 191,
+"src": {
+"img": "stock/fsa_c/crowd_11.jpg"
+},
+"cut": true,
+"fade_in": 15
+},
+{
+"start": 1725.5420208333376,
+"end": 1730.428666666671,
+"pool": "crowd",
+"row": 191,
+"src": {
+"img": "ai/shaft_top_1.png"
+}
+},
+{
+"start": 1730.428666666671,
+"end": 1734.3850208333376,
+"pool": "crowd",
+"row": 192,
+"src": {
+"img": "ai/crowd_hats_1.png"
+}
+},
+{
+"start": 1734.3850208333376,
+"end": 1738.3413750000043,
+"pool": "crowd",
+"row": 192,
+"src": {
+"img": "ai/shaft_top_2.png"
+}
+},
+{
+"start": 1738.3413750000043,
+"end": 1743.206041666671,
+"pool": "church",
+"row": 193,
+"src": {
+"img": "stock/fsa_c/church_02.jpg"
+}
+},
+{
+"start": 1743.206041666671,
+"end": 1748.0707083333377,
+"pool": "church",
+"row": 193,
+"src": {
+"img": "stock/fsa_c/church_00.jpg"
+}
+},
+{
+"start": 1748.0707083333377,
+"end": 1753.2381388888932,
+"pool": "oldwoman",
+"row": 194,
+"src": {
+"img": "ai/ada_1.png"
+}
+},
+{
+"start": 1753.2381388888932,
+"end": 1758.405569444449,
+"pool": "oldwoman",
+"row": 194,
+"src": {
+"img": "ai/ada_2.png"
+}
+},
+{
+"start": 1758.405569444449,
+"end": 1763.5730000000044,
+"pool": "oldwoman",
+"row": 194,
+"src": {
+"img": "stock/fsa_c/farmwife_03.jpg"
+}
+},
+{
+"start": 1763.5730000000044,
+"end": 1768.3476250000044,
+"pool": "oldwoman",
+"row": 195,
+"src": {
+"img": "stock/fsa_c/postmaster_06.jpg"
+}
+},
+{
+"start": 1768.3476250000044,
+"end": 1773.1222500000044,
+"pool": "oldwoman",
+"row": 195,
+"src": {
+"img": "ai/rose_2.png"
+}
+},
+{
+"start": 1773.1222500000044,
+"end": 1777.3676875000044,
+"pool": "oldwoman",
+"row": 196,
+"src": {
+"img": "ai/rose_0.png"
+}
+},
+{
+"start": 1777.3676875000044,
+"end": 1781.6131250000044,
+"pool": "oldwoman",
+"row": 196,
+"src": {
+"img": "ai/ada_0.png"
+},
+"fade_out": 12
+},
+{
+"start": 1781.6131250000044,
+"end": 1782.9131250000044,
+"pool": "black",
+"cut": true,
+"src": {
+"color": 0.0
+}
+},
+{
+"start": 1782.9131250000044,
+"end": 1789.0887500000044,
+"pool": "locomotive_buried",
+"row": 198,
+"ovs": [
+{
+"kind": "depth",
+"n": 73,
+"a": "Depth",
+"t0": 1783.4131250000044,
+"t1": 1789.4131250000044
+}
+],
+"src": {
+"img": "ai/shaft_1.png"
+},
+"cut": true,
+"fade_in": 15
+},
+{
+"start": 1789.0887500000044,
+"end": 1795.2643750000043,
+"pool": "locomotive_buried",
+"row": 198,
+"src": {
+"img": "ai/shaft_0.png"
+}
+},
+{
+"start": 1795.2643750000043,
+"end": 1801.317979166671,
+"pool": "cemetery",
+"row": 199,
+"src": {
+"img": "stock/fsa_c/church_01.jpg"
+}
+},
+{
+"start": 1801.317979166671,
+"end": 1807.3715833333376,
+"pool": "cemetery",
+"row": 199,
+"src": {
+"img": "ai/funeral_1.png"
+}
+},
+{
+"start": 1807.3715833333376,
+"end": 1811.955479166671,
+"pool": "cemetery",
+"row": 200,
+"src": {
+"img": "ai/funeral_0.png"
+}
+},
+{
+"start": 1811.955479166671,
+"end": 1816.5393750000044,
+"pool": "cemetery",
+"row": 200,
+"src": {
+"img": "stock/fsa_c/church_02.jpg"
+}
+},
+{
+"start": 1816.5393750000044,
+"end": 1821.010604166671,
+"pool": "railroad_1880s",
+"row": 201,
+"src": {
+"img": "ai/locomotive1889_0.png"
+}
+},
+{
+"start": 1821.010604166671,
+"end": 1825.4818333333378,
+"pool": "railroad_1880s",
+"row": 201,
+"src": {
+"img": "ai/crew_2.png"
+}
+},
+{
+"start": 1825.4818333333378,
+"end": 1830.1053958333378,
+"pool": "farmwife",
+"row": 202,
+"src": {
+"vid": "stock/films/0884_Plow_that_Broke_the_Plains_The_16_30_36_10.mp4",
+"t": 573.28,
+"t1": 578
+}
+},
+{
+"start": 1830.1053958333378,
+"end": 1834.728958333338,
+"pool": "farmwife",
+"row": 202,
+"src": {
+"img": "stock/fsa_c/farmwife_28.jpg"
+}
+},
+{
+"start": 1834.728958333338,
+"end": 1840.8419166666713,
+"pool": "farmwife",
+"row": 203,
+"src": {
+"img": "ai/clara_field_0.png"
+},
+"fade_out": 12
+},
+{
+"start": 1840.8419166666713,
+"end": 1842.1419166666712,
+"pool": "black",
+"cut": true,
+"src": {
+"color": 0.0
+}
+},
+{
+"start": 1842.1419166666712,
+"end": 1847.146458333338,
+"pool": "mail_sacks",
+"row": 205,
+"src": {
+"img": "stock/fsa_c/mailcar_05.jpg"
+},
+"cut": true,
+"fade_in": 15
+},
+{
+"start": 1847.146458333338,
+"end": 1852.1510000000046,
+"pool": "mail_sacks",
+"row": 205,
+"src": {
+"img": "stock/fsa_c/mailcar_14.jpg"
+}
+},
+{
+"start": 1852.1510000000046,
+"end": 1857.139333333338,
+"pool": "inspector",
+"row": 206,
+"src": {
+"img": "ai/inspector_1.png"
+}
+},
+{
+"start": 1857.139333333338,
+"end": 1862.1276666666713,
+"pool": "inspector",
+"row": 206,
+"src": {
+"img": "ai/inspector_0.png"
+}
+},
+{
+"start": 1862.1276666666713,
+"end": 1867.009333333338,
+"pool": "postoffice",
+"row": 207,
+"src": {
+"img": "stock/fsa_c/postoffice_15.jpg"
+}
+},
+{
+"start": 1867.009333333338,
+"end": 1871.8910000000046,
+"pool": "postoffice",
+"row": 207,
+"src": {
+"vid": "stock/films/6108_Mail_A_Story_of_the_United_States_Postal_Service_The_01_17_13_00.mp4",
+"t": 305.5,
+"t1": 316
+}
+},
+{
+"start": 1871.8910000000046,
+"end": 1877.6491666666714,
+"pool": "letters_table",
+"row": 208,
+"ovs": [
+{
+"kind": "tag",
+"a": "2,311 letters",
+"b": "41 registered",
+"t0": 1872.3910000000046,
+"t1": 1878.3910000000046
+}
+],
+"src": {
+"img": "ai/letters_stack_0.png"
+}
+},
+{
+"start": 1877.6491666666714,
+"end": 1883.407333333338,
+"pool": "letters_table",
+"row": 208,
+"src": {
+"img": "ai/letters_table_0.png"
+}
+},
+{
+"start": 1883.407333333338,
+"end": 1887.8680694444492,
+"pool": "envelope_old",
+"row": 209,
+"src": {
+"img": "ai/envelope_0.png"
+}
+},
+{
+"start": 1887.8680694444492,
+"end": 1892.3288055555604,
+"pool": "envelope_old",
+"row": 209,
+"src": {
+"img": "ai/envelope_2.png"
+}
+},
+{
+"start": 1892.3288055555604,
+"end": 1896.7895416666715,
+"pool": "envelope_old",
+"row": 209,
+"src": {
+"img": "ai/envelope_1.png"
+}
+},
+{
+"start": 1896.7895416666715,
+"end": 1902.0559583333384,
+"pool": "ledger_hand",
+"row": 210,
+"src": {
+"img": "ai/ledger_hand_0.png"
+}
+},
+{
+"start": 1902.0559583333384,
+"end": 1907.322375000005,
+"pool": "ledger_hand",
+"row": 210,
+"src": {
+"img": "ai/ledger_hand_1.png"
+}
+},
+{
+"start": 1907.322375000005,
+"end": 1908.959000000005,
+"pool": "postmaster",
+"row": 211,
+"src": {
+"img": "stock/fsa_c/postmaster_07.jpg"
+},
+"fade_out": 12
+},
+{
+"start": 1908.959000000005,
+"end": 1910.259000000005,
+"pool": "black",
+"cut": true,
+"src": {
+"color": 0.0
+}
+},
+{
+"start": 1910.259000000005,
+"end": 1915.4820555555607,
+"pool": "postmaster",
+"row": 213,
+"src": {
+"img": "stock/fsa_c/postmaster_06.jpg"
+},
+"cut": true,
+"fade_in": 15
+},
+{
+"start": 1915.4820555555607,
+"end": 1920.7051111111161,
+"pool": "postmaster",
+"row": 213,
+"src": {
+"img": "stock/fsa_c/postmaster_26.jpg"
+}
+},
+{
+"start": 1920.7051111111161,
+"end": 1925.9281666666718,
+"pool": "postmaster",
+"row": 213,
+"src": {
+"img": "ai/postmaster_2.png"
+}
+},
+{
+"start": 1925.9281666666718,
+"end": 1931.5369861111162,
+"pool": "oldman",
+"row": 214,
+"src": {
+"img": "ai/otto_1.png"
+}
+},
+{
+"start": 1931.5369861111162,
+"end": 1937.1458055555609,
+"pool": "oldman",
+"row": 214,
+"src": {
+"img": "stock/fsa_c/postmaster_04.jpg"
+}
+},
+{
+"start": 1937.1458055555609,
+"end": 1942.7546250000053,
+"pool": "oldman",
+"row": 214,
+"src": {
+"img": "stock/fsa_c/postmaster_03.jpg"
+}
+},
+{
+"start": 1942.7546250000053,
+"end": 1948.5357708333386,
+"pool": "newspaper",
+"row": 215,
+"src": {
+"img": "ai/editor_2.png"
+}
+},
+{
+"start": 1948.5357708333386,
+"end": 1954.316916666672,
+"pool": "newspaper",
+"row": 215,
+"src": {
+"img": "stock/fsa_c/newspaper_24.jpg"
+}
+},
+{
+"start": 1954.316916666672,
+"end": 1960.1056805555609,
+"pool": "crowd",
+"row": 216,
+"src": {
+"img": "stock/fsa_c/crowd_16.jpg"
+}
+},
+{
+"start": 1960.1056805555609,
+"end": 1965.8944444444496,
+"pool": "crowd",
+"row": 216,
+"src": {
+"img": "stock/fsa_c/crowd_25.jpg"
+}
+},
+{
+"start": 1965.8944444444496,
+"end": 1971.6832083333386,
+"pool": "crowd",
+"row": 216,
+"src": {
+"img": "stock/fsa_c/crowd_13.jpg"
+}
+},
+{
+"start": 1971.6832083333386,
+"end": 1976.2375138888942,
+"pool": "ledger_hand",
+"row": 217,
+"src": {
+"img": "ai/ledger_hand_2.png"
+}
+},
+{
+"start": 1976.2375138888942,
+"end": 1980.7918194444496,
+"pool": "ledger_hand",
+"row": 217,
+"src": {
+"img": "ai/ledger_hand_0.png"
+}
+},
+{
+"start": 1980.7918194444496,
+"end": 1985.3461250000053,
+"pool": "ledger_hand",
+"row": 217,
+"src": {
+"img": "ai/ledger_hand_1.png"
+}
+},
+{
+"start": 1985.3461250000053,
+"end": 1991.635791666672,
+"pool": "postmaster",
+"row": 218,
+"src": {
+"img": "ai/postmaster_1.png"
+},
+"fade_out": 12
+},
+{
+"start": 1991.635791666672,
+"end": 1992.935791666672,
+"pool": "black",
+"cut": true,
+"src": {
+"color": 0.0
+}
+},
+{
+"start": 1992.935791666672,
+"end": 1998.346604166672,
+"pool": "oldwoman",
+"row": 220,
+"src": {
+"img": "ai/rose_1.png"
+},
+"cut": true,
+"fade_in": 15
+},
+{
+"start": 1998.346604166672,
+"end": 2003.757416666672,
+"pool": "oldwoman",
+"row": 220,
+"src": {
+"img": "ai/ada_1.png"
+}
+},
+{
+"start": 2003.757416666672,
+"end": 2008.4043958333386,
+"pool": "oldwoman",
+"row": 221,
+"src": {
+"img": "ai/ada_2.png"
+}
+},
+{
+"start": 2008.4043958333386,
+"end": 2013.0513750000055,
+"pool": "oldwoman",
+"row": 221,
+"src": {
+"img": "stock/fsa_c/farmwife_03.jpg"
+}
+},
+{
+"start": 2013.0513750000055,
+"end": 2018.1456458333387,
+"pool": "letter_reading",
+"row": 222,
+"src": {
+"img": "stock/fsa_c/letters_09.jpg"
+},
+"cut": true
+},
+{
+"start": 2018.1456458333387,
+"end": 2023.2399166666721,
+"pool": "letter_reading",
+"row": 222,
+"src": {
+"img": "ai/clara_letter_2.png"
+}
+},
+{
+"start": 2023.2399166666721,
+"end": 2028.3341875000056,
+"pool": "letter_reading",
+"row": 222,
+"src": {
+"img": "ai/clara_letter_0.png"
+}
+},
+{
+"start": 2028.3341875000056,
+"end": 2033.4284583333388,
+"pool": "letter_reading",
+"row": 222,
+"src": {
+"img": "stock/fsa_c/letters_23.jpg"
+}
+},
+{
+"start": 2033.4284583333388,
+"end": 2041.123666666672,
+"pool": "oldwoman",
+"row": 223,
+"src": {
+"img": "stock/fsa_c/postmaster_06.jpg"
+}
+},
+{
+"start": 2041.123666666672,
+"end": 2046.3947361111166,
+"pool": "oldwoman",
+"row": 224,
+"src": {
+"img": "ai/rose_2.png"
+}
+},
+{
+"start": 2046.3947361111166,
+"end": 2051.665805555561,
+"pool": "oldwoman",
+"row": 224,
+"src": {
+"img": "ai/rose_0.png"
+}
+},
+{
+"start": 2051.665805555561,
+"end": 2056.9368750000053,
+"pool": "oldwoman",
+"row": 224,
+"src": {
+"img": "ai/ada_0.png"
+}
+},
+{
+"start": 2056.9368750000053,
+"end": 2063.701791666672,
+"pool": "oldwoman",
+"row": 225,
+"src": {
+"img": "ai/rose_1.png"
+},
+"fade_out": 12
+},
+{
+"start": 2063.701791666672,
+"end": 2065.001791666672,
+"pool": "black",
+"cut": true,
+"src": {
+"color": 0.0
+}
+},
+{
+"start": 2065.001791666672,
+"end": 2070.2318333333387,
+"pool": "farmer",
+"row": 227,
+"src": {
+"img": "ai/otto_2.png"
+},
+"cut": true,
+"fade_in": 15
+},
+{
+"start": 2070.2318333333387,
+"end": 2075.461875000005,
+"pool": "farmer",
+"row": 227,
+"src": {
+"img": "ai/otto_0.png"
+}
+},
+{
+"start": 2075.461875000005,
+"end": 2079.381750000005,
+"pool": "envelope_old",
+"row": 228,
+"src": {
+"img": "ai/envelope_0.png"
+}
+},
+{
+"start": 2079.381750000005,
+"end": 2083.3016250000046,
+"pool": "envelope_old",
+"row": 228,
+"src": {
+"img": "ai/envelope_2.png"
+}
+},
+{
+"start": 2083.3016250000046,
+"end": 2089.400166666671,
+"pool": "farmhouse",
+"row": 229,
+"src": {
+"img": "ai/farmhouse_0.png"
+}
+},
+{
+"start": 2089.400166666671,
+"end": 2095.4987083333376,
+"pool": "farmhouse",
+"row": 229,
+"src": {
+"img": "stock/fsa_c/dust_26.jpg"
+}
+},
+{
+"start": 2095.4987083333376,
+"end": 2103.2227083333373,
+"pool": "farmer",
+"row": 230,
+"src": {
+"img": "stock/fsa_c/farmer_11.jpg"
+}
+},
+{
+"start": 2103.2227083333373,
+"end": 2108.7883541666706,
+"pool": "farmer",
+"row": 231,
+"src": {
+"img": "stock/fsa_c/wheat2_03.jpg"
+}
+},
+{
+"start": 2108.7883541666706,
+"end": 2114.354000000004,
+"pool": "farmer",
+"row": 231,
+"src": {
+"vid": "stock/films/0884_Plow_that_Broke_the_Plains_The_16_30_36_10.mp4",
+"t": 453.76,
+"t1": 462
+},
+"fade_out": 12
+},
+{
+"start": 2114.354000000004,
+"end": 2115.654000000004,
+"pool": "black",
+"cut": true,
+"src": {
+"color": 0.0
+}
+},
+{
+"start": 2115.654000000004,
+"end": 2121.372750000004,
+"pool": "children",
+"row": 233,
+"src": {
+"img": "stock/fsa_c/children_23.jpg"
+},
+"cut": true,
+"fade_in": 15
+},
+{
+"start": 2121.372750000004,
+"end": 2127.091500000004,
+"pool": "children",
+"row": 233,
+"src": {
+"img": "stock/fsa_c/children_02.jpg"
+}
+},
+{
+"start": 2127.091500000004,
+"end": 2132.810250000004,
+"pool": "children",
+"row": 233,
+"src": {
+"img": "stock/fsa_c/children_10.jpg"
+}
+},
+{
+"start": 2132.810250000004,
+"end": 2138.333458333337,
+"pool": "letters_stack",
+"row": 234,
+"src": {
+"img": "ai/letters_stack_2.png"
+}
+},
+{
+"start": 2138.333458333337,
+"end": 2143.8566666666707,
+"pool": "letters_stack",
+"row": 234,
+"src": {
+"img": "ai/letters_stack_0.png"
+}
+},
+{
+"start": 2143.8566666666707,
+"end": 2149.9296458333374,
+"pool": "postmaster",
+"row": 235,
+"src": {
+"img": "ai/postmaster_0.png"
+}
+},
+{
+"start": 2149.9296458333374,
+"end": 2156.0026250000037,
+"pool": "postmaster",
+"row": 235,
+"src": {
+"img": "stock/fsa_c/postmaster_07.jpg"
+}
+},
+{
+"start": 2156.0026250000037,
+"end": 2160.4962777777814,
+"pool": "ledger_hand",
+"row": 236,
+"ovs": [
+{
+"kind": "tag",
+"a": "Delivered",
+"b": "638",
+"t0": 2156.5026250000037,
+"t1": 2162.5026250000037
+}
+],
+"src": {
+"img": "ai/ledger_hand_2.png"
+}
+},
+{
+"start": 2160.4962777777814,
+"end": 2164.989930555559,
+"pool": "ledger_hand",
+"row": 236,
+"src": {
+"img": "ai/ledger_hand_0.png"
+}
+},
+{
+"start": 2164.989930555559,
+"end": 2169.483583333337,
+"pool": "ledger_hand",
+"row": 236,
+"src": {
+"img": "ai/ledger_hand_1.png"
+}
+},
+{
+"start": 2169.483583333337,
+"end": 2174.87435416667,
+"pool": "ledger_old",
+"row": 237,
+"src": {
+"img": "ai/ledger_old_0.png"
+}
+},
+{
+"start": 2174.87435416667,
+"end": 2180.265125000003,
+"pool": "ledger_old",
+"row": 237,
+"src": {
+"img": "ai/ledger_old_2.png"
+},
+"fade_out": 12
+},
+{
+"start": 2180.265125000003,
+"end": 2181.5651250000033,
+"pool": "black",
+"cut": true,
+"src": {
+"color": 0.0
+}
+},
+{
+"start": 2181.5651250000033,
+"end": 2187.9969166666697,
+"pool": "farmwife",
+"row": 239,
+"src": {
+"img": "stock/fsa_c/farmwife_02.jpg"
+},
+"cut": true,
+"fade_in": 15
+},
+{
+"start": 2187.9969166666697,
+"end": 2192.5703055555587,
+"pool": "farmwife",
+"row": 240,
+"src": {
+"img": "ai/clara_2.png"
+}
+},
+{
+"start": 2192.5703055555587,
+"end": 2197.143694444447,
+"pool": "farmwife",
+"row": 240,
+"src": {
+"img": "ai/clara_letter_2.png"
+}
+},
+{
+"start": 2197.143694444447,
+"end": 2201.717083333336,
+"pool": "farmwife",
+"row": 240,
+"src": {
+"img": "ai/clara_0.png"
+}
+},
+{
+"start": 2201.717083333336,
+"end": 2207.1680208333364,
+"pool": "farm_family",
+"row": 241,
+"src": {
+"vid": "stock/films/0884_Plow_that_Broke_the_Plains_The_16_30_36_10.mp4",
+"t": 1300.24,
+"t1": 1306
+}
+},
+{
+"start": 2207.1680208333364,
+"end": 2212.618958333336,
+"pool": "farm_family",
+"row": 241,
+"src": {
+"img": "stock/fsa_c/farmwife_04.jpg"
+}
+},
+{
+"start": 2212.618958333336,
+"end": 2216.845312500003,
+"pool": "farmwife",
+"row": 242,
+"src": {
+"img": "ai/clara_letter_0.png"
+}
+},
+{
+"start": 2216.845312500003,
+"end": 2221.0716666666694,
+"pool": "farmwife",
+"row": 242,
+"src": {
+"img": "ai/clara_field_2.png"
+}
+},
+{
+"start": 2221.0716666666694,
+"end": 2225.626208333336,
+"pool": "farmwife",
+"row": 243,
+"src": {
+"img": "stock/fsa_c/farmwife_16.jpg"
+}
+},
+{
+"start": 2225.626208333336,
+"end": 2230.1807500000027,
+"pool": "farmwife",
+"row": 243,
+"src": {
+"img": "ai/clara_field_1.png"
+}
+},
+{
+"start": 2230.1807500000027,
+"end": 2235.6033541666693,
+"pool": "cemetery",
+"row": 244,
+"src": {
+"img": "ai/funeral_2.png"
+}
+},
+{
+"start": 2235.6033541666693,
+"end": 2241.025958333336,
+"pool": "cemetery",
+"row": 244,
+"src": {
+"img": "stock/fsa_c/church_01.jpg"
+}
+},
+{
+"start": 2241.025958333336,
+"end": 2246.0245277777803,
+"pool": "farmwife",
+"row": 245,
+"src": {
+"img": "stock/fsa_c/farmwife_18.jpg"
+}
+},
+{
+"start": 2246.0245277777803,
+"end": 2251.023097222225,
+"pool": "farmwife",
+"row": 245,
+"src": {
+"img": "ai/clara_1.png"
+}
+},
+{
+"start": 2251.023097222225,
+"end": 2256.0216666666693,
+"pool": "farmwife",
+"row": 245,
+"src": {
+"img": "stock/fsa_c/farmwife_03.jpg"
+}
+},
+{
+"start": 2256.0216666666693,
+"end": 2260.4370416666693,
+"pool": "farmwife",
+"row": 246,
+"src": {
+"img": "stock/fsa_c/farmwife_09.jpg"
+}
+},
+{
+"start": 2260.4370416666693,
+"end": 2264.852416666669,
+"pool": "farmwife",
+"row": 246,
+"src": {
+"img": "ai/clara_letter_1.png"
+}
+},
+{
+"start": 2264.852416666669,
+"end": 2269.267791666669,
+"pool": "farmwife",
+"row": 246,
+"src": {
+"img": "ai/clara_field_0.png"
+}
+},
+{
+"start": 2269.267791666669,
+"end": 2273.491979166669,
+"pool": "letter_reading",
+"row": 247,
+"src": {
+"img": "stock/fsa_c/letters_11.jpg"
+}
+},
+{
+"start": 2273.491979166669,
+"end": 2277.716166666669,
+"pool": "letter_reading",
+"row": 247,
+"src": {
+"img": "ai/ada_0.png"
+}
+},
+{
+"start": 2277.716166666669,
+"end": 2282.736583333335,
+"pool": "letter_reading",
+"row": 248,
+"src": {
+"img": "stock/fsa_c/letters_29.jpg"
+}
+},
+{
+"start": 2282.736583333335,
+"end": 2287.757000000002,
+"pool": "letter_reading",
+"row": 248,
+"src": {
+"img": "stock/fsa_c/letters_17.jpg"
+}
+},
+{
+"start": 2287.757000000002,
+"end": 2293.171236111113,
+"pool": "letter_reading",
+"row": 249,
+"src": {
+"img": "ai/ada_1.png"
+}
+},
+{
+"start": 2293.171236111113,
+"end": 2298.585472222224,
+"pool": "letter_reading",
+"row": 249,
+"src": {
+"img": "stock/fsa_c/letters_09.jpg"
+}
+},
+{
+"start": 2298.585472222224,
+"end": 2303.999708333335,
+"pool": "letter_reading",
+"row": 249,
+"src": {
+"img": "ai/clara_letter_2.png"
+}
+},
+{
+"start": 2303.999708333335,
+"end": 2309.217166666668,
+"pool": "seeds",
+"row": 250,
+"src": {
+"img": "ai/seeds_2.png"
+}
+},
+{
+"start": 2309.217166666668,
+"end": 2314.4346250000017,
+"pool": "seeds",
+"row": 250,
+"src": {
+"img": "ai/seeds_1.png"
+}
+},
+{
+"start": 2314.4346250000017,
+"end": 2319.6520833333348,
+"pool": "seeds",
+"row": 250,
+"src": {
+"vid": "stock/films/0234_Wheat_Farmer_The_05_58_43_00.mp4",
+"t": 267.65,
+"t1": 274
+}
+},
+{
+"start": 2319.6520833333348,
+"end": 2323.797479166668,
+"pool": "seeds",
+"row": 251,
+"src": {
+"img": "ai/seeds_0.png"
+}
+},
+{
+"start": 2323.797479166668,
+"end": 2327.942875000001,
+"pool": "seeds",
+"row": 251,
+"src": {
+"img": "ai/seeds_2.png"
+}
+},
+{
+"start": 2327.942875000001,
+"end": 2332.3303333333342,
+"pool": "wheat_dry",
+"row": 252,
+"src": {
+"vid": "stock/films/0884_Plow_that_Broke_the_Plains_The_16_30_36_10.mp4",
+"t": 1491.79,
+"t1": 1500
+}
+},
+{
+"start": 2332.3303333333342,
+"end": 2338.5138750000006,
+"pool": "farmhouse",
+"row": 253,
+"src": {
+"img": "stock/fsa_c/dust_21.jpg"
+}
+},
+{
+"start": 2338.5138750000006,
+"end": 2344.6974166666673,
+"pool": "farmhouse",
+"row": 253,
+"src": {
+"vid": "stock/films/0884_Plow_that_Broke_the_Plains_The_16_30_36_10.mp4",
+"t": 1313.9,
+"t1": 1330
+},
+"fade_out": 12
+},
+{
+"start": 2344.6974166666673,
+"end": 2345.9974166666675,
+"pool": "black",
+"cut": true,
+"src": {
+"color": 0.0
+}
+},
+{
+"start": 2345.9974166666675,
+"end": 2353.792291666667,
+"pool": "seeds",
+"row": 255,
+"src": {
+"img": "ai/seeds_1.png"
+},
+"cut": true,
+"fade_in": 15
+},
+{
+"start": 2353.792291666667,
+"end": 2358.413430555556,
+"pool": "farmwife",
+"row": 256,
+"src": {
+"img": "ai/clara_field_2.png"
+}
+},
+{
+"start": 2358.413430555556,
+"end": 2363.034569444445,
+"pool": "farmwife",
+"row": 256,
+"src": {
+"vid": "stock/films/0884_Plow_that_Broke_the_Plains_The_16_30_36_10.mp4",
+"t": 588.33,
+"t1": 594
+}
+},
+{
+"start": 2363.034569444445,
+"end": 2367.6557083333337,
+"pool": "farmwife",
+"row": 256,
+"src": {
+"img": "ai/clara_field_1.png"
+},
+"cut": true
+},
+{
+"start": 2367.6557083333337,
+"end": 2372.9020208333336,
+"pool": "well_rig",
+"row": 257,
+"ovs": [
+{
+"kind": "depth",
+"n": 140,
+"a": "Depth",
+"t0": 2368.1557083333337,
+"t1": 2374.1557083333337
+}
+],
+"src": {
+"img": "ai/rig_bit_0.png"
+}
+},
+{
+"start": 2372.9020208333336,
+"end": 2378.1483333333335,
+"pool": "well_rig",
+"row": 257,
+"src": {
+"img": "ai/rig2_1.png"
+}
+},
+{
+"start": 2378.1483333333335,
+"end": 2383.7898958333335,
+"pool": "farmwife",
+"row": 258,
+"src": {
+"vid": "stock/films/0884_Plow_that_Broke_the_Plains_The_16_30_36_10.mp4",
+"t": 572,
+"t1": 578
+}
+},
+{
+"start": 2383.7898958333335,
+"end": 2389.4314583333335,
+"pool": "farmwife",
+"row": 258,
+"src": {
+"img": "stock/fsa_c/farmwife_28.jpg"
+}
+},
+{
+"start": 2389.4314583333335,
+"end": 2392.828,
+"pool": "sprouts",
+"row": 259,
+"src": {
+"img": "ai/sprouts_2.png"
+}
+},
+{
+"start": 2392.828,
+"end": 2400.1625833333333,
+"pool": "sprouts",
+"row": 260,
+"src": {
+"img": "ai/sprouts_0.png"
+}
+},
+{
+"start": 2400.1625833333333,
+"end": 2404.8508541666665,
+"pool": "farmwife",
+"row": 261,
+"src": {
+"img": "ai/clara_field_0.png"
+}
+},
+{
+"start": 2404.8508541666665,
+"end": 2409.539125,
+"pool": "farmwife",
+"row": 261,
+"src": {
+"img": "stock/fsa_c/farmwife_02.jpg"
+}
+},
+{
+"start": 2409.539125,
+"end": 2415.603958333333,
+"pool": "wheat",
+"row": 262,
+"src": {
+"img": "stock/fsa_c/wheat2_09.jpg"
+}
+},
+{
+"start": 2415.603958333333,
+"end": 2421.6687916666665,
+"pool": "wheat",
+"row": 262,
+"src": {
+"img": "stock/fsa_c/wheat2_07.jpg"
+},
+"fade_out": 12
+},
+{
+"start": 2421.6687916666665,
+"end": 2422.9687916666667,
+"pool": "black",
+"cut": true,
+"src": {
+"color": 0.0
+}
+},
+{
+"start": 2422.9687916666667,
+"end": 2427.923,
+"pool": "ledger",
+"row": 264,
+"src": {
+"img": "ai/ledger_old_2.png"
+},
+"cut": true,
+"fade_in": 15
+},
+{
+"start": 2427.923,
+"end": 2432.952875,
+"pool": "logbook",
+"row": 265,
+"src": {
+"img": "stock/fsa_c/letters_14.jpg"
+}
+},
+{
+"start": 2432.952875,
+"end": 2437.9827499999997,
+"pool": "logbook",
+"row": 265,
+"src": {
+"img": "ai/tripbook_0.png"
+}
+},
+{
+"start": 2437.9827499999997,
+"end": 2442.8913749999997,
+"pool": "newspaper",
+"row": 266,
+"src": {
+"img": "stock/fsa_c/newspaper_12.jpg"
+}
+},
+{
+"start": 2442.8913749999997,
+"end": 2447.7999999999993,
+"pool": "newspaper",
+"row": 266,
+"src": {
+"img": "ai/newspaper_office_2.png"
+}
+},
+{
+"start": 2447.7999999999993,
+"end": 2452.7086249999993,
+"pool": "newspaper",
+"row": 266,
+"src": {
+"img": "ai/editor_1.png"
+}
+},
+{
+"start": 2452.7086249999993,
+"end": 2457.970437499999,
+"pool": "tripbook",
+"row": 267,
+"src": {
+"img": "ai/tripbook_2.png"
+}
+},
+{
+"start": 2457.970437499999,
+"end": 2463.232249999999,
+"pool": "tripbook",
+"row": 267,
+"src": {
+"img": "ai/tripbook_1.png"
+}
+},
+{
+"start": 2463.232249999999,
+"end": 2468.55636111111,
+"pool": "postmaster",
+"row": 268,
+"src": {
+"img": "stock/fsa_c/postmaster_06.jpg"
+}
+},
+{
+"start": 2468.55636111111,
+"end": 2473.880472222221,
+"pool": "postmaster",
+"row": 268,
+"src": {
+"img": "stock/fsa_c/postmaster_26.jpg"
+}
+},
+{
+"start": 2473.880472222221,
+"end": 2479.2045833333323,
+"pool": "postmaster",
+"row": 268,
+"src": {
+"img": "ai/postmaster_2.png"
+}
+},
+{
+"start": 2479.2045833333323,
+"end": 2486.253499999999,
+"pool": "letters_stack",
+"row": 269,
+"src": {
+"img": "ai/letters_stack_1.png"
+},
+"fade_out": 12
+},
+{
+"start": 2486.253499999999,
+"end": 2487.553499999999,
+"pool": "black",
+"cut": true,
+"src": {
+"color": 0.0
+}
+},
+{
+"start": 2487.553499999999,
+"end": 2492.304638888888,
+"pool": "cemetery",
+"row": 271,
+"src": {
+"img": "stock/fsa_c/church_00.jpg"
+},
+"cut": true,
+"fade_in": 15
+},
+{
+"start": 2492.304638888888,
+"end": 2497.0557777777767,
+"pool": "cemetery",
+"row": 271,
+"src": {
+"img": "ai/funeral_1.png"
+}
+},
+{
+"start": 2497.0557777777767,
+"end": 2501.8069166666655,
+"pool": "cemetery",
+"row": 271,
+"src": {
+"img": "ai/funeral_0.png"
+}
+},
+{
+"start": 2501.8069166666655,
+"end": 2506.1429166666653,
+"pool": "ledger_hand",
+"row": 272,
+"src": {
+"img": "ai/ledger_hand_2.png"
+}
+},
+{
+"start": 2506.1429166666653,
+"end": 2510.7267187499983,
+"pool": "cemetery",
+"row": 273,
+"src": {
+"img": "stock/fsa_c/church_02.jpg"
+}
+},
+{
+"start": 2510.7267187499983,
+"end": 2515.310520833332,
+"pool": "cemetery",
+"row": 273,
+"src": {
+"img": "ai/funeral_2.png"
+}
+},
+{
+"start": 2515.310520833332,
+"end": 2519.8943229166653,
+"pool": "cemetery",
+"row": 273,
+"src": {
+"img": "stock/fsa_c/church_01.jpg"
+}
+},
+{
+"start": 2519.8943229166653,
+"end": 2524.4781249999983,
+"pool": "cemetery",
+"row": 273,
+"src": {
+"img": "stock/fsa_c/church_00.jpg"
+}
+},
+{
+"start": 2524.4781249999983,
+"end": 2529.839430555554,
+"pool": "cemetery",
+"row": 274,
+"src": {
+"img": "ai/funeral_1.png"
+}
+},
+{
+"start": 2529.839430555554,
+"end": 2535.200736111109,
+"pool": "cemetery",
+"row": 274,
+"src": {
+"img": "ai/funeral_0.png"
+}
+},
+{
+"start": 2535.200736111109,
+"end": 2540.5620416666648,
+"pool": "cemetery",
+"row": 274,
+"src": {
+"img": "stock/fsa_c/church_02.jpg"
+}
+},
+{
+"start": 2540.5620416666648,
+"end": 2545.3574270833315,
+"pool": "farmwife",
+"row": 275,
+"src": {
+"img": "ai/clara_2.png"
+}
+},
+{
+"start": 2545.3574270833315,
+"end": 2550.1528124999977,
+"pool": "farmwife",
+"row": 275,
+"src": {
+"img": "ai/clara_letter_2.png"
+}
+},
+{
+"start": 2550.1528124999977,
+"end": 2554.9481979166644,
+"pool": "farmwife",
+"row": 275,
+"src": {
+"img": "ai/clara_0.png"
+}
+},
+{
+"start": 2554.9481979166644,
+"end": 2559.743583333331,
+"pool": "farmwife",
+"row": 275,
+"src": {
+"img": "ai/clara_letter_0.png"
+}
+},
+{
+"start": 2559.743583333331,
+"end": 2565.518305555553,
+"pool": "wheat",
+"row": 276,
+"src": {
+"img": "stock/fsa_c/wheat3_00.jpg"
+}
+},
+{
+"start": 2565.518305555553,
+"end": 2571.2930277777755,
+"pool": "wheat",
+"row": 276,
+"src": {
+"img": "stock/fsa_c/wheat2_08.jpg"
+}
+},
+{
+"start": 2571.2930277777755,
+"end": 2577.0677499999974,
+"pool": "wheat",
+"row": 276,
+"src": {
+"img": "ai/wheat_green_0.png"
+}
+},
+{
+"start": 2577.0677499999974,
+"end": 2581.7609166666643,
+"pool": "wheat",
+"row": 277,
+"src": {
+"img": "stock/fsa_c/wheat2_11.jpg"
+}
+},
+{
+"start": 2581.7609166666643,
+"end": 2586.454083333331,
+"pool": "wheat",
+"row": 277,
+"src": {
+"img": "ai/wheat_green_1.png"
+},
+"fade_out": 12
+},
+{
+"start": 2586.454083333331,
+"end": 2587.754083333331,
+"pool": "black",
+"cut": true,
+"src": {
+"color": 0.0
+}
+},
+{
+"start": 2587.754083333331,
+"end": 2594.001604166664,
+"pool": "kitchen_lamp",
+"row": 279,
+"src": {
+"img": "ai/kitchen_lamp_2.png"
+},
+"cut": true,
+"fade_in": 15
+},
+{
+"start": 2594.001604166664,
+"end": 2600.2491249999975,
+"pool": "kitchen_lamp",
+"row": 279,
+"src": {
+"img": "stock/fsa_c/farmwife_07.jpg"
+}
+},
+{
+"start": 2600.2491249999975,
+"end": 2604.5853888888864,
+"pool": "kitchen_lamp",
+"row": 280,
+"src": {
+"img": "stock/fsa_c/farmwife_14.jpg"
+}
+},
+{
+"start": 2604.5853888888864,
+"end": 2608.9216527777753,
+"pool": "kitchen_lamp",
+"row": 280,
+"src": {
+"img": "stock/fsa_c/farmwife_20.jpg"
+}
+},
+{
+"start": 2608.9216527777753,
+"end": 2613.257916666664,
+"pool": "kitchen_lamp",
+"row": 280,
+"src": {
+"img": "ai/kitchen_lamp_0.png"
+}
+},
+{
+"start": 2613.257916666664,
+"end": 2617.2339999999976,
+"pool": "plains_dawn",
+"row": 281,
+"src": {
+"img": "ai/plains_dawn_1.png"
+},
+"fade_out": 40
+}
+]

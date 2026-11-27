@@ -1,0 +1,1976 @@
+[
+{
+"pool": "plains_dawn",
+"text": "In the summer of 1934, on a wheat farm in western Kansas, three well drillers pulled their bit up out of the ground and found it wrapped in splinters of red painted wood.",
+"ov": "",
+"start": 0.0,
+"end": 12.298958333333333
+},
+{
+"pool": "drillbit",
+"text": "Not roots. Not stone. Boards. Painted the dull brick red that every railroad in America used on its freight cars.",
+"ov": "",
+"start": 12.748958333333333,
+"end": 21.793208333333332
+},
+{
+"pool": "depth_chart",
+"text": "They were sixty one feet down.",
+"ov": "depth:61",
+"start": 22.24320833333333,
+"end": 23.999416666666665
+},
+{
+"pool": "wheat_dry",
+"text": "There was no railroad within four miles of that field. There had not been one for forty five years.",
+"ov": "",
+"start": 24.449416666666664,
+"end": 30.951624999999996
+},
+{
+"pool": "drillers",
+"text": "By the end of that summer, half the county was standing around a hole in the middle of a dead wheat field, looking down at the roof of a railway mail car.",
+"ov": "",
+"start": 31.401624999999996,
+"end": 41.09529166666666
+},
+{
+"pool": "mailcar_buried",
+"text": "Its doors were still sealed. The lead seals the post office had clamped on in 1889 had never been broken.",
+"ov": "",
+"start": 41.545291666666664,
+"end": 50.763
+},
+{
+"pool": "mail_sacks",
+"text": "And inside it, stacked in canvas sacks exactly the way a clerk had left them, were two thousand three hundred and eleven letters that had never been delivered.",
+"ov": "tag:Railway mail car/2,311 letters",
+"start": 51.213,
+"end": 61.30195833333333
+},
+{
+"pool": "letters_stack",
+"text": "Every one of them was still sealed.",
+"ov": "",
+"start": 61.751958333333334,
+"end": 63.57295833333333
+},
+{
+"pool": "ledger",
+"text": "Four people kept records of what came out of that hole, and almost none of it was ever printed.",
+"ov": "",
+"start": 64.02295833333334,
+"end": 69.98783333333334
+},
+{
+"pool": "logbook",
+"text": "A driller who wrote everything down in a pocket book because his eyes were going and he did not trust his memory.",
+"ov": "",
+"start": 70.43783333333334,
+"end": 77.86983333333335
+},
+{
+"pool": "postmaster",
+"text": "A small town postmistress who decided, against the advice of everyone around her, that the mail would be delivered.",
+"ov": "",
+"start": 78.31983333333335,
+"end": 86.12041666666669
+},
+{
+"pool": "tripbook",
+"text": "A dead railway mail clerk who left the last entry in his trip book at a quarter past four in the morning, forty five years before anyone read it.",
+"ov": "",
+"start": 86.57041666666669,
+"end": 95.94945833333335
+},
+{
+"pool": "farmwife",
+"text": "And a widow named Clara Lindqvist, whose field it was, and who found a letter in that car addressed to a woman she had buried.",
+"ov": "",
+"start": 96.39945833333336,
+"end": 104.59687500000003
+},
+{
+"pool": "kitchen_lamp",
+"text": "If you like stories pieced together from logbooks, ledgers and letters that were never meant to be read side by side, subscribe, and tell me in the comments where you are watching from.",
+"ov": "",
+"start": 105.04687500000003,
+"end": 117.07458333333336
+},
+{
+"pool": "kitchen_lamp",
+"text": "Get something to eat, get comfortable, and let's go back to Kansas in the summer of 1934.",
+"ov": "",
+"start": 117.52458333333337,
+"end": 124.58537500000003
+},
+{
+"pool": "black",
+"text": "",
+"ov": "",
+"start": 124.78537500000003,
+"end": 126.08537500000003
+},
+{
+"pool": "dust_storm",
+"text": "By the summer of 1934, western Kansas had not had a proper rain in almost three years.",
+"ov": "",
+"start": 126.08537500000003,
+"end": 133.3202916666667
+},
+{
+"pool": "dust_storm",
+"text": "The dust came in walls. People called them black blizzards, and when one rolled in at noon the streetlights came on in town and stayed on until night.",
+"ov": "",
+"start": 133.77029166666668,
+"end": 143.47829166666668
+},
+{
+"pool": "farmhouse",
+"text": "Women hung wet sheets over the windows to catch the dirt. Children walked to school with handkerchiefs tied over their mouths.",
+"ov": "",
+"start": 143.92829166666667,
+"end": 151.83175
+},
+{
+"pool": "wheat_dry",
+"text": "And the wheat, the hard red winter wheat that had made that whole country rich twenty years before, came up thin and pale and lay down in the wind.",
+"ov": "",
+"start": 152.28175,
+"end": 162.0642083333333
+},
+{
+"pool": "farm_family",
+"text": "The farm in this story sat eleven miles south of a town I am going to call Ashby, on the high flat ground between two creeks that had both gone dry.",
+"ov": "",
+"start": 162.5142083333333,
+"end": 172.9204583333333
+},
+{
+"pool": "farmwife",
+"text": "It belonged to Clara Lindqvist. She was fifty one that summer, a tall square shouldered woman who had come over from Sweden as a girl, married a Swede, and buried him in the spring of 1932.",
+"ov": "",
+"start": 173.3704583333333,
+"end": 187.71899999999997
+},
+{
+"pool": "farmwife",
+"text": "She had two sons, both grown, both gone to California with the wave of families who had given up on the plains.",
+"ov": "",
+"start": 188.16899999999995,
+"end": 196.00783333333328
+},
+{
+"pool": "farmhouse",
+"text": "She stayed. She told her neighbors that she had not crossed an ocean to be beaten by a little weather.",
+"ov": "",
+"start": 196.45783333333327,
+"end": 202.35312499999995
+},
+{
+"pool": "windmill",
+"text": "Her well was the problem. The old windmill well behind the house had been pumping sand since April, and by June it was pumping nothing at all.",
+"ov": "",
+"start": 202.80312499999994,
+"end": 212.16262499999993
+},
+{
+"pool": "wheat_dry",
+"text": "Without water she would lose the last of her stock, and without stock she would lose the farm to the bank by winter.",
+"ov": "",
+"start": 212.61262499999992,
+"end": 219.7249166666666
+},
+{
+"pool": "well_rig",
+"text": "So she did what people did that year when they still had a little money put away. She hired a driller.",
+"ov": "",
+"start": 220.17491666666658,
+"end": 226.14333333333323
+},
+{
+"pool": "driller_portrait",
+"text": "His name was Emmett Hale. He was forty eight, a big slow careful man from the next county who had drilled water wells across western Kansas for twenty years.",
+"ov": "",
+"start": 226.59333333333322,
+"end": 237.78804166666654
+},
+{
+"pool": "drillers",
+"text": "He worked with his nephew, Ray, who was nineteen, and a hired man named Joe Whitcomb who had come out of the Oklahoma oil fields and could fix anything with a hammer and a length of wire.",
+"ov": "",
+"start": 238.23804166666653,
+"end": 251.46487499999986
+},
+{
+"pool": "well_rig",
+"text": "They brought a cable tool rig on a wagon, a tall wooden derrick with a steam boiler at the base that lifted a heavy iron bit and dropped it, over and over, all day long, pounding its way down through the ground.",
+"ov": "",
+"start": 251.91487499999985,
+"end": 266.26058333333316
+},
+{
+"pool": "logbook",
+"text": "And Emmett Hale kept a log.",
+"ov": "",
+"start": 266.71058333333315,
+"end": 268.4667916666665
+},
+{
+"pool": "logbook_close",
+"text": "It still exists. It is a small black pocket book, the kind farmers bought at the feed store, and on every page in a slow square hand he wrote the depth, the time, and what came up in the bailer.",
+"ov": "",
+"start": 268.9167916666665,
+"end": 282.6422499999998
+},
+{
+"pool": "logbook_close",
+"text": "His eyes had started to fail him that year. He told his nephew he wrote everything down because he no longer trusted himself to remember it right.",
+"ov": "",
+"start": 283.0922499999998,
+"end": 292.45220833333315
+},
+{
+"pool": "logbook",
+"text": "That habit is the reason we know exactly what happened in that field, foot by foot.",
+"ov": "",
+"start": 292.90220833333314,
+"end": 298.24495833333316
+},
+{
+"pool": "well_rig",
+"text": "They spudded in on the morning of the ninth of July, about two hundred yards west of the house, on a low swell of ground where Emmett said the old grass grew greener in a wet year.",
+"ov": "",
+"start": 298.69495833333315,
+"end": 310.3366249999998
+},
+{
+"pool": "depth_chart",
+"text": "The first twenty feet were topsoil and yellow clay.",
+"ov": "depth:20",
+"start": 310.7866249999998,
+"end": 313.80254166666646
+},
+{
+"pool": "depth_chart",
+"text": "Then sand and gravel. Then a layer of grey silt, fine as flour, that he noted with a single word. River.",
+"ov": "depth:38",
+"start": 314.25254166666645,
+"end": 322.1429999999998
+},
+{
+"pool": "logbook_close",
+"text": "That word matters. There was no river within four miles of that farm. But the ground remembered one.",
+"ov": "",
+"start": 322.5929999999998,
+"end": 329.07341666666645
+},
+{
+"pool": "well_rig",
+"text": "On the afternoon of the eleventh, at fifty nine feet, the bit started to ring differently.",
+"ov": "",
+"start": 329.52341666666644,
+"end": 335.16037499999976
+},
+{
+"pool": "drillers",
+"text": "Joe Whitcomb heard it first. He said it sounded like hitting a barn floor.",
+"ov": "",
+"start": 335.61037499999975,
+"end": 340.45091666666644
+},
+{
+"pool": "drillbit",
+"text": "At sixty one feet the bit went through something with a crack they could hear over the boiler, and dropped two feet into nothing.",
+"ov": "",
+"start": 340.90091666666643,
+"end": 348.4720833333331
+},
+{
+"pool": "depth_chart",
+"text": "When they bailed the hole, the bailer came up full of grey water and splinters of wood.",
+"ov": "depth:61",
+"start": 348.9220833333331,
+"end": 354.0441249999998
+},
+{
+"pool": "splinters",
+"text": "Emmett laid the splinters out on a feed sack to dry in the sun. They were oak, an inch and a half thick, and on one face they were painted.",
+"ov": "",
+"start": 354.49412499999977,
+"end": 363.4772916666664
+},
+{
+"pool": "splinters",
+"text": "Ray Hale said afterward that his uncle stood over those boards for a long time without saying a word.",
+"ov": "",
+"start": 363.9272916666664,
+"end": 370.74712499999976
+},
+{
+"pool": "boxcar_red",
+"text": "Then Emmett Hale said, that is boxcar red.",
+"ov": "",
+"start": 371.19712499999974,
+"end": 374.13299999999975
+},
+{
+"pool": "logbook_close",
+"text": "In the log, under the eleventh of July, he wrote. Sixty one feet. Struck plank. Painted. Railroad. And then a line that he crossed out so hard the pencil tore the page.",
+"ov": "",
+"start": 374.58299999999974,
+"end": 386.8401249999997
+},
+{
+"pool": "logbook",
+"text": "Under it he wrote something else instead. Do not tell Mrs. Lindqvist until we know.",
+"ov": "",
+"start": 387.2901249999997,
+"end": 393.0147916666664
+},
+{
+"pool": "farmwife",
+"text": "They told her the next morning anyway. You cannot hide a thing like that from the woman whose kitchen window looks out on your rig.",
+"ov": "",
+"start": 393.4647916666664,
+"end": 401.00404166666635
+},
+{
+"pool": "farmwife",
+"text": "She walked out to the derrick in her apron and looked at the splinters and asked Emmett Hale a very practical question. Would there still be water.",
+"ov": "",
+"start": 401.45404166666634,
+"end": 410.5857499999997
+},
+{
+"pool": "driller_portrait",
+"text": "He told her he did not know what was down there. And he told her he would not drill through it until he did.",
+"ov": "",
+"start": 411.03574999999967,
+"end": 417.677333333333
+},
+{
+"pool": "black",
+"text": "",
+"ov": "",
+"start": 417.877333333333,
+"end": 419.177333333333
+},
+{
+"pool": "old_map",
+"text": "To understand what was down there you have to go back forty five years, to the spring of 1889.",
+"ov": "",
+"start": 419.177333333333,
+"end": 427.5569166666664
+},
+{
+"pool": "railroad_1880s",
+"text": "In 1889 that country was still new. The railroads had come through in the seventies and eighties, and the towns had come with them, strung out along the tracks every ten or twelve miles like beads on a string.",
+"ov": "",
+"start": 428.00691666666637,
+"end": 443.68812499999973
+},
+{
+"pool": "railroad_1880s",
+"text": "One of those lines was a small road I will call the Kansas Western, a branch that ran south and west from the main line across the high plains to the cattle towns near the Colorado border.",
+"ov": "",
+"start": 444.1381249999997,
+"end": 457.69287499999973
+},
+{
+"pool": "old_map",
+"text": "It crossed the land that would one day be the Lindqvist farm. In 1889 there was no farm there. There was open grass, and a creek called the Saline Fork, and a wooden trestle over it.",
+"ov": "tag:Saline Fork trestle/1889",
+"start": 458.1428749999997,
+"end": 472.16679166666637
+},
+{
+"pool": "trestle",
+"text": "The creek was nothing most of the year. A dry bed of sand you could walk across in your boots.",
+"ov": "",
+"start": 472.61679166666636,
+"end": 478.44995833333303
+},
+{
+"pool": "flood",
+"text": "But in the spring of 1889 it rained on the high plains for eleven days.",
+"ov": "",
+"start": 478.899958333333,
+"end": 485.59254166666636
+},
+{
+"pool": "flood",
+"text": "Old timers who were there talked about that spring for the rest of their lives. Creeks that had been dry for years ran bank to bank. The Saline Fork came up twelve feet in one night.",
+"ov": "",
+"start": 486.04254166666635,
+"end": 497.83179166666633
+},
+{
+"pool": "locomotive",
+"text": "And at ten minutes past three on the morning of the twenty third of April, train number nine of the Kansas Western left the station at a town called Pruitt, eleven miles north, heading south toward the trestle.",
+"ov": "tag:Train No. 9/3:10 a.m.",
+"start": 498.2817916666663,
+"end": 512.0164583333329
+},
+{
+"pool": "locomotive",
+"text": "Train number nine was a night run. A locomotive, a baggage and express car, one coach that was empty that night, and a railway post office car.",
+"ov": "",
+"start": 512.466458333333,
+"end": 522.717833333333
+},
+{
+"pool": "rpo_clerk",
+"text": "The railway post office was one of the great quiet wonders of that age. A rolling post office, a car fitted with pigeonhole cases and sack racks, where clerks sorted the mail by lamplight while the train was moving.",
+"ov": "",
+"start": 523.1678333333331,
+"end": 537.8174166666664
+},
+{
+"pool": "rpo_clerk",
+"text": "They were the elite of the postal service. They had to memorize every town, every route, every connection in their territory, and they were examined on it every year.",
+"ov": "",
+"start": 538.2674166666665,
+"end": 549.3654583333331
+},
+{
+"pool": "rpo_clerk",
+"text": "They worked alone or in pairs, through the night, and they were armed, because the mail car carried registered letters and money.",
+"ov": "",
+"start": 549.8154583333331,
+"end": 558.0158749999998
+},
+{
+"pool": "clerk_portrait",
+"text": "The clerk on train number nine that night was a man named Thomas Avery. He was thirty one. He had a wife and a baby daughter in a rented house in Pruitt, and he had been on that run for four years.",
+"ov": "",
+"start": 558.4658749999999,
+"end": 571.7621666666665
+},
+{
+"pool": "crew",
+"text": "There were three crew on the locomotive and the baggage car. The engineer, the fireman and an express messenger.",
+"ov": "",
+"start": 572.2121666666666,
+"end": 579.4719583333332
+},
+{
+"pool": "storm_night",
+"text": "It was raining so hard that night that the station agent at Pruitt wrote in his book that he could not see the water tank from the platform.",
+"ov": "",
+"start": 579.9219583333332,
+"end": 588.4111666666665
+},
+{
+"pool": "telegraph",
+"text": "At three forty, the agent at the next station south, a place called Dunmore, wired Pruitt to say that the Saline Fork was over its banks and asked whether number nine had left.",
+"ov": "",
+"start": 588.8611666666666,
+"end": 601.0609999999999
+},
+{
+"pool": "telegraph",
+"text": "Pruitt wired back that it had.",
+"ov": "",
+"start": 601.511,
+"end": 603.25675
+},
+{
+"pool": "telegraph",
+"text": "Dunmore waited. Number nine never arrived.",
+"ov": "",
+"start": 603.70675,
+"end": 606.7352083333334
+},
+{
+"pool": "black",
+"text": "",
+"ov": "",
+"start": 606.9352083333334,
+"end": 608.2352083333334
+},
+{
+"pool": "flood",
+"text": "When the water went down four days later, a section crew walked the line south from Pruitt.",
+"ov": "",
+"start": 608.2352083333334,
+"end": 613.7699583333334
+},
+{
+"pool": "trestle_wreck",
+"text": "They found the trestle over the Saline Fork gone. Not broken. Gone. The pilings were snapped off level with the mud.",
+"ov": "",
+"start": 614.2199583333335,
+"end": 622.3410833333335
+},
+{
+"pool": "flood",
+"text": "And they found nothing else. No locomotive. No cars. Not a wheel, not a coupling pin, not a body.",
+"ov": "",
+"start": 622.7910833333335,
+"end": 629.7662916666668
+},
+{
+"pool": "newspaper",
+"text": "The newspapers said the train had gone into the flood and been carried down the creek. Search parties walked the Saline Fork for thirty miles. They dragged every pool.",
+"ov": "",
+"start": 630.2162916666668,
+"end": 641.1485416666668
+},
+{
+"pool": "river",
+"text": "They found a sack of express parcels in a cottonwood tree nine miles downstream. They found a man's boot. That was all.",
+"ov": "",
+"start": 641.5985416666668,
+"end": 649.9452916666669
+},
+{
+"pool": "crowd",
+"text": "Four men were lost. The engineer, Walter Cass. The fireman, a young Irishman named Michael Dunne. The express messenger, Harlan Pike. And the mail clerk, Thomas Avery.",
+"ov": "",
+"start": 650.3952916666669,
+"end": 662.8220833333336
+},
+{
+"pool": "cemetery",
+"text": "Their families held funerals over empty coffins. The railroad paid each widow two hundred dollars.",
+"ov": "",
+"start": 663.2720833333336,
+"end": 669.993166666667
+},
+{
+"pool": "railroad_1880s",
+"text": "The Kansas Western never rebuilt that trestle. It rerouted the line two miles to the east, onto higher ground, and the old grade was abandoned.",
+"ov": "",
+"start": 670.443166666667,
+"end": 680.4756250000004
+},
+{
+"pool": "plains",
+"text": "Within ten years the rails had been pulled up and sold for scrap. Within twenty the grade had been plowed under for wheat.",
+"ov": "",
+"start": 680.9256250000004,
+"end": 688.6484583333338
+},
+{
+"pool": "postoffice",
+"text": "And the mail on train number nine, three sacks of letters, two pouches of registered mail and a sack of newspapers, was written off by the post office department as lost by flood.",
+"ov": "",
+"start": 689.0984583333338,
+"end": 701.6581666666672
+},
+{
+"pool": "ledger",
+"text": "A clerk in Washington stamped the file closed. It was never opened again until the summer of 1934.",
+"ov": "",
+"start": 702.1081666666672,
+"end": 710.3762083333339
+},
+{
+"pool": "black",
+"text": "",
+"ov": "",
+"start": 710.576208333334,
+"end": 711.8762083333339
+},
+{
+"pool": "well_rig",
+"text": "Emmett Hale did not know any of that history on the morning of the twelfth of July. What he knew was that he had hit a wooden structure sixty one feet underground, and he did not like it.",
+"ov": "",
+"start": 711.8762083333339,
+"end": 723.7875000000006
+},
+{
+"pool": "driller_portrait",
+"text": "He was a methodical man. He moved the rig twenty feet north and drilled a second hole.",
+"ov": "",
+"start": 724.2375000000006,
+"end": 729.6442500000006
+},
+{
+"pool": "depth_chart",
+"text": "At sixty three feet he hit wood again.",
+"ov": "depth:63",
+"start": 730.0942500000007,
+"end": 732.3430416666673
+},
+{
+"pool": "well_rig",
+"text": "He moved twenty feet south and drilled a third.",
+"ov": "",
+"start": 732.7930416666674,
+"end": 735.3886666666674
+},
+{
+"pool": "depth_chart",
+"text": "Sixty two feet. Wood. And under the wood, at sixty six, iron.",
+"ov": "depth:66",
+"start": 735.8386666666675,
+"end": 740.4490416666674
+},
+{
+"pool": "logbook_close",
+"text": "In the log he drew a little map of the three holes, and a long rectangle joining them, and wrote beside it. Car. Lying east and west. Maybe more than one.",
+"ov": "",
+"start": 740.8990416666675,
+"end": 751.5507083333341
+},
+{
+"pool": "drillers",
+"text": "Ray Hale was the one who thought of the old railroad. His grandfather had told him stories about the great flood of eighty nine, and the night train that went into the Saline Fork and was never found.",
+"ov": "",
+"start": 752.0007083333342,
+"end": 765.0866666666675
+},
+{
+"pool": "drillers",
+"text": "But the Saline Fork, as far as anyone knew, was four miles east. Nobody could explain how a train could end up sixty feet under a wheat field, four miles from the creek it fell into.",
+"ov": "",
+"start": 765.5366666666675,
+"end": 778.3874166666675
+},
+{
+"pool": "geologist",
+"text": "The explanation came three weeks later, from a geologist at the state university who drove out in a borrowed Ford after reading a paragraph about the holes in the county paper.",
+"ov": "",
+"start": 778.8374166666675,
+"end": 790.7579166666675
+},
+{
+"pool": "gypsum_cave",
+"text": "The bedrock under that part of Kansas is full of salt and gypsum. Water dissolves it. Over thousands of years the ground underneath hollows out like a sponge, and every so often the roof of one of those hollows gives way, and the surface drops into it.",
+"ov": "",
+"start": 791.2079166666675,
+"end": 808.5744583333342
+},
+{
+"pool": "sinkhole",
+"text": "Kansas has hundreds of them. Sinkholes. Some are small. Some have swallowed whole ponds, roads, and houses.",
+"ov": "",
+"start": 809.0244583333342,
+"end": 816.8569583333342
+},
+{
+"pool": "old_map",
+"text": "The geologist walked the field for two days with a surveyor's level. And he found what the farmers had never noticed. A long shallow dip in the ground running north and south through the Lindqvist place, a few feet deep and half a mile wide.",
+"ov": "tag:Old channel/1889",
+"start": 817.3069583333343,
+"end": 833.0500833333342
+},
+{
+"pool": "old_map",
+"text": "The Saline Fork, he said, had not always run where it ran in 1934. In 1889 it ran here. Under this field. Under the trestle.",
+"ov": "",
+"start": 833.5000833333343,
+"end": 846.3455000000009
+},
+{
+"pool": "sinkhole",
+"text": "His theory, which he wrote up in a short report that was never published, was this.",
+"ov": "",
+"start": 846.795500000001,
+"end": 851.9590833333343
+},
+{
+"pool": "flood",
+"text": "When the flood of 1889 poured eleven days of rain into the ground, it opened a hollow under the creek bed. The night train came onto the trestle in the dark. The trestle and the ground beneath it gave way together.",
+"ov": "",
+"start": 852.4090833333344,
+"end": 868.4900416666677
+},
+{
+"pool": "sinkhole",
+"text": "And the whole train went straight down, into a pit of water and mud that closed over it within hours.",
+"ov": "",
+"start": 868.9400416666678,
+"end": 875.6825000000011
+},
+{
+"pool": "river",
+"text": "Then the creek did what creeks do on the plains. It moved. It cut a new channel four miles to the east, and the old bed silted up, and the grass grew over it.",
+"ov": "",
+"start": 876.1325000000012,
+"end": 886.8677500000011
+},
+{
+"pool": "wheat",
+"text": "And forty five years later a widow planted wheat on top of it.",
+"ov": "",
+"start": 887.3177500000012,
+"end": 891.3507500000012
+},
+{
+"pool": "black",
+"text": "",
+"ov": "",
+"start": 891.5507500000012,
+"end": 892.8507500000012
+},
+{
+"pool": "farmwife",
+"text": "Clara Lindqvist's first question had been about water. Her second, once she understood what was under her field, was about the men.",
+"ov": "",
+"start": 892.8507500000012,
+"end": 901.2060000000012
+},
+{
+"pool": "farmwife",
+"text": "She went to town and found the old station agent's daughter, who was seventy by then, and asked her how many had been on that train.",
+"ov": "",
+"start": 901.6560000000012,
+"end": 909.9457083333346
+},
+{
+"pool": "farmwife",
+"text": "Four, the old woman told her. And they were never buried.",
+"ov": "",
+"start": 910.3957083333346,
+"end": 913.8370416666679
+},
+{
+"pool": "farmwife",
+"text": "Clara came home and told Emmett Hale she wanted them out.",
+"ov": "",
+"start": 914.287041666668,
+"end": 918.271541666668
+},
+{
+"pool": "driller_portrait",
+"text": "He told her it was sixty feet down, through sand and water, and that a hole big enough to bring a railway car to the surface would cost more than her farm was worth.",
+"ov": "",
+"start": 918.721541666668,
+"end": 930.0795833333347
+},
+{
+"pool": "farmwife",
+"text": "She told him she did not need the car. She needed the men. And she asked him how big a hole that would take.",
+"ov": "",
+"start": 930.5295833333347,
+"end": 937.5125833333346
+},
+{
+"pool": "logbook",
+"text": "His answer is in the log. Shaft. Ten by twelve. Crib it with timber all the way. Pump. Six weeks if the sand holds.",
+"ov": "",
+"start": 937.9625833333347,
+"end": 946.7551666666681
+},
+{
+"pool": "excavation",
+"text": "The sand did not hold. It took eleven.",
+"ov": "",
+"start": 947.2051666666681,
+"end": 949.8975000000014
+},
+{
+"pool": "black",
+"text": "",
+"ov": "",
+"start": 950.0975000000014,
+"end": 951.3975000000014
+},
+{
+"pool": "smalltown",
+"text": "Word got out the way it always does in a small town. The county paper, the Ashby Clarion, ran two inches on the holes in July. By August it was running a column every week.",
+"ov": "",
+"start": 951.3975000000014,
+"end": 964.5013333333347
+},
+{
+"pool": "newspaper",
+"text": "The Clarion's editor, a sharp eyed little man named Lyman Pratt, saved every clipping and every note he made, and they are one of the four records this story is built from.",
+"ov": "",
+"start": 964.9513333333348,
+"end": 976.6609166666681
+},
+{
+"pool": "crowd",
+"text": "People drove out on Sundays to look. They parked their cars along the section road and walked out across the dead wheat and stood around the shaft with their hats in their hands.",
+"ov": "",
+"start": 977.1109166666681,
+"end": 988.0605833333348
+},
+{
+"pool": "excavation",
+"text": "And slowly, almost without anyone deciding it, the town began to help.",
+"ov": "",
+"start": 988.5105833333348,
+"end": 993.5627083333349
+},
+{
+"pool": "digging",
+"text": "A bank that had foreclosed on half the county lent a gasoline pump. The county road crew brought a small steam shovel on a flatbed truck. Farmers who had nothing else to do that summer, because nothing was growing, came out with shovels.",
+"ov": "",
+"start": 994.0127083333349,
+"end": 1010.2321250000016
+},
+{
+"pool": "digging",
+"text": "They dug in shifts, from first light to dark. The women brought dinner out to the field in baskets.",
+"ov": "",
+"start": 1010.6821250000016,
+"end": 1017.1661250000017
+},
+{
+"pool": "excavation",
+"text": "They built the shaft the way a mine is built. Dig down a few feet. Set a square frame of heavy timbers. Pack the gaps with boards. Dig under the frame. Set another. Down and down, a wooden box sinking into the earth.",
+"ov": "",
+"start": 1017.6161250000017,
+"end": 1033.0332500000018
+},
+{
+"pool": "dust_storm",
+"text": "Twice in August a dust storm came through and buried the work in grit, and they spent two days digging out what they had already dug.",
+"ov": "",
+"start": 1033.4832500000018,
+"end": 1042.2724583333352
+},
+{
+"pool": "pump",
+"text": "At forty feet they hit the old river sand and the water came in so fast the pump could not keep up. For nine days they could do nothing but pump.",
+"ov": "",
+"start": 1042.7224583333352,
+"end": 1052.6231666666686
+},
+{
+"pool": "logbook_close",
+"text": "Emmett Hale's entries in that stretch are short and tired. Pumping. Pumping. Sand caving north wall. Reset cribbing. Pumping.",
+"ov": "",
+"start": 1053.0731666666686,
+"end": 1061.9658333333352
+},
+{
+"pool": "logbook_close",
+"text": "And then, on the fourth of September. Water holding. Going down.",
+"ov": "",
+"start": 1062.4158333333353,
+"end": 1066.4950833333353
+},
+{
+"pool": "shaft",
+"text": "At fifty eight feet they hit the first timbers of the old trestle, lying flat and broken in the mud, black as coal and soft as cheese.",
+"ov": "",
+"start": 1066.9450833333353,
+"end": 1076.096250000002
+},
+{
+"pool": "depth_chart",
+"text": "At sixty, under the trestle, a shovel struck the curved roof of a railway car.",
+"ov": "depth:60",
+"start": 1076.5462500000021,
+"end": 1081.790041666669
+},
+{
+"pool": "black",
+"text": "",
+"ov": "",
+"start": 1081.990041666669,
+"end": 1083.290041666669
+},
+{
+"pool": "shaft",
+"text": "It was Ray Hale who uncovered it. He was at the bottom of the shaft that afternoon with Joe Whitcomb, working by the light of two lanterns, because by then the shaft was so deep that the sun only reached the bottom for an hour at noon.",
+"ov": "",
+"start": 1083.290041666669,
+"end": 1099.4234583333355
+},
+{
+"pool": "mailcar_buried",
+"text": "He scraped the mud off with his hands. The paint was still there. Dull red, flaking, but there. And above a row of small barred windows, in faded yellow letters that he could just make out, two words.",
+"ov": "",
+"start": 1099.8734583333355,
+"end": 1113.5341666666689
+},
+{
+"pool": "mailcar_buried",
+"text": "Railway Post Office.",
+"ov": "tag:Railway Post Office/Train No. 9",
+"start": 1113.984166666669,
+"end": 1115.4913750000023
+},
+{
+"pool": "drillers",
+"text": "He shouted up the shaft for his uncle. And Emmett Hale, who had not been down a ladder in ten years because of his knees, climbed sixty feet to the bottom in his work boots to see it for himself.",
+"ov": "",
+"start": 1115.9413750000024,
+"end": 1128.3920833333357
+},
+{
+"pool": "logbook_close",
+"text": "That night he wrote one line in the log, in letters larger than any other on the page. Found the mail car.",
+"ov": "",
+"start": 1128.8420833333357,
+"end": 1135.8435000000025
+},
+{
+"pool": "newspaper",
+"text": "The Clarion printed the story the following Thursday under a headline that took up half the front page. Lost Mail Train Found Under Lindqvist Wheat.",
+"ov": "",
+"start": 1136.2935000000025,
+"end": 1146.3341250000026
+},
+{
+"pool": "newspaper",
+"text": "The Associated Press picked it up two days later. By the middle of September, reporters were driving in from Wichita and Kansas City.",
+"ov": "",
+"start": 1146.7841250000026,
+"end": 1155.5591250000027
+},
+{
+"pool": "inspector",
+"text": "And a man from the United States Post Office Department was on the train from Washington.",
+"ov": "",
+"start": 1156.0091250000028,
+"end": 1161.693333333336
+},
+{
+"pool": "black",
+"text": "",
+"ov": "",
+"start": 1161.8933333333362,
+"end": 1163.193333333336
+},
+{
+"pool": "postmaster",
+"text": "The postmaster at Ashby in 1934 was a widow named Harriet Bell. She was sixty three. She had run the post office out of the front room of the general store for twenty two years.",
+"ov": "",
+"start": 1163.193333333336,
+"end": 1176.6000416666695
+},
+{
+"pool": "postoffice",
+"text": "She was not, by her own account, an important person. She sorted the mail, she sold stamps, she kept a register of every registered letter that passed through her hands, and she knew every family in that end of the county by name.",
+"ov": "",
+"start": 1177.0500416666696,
+"end": 1192.480250000003
+},
+{
+"pool": "postmaster",
+"text": "Her register is the third of the four records. And it is the one that turns this from a story about a buried train into something else.",
+"ov": "",
+"start": 1192.930250000003,
+"end": 1201.5965833333364
+},
+{
+"pool": "postmaster",
+"text": "Because when Harriet Bell read in the Clarion that the lost mail car had been found, she did something nobody else in the county thought to do.",
+"ov": "",
+"start": 1202.0465833333365,
+"end": 1211.012625000003
+},
+{
+"pool": "ledger_hand",
+"text": "She went into the back room of the store, took down the old Ashby post office books from 1889, which her predecessor had left behind, and looked up what mail had been due to arrive on train number nine.",
+"ov": "",
+"start": 1211.462625000003,
+"end": 1226.509250000003
+},
+{
+"pool": "ledger_old",
+"text": "Ashby had been one of the stops. The night train dropped a sack there every morning at five.",
+"ov": "",
+"start": 1226.959250000003,
+"end": 1232.5014583333364
+},
+{
+"pool": "ledger_old",
+"text": "On the twenty third of April 1889, the sack never came. And the old postmaster had written a note in the margin. Number nine lost in flood. Mail for this office not received. Advised Washington.",
+"ov": "",
+"start": 1232.9514583333364,
+"end": 1249.7016666666698
+},
+{
+"pool": "postmaster",
+"text": "Harriet Bell read that note and understood something that the reporters and the railroad men and the curious crowds had not yet thought about.",
+"ov": "",
+"start": 1250.1516666666698,
+"end": 1259.291750000003
+},
+{
+"pool": "letters_stack",
+"text": "Somewhere in that car, sixty feet down, was mail addressed to Ashby. To people who had lived in her town. To families she knew.",
+"ov": "",
+"start": 1259.741750000003,
+"end": 1268.3127916666697
+},
+{
+"pool": "postmaster",
+"text": "And mail, in her understanding of the world, was a promise. Once a letter had been accepted by the post office, the post office owed it to the person whose name was on the front.",
+"ov": "",
+"start": 1268.7627916666697,
+"end": 1280.658500000003
+},
+{
+"pool": "postmaster",
+"text": "She did not care that it was forty five years late. In her register that night she wrote a line that would cause her a great deal of trouble. Mail of 23 April 1889 located. This office will deliver.",
+"ov": "",
+"start": 1281.108500000003,
+"end": 1297.210875000003
+},
+{
+"pool": "black",
+"text": "",
+"ov": "",
+"start": 1297.410875000003,
+"end": 1298.710875000003
+},
+{
+"pool": "inspector",
+"text": "The man from Washington was a postal inspector named Lyle Garrison. He arrived in Ashby on the eighteenth of September in a grey suit, with a briefcase and a letter of authority, and he went straight out to the farm.",
+"ov": "",
+"start": 1298.710875000003,
+"end": 1312.9566666666697
+},
+{
+"pool": "inspector",
+"text": "Postal inspectors were the oldest federal law enforcement officers in the country. They chased mail robbers, forgers and crooked postmasters. Garrison had spent fifteen years doing it, and he was not a sentimental man.",
+"ov": "",
+"start": 1313.4066666666697,
+"end": 1328.9000416666697
+},
+{
+"pool": "inspector",
+"text": "His instructions were clear. The contents of the car were the property of the United States Post Office Department. Nobody was to enter it, touch it or remove anything from it without him present.",
+"ov": "",
+"start": 1329.3500416666698,
+"end": 1342.6269583333365
+},
+{
+"pool": "inspector",
+"text": "And everything recovered would be shipped, sealed, to the Dead Letter Office in Washington, where it would be opened, inventoried, and in all likelihood destroyed.",
+"ov": "",
+"start": 1343.0769583333365,
+"end": 1353.6559583333365
+},
+{
+"pool": "postmaster",
+"text": "Harriet Bell drove out to the farm the next morning in her late husband's Model T and told him he was wrong.",
+"ov": "",
+"start": 1354.1059583333365,
+"end": 1360.8335416666698
+},
+{
+"pool": "postmaster",
+"text": "Their first conversation was recorded by Lyman Pratt of the Clarion, who happened to be standing next to the shaft with his notebook out.",
+"ov": "",
+"start": 1361.2835416666699,
+"end": 1369.5647916666699
+},
+{
+"pool": "postmaster",
+"text": "She told the inspector that the mail had been accepted for delivery, that it was addressed, and that the addressees or their families were, in many cases, still living within twenty miles of where he was standing.",
+"ov": "",
+"start": 1370.01479166667,
+"end": 1383.4967083333365
+},
+{
+"pool": "inspector",
+"text": "Garrison told her that the regulations on undeliverable mail were perfectly clear.",
+"ov": "",
+"start": 1383.9467083333366,
+"end": 1389.7858333333365
+},
+{
+"pool": "postmaster",
+"text": "Harriet Bell told him that this mail was not undeliverable. It was late. And she asked him whether there was a regulation that said the post office could stop owing a man his letter because it had taken too long to bring it.",
+"ov": "",
+"start": 1390.2358333333366,
+"end": 1404.2645833333365
+},
+{
+"pool": "newspaper",
+"text": "Pratt wrote that the inspector looked at her for a long moment and then said he would have to wire Washington.",
+"ov": "",
+"start": 1404.7145833333366,
+"end": 1411.2109583333365
+},
+{
+"pool": "telegraph",
+"text": "He wired Washington that afternoon. The answer came back four days later, and it was not the answer anyone expected.",
+"ov": "",
+"start": 1411.6609583333366,
+"end": 1419.8235416666698
+},
+{
+"pool": "telegraph",
+"text": "The Post Office Department would allow mail recovered from the car to be delivered by the Ashby office, under the inspector's supervision, to any addressee or heir who could be identified and could prove their identity. Everything else would go to Washington.",
+"ov": "tag:Washington/Deliver if found",
+"start": 1420.2735416666699,
+"end": 1437.5202083333365
+},
+{
+"pool": "black",
+"text": "",
+"ov": "",
+"start": 1437.7202083333366,
+"end": 1439.0202083333365
+},
+{
+"pool": "shaft",
+"text": "They opened the car on the twenty sixth of September, 1934.",
+"ov": "",
+"start": 1439.0202083333365,
+"end": 1444.0430000000033
+},
+{
+"pool": "shaft",
+"text": "By then the shaft had been widened at the bottom into a small chamber, braced with timbers, so that men could stand beside the car. Joe Whitcomb had rigged electric lights off a car battery.",
+"ov": "",
+"start": 1444.4930000000033,
+"end": 1457.3810000000033
+},
+{
+"pool": "mailcar_door",
+"text": "The side door of the mail car was still closed. Across the latch hung a heavy lead seal, the kind the post office clamped on every mail car before it left a station, stamped with the date and the number of the route.",
+"ov": "",
+"start": 1457.8310000000033,
+"end": 1472.2505833333366
+},
+{
+"pool": "seal",
+"text": "The seal was dull grey and furred with white, but you could still read it. April 22, 1889.",
+"ov": "tag:Lead seal/April 22, 1889",
+"start": 1472.7005833333367,
+"end": 1481.3571250000034
+},
+{
+"pool": "inspector",
+"text": "Garrison cut it himself, with a pair of pliers, in front of witnesses. Emmett Hale, Ray Hale, Joe Whitcomb, Harriet Bell, Lyman Pratt, and a county deputy.",
+"ov": "",
+"start": 1481.8071250000035,
+"end": 1492.7770000000035
+},
+{
+"pool": "logbook_close",
+"text": "Emmett Hale wrote down the time. Eleven twenty in the morning.",
+"ov": "",
+"start": 1493.2270000000035,
+"end": 1497.180583333337
+},
+{
+"pool": "mailcar_door",
+"text": "The door would not slide. The runners had rusted solid. Joe Whitcomb worked at it with a crowbar for twenty minutes, and when it finally gave, it went all at once, with a groan that Ray Hale said he could feel through his boots.",
+"ov": "",
+"start": 1497.630583333337,
+"end": 1513.0430000000035
+},
+{
+"pool": "car_interior",
+"text": "What they saw inside was not what any of them had braced themselves for.",
+"ov": "",
+"start": 1513.4930000000036,
+"end": 1518.1612916666702
+},
+{
+"pool": "car_interior",
+"text": "The car was dry.",
+"ov": "",
+"start": 1518.6112916666702,
+"end": 1519.940708333337
+},
+{
+"pool": "car_interior",
+"text": "The water had come in. You could see the line of it on the walls, a dark tide mark about two feet off the floor. But the car had settled nose up on the slope of the sinkhole, and the mud had sealed the doors and windows before the water rose above the sorting cases.",
+"ov": "",
+"start": 1520.390708333337,
+"end": 1538.280208333337
+},
+{
+"pool": "mail_sacks",
+"text": "The upper half of the car was exactly as it had been at three o'clock in the morning on the twenty third of April, 1889.",
+"ov": "",
+"start": 1538.730208333337,
+"end": 1548.0022916666703
+},
+{
+"pool": "rpo_interior",
+"text": "The pigeonhole cases along the walls were still full of letters, sorted, bundled with string, waiting for their stations.",
+"ov": "",
+"start": 1548.4522916666704,
+"end": 1556.672208333337
+},
+{
+"pool": "mail_sacks",
+"text": "The canvas sacks hung on their racks, locked with brass padlocks, tagged for the towns down the line. Pruitt. Dunmore. Ashby. Carlow. Wells.",
+"ov": "",
+"start": 1557.122208333337,
+"end": 1566.9758750000037
+},
+{
+"pool": "lantern",
+"text": "A brass lamp hung from the ceiling, its glass still unbroken.",
+"ov": "",
+"start": 1567.4258750000038,
+"end": 1571.5332500000038
+},
+{
+"pool": "car_interior",
+"text": "And at the far end of the car, at the clerk's desk, they found Thomas Avery.",
+"ov": "",
+"start": 1571.9832500000039,
+"end": 1576.4392916666704
+},
+{
+"pool": "black",
+"text": "",
+"ov": "",
+"start": 1576.6392916666705,
+"end": 1577.9392916666704
+},
+{
+"pool": "car_interior",
+"text": "I am going to tell this part the way the people who were there told it, because they were careful about it, and I want to be careful too.",
+"ov": "",
+"start": 1577.9392916666704,
+"end": 1586.0964166666704
+},
+{
+"pool": "car_interior",
+"text": "Thomas Avery had not drowned. The coroner who came out the next day was certain of that. He had been in the dry end of the car, above the water line, and the car had been sealed in the dark.",
+"ov": "",
+"start": 1586.5464166666704,
+"end": 1599.1193333333372
+},
+{
+"pool": "tripbook",
+"text": "He was sitting at his desk, his head down on his folded arms, the way a man sits when he is waiting for something and has run out of strength to wait.",
+"ov": "",
+"start": 1599.5693333333372,
+"end": 1609.2806666666706
+},
+{
+"pool": "tripbook",
+"text": "His uniform cap was on the desk beside him. His revolver was in its holster. His watch had stopped at nineteen minutes past six.",
+"ov": "",
+"start": 1609.7306666666707,
+"end": 1619.0023333333374
+},
+{
+"pool": "tripbook",
+"text": "And under his arms, open, was his trip book.",
+"ov": "",
+"start": 1619.4523333333375,
+"end": 1622.275625000004
+},
+{
+"pool": "tripbook",
+"text": "Every railway mail clerk kept a trip book. It was an official record of the run. Time of departure, stations worked, sacks received and dispatched, anything unusual.",
+"ov": "",
+"start": 1622.7256250000041,
+"end": 1634.5213333333375
+},
+{
+"pool": "tripbook_close",
+"text": "Thomas Avery's trip book for the twenty second of April begins the way every one of his trip books began, in a neat clerk's hand. Left Pruitt 3:10. Heavy rain. Worked Pruitt mail. All in order.",
+"ov": "",
+"start": 1634.9713333333375,
+"end": 1648.489666666671
+},
+{
+"pool": "tripbook_close",
+"text": "Then, a few lines later, the hand changes.",
+"ov": "",
+"start": 1648.939666666671,
+"end": 1651.7798750000043
+},
+{
+"pool": "tripbook_close",
+"text": "3:52. Struck something. Car went down. Very dark. Water coming in at the floor.",
+"ov": "",
+"start": 1652.2298750000043,
+"end": 1658.280791666671
+},
+{
+"pool": "tripbook_close",
+"text": "4:15. Car has stopped. We are under ground, I believe. Cannot open door. Called out. No answer from the engine.",
+"ov": "",
+"start": 1658.730791666671,
+"end": 1666.9530833333376
+},
+{
+"pool": "tripbook_close",
+"text": "4:40. Water has stopped rising. Have moved all sacks and registered pouches to upper racks. Mail is dry.",
+"ov": "",
+"start": 1667.4030833333377,
+"end": 1675.904791666671
+},
+{
+"pool": "inspector",
+"text": "Lyle Garrison read that line out loud, standing in the mud at the bottom of the shaft. Pratt wrote in his notebook that the inspector's voice broke on the word dry.",
+"ov": "",
+"start": 1676.354791666671,
+"end": 1687.1268750000042
+},
+{
+"pool": "tripbook_close",
+"text": "There are four more entries. The handwriting gets slower and larger, and the lines begin to run downhill across the page.",
+"ov": "",
+"start": 1687.5768750000043,
+"end": 1695.7321250000043
+},
+{
+"pool": "tripbook_close",
+"text": "5:30. Air is bad. Lamp burning low. Have checked registered pouches against the bill. All correct.",
+"ov": "",
+"start": 1696.1821250000044,
+"end": 1703.7767500000043
+},
+{
+"pool": "tripbook_close",
+"text": "6:00. To my wife Ellen. Do not let them say I left the mail. Tell Rose her father thought of her.",
+"ov": "",
+"start": 1704.2267500000044,
+"end": 1711.5037083333377
+},
+{
+"pool": "tripbook_close",
+"text": "And the last line, at 6:15, three words in a hand that is almost too faint to read. Mail is safe.",
+"ov": "",
+"start": 1711.9537083333378,
+"end": 1719.1553750000044
+},
+{
+"pool": "black",
+"text": "",
+"ov": "",
+"start": 1719.3553750000044,
+"end": 1720.6553750000044
+},
+{
+"pool": "crowd",
+"text": "They brought Thomas Avery up first, on the twenty seventh of September, wrapped in a canvas mail sack because it was the cleanest thing they had.",
+"ov": "",
+"start": 1720.6553750000044,
+"end": 1729.978666666671
+},
+{
+"pool": "crowd",
+"text": "Half the county was standing around the shaft when the rope came up. The men took off their hats. Nobody said a word.",
+"ov": "",
+"start": 1730.428666666671,
+"end": 1737.8913750000042
+},
+{
+"pool": "church",
+"text": "He was buried three days later in the Pruitt cemetery, next to the empty grave his wife had put up for him in 1889.",
+"ov": "",
+"start": 1738.3413750000043,
+"end": 1747.6207083333377
+},
+{
+"pool": "oldwoman",
+"text": "His wife had been dead for nine years. But his daughter, Rose, was alive. She was forty six years old, a schoolteacher in Wichita, and she had been eleven months old the night her father went to work and did not come home.",
+"ov": "",
+"start": 1748.0707083333377,
+"end": 1763.1230000000044
+},
+{
+"pool": "oldwoman",
+"text": "She came to the funeral. She read the trip book. And afterward she said one thing to the reporter from Wichita that he printed without comment.",
+"ov": "",
+"start": 1763.5730000000044,
+"end": 1772.6722500000044
+},
+{
+"pool": "oldwoman",
+"text": "She said, my mother always told me he would never have left the mail. I used to think that was something she said to make me feel better.",
+"ov": "",
+"start": 1773.1222500000044,
+"end": 1781.4131250000044
+},
+{
+"pool": "black",
+"text": "",
+"ov": "",
+"start": 1781.6131250000044,
+"end": 1782.9131250000044
+},
+{
+"pool": "locomotive_buried",
+"text": "The locomotive was found two weeks later, nose down in the sand fifty feet east of the mail car, at seventy three feet. The engineer and the fireman were still in the cab.",
+"ov": "depth:73",
+"start": 1782.9131250000044,
+"end": 1794.8143750000042
+},
+{
+"pool": "cemetery",
+"text": "The express messenger, Harlan Pike, was never found. The baggage car had broken open in the fall and filled with mud. They dug as far as they dared and then stopped.",
+"ov": "",
+"start": 1795.2643750000043,
+"end": 1806.9215833333376
+},
+{
+"pool": "cemetery",
+"text": "Walter Cass and Michael Dunne were buried beside Thomas Avery, in a single service, with a band from the railroad shops in Pruitt.",
+"ov": "",
+"start": 1807.3715833333376,
+"end": 1816.0893750000043
+},
+{
+"pool": "railroad_1880s",
+"text": "The Kansas Western, which by then had been swallowed by a bigger railroad, sent a vice president, who made a speech, and a wreath.",
+"ov": "",
+"start": 1816.5393750000044,
+"end": 1825.0318333333378
+},
+{
+"pool": "farmwife",
+"text": "Clara Lindqvist did not go to the speech. She stayed on her farm. She had told Emmett Hale she wanted the men out, and the men were out.",
+"ov": "",
+"start": 1825.4818333333378,
+"end": 1834.2789583333379
+},
+{
+"pool": "farmwife",
+"text": "But she had a reason to stay home that day that she did not tell anyone about for almost a year.",
+"ov": "",
+"start": 1834.728958333338,
+"end": 1840.6419166666712
+},
+{
+"pool": "black",
+"text": "",
+"ov": "",
+"start": 1840.8419166666713,
+"end": 1842.1419166666712
+},
+{
+"pool": "mail_sacks",
+"text": "The mail came up out of the shaft on the first of October, 1934, in a wooden crate lowered on a rope, one sack at a time.",
+"ov": "",
+"start": 1842.1419166666712,
+"end": 1851.7010000000046
+},
+{
+"pool": "inspector",
+"text": "Lyle Garrison checked every sack against the clerk's bill before it left the bottom of the shaft. Every count matched Thomas Avery's figures to the letter.",
+"ov": "",
+"start": 1852.1510000000046,
+"end": 1861.6776666666713
+},
+{
+"pool": "postoffice",
+"text": "Then the sacks went into the back room of the Ashby general store, behind a locked door, and Harriet Bell and the inspector began to sort them.",
+"ov": "",
+"start": 1862.1276666666713,
+"end": 1871.4410000000046
+},
+{
+"pool": "letters_table",
+"text": "It took them nine days just to count. Two thousand three hundred and eleven letters. Forty one registered pieces. Two hundred and six newspapers and parcels.",
+"ov": "tag:2,311 letters/41 registered",
+"start": 1871.8910000000046,
+"end": 1882.957333333338
+},
+{
+"pool": "envelope_old",
+"text": "The envelopes had gone the color of weak tea, and the stamps had curled at the corners. But the addresses were readable, almost every one, in brown ink and pencil and careful copperplate.",
+"ov": "",
+"start": 1883.407333333338,
+"end": 1896.3395416666715
+},
+{
+"pool": "ledger_hand",
+"text": "Harriet Bell entered every single one in a new register. Addressee. Town. And a column she ruled herself, with a heading in capitals. Found.",
+"ov": "",
+"start": 1896.7895416666715,
+"end": 1906.872375000005
+},
+{
+"pool": "postmaster",
+"text": "Then she started looking.",
+"ov": "",
+"start": 1907.322375000005,
+"end": 1908.759000000005
+},
+{
+"pool": "black",
+"text": "",
+"ov": "",
+"start": 1908.959000000005,
+"end": 1910.259000000005
+},
+{
+"pool": "postmaster",
+"text": "It is hard to explain now how much work that was. In 1934 there were no records you could search. There was the memory of old people, and church books, and county land records, and the post office itself.",
+"ov": "",
+"start": 1910.259000000005,
+"end": 1925.4781666666718
+},
+{
+"pool": "oldman",
+"text": "Harriet Bell wrote letters. Hundreds of them. To county clerks, to pastors, to postmasters in towns across Kansas and Nebraska and Colorado, asking whether a family by such a name had ever lived there, and where they had gone.",
+"ov": "",
+"start": 1925.9281666666718,
+"end": 1942.3046250000052
+},
+{
+"pool": "newspaper",
+"text": "Lyman Pratt printed a list in the Clarion every week, a column of names under a plain heading. Mail held at Ashby for. Other papers across the state copied it.",
+"ov": "",
+"start": 1942.7546250000053,
+"end": 1953.8669166666718
+},
+{
+"pool": "crowd",
+"text": "And people came. Some drove a hundred miles. Some wrote from California and Oregon, where the dust had blown them. They came into the store and stood at the counter with their hats in their hands and gave their names, and Harriet Bell looked them up in her register.",
+"ov": "",
+"start": 1954.316916666672,
+"end": 1971.2332083333386
+},
+{
+"pool": "ledger_hand",
+"text": "When she found a match, she asked them questions about their families that only the family would know. And then she went into the back room and came out with an envelope forty five years old, and put it in their hands.",
+"ov": "",
+"start": 1971.6832083333386,
+"end": 1984.8961250000052
+},
+{
+"pool": "postmaster",
+"text": "She never opened a single one. That was the rule. The letter belonged to the person on the front.",
+"ov": "",
+"start": 1985.3461250000053,
+"end": 1991.435791666672
+},
+{
+"pool": "black",
+"text": "",
+"ov": "",
+"start": 1991.635791666672,
+"end": 1992.935791666672
+},
+{
+"pool": "oldwoman",
+"text": "Some of what was in those letters, we know, because the people who received them told Lyman Pratt, or told their children, and some of those children told theirs.",
+"ov": "",
+"start": 1992.935791666672,
+"end": 2003.307416666672
+},
+{
+"pool": "oldwoman",
+"text": "There was a woman named Ada Whitley, sixty four years old, who had been a schoolteacher in Ashby in 1889.",
+"ov": "",
+"start": 2003.757416666672,
+"end": 2012.6013750000054
+},
+{
+"pool": "letter_reading",
+"text": "Her letter was from a cowboy named Sam Leary, who had worked on a ranch south of Dunmore. It was four pages long, and on the last page he asked her to marry him, and said that if she would, she should write back by return of post, and if she did not write, he would know her answer and trouble her no more.",
+"ov": "",
+"start": 2013.0513750000055,
+"end": 2032.9784583333387
+},
+{
+"pool": "oldwoman",
+"text": "She never wrote. She never knew he had asked. Sam Leary left the county that summer and was never heard from again.",
+"ov": "",
+"start": 2033.4284583333388,
+"end": 2040.673666666672
+},
+{
+"pool": "oldwoman",
+"text": "Ada Whitley had married a hardware merchant in 1892 and raised five children. She read the letter at the counter of the store, and Harriet Bell said she laughed until she cried, and then just cried.",
+"ov": "",
+"start": 2041.123666666672,
+"end": 2056.4868750000055
+},
+{
+"pool": "oldwoman",
+"text": "Then she folded it up and put it in her purse and said, well, I suppose it is a little late to write back.",
+"ov": "",
+"start": 2056.9368750000053,
+"end": 2063.501791666672
+},
+{
+"pool": "black",
+"text": "",
+"ov": "",
+"start": 2063.701791666672,
+"end": 2065.001791666672
+},
+{
+"pool": "farmer",
+"text": "There was a farmer named Otto Brenner, whose father had been waiting in April of 1889 for a letter from a brother in Missouri.",
+"ov": "",
+"start": 2065.001791666672,
+"end": 2075.011875000005
+},
+{
+"pool": "envelope_old",
+"text": "The letter held two twenty dollar gold certificates, a loan, to make the payment on the family's quarter section.",
+"ov": "",
+"start": 2075.461875000005,
+"end": 2082.851625000005
+},
+{
+"pool": "farmhouse",
+"text": "It never came. The Brenners lost that land to the bank in the summer of 1889 and spent the next twenty years as tenant farmers on other men's ground.",
+"ov": "",
+"start": 2083.3016250000046,
+"end": 2095.048708333338
+},
+{
+"pool": "farmer",
+"text": "Otto Brenner was sixty when he held those two notes in his hands. They were still good. The post office honored them.",
+"ov": "",
+"start": 2095.4987083333376,
+"end": 2102.7727083333375
+},
+{
+"pool": "farmer",
+"text": "He told Pratt it was not enough to buy back an acre. He said he wanted them anyway, so his grandchildren would know the family had not been careless. Only unlucky.",
+"ov": "",
+"start": 2103.2227083333373,
+"end": 2114.154000000004
+},
+{
+"pool": "black",
+"text": "",
+"ov": "",
+"start": 2114.354000000004,
+"end": 2115.654000000004
+},
+{
+"pool": "children",
+"text": "There were letters from children to grandparents, written in pencil on lined school paper, with drawings of horses in the margins. There were bills. Seed catalogues. A notice of a church social that had taken place forty five years before.",
+"ov": "",
+"start": 2115.654000000004,
+"end": 2132.3602500000043
+},
+{
+"pool": "letters_stack",
+"text": "There was a registered letter containing a man's pardon from the governor of Missouri, which arrived thirty eight years after he had died in the state prison waiting for it.",
+"ov": "",
+"start": 2132.810250000004,
+"end": 2143.406666666671
+},
+{
+"pool": "postmaster",
+"text": "And there were letters to people who had simply vanished. Moved on, died, gone west, gone east, left no trace at all. For those, Harriet Bell kept looking for two years.",
+"ov": "",
+"start": 2143.8566666666707,
+"end": 2155.552625000004
+},
+{
+"pool": "ledger_hand",
+"text": "Her register shows how far she got. By the autumn of 1936, six hundred and thirty eight letters had been put into the hands of the people they were written to, or their children.",
+"ov": "tag:Delivered/638",
+"start": 2156.0026250000037,
+"end": 2169.033583333337
+},
+{
+"pool": "ledger_old",
+"text": "The rest, sixteen hundred and seventy three, went to Washington, as the inspector had promised. What happened to them there, nobody in Ashby ever found out.",
+"ov": "",
+"start": 2169.483583333337,
+"end": 2180.0651250000033
+},
+{
+"pool": "black",
+"text": "",
+"ov": "",
+"start": 2180.265125000003,
+"end": 2181.5651250000033
+},
+{
+"pool": "farmwife",
+"text": "Which brings us back to Clara Lindqvist, and the reason she stayed home on the day of the funeral.",
+"ov": "",
+"start": 2181.5651250000033,
+"end": 2187.54691666667
+},
+{
+"pool": "farmwife",
+"text": "Clara had been six years old in the spring of 1889. Her family had come over from Sweden two years before and were living in a sod house on rented land south of Ashby.",
+"ov": "",
+"start": 2187.9969166666697,
+"end": 2201.2670833333364
+},
+{
+"pool": "farm_family",
+"text": "Her father, Nils Berg, was not with them that spring. He had gone west to work on a railroad grading crew in Colorado to earn enough for a farm of their own.",
+"ov": "",
+"start": 2201.717083333336,
+"end": 2212.1689583333364
+},
+{
+"pool": "farmwife",
+"text": "He had written to her mother every two weeks. Clara remembered the letters coming, and her mother reading them out loud by the lamp.",
+"ov": "",
+"start": 2212.618958333336,
+"end": 2220.6216666666696
+},
+{
+"pool": "farmwife",
+"text": "And she remembered that in the spring of 1889 a letter did not come. Her mother waited for it all summer.",
+"ov": "",
+"start": 2221.0716666666694,
+"end": 2229.730750000003
+},
+{
+"pool": "cemetery",
+"text": "Her father came home in the autumn, sick with a fever he had caught in the camps, and died before Christmas. Her mother never spoke of the missing letter again.",
+"ov": "",
+"start": 2230.1807500000027,
+"end": 2240.575958333336
+},
+{
+"pool": "farmwife",
+"text": "On the ninth of October 1934, Harriet Bell drove out to the farm and handed Clara Lindqvist an envelope addressed in her father's handwriting to Mrs. Nils Berg, Ashby, Kansas.",
+"ov": "",
+"start": 2241.025958333336,
+"end": 2255.5716666666694
+},
+{
+"pool": "farmwife",
+"text": "Her mother had been dead three years. Clara was her only living child. And the letter had spent forty five years sixty feet under the ground, two hundred yards from Clara's kitchen door.",
+"ov": "",
+"start": 2256.0216666666693,
+"end": 2268.817791666669
+},
+{
+"pool": "letter_reading",
+"text": "It was in Swedish. Clara read it at the kitchen table, alone. She did not show it to anyone for almost a year.",
+"ov": "",
+"start": 2269.267791666669,
+"end": 2277.266166666669
+},
+{
+"pool": "letter_reading",
+"text": "When she finally did, it was to Emmett Hale, and he copied part of it, in English, into the back of his log. That copy is how we know what it said.",
+"ov": "",
+"start": 2277.716166666669,
+"end": 2287.307000000002
+},
+{
+"pool": "letter_reading",
+"text": "Her father had written that he had saved two hundred dollars. That he had walked the country south of Ashby on his way west and found a quarter section of open land on high ground above a creek, where the grass was greener than anywhere he had seen.",
+"ov": "",
+"start": 2287.757000000002,
+"end": 2303.5497083333353
+},
+{
+"pool": "seeds",
+"text": "And he had put something in the envelope. A twist of brown paper with a handful of seed wheat in it, hard red winter wheat that he had traded for from a family of Mennonite farmers in the camp, who had brought it from the Crimea.",
+"ov": "",
+"start": 2303.999708333335,
+"end": 2319.202083333335
+},
+{
+"pool": "seeds",
+"text": "He wrote. This is the best seed in the world. Plant it on the high ground by the creek. That is where we will build our house.",
+"ov": "",
+"start": 2319.6520833333348,
+"end": 2327.4928750000013
+},
+{
+"pool": "wheat_dry",
+"text": "The high ground by the creek. Above the old Saline Fork.",
+"ov": "",
+"start": 2327.942875000001,
+"end": 2331.8803333333344
+},
+{
+"pool": "farmhouse",
+"text": "Clara Lindqvist had bought that land in 1907 with her husband, without knowing any of it. She had chosen it, she said, because the grass was greener there in a wet year.",
+"ov": "",
+"start": 2332.3303333333342,
+"end": 2344.4974166666675
+},
+{
+"pool": "black",
+"text": "",
+"ov": "",
+"start": 2344.6974166666673,
+"end": 2345.9974166666675
+},
+{
+"pool": "seeds",
+"text": "The seed was still in the envelope. Forty five years in the dark, in a sealed car under sixty feet of earth.",
+"ov": "",
+"start": 2345.9974166666675,
+"end": 2353.3422916666673
+},
+{
+"pool": "farmwife",
+"text": "Clara did not know whether it would grow. Neither did anyone else. But in the second week of October, which is when you plant winter wheat in Kansas, she took the seeds out to the field behind the house.",
+"ov": "",
+"start": 2353.792291666667,
+"end": 2367.205708333334
+},
+{
+"pool": "well_rig",
+"text": "Emmett Hale had finished her well by then. He had moved the rig a quarter mile north, away from the train, and hit good water at a hundred and forty feet.",
+"ov": "depth:140",
+"start": 2367.6557083333337,
+"end": 2377.6983333333337
+},
+{
+"pool": "farmwife",
+"text": "She planted the seeds in a single short row, by hand, on the low swell of ground where the shaft had been filled back in. And she carried water out to them in a bucket.",
+"ov": "",
+"start": 2378.1483333333335,
+"end": 2388.9814583333336
+},
+{
+"pool": "sprouts",
+"text": "Most of them did not come up. Eleven did.",
+"ov": "",
+"start": 2389.4314583333335,
+"end": 2392.378
+},
+{
+"pool": "sprouts",
+"text": "Eleven thin green shoots, in a field of dust, in the worst drought anyone in Kansas had ever seen.",
+"ov": "",
+"start": 2392.828,
+"end": 2399.7125833333334
+},
+{
+"pool": "farmwife",
+"text": "She kept them alive through the winter with that bucket. She saved every seed they made the next summer, and planted those, and saved those.",
+"ov": "",
+"start": 2400.1625833333333,
+"end": 2409.089125
+},
+{
+"pool": "wheat",
+"text": "By 1941, when the rains had finally come back to the plains, the whole of the north field on the Lindqvist place was in wheat grown from that one handful of seed.",
+"ov": "",
+"start": 2409.539125,
+"end": 2421.4687916666667
+},
+{
+"pool": "black",
+"text": "",
+"ov": "",
+"start": 2421.6687916666665,
+"end": 2422.9687916666667
+},
+{
+"pool": "ledger",
+"text": "Lay the four records side by side and look at what they say together.",
+"ov": "",
+"start": 2422.9687916666667,
+"end": 2427.473
+},
+{
+"pool": "logbook",
+"text": "The driller's log says that a careful man refused to drill through something he did not understand, and that because he stopped, four men came home.",
+"ov": "",
+"start": 2427.923,
+"end": 2437.53275
+},
+{
+"pool": "newspaper",
+"text": "The editor's notebook says that a whole county, in the worst year of its life, with nothing growing and no money, went out into a dead field and dug for eleven weeks for strangers who had died before most of them were born.",
+"ov": "",
+"start": 2437.9827499999997,
+"end": 2452.2586249999995
+},
+{
+"pool": "tripbook",
+"text": "The clerk's trip book says that a man sealed in the dark, knowing he would not get out, spent the last two hours of his life making sure the letters stayed dry.",
+"ov": "",
+"start": 2452.7086249999993,
+"end": 2462.7822499999993
+},
+{
+"pool": "postmaster",
+"text": "And the postmistress's register says that a promise made by the post office in 1889 was kept, six hundred and thirty eight times, by a sixty three year old widow who would not accept that it was too late.",
+"ov": "",
+"start": 2463.232249999999,
+"end": 2478.7545833333324
+},
+{
+"pool": "letters_stack",
+"text": "Thomas Avery wrote that the mail was safe. He was right. It just took forty five years to arrive.",
+"ov": "",
+"start": 2479.2045833333323,
+"end": 2486.053499999999
+},
+{
+"pool": "black",
+"text": "",
+"ov": "",
+"start": 2486.253499999999,
+"end": 2487.553499999999
+},
+{
+"pool": "cemetery",
+"text": "Harriet Bell kept the Ashby post office until 1946. When she retired, the last thing she did was close the register of the train nine mail and write one line under the final entry.",
+"ov": "",
+"start": 2487.553499999999,
+"end": 2501.3569166666657
+},
+{
+"pool": "ledger_hand",
+"text": "All mail entrusted to this office has been accounted for.",
+"ov": "",
+"start": 2501.8069166666655,
+"end": 2505.6929166666655
+},
+{
+"pool": "cemetery",
+"text": "Emmett Hale's eyes failed completely in 1940. Ray Hale took over the rig and drilled water wells across western Kansas until 1975. He kept his uncle's log in a cigar box and gave it to his granddaughter before he died.",
+"ov": "",
+"start": 2506.1429166666653,
+"end": 2524.0281249999985
+},
+{
+"pool": "cemetery",
+"text": "Lyle Garrison retired from the Post Office Department in 1951. In his last report he listed the Ashby recovery as the case he was proudest of. He wrote, we did not catch anyone. We delivered the mail.",
+"ov": "",
+"start": 2524.4781249999983,
+"end": 2540.112041666665
+},
+{
+"pool": "farmwife",
+"text": "Clara Lindqvist lived on her farm until 1963. She never told the newspapers about the seed. The story only came out after her death, when her granddaughter found her father's letter folded inside her Swedish Bible, with Emmett Hale's translation pinned to it.",
+"ov": "",
+"start": 2540.5620416666648,
+"end": 2559.2935833333313
+},
+{
+"pool": "wheat",
+"text": "The farm is still there. Somebody else farms it now. The shaft was filled in the winter of 1934, and the mail car and the locomotive are still down there, under seventy feet of Kansas, with the wheat growing over them every summer.",
+"ov": "",
+"start": 2559.743583333331,
+"end": 2576.6177499999976
+},
+{
+"pool": "wheat",
+"text": "And on the high ground above the old creek, if you know where to look, the wheat in the north field still comes up a little greener than anywhere else.",
+"ov": "",
+"start": 2577.0677499999974,
+"end": 2586.254083333331
+},
+{
+"pool": "black",
+"text": "",
+"ov": "",
+"start": 2586.454083333331,
+"end": 2587.754083333331
+},
+{
+"pool": "kitchen_lamp",
+"text": "If this story stayed with you, subscribe, because there are more drillers' logs and more registers and more letters that waited much too long to be read, and I want to tell you all of them.",
+"ov": "",
+"start": 2587.754083333331,
+"end": 2599.7991249999977
+},
+{
+"pool": "kitchen_lamp",
+"text": "Tell me in the comments. If you had found a letter addressed to your family forty five years late, would you have opened it? And tell me where you are watching from, and what you are eating while you watch.",
+"ov": "",
+"start": 2600.2491249999975,
+"end": 2612.8079166666644
+},
+{
+"pool": "plains_dawn",
+"text": "See you in the next one.",
+"ov": "",
+"start": 2613.257916666664,
+"end": 2614.7339999999976
+}
+]
